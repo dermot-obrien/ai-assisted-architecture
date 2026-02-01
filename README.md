@@ -1,1 +1,1 @@
-# ea-infrastructure-azure
+# AI Assisted Architecture
