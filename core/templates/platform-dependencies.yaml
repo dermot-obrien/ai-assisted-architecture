@@ -1,0 +1,172 @@
+# Platform Architecture Dependencies Template
+#
+# PURPOSE: Document cross-platform and cross-programme dependencies for coordination
+#          and risk management.
+#
+# USAGE:
+#   1. Copy this file to: 02-capabilities/platform-dependencies.yaml
+#   2. Replace all {placeholder} values with actual content
+#   3. Remove sections that don't apply (keep file minimal)
+#
+# LOCATION: Place at the capabilities level (not per-initiative) as this describes
+#           platform-wide dependencies.
+#
+# WHEN TO CREATE:
+#   - Your platform depends on other platforms or programmes
+#   - Other platforms or programmes depend on yours
+#   - You need to coordinate integration points across organizational boundaries
+#
+# UPDATE FREQUENCY:
+#   - When new dependencies are identified
+#   - When dependency status changes (Active → Deprecated)
+#   - At programme planning/PI boundaries
+
+# === PLATFORM IDENTITY ===
+platform:
+  name: "{Platform Name} Architecture"     # e.g., AI Platform Architecture
+  owner: "{Programme Name}"                # Programme responsible for this platform
+  description: |
+    Brief description of what this platform provides and its primary purpose.
+
+# === DEPENDENCIES ===
+dependencies:
+  # ------------------------------------------------------------------
+  # DEPENDS ON: Platforms/programmes this platform requires
+  # ------------------------------------------------------------------
+  depends_on:
+    - platform: "{Platform Name} Architecture"
+      owner: "{Programme Name}"
+      what_we_need:
+        - "{Capability or service 1}"
+        - "{Capability or service 2}"
+      integration_pattern: "{Pattern}"    # Customer-Supplier, Partnership, etc.
+      status: "{Status}"                  # Active, Planned, Deprecated
+      # contact: "{team or email}"        # Optional: who to reach out to
+      # notes: |                          # Optional: additional context
+      #   Any important notes about this dependency
+
+    # Add more depends_on entries as needed
+
+  # ------------------------------------------------------------------
+  # DEPENDED BY: Platforms/programmes that require this platform
+  # ------------------------------------------------------------------
+  depended_by:
+    - platform: "{Platform Name} Architecture"
+      owner: "{Programme Name}"
+      what_they_need:
+        - "{Capability or service 1}"
+        - "{Capability or service 2}"
+      integration_pattern: "{Pattern}"    # Open Host Service, Published Language, etc.
+      status: "{Status}"                  # Active, Planned, Deprecated
+      # notes: |                          # Optional: additional context
+
+    # Add more depended_by entries as needed
+
+  # ------------------------------------------------------------------
+  # INTEGRATES WITH: Peer platforms with mutual integration
+  # ------------------------------------------------------------------
+  integrates_with:
+    - platform: "{Platform Name} Architecture"
+      owner: "{Programme Name}"
+      integration_points:
+        - "{Integration point 1}"
+        - "{Integration point 2}"
+      integration_pattern: "{Pattern}"    # Partnership, Shared Kernel, etc.
+      status: "{Status}"                  # Active, Planned, Deprecated
+      # bidirectional: true               # Optional: indicate mutual dependency
+
+    # Add more integrates_with entries as needed
+
+# === INTEGRATION PATTERNS ===
+#
+# Use these patterns to describe platform integrations:
+#
+# | Pattern              | Direction       | Use When                                      |
+# |----------------------|-----------------|-----------------------------------------------|
+# | Customer-Supplier    | Upstream →      | One platform provides, another consumes       |
+# | Partnership          | Bidirectional   | Mutual development commitment, co-evolution   |
+# | Published Language   | Upstream →      | Standard interfaces, contracts, schemas       |
+# | Open Host Service    | Upstream →      | Standardized API for multiple consumers       |
+# | Anti-Corruption Layer| Downstream ←    | Translation from incompatible external models |
+# | Conformist           | Downstream ←    | Downstream conforms to upstream (not ideal)   |
+# | Shared Kernel        | Bidirectional   | Shared model portions with joint ownership    |
+#
+# === STATUS VALUES ===
+#
+# | Status     | Meaning                                                    |
+# |------------|------------------------------------------------------------|
+# | Active     | Dependency is in production, actively used                 |
+# | Planned    | Dependency is planned but not yet available                |
+# | In Progress| Dependency is being developed/integrated                   |
+# | Deprecated | Dependency is being phased out, migration needed           |
+# | Blocked    | Dependency is blocked, requires attention                  |
+#
+# === EXAMPLE ===
+#
+# platform:
+#   name: AI Platform Architecture
+#   owner: AI Programme
+#   description: |
+#     Enterprise AI capabilities including LLM services, RAG systems,
+#     and agent orchestration.
+#
+# dependencies:
+#   depends_on:
+#     - platform: Cloud Platform Architecture
+#       owner: Cloud Programme
+#       what_we_need:
+#         - Kubernetes infrastructure
+#         - Container registry
+#         - Networking (VPC, DNS)
+#       integration_pattern: Customer-Supplier
+#       status: Active
+#
+#     - platform: Data Platform Architecture
+#       owner: Data Programme
+#       what_we_need:
+#         - Feature store access
+#         - Data lake connectivity
+#         - Streaming infrastructure
+#       integration_pattern: Partnership
+#       status: Active
+#
+#     - platform: Security Platform Architecture
+#       owner: Security Programme
+#       what_we_need:
+#         - Identity and Access Management
+#         - Encryption services
+#         - Compliance tooling
+#       integration_pattern: Published Language
+#       status: Active
+#
+#   depended_by:
+#     - platform: Contact Centre Platform Architecture
+#       owner: Customer Experience Programme
+#       what_they_need:
+#         - LLM APIs for agent assist
+#         - RAG services for knowledge retrieval
+#         - Agent orchestration
+#       integration_pattern: Open Host Service
+#       status: Planned
+#       notes: |
+#         Integration scheduled for Q2. Will require API documentation
+#         and onboarding support.
+#
+#     - platform: Digital Platform Architecture
+#       owner: Digital Programme
+#       what_they_need:
+#         - Personalization APIs
+#         - Recommendation services
+#       integration_pattern: Open Host Service
+#       status: Active
+#
+#   integrates_with:
+#     - platform: Integration Platform Architecture
+#       owner: Integration Programme
+#       integration_points:
+#         - API Gateway (external access)
+#         - Event Bus (async messaging)
+#         - Service Mesh (internal traffic)
+#       integration_pattern: Partnership
+#       status: Active
+#       bidirectional: true

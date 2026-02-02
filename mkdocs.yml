@@ -1,0 +1,148 @@
+site_name: AI-Assisted Architecture
+site_description: An opinionated methodology for AI-assisted enterprise and solution architecture
+site_author: Dermot Canniffe
+site_url: https://dermot-obrien.github.io/ai-assisted-architecture/
+
+repo_name: dermot-obrien/ai-assisted-architecture
+repo_url: https://github.com/dermot-obrien/ai-assisted-architecture
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2026 Dermot Canniffe - CC BY 4.0
+
+theme:
+  name: material
+  language: en
+  
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: deep purple
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  font:
+    text: Inter
+    code: JetBrains Mono
+  
+  icon:
+    logo: material/brain
+    repo: fontawesome/brands/github
+  
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+
+plugins:
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - tags
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/dermot-obrien
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/dermot-obrien
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  
+  - About:
+    - about/index.md
+    - Vision: about/vision.md
+    - Design Decisions: about/design-decisions.md
+    - Organization Model: about/organization-model.md
+    - Roadmap: about/roadmap.md
+  
+  - Getting Started:
+    - getting-started/index.md
+    - Quick Start: getting-started/quick-start.md
+    - Installation: getting-started/installation.md
+    - First Project: getting-started/first-project.md
+    - Organization Adoption: getting-started/organization-adoption.md
+  
+  - Methodology:
+    - methodology/index.md
+    - Philosophy: methodology/philosophy.md
+  
+  - Agents:
+    - agents/index.md
+    - Design Principles: agents/design-principles.md
+  
+  - Governance:
+    - governance/index.md
+    - Security Dialogue Framework: governance/security-dialogue-framework.md
+    - Provenance Standard: governance/provenance-standard.md
+    - Data Classification: governance/data-classification.md
+    - Human Review Gates: governance/human-review-gates.md
+  
+  - Tooling:
+    - tooling/index.md
+  
+  - Building Blocks:
+    - building-blocks/index.md
+  
+  - Reference:
+    - Glossary: reference/glossary.md

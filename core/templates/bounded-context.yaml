@@ -1,0 +1,132 @@
+# Bounded Context Definition Template
+#
+# PURPOSE: Define domain boundaries where a particular model and ubiquitous language are valid.
+#
+# USAGE:
+#   1. Copy this file to: 02-capabilities/bounded-contexts/BC-{NNN}-{name}.yaml
+#   2. Replace all {placeholder} values with actual content
+#   3. Remove sections that don't apply (keep file minimal)
+#
+# ID CONVENTION: BC-{NNN} where NNN is a 3-digit sequence number (e.g., BC-001, BC-002)
+#
+# WHEN TO CREATE:
+#   - Multiple teams work on related functionality with different domain models
+#   - Domain terminology varies across the organization
+#   - Integration patterns between domains need explicit documentation
+#   - Doing strategic DDD (Domain-Driven Design) work
+#
+# WHEN NOT TO CREATE:
+#   - Simple capability additions
+#   - Technical/infrastructure ABBs
+#   - Single-team deliverables
+
+bounded_context:
+  # === IDENTITY ===
+  id: BC-{NNN}                           # Unique identifier (e.g., BC-001)
+  name: "{Context Name}"                 # Human-readable name (e.g., Customer, Risk, Operations)
+  description: |
+    Brief description of what this bounded context represents and its domain scope.
+    Include the primary business domain and organizational alignment.
+
+  # === OWNERSHIP ===
+  owner:
+    team: "{Team Name}"                  # Team responsible for this context
+    contact: "{email or slack channel}"  # How to reach the team (optional)
+
+  # === UBIQUITOUS LANGUAGE ===
+  # Key domain terms and their definitions within this context.
+  # Terms may have different meanings in other contexts - document that here.
+  ubiquitous_language:
+    - term: "{Term 1}"
+      definition: "Definition of this term within this bounded context"
+      # other_contexts: "Note if this term means something different elsewhere"
+    - term: "{Term 2}"
+      definition: "Definition of this term within this bounded context"
+
+  # === USE CASES ===
+  # Canonical use cases that belong to this bounded context.
+  # These are use cases where this context's domain model applies.
+  use_cases:
+    - UC-{NNN}                           # Reference to canonical use case
+    - UC-{NNN}                           # Reference to canonical use case
+
+  # === CAPABILITIES ===
+  # Primary capabilities this bounded context exercises.
+  capabilities_primary:
+    - CAP-L{0-2}-{XXX}                   # Primary capability
+    - CAP-L{0-2}-{XXX}                   # Primary capability
+
+  # === ARCHITECTURE BUILDING BLOCKS ===
+  # ABBs used within this bounded context.
+  # Note: ABBs may be shared across multiple bounded contexts.
+  abbs_internal:
+    - AB-{NNN}                           # ABB used by this context
+    - AB-{NNN}                           # ABB used by this context
+
+  # === INTEGRATIONS ===
+  # How this bounded context integrates with other bounded contexts.
+  # Use DDD context mapping patterns to describe relationships.
+  integrations:
+    - target_context: BC-{NNN}-{Name}    # Target bounded context
+      pattern: "{Pattern}"               # Integration pattern (see below)
+      description: "Brief description of the integration"
+      # data_flows:                      # Optional: describe data flows
+      #   - direction: inbound/outbound
+      #     data: "What data is exchanged"
+
+# === CONTEXT MAPPING PATTERNS ===
+#
+# Use these patterns to describe bounded context integrations:
+#
+# | Pattern              | Use When                                           |
+# |----------------------|----------------------------------------------------|
+# | Customer-Supplier    | One context serves another (upstream → downstream) |
+# | Partnership          | Mutual development commitment, co-evolution        |
+# | Shared Kernel        | Explicitly shared model portions                   |
+# | Published Language   | Standard data contracts, schemas                   |
+# | Open Host Service    | Standardized API for external consumers            |
+# | Anti-Corruption Layer| Translation between incompatible models            |
+# | Conformist           | Downstream conforms to upstream (not recommended)  |
+# | Separate Ways        | No integration, independent evolution              |
+#
+# === EXAMPLE ===
+#
+# bounded_context:
+#   id: BC-001
+#   name: Customer
+#   description: |
+#     Customer engagement and relationship management domain.
+#     Covers all aspects of customer interactions and personalization.
+#
+#   owner:
+#     team: Customer Experience
+#     contact: "#customer-platform-team"
+#
+#   ubiquitous_language:
+#     - term: Customer
+#       definition: Individual or organization with an active service relationship
+#     - term: Relationship Manager
+#       definition: Staff member responsible for managing customer relationships
+#     - term: Engagement Score
+#       definition: Calculated metric representing customer interaction health
+#
+#   use_cases:
+#     - UC-001  # Customer Engagement
+#     - UC-006  # Personalization
+#     - UC-007  # Contact Centre
+#
+#   capabilities_primary:
+#     - CAP-L0-EXP  # Experiences
+#     - CAP-L0-GEN  # Generative AI
+#
+#   abbs_internal:
+#     - AB-050  # LLM Service
+#     - AB-200  # RAG System
+#
+#   integrations:
+#     - target_context: BC-002-Risk
+#       pattern: Customer-Supplier
+#       description: Customer context provides customer profile data to Risk
+#     - target_context: BC-003-Operations
+#       pattern: Partnership
+#       description: Shared customer service workflows and ticketing
