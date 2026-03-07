@@ -1,0 +1,10 @@
+version: 1.0.0
+foundation_source: .ai-assisted-architecture/foundation
+
+imported_profiles:
+  - core
+
+policy:
+  workspace_is_canonical: true
+  allow_framework_fallback_readonly: true
+  require_copy_before_edit: true

@@ -1,0 +1,8 @@
+---
+description: Define a new Runtime Service unit
+globs: runtime/services/**/*
+---
+
+When defining a new Service, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-service.md`.
+
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` before producing any artefact.

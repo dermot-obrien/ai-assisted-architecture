@@ -1,6 +1,6 @@
 # AI-Assisted Architecture
 
-A reusable framework for creating TOGAF-aligned Architecture Building Blocks (ABBs) and Solution Building Blocks (SBBs) with AI agent assistance. Install it as a Git submodule in any enterprise architecture workspace.
+A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. Install it as a Git submodule in any enterprise architecture workspace.
 
 ## Prerequisites
 
@@ -46,11 +46,18 @@ git submodule add <repo-url> .ai-assisted-architecture
 
 ## Workspace Setup
 
-Your workspace must contain a `building-blocks/` folder with two subdirectories. This is where the agents and skills create ABBs and SBBs:
+### 1. Create workspace folders
+
+Your workspace must contain a `capabilities/` folder and a `building-blocks/` folder. This is where the agents and skills create capabilities, ABBs, and SBBs:
 
 ```
 your-workspace/
   .ai-assisted-architecture/  # This framework (submodule)
+  capabilities/
+    capability-model.md        # Master capability taxonomy
+    CAP-001/
+    CAP-002/
+    ...
   building-blocks/
     architecture-building-blocks/
       AB-001/
@@ -65,8 +72,34 @@ your-workspace/
 Create the folder structure:
 
 ```bash
-mkdir -p building-blocks/architecture-building-blocks building-blocks/solution-building-blocks
+mkdir -p capabilities building-blocks/architecture-building-blocks building-blocks/solution-building-blocks
 ```
+
+### 2. Seed from foundation (recommended)
+
+Run the seed script from your workspace root and treat the workspace copy as canonical:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile foundation
+```
+
+Optional:
+
+```powershell
+# Seed all profiles (core + integration + infrastructure)
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile all
+
+# Alias for all profiles
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile foundation
+
+# Seed only core baseline
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile core
+
+# Overwrite existing seeded files
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile core -Force
+```
+
+If you do not seed first, agents can temporarily read baseline content from `.ai-assisted-architecture/foundation/`, but edits should still be made in workspace paths.
 
 ## IDE Integration
 
@@ -80,6 +113,7 @@ Supported tools: Claude Code, Cursor, GitHub Copilot, Gemini, Cline, Windsurf.
 
 | Skill | Claude Code | Cursor / Copilot | Description |
 |-------|-------------|-------------------|-------------|
+| Create Capability | `/create-capability` | `@create-capability` | End-to-end capability creation: discovery, document, ABB mapping, maturity assessment. |
 | Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint. |
 | Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint. |
 
@@ -93,14 +127,18 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
     FRAMEWORK_AGENTS.md    # Agent discovery and precedence rules
   install/                 # IDE configuration snippets (copy to workspace)
   scripts/                 # Automation scripts (PowerPoint generation)
+  foundation/              # Seed capabilities and building blocks for workspace bootstrap
   standards/
-    visual-design/         # Visual design standard (override with your own)
+    visual-design/         # Visual design standard (override in workspace)
+    capabilities/
+      standard-capability-document.md
+      standard-capability-diagram.md
     building-blocks/
-      architecture-building-block/
+      architecture-building-blocks/
         standard-abb-document.md
         standard-abb-diagram.md
         example/
-      solution-building-block/
+      solution-building-blocks/
         standard-sbb-document.md
         standard-sbb-diagram.md
         example/
@@ -113,11 +151,23 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 | Standard | Customise? | Description |
 |----------|-----------|-------------|
 | Visual design | Yes | Colour tokens, typography, contrast ratios, accessibility. Place a `visual-design/visual-design-standard.md` folder anywhere in your workspace. |
+| Capability document | No | Document structure, maturity model, and ABB mapping for capabilities. |
+| Capability diagrams | No | Capability map and capability-to-ABB traceability diagram structure and styling rules. |
 | ABB document | No | Document structure, metadata, and section layout for ABBs. |
 | ABB diagram | No | Draw.io diagram structure, styling, and export rules for ABBs. |
 | SBB document | No | Document structure, metadata, and section layout for SBBs. |
 | SBB diagram | No | Draw.io diagram structure, styling, and export rules for SBBs. |
-| Cross-referencing | No | How ABBs and SBBs link to each other using folder-relative paths. |
+| Cross-referencing | No | How capabilities, ABBs, and SBBs link to each other using folder-relative paths. |
+
+## Foundation Profiles
+
+The framework ships with a seed foundation profile model:
+
+- `core` (active): baseline cross-cutting capabilities and ABBs.
+- `integration` (active): API mediation and event-driven integration capabilities and ABBs.
+- `infrastructure` (active): compute runtime and storage lifecycle capabilities and ABBs.
+
+See `.ai-assisted-architecture/foundation/foundation-manifest.yaml`.
 
 ## Licence
 

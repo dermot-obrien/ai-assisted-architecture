@@ -1,0 +1,8 @@
+---
+description: Define a new Business Outcome or Use Case
+globs: strategy/**/*
+---
+
+When defining a new strategy element, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-strategy.md`.
+
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` before producing any artefact.

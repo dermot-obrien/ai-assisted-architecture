@@ -1,0 +1,30 @@
+id: infrastructure
+version: 1.0.0
+status: active
+description: Infrastructure seed profile with compute and storage platform capabilities.
+
+includes:
+  capabilities:
+    - CAP-001
+    - CAP-002
+    - CAP-003
+    - CAP-004
+    - CAP-005
+    - CAP-006
+    - CAP-007
+    - CAP-009
+    - CAP-012
+    - CAP-013
+  architecture_building_blocks:
+    - AB-001
+    - AB-002
+    - AB-003
+    - AB-006
+    - AB-007
+  solution_building_blocks: []
+
+paths:
+  capabilities_root: ../../capabilities
+  architecture_building_blocks_root: ../../building-blocks/architecture-building-blocks
+  solution_building_blocks_root: ../../building-blocks/solution-building-blocks
+

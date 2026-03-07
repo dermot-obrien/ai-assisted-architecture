@@ -1,5 +1,27 @@
 # AI-Assisted Architecture
 
-Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instruction source for ABB/SBB and visual standards.
+Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instruction source for capability, ABB/SBB, and visual standards.
 
-When working on ABB/SBB documents or diagrams, follow the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` and do not create alternate local rules.
+When working on capability, ABB/SBB documents or diagrams, follow the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` and do not create alternate local rules.
+
+### `/create-capability` - Create Capability
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-capability.md`
+
+**Purpose:** End-to-end capability creation: discovery, document, ABB mapping, maturity assessment.
+
+---
+
+### `/create-abb` - Create Architecture Building Block
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-abb.md`
+
+**Purpose:** End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint.
+
+---
+
+### `/create-sbb` - Create Solution Building Block
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
+
+**Purpose:** End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint.
