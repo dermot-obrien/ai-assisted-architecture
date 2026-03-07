@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Colour Palette</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 40px; }
+  h1 { font-size: 2.2rem; margin-bottom: 8px; color: #fff; }
+  .subtitle { color: #888; font-size: 1rem; margin-bottom: 48px; }
+  .section { margin-bottom: 48px; border: 1px solid #222; border-radius: 16px; padding: 32px; background: #111; }
+  .section h2 { font-size: 1.4rem; color: #fff; margin-bottom: 6px; }
+  .section-desc { color: #8a8a8a; margin-bottom: 20px; font-size: 0.9rem; line-height: 1.5; }
+  .palette-row { display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .swatch-card { display: flex; flex-direction: column; align-items: center; min-width: 140px; }
+  .swatch { width: 140px; height: 90px; border-radius: 12px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; font-family: 'Consolas', monospace; font-size: 0.8rem; font-weight: 600; transition: transform 0.15s; cursor: default; }
+  .swatch:hover { transform: scale(1.05); }
+  .swatch-label { margin-top: 6px; font-size: 0.75rem; color: #ccc; font-weight: 600; text-align: center; }
+  .swatch-hex { font-size: 0.7rem; color: #8a8a8a; font-family: 'Consolas', monospace; }
+  .swatch-role { font-size: 0.6rem; color: #969696; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .section-label { font-size: 0.7rem; color: #969696; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; margin-top: 16px; font-weight: 600; }
+  .demo-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; margin-top: 12px; }
+  .demo-bar div { flex: 1; }
+  .combo-demos { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+  .combo-card { border-radius: 10px; padding: 14px 18px; width: 200px; }
+  .combo-card h4 { font-size: 0.8rem; margin-bottom: 3px; }
+  .combo-card p { font-size: 0.7rem; opacity: 0.8; }
+  .contrast-badge { display: inline-block; font-size: 0.55rem; padding: 2px 5px; border-radius: 4px; background: rgba(255,255,255,0.15); margin-top: 3px; font-family: 'Consolas', monospace; }
+  hr { border: none; border-top: 1px solid #222; margin: 40px 0; }
+
+  .tint-group { margin-bottom: 20px; }
+  .tint-group-label { font-size: 0.7rem; color: #999; margin-bottom: 8px; font-weight: 600; }
+  .tint-row { display: flex; gap: 4px; margin-bottom: 4px; }
+  .tint-swatch { height: 40px; flex: 1; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: 'Consolas', monospace; font-size: 0.65rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.08); }
+  .tint-label { font-size: 0.55rem; color: #969696; text-align: center; margin-top: 2px; }
+
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+</style>
+</head>
+<body>
+
+<h1>Brand Colour Palette</h1>
+<p class="subtitle">Complete approved colour palette for review. Primary, secondary, tertiary tints, supporting grays, and semantic colours. For interaction states, component mapping, and chart usage rules, refer to visual-design-standard.md.</p>
+
+<!-- PRIMARY -->
+<div class="section">
+  <h2>Primary Colours</h2>
+  <p class="section-desc">Core brand colours — used for headers, backgrounds, accents, and key UI elements.</p>
+
+  <div class="palette-row">
+    <div class="swatch-card">
+      <div class="swatch" style="background:#4C1D95; color:#fff;">#4C1D95</div>
+      <div class="swatch-label">Deep Purple</div>
+      <div class="swatch-hex">RGB(76, 29, 149)</div>
+      <div class="swatch-role">Primary Brand</div>
+      <div class="contrast-badge">11.0:1 on white</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#0F0A1E; color:#888;">#0F0A1E</div>
+      <div class="swatch-label">Void</div>
+      <div class="swatch-hex">RGB(15, 10, 30)</div>
+      <div class="swatch-role">Primary Dark</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#D4A843; color:#0F0A1E;">#D4A843</div>
+      <div class="swatch-label">Signal Gold</div>
+      <div class="swatch-hex">RGB(212, 168, 67)</div>
+      <div class="swatch-role">Primary Accent</div>
+      <div class="contrast-badge">8.8:1 on Void</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#FFFFFF; color:#333; border-color:#ccc;">#FFFFFF</div>
+      <div class="swatch-label">White</div>
+      <div class="swatch-hex">RGB(255, 255, 255)</div>
+      <div class="swatch-role">Backgrounds / Copy</div>
+    </div>
+  </div>
+
+  <div class="demo-bar">
+    <div style="background:#4C1D95; flex:3;"></div>
+    <div style="background:#0F0A1E; flex:4;"></div>
+    <div style="background:#D4A843; flex:1;"></div>
+    <div style="background:#FFFFFF; flex:2;"></div>
+  </div>
+
+  <div class="combo-demos">
+    <div class="combo-card" style="background:#4C1D95; color:#fff;">
+      <h4>Purple + White</h4>
+      <p>Headers and hero sections</p>
+    </div>
+    <div class="combo-card" style="background:#0F0A1E; color:#D4A843;">
+      <h4>Void + Gold</h4>
+      <p>Dark mode highlights</p>
+    </div>
+    <div class="combo-card" style="background:#0F0A1E; color:#fff;">
+      <h4>Void + White</h4>
+      <p>Dashboard body text</p>
+    </div>
+    <div class="combo-card" style="background:#fff; color:#4C1D95; border: 1px solid #eee;">
+      <h4>White + Purple</h4>
+      <p>Light mode headings</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECONDARY -->
+<div class="section">
+  <h2>Secondary Colours</h2>
+  <p class="section-desc">For data visualisation, diagrams, charts, icons, and illustrations. Each is chosen to be distinguishable from primary colours and from each other across light and dark backgrounds.</p>
+
+  <div class="palette-row">
+    <div class="swatch-card">
+      <div class="swatch" style="background:#6B8F3A; color:#0F0A1E;">#6B8F3A</div>
+      <div class="swatch-label">Olive Sage</div>
+      <div class="swatch-hex">RGB(107, 143, 58)</div>
+      <div class="swatch-role">Industrial / Organic</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#0EA5E9; color:#0F0A1E;">#0EA5E9</div>
+      <div class="swatch-label">Signal Cyan</div>
+      <div class="swatch-hex">RGB(14, 165, 233)</div>
+      <div class="swatch-role">Data Lines / Category</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#C07850; color:#0F0A1E;">#C07850</div>
+      <div class="swatch-label">Copper</div>
+      <div class="swatch-hex">RGB(192, 120, 80)</div>
+      <div class="swatch-role">Anomaly / Warmth</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#A78BFA; color:#1a1a2e;">#A78BFA</div>
+      <div class="swatch-label">Lavender</div>
+      <div class="swatch-hex">RGB(167, 139, 250)</div>
+      <div class="swatch-role">Secondary Purple</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#E8637A; color:#0F0A1E;">#E8637A</div>
+      <div class="swatch-label">Guava</div>
+      <div class="swatch-hex">RGB(232, 99, 122)</div>
+      <div class="swatch-role">Warm Accent</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#64748B; color:#fff;">#64748B</div>
+      <div class="swatch-label">Slate</div>
+      <div class="swatch-hex">RGB(100, 116, 139)</div>
+      <div class="swatch-role">Neutral / Muted</div>
+    </div>
+  </div>
+
+  <div class="section-label">Secondaries on dark backgrounds</div>
+  <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+    <div style="background:#0F0A1E; padding: 16px; border-radius: 10px; display: flex; gap: 8px; align-items: center;">
+      <div style="width:36px; height:36px; border-radius:6px; background:#4C1D95;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#D4A843;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#6B8F3A;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#0EA5E9;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#C07850;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#A78BFA;"></div>
+
+      <div style="width:36px; height:36px; border-radius:6px; background:#E8637A;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#64748B;"></div>
+      <div style="font-size:0.65rem; color:#888; margin-left:8px;">on Void</div>
+    </div>
+    <div style="background:#FFFFFF; padding: 16px; border-radius: 10px; display: flex; gap: 8px; align-items: center; border: 1px solid #ddd;">
+      <div style="width:36px; height:36px; border-radius:6px; background:#4C1D95;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#D4A843;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#6B8F3A;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#0EA5E9;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#C07850;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#A78BFA;"></div>
+
+      <div style="width:36px; height:36px; border-radius:6px; background:#E8637A;"></div>
+      <div style="width:36px; height:36px; border-radius:6px; background:#64748B;"></div>
+      <div style="font-size:0.65rem; color:#888; margin-left:8px;">on White</div>
+    </div>
+  </div>
+</div>
+
+<!-- TERTIARY TINTS -->
+<div class="section">
+  <h2>Tertiary Colour Tints</h2>
+  <p class="section-desc">50% and 20% tints of each primary and secondary colour — for backgrounds, fills, and softer diagram elements.</p>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Deep Purple</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#4C1D95; color:#fff;">100%</div>
+      <div class="tint-swatch" style="background:#A58ECA; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#DBD2EA; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#4C1D95</div>
+      <div class="tint-label" style="flex:1;">#A58ECA</div>
+      <div class="tint-label" style="flex:1;">#DBD2EA</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Signal Gold</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#D4A843; color:#0F0A1E;">100%</div>
+      <div class="tint-swatch" style="background:#E9D3A1; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#F6EDD9; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#D4A843</div>
+      <div class="tint-label" style="flex:1;">#E9D3A1</div>
+      <div class="tint-label" style="flex:1;">#F6EDD9</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Olive Sage</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#6B8F3A; color:#0F0A1E;">100%</div>
+      <div class="tint-swatch" style="background:#B5C79C; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#E1E9D8; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#6B8F3A</div>
+      <div class="tint-label" style="flex:1;">#B5C79C</div>
+      <div class="tint-label" style="flex:1;">#E1E9D8</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Signal Cyan</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#0EA5E9; color:#0F0A1E;">100%</div>
+      <div class="tint-swatch" style="background:#86D2F4; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#CFEDFB; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#0EA5E9</div>
+      <div class="tint-label" style="flex:1;">#86D2F4</div>
+      <div class="tint-label" style="flex:1;">#CFEDFB</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Copper</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#C07850; color:#0F0A1E;">100%</div>
+      <div class="tint-swatch" style="background:#DFBBA7; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#F2E4DC; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#C07850</div>
+      <div class="tint-label" style="flex:1;">#DFBBA7</div>
+      <div class="tint-label" style="flex:1;">#F2E4DC</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Lavender</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#A78BFA; color:#1a1a2e;">100%</div>
+      <div class="tint-swatch" style="background:#D3C5FC; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#EDE8FE; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#A78BFA</div>
+      <div class="tint-label" style="flex:1;">#D3C5FC</div>
+      <div class="tint-label" style="flex:1;">#EDE8FE</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Guava</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#E8637A; color:#0F0A1E;">100%</div>
+      <div class="tint-swatch" style="background:#F3B1BC; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#FAE0E4; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#E8637A</div>
+      <div class="tint-label" style="flex:1;">#F3B1BC</div>
+      <div class="tint-label" style="flex:1;">#FAE0E4</div>
+    </div>
+  </div>
+
+  <div class="tint-group">
+    <div class="tint-group-label">Slate</div>
+    <div class="tint-row">
+      <div class="tint-swatch" style="background:#64748B; color:#fff;">100%</div>
+      <div class="tint-swatch" style="background:#B1B9C5; color:#333;">50%</div>
+      <div class="tint-swatch" style="background:#E0E3E8; color:#333;">20%</div>
+    </div>
+    <div style="display:flex; gap:4px;">
+      <div class="tint-label" style="flex:1;">#64748B</div>
+      <div class="tint-label" style="flex:1;">#B1B9C5</div>
+      <div class="tint-label" style="flex:1;">#E0E3E8</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORTING GRAYS -->
+<div class="section">
+  <h2>Supporting Colours</h2>
+  <p class="section-desc">Neutral grays with a subtle purple undertone to maintain brand cohesion. Used for text, borders, and backgrounds.</p>
+
+  <div class="palette-row">
+    <div class="swatch-card">
+      <div class="swatch" style="background:#2D2B3A; color:#ccc;">#2D2B3A</div>
+      <div class="swatch-label">Graphite</div>
+      <div class="swatch-hex">RGB(45, 43, 58)</div>
+      <div class="swatch-role">Body Text (light bg)</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#6E6B7B; color:#fff;">#6E6B7B</div>
+      <div class="swatch-label">Iron</div>
+      <div class="swatch-hex">RGB(110, 107, 123)</div>
+      <div class="swatch-role">Secondary Text</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#C4C2CC; color:#333;">#C4C2CC</div>
+      <div class="swatch-label">Silver</div>
+      <div class="swatch-hex">RGB(196, 194, 204)</div>
+      <div class="swatch-role">Borders / Dividers</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#F2F1F5; color:#333; border-color:#ddd;">#F2F1F5</div>
+      <div class="swatch-label">Mist</div>
+      <div class="swatch-hex">RGB(242, 241, 245)</div>
+      <div class="swatch-role">Page Backgrounds</div>
+    </div>
+  </div>
+
+  <div class="section-label">Text on backgrounds</div>
+  <div class="combo-demos">
+    <div class="combo-card" style="background:#F2F1F5; color:#2D2B3A; border: 1px solid #C4C2CC;">
+      <h4>Mist + Graphite</h4>
+      <p>Light mode body text</p>
+    </div>
+    <div class="combo-card" style="background:#0F0A1E; color:#C4C2CC;">
+      <h4>Void + Silver</h4>
+      <p>Dark mode secondary text</p>
+    </div>
+    <div class="combo-card" style="background:#F2F1F5; color:#6E6B7B; border: 1px solid #C4C2CC;">
+      <h4>Mist + Iron</h4>
+      <p>Captions and metadata</p>
+    </div>
+  </div>
+</div>
+
+<!-- SEMANTIC -->
+<div class="section">
+  <h2>Semantic Colours</h2>
+  <p class="section-desc">Status and feedback colours tuned to complement the purple palette.</p>
+
+  <div class="palette-row">
+    <div class="swatch-card">
+      <div class="swatch" style="background:#22C55E; color:#0F0A1E;">#22C55E</div>
+      <div class="swatch-label">Success</div>
+      <div class="swatch-hex">RGB(34, 197, 94)</div>
+      <div class="swatch-role">Positive / Approved</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#EAB308; color:#1a1a2e;">#EAB308</div>
+      <div class="swatch-label">Warning</div>
+      <div class="swatch-hex">RGB(234, 179, 8)</div>
+      <div class="swatch-role">Caution / Attention</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#EF4444; color:#0F0A1E;">#EF4444</div>
+      <div class="swatch-label">Error</div>
+      <div class="swatch-hex">RGB(239, 68, 68)</div>
+      <div class="swatch-role">Errors / Critical</div>
+    </div>
+    <div class="swatch-card">
+      <div class="swatch" style="background:#38BDF8; color:#1a1a2e;">#38BDF8</div>
+      <div class="swatch-label">Info</div>
+      <div class="swatch-hex">RGB(56, 189, 248)</div>
+      <div class="swatch-role">Information / Neutral</div>
+    </div>
+  </div>
+</div>
+
+<!-- FULL PALETTE STRIP -->
+<div class="section">
+  <h2>Complete Palette at a Glance</h2>
+  <p class="section-desc">All colours together — check for overall harmony and distinctiveness.</p>
+
+  <div class="section-label">Primary</div>
+  <div style="display: flex; gap: 3px; height: 60px; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
+    <div style="flex:3; background:#4C1D95; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.65rem;">Purple</div>
+    <div style="flex:3; background:#0F0A1E; display:flex; align-items:center; justify-content:center; color:#888; font-size:0.65rem;">Void</div>
+    <div style="flex:2; background:#D4A843; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.65rem;">Gold</div>
+    <div style="flex:2; background:#FFFFFF; display:flex; align-items:center; justify-content:center; color:#333; font-size:0.65rem; border: 1px solid #ddd;">White</div>
+  </div>
+
+  <div class="section-label">Secondary</div>
+  <div style="display: flex; gap: 3px; height: 60px; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
+    <div style="flex:1; background:#6B8F3A; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.6rem;">Olive</div>
+    <div style="flex:1; background:#0EA5E9; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.6rem;">Cyan</div>
+    <div style="flex:1; background:#C07850; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.6rem;">Copper</div>
+    <div style="flex:1; background:#A78BFA; display:flex; align-items:center; justify-content:center; color:#1a1a2e; font-size:0.6rem;">Lavender</div>
+    <div style="flex:1; background:#E8637A; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.6rem;">Guava</div>
+    <div style="flex:1; background:#64748B; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.6rem;">Slate</div>
+  </div>
+
+  <div class="section-label">Supporting</div>
+  <div style="display: flex; gap: 3px; height: 40px; border-radius: 8px; overflow: hidden; margin-bottom: 12px;">
+    <div style="flex:1; background:#2D2B3A; display:flex; align-items:center; justify-content:center; color:#ccc; font-size:0.6rem;">Graphite</div>
+    <div style="flex:1; background:#6E6B7B; display:flex; align-items:center; justify-content:center; color:#fff; font-size:0.6rem;">Iron</div>
+    <div style="flex:1; background:#C4C2CC; display:flex; align-items:center; justify-content:center; color:#333; font-size:0.6rem;">Silver</div>
+    <div style="flex:1; background:#F2F1F5; display:flex; align-items:center; justify-content:center; color:#333; font-size:0.6rem; border: 1px solid #ddd;">Mist</div>
+  </div>
+
+  <div class="section-label">Semantic</div>
+  <div style="display: flex; gap: 3px; height: 40px; border-radius: 8px; overflow: hidden;">
+    <div style="flex:1; background:#22C55E; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.6rem;">Success</div>
+    <div style="flex:1; background:#EAB308; display:flex; align-items:center; justify-content:center; color:#1a1a2e; font-size:0.6rem;">Warning</div>
+    <div style="flex:1; background:#EF4444; display:flex; align-items:center; justify-content:center; color:#0F0A1E; font-size:0.6rem;">Error</div>
+    <div style="flex:1; background:#38BDF8; display:flex; align-items:center; justify-content:center; color:#1a1a2e; font-size:0.6rem;">Info</div>
+  </div>
+</div>
+
+</body>
+</html>
