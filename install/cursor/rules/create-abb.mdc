@@ -5,4 +5,4 @@ globs: building-blocks/architecture-building-blocks/**/*
 
 When creating a new ABB, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-abb.md`.
 
-Load standards from `.ai-assisted-architecture/AGENTS.md` before producing any artefact.
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` before producing any artefact.

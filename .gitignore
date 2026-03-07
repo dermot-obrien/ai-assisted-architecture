@@ -44,6 +44,7 @@ Thumbs.db
 .clinerules
 .cursorrules
 .windsurfrules
+AGENTS.md
 CLAUDE.md
 GEMINI.md
 
@@ -51,3 +52,7 @@ GEMINI.md
 # Keep .github/ for Actions workflows etc. — only ignore IDE-specific files
 .github/copilot-instructions.md
 .github/prompts/
+
+# Transient.
+patternode/
+archive/

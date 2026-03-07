@@ -18,7 +18,6 @@ triggers:
 
 This standard defines the structure, sections, and conventions for a Solution Building Block document. An SBB realises an Architecture Building Block (ABB) using specific products, services, and deployment patterns.
 
----
 
 ## File Structure
 
@@ -42,7 +41,6 @@ building-blocks/
 - When creating a new SBB, use the next available sequential number.
 - The folder name MUST match the SBB identifier exactly (e.g. `SB-011/`).
 
----
 
 ## Document Structure
 
@@ -77,7 +75,6 @@ A metadata table immediately after the heading:
 | **Status** | `DRAFT` / `REVIEW` / `APPROVED` / `DEPRECATED` | Current lifecycle status. |
 | **Category** | Category name | Logical grouping (e.g. `Messaging & Integration`, `Security`, `Compute`). |
 
----
 
 ### Section 1 — Purpose
 
@@ -90,7 +87,6 @@ A paragraph that:
 3. Describes the deployment topology at a high level.
 4. If variants exist (e.g. Teams vs Outlook), names the sibling SBBs and states what differs.
 
----
 
 ### Section 2 — Building Block
 
@@ -116,7 +112,7 @@ A table mapping every ABB component to its SBB product or service:
 |---------------|----------------------|-------|
 | ABB component name | Specific product/service | Implementation details |
 
-Every component listed in the parent ABB's Section 2.1 MUST appear in this table, including components from the three mandatory cross-cutting sub-ABBs (IAM, Observability, Governance & Policy).
+Every component listed in the parent ABB's Section 2.2 MUST appear in this table, including components from the three mandatory cross-cutting sub-ABBs (IAM, Observability, Governance & Policy).
 
 #### 2.3 Key Design Decisions
 
@@ -134,7 +130,6 @@ Bullet list of significant architectural decisions. Each entry is a bold decisio
 
 A numbered sequence describing the end-to-end message flow through the SBB. Each step names the specific product or component involved.
 
----
 
 ### Mandatory Cross-Cutting Sections
 
@@ -178,7 +173,6 @@ Describe the specific products and services that enforce governance and policy:
 
 Cover: conditional access, DLP policies, data classification enforcement, regulatory alignment (GDPR, AI Act), and change governance.
 
----
 
 #### 2.8 Channel/Domain-Specific Constraints
 
@@ -201,7 +195,6 @@ Document constraints using these dimensions (include only those that apply):
 
 Include this section when the SBB involves human interaction with time-sensitive responses.
 
----
 
 ### Section 3 — Interfaces
 
@@ -229,7 +222,6 @@ A table mapping SBB-to-SBB dependencies at the product level:
 |----------------|------------------|-----------|
 | Source → Target | Specific product | I-refs (e.g. I1, I2) |
 
----
 
 ### Section 4 — Mapping
 
@@ -247,7 +239,6 @@ For each major component or actor in the SBB, state the product/service and its 
 
 List each relevant policy and how the SBB enforces it with specific products.
 
----
 
 ### Section 5 — ABB Traceability
 
@@ -261,9 +252,8 @@ Followed by a traceability table:
 |----------------|-----------------|
 | ABB component name | Specific product/service and how it realises the capability |
 
-Every component from the parent ABB's Section 2.1 MUST appear in this table, including components from the mandatory cross-cutting sub-ABBs.
+Every component from the parent ABB's Section 2.2 MUST appear in this table, including components from the mandatory cross-cutting sub-ABBs.
 
----
 
 ### Section 6 — Revision History
 
@@ -279,7 +269,6 @@ A table tracking all changes:
 
 Entries are listed in reverse chronological order (newest first).
 
----
 
 ## Summary Panel (`summary.drawio` / `summary.png`)
 
@@ -329,13 +318,12 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - The summary panel is a derivative of `index.md` — keep it in sync when the main document changes.
 - The `summary.md` file is retained as a plain-text source for the panel content.
 
----
 
 ## Conventions
 
 - **Language:** Use British English spelling (e.g. "organisation", "localisation", "behaviour").
 - **Tone:** Technology-specific. SBBs name products and vendors — this is where concrete implementation details belong.
-- **Horizontal rules:** Use `---` between major sections for visual separation.
+- **Horizontal rules:** Do not use `---` horizontal rules between sections. Markdown headings provide sufficient visual separation.
 - **ABB alignment:** Every ABB component and interface MUST be traceable in the SBB. Use the same interface IDs where the mapping is one-to-one.
 - **PNG export:** All `.drawio` files MUST be exported to PNG at **300 DPI** to ensure small text remains legible in presentations. Use the Draw.io CLI flag `--scale 3.125` (300 ÷ 96 = 3.125) or set the DPI in the Draw.io desktop export dialog.
 - **Bullet lead-ins:** When a bullet starts with a bold term, follow it with a full stop and a space, not a dash. Write `**Name.** Description text.` not `**Name** — Description text.`
@@ -343,7 +331,6 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../SB-010/`, `../../architecture-building-blocks/AB-008/`), never `index.md` explicitly. See the [Cross-Referencing Standard](../standard-cross-referencing.md) for full rules and examples.
 - **Variants:** When multiple SBBs realise the same ABB (e.g. different channels), each SBB document should reference its siblings and state what differs.
 
----
 
 ## AI Agent Self-Verification Checklist
 
@@ -359,7 +346,6 @@ Before finalising an SBB document, verify:
 8. [ ] **Revision History**: Is the versioning and history updated for this change?
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
 
----
 
 ## Quick Reference Sections
 

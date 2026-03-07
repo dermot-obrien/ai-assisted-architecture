@@ -2,7 +2,7 @@
 document_type: standards
 title: "Architecture Building Block (ABB) — Document Standard"
 classification: internal
-version: 2.1
+version: 2.2
 status: approved
 created: 2024-10-01
 last_modified: 2026-03-08
@@ -18,7 +18,6 @@ triggers:
 
 This standard defines the structure, sections, and conventions for an Architecture Building Block document aligned to TOGAF. Every ABB document MUST follow this structure. Refer to the `example/` folder for a concrete implementation (AB-008 Human-in-the-Loop).
 
----
 
 ## File Structure
 
@@ -42,7 +41,6 @@ building-blocks/
 - When creating a new ABB, use the next available sequential number.
 - The folder name MUST match the ABB identifier exactly (e.g. `AB-008/`).
 
----
 
 ## Document Structure
 
@@ -81,7 +79,6 @@ A metadata table immediately after the heading:
 
 A single paragraph immediately after Document Control that defines the building block in technology-agnostic terms. State what the ABB captures and its scope boundary.
 
----
 
 ### Section 1 — Purpose
 
@@ -89,53 +86,57 @@ A single paragraph immediately after Document Control that defines the building 
 
 Explain *why* this building block exists. Describe the architectural need it addresses, the problem space, and the value it provides. Keep this technology-agnostic — no product names.
 
----
 
 ### Section 2 — Building Block
 
 **Heading:** `## 2  Building block`
 
-#### Component Diagram
+#### 2.1 Component Diagram
 
-Embed the exported PNG of the component diagram:
+**Heading:** `### 2.1  Component Diagram`
+
+A brief introductory paragraph that describes what the diagram shows — the scope boundary, the major groupings, and how to read the layout. This orients the reader before they examine the diagram itself.
+
+Embed the exported PNG of the component diagram immediately after the paragraph:
 
 ```markdown
-## Component Diagram
+### 2.1  Component Diagram
+
+<Introductory paragraph describing the diagram.>
 
 ![<ABB-ID> <Diagram Title> Component Diagram](./components.png)
 ```
 
-#### 2.1 Fundamental Functionality
+#### 2.2 Fundamental Functionality
 
-**Heading:** `### 2.1  Fundamental functionality`
+**Heading:** `### 2.2  Fundamental functionality`
 
-List each component shown in the diagram. Use this format for each:
+List each component shown in the diagram as a bullet point. Use this format for each:
 
 ```markdown
-**<Component Name>** — <One to two sentence description of what this component does within the ABB.>
+- **<Component Name>.** <One to two sentence description of what this component does within the ABB.>
 ```
 
 Components should be listed in logical order (e.g. top-to-bottom as they appear in the diagram, or grouped by the sub-ABB they belong to).
 
-#### 2.2 Attributes
+#### 2.3 Attributes
 
-**Heading:** `### 2.2  Attributes`
+**Heading:** `### 2.3  Attributes`
 
-List non-functional qualities the ABB exhibits. Each attribute is a bold name followed by a description:
+List non-functional qualities the ABB exhibits as bullet points. Each attribute is a bold name followed by a description:
 
 ```markdown
-**<Attribute Name>** — <Description of how this quality is achieved.>
+- **<Attribute Name>.** <Description of how this quality is achieved.>
 ```
 
 Common attributes include: Scalability, Localisability, Resilience, Performance, Extensibility. Include only those that are architecturally significant for this ABB.
 
-#### 2.3 Semantic
+#### 2.4 Semantic
 
-**Heading:** `### 2.3  Semantic`
+**Heading:** `### 2.4  Semantic`
 
 A paragraph that defines the ABB's meaning and scope boundary in precise architectural language. Clarify what is *inside* the boundary and what is *excluded*.
 
----
 
 ### Mandatory Cross-Cutting Sections
 
@@ -143,9 +144,9 @@ Every ABB MUST include the following three cross-cutting sections. These corresp
 
 **Rationale:** TOGAF mandates security capability and manageability for every building block. NIST CSF 2.0 elevated Governance to a cross-cutting central function. Zero Trust Architecture (NIST SP 800-207) requires verifiable identity for every resource. The EU AI Act (effective August 2026) mandates logging, governance, and human oversight. All three major cloud Well-Architected Frameworks treat security, operational excellence, and governance as non-negotiable pillars.
 
-#### 2.4 Identity & Access Management
+#### 2.5 Identity & Access Management
 
-**Heading:** `### 2.4  Identity & Access Management`
+**Heading:** `### 2.5  Identity & Access Management`
 
 Describe the ABB's identity and access posture in technology-agnostic terms:
 
@@ -154,9 +155,9 @@ Describe the ABB's identity and access posture in technology-agnostic terms:
 - **Non-human identity** — How the ABB's own workload identity is established and managed.
 - **Credential management** — Approach to secrets, tokens, and key material (e.g. no stored secrets, short-lived tokens).
 
-#### 2.5 Observability
+#### 2.6 Observability
 
-**Heading:** `### 2.5  Observability`
+**Heading:** `### 2.6  Observability`
 
 Describe how the ABB is monitored, traced, and audited:
 
@@ -165,9 +166,9 @@ Describe how the ABB is monitored, traced, and audited:
 - **Health and liveness** — How operational health is measured and reported.
 - **Compliance data feeds** — How observability data supports regulatory requirements (e.g. GDPR, AI Act).
 
-#### 2.6 Governance & Policy Enforcement
+#### 2.7 Governance & Policy Enforcement
 
-**Heading:** `### 2.6  Governance & Policy Enforcement`
+**Heading:** `### 2.7  Governance & Policy Enforcement`
 
 Describe how the ABB is governed and how policies are enforced:
 
@@ -176,7 +177,6 @@ Describe how the ABB is governed and how policies are enforced:
 - **Data classification** — What category of data this ABB handles (none, PII, sensitive, regulated) and the protection posture.
 - **Change governance** — Who can modify the ABB's configuration or behaviour, and through what process.
 
----
 
 ### Section 3 — Interfaces
 
@@ -212,7 +212,6 @@ A table mapping ABB-to-ABB dependencies:
 |-----|----------------------|--------------------|
 | Source ABB → Target ABB | What the dependency provides | I-refs (e.g. I1, I2) |
 
----
 
 ### Section 4 — Mapping
 
@@ -222,23 +221,22 @@ A table mapping ABB-to-ABB dependencies:
 
 **Heading:** `### 4.1  Mapping to business/organisational entities`
 
-For each major component or actor in the ABB, state the business entity it maps to:
+List each major component or actor in the ABB as a bullet point, stating the business entity it maps to:
 
 ```markdown
-**<Component/Actor>** → <Business entity or organisational function.>
+- **<Component/Actor>** → <Business entity or organisational function.>
 ```
 
 #### 4.2 Mapping to Business/Organisational Policies
 
 **Heading:** `### 4.2  Mapping to business/organisational policies`
 
-List each relevant policy and how the ABB supports or enforces it:
+List each relevant policy as a bullet point, describing how the ABB supports or enforces it:
 
 ```markdown
-**<Policy Name>** — <How this ABB aligns with or enforces the policy.>
+- **<Policy Name>.** <How this ABB aligns with or enforces the policy.>
 ```
 
----
 
 ### Section 5 — Solution Building Block (SBB) Guidance
 
@@ -264,7 +262,6 @@ List patterns and capabilities that SBBs inherit directly from the ABB and MUST 
 
 List the dimensions each SBB must document for its specific context.
 
----
 
 ### Section 6 — Revision History
 
@@ -280,7 +277,6 @@ A table tracking all changes:
 
 Entries are listed in reverse chronological order (newest first).
 
----
 
 ## Summary Panel (`summary.drawio` / `summary.png`)
 
@@ -337,13 +333,12 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - The summary panel is a derivative of `index.md` — keep it in sync when the main document changes.
 - The `summary.md` file is retained as a plain-text source for the panel content.
 
----
 
 ## Conventions
 
 - **Language:** Use British English spelling (e.g. "organisation", "localisation", "behaviour").
 - **Tone:** Technology-agnostic. No product or vendor names in the ABB document; those belong in SBBs.
-- **Horizontal rules:** Use `---` between major sections for visual separation.
+- **Horizontal rules:** Do not use `---` horizontal rules between sections. Markdown headings provide sufficient visual separation.
 - **Component descriptions:** Keep to one or two sentences. The diagram provides the visual context.
 - **Interface IDs:** Referenced consistently between the Overview table (Section 3.1), the diagram, and the Dependent Building Blocks table (Section 3.3).
 - **PNG export:** All `.drawio` files MUST be exported to PNG at **300 DPI** to ensure small text remains legible in presentations. Use the Draw.io CLI flag `--scale 3.125` (300 ÷ 96 = 3.125) or set the DPI in the Draw.io desktop export dialog.
@@ -351,7 +346,6 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - **Inline emphasis:** Do not use dash-bracketed callouts (` — like this — `) or bold text for emphasis within running sentences. Keep prose plain; reserve bold for lead-in terms at the start of bullets.
 - **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../AB-003/`), never `index.md` explicitly. See the [Cross-Referencing Standard](../standard-cross-referencing.md) for full rules and examples.
 
----
 
 ## AI Agent Self-Verification Checklist
 
@@ -362,17 +356,16 @@ Before finalising an ABB document, verify:
 3. [ ] **Correct Identifier**: Does the `AB-NNN` identifier follow the sequential order and match the folder name?
 4. [ ] **Interface Consistency**: Do the Interface IDs (`I1`, `I2`, etc.) match those used in the diagram and Section 3.1 table?
 5. [ ] **British English**: Did you use British English spelling (e.g., "organisation", "localisation")?
-6. [ ] **Traceability**: Does Section 2.1 list every component shown in the diagram?
-7. [ ] **Cross-Cutting Sections**: Does the document include all three mandatory sections — 2.4 (IAM), 2.5 (Observability), 2.6 (Governance & Policy)?
+6. [ ] **Traceability**: Does Section 2.2 list every component shown in the diagram?
+7. [ ] **Cross-Cutting Sections**: Does the document include all three mandatory sections — 2.5 (IAM), 2.6 (Observability), 2.7 (Governance & Policy)?
 8. [ ] **Cross-Cutting Diagram**: Does the component diagram show IAM, Observability, and Governance & Policy as sub-ABB groups?
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
 
----
 
 ## Quick Reference Sections
 
 1. **Purpose**: Why it exists (agnostic).
-2. **Building block**: Diagram + Functionality + Attributes + Semantic + **IAM** + **Observability** + **Governance & Policy**.
+2. **Building block**: Component Diagram + Functionality + Attributes + Semantic + **IAM** + **Observability** + **Governance & Policy**.
 3. **Interfaces**: ID + Direction + Type + Description.
 4. **Mapping**: To business entities and policies.
 5. **SBB Guidance**: Structural patterns and shared capabilities.

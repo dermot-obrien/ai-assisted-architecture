@@ -1,8 +1,8 @@
 ## AI-Assisted Architecture
 
-Use `.ai-assisted-architecture/AGENTS.md` as the canonical instruction source for ABB/SBB and visual standards.
+Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instruction source for ABB/SBB and visual standards.
 
-For any ABB/SBB task, load and apply the standards listed in `.ai-assisted-architecture/AGENTS.md`.
+For any ABB/SBB task, load and apply the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md`.
 
 ### `/create-abb` - Create Architecture Building Block
 

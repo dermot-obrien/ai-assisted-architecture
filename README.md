@@ -89,7 +89,8 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 
 ```
 .ai-assisted-architecture/
-  agents/                  # Canonical agent specifications (IDE-agnostic)
+  agents/
+    FRAMEWORK_AGENTS.md    # Agent discovery and precedence rules
   install/                 # IDE configuration snippets (copy to workspace)
   scripts/                 # Automation scripts (PowerPoint generation)
   standards/
@@ -105,7 +106,6 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
         example/
       standard-cross-referencing.md
   example/                 # Example workspace layout
-  AGENTS.md                # Agent discovery and precedence rules
 ```
 
 ## Standards

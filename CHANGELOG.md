@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `standards/` directory at top level for framework standards
 - `example/` directory showing a complete workspace layout
 - Thin IDE wrappers for Claude Code, Cursor, and GitHub Copilot
-- `AGENTS.md` for agent discovery and precedence rules
+- `agents/FRAMEWORK_AGENTS.md` for agent discovery and precedence rules
 - `README.md` with prerequisites, installation, and workspace setup
 - ABB and SBB creation agent skills (`/create-abb`, `/create-sbb`)
 - PowerPoint slide generation from building block artefacts

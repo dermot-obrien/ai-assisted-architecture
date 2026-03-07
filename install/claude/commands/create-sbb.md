@@ -9,4 +9,4 @@ Create a new Solution Building Block (SBB) with document, diagram, summary, and 
 `.ai-assisted-architecture/agents/create-sbb.md`
 
 Also read the supporting documentation:
-- `.ai-assisted-architecture/AGENTS.md` - Agent discovery, standards, and precedence rules
+- `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` - Agent discovery, standards, and precedence rules

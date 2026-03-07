@@ -1,10 +1,10 @@
 # Human-in-the-Loop via Microsoft Teams
 
-**SB-011** | **Version** 0.2 | **Status** DRAFT | **Realises** AB-008 Human-in-the-Loop
+**SB-004** | **Version** 0.2 | **Status** DRAFT | **Realises** AB-004 Human-in-the-Loop
 
 ## Purpose
 
-Realises the Human-in-the-Loop ABB (AB-008) using Microsoft Teams as the human-facing channel and AWS as the agent compute platform. Messages route through Azure AI Bot Service to the agent on AWS (EKS / Agent Core). Uses Graph or Strands for orchestration, Amazon Bedrock for inference, and Entra Agent ID for non-human identity.
+Realises the Human-in-the-Loop ABB (AB-004) using Microsoft Teams as the human-facing channel and AWS as the agent compute platform. Messages route through Azure AI Bot Service to the agent on AWS (EKS / Agent Core). Uses Graph or Strands for orchestration, Amazon Bedrock for inference, and Entra Agent ID for non-human identity.
 
 ## Product Mapping
 
