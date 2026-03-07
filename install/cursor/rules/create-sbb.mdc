@@ -3,6 +3,6 @@ description: Create a new Solution Building Block (SBB)
 globs: building-blocks/solution-building-blocks/**/*
 ---
 
-When creating a new SBB, read and follow the full agent instructions at `ai-assisted-architecture/agents/create-sbb.md`.
+When creating a new SBB, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-sbb.md`.
 
-Load standards from `ai-assisted-architecture/AGENTS.md` before producing any artefact. Read the parent ABB's `index.md` for traceability.
+Load standards from `.ai-assisted-architecture/AGENTS.md` before producing any artefact. Read the parent ABB's `index.md` for traceability.

@@ -6,7 +6,7 @@ Create a new Architecture Building Block (ABB) with document, diagram, summary, 
 
 **Read and follow the full agent instructions at:**
 
-`ai-assisted-architecture/agents/create-abb.md`
+`.ai-assisted-architecture/agents/create-abb.md`
 
 Also read the supporting documentation:
-- `ai-assisted-architecture/AGENTS.md` - Agent discovery, standards, and precedence rules
+- `.ai-assisted-architecture/AGENTS.md` - Agent discovery, standards, and precedence rules

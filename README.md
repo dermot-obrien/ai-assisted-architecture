@@ -27,7 +27,7 @@ The ABB and SBB standards (document structure, diagram layout, cross-referencing
 Add as a Git submodule to your workspace:
 
 ```bash
-git submodule add <repo-url> ai-assisted-architecture
+git submodule add <repo-url> .ai-assisted-architecture
 ```
 
 ## Workspace Setup
@@ -36,7 +36,7 @@ Your workspace must contain a `building-blocks/` folder with two subdirectories.
 
 ```
 your-workspace/
-  ai-assisted-architecture/   # This framework (submodule)
+  .ai-assisted-architecture/  # This framework (submodule)
   building-blocks/
     architecture-building-blocks/
       AB-001/
@@ -74,7 +74,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 ## Repository Structure
 
 ```
-ai-assisted-architecture/
+.ai-assisted-architecture/
   agents/                  # Canonical agent specifications (IDE-agnostic)
   install/                 # IDE configuration snippets (copy to workspace)
   scripts/                 # Automation scripts (PowerPoint generation)
