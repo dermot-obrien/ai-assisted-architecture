@@ -1,0 +1,6 @@
+# AI-Assisted Architecture
+
+Use `ai-assisted-architecture/AGENTS.md` as the canonical instruction source.
+
+For ABB/SBB documents, diagrams, and related visual outputs, load and follow the standards listed in `ai-assisted-architecture/AGENTS.md`.
+Do not create or apply alternate local rules when `ai-assisted-architecture/AGENTS.md` provides guidance.
