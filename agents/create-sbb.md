@@ -19,7 +19,7 @@ Load and internalise these standards before producing any artefact:
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-diagram.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-document.md` (for traceability)
-- `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
+- **Visual design standard** — load `standards/visual-design/visual-design-standard.md` from the workspace root if it exists, otherwise fall back to `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
 - `.ai-assisted-architecture/standards/building-blocks/standard-cross-referencing.md`
 
 Also read the parent ABB's `index.md` to ensure full traceability.

@@ -18,7 +18,21 @@ pip install python-pptx Pillow
 
 ### Visual Design Standard
 
-You **must** provide a visual design standard for your organisation. The framework ships with an example at `standards/visual-design/visual-design-standard.md` that defines colour tokens, typography, and accessibility rules. Copy and modify this file to match your organisation's brand guidelines.
+The framework needs a visual design standard that defines your organisation's colour tokens, typography, and accessibility rules. The agents look for it in this order:
+
+1. **Workspace override (recommended):** `standards/visual-design/visual-design-standard.md` at your workspace root.
+2. **Framework default:** `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md` (a generic example palette).
+
+To create your own, copy the framework's example and modify it:
+
+```bash
+mkdir -p standards/visual-design
+cp .ai-assisted-architecture/standards/visual-design/visual-design-standard.md standards/visual-design/
+```
+
+Then edit `standards/visual-design/visual-design-standard.md` to match your organisation's brand. The colour token IDs (e.g. `1.1`, `2.6`, `4.3`) are referenced throughout the ABB/SBB diagram standards, so keep the same numbering scheme and update the hex values.
+
+If you do not provide an override, agents will use the framework's example palette. This is fine for evaluation but should be replaced before producing artefacts for your organisation.
 
 The ABB and SBB standards (document structure, diagram layout, cross-referencing) are part of the framework and do not need to be overridden.
 
@@ -96,9 +110,14 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 
 ## Standards
 
-- **ABB/SBB document and diagram standards** are part of this framework. They define the structure, metadata, and layout rules for building block artefacts. These do not need to be customised.
-- **Visual design standard** defines colour tokens, typography, contrast ratios, and accessibility rules. This **must** be customised to your organisation's brand.
-- **Cross-referencing standard** defines how ABBs and SBBs link to each other using folder-relative paths.
+| Standard | Customise? | Description |
+|----------|-----------|-------------|
+| Visual design | Yes | Colour tokens, typography, contrast ratios, accessibility. Override at `standards/visual-design/visual-design-standard.md` in your workspace. |
+| ABB document | No | Document structure, metadata, and section layout for ABBs. |
+| ABB diagram | No | Draw.io diagram structure, styling, and export rules for ABBs. |
+| SBB document | No | Document structure, metadata, and section layout for SBBs. |
+| SBB diagram | No | Draw.io diagram structure, styling, and export rules for SBBs. |
+| Cross-referencing | No | How ABBs and SBBs link to each other using folder-relative paths. |
 
 ## Licence
 
