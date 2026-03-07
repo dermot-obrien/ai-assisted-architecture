@@ -3,7 +3,7 @@ document_type: standards
 title: "Solution Building Block (SBB) — Document Standard"
 classification: internal
 version: 1.0
-status: approved
+status: draft
 created: 2024-10-01
 last_modified: 2026-03-07
 owner: "Architecture Team"
@@ -72,7 +72,7 @@ A metadata table immediately after the heading:
 | **SBB Name** | Full name | Human-readable name including the channel or platform variant. |
 | **Short Name** | Acronym/abbreviation | Used in diagrams and cross-references. |
 | **Version** | `MAJOR.MINOR.PATCH` | Semantic versioning. |
-| **Status** | `DRAFT` / `REVIEW` / `APPROVED` / `DEPRECATED` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | Category name | Logical grouping (e.g. `Messaging & Integration`, `Security`, `Compute`). |
 
 
@@ -188,12 +188,12 @@ Replace `<Channel/Domain>` with the relevant context (e.g. "Channel", "API", "Ba
 
 Document constraints using these dimensions (include only those that apply):
 
-- **Message Payload Limits** — Size limits, attachment handling
-- **Interaction Latency** — Timeout values, expected response times
-- **User Lifecycle** — Membership requirements, deprovisioning behaviour
-- **Rate Limiting & Throttling** — API limits, backoff requirements
-- **Fallback & Retry Logic** — Failure handling, escalation, recovery
-- **Rich Content Support** — Card formats, media, action types
+- **Message Payload Limits.** Size limits, attachment handling.
+- **Interaction Latency.** Timeout values, expected response times.
+- **User Lifecycle.** Membership requirements, deprovisioning behaviour.
+- **Rate Limiting & Throttling.** API limits, backoff requirements.
+- **Fallback & Retry Logic.** Failure handling, escalation, recovery.
+- **Rich Content Support.** Card formats, media, action types.
 
 #### 2.9 Dwell & Escalation Policies (Optional)
 
@@ -334,7 +334,7 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - **PNG export:** All `.drawio` files MUST be exported to PNG at **300 DPI** to ensure small text remains legible in presentations. Use the Draw.io CLI flag `--scale 3.125` (300 ÷ 96 = 3.125) or set the DPI in the Draw.io desktop export dialog.
 - **Bullet lead-ins:** When a bullet starts with a bold term, follow it with a full stop and a space, not a dash. Write `**Name.** Description text.` not `**Name** — Description text.`
 - **Inline emphasis:** Do not use dash-bracketed callouts (` — like this — `) or bold text for emphasis within running sentences. Keep prose plain; reserve bold for lead-in terms at the start of bullets.
-- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../SB-010/`, `../../architecture-building-blocks/AB-008/`), never `index.md` explicitly. See the [Cross-Referencing Standard](../standard-cross-referencing.md) for full rules and examples.
+- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../SB-010/`, `../../architecture-building-blocks/AB-008/`), never `index.md` explicitly. See the [Traceability & Hierarchy Standard](../../standard-traceability.md) for full rules and examples.
 - **Variants:** When multiple SBBs realise the same ABB (e.g. different channels), each SBB document should reference its siblings and state what differs.
 
 

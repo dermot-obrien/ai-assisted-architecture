@@ -3,7 +3,7 @@ document_type: standards
 title: "Architecture Building Block (ABB) — Draw.io Diagram Standard"
 classification: internal
 version: 1.0
-status: approved
+status: draft
 created: 2024-10-01
 last_modified: 2026-03-07
 owner: "Architecture Team"
@@ -100,9 +100,9 @@ Every component box MUST contain structured content — not just a name. A compo
 
 Each component box contains three elements in order:
 
-1. **Title** — Bold component name (e.g. `<b>Policy Authoring</b>`)
-2. **Horizontal rule** — Visual separator (colour per HR table in Colour Assignments below)
-3. **Description** — One-to-two sentence summary of the component's responsibility
+1. **Title.** Bold component name (e.g. `<b>Policy Authoring</b>`).
+2. **Horizontal rule.** Visual separator (colour per HR table in Colour Assignments below).
+3. **Description.** One-to-two sentence summary of the component's responsibility.
 
 This structure applies to ALL component levels: Level 1 Primary, Level 2 Secondary, and cross-cutting sub-ABB components. No exceptions.
 
@@ -120,6 +120,24 @@ Interface labels on edges MUST be descriptive, not bare identifiers. Format: `<b
 
 ---
 
+## Colour Strategy
+
+### Reserved Colours (Core Cross-Cutting ABBs Only)
+
+The three mandatory cross-cutting ABBs have **reserved** colour assignments. These colours are used when they appear as sub-ABB groups inside other ABB diagrams, and also as the primary palette in their own component diagrams:
+
+| ABB | Role | Primary | 50% Tint | Usage |
+|-----|------|---------|----------|-------|
+| AB-001 Identity & Access Management | `2.1` Indigo | `#4B5BAA` | `#A5ADD4` | Sub-ABB stroke, badge, identity edges |
+| AB-002 Observability | `2.4` Wisteria | `#9B72CF` | `#CDB9E7` | Sub-ABB stroke, badge, observability edges |
+| AB-003 Governance & Policy Enforcement | `2.5` Mauve | `#B86B9A` | `#DCB5CD` | Sub-ABB stroke, badge, policy edges |
+
+These three colours are **permanently reserved** and MUST NOT be used as the primary palette for any other ABB.
+
+### Default Palette (All Other ABBs)
+
+All ABBs other than the three core cross-cutting ABBs use the **standard default palette** defined in the table below. Do NOT assign unique colours per ABB — the palette does not scale to hundreds of building blocks. Every non-core ABB looks the same, differentiated by its content and structure rather than colour.
+
 ## Colour Assignments (Tokens)
 
 | Element Type | Fill | Stroke | Text |
@@ -136,6 +154,8 @@ Interface labels on edges MUST be descriptive, not bare identifiers. Format: `<b
 | Governance Sub-ABB Background | `3.4` | `2.5` | — |
 | External Actor (ellipse) | `1.1` | none | `1.3` |
 | Legend Background | `3.4` | `3.3` | — |
+
+This palette applies universally. The reserved cross-cutting colours (`2.1`, `2.4`, `2.5`) appear only in sub-ABB groups and their associated edges/badges — never as the primary component fill for a non-core ABB.
 
 ### Edge (Arrow/Connector) Colours
 
@@ -206,6 +226,7 @@ Before finalising an ABB diagram, verify:
 10. [ ] **Accessibility**: Is text on dark fills (`1.1`, `2.1`) set to White (`1.3`) and text on bright accent fills (`2.3`, `2.4`, `2.5`) set to Charcoal (`1.1`)?
 11. [ ] **Legend**: Does the legend include swatches for all element types, edge types, sub-ABB strokes, and badge pairs?
 12. [ ] **Consistency**: Does this diagram match the structural density and layout pattern of existing ABB diagrams (AB-001, AB-002)?
+13. [ ] **Colour Strategy**: Are Level 1/Level 2 components using the default palette (`1.1`/`2.1.2`)? Only AB-001, AB-002, and AB-003 use reserved colours for their own primary components.
 
 ---
 

@@ -1,93 +1,378 @@
-<mxfile host="Electron" agent="Mozilla/5.0" version="21.6.8">
-  <diagram id="diagram-1" name="Identity Lifecycle Service (Entra)">
-    <mxGraphModel dx="1426" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="Electron" agent="Claude" version="29.5.2">
+  <diagram id="sb001-entra-iam" name="SBB: Identity Lifecycle Service (Entra)">
+    <mxGraphModel dx="1501" dy="885" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="sbb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="930" width="880" x="40" y="40" as="geometry" />
+
+        <!-- SBB Boundary -->
+        <mxCell id="sbb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="890" width="900" x="30" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="sbb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;SBB: Identity Lifecycle Service (Entra)&lt;/b&gt;" vertex="1">
-          <mxGeometry height="30" width="450" x="60" y="40" as="geometry" />
+        <mxCell id="sbb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;SBB: Identity Lifecycle Service (Entra)&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="380" x="38" y="27" as="geometry" />
         </mxCell>
-        <mxCell id="platform" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="600" width="800" x="80" y="100" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- GROUP: Core Identity (top left)             -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="core-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="370" width="350" x="38" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="platform-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;Microsoft Entra ID&lt;/b&gt;" vertex="1">
-          <mxGeometry height="30" width="300" x="90" y="100" as="geometry" />
+        <mxCell id="core-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Core Identity&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="160" x="45" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="comp-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra ID Tenant&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Cloud directory for all principals." vertex="1">
-          <mxGeometry height="80" width="220" x="120" y="160" as="geometry" />
+
+        <mxCell id="entra-provisioning" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Entra ID Provisioning&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;SCIM-based provisioning and Graph API for identity lifecycle management.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="320" x="53" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="badge-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Identity Store" vertex="1">
-          <mxGeometry height="14" width="100" x="230" y="153" as="geometry" />
+
+        <mxCell id="entra-workload-id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Entra Workload ID&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Managed identities and federated credentials for non-human actors.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="320" x="53" y="192" as="geometry" />
         </mxCell>
-        <mxCell id="comp-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra ID Provisioning&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;SCIM-based provisioning and Graph API." vertex="1">
-          <mxGeometry height="80" width="220" x="360" y="160" as="geometry" />
+
+        <mxCell id="entra-governance" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra ID Governance&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Automated lifecycle workflows, access reviews, entitlement management.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="150" x="53" y="286" as="geometry" />
         </mxCell>
-        <mxCell id="badge-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Identity Provisioning" vertex="1">
-          <mxGeometry height="14" width="100" x="470" y="153" as="geometry" />
+
+        <mxCell id="entra-tenant" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra ID Tenant&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Cloud directory for all human and non-human principals.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="150" x="223" y="286" as="geometry" />
         </mxCell>
-        <mxCell id="comp-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra Workload ID&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Managed identities and federated credentials." vertex="1">
-          <mxGeometry height="80" width="220" x="600" y="160" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- GROUP: Token Management (top right)         -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="token-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="370" width="330" x="398" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="badge-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Credential Mgmt" vertex="1">
-          <mxGeometry height="14" width="100" x="710" y="153" as="geometry" />
+        <mxCell id="token-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Token Management&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="195" x="405" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="comp-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra STS (v2.0)&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;OIDC and OAuth 2.0 endpoints." vertex="1">
-          <mxGeometry height="80" width="220" x="120" y="260" as="geometry" />
+
+        <mxCell id="entra-sts" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Entra STS v2.0&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;OIDC and OAuth 2.0 token endpoints for authentication.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="413" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="badge-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Token Issuance" vertex="1">
-          <mxGeometry height="14" width="100" x="230" y="253" as="geometry" />
+
+        <mxCell id="entra-token-validation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra Token Validation&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Middleware-based JWT validation using JWKS metadata.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="413" y="198" as="geometry" />
         </mxCell>
-        <mxCell id="comp-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra Token Validation&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Middleware-based validation of JWTs." vertex="1">
-          <mxGeometry height="80" width="220" x="360" y="260" as="geometry" />
+
+        <mxCell id="entra-mfa" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra MFA&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Authenticator app, FIDO2, SMS as step-up factors.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="300" x="413" y="296" as="geometry" />
         </mxCell>
-        <mxCell id="badge-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Token Validation" vertex="1">
-          <mxGeometry height="14" width="100" x="470" y="253" as="geometry" />
+
+        <!-- Internal edges within Token Management -->
+        <mxCell id="e-sts-valid" edge="1" parent="1" source="entra-sts" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="entra-token-validation">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="comp-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra MFA&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Authenticator app, FIDO2, and SMS." vertex="1">
-          <mxGeometry height="80" width="220" x="600" y="260" as="geometry" />
+        <mxCell id="e-valid-mfa" edge="1" parent="1" source="entra-token-validation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="entra-mfa">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="badge-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: MFA" vertex="1">
-          <mxGeometry height="14" width="100" x="710" y="253" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- GROUP: Access Control (bottom left)         -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="access-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="210" width="350" x="38" y="445" as="geometry" />
         </mxCell>
-        <mxCell id="comp-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra Conditional Access&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Signal-based access policy engine." vertex="1">
-          <mxGeometry height="80" width="220" x="120" y="360" as="geometry" />
+        <mxCell id="access-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Access Control&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="160" x="45" y="451" as="geometry" />
         </mxCell>
-        <mxCell id="badge-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Policy Engine" vertex="1">
-          <mxGeometry height="14" width="100" x="230" y="353" as="geometry" />
+
+        <mxCell id="entra-ca" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Entra Conditional Access&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Signal-based access policy engine evaluating risk and context.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="320" x="53" y="483" as="geometry" />
         </mxCell>
-        <mxCell id="comp-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra RBAC / App Roles&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Scoped application and directory roles." vertex="1">
-          <mxGeometry height="80" width="220" x="360" y="360" as="geometry" />
+
+        <mxCell id="entra-rbac" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra RBAC / App Roles&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Scoped application and directory roles for authorisation.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="56" width="150" x="53" y="578" as="geometry" />
         </mxCell>
-        <mxCell id="badge-7" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Role Mgmt" vertex="1">
-          <mxGeometry height="14" width="100" x="470" y="353" as="geometry" />
+
+        <mxCell id="entra-ca-policies" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra CA Policies&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Real-time evaluation of risk, location, device compliance.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="56" width="150" x="223" y="578" as="geometry" />
         </mxCell>
-        <mxCell id="comp-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Entra B2B / Federation&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;SAML/OIDC federation with external IdPs." vertex="1">
-          <mxGeometry height="80" width="220" x="600" y="360" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- GROUP: Federation (bottom right)            -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="fed-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="210" width="330" x="398" y="445" as="geometry" />
         </mxCell>
-        <mxCell id="badge-8" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Identity Federation" vertex="1">
-          <mxGeometry height="14" width="100" x="710" y="353" as="geometry" />
+        <mxCell id="fed-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Federation&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="130" x="405" y="451" as="geometry" />
         </mxCell>
-        <mxCell id="cont-iam" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="160" width="240" x="80" y="750" as="geometry" />
+
+        <mxCell id="entra-b2b" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Entra B2B / Federation&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;SAML/OIDC federation with external identity providers.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="300" x="413" y="483" as="geometry" />
         </mxCell>
-        <mxCell id="iam-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Identity &amp;amp; Access&lt;/b&gt;" vertex="1">
-          <mxGeometry height="23" width="160" x="90" y="755" as="geometry" />
+
+        <mxCell id="entra-wid-fic" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Entra Workload ID FIC&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Federation with Kubernetes and other compute platforms.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="68" width="300" x="413" y="578" as="geometry" />
         </mxCell>
-        <mxCell id="cont-obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="160" width="240" x="360" y="750" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- EXTERNAL ACTORS (right side)                -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="consumer-svc" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Consumer&lt;br&gt;Service&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="obs-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Observability&lt;/b&gt;" vertex="1">
-          <mxGeometry height="23" width="120" x="370" y="755" as="geometry" />
+
+        <mxCell id="workload" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Workload&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="340" as="geometry" />
         </mxCell>
-        <mxCell id="cont-gov" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="160" width="240" x="640" y="750" as="geometry" />
+
+        <mxCell id="ext-idp" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;External&lt;br&gt;IdP&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="540" as="geometry" />
         </mxCell>
-        <mxCell id="gov-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Governance &amp;amp; Policy&lt;/b&gt;" vertex="1">
-          <mxGeometry height="23" width="160" x="650" y="755" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- INTERFACE EDGES                             -->
+        <!-- ═══════════════════════════════════════════ -->
+
+        <!-- I1: Consumer → STS (Token request) -->
+        <mxCell id="i1-edge" edge="1" parent="1" source="consumer-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;" target="entra-sts">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="145" />
+              <mxPoint x="770" y="128" />
+            </Array>
+          </mxGeometry>
         </mxCell>
+        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I1&lt;/b&gt;  Token request" vertex="1">
+          <mxGeometry height="14" width="100" x="740" y="108" as="geometry" />
+        </mxCell>
+
+        <!-- I2: STS → Consumer (JWT token) — return colour -->
+        <mxCell id="i2-edge" edge="1" parent="1" source="entra-sts" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.65;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="consumer-svc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="152" />
+              <mxPoint x="760" y="168" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I2&lt;/b&gt;  JWT token" vertex="1">
+          <mxGeometry height="14" width="90" x="740" y="170" as="geometry" />
+        </mxCell>
+
+        <!-- I4: Consumer → CA (Policy evaluation) -->
+        <mxCell id="i4-edge" edge="1" parent="1" source="consumer-svc" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="entra-ca">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="200" />
+              <mxPoint x="780" y="440" />
+              <mxPoint x="400" y="440" />
+              <mxPoint x="400" y="503" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i4-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I4&lt;/b&gt;  Policy evaluation" vertex="1">
+          <mxGeometry height="14" width="120" x="530" y="426" as="geometry" />
+        </mxCell>
+
+        <!-- I5: CA → Consumer (Allow/block/MFA) — return colour -->
+        <mxCell id="i5-edge" edge="1" parent="1" source="entra-ca" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" target="consumer-svc">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="503" />
+              <mxPoint x="790" y="210" />
+              <mxPoint x="885" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i5-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I5&lt;/b&gt;  Allow/block/MFA" vertex="1">
+          <mxGeometry height="14" width="120" x="795" y="210" as="geometry" />
+        </mxCell>
+
+        <!-- I6: Workload → STS (Federated credential exchange) -->
+        <mxCell id="i6-edge" edge="1" parent="1" source="workload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="entra-sts">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="750" y="363" />
+              <mxPoint x="750" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i6-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I6&lt;/b&gt;  Federated credential exchange" vertex="1">
+          <mxGeometry height="14" width="180" x="740" y="300" as="geometry" />
+        </mxCell>
+
+        <!-- I7: Ext IdP → Entra B2B (B2B federation trust) -->
+        <mxCell id="i7-edge" edge="1" parent="1" source="ext-idp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="entra-b2b">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="585" />
+              <mxPoint x="770" y="523" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i7-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I7&lt;/b&gt;  B2B federation trust" vertex="1">
+          <mxGeometry height="14" width="140" x="740" y="560" as="geometry" />
+        </mxCell>
+
+        <!-- I10: Admin → Entra (Graph API management) — use an admin actor -->
+        <mxCell id="admin-actor" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Admin&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="700" as="geometry" />
+        </mxCell>
+
+        <mxCell id="i10-edge" edge="1" parent="1" source="admin-actor" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="entra-provisioning">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="745" />
+              <mxPoint x="740" y="440" />
+              <mxPoint x="390" y="440" />
+              <mxPoint x="390" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i10-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I10&lt;/b&gt;  Graph API management" vertex="1">
+          <mxGeometry height="14" width="155" x="740" y="726" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- CROSS-CUTTING: Observability                -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="obs-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="145" width="690" x="38" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;ABB: Observability&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="190" x="50" y="676" as="geometry" />
+        </mxCell>
+
+        <mxCell id="sign-in-logs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#9B72CF;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#1A1A2E;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;Entra Sign-in Logs&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #1A1A2E;&quot;&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;Exported to Azure Monitor / Log Analytics for all authentication events.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="87" width="280" x="65" y="710" as="geometry" />
+        </mxCell>
+
+        <mxCell id="audit-logs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Audit Logs&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font&gt;Diagnostic settings streaming identity lifecycle and policy events.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="87" width="280" x="400" y="710" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-signin-audit" edge="1" parent="1" source="sign-in-logs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="audit-logs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- CONNECTOR BADGE PAIR (A): CA → Sign-in Logs -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="conn-A-stub" edge="1" parent="1" source="entra-ca" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="conn-A-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="38" y="532" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="200" y="692" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;CA sign-in events&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="90" x="220" y="692" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════ -->
+        <!-- LEGEND                                      -->
+        <!-- ═══════════════════════════════════════════ -->
+        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="72" width="881" x="38" y="828" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="15" width="50" x="50" y="831" as="geometry" />
+        </mxCell>
+
+        <!-- Primary -->
+        <mxCell id="leg-primary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4B5BAA;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="50" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-primary-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Primary (Indigo)" vertex="1">
+          <mxGeometry height="15" width="100" x="70" y="851" as="geometry" />
+        </mxCell>
+
+        <!-- Secondary -->
+        <mxCell id="leg-secondary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="50" y="873" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-secondary-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Secondary (Indigo 50%)" vertex="1">
+          <mxGeometry height="15" width="130" x="70" y="871" as="geometry" />
+        </mxCell>
+
+        <!-- Observability Primary -->
+        <mxCell id="leg-obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#9B72CF;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="50" y="893" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-obs-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Observability — Primary" vertex="1">
+          <mxGeometry height="15" width="130" x="70" y="891" as="geometry" />
+        </mxCell>
+
+        <!-- Observability Secondary -->
+        <mxCell id="leg-obs2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="230" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-obs2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Observability — Secondary" vertex="1">
+          <mxGeometry height="15" width="140" x="250" y="851" as="geometry" />
+        </mxCell>
+
+        <!-- Outbound flow -->
+        <mxCell id="leg-arrow1" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#1A1A2E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="858" as="sourcePoint" />
+            <mxPoint x="451" y="858" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Outbound flow" vertex="1">
+          <mxGeometry height="15" width="80" x="457" y="851" as="geometry" />
+        </mxCell>
+
+        <!-- Return flow -->
+        <mxCell id="leg-arrow2" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#C4724E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="878" as="sourcePoint" />
+            <mxPoint x="451" y="878" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Return flow" vertex="1">
+          <mxGeometry height="15" width="70" x="457" y="871" as="geometry" />
+        </mxCell>
+
+        <!-- Internal dependency -->
+        <mxCell id="leg-arrow3" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#2C3038;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="420" y="898" as="sourcePoint" />
+            <mxPoint x="451" y="898" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a3-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Internal dependency" vertex="1">
+          <mxGeometry height="15" width="100" x="457" y="891" as="geometry" />
+        </mxCell>
+
+        <!-- Observability sub-ABB stroke -->
+        <mxCell id="leg-stroke-obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="600" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-stroke-obs-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Observability sub-ABB" vertex="1">
+          <mxGeometry height="15" width="130" x="620" y="851" as="geometry" />
+        </mxCell>
+
+        <!-- Connector badge -->
+        <mxCell id="leg-badge-ex" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;fontStyle=1;verticalAlign=middle;align=center;" value="X" vertex="1">
+          <mxGeometry height="16" width="16" x="600" y="875" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-badge-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Observability connector (pair)" vertex="1">
+          <mxGeometry height="15" width="150" x="620" y="873" as="geometry" />
+        </mxCell>
+
+        <!-- External actor -->
+        <mxCell id="leg-actor" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="230" y="873" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-actor-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="External actor" vertex="1">
+          <mxGeometry height="15" width="80" x="250" y="871" as="geometry" />
+        </mxCell>
+
+        <!-- Group boundary -->
+        <mxCell id="leg-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="230" y="893" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-group-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Functional group" vertex="1">
+          <mxGeometry height="15" width="90" x="250" y="891" as="geometry" />
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

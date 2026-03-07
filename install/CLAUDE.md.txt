@@ -4,11 +4,35 @@ Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical inst
 
 When working on capability, ABB/SBB documents or diagrams, follow the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` and do not create alternate local rules.
 
+### `/create-strategy` - Create Outcome / Use Case
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-strategy.md`
+
+**Purpose:** Strategic and operational layer creation.
+
+---
+
+### `/create-platform` - Create Platform
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-platform.md`
+
+**Purpose:** Defining platforms and executive ownership.
+
+---
+
 ### `/create-capability` - Create Capability
 
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-capability.md`
 
 **Purpose:** End-to-end capability creation: discovery, document, ABB mapping, maturity assessment.
+
+---
+
+### `/create-context` - Create Bounded Context
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-context.md`
+
+**Purpose:** Defining Bounded Contexts and linguistic boundaries.
 
 ---
 
@@ -25,3 +49,11 @@ When working on capability, ABB/SBB documents or diagrams, follow the standards 
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
 
 **Purpose:** End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint.
+
+---
+
+### `/create-service` - Create Service
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
+
+**Purpose:** Runtime unit of execution definition.

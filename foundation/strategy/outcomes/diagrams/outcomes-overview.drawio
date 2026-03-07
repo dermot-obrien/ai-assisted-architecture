@@ -1,0 +1,193 @@
+<mxfile host="draw.io" modified="2026-03-08T00:00:00.000Z" agent="draw.io" version="24.0.0" type="device">
+  <diagram id="outcomes-overview" name="Strategic Outcomes Overview">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Strategic Outcomes Overview" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="560" y="15" width="800" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="oc001-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc001-title" value="Zero Trust Workload Posture" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc001-id" value="OC-001" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#4B5BAA;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="145" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc001-domain" value="PL-001 Security" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#4B5BAA;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="140" y="145" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc001-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;100% service calls authenticated via workload identity" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="190" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc001-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="130" y="460" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc002-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc002-title" value="Credential-less Infrastructure" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="420" y="80" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc002-id" value="OC-002" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#4B5BAA;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="440" y="145" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc002-domain" value="PL-001 Security" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#4B5BAA;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="520" y="145" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc002-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;90% reduction in static secrets" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="440" y="190" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc002-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="510" y="460" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc003-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc003-title" value="MTTD Reduction" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="80" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc003-id" value="OC-003" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#9B72CF;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="820" y="145" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc003-domain" value="PL-002 Operations" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#9B72CF;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="900" y="145" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc003-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;Multi-service MTTD under 5 minutes" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="820" y="190" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc003-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="890" y="460" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc004-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="80" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc004-title" value="Continuous Compliance Audit" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="80" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc004-id" value="OC-004" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#B86B9A;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="145" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc004-domain" value="PL-003 Compliance" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#B86B9A;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="145" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc004-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;Full compliance report under 1 hour" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="190" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc004-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="460" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc005-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="80" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc005-title" value="Developer Self-Service Efficiency" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="80" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc005-id" value="OC-005" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#2E86AB;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="145" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc005-domain" value="PL-004 Developer Experience" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#2E86AB;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="145" width="180" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc005-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;90% standard requests fulfilled in under 15 min" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="190" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc005-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="460" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc006-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc006-title" value="Cloud Cost Efficiency" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="540" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc006-id" value="OC-006" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#5B8C5A;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="605" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc006-domain" value="PL-005 Cost Management" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#5B8C5A;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="140" y="605" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc006-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;20% YoY unit cost reduction with full attribution" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="650" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc006-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="130" y="920" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc007-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="420" y="540" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc007-title" value="Service Reliability Target" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="420" y="540" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc007-id" value="OC-007" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#D4874D;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="440" y="605" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc007-domain" value="PL-006 Reliability &amp; Resilience" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#D4874D;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="520" y="605" width="190" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc007-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;Tier-1 services maintain 99.9% availability" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="440" y="650" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc007-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="510" y="920" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc008-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="800" y="540" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc008-title" value="Software Supply Chain Integrity" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="800" y="540" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc008-id" value="OC-008" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#C75050;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="820" y="605" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc008-domain" value="PL-007 Supply Chain Security" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#C75050;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="900" y="605" width="190" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc008-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;100% artifacts have verified provenance and SBOM" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="820" y="650" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc008-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="890" y="920" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc009-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="540" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc009-title" value="Data Governance &amp; Privacy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1180" y="540" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc009-id" value="OC-009" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#6B7B8D;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="605" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc009-domain" value="PL-008 Data Management" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#6B7B8D;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="605" width="170" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc009-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;100% data stores classified with retention enforced" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1200" y="650" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc009-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="920" width="90" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="oc010-card" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="540" width="340" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="oc010-title" value="Configuration Consistency" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#1A1A2E;strokeColor=#1A1A2E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="540" width="340" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="oc010-id" value="OC-010" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#8B6E4E;strokeColor=none;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="605" width="70" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc010-domain" value="PL-009 Configuration &amp; Secret Mgmt" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#8B6E4E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1660" y="605" width="210" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="oc010-measure" value="&lt;b&gt;Measure:&lt;/b&gt;&lt;br&gt;Zero incidents from config drift or expired secrets" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=11;fontColor=#2C3038;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="650" width="300" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="oc010-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#22C55E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1650" y="920" width="90" height="26" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

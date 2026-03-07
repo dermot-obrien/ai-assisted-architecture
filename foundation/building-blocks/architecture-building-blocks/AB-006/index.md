@@ -13,8 +13,10 @@ sidebar_position: 6
 | **ABB Name** | Compute Orchestration Platform | Human-readable name of the building block. |
 | **Short Name** | COP | Used in diagrams and cross-references. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Infrastructure` | Logical grouping. |
+| **Parent Bounded Context** | [Infrastructure Bounded Context](../../../contexts/infrastructure-context.md) | Domain boundary for runtime infrastructure concerns. |
+| **Parent Capability** | [CAP-012 Compute Runtime & Scheduling](../../../capabilities/CAP-012/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for workload runtime scheduling, orchestration, autoscaling, and deployment lifecycle control.
 
@@ -28,7 +30,9 @@ This ABB provides the shared runtime and control plane that executes platform wo
 
 ### 2.1  Component Diagram
 
-Canonical component structure is defined in this document. Diagram artefacts for specific workspaces are expected to be generated in workspace copies of this ABB.
+The diagram below shows the compute orchestration boundary across runtime control, deployment lifecycle, and elastic capacity responsibilities. Service and operations actors are external to the ABB boundary, while IAM, observability, and governance are modelled as mandatory cross-cutting sub-ABBs.
+
+![AB-006 Compute Orchestration Platform Component Diagram](./components.png)
 
 ### 2.2  Fundamental functionality
 
@@ -154,4 +158,3 @@ Each SBB should define scaling ceilings, scheduling limitations, tenancy model, 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | AB-006 Compute Orchestration Platform ABB created. |
-

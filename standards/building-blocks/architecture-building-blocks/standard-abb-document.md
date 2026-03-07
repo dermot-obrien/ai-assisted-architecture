@@ -3,7 +3,7 @@ document_type: standards
 title: "Architecture Building Block (ABB) — Document Standard"
 classification: internal
 version: 1.0
-status: approved
+status: draft
 created: 2024-10-01
 last_modified: 2026-03-07
 owner: "Architecture Team"
@@ -72,7 +72,7 @@ A metadata table immediately after the heading:
 | **ABB Name** | Full name | Human-readable name of the building block. |
 | **Short Name** | Acronym/abbreviation | Used in diagrams and cross-references. |
 | **Version** | `MAJOR.MINOR.PATCH` | Semantic versioning. |
-| **Status** | `DRAFT` / `REVIEW` / `APPROVED` / `DEPRECATED` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | Category name | Logical grouping (e.g. `Messaging & Integration`, `Security`, `Compute`). |
 
 ### Description
@@ -150,10 +150,10 @@ Every ABB MUST include the following three cross-cutting sections. These corresp
 
 Describe the ABB's identity and access posture in technology-agnostic terms:
 
-- **Authentication model** — How callers and the ABB itself are identified (e.g. federated identity, workload identity, certificate-based).
-- **Authorisation approach** — How access decisions are made (e.g. role-based, attribute-based, policy-driven).
-- **Non-human identity** — How the ABB's own workload identity is established and managed.
-- **Credential management** — Approach to secrets, tokens, and key material (e.g. no stored secrets, short-lived tokens).
+- **Authentication model.** How callers and the ABB itself are identified (e.g. federated identity, workload identity, certificate-based).
+- **Authorisation approach.** How access decisions are made (e.g. role-based, attribute-based, policy-driven).
+- **Non-human identity.** How the ABB's own workload identity is established and managed.
+- **Credential management.** Approach to secrets, tokens, and key material (e.g. no stored secrets, short-lived tokens).
 
 #### 2.6 Observability
 
@@ -161,10 +161,10 @@ Describe the ABB's identity and access posture in technology-agnostic terms:
 
 Describe how the ABB is monitored, traced, and audited:
 
-- **Signals emitted** — What logs, metrics, and traces the ABB produces.
-- **Audit trail** — What decisions, state transitions, and access events are recorded for compliance.
-- **Health and liveness** — How operational health is measured and reported.
-- **Compliance data feeds** — How observability data supports regulatory requirements (e.g. GDPR, AI Act).
+- **Signals emitted.** What logs, metrics, and traces the ABB produces.
+- **Audit trail.** What decisions, state transitions, and access events are recorded for compliance.
+- **Health and liveness.** How operational health is measured and reported.
+- **Compliance data feeds.** How observability data supports regulatory requirements (e.g. GDPR, AI Act).
 
 #### 2.7 Governance & Policy Enforcement
 
@@ -172,10 +172,10 @@ Describe how the ABB is monitored, traced, and audited:
 
 Describe how the ABB is governed and how policies are enforced:
 
-- **Policy enforcement** — How policy decisions are applied (e.g. deny, allow, step-up authentication).
-- **Regulatory alignment** — Which regulations or standards this ABB must comply with and how.
-- **Data classification** — What category of data this ABB handles (none, PII, sensitive, regulated) and the protection posture.
-- **Change governance** — Who can modify the ABB's configuration or behaviour, and through what process.
+- **Policy enforcement.** How policy decisions are applied (e.g. deny, allow, step-up authentication).
+- **Regulatory alignment.** Which regulations or standards this ABB must comply with and how.
+- **Data classification.** What category of data this ABB handles (none, PII, sensitive, regulated) and the protection posture.
+- **Change governance.** Who can modify the ABB's configuration or behaviour, and through what process.
 
 
 ### Section 3 — Interfaces
@@ -358,7 +358,7 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - **PNG export:** All `.drawio` files MUST be exported to PNG at **300 DPI** to ensure small text remains legible in presentations. Use the Draw.io CLI flag `--scale 3.125` (300 ÷ 96 = 3.125) or set the DPI in the Draw.io desktop export dialog.
 - **Bullet lead-ins:** When a bullet starts with a bold term, follow it with a full stop and a space, not a dash. Write `**Name.** Description text.` not `**Name** — Description text.`
 - **Inline emphasis:** Do not use dash-bracketed callouts (` — like this — `) or bold text for emphasis within running sentences. Keep prose plain; reserve bold for lead-in terms at the start of bullets.
-- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../AB-003/`), never `index.md` explicitly. See the [Cross-Referencing Standard](../standard-cross-referencing.md) for full rules and examples.
+- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../AB-003/`), never `index.md` explicitly. See the [Traceability & Hierarchy Standard](../../standard-traceability.md) for full rules and examples.
 
 
 ## AI Agent Self-Verification Checklist

@@ -1,6 +1,6 @@
 # Identity Lifecycle Service (Entra)
 
-**SB-001** | **Version** 1.0 | **Status** APPROVED | **Realises** AB-001 Identity & Access Management
+**SB-001** | **Version** 1.0 | **Status** DRAFT | **Realises** AB-001 Identity & Access Management
 
 ## Purpose
 

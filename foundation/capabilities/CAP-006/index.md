@@ -10,11 +10,13 @@ sidebar_position: 6
 |----------|-------|-------|
 | **Capability ID** | `CAP-006` | Unique identifier. |
 | **Capability Name** | Operational Monitoring & Alerting | Human-readable name. |
+| **Realizes Outcome**| [OC-003 MTTD Reduction](../../../strategy/outcomes.md#oc-003-mean-time-to-detect-mttd-reduction) | Primary strategic goal. |
+| **Enables Use Case**| [UC-002 Cross-Context Request Tracing](../../../strategy/use-cases.md#uc-002-cross-context-request-tracing) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-003` | Operational Intelligence. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-002 Observability](../../platforms/PL-002/) | Parent platform. |
 
 The organisation must be able to collect, correlate, and act on operational signals (traces, metrics, logs) from every building block in real time, surfacing health status, performance trends, and anomalies through dashboards and automated alerts.
 

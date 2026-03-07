@@ -1,0 +1,341 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="ncs-abb" name="Network Connectivity &amp; Security ABB">
+    <mxGraphModel dx="2037" dy="1201" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- IAM sub-ABB background (drawn first so it's behind) -->
+        <mxCell id="iam-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="122" width="420" x="50" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;ABB: Identity &amp;amp; Access Management&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="335" x="56" y="686" as="geometry" />
+        </mxCell>
+        <!-- Observability sub-ABB background -->
+        <mxCell id="obs-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="122" width="350" x="490" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;ABB: Observability&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="190" x="496" y="686" as="geometry" />
+        </mxCell>
+        <!-- ABB Boundary -->
+        <mxCell id="ncs-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="890" width="900" x="30" y="20" as="geometry" />
+        </mxCell>
+        <!-- ABB Title -->
+        <mxCell id="ncs-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;ABB: Network Connectivity &amp;amp; Security&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="390" x="38" y="27" as="geometry" />
+        </mxCell>
+        <!-- ========== Network Topology Group (left) ========== -->
+        <mxCell id="net-topology-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="560" width="220" x="50" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="net-topology-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Network Topology&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="180" x="56" y="68" as="geometry" />
+        </mxCell>
+        <!-- Virtual Network Management (PRIMARY) -->
+        <mxCell id="virtual-network-mgmt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font color='#FFFFFF'&gt;Virtual Network Management&lt;/font&gt;&lt;/b&gt;&lt;hr style='border-color: #8D8D97;'/&gt;&lt;font color='#FFFFFF'&gt;Provision and manage virtual networks, subnets, and peering.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="190" x="65" y="100" as="geometry" />
+        </mxCell>
+        <!-- DNS Resolution Services (SECONDARY) -->
+        <mxCell id="dns-resolution" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;DNS Resolution Services&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Resolve internal and external names with split-horizon DNS.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="65" y="205" as="geometry" />
+        </mxCell>
+        <!-- Private Connectivity (SECONDARY) -->
+        <mxCell id="private-connectivity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Private Connectivity&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Private endpoints, VPN tunnels, and ExpressRoute links.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="65" y="300" as="geometry" />
+        </mxCell>
+        <!-- Internal edges within Network Topology -->
+        <mxCell id="e-vnet-dns" edge="1" parent="1" source="virtual-network-mgmt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="dns-resolution">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-dns-private" edge="1" parent="1" source="dns-resolution" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="private-connectivity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ========== Traffic Management Group (middle) ========== -->
+        <mxCell id="traffic-mgmt-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="560" width="220" x="300" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="traffic-mgmt-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Traffic Management&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="195" x="306" y="68" as="geometry" />
+        </mxCell>
+        <!-- Load Balancing & Distribution (PRIMARY) -->
+        <mxCell id="load-balancing" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font color='#FFFFFF'&gt;Load Balancing &amp;amp; Distribution&lt;/font&gt;&lt;/b&gt;&lt;hr style='border-color: #8D8D97;'/&gt;&lt;font color='#FFFFFF'&gt;Distribute traffic across backends using layer-4 and layer-7 rules.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="190" x="315" y="100" as="geometry" />
+        </mxCell>
+        <!-- Ingress Control (PRIMARY) -->
+        <mxCell id="ingress-control" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font color='#FFFFFF'&gt;Ingress Control&lt;/font&gt;&lt;/b&gt;&lt;hr style='border-color: #8D8D97;'/&gt;&lt;font color='#FFFFFF'&gt;TLS termination, WAF integration, and route-based traffic steering.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="190" x="315" y="205" as="geometry" />
+        </mxCell>
+        <!-- Egress Control (SECONDARY) -->
+        <mxCell id="egress-control" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Egress Control&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Restrict and audit outbound traffic via firewall and NAT rules.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="315" y="310" as="geometry" />
+        </mxCell>
+        <!-- Internal edges within Traffic Management -->
+        <mxCell id="e-lb-ingress" edge="1" parent="1" source="load-balancing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ingress-control">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ingress-egress" edge="1" parent="1" source="ingress-control" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="egress-control">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ========== Service Connectivity Group (right) ========== -->
+        <mxCell id="svc-conn-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="560" width="195" x="556" y="62" as="geometry" />
+        </mxCell>
+        <mxCell id="svc-conn-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Service Connectivity&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="185" x="562" y="68" as="geometry" />
+        </mxCell>
+        <!-- Service Mesh Control Plane (PRIMARY) -->
+        <mxCell id="service-mesh" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font color='#FFFFFF'&gt;Service Mesh Control Plane&lt;/font&gt;&lt;/b&gt;&lt;hr style='border-color: #8D8D97;'/&gt;&lt;font color='#FFFFFF'&gt;Manage service-to-service mTLS, routing, and circuit breaking.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="175" x="565" y="100" as="geometry" />
+        </mxCell>
+        <!-- Network Policy Engine (SECONDARY) -->
+        <mxCell id="network-policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Network Policy Engine&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Enforce micro-segmentation and pod-level network rules.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="175" x="565" y="205" as="geometry" />
+        </mxCell>
+        <!-- DDoS Protection (SECONDARY) -->
+        <mxCell id="ddos-protection" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;DDoS Protection&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Volumetric and protocol-level attack mitigation.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="175" x="565" y="300" as="geometry" />
+        </mxCell>
+        <!-- Certificate Lifecycle Mgmt (SECONDARY) -->
+        <mxCell id="cert-lifecycle" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Certificate Lifecycle Mgmt&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Automate issuance, renewal, and revocation of TLS certificates.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="175" x="565" y="395" as="geometry" />
+        </mxCell>
+        <!-- Internal edges within Service Connectivity -->
+        <mxCell id="e-mesh-policy" edge="1" parent="1" source="service-mesh" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="network-policy">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-policy-ddos" edge="1" parent="1" source="network-policy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ddos-protection">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-ddos-cert" edge="1" parent="1" source="ddos-protection" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cert-lifecycle">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <!-- ========== External Actors (right side) ========== -->
+        <!-- Workload (top right) -->
+        <mxCell id="workload" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Workload&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="81" as="geometry" />
+        </mxCell>
+        <!-- External Client (middle right) -->
+        <mxCell id="external-client" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;External&lt;br&gt;Client&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="300" as="geometry" />
+        </mxCell>
+        <!-- Operator (lower right) -->
+        <mxCell id="operator" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Operator&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="470" as="geometry" />
+        </mxCell>
+        <!-- ========== Interfaces ========== -->
+        <!-- I1: Workload → Virtual Network Management (Connectivity request) - outbound -->
+        <mxCell id="i1-conn-req" edge="1" parent="1" source="workload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;" target="virtual-network-mgmt" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="126" />
+              <mxPoint x="790" y="132" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I1&lt;/b&gt;  Connectivity request" vertex="1">
+          <mxGeometry height="14" width="155" x="270" y="119" as="geometry" />
+        </mxCell>
+        <!-- I2: Egress Control → offscreen (Egress traffic) - outbound -->
+        <mxCell id="i2-egress" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="390" as="sourcePoint" />
+            <mxPoint x="410" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I2&lt;/b&gt;  Egress traffic" vertex="1">
+          <mxGeometry height="14" width="110" x="420" y="408" as="geometry" />
+        </mxCell>
+        <!-- I3: External Client → Ingress Control (Ingress traffic) - inbound -->
+        <mxCell id="i3-ingress" edge="1" parent="1" source="external-client" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="ingress-control" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="345" />
+              <mxPoint x="790" y="248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I3&lt;/b&gt;  Ingress traffic" vertex="1">
+          <mxGeometry height="14" width="120" x="775" y="260" as="geometry" />
+        </mxCell>
+        <!-- I4: Virtual Network Mgmt → offscreen (Network attachment) - outbound -->
+        <mxCell id="i4-arrow" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="622" as="sourcePoint" />
+            <mxPoint x="160" y="670" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i4-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I4&lt;/b&gt;  Network attachment" vertex="1">
+          <mxGeometry height="14" width="150" x="170" y="640" as="geometry" />
+        </mxCell>
+        <!-- I8: Operator → Load Balancing (Admin action) - outbound -->
+        <mxCell id="i8-admin" edge="1" parent="1" source="operator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="load-balancing" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="780" y="515" />
+              <mxPoint x="780" y="430" />
+              <mxPoint x="540" y="430" />
+              <mxPoint x="540" y="145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i8-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I8&lt;/b&gt;  Admin action" vertex="1">
+          <mxGeometry height="14" width="100" x="775" y="430" as="geometry" />
+        </mxCell>
+        <!-- ========== Cross-group connector badges ========== -->
+        <!-- A: DDoS Protection → Observability (DDoS telemetry) -->
+        <mxCell id="conn-A-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="750" y="329" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-stub" edge="1" parent="1" source="ddos-protection" style="endArrow=none;strokeColor=#2C3038;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="conn-A-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="750" y="709" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-stub2" edge="1" parent="1" source="conn-A-badge-tgt" style="endArrow=none;strokeColor=#2C3038;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;" target="obs-telemetry" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;DDoS telemetry&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="90" x="750" y="315" as="geometry" />
+        </mxCell>
+        <!-- B: Service Mesh → Observability (Mesh telemetry) -->
+        <mxCell id="conn-B-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="750" y="134" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-stub" edge="1" parent="1" source="service-mesh" style="endArrow=none;strokeColor=#2C3038;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="conn-B-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="750" y="737" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-stub2" edge="1" parent="1" source="conn-B-badge-tgt" style="endArrow=none;strokeColor=#2C3038;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.65;entryDx=0;entryDy=0;" target="obs-metrics" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Mesh telemetry&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="85" x="750" y="120" as="geometry" />
+        </mxCell>
+        <!-- ========== Cross-cutting IAM components ========== -->
+        <mxCell id="iam-mesh-identity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Mesh Identity Binding&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Bind service mesh identities to workload identity from the IAM platform.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="185" x="65" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-network-access" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Network Access Control&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Authorise network configuration changes scoped by role and environment.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="185" x="270" y="718" as="geometry" />
+        </mxCell>
+        <!-- ========== Cross-cutting Observability components ========== -->
+        <mxCell id="obs-telemetry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Network Flow Telemetry&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Flow logs, DNS query metrics, and load balancer health signals.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="145" x="505" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-metrics" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Mesh Traffic Metrics&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font&gt;Service-to-service latency, error rates, and circuit breaker state.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="155" x="670" y="718" as="geometry" />
+        </mxCell>
+        <!-- ========== IAM edge: Mesh Identity Binding → Service Mesh ========== -->
+        <mxCell id="i5-identity" edge="1" parent="1" source="iam-mesh-identity" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=8 4;endArrow=open;endSize=8;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="service-mesh" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="158" y="660" />
+              <mxPoint x="40" y="660" />
+              <mxPoint x="40" y="168" />
+              <mxPoint x="565" y="168" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i5-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#4B5BAA;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I5&lt;/b&gt;  Identity binding" vertex="1">
+          <mxGeometry height="14" width="120" x="420" y="161" as="geometry" />
+        </mxCell>
+        <!-- ========== Legend ========== -->
+        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="96" width="790" x="50" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="15" width="50" x="62" y="813" as="geometry" />
+        </mxCell>
+        <!-- Level 1 primary -->
+        <mxCell id="leg-infra1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-infra1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Level 1 — Primary" vertex="1">
+          <mxGeometry height="15" width="140" x="82" y="832" as="geometry" />
+        </mxCell>
+        <!-- Level 2 secondary -->
+        <mxCell id="leg-infra2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-infra2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Level 2 — Secondary" vertex="1">
+          <mxGeometry height="15" width="150" x="82" y="850" as="geometry" />
+        </mxCell>
+        <!-- Cross-cutting IAM -->
+        <mxCell id="leg-l2id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="871" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2id-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Cross-cutting — Identity-linked" vertex="1">
+          <mxGeometry height="15" width="150" x="82" y="868" as="geometry" />
+        </mxCell>
+        <!-- Cross-cutting Observability -->
+        <mxCell id="leg-l2obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="889" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2obs-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Cross-cutting — Observability-linked" vertex="1">
+          <mxGeometry height="15" width="170" x="82" y="886" as="geometry" />
+        </mxCell>
+        <!-- Arrow legends -->
+        <mxCell id="leg-arrow1" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#1A1A2E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="841" as="sourcePoint" />
+            <mxPoint x="311" y="841" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Outbound flow" vertex="1">
+          <mxGeometry height="15" width="80" x="317" y="834" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-arrow2" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#C4724E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="859" as="sourcePoint" />
+            <mxPoint x="311" y="859" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Inbound / return flow" vertex="1">
+          <mxGeometry height="15" width="105" x="317" y="852" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-arrow3" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="877" as="sourcePoint" />
+            <mxPoint x="311" y="877" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a3-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Identity / authentication" vertex="1">
+          <mxGeometry height="15" width="115" x="317" y="870" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-arrow5" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#2C3038;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="895" as="sourcePoint" />
+            <mxPoint x="311" y="895" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a5-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Internal dependency" vertex="1">
+          <mxGeometry height="15" width="100" x="317" y="888" as="geometry" />
+        </mxCell>
+        <!-- Stroke legends -->
+        <mxCell id="leg-stroke1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="480" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-s1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="IAM sub-ABB stroke (2.5)" vertex="1">
+          <mxGeometry height="15" width="150" x="500" y="832" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-stroke2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="480" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-s2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Observability sub-ABB stroke (2.6)" vertex="1">
+          <mxGeometry height="15" width="180" x="500" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-badge-ex" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;verticalAlign=middle;align=center;" value="X" vertex="1">
+          <mxGeometry height="16" width="16" x="480" y="871" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-badge-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Cross-group connector (pair)" vertex="1">
+          <mxGeometry height="15" width="150" x="500" y="868" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

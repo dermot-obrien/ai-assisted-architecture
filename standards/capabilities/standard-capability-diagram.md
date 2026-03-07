@@ -3,7 +3,7 @@ document_type: standards
 title: "Capability — Draw.io Diagram Standard"
 classification: internal
 version: 1.0
-status: approved
+status: draft
 created: 2026-03-07
 last_modified: 2026-03-07
 owner: "Architecture Team"
@@ -11,7 +11,6 @@ triggers:
   - "Creating or modifying capability map diagrams"
   - "Visualising capability hierarchy and maturity"
   - "Mapping capabilities to Architecture Building Blocks"
----
 
 # Capability — Draw.io Diagram Standard
 
@@ -19,7 +18,6 @@ This standard defines the visual conventions, structure, and Draw.io XML format 
 
 Capability diagrams are fundamentally different from ABB component diagrams. ABB diagrams show the internal structure of a single building block. Capability diagrams show the **hierarchy of business capabilities** across a domain or the entire enterprise, using nested boxes to represent the L1/L2/L3 decomposition.
 
----
 
 ## Diagram Types
 
@@ -32,7 +30,6 @@ This standard defines two diagram types:
 
 Both use a **full-slide canvas** (1920 x 1080). Unlike ABB diagrams, capability diagrams do not use a two-panel layout with a summary panel. The diagram IS the presentation artefact.
 
----
 
 ## Diagram Type 1: Capability Map
 
@@ -169,7 +166,6 @@ When using the maturity overlay:
 - No connectors, arrows, or flow lines.
 - No external actors or interfaces.
 
----
 
 ## Diagram Type 2: Capability-ABB Traceability
 
@@ -227,7 +223,6 @@ A matrix with L3 capabilities as rows and ABBs as columns:
 
 Each non-empty cell contains the relationship type as text: `Primary`, `Supporting`, or `Cross-cutting`. Optionally add coverage: `Primary (full)` or `Supporting (partial)`.
 
----
 
 ## File Structure
 
@@ -254,7 +249,6 @@ capabilities/diagrams/l1/
   <l1-domain>-capability-map.png
 ```
 
----
 
 ## Naming Conventions
 
@@ -263,7 +257,6 @@ capabilities/diagrams/l1/
 - **Legend IDs:** Prefix with `leg-`
 - **Matrix IDs:** `matrix-cap-NNN-ab-NNN` for traceability cells
 
----
 
 ## AI Agent Self-Verification Checklist
 
@@ -282,7 +275,6 @@ Before finalising a capability diagram, verify:
 11. [ ] **Traceability Matrix (if present)**: Does every L3 capability appear as a row? Does every ABB appear as a column? Are relationship colours correct?
 12. [ ] **Consistency**: Does the diagram match the capability-model.md taxonomy exactly?
 
----
 
 ## Quick Reference Style Snippets
 

@@ -13,8 +13,8 @@ sidebar_position: 3
 | **Level** | `L2` | Capability group. |
 | **Parent** | `CAP-001` | Platform Foundations. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-002 Observability](../../platforms/PL-002/) | Parent platform. |
 
 The organisation must be able to monitor, audit, and demonstrate compliance of all platform services through unified signal collection, correlation, and reporting. This capability group covers operational monitoring, alerting, audit-trail management, and regulatory compliance evidence production.
 

@@ -1,0 +1,333 @@
+<mxfile host="draw.io" type="device">
+  <diagram id="bounded-context-map" name="Foundation Bounded Context Map">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Foundation Bounded Context Map" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="560" y="10" width="800" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc001-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#E8EAF6;strokeColor=#4B5BAA;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="70" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-header" value="BC-001  Identity &amp; Access" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#4B5BAA;strokeColor=#4B5BAA;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="90" y="80" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-badge" value="Generic" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#4B5BAA;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="122" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-domain" value="PL-001 Security" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#4B5BAA;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="430" y="122" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="150" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-t1" value="Principal" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#4B5BAA;fontColor=#4B5BAA;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-t2" value="Claim" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#4B5BAA;fontColor=#4B5BAA;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="260" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-t3" value="Grant" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#4B5BAA;fontColor=#4B5BAA;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="430" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-abb-label" value="ABBs: AB-001" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#4B5BAA;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="212" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc001-cap1" value="CAP-004" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#4B5BAA;fontColor=#4B5BAA;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="236" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc002-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F3E5F5;strokeColor=#9B72CF;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="680" y="70" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-header" value="BC-002  Observability" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#9B72CF;strokeColor=#9B72CF;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="690" y="80" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-badge" value="Supporting" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#9B72CF;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="122" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-domain" value="PL-002 Operations" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#9B72CF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="122" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="150" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-t1" value="Signal" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#9B72CF;fontColor=#9B72CF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-t2" value="Span" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#9B72CF;fontColor=#9B72CF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="860" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-t3" value="Normalisation" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#9B72CF;fontColor=#9B72CF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-abb-label" value="ABBs: AB-002" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#9B72CF;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="212" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc002-cap1" value="CAP-006" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#9B72CF;fontColor=#9B72CF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="236" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc003-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FCE4EC;strokeColor=#B86B9A;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="70" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-header" value="BC-003  Governance &amp; Policy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#B86B9A;strokeColor=#B86B9A;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="80" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-badge" value="Generic" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#B86B9A;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="122" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-domain" value="PL-003 Compliance" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#B86B9A;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="122" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="150" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-t1" value="Policy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#B86B9A;fontColor=#B86B9A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-t2" value="Decision" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#B86B9A;fontColor=#B86B9A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-t3" value="Enforcement" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#B86B9A;fontColor=#B86B9A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="174" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-abb-label" value="ABBs: AB-003" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#B86B9A;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="212" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-cap1" value="CAP-005" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#B86B9A;fontColor=#B86B9A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="236" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc003-cap2" value="CAP-007" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#B86B9A;fontColor=#B86B9A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="236" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc004-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#E0F2F8;strokeColor=#2E86AB;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="370" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-header" value="BC-004  Developer Platform" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#2E86AB;strokeColor=#2E86AB;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="90" y="380" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-badge" value="Supporting" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#2E86AB;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="422" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-domain" value="PL-004 Developer Experience" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#2E86AB;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="430" y="422" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="450" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-t1" value="Golden Path" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#2E86AB;fontColor=#2E86AB;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-t2" value="Template" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#2E86AB;fontColor=#2E86AB;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="260" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-t3" value="Catalog Entry" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#2E86AB;fontColor=#2E86AB;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="430" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-abb-label" value="ABBs: TBD" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#2E86AB;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="512" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-cap1" value="CAP-016" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#2E86AB;fontColor=#2E86AB;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-cap2" value="CAP-017" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#2E86AB;fontColor=#2E86AB;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="190" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc004-cap3" value="CAP-018" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#2E86AB;fontColor=#2E86AB;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="290" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc005-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#E8F0E8;strokeColor=#5B8C5A;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="680" y="370" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-header" value="BC-005  Cost Management" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#5B8C5A;strokeColor=#5B8C5A;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="690" y="380" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-badge" value="Supporting" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#5B8C5A;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="422" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-domain" value="PL-005 Cost Management" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#5B8C5A;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="422" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="450" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-t1" value="Cost Tag" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#5B8C5A;fontColor=#5B8C5A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-t2" value="Showback" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#5B8C5A;fontColor=#5B8C5A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="860" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-t3" value="Rightsizing" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#5B8C5A;fontColor=#5B8C5A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-abb-label" value="ABBs: TBD" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#5B8C5A;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="512" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-cap1" value="CAP-020" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#5B8C5A;fontColor=#5B8C5A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-cap2" value="CAP-021" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#5B8C5A;fontColor=#5B8C5A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="790" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc005-cap3" value="CAP-022" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#5B8C5A;fontColor=#5B8C5A;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="890" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc006-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FDF0E6;strokeColor=#D4874D;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="370" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-header" value="BC-006  Reliability &amp; Resilience" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#D4874D;strokeColor=#D4874D;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="380" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-badge" value="Core" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#D4874D;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="422" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-domain" value="PL-006 Reliability &amp; Resilience" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#D4874D;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="422" width="220" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="450" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-t1" value="SLO" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#D4874D;fontColor=#D4874D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-t2" value="Error Budget" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#D4874D;fontColor=#D4874D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-t3" value="Chaos Experiment" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#D4874D;fontColor=#D4874D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="474" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-abb-label" value="ABBs: TBD" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#D4874D;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="512" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-cap1" value="CAP-024" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#D4874D;fontColor=#D4874D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-cap2" value="CAP-025" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#D4874D;fontColor=#D4874D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc006-cap3" value="CAP-026" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#D4874D;fontColor=#D4874D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="536" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc007-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#FCE8E8;strokeColor=#C75050;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="670" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-header" value="BC-007  Supply Chain Security" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#C75050;strokeColor=#C75050;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="90" y="680" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-badge" value="Core" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#C75050;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="722" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-domain" value="PL-007 Supply Chain Security" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#C75050;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="430" y="722" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="750" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-t1" value="Provenance" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#C75050;fontColor=#C75050;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-t2" value="Attestation" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#C75050;fontColor=#C75050;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="260" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-t3" value="SBOM" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#C75050;fontColor=#C75050;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="430" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-abb-label" value="ABBs: TBD" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#C75050;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="90" y="812" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-cap1" value="CAP-028" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#C75050;fontColor=#C75050;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="90" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-cap2" value="CAP-029" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#C75050;fontColor=#C75050;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="190" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc007-cap3" value="CAP-030" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#C75050;fontColor=#C75050;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="290" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc008-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#ECEEF0;strokeColor=#6B7B8D;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="680" y="670" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-header" value="BC-008  Data Governance" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#6B7B8D;strokeColor=#6B7B8D;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="690" y="680" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-badge" value="Core" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#6B7B8D;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="722" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-domain" value="PL-008 Data Management" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#6B7B8D;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="722" width="200" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="750" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-t1" value="Classification" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#6B7B8D;fontColor=#6B7B8D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-t2" value="Retention Policy" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#6B7B8D;fontColor=#6B7B8D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="860" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-t3" value="Residency" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#6B7B8D;fontColor=#6B7B8D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-abb-label" value="ABBs: TBD" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#6B7B8D;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="812" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-cap1" value="CAP-032" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#6B7B8D;fontColor=#6B7B8D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="690" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-cap2" value="CAP-033" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#6B7B8D;fontColor=#6B7B8D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="790" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc008-cap3" value="CAP-034" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#6B7B8D;fontColor=#6B7B8D;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="890" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="bc009-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#F2ECE5;strokeColor=#8B6E4E;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="670" width="560" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-header" value="BC-009  Configuration &amp; Secrets" style="rounded=1;whiteSpace=wrap;html=1;arcSize=6;fillColor=#8B6E4E;strokeColor=#8B6E4E;fontColor=#FFFFFF;fontSize=14;fontStyle=1;fontFamily=Helvetica;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="680" width="540" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-badge" value="Generic" style="rounded=1;whiteSpace=wrap;html=1;arcSize=40;fillColor=#8B6E4E;strokeColor=none;fontColor=#FFFFFF;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="722" width="80" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-domain" value="PL-009 Configuration &amp; Secret Mgmt" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=2;fontColor=#8B6E4E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1590" y="722" width="240" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-lang" value="Ubiquitous Language" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontStyle=5;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="750" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-t1" value="Config Source" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#8B6E4E;fontColor=#8B6E4E;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-t2" value="Secret" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#8B6E4E;fontColor=#8B6E4E;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-t3" value="Feature Flag" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#8B6E4E;fontColor=#8B6E4E;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1630" y="774" width="160" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-abb-label" value="ABBs: TBD" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=10;fontColor=#8B6E4E;fontFamily=Helvetica;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="812" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-cap1" value="CAP-036" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#8B6E4E;fontColor=#8B6E4E;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-cap2" value="CAP-037" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#8B6E4E;fontColor=#8B6E4E;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1390" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="bc009-cap3" value="CAP-038" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#FFFFFF;strokeColor=#8B6E4E;fontColor=#8B6E4E;fontSize=10;fontStyle=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1490" y="836" width="90" height="24" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -13,8 +13,8 @@ sidebar_position: 8
 | **Level** | `L2` | Capability group. |
 | **Parent** | `CAP-001` | Platform Foundations. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-010 Integration](../../platforms/PL-010/) | Parent platform. |
 
 The organisation must be able to connect platform services through consistent integration patterns that support synchronous APIs and asynchronous event flows. This capability group covers API mediation, interface contract governance, event routing, and delivery reliability across internal and external service boundaries.
 

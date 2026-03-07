@@ -13,8 +13,8 @@ sidebar_position: 1
 | **Level** | `L1` | Capability domain. |
 | **Parent** | - | Top-level domain; no parent. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | This is the domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | — | L1 capability — spans all platforms. |
 
 The organisation must be able to secure, monitor, and govern all platform services through shared, reusable capabilities that every other capability depends upon. Platform Foundations encompasses the cross-cutting concerns that underpin trust, visibility, and compliance across the entire architecture.
 

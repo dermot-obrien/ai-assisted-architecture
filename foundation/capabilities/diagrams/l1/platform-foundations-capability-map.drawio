@@ -1,102 +1,589 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+<mxfile host="Electron" agent="Claude AI" version="29.5.2">
   <diagram name="Platform Foundations Capability Map" id="cap-map-platform-foundations">
-    <mxGraphModel dx="1426" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="l0-platform-foundations" parent="1" style="rounded=1;arcSize=5;fillColor=#DBDEEE;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;container=0;" value="" vertex="1">
-          <mxGeometry height="360" width="1000" x="20" y="110" as="geometry" />
+
+        <!-- Title Bar -->
+        <mxCell id="title-bar" value="" style="rounded=0;fillColor=#1A1A2E;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="1840" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="title-bar" parent="1" style="rounded=0;fillColor=#1A1A2E;strokeColor=none;" value="" vertex="1">
-          <mxGeometry height="60" width="1000" x="20" y="40" as="geometry" />
+        <mxCell id="title-text" value="Platform Foundations — Capability Map" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=22;fontStyle=1;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="700" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="title-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=22;fontStyle=1;spacingLeft=20;" value="Platform Foundations — Capability Map" vertex="1">
-          <mxGeometry height="60" width="600" x="40" y="40" as="geometry" />
+        <mxCell id="title-version" value="v1.0  |  2026-03-08" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontFamily=Helvetica;fontColor=#8D8D97;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="40" width="280" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="l0-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=16;fontStyle=1;spacingTop=8;" value="&lt;b&gt;Platform Foundations&lt;/b&gt;" vertex="1">
-          <mxGeometry height="32" width="680" x="150" y="106" as="geometry" />
+
+        <!-- L1 Domain: Platform Foundations (outermost container) -->
+        <mxCell id="l1-platform-foundations" value="" style="rounded=1;arcSize=5;fillColor=#DBDEEE;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="40" y="110" width="1840" height="860" as="geometry" />
         </mxCell>
-        <mxCell id="l0-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=10;whiteSpace=wrap;" value="Core enterprise platform capabilities that provide the security, governance, and operational control needed by all architecture building blocks." vertex="1">
-          <mxGeometry height="28" width="1300" x="40" y="140" as="geometry" />
+        <mxCell id="l1-label" value="CAP-001  Platform Foundations" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=16;fontStyle=1;spacingTop=8;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="112" width="400" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="l1-identity-access" parent="1" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1.5;fontFamily=Helvetica;container=0;" value="" vertex="1">
-          <mxGeometry height="210" width="460" x="70" y="168" as="geometry" />
+        <mxCell id="l1-desc" value="Core enterprise platform capabilities providing security, governance, operational intelligence, integration, and infrastructure controls." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=10;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="142" width="1000" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="l1-operational-intelligence" parent="1" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1.5;fontFamily=Helvetica;container=0;" value="" vertex="1">
-          <mxGeometry height="210" width="440" x="544" y="170" as="geometry" />
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- L2 Group: Identity & Access (Indigo 2.1) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="l2-identity-access" value="" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1.5;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="870" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="leg-bg" parent="1" style="rounded=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="40" width="920" x="70" y="400" as="geometry" />
+        <mxCell id="l2-identity-label" value="CAP-002  Identity &amp; Access" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="70" y="172" width="350" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="leg-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=11;spacingLeft=10;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
-          <mxGeometry height="20" width="60" x="70" y="405" as="geometry" />
+        <mxCell id="l2-identity-desc" value="Defines how identities are established, verified, authorised, and governed across human users, services, agents, and automation workloads." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="80" y="198" width="820" height="18" as="geometry" />
         </mxCell>
-        <mxCell id="leg-l0-swatch" parent="1" style="rounded=1;arcSize=5;fillColor=#DBDEEE;strokeColor=#4B5BAA;strokeWidth=1.5;" value="" vertex="1">
-          <mxGeometry height="14" width="20" x="140" y="410" as="geometry" />
+
+        <!-- L3: CAP-004 Identity Lifecycle Management -->
+        <mxCell id="l3-cap004" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="80" y="224" width="410" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="leg-l0-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" value="L1 Domain" vertex="1">
-          <mxGeometry height="20" width="70" x="165" y="406" as="geometry" />
+        <mxCell id="l3-cap004-title" value="CAP-004  Identity Lifecycle Management" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="90" y="230" width="390" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="leg-l1-swatch" parent="1" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="20" x="250" y="410" as="geometry" />
+        <mxCell id="l3-cap004-desc" value="Manage the full identity lifecycle for human and non-human actors. Includes onboarding, authentication, federation, and deprovisioning." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="95" y="254" width="380" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="leg-l1-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" value="L2 Group" vertex="1">
-          <mxGeometry height="20" width="70" x="275" y="406" as="geometry" />
+        <!-- ABB badges for CAP-004 -->
+        <mxCell id="cap004-abb001" value="AB-001 IAM" style="rounded=1;arcSize=8;fillColor=#4B5BAA;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="100" y="290" width="120" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="leg-l2-swatch" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;" value="" vertex="1">
-          <mxGeometry height="14" width="20" x="350" y="410" as="geometry" />
+        <mxCell id="cap004-abb001-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4B5BAA;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="314" width="120" height="14" as="geometry" />
         </mxCell>
-        <mxCell id="leg-l2-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" value="L3 Capability" vertex="1">
-          <mxGeometry height="20" width="80" x="375" y="406" as="geometry" />
+        <mxCell id="cap004-abb002" value="AB-002 OBS" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="290" width="120" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="l1-identity-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;" value="&lt;b&gt;Identity &amp; Access&lt;/b&gt;" vertex="1">
-          <mxGeometry height="26" width="460" x="70" y="170" as="geometry" />
+        <mxCell id="cap004-abb002-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="230" y="314" width="120" height="14" as="geometry" />
         </mxCell>
-        <mxCell id="l1-identity-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Defines how identities are established, verified, authorised, and governed across human users, services, agents, and automation workloads." vertex="1">
-          <mxGeometry height="40" width="440" x="80" y="198" as="geometry" />
+        <mxCell id="cap004-abb003" value="AB-003 GOV" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="290" width="120" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="l2-identity-lifecycle" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
-          <mxGeometry height="115" width="210" x="85" y="233" as="geometry" />
+        <mxCell id="cap004-abb003-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="314" width="120" height="14" as="geometry" />
         </mxCell>
-        <mxCell id="l2-identity-lifecycle-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Identity Lifecycle Management" vertex="1">
-          <mxGeometry height="32" width="190" x="95" y="243" as="geometry" />
+        <!-- Maturity indicator CAP-004 -->
+        <mxCell id="cap004-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="232" width="120" height="16" as="geometry" />
         </mxCell>
-        <mxCell id="l2-identity-lifecycle-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Manage the full identity lifecycle for human and non-human actors. Includes onboarding, authentication, federation, and deprovisioning." vertex="1">
-          <mxGeometry height="58" width="190" x="95" y="280" as="geometry" />
+
+        <!-- Key components for CAP-004 -->
+        <mxCell id="cap004-comp1" value="Identity Onboarding" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="100" y="340" width="120" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="l2-policy-access" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
-          <mxGeometry height="115" width="200" x="305" y="233" as="geometry" />
+        <mxCell id="cap004-comp2" value="Federation Hub" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="340" width="120" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="l2-policy-access-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Policy-Based Access Control" vertex="1">
-          <mxGeometry height="32" width="180" x="315" y="243" as="geometry" />
+        <mxCell id="cap004-comp3" value="MFA Orchestration" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="340" width="120" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="l2-policy-access-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Evaluate and enforce contextual policies before every sensitive action. Combines role, attribute, risk, and environmental signals." vertex="1">
-          <mxGeometry height="58" width="180" x="315" y="280" as="geometry" />
+        <mxCell id="cap004-comp4" value="Credential Store" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="100" y="376" width="120" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="l1-ops-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;" value="&lt;b&gt;Operational Intelligence&lt;/b&gt;" vertex="1">
-          <mxGeometry height="26" width="430" x="544" y="170" as="geometry" />
+        <mxCell id="cap004-comp5" value="Workload Identity" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="376" width="120" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="l1-ops-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Provides visibility, alerting, and evidence services that help teams operate reliably and demonstrate control effectiveness over time." vertex="1">
-          <mxGeometry height="40" width="360" x="554" y="198" as="geometry" />
+        <mxCell id="cap004-comp6" value="Deprovisioning" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="376" width="120" height="28" as="geometry" />
         </mxCell>
-        <mxCell id="l2-ops-monitoring" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
-          <mxGeometry height="115" width="200" x="564" y="237" as="geometry" />
+
+        <!-- L3: CAP-005 Policy-Based Access Control -->
+        <mxCell id="l3-cap005" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="500" y="224" width="410" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="l2-ops-monitoring-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Operational Monitoring &amp; Alerting" vertex="1">
-          <mxGeometry height="32" width="180" x="574" y="247" as="geometry" />
+        <mxCell id="l3-cap005-title" value="CAP-005  Policy-Based Access Control" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="510" y="230" width="390" height="22" as="geometry" />
         </mxCell>
-        <mxCell id="l2-ops-monitoring-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Collect, correlate, and analyse traces, metrics, and logs in real time. Trigger actionable alerts and operational escalation workflows." vertex="1">
-          <mxGeometry height="53" width="160" x="574" y="279" as="geometry" />
+        <mxCell id="l3-cap005-desc" value="Evaluate and enforce contextual policies before every sensitive action. Combines role, attribute, risk, and environmental signals." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="515" y="254" width="380" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="l2-compliance" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
-          <mxGeometry height="115" width="190" x="774" y="237" as="geometry" />
+        <!-- ABB badges for CAP-005 -->
+        <mxCell id="cap005-abb001" value="AB-001 IAM" style="rounded=1;arcSize=8;fillColor=#4B5BAA;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="290" width="120" height="24" as="geometry" />
         </mxCell>
-        <mxCell id="l2-compliance-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Compliance Evidence &amp; Reporting" vertex="1">
-          <mxGeometry height="32" width="180" x="774" y="247" as="geometry" />
+        <mxCell id="cap005-abb001-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4B5BAA;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="520" y="314" width="120" height="14" as="geometry" />
         </mxCell>
-        <mxCell id="l2-compliance-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Continuously collect immutable evidence mapped to internal and external controls. Generate audit-ready reports with traceable policy lineage." vertex="1">
-          <mxGeometry height="68" width="170" x="784" y="284" as="geometry" />
+        <mxCell id="cap005-abb003" value="AB-003 GOV" style="rounded=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="290" width="120" height="24" as="geometry" />
         </mxCell>
+        <mxCell id="cap005-abb003-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4B5BAA;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-abb002" value="AB-002 OBS" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="780" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-abb002-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="780" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="232" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-005 -->
+        <mxCell id="cap005-comp1" value="RBAC Engine" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-comp2" value="ABAC Evaluator" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-comp3" value="Step-Up Auth" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="780" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-comp4" value="Consent Manager" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-comp5" value="Risk Scoring" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap005-comp6" value="Entitlement Mgmt" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="780" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- L2 Group: Operational Intelligence (Wisteria 2.4) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="l2-ops-intel" value="" style="rounded=1;arcSize=5;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=1.5;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="950" y="170" width="910" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-ops-label" value="CAP-003  Operational Intelligence" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="960" y="172" width="350" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-ops-desc" value="Provides visibility, alerting, and evidence services that help teams operate reliably and demonstrate control effectiveness over time." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="970" y="198" width="860" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- L3: CAP-006 Operational Monitoring & Alerting -->
+        <mxCell id="l3-cap006" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#9B72CF;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="970" y="224" width="420" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap006-title" value="CAP-006  Operational Monitoring &amp; Alerting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="980" y="230" width="400" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap006-desc" value="Collect, correlate, and analyse traces, metrics, and logs in real time. Trigger actionable alerts and operational escalation workflows." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="985" y="254" width="390" height="30" as="geometry" />
+        </mxCell>
+        <!-- ABB badges for CAP-006 -->
+        <mxCell id="cap006-abb002" value="AB-002 OBS" style="rounded=1;arcSize=8;fillColor=#9B72CF;strokeColor=#9B72CF;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="990" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-abb002-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#9B72CF;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="990" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-abb001" value="AB-001 IAM" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-abb001-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-abb003" value="AB-003 GOV" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-abb003-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="232" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-006 -->
+        <mxCell id="cap006-comp1" value="Trace Collector" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="990" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-comp2" value="Metrics Pipeline" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-comp3" value="Log Aggregator" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-comp4" value="Alert Engine" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="990" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-comp5" value="Dashboard Engine" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap006-comp6" value="Signal Correlation" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- L3: CAP-007 Compliance Evidence & Reporting -->
+        <mxCell id="l3-cap007" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#9B72CF;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="224" width="440" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap007-title" value="CAP-007  Compliance Evidence &amp; Reporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="230" width="420" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap007-desc" value="Continuously collect immutable evidence mapped to internal and external controls. Generate audit-ready reports with traceable policy lineage." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1415" y="254" width="410" height="30" as="geometry" />
+        </mxCell>
+        <!-- ABB badges for CAP-007 -->
+        <mxCell id="cap007-abb003" value="AB-003 GOV" style="rounded=1;arcSize=8;fillColor=#9B72CF;strokeColor=#9B72CF;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-abb003-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#9B72CF;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-abb002" value="AB-002 OBS" style="rounded=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-abb002-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#9B72CF;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-abb001" value="AB-001 IAM" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="290" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-abb001-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="314" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="232" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-007 -->
+        <mxCell id="cap007-comp1" value="Evidence Collector" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-comp2" value="Regulatory Mapper" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-comp3" value="Report Generator" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="340" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-comp4" value="Exception Manager" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-comp5" value="Change Governance" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap007-comp6" value="Audit Trail" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="376" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- L2 Group: Integration Services (Sky Blue 2.2) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="l2-integration" value="" style="rounded=1;arcSize=5;fillColor=#A5C8EC;strokeColor=#4A90D9;strokeWidth=1.5;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="60" y="540" width="870" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-integration-label" value="CAP-008  Integration Services" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="70" y="542" width="350" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-integration-desc" value="Standardised patterns for synchronous APIs and asynchronous event flows that enable safe interoperation, independent evolution, and scale." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="80" y="568" width="820" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- L3: CAP-010 API Mediation & Contract Enforcement -->
+        <mxCell id="l3-cap010" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4A90D9;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="80" y="594" width="410" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap010-title" value="CAP-010  API Mediation &amp; Contract Enforcement" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="90" y="600" width="390" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap010-desc" value="Expose, secure, transform, and govern synchronous service interfaces through standard API mediation and enforceable contracts." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="95" y="624" width="380" height="30" as="geometry" />
+        </mxCell>
+        <!-- ABB badges for CAP-010 -->
+        <mxCell id="cap010-abb004" value="AB-004 APIGW" style="rounded=1;arcSize=8;fillColor=#4A90D9;strokeColor=#4A90D9;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="100" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-abb004-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4A90D9;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="100" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-abb005" value="AB-005 EVT" style="rounded=1;arcSize=8;fillColor=#A5C8EC;strokeColor=#4A90D9;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-abb005-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4A90D9;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="230" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-abb002x" value="AB-002 OBS" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-abb002x-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="360" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="602" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-010 -->
+        <mxCell id="cap010-comp1" value="API Router" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="100" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-comp2" value="Schema Validation" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-comp3" value="Rate Limiting" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-comp4" value="Contract Registry" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="100" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-comp5" value="Version Mgmt" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="230" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap010-comp6" value="Traffic Shaping" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- L3: CAP-011 Event Streaming & Asynchronous Integration -->
+        <mxCell id="l3-cap011" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4A90D9;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="500" y="594" width="410" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap011-title" value="CAP-011  Event Streaming &amp; Async Integration" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="510" y="600" width="390" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap011-desc" value="Exchange business and operational events through reliable asynchronous integration with loose coupling, replayability, and consumer evolution." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="515" y="624" width="380" height="30" as="geometry" />
+        </mxCell>
+        <!-- ABB badges for CAP-011 -->
+        <mxCell id="cap011-abb005" value="AB-005 EVT" style="rounded=1;arcSize=8;fillColor=#4A90D9;strokeColor=#4A90D9;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-abb005-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4A90D9;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="520" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-abb004" value="AB-004 APIGW" style="rounded=1;arcSize=8;fillColor=#A5C8EC;strokeColor=#4A90D9;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-abb004-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#4A90D9;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="650" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-abb002x" value="AB-002 OBS" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="780" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-abb002x-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="780" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="602" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-011 -->
+        <mxCell id="cap011-comp1" value="Event Broker" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-comp2" value="Schema Registry" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-comp3" value="Dead Letter Queue" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="780" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-comp4" value="Topic Partitioning" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="520" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-comp5" value="Replay Engine" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="650" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap011-comp6" value="Consumer Groups" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="780" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- L2 Group: Infrastructure Services (Mauve 2.5) -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="l2-infra" value="" style="rounded=1;arcSize=5;fillColor=#DCB5CD;strokeColor=#B86B9A;strokeWidth=1.5;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="950" y="540" width="910" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-infra-label" value="CAP-009  Infrastructure Services" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="960" y="542" width="350" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-infra-desc" value="Shared compute runtime, storage lifecycle, and infrastructure controls that all higher-order capabilities consume through standard interfaces." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="970" y="568" width="860" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- L3: CAP-012 Compute Runtime & Scheduling -->
+        <mxCell id="l3-cap012" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#B86B9A;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="970" y="594" width="420" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap012-title" value="CAP-012  Compute Runtime &amp; Scheduling" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="980" y="600" width="400" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap012-desc" value="Run workloads on a consistent shared runtime with placement, scaling, lifecycle, and resilience controls." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="985" y="624" width="390" height="30" as="geometry" />
+        </mxCell>
+        <!-- ABB badges for CAP-012 -->
+        <mxCell id="cap012-abb006" value="AB-006 CMP" style="rounded=1;arcSize=8;fillColor=#B86B9A;strokeColor=#B86B9A;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="990" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-abb006-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#B86B9A;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="990" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-abb007" value="AB-007 STR" style="rounded=1;arcSize=8;fillColor=#DCB5CD;strokeColor=#B86B9A;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-abb007-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#B86B9A;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-abb003x" value="AB-003 GOV" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-abb003x-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="602" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-012 -->
+        <mxCell id="cap012-comp1" value="Container Runtime" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="990" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-comp2" value="Scheduler" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-comp3" value="Autoscaler" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-comp4" value="Health Probes" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="990" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-comp5" value="Blue-Green Deploy" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap012-comp6" value="Resource Quotas" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- L3: CAP-013 Data Storage & Lifecycle Management -->
+        <mxCell id="l3-cap013" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#B86B9A;strokeWidth=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="594" width="440" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap013-title" value="CAP-013  Data Storage &amp; Lifecycle Mgmt" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1410" y="600" width="420" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="l3-cap013-desc" value="Persist, protect, retain, and recover data across storage types using standard lifecycle controls aligned to performance, cost, and compliance." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1415" y="624" width="410" height="30" as="geometry" />
+        </mxCell>
+        <!-- ABB badges for CAP-013 -->
+        <mxCell id="cap013-abb007" value="AB-007 STR" style="rounded=1;arcSize=8;fillColor=#B86B9A;strokeColor=#B86B9A;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=9;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-abb007-rel" value="Primary" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#B86B9A;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-abb006" value="AB-006 CMP" style="rounded=1;arcSize=8;fillColor=#DCB5CD;strokeColor=#B86B9A;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-abb006-rel" value="Supporting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#B86B9A;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-abb003x" value="AB-003 GOV" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="660" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-abb003x-rel" value="Cross-cutting" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="684" width="120" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-maturity" value="Maturity: 1 → 3" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=top;fontFamily=Helvetica;fontColor=#EAB308;fontSize=9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="602" width="120" height="16" as="geometry" />
+        </mxCell>
+        <!-- Key components for CAP-013 -->
+        <mxCell id="cap013-comp1" value="Block Storage" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-comp2" value="Object Storage" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-comp3" value="Database Services" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="710" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-comp4" value="Backup &amp; Recovery" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-comp5" value="Retention Policies" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="cap013-comp6" value="Encryption at Rest" style="rounded=1;arcSize=8;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1680" y="746" width="120" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <!-- Legend -->
+        <!-- ═══════════════════════════════════════════════════════════════ -->
+        <mxCell id="legend-bg" value="" style="rounded=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="980" width="1840" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" value="Legend" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=11;fontStyle=1;spacingLeft=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="994" width="60" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Hierarchy swatches -->
+        <mxCell id="leg-l1-swatch" value="" style="rounded=1;arcSize=5;fillColor=#DBDEEE;strokeColor=#4B5BAA;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1000" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l1-text" value="L1 Domain" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="145" y="994" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2-swatch" value="" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="230" y="1000" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2-text" value="L2 Group" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="255" y="994" width="70" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l3-swatch" value="" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="1000" width="20" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l3-text" value="L3 Capability" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="365" y="994" width="80" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- ABB Badge swatches -->
+        <mxCell id="leg-sep1" value="|" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontColor=#BFC5CC;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="460" y="994" width="10" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-primary-swatch" value="AB-NNN" style="rounded=1;arcSize=8;fillColor=#4B5BAA;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="480" y="996" width="80" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-primary-text" value="Primary ABB" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="565" y="994" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-support-swatch" value="AB-NNN" style="rounded=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="660" y="996" width="80" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-support-text" value="Supporting ABB" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="745" y="994" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-cross-swatch" value="AB-NNN" style="rounded=1;arcSize=8;fillColor=none;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#6B7280;fontSize=8;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="850" y="996" width="80" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-cross-text" value="Cross-cutting ABB" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="935" y="994" width="110" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- L2 domain colour swatches -->
+        <mxCell id="leg-sep2" value="|" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Helvetica;fontColor=#BFC5CC;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="994" width="10" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d1-swatch" value="" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="1000" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d1-text" value="Identity" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1098" y="996" width="50" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d2-swatch" value="" style="rounded=1;arcSize=5;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1160" y="1000" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d2-text" value="Ops Intel" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1178" y="996" width="55" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d3-swatch" value="" style="rounded=1;arcSize=5;fillColor=#A5C8EC;strokeColor=#4A90D9;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1245" y="1000" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d3-text" value="Integration" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1263" y="996" width="60" height="18" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d4-swatch" value="" style="rounded=1;arcSize=5;fillColor=#DCB5CD;strokeColor=#B86B9A;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="1335" y="1000" width="14" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-d4-text" value="Infrastructure" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=8;" vertex="1" parent="1">
+          <mxGeometry x="1353" y="996" width="70" height="18" as="geometry" />
+        </mxCell>
+
+        <!-- Capability count -->
+        <mxCell id="leg-count" value="8 L3 Capabilities  |  7 ABBs  |  4 L2 Groups" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="1550" y="994" width="310" height="20" as="geometry" />
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

@@ -1,148 +1,402 @@
-<mxfile host="Electron" version="29.5.2">
-  <diagram id="ab-007-abb" name="Storage &amp; Persistence Platform ABB">
-    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="spp-abb" name="Storage &amp; Persistence Platform ABB">
+    <mxGraphModel dx="2037" dy="1201" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="abb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="30" y="20" width="900" height="930" as="geometry" />
+
+        <!-- Cross-cutting IAM sub-ABB (rendered first so boundary sits behind) -->
+        <mxCell id="iam-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="122" width="420" x="50" y="680" as="geometry" />
         </mxCell>
-        <mxCell id="abb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=12;" value="<b><font style="color: rgb(255, 255, 255);">ABB: Storage &amp; Persistence Platform</font></b>" vertex="1">
-          <mxGeometry x="38" y="27" width="400" height="24" as="geometry" />
+        <mxCell id="iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;ABB: Identity &amp;amp; Access Management&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="335" x="56" y="686" as="geometry" />
         </mxCell>
-        <mxCell id="g1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="50" y="70" width="260" height="330" as="geometry" />
+
+        <!-- Observability sub-ABB (rendered first so boundary sits behind) -->
+        <mxCell id="obs-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="122" width="350" x="490" y="680" as="geometry" />
         </mxCell>
-        <mxCell id="g1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Persistence Services</b>" vertex="1">
-          <mxGeometry x="58" y="76" width="180" height="22" as="geometry" />
+        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;ABB: Observability&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="190" x="496" y="686" as="geometry" />
         </mxCell>
-        <mxCell id="g1-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Storage Classes</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Provides structured, object, and file persistence patterns.</font>" vertex="1">
-          <mxGeometry x="60" y="108" width="240" height="86" as="geometry" />
+
+        <!-- ABB boundary -->
+        <mxCell id="spp-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="890" width="900" x="30" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="g1-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Access Interfaces</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Exposes managed read/write and access integration surfaces.</font>" vertex="1">
-          <mxGeometry x="60" y="204" width="240" height="86" as="geometry" />
+
+        <!-- ABB title -->
+        <mxCell id="spp-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;ABB: Storage &amp;amp; Persistence Platform&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="380" x="38" y="27" as="geometry" />
         </mxCell>
-        <mxCell id="g1-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Durability Controls</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Applies replication and integrity protection mechanisms.</font>" vertex="1">
-          <mxGeometry x="60" y="300" width="240" height="86" as="geometry" />
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- GROUP 1: Persistence Services (left)          -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="persist-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="570" width="220" x="50" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="g2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="340" y="70" width="260" height="330" as="geometry" />
+        <mxCell id="persist-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Persistence Services&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="195" x="56" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="g2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Lifecycle Management</b>" vertex="1">
-          <mxGeometry x="348" y="76" width="180" height="22" as="geometry" />
+
+        <!-- Storage Class Portfolio (PRIMARY) -->
+        <mxCell id="storage-class" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Storage Class Portfolio&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Structured, object, and file storage with standard access models.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="190" x="65" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="g2-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Tiering Engine</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Automates lifecycle transitions across storage tiers.</font>" vertex="1">
-          <mxGeometry x="350" y="108" width="240" height="86" as="geometry" />
+
+        <!-- Durability & Replication (PRIMARY) -->
+        <mxCell id="durability" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Durability &amp;amp; Replication&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Replicate across failure domains per policy targets.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="190" x="65" y="200" as="geometry" />
         </mxCell>
-        <mxCell id="g2-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Retention Policies</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Enforces retention and deletion controls by classification.</font>" vertex="1">
-          <mxGeometry x="350" y="204" width="240" height="86" as="geometry" />
+
+        <!-- Encryption Controls (SECONDARY) -->
+        <mxCell id="encryption" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Encryption Controls&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Enforce encryption at rest and in transit.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="65" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="g2-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Data Mobility</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Supports controlled replication and movement workflows.</font>" vertex="1">
-          <mxGeometry x="350" y="300" width="240" height="86" as="geometry" />
+
+        <!-- Access Control Integration (SECONDARY) -->
+        <mxCell id="access-ctrl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Access Control Integration&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Fine-grained identity-aware access.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="65" y="395" as="geometry" />
         </mxCell>
-        <mxCell id="g3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="630" y="70" width="260" height="330" as="geometry" />
+
+        <!-- Internal edges: Persistence Services group -->
+        <mxCell id="e-sc-dur" edge="1" parent="1" source="storage-class" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="durability">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Recovery Services</b>" vertex="1">
-          <mxGeometry x="638" y="76" width="180" height="22" as="geometry" />
+        <mxCell id="e-dur-enc" edge="1" parent="1" source="durability" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="encryption">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g3-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Backup Services</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Creates policy-driven backups and snapshots.</font>" vertex="1">
-          <mxGeometry x="640" y="108" width="240" height="86" as="geometry" />
+        <mxCell id="e-enc-acc" edge="1" parent="1" source="encryption" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="access-ctrl">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g3-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Restore Services</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Executes recovery to defined objective targets.</font>" vertex="1">
-          <mxGeometry x="640" y="204" width="240" height="86" as="geometry" />
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- GROUP 2: Lifecycle Management (middle)        -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="lifecycle-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="570" width="220" x="300" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="g3-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Recovery Validation</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Validates backup integrity and restore readiness.</font>" vertex="1">
-          <mxGeometry x="640" y="300" width="240" height="86" as="geometry" />
+        <mxCell id="lifecycle-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Lifecycle Management&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="200" x="306" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="iam-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#2C5AA0;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="50" y="650" width="260" height="160" as="geometry" />
+
+        <!-- Retention & Tiering Engine (PRIMARY) -->
+        <mxCell id="retention" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Retention &amp;amp; Tiering Engine&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Hot/warm/cold/archive/deletion lifecycle policies.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="190" x="315" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#2C5AA0;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: IAM</b>" vertex="1">
-          <mxGeometry x="58" y="656" width="220" height="22" as="geometry" />
+
+        <!-- Data Mobility Controls (PRIMARY) -->
+        <mxCell id="mobility" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Data Mobility Controls&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Controlled replication and movement across environments.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="190" x="315" y="200" as="geometry" />
         </mxCell>
-        <mxCell id="iam-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Data Access Identity</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Enforces identity-aware access for workloads and operators.</font>" vertex="1">
-          <mxGeometry x="60" y="686" width="240" height="110" as="geometry" />
+
+        <!-- Integrity Validation (SECONDARY) -->
+        <mxCell id="integrity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Integrity Validation&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Checksums and validation workflows for stored data.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="315" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="obs-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="340" y="650" width="260" height="160" as="geometry" />
+
+        <!-- Storage Telemetry (SECONDARY) -->
+        <mxCell id="telemetry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Storage Telemetry&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Usage, growth, latency, error, and recovery telemetry.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="315" y="395" as="geometry" />
         </mxCell>
-        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: Observability</b>" vertex="1">
-          <mxGeometry x="348" y="656" width="220" height="22" as="geometry" />
+
+        <!-- Internal edges: Lifecycle Management group -->
+        <mxCell id="e-ret-mob" edge="1" parent="1" source="retention" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="mobility">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="obs-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Storage Telemetry</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Tracks usage, latency, backup success, and recovery signals.</font>" vertex="1">
-          <mxGeometry x="350" y="686" width="240" height="110" as="geometry" />
+        <mxCell id="e-mob-int" edge="1" parent="1" source="mobility" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="integrity">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gov-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="630" y="650" width="260" height="160" as="geometry" />
+        <mxCell id="e-int-tel" edge="1" parent="1" source="integrity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="telemetry">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gov-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: Governance &amp; Policy</b>" vertex="1">
-          <mxGeometry x="638" y="656" width="220" height="22" as="geometry" />
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- GROUP 3: Recovery (right)                     -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="recovery-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="290" width="195" x="556" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="gov-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Retention Governance</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Applies classification and retention policy enforcement.</font>" vertex="1">
-          <mxGeometry x="640" y="686" width="240" height="110" as="geometry" />
+        <mxCell id="recovery-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Recovery&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="110" x="562" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="actor-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="<b>Workload<br>ABB</b>" vertex="1">
-          <mxGeometry x="840" y="150" width="90" height="90" as="geometry" />
+
+        <!-- Backup Services (PRIMARY) -->
+        <mxCell id="backup" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Backup Services&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Policy-driven backups and snapshots.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="175" x="565" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="actor-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="<b>Operator</b>" vertex="1">
-          <mxGeometry x="840" y="290" width="90" height="90" as="geometry" />
+
+        <!-- Restore Services (PRIMARY) -->
+        <mxCell id="restore" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Restore Services&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Restore to recovery objectives, point-in-time where supported.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="175" x="565" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="i1-edge" edge="1" parent="1" source="actor-1" target="g1-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;">
+
+        <!-- Internal edge: Recovery group -->
+        <mxCell id="e-bak-res" edge="1" parent="1" source="backup" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="restore">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- External Actors (RIGHT side)                  -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="actor-workload" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Workload&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="81" as="geometry" />
+        </mxCell>
+
+        <mxCell id="actor-operator" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Operator&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="300" as="geometry" />
+        </mxCell>
+
+        <mxCell id="actor-runtime" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Runtime&lt;br&gt;Platform&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="470" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- Interface Edges                               -->
+        <!-- ══════════════════════════════════════════════ -->
+
+        <!-- I1: Workload -> Storage Class Portfolio (Read/write operation) - outbound -->
+        <mxCell id="i1-edge" edge="1" parent="1" source="actor-workload" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;" target="storage-class" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="800" y="195" />
-              <mxPoint x="770" y="195" />
-              <mxPoint x="770" y="150" />
-              <mxPoint x="300" y="150" />
+              <mxPoint x="780" y="104" />
+              <mxPoint x="780" y="130" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;strokeColor=none;fillColor=none;" value="<b>I1</b> Request" vertex="1">
-          <mxGeometry x="760" y="170" width="80" height="16" as="geometry" />
+        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I1&lt;/b&gt;  Read/write operation" vertex="1">
+          <mxGeometry height="14" width="140" x="620" y="94" as="geometry" />
         </mxCell>
-        <mxCell id="i2-edge" edge="1" parent="1" source="g1-c1" target="actor-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;">
+
+        <!-- I2: Operator -> Retention & Tiering (Provisioning request) - outbound -->
+        <mxCell id="i2-edge" edge="1" parent="1" source="actor-operator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;" target="retention" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="300" y="180" />
-              <mxPoint x="780" y="180" />
-              <mxPoint x="780" y="215" />
+              <mxPoint x="780" y="323" />
+              <mxPoint x="780" y="260" />
+              <mxPoint x="540" y="260" />
+              <mxPoint x="540" y="130" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;strokeColor=none;fillColor=none;" value="<b>I2</b> Response" vertex="1">
-          <mxGeometry x="760" y="218" width="90" height="16" as="geometry" />
+        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I2&lt;/b&gt;  Provisioning request" vertex="1">
+          <mxGeometry height="14" width="140" x="620" y="261" as="geometry" />
         </mxCell>
-        <mxCell id="i3-edge" edge="1" parent="1" source="actor-2" target="g2-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;">
+
+        <!-- I3: Storage Platform -> Backup Service (Backup operation) - internal -->
+        <mxCell id="i3-edge" edge="1" parent="1" source="durability" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="backup" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="800" y="335" />
-              <mxPoint x="760" y="335" />
-              <mxPoint x="760" y="150" />
-              <mxPoint x="590" y="150" />
+              <mxPoint x="545" y="243" />
+              <mxPoint x="545" y="143" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;strokeColor=none;fillColor=none;" value="<b>I3</b> Contract" vertex="1">
-          <mxGeometry x="760" y="308" width="90" height="16" as="geometry" />
+        <mxCell id="i3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I3&lt;/b&gt;  Backup operation" vertex="1">
+          <mxGeometry height="14" width="120" x="540" y="174" as="geometry" />
         </mxCell>
-        <mxCell id="i6-edge" edge="1" parent="1" source="g2-c2" target="obs-comp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=8;">
+
+        <!-- I4: Operator -> Restore Services (Restore request) - outbound -->
+        <mxCell id="i4-edge" edge="1" parent="1" source="actor-operator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="restore" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="470" y="260" />
-              <mxPoint x="470" y="620" />
+              <mxPoint x="780" y="368" />
+              <mxPoint x="780" y="253" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i6-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#9B72CF;strokeColor=none;fillColor=none;" value="<b>I6</b> Telemetry" vertex="1">
-          <mxGeometry x="478" y="470" width="95" height="16" as="geometry" />
+        <mxCell id="i4-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I4&lt;/b&gt;  Restore request" vertex="1">
+          <mxGeometry height="14" width="120" x="783" y="368" as="geometry" />
         </mxCell>
-        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="50" y="830" width="820" height="95" as="geometry" />
+
+        <!-- I8: Runtime Platform -> Storage Platform (Persistence attachment) - outbound -->
+        <mxCell id="i8-edge" edge="1" parent="1" source="actor-runtime" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="storage-class" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="770" y="515" />
+              <mxPoint x="770" y="550" />
+              <mxPoint x="280" y="550" />
+              <mxPoint x="280" y="164" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="legend-text" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#2C3038;strokeColor=none;fillColor=none;whiteSpace=wrap;spacingTop=6;spacingLeft=8;" value="<b>Legend</b><br>Primary component: dark fill. Secondary component: accent fill. Cross-cutting groups: IAM, Observability, Governance &amp; Policy. I1/I3 outbound, I2 inbound, I6 observability connector." vertex="1">
-          <mxGeometry x="60" y="838" width="800" height="80" as="geometry" />
+        <mxCell id="i8-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I8&lt;/b&gt;  Persistence attachment" vertex="1">
+          <mxGeometry height="14" width="150" x="400" y="551" as="geometry" />
         </mxCell>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- Cross-cutting: IAM components                 -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="iam-data-access" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Data Access Identity&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Workloads authenticate to storage endpoints via identity federation.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="185" x="65" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-admin-authz" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Admin AuthZ&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Operator actions scoped by role and storage domain. MFA required.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="185" x="270" y="718" as="geometry" />
+        </mxCell>
+
+        <!-- IAM link to Access Control Integration -->
+        <mxCell id="i-iam-acc" edge="1" parent="1" source="iam-data-access" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=6;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="access-ctrl" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="158" y="660" />
+              <mxPoint x="40" y="660" />
+              <mxPoint x="40" y="455" />
+              <mxPoint x="65" y="455" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i-iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#4B5BAA;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I10&lt;/b&gt;  Access request" vertex="1">
+          <mxGeometry height="14" width="110" x="50" y="617" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- Cross-cutting: Observability components       -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="obs-storage-feed" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Storage Telemetry Feed&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Capacity, latency, error rate, and growth trend metrics.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="155" x="505" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-backup-metrics" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Backup/Recovery Metrics&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font&gt;Backup success rate, restore duration, RPO/RTO compliance.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="155" x="670" y="718" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- Connector badge pairs (A) for cross-group     -->
+        <!-- Storage Telemetry -> Observability            -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="conn-A-stub" edge="1" parent="1" source="telemetry" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="conn-A-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="399" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="562" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Telemetry feed&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="75" x="544" y="654" as="geometry" />
+        </mxCell>
+
+        <!-- Connector badge pair (B): Backup -> Backup/Recovery Metrics -->
+        <mxCell id="conn-B-stub" edge="1" parent="1" source="backup" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="conn-B-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="641" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="736" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Recovery metrics&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="80" x="718" y="654" as="geometry" />
+        </mxCell>
+
+        <!-- ══════════════════════════════════════════════ -->
+        <!-- Legend                                        -->
+        <!-- ══════════════════════════════════════════════ -->
+        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="96" width="790" x="50" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="15" width="50" x="62" y="813" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Primary -->
+        <mxCell id="leg-pri" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-pri-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Level 1 — Primary" vertex="1">
+          <mxGeometry height="15" width="140" x="82" y="832" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Secondary -->
+        <mxCell id="leg-sec" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-sec-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Level 2 — Secondary" vertex="1">
+          <mxGeometry height="15" width="150" x="82" y="850" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Identity-linked -->
+        <mxCell id="leg-l2id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="871" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2id-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Cross-cutting — Identity-linked" vertex="1">
+          <mxGeometry height="15" width="150" x="82" y="868" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Observability-linked -->
+        <mxCell id="leg-l2obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="889" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2obs-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Cross-cutting — Observability-linked" vertex="1">
+          <mxGeometry height="15" width="170" x="82" y="886" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Arrows -->
+        <mxCell id="leg-arrow1" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#1A1A2E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="841" as="sourcePoint" />
+            <mxPoint x="311" y="841" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Outbound flow" vertex="1">
+          <mxGeometry height="15" width="80" x="317" y="834" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-arrow2" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#C4724E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="859" as="sourcePoint" />
+            <mxPoint x="311" y="859" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Inbound / return flow" vertex="1">
+          <mxGeometry height="15" width="105" x="317" y="852" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-arrow3" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="877" as="sourcePoint" />
+            <mxPoint x="311" y="877" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a3-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Identity / authentication" vertex="1">
+          <mxGeometry height="15" width="115" x="317" y="870" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-arrow5" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#2C3038;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="895" as="sourcePoint" />
+            <mxPoint x="311" y="895" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a5-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Internal dependency" vertex="1">
+          <mxGeometry height="15" width="100" x="317" y="888" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Strokes -->
+        <mxCell id="leg-stroke1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="480" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-s1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="IAM sub-ABB stroke (2.5)" vertex="1">
+          <mxGeometry height="15" width="150" x="500" y="832" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-stroke2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="480" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-s2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Observability sub-ABB stroke (2.6)" vertex="1">
+          <mxGeometry height="15" width="180" x="500" y="850" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-badge-ex" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;fontStyle=1;verticalAlign=middle;align=center;" value="X" vertex="1">
+          <mxGeometry height="16" width="16" x="480" y="871" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-badge-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Observability connector (pair)" vertex="1">
+          <mxGeometry height="15" width="150" x="500" y="868" as="geometry" />
+        </mxCell>
+
       </root>
     </mxGraphModel>
   </diagram>

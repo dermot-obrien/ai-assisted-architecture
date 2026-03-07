@@ -1,147 +1,403 @@
-<mxfile host="Electron" version="29.5.2">
-  <diagram id="ab-005-abb" name="Event Streaming &amp; Messaging ABB">
-    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="esm-abb" name="Event Streaming &amp; Messaging ABB">
+    <mxGraphModel dx="2037" dy="1201" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="abb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="30" y="20" width="900" height="930" as="geometry" />
+
+        <!-- Cross-cutting IAM sub-ABB (rendered first so boundary draws behind) -->
+        <mxCell id="iam-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="122" width="420" x="50" y="680" as="geometry" />
         </mxCell>
-        <mxCell id="abb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=12;" value="<b><font style="color: rgb(255, 255, 255);">ABB: Event Streaming &amp; Messaging</font></b>" vertex="1">
-          <mxGeometry x="38" y="27" width="400" height="24" as="geometry" />
+        <mxCell id="iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;ABB: Identity &amp;amp; Access Management&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="335" x="56" y="686" as="geometry" />
         </mxCell>
-        <mxCell id="g1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="50" y="70" width="260" height="330" as="geometry" />
+
+        <!-- ABB Boundary -->
+        <mxCell id="esm-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="890" width="900" x="30" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="g1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Event Transport</b>" vertex="1">
-          <mxGeometry x="58" y="76" width="180" height="22" as="geometry" />
+
+        <!-- ABB Title -->
+        <mxCell id="esm-title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;ABB: Event Streaming &amp;amp; Messaging&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="370" x="38" y="27" as="geometry" />
         </mxCell>
-        <mxCell id="g1-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Broker Runtime</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Provides durable publish-subscribe and queue transport.</font>" vertex="1">
-          <mxGeometry x="60" y="108" width="240" height="86" as="geometry" />
+
+        <!-- ═══════════════ GROUP 1: Event Transport (left) ═══════════════ -->
+        <mxCell id="transport-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="470" width="220" x="50" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="g1-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Topic Management</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Controls topic and queue lifecycle and partitioning.</font>" vertex="1">
-          <mxGeometry x="60" y="204" width="240" height="86" as="geometry" />
+        <mxCell id="transport-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Event Transport&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="170" x="56" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="g1-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Subscription Control</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Manages consumer groups and delivery subscriptions.</font>" vertex="1">
-          <mxGeometry x="60" y="300" width="240" height="86" as="geometry" />
+
+        <!-- Event Broker Runtime (PRIMARY) -->
+        <mxCell id="broker-runtime" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Event Broker Runtime&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Durable publish-subscribe and queue-based transport for event streams.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="96" width="190" x="65" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="g2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="340" y="70" width="260" height="330" as="geometry" />
+
+        <!-- Topic & Queue Mgmt (SECONDARY) -->
+        <mxCell id="topic-queue" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Topic &amp;amp; Queue Mgmt&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Creation, partitioning, retention, and lifecycle of channels.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="65" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="g2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Contract Governance</b>" vertex="1">
-          <mxGeometry x="348" y="76" width="180" height="22" as="geometry" />
+
+        <!-- Consumer Subscription Mgmt (SECONDARY) -->
+        <mxCell id="consumer-sub" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Consumer Subscription Mgmt&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Consumer groups, offsets, and consumption semantics.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="65" y="302" as="geometry" />
         </mxCell>
-        <mxCell id="g2-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Schema Registry</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Stores versioned event contracts and metadata.</font>" vertex="1">
-          <mxGeometry x="350" y="108" width="240" height="86" as="geometry" />
+
+        <!-- Internal edges: Event Transport -->
+        <mxCell id="e-broker-topic" edge="1" parent="1" source="broker-runtime" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="topic-queue">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g2-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Producer Validation</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Validates event envelopes at publish boundaries.</font>" vertex="1">
-          <mxGeometry x="350" y="204" width="240" height="86" as="geometry" />
+        <mxCell id="e-topic-consumer" edge="1" parent="1" source="topic-queue" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="consumer-sub">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="g2-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Compatibility Checks</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Enforces schema evolution compatibility policy.</font>" vertex="1">
-          <mxGeometry x="350" y="300" width="240" height="86" as="geometry" />
+
+        <!-- ═══════════════ GROUP 2: Contract Governance (middle) ═══════════════ -->
+        <mxCell id="contract-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="370" width="220" x="300" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="g3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="630" y="70" width="260" height="330" as="geometry" />
+        <mxCell id="contract-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Contract Governance&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="195" x="306" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="g3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Delivery Assurance</b>" vertex="1">
-          <mxGeometry x="638" y="76" width="180" height="22" as="geometry" />
+
+        <!-- Schema Registry (PRIMARY) -->
+        <mxCell id="schema-registry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Schema Registry&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Versioned event schema storage and compatibility checks.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="90" width="190" x="315" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="g3-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Retry Control</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Coordinates retry behaviour for transient failures.</font>" vertex="1">
-          <mxGeometry x="640" y="108" width="240" height="86" as="geometry" />
+
+        <!-- Producer Validation (PRIMARY) -->
+        <mxCell id="producer-validation" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Producer Validation&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Validate event envelope and schema at publish time.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="190" x="315" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="g3-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Dead-Letter Handling</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Isolates failed events for controlled remediation.</font>" vertex="1">
-          <mxGeometry x="640" y="204" width="240" height="86" as="geometry" />
+
+        <!-- Event Flow Analytics (SECONDARY) -->
+        <mxCell id="flow-analytics" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Event Flow Analytics&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Throughput, lag, error-rate, and consumer-health insights.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="84" width="190" x="315" y="312" as="geometry" />
         </mxCell>
-        <mxCell id="g3-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Replay Services</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Replays event streams for recovery and reprocessing.</font>" vertex="1">
-          <mxGeometry x="640" y="300" width="240" height="86" as="geometry" />
+
+        <!-- Internal edges: Contract Governance -->
+        <mxCell id="e-schema-validate" edge="1" parent="1" source="schema-registry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="producer-validation">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="iam-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#2C5AA0;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="50" y="650" width="260" height="160" as="geometry" />
+        <mxCell id="e-validate-analytics" edge="1" parent="1" source="producer-validation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="flow-analytics">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#2C5AA0;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: IAM</b>" vertex="1">
-          <mxGeometry x="58" y="656" width="220" height="22" as="geometry" />
+
+        <!-- ═══════════════ GROUP 3: Delivery Assurance (right) ═══════════════ -->
+        <mxCell id="delivery-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="470" width="195" x="556" y="62" as="geometry" />
         </mxCell>
-        <mxCell id="iam-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Producer/Consumer Identity</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Applies least-privilege identity controls for event access.</font>" vertex="1">
-          <mxGeometry x="60" y="686" width="240" height="110" as="geometry" />
+        <mxCell id="delivery-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Delivery Assurance&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="175" x="562" y="68" as="geometry" />
         </mxCell>
-        <mxCell id="obs-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="340" y="650" width="260" height="160" as="geometry" />
+
+        <!-- Delivery Guarantees (PRIMARY) -->
+        <mxCell id="delivery-guarantees" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Delivery Guarantees&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;At-least-once and ordered-delivery controls.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="175" x="565" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: Observability</b>" vertex="1">
-          <mxGeometry x="348" y="656" width="220" height="22" as="geometry" />
+
+        <!-- Retry & Dead-Letter (PRIMARY) -->
+        <mxCell id="retry-dlq" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Retry &amp;amp; Dead-Letter&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Controlled retry with failure isolation to dead-letter queues.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="175" x="565" y="195" as="geometry" />
         </mxCell>
-        <mxCell id="obs-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Stream Telemetry</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Monitors lag, throughput, failure rates, and consumer health.</font>" vertex="1">
-          <mxGeometry x="350" y="686" width="240" height="110" as="geometry" />
+
+        <!-- Replay Services (SECONDARY) -->
+        <mxCell id="replay-services" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Replay Services&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Replay and backfill event streams for recovery scenarios.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="175" x="565" y="296" as="geometry" />
         </mxCell>
-        <mxCell id="gov-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="630" y="650" width="260" height="160" as="geometry" />
+
+        <!-- Idempotency Controls (SECONDARY) -->
+        <mxCell id="idempotency" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=11;" value="&lt;b&gt;Idempotency Controls&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Prevent duplicate side effects from redelivered events.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="175" x="565" y="392" as="geometry" />
         </mxCell>
-        <mxCell id="gov-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: Governance &amp; Policy</b>" vertex="1">
-          <mxGeometry x="638" y="656" width="220" height="22" as="geometry" />
+
+        <!-- Internal edges: Delivery Assurance -->
+        <mxCell id="e-guarant-retry" edge="1" parent="1" source="delivery-guarantees" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="retry-dlq">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="gov-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Event Policy Controls</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Enforces classification, retention, and replay governance rules.</font>" vertex="1">
-          <mxGeometry x="640" y="686" width="240" height="110" as="geometry" />
+        <mxCell id="e-retry-replay" edge="1" parent="1" source="retry-dlq" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="replay-services">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="actor-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="<b>Producer<br>ABB</b>" vertex="1">
-          <mxGeometry x="840" y="150" width="90" height="90" as="geometry" />
+        <mxCell id="e-replay-idemp" edge="1" parent="1" source="replay-services" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="idempotency">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="actor-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="<b>Consumer<br>ABB</b>" vertex="1">
-          <mxGeometry x="840" y="290" width="90" height="90" as="geometry" />
+
+        <!-- Cross-group edge: Producer Validation → Event Broker Runtime -->
+        <mxCell id="e-validate-broker" edge="1" parent="1" source="producer-validation" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="broker-runtime">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="i1-edge" edge="1" parent="1" source="actor-1" target="g1-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;">
+
+        <!-- Cross-group edge: Event Broker Runtime → Delivery Guarantees -->
+        <mxCell id="e-broker-delivery" edge="1" parent="1" source="broker-runtime" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="delivery-guarantees">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="800" y="195" />
-              <mxPoint x="770" y="195" />
-              <mxPoint x="770" y="150" />
-              <mxPoint x="300" y="150" />
+              <mxPoint x="280" y="124" />
+              <mxPoint x="280" y="55" />
+              <mxPoint x="550" y="55" />
+              <mxPoint x="550" y="140" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;strokeColor=none;fillColor=none;" value="<b>I1</b> Request" vertex="1">
-          <mxGeometry x="760" y="170" width="80" height="16" as="geometry" />
+
+        <!-- ═══════════════ External Actors (RIGHT side) ═══════════════ -->
+        <!-- Event Producer (top right) -->
+        <mxCell id="event-producer" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Event&lt;br&gt;Producer&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="81" as="geometry" />
         </mxCell>
-        <mxCell id="i2-edge" edge="1" parent="1" source="g1-c1" target="actor-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;">
+
+        <!-- Event Consumer (middle right) -->
+        <mxCell id="event-consumer" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Event&lt;br&gt;Consumer&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="300" as="geometry" />
+        </mxCell>
+
+        <!-- Operator (lower right) -->
+        <mxCell id="operator" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:14px;color:#FFFFFF;&quot;&gt;Operator&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="810" y="470" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════ Interface Edges ═══════════════ -->
+
+        <!-- I1: Producer → Event Platform (Publish event) - inbound -->
+        <mxCell id="i1-publish" edge="1" parent="1" source="event-producer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="broker-runtime" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="300" y="180" />
-              <mxPoint x="780" y="180" />
-              <mxPoint x="780" y="215" />
+              <mxPoint x="790" y="104" />
+              <mxPoint x="790" y="45" />
+              <mxPoint x="280" y="45" />
+              <mxPoint x="280" y="124" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;strokeColor=none;fillColor=none;" value="<b>I2</b> Response" vertex="1">
-          <mxGeometry x="760" y="218" width="90" height="16" as="geometry" />
+        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I1&lt;/b&gt;  Publish event" vertex="1">
+          <mxGeometry height="14" width="100" x="400" y="46" as="geometry" />
         </mxCell>
-        <mxCell id="i3-edge" edge="1" parent="1" source="actor-2" target="g2-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;">
+
+        <!-- I2: Event Platform → Consumer (Deliver event) - outbound return colour -->
+        <mxCell id="i2-deliver" edge="1" parent="1" source="delivery-guarantees" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="event-consumer" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="800" y="335" />
-              <mxPoint x="760" y="335" />
-              <mxPoint x="760" y="150" />
-              <mxPoint x="590" y="150" />
+              <mxPoint x="770" y="140" />
+              <mxPoint x="770" y="345" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;strokeColor=none;fillColor=none;" value="<b>I3</b> Contract" vertex="1">
-          <mxGeometry x="760" y="308" width="90" height="16" as="geometry" />
+        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I2&lt;/b&gt;  Deliver event" vertex="1">
+          <mxGeometry height="14" width="110" x="775" y="230" as="geometry" />
         </mxCell>
-        <mxCell id="i6-edge" edge="1" parent="1" source="g2-c2" target="obs-comp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=8;">
+
+        <!-- I3: Producer → Schema Registry (Schema validation) - inbound -->
+        <mxCell id="i3-schema" edge="1" parent="1" source="event-producer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.35;entryDx=0;entryDy=0;" target="schema-registry" value="">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="470" y="260" />
-              <mxPoint x="470" y="620" />
+              <mxPoint x="780" y="149" />
+              <mxPoint x="780" y="132" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="i6-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#9B72CF;strokeColor=none;fillColor=none;" value="<b>I6</b> Telemetry" vertex="1">
-          <mxGeometry x="478" y="470" width="95" height="16" as="geometry" />
+        <mxCell id="i3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I3&lt;/b&gt;  Schema validation" vertex="1">
+          <mxGeometry height="14" width="130" x="540" y="135" as="geometry" />
         </mxCell>
-        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry x="50" y="830" width="820" height="95" as="geometry" />
+
+        <!-- I4: Consumer → Event Platform (Offset/ack mgmt) - inbound -->
+        <mxCell id="i4-offset" edge="1" parent="1" source="event-consumer" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="consumer-sub" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="323" />
+              <mxPoint x="790" y="540" />
+              <mxPoint x="280" y="540" />
+              <mxPoint x="280" y="342" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="legend-text" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#2C3038;strokeColor=none;fillColor=none;whiteSpace=wrap;spacingTop=6;spacingLeft=8;" value="<b>Legend</b><br>Primary component: dark fill. Secondary component: accent fill. Cross-cutting groups: IAM, Observability, Governance &amp; Policy. I1/I3 outbound, I2 inbound, I6 observability connector." vertex="1">
-          <mxGeometry x="60" y="838" width="800" height="80" as="geometry" />
+        <mxCell id="i4-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I4&lt;/b&gt;  Offset / ack mgmt" vertex="1">
+          <mxGeometry height="14" width="130" x="400" y="541" as="geometry" />
+        </mxCell>
+
+        <!-- I5: Operator → Event Platform (Replay request) - inbound -->
+        <mxCell id="i5-replay" edge="1" parent="1" source="operator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="replay-services" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="515" />
+              <mxPoint x="790" y="560" />
+              <mxPoint x="760" y="560" />
+              <mxPoint x="760" y="336" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i5-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I5&lt;/b&gt;  Replay request" vertex="1">
+          <mxGeometry height="14" width="120" x="762" y="560" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════ Connector Badge Pairs (A, B) ═══════════════ -->
+
+        <!-- A: Event Flow Analytics → Observability (Delivery Metrics) -->
+        <mxCell id="conn-A-stub" edge="1" parent="1" source="flow-analytics" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="conn-A-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="280" y="322" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="560" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-A-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Flow telemetry&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="70" x="542" y="654" as="geometry" />
+        </mxCell>
+
+        <!-- B: Broker Runtime → Observability (Event Telemetry) -->
+        <mxCell id="conn-B-stub" edge="1" parent="1" source="broker-runtime" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="conn-B-badge-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-badge-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="42" y="161" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-badge-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="630" y="668" as="geometry" />
+        </mxCell>
+        <mxCell id="conn-B-desc" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Broker telemetry&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="80" x="612" y="654" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════ Cross-cutting: IAM ═══════════════ -->
+        <mxCell id="iam-producer-id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Producer Identity&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Authenticate event producers via workload or service identity before publish.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="185" x="65" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-consumer-authz" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Consumer AuthZ&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Authorise consumer subscriptions scoped to topic and consumer group.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="185" x="270" y="718" as="geometry" />
+        </mxCell>
+
+        <!-- IAM edge: Producer Identity → Broker Runtime -->
+        <mxCell id="i-iam-broker" edge="1" parent="1" source="iam-producer-id" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=6;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="broker-runtime" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="158" y="660" />
+              <mxPoint x="40" y="660" />
+              <mxPoint x="40" y="172" />
+              <mxPoint x="65" y="172" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i-iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#4B5BAA;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I6&lt;/b&gt;  Identity check" vertex="1">
+          <mxGeometry height="14" width="110" x="50" y="617" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════ Cross-cutting: Observability ═══════════════ -->
+        <mxCell id="obs-abb" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="122" width="350" x="490" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;ABB: Observability&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="190" x="496" y="686" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-event-telemetry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Event Telemetry&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Publish/subscribe throughput, partition lag, and error-rate metrics.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="145" x="505" y="718" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-delivery-metrics" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Delivery Metrics&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font&gt;Delivery latency, retry counts, dead-letter volumes, and consumer health.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="155" x="670" y="718" as="geometry" />
+        </mxCell>
+
+        <!-- ═══════════════ Legend ═══════════════ -->
+        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="96" width="790" x="50" y="810" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-title" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="15" width="50" x="62" y="813" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Primary -->
+        <mxCell id="leg-int1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-int1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Level 1 — Primary" vertex="1">
+          <mxGeometry height="15" width="130" x="82" y="832" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Secondary -->
+        <mxCell id="leg-int2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-int2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Level 2 — Secondary" vertex="1">
+          <mxGeometry height="15" width="140" x="82" y="850" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: IAM cross-cutting -->
+        <mxCell id="leg-l2id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="871" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2id-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Cross-cutting — Identity-linked" vertex="1">
+          <mxGeometry height="15" width="150" x="82" y="868" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Observability cross-cutting -->
+        <mxCell id="leg-l2obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="62" y="889" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2obs-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Cross-cutting — Observability-linked" vertex="1">
+          <mxGeometry height="15" width="170" x="82" y="886" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Arrows -->
+        <mxCell id="leg-arrow1" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#1A1A2E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="841" as="sourcePoint" />
+            <mxPoint x="311" y="841" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Outbound flow" vertex="1">
+          <mxGeometry height="15" width="80" x="317" y="834" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-arrow2" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#C4724E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="859" as="sourcePoint" />
+            <mxPoint x="311" y="859" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Inbound / return flow" vertex="1">
+          <mxGeometry height="15" width="105" x="317" y="852" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-arrow3" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="877" as="sourcePoint" />
+            <mxPoint x="311" y="877" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a3-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Identity / authentication" vertex="1">
+          <mxGeometry height="15" width="115" x="317" y="870" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-arrow5" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#2C3038;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="280" y="895" as="sourcePoint" />
+            <mxPoint x="311" y="895" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-a5-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Internal dependency" vertex="1">
+          <mxGeometry height="15" width="100" x="317" y="888" as="geometry" />
+        </mxCell>
+
+        <!-- Legend: Strokes -->
+        <mxCell id="leg-stroke1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="480" y="835" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-s1-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="IAM sub-ABB stroke (2.5)" vertex="1">
+          <mxGeometry height="15" width="150" x="500" y="832" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-stroke2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="10" width="15" x="480" y="853" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-s2-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Observability sub-ABB stroke (2.6)" vertex="1">
+          <mxGeometry height="15" width="180" x="500" y="850" as="geometry" />
+        </mxCell>
+
+        <mxCell id="leg-badge-ex" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=9;fontStyle=1;verticalAlign=middle;align=center;" value="X" vertex="1">
+          <mxGeometry height="16" width="16" x="480" y="871" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-badge-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="Observability connector (pair)" vertex="1">
+          <mxGeometry height="15" width="150" x="500" y="868" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

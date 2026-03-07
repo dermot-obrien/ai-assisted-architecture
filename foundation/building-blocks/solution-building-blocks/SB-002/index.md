@@ -13,8 +13,9 @@ sidebar_position: 2
 | **SBB ID** | `SB-002` | Unique identifier. |
 | **SBB Name** | Observability Ingestion Service (OTel) | Human-readable name. |
 | **Short Name** | OTel Collector | Used in diagrams. |
+| **Realizes ABB**| [AB-002 Observability](../../architecture-building-blocks/AB-002/) | Parent logical model. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `APPROVED` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Operational Excellence` | Logical grouping. |
 
 ---
@@ -68,37 +69,17 @@ The diagram below shows the physical realisation of the Observability ABB. The O
 4. **Correlation**. Azure Monitor links the trace span to related logs and metrics.
 5. **Surfacing**. An operator queries the span via Grafana or an automated alert is triggered.
 
-### 2.5  Identity & Access Management
-
-- **Managed Identities**. The OTel Collector uses a system-assigned managed identity to authenticate to Azure Monitor endpoints.
-- **RBAC**. Access to Log Analytics data is restricted to specific AD groups using the "Log Analytics Reader" role.
-
-### 2.6  Observability
-
-- **Meta-Telemetry**. The OTel Collector emits its own metrics (e.g., `queue_size`, `refused_spans`) to a dedicated monitor.
-- **Health Probes**. Kubernetes liveness and readiness probes monitor the collector's heartbeat.
-
-### 2.7  Governance & Policy Enforcement
-
-- **Data Classification**. PII is scrubbed or masked in the OTel processing pipeline before export.
-- **Retention Enforcement**. Azure Monitor retention policies are enforced per-table.
-
-### 2.8  Technical Constraints
-
-- **Throttling**. Azure Monitor Ingestion API has per-workspace throughput limits.
-- **OTLP Version**. Collector must remain compatible with the current stable OTLP schema.
-
 ---
 
 ## 3  Interfaces
 
 ### 3.1  Overview
 
-| ID | Direction | Type | Description (SBB-specific) |
-|----|-----------|------|---------------------------|
-| **I1** | Service → OTel Collector | OTLP/gRPC | Unified signal emission. |
-| **I5** | Grafana → Azure Monitor | KQL | Data visualisation queries. |
-| **I7** | Azure Monitor → Action Group | Webhook | Alert notification delivery. |
+| ID | Direction | Type | Description (SBB-specific realisation) |
+|----|-----------|------|-----------------------------------------|
+| **I1** | Service → OTel | OTLP/gRPC | Unified signal emission from instrumented building blocks. |
+| **I5** | Grafana → Monitor | KQL | Data visualisation queries using the Kusto Query Language. |
+| **I7** | Monitor → Action | Webhook | Alert notification delivery to operational endpoints. |
 
 ---
 
@@ -112,18 +93,6 @@ The diagram below shows the physical realisation of the Observability ABB. The O
 ### 4.2  Policy mapping
 
 - **Data Retention Policy** → Implemented via Azure Log Analytics retention settings.
-
----
-
-## 5. ABB Traceability
-
-This SBB realizes [AB-002 Observability](../../architecture-building-blocks/AB-002/) using OpenTelemetry and Azure Monitor. Every logical component defined in the ABB is mapped to an OTel or Azure product.
-
-| ABB Capability | SBB Realisation |
-|----------------|-----------------|
-| Trace Collector | OTel Collector with OTLP Receiver. |
-| Log Aggregator | OTel Filelog and Azure Log Analytics. |
-| Dashboarding | Azure Managed Grafana. |
 
 ---
 

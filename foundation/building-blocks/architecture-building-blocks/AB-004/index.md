@@ -13,8 +13,10 @@ sidebar_position: 4
 | **ABB Name** | API Mediation & Gateway | Human-readable name of the building block. |
 | **Short Name** | APIGW | Used in diagrams and cross-references. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Integration` | Logical grouping. |
+| **Parent Bounded Context** | [Integration Bounded Context](../../../contexts/integration-context.md) | Domain boundary for integration concerns. |
+| **Parent Capability** | [CAP-010 API Mediation & Contract Enforcement](../../../capabilities/CAP-010/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for exposing and governing synchronous APIs through shared mediation, contract enforcement, and traffic-control controls.
 
@@ -28,7 +30,9 @@ This ABB provides a shared integration edge for synchronous service communicatio
 
 ### 2.1  Component Diagram
 
-Canonical component structure is defined in this document. Diagram artefacts for specific workspaces are expected to be generated in workspace copies of this ABB.
+The diagram below shows the API mediation boundary, grouped by mediation, contract governance, and traffic control responsibilities. External producer and consumer actors are positioned on the right boundary, while IAM, observability, and governance controls are shown as mandatory cross-cutting sub-ABBs at the bottom.
+
+![AB-004 API Mediation & Gateway Component Diagram](./components.png)
 
 ### 2.2  Fundamental functionality
 
@@ -155,4 +159,3 @@ Each SBB should define protocol support, policy engine limits, transformation ca
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | AB-004 API Mediation & Gateway ABB created. |
-

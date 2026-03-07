@@ -1,0 +1,400 @@
+<mxfile host="draw.io" modified="2026-03-08T00:00:00.000Z" agent="draw.io" version="24.0.0" type="device">
+  <diagram id="platform-landscape" name="Foundation Platform Landscape">
+    <mxGraphModel dx="0" dy="0" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Foundation Platform Landscape" style="text;html=1;fontSize=20;fontStyle=1;fontFamily=Helvetica;fontColor=#1A1A2E;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="560" y="10" width="500" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="subtitle" value="v1.0 | 2026-03-08" style="text;html=1;fontSize=11;fontFamily=Helvetica;fontColor=#8D8D97;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="10" width="200" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="56" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-header" value="PL-001 | Security" style="rounded=1;arcSize=8;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="64" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-owner" value="Strategic Owner: CISO" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#4B5BAA;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="98" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4B5BAA;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-oc001" value="OC-001" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="120" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-oc002" value="OC-002" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="205" y="120" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4B5BAA;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="146" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-cap004" value="CAP-004" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="146" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-cap005" value="CAP-005" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="205" y="146" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl001-bc001" value="BC-001 Identity &amp; Access" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#4B5BAA;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="178" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="56" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-header" value="PL-002 | Observability" style="rounded=1;arcSize=8;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="64" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-owner" value="Strategic Owner: Head of Platform Ops" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#9B72CF;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="98" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#9B72CF;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="120" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-oc003" value="OC-003" style="rounded=1;arcSize=20;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="120" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#9B72CF;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="146" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-cap006" value="CAP-006" style="rounded=1;arcSize=20;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="146" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl002-bc002" value="BC-002 Observability" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#9B72CF;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#9B72CF;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="178" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#B86B9A;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="56" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-header" value="PL-003 | Governance &amp; Compliance" style="rounded=1;arcSize=8;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="64" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-owner" value="Strategic Owner: Chief Risk &amp; Compliance" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#B86B9A;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="98" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#B86B9A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="120" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-oc004" value="OC-004" style="rounded=1;arcSize=20;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="120" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#B86B9A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="146" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-cap007" value="CAP-007" style="rounded=1;arcSize=20;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="146" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl003-bc003" value="BC-003 Governance &amp; Policy" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#B86B9A;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#B86B9A;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="178" width="200" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#4A90D9;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="296" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-header" value="PL-004 | Developer Experience" style="rounded=1;arcSize=8;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="304" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-owner" value="Strategic Owner: Head of Platform Engineering" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#4A90D9;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="338" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4A90D9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-oc005" value="OC-005" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="360" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4A90D9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="386" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-cap016" value="CAP-016" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-cap017" value="CAP-017" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="205" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-cap018" value="CAP-018" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-cap043" value="CAP-043" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="345" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl004-bc004" value="BC-004 Developer Platform" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#4A90D9;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#4A90D9;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="418" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#C4724E;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="296" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-header" value="PL-005 | Cost Management" style="rounded=1;arcSize=8;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="304" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-owner" value="Strategic Owner: Head of FinOps" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#C4724E;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="338" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#C4724E;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="360" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-oc006" value="OC-006" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="360" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#C4724E;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="386" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-cap020" value="CAP-020" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-cap021" value="CAP-021" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-cap022" value="CAP-022" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="885" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl005-bc005" value="BC-005 Cost Management" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#C4724E;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#C4724E;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="418" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#5E6B7F;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="296" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-header" value="PL-006 | Reliability &amp; Resilience" style="rounded=1;arcSize=8;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="304" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-owner" value="Strategic Owner: Head of SRE" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#5E6B7F;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="338" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#5E6B7F;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="360" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-oc007" value="OC-007" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="360" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#5E6B7F;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="386" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-cap024" value="CAP-024" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-cap025" value="CAP-025" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-cap026" value="CAP-026" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="386" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl006-bc006" value="BC-006 Reliability &amp; Resilience" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#5E6B7F;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#5E6B7F;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="418" width="210" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="536" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-header" value="PL-007 | Supply Chain Security" style="rounded=1;arcSize=8;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="544" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-owner" value="Strategic Owner: Head of AppSec" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#4B5BAA;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="578" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4B5BAA;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="600" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-oc008" value="OC-008" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="600" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4B5BAA;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="626" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-cap028" value="CAP-028" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-cap029" value="CAP-029" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="205" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-cap030" value="CAP-030" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl007-bc007" value="BC-007 Supply Chain Security" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#4B5BAA;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="658" width="210" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="536" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-header" value="PL-008 | Data Management" style="rounded=1;arcSize=8;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="544" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-owner" value="Strategic Owner: Chief Data Officer" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#9B72CF;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="578" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#9B72CF;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="600" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-oc009" value="OC-009" style="rounded=1;arcSize=20;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="600" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#9B72CF;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="626" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-cap032" value="CAP-032" style="rounded=1;arcSize=20;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-cap033" value="CAP-033" style="rounded=1;arcSize=20;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-cap034" value="CAP-034" style="rounded=1;arcSize=20;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="885" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl008-bc008" value="BC-008 Data Governance" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#9B72CF;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#9B72CF;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="658" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#B86B9A;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="536" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-header" value="PL-009 | Configuration &amp; Secrets" style="rounded=1;arcSize=8;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="544" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-owner" value="Strategic Owner: Head of Platform Eng" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#B86B9A;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="578" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#B86B9A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="600" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-oc010" value="OC-010" style="rounded=1;arcSize=20;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="600" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#B86B9A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="626" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-cap036" value="CAP-036" style="rounded=1;arcSize=20;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-cap037" value="CAP-037" style="rounded=1;arcSize=20;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-cap038" value="CAP-038" style="rounded=1;arcSize=20;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="626" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl009-bc009" value="BC-009 Configuration &amp; Secrets" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#B86B9A;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#B86B9A;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="658" width="210" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#4A90D9;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="776" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-header" value="PL-010 | Integration" style="rounded=1;arcSize=8;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="784" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-owner" value="Strategic Owner: Head of Platform Integration" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#4A90D9;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="50" y="818" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4A90D9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="840" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-oc011" value="OC-011" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="840" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#4A90D9;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="866" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-cap008" value="CAP-008" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="135" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-cap010" value="CAP-010" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="205" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-cap011" value="CAP-011" style="rounded=1;arcSize=20;fillColor=#4A90D9;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl010-bc010" value="BC-010 Integration" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#4A90D9;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#4A90D9;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="898" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#C4724E;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="776" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-header" value="PL-011 | Infrastructure" style="rounded=1;arcSize=8;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="784" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-owner" value="Strategic Owner: Head of Platform Infrastructure" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#C4724E;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="660" y="818" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#C4724E;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="840" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-oc012" value="OC-012" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="840" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#C4724E;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="670" y="866" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-cap009" value="CAP-009" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="745" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-cap012" value="CAP-012" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="815" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-cap013" value="CAP-013" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="885" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-cap014" value="CAP-014" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="955" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-cap044" value="CAP-044" style="rounded=1;arcSize=20;fillColor=#C4724E;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1025" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl011-bc011" value="BC-011 Infrastructure" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#C4724E;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#C4724E;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="898" width="190" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-container" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#5E6B7F;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1260" y="776" width="580" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-header" value="PL-012 | Continuous Delivery" style="rounded=1;arcSize=8;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=13;fontStyle=1;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="784" width="560" height="32" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-owner" value="Strategic Owner: Head of Platform Engineering" style="text;html=1;fontSize=10;fontFamily=Helvetica;fontColor=#5E6B7F;fontStyle=2;align=center;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="818" width="560" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-outcomes-label" value="Outcomes" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#5E6B7F;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="840" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-oc013" value="OC-013" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="840" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-caps-label" value="Capabilities" style="text;html=1;fontSize=9;fontStyle=1;fontFamily=Helvetica;fontColor=#5E6B7F;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="866" width="70" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-cap040" value="CAP-040" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1355" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-cap041" value="CAP-041" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1425" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-cap042" value="CAP-042" style="rounded=1;arcSize=20;fillColor=#5E6B7F;fontColor=#FFFFFF;strokeColor=none;fontSize=9;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1495" y="866" width="60" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="pl012-bc012" value="BC-012 Continuous Delivery" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#5E6B7F;strokeWidth=1.5;fontSize=10;fontFamily=Helvetica;fontColor=#5E6B7F;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="898" width="210" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-bg" value="" style="rounded=1;arcSize=5;fillColor=#F5F5F5;strokeColor=#D4D4D8;strokeWidth=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1010" width="1800" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-title" value="Legend:" style="text;html=1;fontSize=10;fontStyle=1;fontFamily=Helvetica;fontColor=#71717A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1013" width="60" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-card" value="" style="rounded=1;arcSize=5;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="125" y="1016" width="26" height="22" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-card-label" value="Platform Card" style="text;html=1;fontSize=9;fontFamily=Helvetica;fontColor=#71717A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="156" y="1013" width="90" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-pill" value="OC-NNN" style="rounded=1;arcSize=20;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=none;fontSize=8;fontFamily=Helvetica;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="1017" width="55" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-pill-label" value="Outcome / Capability" style="text;html=1;fontSize=9;fontFamily=Helvetica;fontColor=#71717A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1013" width="130" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-bc" value="BC-NNN" style="rounded=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1.5;fontSize=8;fontFamily=Helvetica;fontColor=#4B5BAA;fontStyle=1;align=center;verticalAlign=middle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="465" y="1016" width="65" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-bc-label" value="Bounded Context" style="text;html=1;fontSize=9;fontFamily=Helvetica;fontColor=#71717A;align=left;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="535" y="1013" width="110" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-count" value="12 Platforms | 13 Outcomes | 36 Capabilities | 12 Bounded Contexts" style="text;html=1;fontSize=9;fontFamily=Helvetica;fontColor=#71717A;align=right;verticalAlign=middle;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="1350" y="1013" width="470" height="28" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

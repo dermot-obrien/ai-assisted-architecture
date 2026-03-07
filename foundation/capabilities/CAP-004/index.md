@@ -10,11 +10,13 @@ sidebar_position: 4
 |----------|-------|-------|
 | **Capability ID** | `CAP-004` | Unique identifier. |
 | **Capability Name** | Identity Lifecycle Management | Human-readable name. |
+| **Realizes Outcome**| [OC-002 Credential-less Infrastructure](../../../strategy/outcomes.md#oc-002-credential-less-infrastructure) | Primary strategic goal. |
+| **Enables Use Case**| [UC-001 Automated Workload Identity Provisioning](../../../strategy/use-cases.md#uc-001-automated-workload-identity-provisioning) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-002` | Identity & Access. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-001 Security](../../platforms/PL-001/) | Parent platform. |
 
 The organisation must be able to provision, authenticate, federate, and decommission the identities of all actors — human users, non-human workloads, service principals, and AI agents — through a unified lifecycle that ensures every identity is known, verifiable, and revocable.
 

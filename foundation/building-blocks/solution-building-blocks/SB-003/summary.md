@@ -1,6 +1,6 @@
 # Policy Decision Service (OPA)
 
-**SB-003** | **Version** 1.0 | **Status** APPROVED | **Realises** AB-003 Governance & Policy Enforcement
+**SB-003** | **Version** 1.0 | **Status** DRAFT | **Realises** AB-003 Governance & Policy Enforcement
 
 ## Purpose
 

@@ -53,6 +53,14 @@ GEMINI.md
 .github/copilot-instructions.md
 .github/prompts/
 
+# Draw.io backup files
+.$*.drawio.bkp
+*.bkp
+
+# One-off migration scripts
+scripts/reset_status_version*.py
+scripts/fix_foundation_diagrams.py
+
 # Transient.
 patternode/
 archive/

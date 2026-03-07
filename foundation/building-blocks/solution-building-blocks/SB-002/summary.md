@@ -1,6 +1,6 @@
 # Observability Ingestion Service (OTel)
 
-**SB-002** | **Version** 1.0 | **Status** APPROVED | **Realises** AB-002 Observability
+**SB-002** | **Version** 1.0 | **Status** DRAFT | **Realises** AB-002 Observability
 
 ## Purpose
 

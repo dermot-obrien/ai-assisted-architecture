@@ -11,6 +11,7 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 | `AGENTS.md.txt` | `AGENTS.md` | **Required.** Primary discovery file. |
 | `CLAUDE.md.txt` | `.claude/CLAUDE.md` or root `CLAUDE.md` | Merge into your existing file |
 | `claude/commands/create-strategy.md` | `.claude/commands/create-strategy.md` | Copy |
+| `claude/commands/create-platform.md` | `.claude/commands/create-platform.md` | Copy |
 | `claude/commands/create-capability.md` | `.claude/commands/create-capability.md` | Copy |
 | `claude/commands/create-context.md` | `.claude/commands/create-context.md` | Copy |
 | `claude/commands/create-abb.md` | `.claude/commands/create-abb.md` | Copy |
@@ -18,6 +19,7 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 | `claude/commands/create-service.md` | `.claude/commands/create-service.md` | Copy |
 | `cursor/rules/standards.mdc` | `.cursor/rules/standards.mdc` | Copy |
 | `cursor/rules/create-strategy.mdc` | `.cursor/rules/create-strategy.mdc` | Copy |
+| `cursor/rules/create-platform.mdc` | `.cursor/rules/create-platform.mdc` | Copy |
 | `cursor/rules/create-capability.mdc` | `.cursor/rules/create-capability.mdc` | Copy |
 | `cursor/rules/create-context.mdc` | `.cursor/rules/create-context.mdc` | Copy |
 | `cursor/rules/create-abb.mdc` | `.cursor/rules/create-abb.mdc` | Copy |
@@ -26,6 +28,7 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 | `.cursorrules.txt` | `.cursorrules` | Merge into your existing file |
 | `github/copilot-instructions.txt` | `.github/copilot-instructions.md` | Merge into your existing file |
 | `github/prompts/create-strategy.prompt.md` | `.github/prompts/create-strategy.prompt.md` | Copy |
+| `github/prompts/create-platform.prompt.md` | `.github/prompts/create-platform.prompt.md` | Copy |
 | `github/prompts/create-capability.prompt.md` | `.github/prompts/create-capability.prompt.md` | Copy |
 | `github/prompts/create-context.prompt.md` | `.github/prompts/create-context.prompt.md` | Copy |
 | `github/prompts/create-abb.prompt.md` | `.github/prompts/create-abb.prompt.md` | Copy |
@@ -43,16 +46,17 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 To maintain the "Golden Thread" of traceability, agents should ideally follow this creation order:
 
 1.  **`/create-strategy`**: Define why you are building this (Outcomes/Use Cases).
-2.  **`/create-capability`**: Define what business ability is required.
-3.  **`/create-context`**: Define the linguistic and technical boundary.
-4.  **`/create-abb`**: Define the logical architectural model.
-5.  **`/create-sbb`**: Define the physical product realization.
-6.  **`/create-service`**: Define the runtime unit of execution.
+2.  **`/create-platform`**: Define the high-level Platform and executive owner.
+3.  **`/create-capability`**: Define what business ability is required.
+4.  **`/create-context`**: Define the linguistic and technical boundary.
+5.  **`/create-abb`**: Define the logical architectural model.
+6.  **`/create-sbb`**: Define the physical product realisation.
+7.  **`/create-service`**: Define the runtime unit of execution.
 
 ## Foundation Seeding (Recommended)
 
 After installing this framework, seed your workspace from `.ai-assisted-architecture/foundation/` so agents work against workspace-owned capability and building-block content:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile foundation
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile core
 ```

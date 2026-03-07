@@ -13,8 +13,8 @@ sidebar_position: 12
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-009` | Infrastructure Services. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-011 Infrastructure](../../platforms/PL-011/) | Parent platform. |
 
 The organisation must be able to run workloads on a consistent shared runtime with placement, scaling, lifecycle, and resilience controls that meet platform reliability and security requirements.
 
