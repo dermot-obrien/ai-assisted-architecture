@@ -19,12 +19,16 @@ This file defines top-level discovery and precedence rules for AI agents working
 
 Always load these standards before creating or modifying ABB/SBB artefacts:
 
-- `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
+- **Visual design standard** (load the first one found):
+  1. `standards/visual-design/visual-design-standard.md` (workspace override — use if it exists)
+  2. `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md` (framework default)
 - `.ai-assisted-architecture/standards/building-blocks/standard-cross-referencing.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-diagram.md`
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-diagram.md`
+
+**Note:** The visual design standard defines the colour palette and typography for your organisation. If no workspace override exists, agents use the framework's example palette. See the README for how to create your own.
 
 ## Scope Routing
 
