@@ -1,5 +1,9 @@
 # AI-Assisted Architecture
 
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![Licence: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+[![Licence: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE-CODE)
+
 A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. Install it as a Git submodule in any enterprise architecture workspace.
 
 ## Prerequisites
@@ -41,7 +45,7 @@ The ABB and SBB standards (document structure, diagram layout, cross-referencing
 Add as a Git submodule to your workspace:
 
 ```bash
-git submodule add <repo-url> .ai-assisted-architecture
+git submodule add https://github.com/dermot-obrien/ai-assisted-architecture.git .ai-assisted-architecture
 ```
 
 ## Workspace Setup
@@ -113,9 +117,13 @@ Supported tools: Claude Code, Cursor, GitHub Copilot, Gemini, Cline, Windsurf.
 
 | Skill | Claude Code | Cursor / Copilot | Description |
 |-------|-------------|-------------------|-------------|
-| Create Capability | `/create-capability` | `@create-capability` | End-to-end capability creation: discovery, document, ABB mapping, maturity assessment. |
-| Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint. |
-| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint. |
+| Create Outcome/UC | `/create-strategy` | `@create-strategy` | Strategic and operational layer creation. |
+| Create Platform | `/create-platform` | `@create-platform` | Defining platforms and executive ownership. |
+| Create Capability | `/create-capability` | `@create-capability` | End-to-end capability creation and maturity mapping. |
+| Create Context | `/create-context` | `@create-context` | Defining Bounded Contexts and linguistic boundaries. |
+| Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: logical structure and diagrams. |
+| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: product mapping and realisation. |
+| Create Service | `/create-service` | `@create-service` | Runtime unit of execution definition. |
 
 Each skill follows a four-phase workflow: Discovery, Load Standards, Create Artefacts, Self-Verification. See `agents/` for the full specifications.
 
@@ -125,14 +133,28 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 .ai-assisted-architecture/
   agents/
     FRAMEWORK_AGENTS.md    # Agent discovery and precedence rules
+    create-strategy.md     # Outcome / Use Case creation
+    create-platform.md     # Platform definition
+    create-capability.md   # Capability creation
+    create-context.md      # Bounded Context definition
+    create-abb.md          # ABB creation
+    create-sbb.md          # SBB creation
+    create-service.md      # Service definition
   install/                 # IDE configuration snippets (copy to workspace)
-  scripts/                 # Automation scripts (PowerPoint generation)
+  scripts/                 # Automation scripts (PowerPoint generation, foundation seeding)
   foundation/              # Seed capabilities and building blocks for workspace bootstrap
   standards/
-    visual-design/         # Visual design standard (override in workspace)
+    standard-traceability.md          # Golden Thread linking all layers
+    strategy/
+      standard-strategy.md            # Outcomes and Use Cases
+    platforms/
+      platform-standard.md            # Platforms
+      platform-diagram-standard.md    # Platform landscape diagrams
     capabilities/
-      standard-capability-document.md
-      standard-capability-diagram.md
+      standard-capability-document.md # Capability documents
+      standard-capability-diagram.md  # Capability maps and traceability matrices
+    contexts/
+      standard-bounded-context.md     # Bounded Contexts
     building-blocks/
       architecture-building-blocks/
         standard-abb-document.md
@@ -142,7 +164,9 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
         standard-sbb-document.md
         standard-sbb-diagram.md
         example/
-      standard-cross-referencing.md
+    runtime/
+      standard-service.md             # Runtime Services
+    visual-design/                    # Visual design standard (override in workspace)
   example/                 # Example workspace layout
 ```
 
@@ -151,21 +175,35 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 | Standard | Customise? | Description |
 |----------|-----------|-------------|
 | Visual design | Yes | Colour tokens, typography, contrast ratios, accessibility. Place a `visual-design/visual-design-standard.md` folder anywhere in your workspace. |
+| Traceability | No | The "Golden Thread" linking all layers from Outcomes to Services. |
+| Strategy | No | Structure and metadata for Business Outcomes and Use Cases. |
+| Platform | No | Structure and metadata for Platforms, platform-as-product model. |
+| Platform diagrams | No | Platform landscape card-grid layout and styling rules. |
 | Capability document | No | Document structure, maturity model, and ABB mapping for capabilities. |
 | Capability diagrams | No | Capability map and capability-to-ABB traceability diagram structure and styling rules. |
+| Bounded Context | No | Structure and metadata for Bounded Contexts and linguistic boundaries. |
 | ABB document | No | Document structure, metadata, and section layout for ABBs. |
 | ABB diagram | No | Draw.io diagram structure, styling, and export rules for ABBs. |
 | SBB document | No | Document structure, metadata, and section layout for SBBs. |
 | SBB diagram | No | Draw.io diagram structure, styling, and export rules for SBBs. |
-| Cross-referencing | No | How capabilities, ABBs, and SBBs link to each other using folder-relative paths. |
+| Service | No | Structure and metadata for runtime Services. |
 
 ## Foundation Profiles
 
-The framework ships with a seed foundation profile model:
+The framework ships with a seed foundation that provides a complete platform-as-product baseline:
 
-- `core` (active): baseline cross-cutting capabilities and ABBs.
-- `integration` (active): API mediation and event-driven integration capabilities and ABBs.
-- `infrastructure` (active): compute runtime and storage lifecycle capabilities and ABBs.
+- **12 platforms** (PL-001 Security through PL-012 Continuous Delivery)
+- **44 capabilities** across L1/L2/L3 hierarchy
+- **12 bounded contexts** with ubiquitous language
+- **8 ABBs** and **3 SBBs** with full diagram sets
+- **13 strategic outcomes**
+
+Profiles control what gets seeded:
+
+- `core`: baseline cross-cutting capabilities and ABBs.
+- `integration`: API mediation and event-driven integration capabilities and ABBs.
+- `infrastructure`: compute runtime and storage lifecycle capabilities and ABBs.
+- `foundation` / `all`: all profiles combined.
 
 See `.ai-assisted-architecture/foundation/foundation-manifest.yaml`.
 

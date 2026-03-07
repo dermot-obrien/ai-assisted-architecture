@@ -13,8 +13,8 @@ sidebar_position: 11
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-008` | Integration Services. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-010 Integration](../../platforms/PL-010/) | Parent platform. |
 
 The organisation must be able to exchange business and operational events through reliable asynchronous integration patterns that support loose coupling, replayability, and controlled consumer evolution.
 

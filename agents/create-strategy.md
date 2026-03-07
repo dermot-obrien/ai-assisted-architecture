@@ -20,11 +20,11 @@ Load and internalise these standards before producing any artefact:
 
 ## Phase 3: Create Artefacts
 
-### Step 1: Update strategy/outcomes.md
-Add the new Outcome to the `outcomes.md` file in the workspace. Use the format `O-XXX-NN`. Ensure it has a definition and a concrete measure.
+### Step 1: Create strategy/outcomes/OC-NNN/index.md
+Create the Outcome folder and `index.md`. Use the format `OC-NNN`. Ensure it has a definition and a concrete measure.
 
-### Step 2: Update strategy/use-cases.md
-Add the new Use Case to the `use-cases.md` file. Use the format `UC-XXX-NN`. Link it to the parent Outcome ID.
+### Step 2: Create strategy/use-cases/UC-NNN/index.md
+Create the Use Case folder and `index.md`. Use the format `UC-NNN`. Link it to the parent Outcome folder.
 
 ## Phase 4: Self-Verification
 

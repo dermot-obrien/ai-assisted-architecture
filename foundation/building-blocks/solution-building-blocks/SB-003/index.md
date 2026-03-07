@@ -13,8 +13,9 @@ sidebar_position: 3
 | **SBB ID** | `SB-003` | Unique identifier. |
 | **SBB Name** | Policy Decision Service (OPA) | Human-readable name. |
 | **Short Name** | OPA Service | Used in diagrams. |
+| **Realizes ABB**| [AB-003 Governance & Policy Enforcement](../../architecture-building-blocks/AB-003/) | Parent logical model. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `APPROVED` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Governance` | Logical grouping. |
 
 ---
@@ -61,37 +62,17 @@ The diagram below shows the physical realisation of the Governance ABB. OPA is d
 4. **Logging**. OPA generates a decision log entry containing the input, result, and policy version.
 5. **Ingestion**. The OTel collector picks up the decision log and exports it for audit.
 
-### 2.5  Identity & Access Management
-
-- **Client Certificates**. Mutual TLS (mTLS) ensures that only authorised services can query the OPA API.
-- **Workload Identity**. OPA instances use federated credentials to authenticate to the policy distribution service.
-
-### 2.6  Observability
-
-- **Decision Logs**. Every single policy decision is captured in a structured format.
-- **Prometheus Metrics**. OPA exposes `/metrics` for evaluation latency and bundle sync status.
-
-### 2.7  Governance & Policy Enforcement
-
-- **Rego Unit Tests**. Every policy MUST have a corresponding test suite that is validated in CI/CD.
-- **Policy Signing**. Only bundles signed by the Governance CI pipeline are accepted by OPA engines.
-
-### 2.8  Technical Constraints
-
-- **Evaluation Latency**. Centralized PDP calls should target < 10ms p99 overhead.
-- **Memory Limits**. OPA memory usage scales with the size of the data/rules loaded in the bundle.
-
 ---
 
 ## 3  Interfaces
 
 ### 3.1  Overview
 
-| ID | Direction | Type | Description (SBB-specific) |
-|----|-----------|------|---------------------------|
-| **I1** | Service → OPA API | REST/JSON | Policy decision request. |
-| **I4** | OPA → Bundle Server | HTTP/S | Signed policy bundle download. |
-| **I8** | OPA → OTel Collector | JSON/Log | Decision log export for evidence. |
+| ID | Direction | Type | Description (SBB-specific realisation) |
+|----|-----------|------|-----------------------------------------|
+| **I1** | Service → OPA | REST/JSON | Policy decision request to the OPA API. |
+| **I4** | OPA → Server | HTTP/S | Signed policy bundle download from distribution service. |
+| **I8** | OPA → OTel | JSON/Log | Decision log export for evidence collection. |
 
 ---
 
@@ -105,18 +86,6 @@ The diagram below shows the physical realisation of the Governance ABB. OPA is d
 ### 4.2  Policy mapping
 
 - **Separation of Duties** → Achieved by separating policy authoring from application logic.
-
----
-
-## 5. ABB Traceability
-
-This SBB realizes [AB-003 Governance & Policy Enforcement](../../architecture-building-blocks/AB-003/) using Open Policy Agent. Every logical component defined in the ABB is mapped to an OPA-related product or workflow.
-
-| ABB Capability | SBB Realisation |
-|----------------|-----------------|
-| Policy Decision Point | OPA Engine running as a service or sidecar. |
-| Policy Distribution | Signed OPA Bundles. |
-| Evidence Collection | OPA Decision Logs via OTel. |
 
 ---
 

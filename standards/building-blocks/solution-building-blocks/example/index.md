@@ -13,7 +13,7 @@ sidebar_position: 4
 | **SBB Name** | Human-in-the-Loop via Microsoft Teams |
 | **Short Name** | HITL Teams |
 | **Version** | `1.0` |
-| **Status** | `DRAFT` |
+| **Status** | `draft`|
 | **Category** | `Messaging & Integration` |
 
 ## 1.  Purpose
@@ -110,7 +110,7 @@ Neither the human nor the Teams client ever contacts the agent directly.
 - **Message Payload Limits**:
 	- Teams message size: 28 KB per message payload (varies by client and API).
 	- Adaptive Card JSON: 28 KB limit.
-	- Attachment handling: use Teams/Graph file upload for large artifacts.
+	- Attachment handling: use Teams/Graph file upload for large artefacts.
 
 - **Interaction Latency**:
 	- Synchronous model; expected human response: seconds to minutes.

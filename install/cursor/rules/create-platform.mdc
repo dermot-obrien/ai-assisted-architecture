@@ -1,0 +1,8 @@
+---
+description: Define a new Platform and executive ownership
+globs: platforms/**/*
+---
+
+When defining a new Platform, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-platform.md`.
+
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` before producing any artefact.

@@ -13,8 +13,8 @@ sidebar_position: 2
 | **Level** | `L2` | Capability group. |
 | **Parent** | `CAP-001` | Platform Foundations. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-001 Security](../../platforms/PL-001/) | Parent platform. |
 
 The organisation must be able to establish, verify, and govern the identities of all actors (human and non-human) and enforce access decisions consistently across every platform service. This capability group covers identity lifecycle management, authentication, authorisation, federation, and policy-based access control.
 

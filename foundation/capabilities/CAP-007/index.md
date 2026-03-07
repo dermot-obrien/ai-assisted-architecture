@@ -10,11 +10,13 @@ sidebar_position: 7
 |----------|-------|-------|
 | **Capability ID** | `CAP-007` | Unique identifier. |
 | **Capability Name** | Compliance Evidence & Reporting | Human-readable name. |
+| **Realizes Outcome**| [OC-004 Continuous Compliance Audit](../../../strategy/outcomes.md#oc-004-continuous-compliance-audit) | Primary strategic goal. |
+| **Enables Use Case**| [UC-003 Real-time Policy Decision Evaluation](../../../strategy/use-cases.md#uc-003-real-time-policy-decision-evaluation) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-003` | Operational Intelligence. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-003 Governance & Compliance](../../platforms/PL-003/) | Parent platform. |
 
 The organisation must be able to collect, store, and report on compliance evidence — audit trails, policy decision records, configuration snapshots, and access reviews — to demonstrate adherence to regulatory and internal obligations at any point in time.
 

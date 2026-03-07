@@ -1,0 +1,235 @@
+<mxfile host="draw.io" modified="2026-03-08T00:00:00.000Z" agent="draw.io" version="24.0.0" type="device">
+  <diagram id="use-cases-overview" name="Use Cases Overview">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Foundation Use Cases — Outcome-to-ABB Traceability" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="460" y="20" width="1000" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-001-badge" value="OC-001" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=#3A4A99;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="220" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-001-label" value="Security Posture" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#4B5BAA;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="220" y="130" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-002-badge" value="OC-002" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4B5BAA;fontColor=#FFFFFF;strokeColor=#3A4A99;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="540" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-002-label" value="Zero-Trust Automation" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#4B5BAA;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="540" y="130" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-003-badge" value="OC-003" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B72CF;fontColor=#FFFFFF;strokeColor=#8A61BE;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-003-label" value="Operational Visibility" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#9B72CF;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="130" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-004-badge" value="OC-004" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B86B9A;fontColor=#FFFFFF;strokeColor=#A75A89;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="90" width="120" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="oc-004-label" value="Compliance Assurance" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=10;fontColor=#B86B9A;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="130" width="120" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1A1A2E;strokeWidth=2;arcSize=6;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="480" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-header" value="UC-001  Automated Workload Identity Provisioning" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1A1A2E;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=Helvetica;arcSize=0;strokeColor=none;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="480" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-actor-badge" value="Developer / Pipeline" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EAF6;fontColor=#1A1A2E;fontSize=11;fontFamily=Helvetica;strokeColor=#C5CAE9;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="100" y="258" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-actor-label" value="Primary Actor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#666666;fontFamily=Helvetica;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="250" y="258" width="80" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-scenario" value="&lt;b&gt;Scenario&lt;/b&gt;&lt;br&gt;New AI agent deployed; automatic identity principal provisioning; unique identity binding; short-lived token issuance." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="295" width="460" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-criteria" value="&lt;b&gt;Success Criteria&lt;/b&gt;&lt;br&gt;- Pod receives valid OIDC token at startup&lt;br&gt;- No static secrets stored or transmitted&lt;br&gt;- Identity binding auditable in IAM logs" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="90" y="360" width="460" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-001-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#22C55E;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="420" y="510" width="100" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1A1A2E;strokeWidth=2;arcSize=6;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="480" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-header" value="UC-002  Cross-Context Request Tracing" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1A1A2E;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=Helvetica;arcSize=0;strokeColor=none;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="720" y="200" width="480" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-actor-badge" value="SRE / Support" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;fontColor=#1A1A2E;fontSize=11;fontFamily=Helvetica;strokeColor=#E1BEE7;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="740" y="258" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-actor-label" value="Primary Actor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#666666;fontFamily=Helvetica;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="890" y="258" width="80" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-scenario" value="&lt;b&gt;Scenario&lt;/b&gt;&lt;br&gt;User reports slow response; operator traces request ID through Identity, AI Reasoning, and Data Storage contexts." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="730" y="295" width="460" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-criteria" value="&lt;b&gt;Success Criteria&lt;/b&gt;&lt;br&gt;- Trace ID persists across context boundaries&lt;br&gt;- Visualization shows latency per span&lt;br&gt;- Root cause identifiable within 5 minutes" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="730" y="360" width="460" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-002-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#22C55E;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="510" width="100" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1A1A2E;strokeWidth=2;arcSize=6;shadow=1;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="200" width="480" height="350" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-header" value="UC-003  Real-time Policy Decision Evaluation" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1A1A2E;fontColor=#FFFFFF;fontSize=16;fontStyle=1;fontFamily=Helvetica;arcSize=0;strokeColor=none;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1360" y="200" width="480" height="45" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-actor-badge" value="System Component" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;fontColor=#1A1A2E;fontSize=11;fontFamily=Helvetica;strokeColor=#F8BBD0;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1380" y="258" width="140" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-actor-label" value="Primary Actor" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=9;fontColor=#666666;fontFamily=Helvetica;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="1530" y="258" width="80" height="28" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-scenario" value="&lt;b&gt;Scenario&lt;/b&gt;&lt;br&gt;Building block receives data export request; calls Policy Decision Service; evaluates identity, data classification, risk posture." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="295" width="460" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-criteria" value="&lt;b&gt;Success Criteria&lt;/b&gt;&lt;br&gt;- Evaluation completes in under 10 ms&lt;br&gt;- Decision logged in Observability context&lt;br&gt;- Policy version recorded with each decision" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;spacing=6;" vertex="1" parent="1">
+          <mxGeometry x="1370" y="360" width="460" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="uc-003-status" value="APPROVED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#22C55E;fontColor=#FFFFFF;fontSize=11;fontStyle=1;fontFamily=Helvetica;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="510" width="100" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="ab-001-badge" value="AB-001  IAM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A2E;fontColor=#FFFFFF;strokeColor=#0D0D17;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="230" y="620" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="ab-002-badge" value="AB-002  Observability" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A2E;fontColor=#FFFFFF;strokeColor=#0D0D17;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="870" y="620" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="ab-003-badge" value="AB-003  Governance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A2E;fontColor=#FFFFFF;strokeColor=#0D0D17;fontSize=13;fontStyle=1;fontFamily=Helvetica;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="1510" y="620" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-oc001-uc001" style="edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;dashPattern=8 4;strokeColor=#1A1A2E;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oc-001-badge" target="uc-001-card">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-oc001-uc001-label" value="supports" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=2;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-oc001-uc001">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-oc002-uc001" style="edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;dashPattern=8 4;strokeColor=#1A1A2E;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oc-002-badge" target="uc-001-card">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-oc002-uc001-label" value="supports" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=2;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-oc002-uc001">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-oc003-uc002" style="edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;dashPattern=8 4;strokeColor=#1A1A2E;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oc-003-badge" target="uc-002-card">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-oc003-uc002-label" value="supports" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=2;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-oc003-uc002">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-oc001-uc003" style="edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;dashPattern=8 4;strokeColor=#1A1A2E;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oc-001-badge" target="uc-003-card">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="170"/>
+              <mxPoint x="1480" y="170"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-oc001-uc003-label" value="supports" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=2;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-oc001-uc003">
+          <mxGeometry x="0.6" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-oc004-uc003" style="edgeStyle=orthogonalEdgeStyle;rounded=1;dashed=1;dashPattern=8 4;strokeColor=#1A1A2E;strokeWidth=1.5;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="oc-004-badge" target="uc-003-card">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-oc004-uc003-label" value="supports" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=2;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-oc004-uc003">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-uc001-ab001" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="uc-001-card" target="ab-001-badge">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-uc001-ab001-label" value="realised by" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=1;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-uc001-ab001">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-uc002-ab002" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="uc-002-card" target="ab-002-badge">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-uc002-ab002-label" value="realised by" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=1;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-uc002-ab002">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow-uc003-ab003" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="uc-003-card" target="ab-003-badge">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="arrow-uc003-ab003-label" value="realised by" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#1A1A2E;fontFamily=Helvetica;fontStyle=1;labelBackgroundColor=#FFFFFF;" vertex="1" connectable="0" parent="arrow-uc003-ab003">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-border" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#CCCCCC;strokeWidth=1;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="700" width="1760" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-title" value="Legend" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=13;fontStyle=1;fontColor=#1A1A2E;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="100" y="705" width="60" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-security-swatch" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#4B5BAA;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="180" y="712" width="20" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-security-text" value="Security" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="205" y="705" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-operations-swatch" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="290" y="712" width="20" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-operations-text" value="Operations" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="315" y="705" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-compliance-swatch" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#B86B9A;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="410" y="712" width="20" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-compliance-text" value="Compliance" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="435" y="705" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-abb-swatch" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="540" y="712" width="20" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-abb-text" value="ABB Badge" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="565" y="705" width="80" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-approved-swatch" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#22C55E;strokeColor=none;arcSize=40;" vertex="1" parent="1">
+          <mxGeometry x="660" y="712" width="20" height="16" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-approved-text" value="Approved" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="685" y="705" width="70" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-dashed-line" value="" style="endArrow=classic;dashed=1;dashPattern=8 4;strokeColor=#1A1A2E;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="820" y="720" as="sourcePoint"/>
+            <mxPoint x="900" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-dashed-text" value="supports (Outcome to Use Case)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="910" y="705" width="220" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-solid-line" value="" style="endArrow=classic;strokeColor=#1A1A2E;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1160" y="720" as="sourcePoint"/>
+            <mxPoint x="1240" y="720" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-solid-text" value="realised by (Use Case to ABB)" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#333333;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="705" width="210" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="legend-row-label" value="Layers:  Top = Outcomes  |  Middle = Use Cases  |  Bottom = Architecture Building Blocks" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=11;fontColor=#666666;fontFamily=Helvetica;" vertex="1" parent="1">
+          <mxGeometry x="100" y="738" width="600" height="25" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

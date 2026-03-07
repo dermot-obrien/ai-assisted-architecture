@@ -13,8 +13,8 @@ sidebar_position: 9
 | **Level** | `L2` | Capability group. |
 | **Parent** | `CAP-001` | Platform Foundations. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-011 Infrastructure](../../platforms/PL-011/) | Parent platform. |
 
 The organisation must be able to run and scale workloads on resilient, policy-governed infrastructure services. This capability group covers compute runtime orchestration, storage lifecycle management, and shared infrastructure controls needed by every platform service.
 
@@ -86,7 +86,7 @@ As an L2 capability, CAP-009 does not map directly to ABBs. Its ABB mappings are
 
 ### 4.2  ABB Mapping
 
-See [CAP-012](../CAP-012/) (Compute Runtime & Scheduling) and [CAP-013](../CAP-013/) (Data Storage & Lifecycle Management) for L3 mappings.
+See [CAP-012](../CAP-012/) (Compute Runtime & Scheduling), [CAP-013](../CAP-013/) (Data Storage & Lifecycle Management), [CAP-014](../CAP-014/) (Network Connectivity & Security), and [CAP-044](../CAP-044/) (Service Mesh & Connectivity) for L3 mappings.
 
 ### 4.3  Gaps
 
@@ -99,6 +99,8 @@ Gaps are documented at the L3 level in individual capability documents.
 |---------------|------|-------|----------|
 | [CAP-012](../CAP-012/) | Compute Runtime & Scheduling | L3 | 1 |
 | [CAP-013](../CAP-013/) | Data Storage & Lifecycle Management | L3 | 1 |
+| [CAP-014](../CAP-014/) | Network Connectivity & Security | L3 | 1 |
+| [CAP-044](../CAP-044/) | Service Mesh & Connectivity | L3 | 1 |
 
 
 ## 6  Revision History

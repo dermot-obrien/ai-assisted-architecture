@@ -13,15 +13,16 @@ sidebar_position: 1
 | **SBB ID** | `SB-001` | Unique identifier. |
 | **SBB Name** | Identity Lifecycle Service (Entra) | Human-readable name. |
 | **Short Name** | Entra IAM | Used in diagrams. |
+| **Realizes ABB**| [AB-001 Identity & Access Management](../../architecture-building-blocks/AB-001/) | Parent logical model. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `APPROVED` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Security` | Logical grouping. |
 
 ---
 
 ## 1  Purpose
 
-This SBB realises the logical [AB-001 Identity & Access Management](../../architecture-building-blocks/AB-001/) using **Microsoft Entra ID** (formerly Azure AD). It provides the core mechanism for assigning and managing identities for AI agents, services, and human users within the cloud-native ecosystem. This SBB specifically leverages **Entra Workload ID** to achieve credential-less authentication for compute resources.
+This SBB realises the logical [AB-001 Identity & Access Management](../../architecture-building-blocks/AB-001/) using **Microsoft Entra ID**. It provides the core mechanism for assigning and managing identities for AI agents, services, and human users within the cloud-native ecosystem. 
 
 ---
 
@@ -66,40 +67,24 @@ The diagram below shows the physical realisation of the IAM ABB using Entra ID s
 4. **Issuance**. Entra STS issues a short-lived OIDC/OAuth JWT token.
 5. **Consumption**. The workload presents the token to a target building block.
 
-### 2.5  Identity & Access Management
-
-- **Entra ID**. The primary identity provider for this SBB.
-- **Workload ID**. Provides credential-less identity for services and agents.
-- **Managed Identities**. Native Azure resource identities managed by the platform.
-
-### 2.6  Observability
-
-- **Entra Sign-in Logs**. Capture every authentication attempt and outcome.
-- **Entra Audit Logs**. Record every change to the directory and policies.
-- **Diagnostic Settings**. Stream logs to the Observability Bounded Context.
-
-### 2.7  Governance & Policy Enforcement
-
-- **Conditional Access**. Enforces MFA and location-based rules.
-- **Entra PIM**. Governs administrative elevation.
-- **Access Reviews**. Automates the attestation of role assignments.
-
-### 2.8  Cloud-Specific Constraints
-
-- **Tenant Quotas**. Service principal and object limits per Entra tenant.
-- **FIC Latency**. Propagation time for new federated credential trust relationships.
-
 ---
 
 ## 3  Interfaces
 
 ### 3.1  Overview
 
-| ID | Direction | Type | Description (SBB-specific) |
-|----|-----------|------|---------------------------|
-| **I1** | Service → Entra STS | HTTPS | OIDC/OAuth token request. |
-| **I6** | K8s/Cloud → Entra | FIC | Federated Credential Exchange. |
-| **I8** | Entra → Log Analytics | Diagnostic | Event streaming to observability. |
+| ID | Direction | Type | Description (SBB-specific realisation) |
+|----|-----------|------|-----------------------------------------|
+| **I1** | Consumer → STS | HTTPS | OIDC/OAuth 2.0 token request to Entra STS v2.0 endpoint. |
+| **I2** | STS → Consumer | HTTPS | Issued JWT token containing claims (tid, oid, sub, scp, roles). |
+| **I3** | Consumer → STS | HTTPS | Token validation via Entra OpenID Connect metadata and JWKS. |
+| **I4** | Consumer → CA | Internal | Request evaluation against Entra Conditional Access policy set. |
+| **I5** | CA → Consumer | Decision | Real-time allow/block/MFA-step-up signal returned to consumer. |
+| **I6** | Workload → STS | HTTPS | Federated Credential Exchange (FIC) using signed platform assertions. |
+| **I7** | Ext IdP → Entra | OIDC/SAML | B2B/Federated trust with external identity providers. |
+| **I8** | Entra → Log Analytics | Diagnostic | Real-time streaming of sign-in and audit logs via Diagnostic Settings. |
+| **I9** | Entra → Workbooks | Compliance | Structured data feeds into Azure Monitor compliance dashboards. |
+| **I10**| Admin → Entra | Graph API | Programmatic or portal-based directory and policy management. |
 
 ---
 
@@ -113,18 +98,6 @@ The diagram below shows the physical realisation of the IAM ABB using Entra ID s
 ### 4.2  Policy mapping
 
 - **Zero Trust Policy** → Enforced via Entra CA and FIC.
-
----
-
-## 5. ABB Traceability
-
-This SBB realizes [AB-001 Identity & Access Management](../../architecture-building-blocks/AB-001/) using Microsoft Entra ID. Every logical component defined in the ABB is mapped to an Entra ID product or service.
-
-| ABB Capability | SBB Realisation |
-|----------------|-----------------|
-| Identity Provisioning | Entra ID Provisioning and Graph API. |
-| Workload Identity | Entra Workload ID with FIC. |
-| Authorisation | Entra RBAC and Conditional Access. |
 
 ---
 

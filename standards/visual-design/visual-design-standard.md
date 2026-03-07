@@ -3,7 +3,7 @@ document_type: standards
 title: "Visual Design Standards for AI Agents"
 classification: internal
 version: 1.0
-status: approved
+status: draft
 created: 2024-10-01
 last_modified: 2026-03-07
 owner: "Architecture Team"
@@ -30,7 +30,6 @@ tags:
   - presentations
   - colours
   - typography
----
 
 # Visual Design Standards for AI Agents
 
@@ -46,7 +45,6 @@ All agents MUST use these standards when generating:
 
 These standards are mandatory and are intended to be machine-consumable.
 
----
 
 ## Table of Contents
 
@@ -63,7 +61,6 @@ These standards are mandatory and are intended to be machine-consumable.
 11. [AI Agent Self-Verification Checklist](#ai-agent-self-verification-checklist)
 12. [Quick Reference](#quick-reference)
 
----
 
 ## Colour Identifier System
 
@@ -100,7 +97,6 @@ Examples:
 
 Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1.1.
 
----
 
 ## Colour Standards
 
@@ -209,7 +205,6 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 <add as="Colour_4.4" value="#38BDF8"/>
 ```
 
----
 
 ## Colour Usage Rules
 
@@ -232,7 +227,6 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 - Do not use `2.5` as an error status colour; use `4.3`.
 - Do not rely on colour alone to encode meaning.
 
----
 
 ## Web UI State Tokens
 
@@ -262,7 +256,6 @@ State rules:
 - Focus style must include a visible 2px ring.
 - Body links remain underlined in default and hover.
 
----
 
 ## Component Colour Mappings
 
@@ -281,7 +274,6 @@ Rules:
 - Long alert text should use neutral surfaces (`1.3`/`3.4`) with semantic border/icon.
 - Full semantic fills are for compact badges/chips/short labels.
 
----
 
 ## Data Visualisation Palettes
 
@@ -326,7 +318,6 @@ Rules:
 - Do not use semantic colours as normal categories in the same chart.
 - On light backgrounds, use 2px+ lines and/or outlines for low-contrast hues.
 
----
 
 ## Colour-Blind-Safe Chart Rules
 
@@ -338,7 +329,6 @@ Rules:
 - For more than 6 series, prefer direct labelling, grouping, or small multiples.
 - Validate readability in grayscale and at least one red-green simulation before release.
 
----
 
 ## Exemplar Principle Check
 
@@ -353,7 +343,6 @@ This standard aligns with common high-quality visual journalism and design-syste
 
 This is principle-level alignment only. It is not intended to mimic another organisation's exact brand colours.
 
----
 
 ## Typography Standards
 
@@ -376,7 +365,6 @@ This is principle-level alignment only. It is not intended to mimic another orga
 - Diagram labels: 12-14pt, Bold, `3.1`
 - Annotation text: 10-11pt, Regular, `3.2`
 
----
 
 ## Diagram Standards
 
@@ -405,7 +393,6 @@ Accessibility:
 - Non-text contrast minimum 3:1
 - Do not use colour-only status coding; include labels/symbols
 
----
 
 ## AI Agent Self-Verification Checklist
 
@@ -419,7 +406,6 @@ Before finalising visual output:
 6. Confirm web states/components follow this standard when applicable.
 7. Confirm chart palette type matches chart purpose (categorical/sequential/diverging).
 
----
 
 ## Quick Reference
 

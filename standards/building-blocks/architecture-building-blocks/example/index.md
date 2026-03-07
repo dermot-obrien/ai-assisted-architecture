@@ -13,7 +13,7 @@ sidebar_position: 4
 | **ABB Name** | Human-in-the-Loop |
 | **Short Name** | HITL |
 | **Version** | `1.0.0` |
-| **Status** | `DRAFT` |
+| **Status** | `draft`|
 | **Category** | `Messaging & Integration` |
 
 
@@ -157,7 +157,7 @@ Defines what the human sees and how they interact:
 Specifies how human input (approval clicks, form submissions, text replies) flows back to the agent via normalised I2 payloads. Ensures the agent receives consistent input regardless of channel.
 
 **Dwell & Escalation Policies**  
-Channel-specific timing and fallback behavior:
+Channel-specific timing and fallback behaviour:
 - Email: May have hours/days dwell time; define timeout windows and escalation recipients
 - Teams: Typically synchronous; define conversation expiry and re-engagement patterns
 

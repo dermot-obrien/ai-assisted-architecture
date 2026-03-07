@@ -13,8 +13,10 @@ sidebar_position: 5
 | **ABB Name** | Event Streaming & Messaging | Human-readable name of the building block. |
 | **Short Name** | ESM | Used in diagrams and cross-references. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Integration` | Logical grouping. |
+| **Parent Bounded Context** | [Integration Bounded Context](../../../contexts/integration-context.md) | Domain boundary for integration concerns. |
+| **Parent Capability** | [CAP-011 Event Streaming & Asynchronous Integration](../../../capabilities/CAP-011/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for asynchronous event transport, event contract governance, and delivery-assurance controls across platform services.
 
@@ -28,7 +30,9 @@ This ABB provides the shared asynchronous integration backbone for decoupled com
 
 ### 2.1  Component Diagram
 
-Canonical component structure is defined in this document. Diagram artefacts for specific workspaces are expected to be generated in workspace copies of this ABB.
+The diagram below shows the asynchronous integration boundary across event transport, contract governance, and delivery assurance responsibilities. Producer and consumer actors are shown outside the ABB boundary, with IAM, observability, and governance controls represented as mandatory cross-cutting sub-ABBs.
+
+![AB-005 Event Streaming & Messaging Component Diagram](./components.png)
 
 ### 2.2  Fundamental functionality
 
@@ -154,4 +158,3 @@ Each SBB should define delivery semantics, throughput bounds, retention ceilings
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | AB-005 Event Streaming & Messaging ABB created. |
-

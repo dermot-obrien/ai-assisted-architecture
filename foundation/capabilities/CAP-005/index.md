@@ -10,11 +10,13 @@ sidebar_position: 5
 |----------|-------|-------|
 | **Capability ID** | `CAP-005` | Unique identifier. |
 | **Capability Name** | Policy-Based Access Control | Human-readable name. |
+| **Realizes Outcome**| [OC-001 Zero Trust Workload Posture](../../../strategy/outcomes.md#oc-001-zero-trust-workload-posture) | Primary strategic goal. |
+| **Enables Use Case**| [UC-003 Real-time Policy Decision Evaluation](../../../strategy/use-cases.md#uc-003-real-time-policy-decision-evaluation) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-002` | Identity & Access. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-001 Security](../../platforms/PL-001/) | Parent platform. |
 
 The organisation must be able to make and enforce access decisions based on policies that evaluate identity attributes, resource classification, risk signals, and contextual factors — ensuring that every action is authorised before execution, consistently across all building blocks.
 

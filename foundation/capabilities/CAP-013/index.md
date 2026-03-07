@@ -13,8 +13,8 @@ sidebar_position: 13
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-009` | Infrastructure Services. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-011 Infrastructure](../../platforms/PL-011/) | Parent platform. |
 
 The organisation must be able to persist, protect, retain, and recover data across storage types using standard lifecycle controls aligned to performance, cost, and compliance requirements.
 

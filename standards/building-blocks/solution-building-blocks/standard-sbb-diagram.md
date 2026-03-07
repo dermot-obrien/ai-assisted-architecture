@@ -3,7 +3,7 @@ document_type: standards
 title: "Solution Building Block (SBB) — Draw.io Diagram Standard"
 classification: internal
 version: 1.0
-status: approved
+status: draft
 created: 2024-10-01
 last_modified: 2026-03-07
 owner: "Architecture Team"
@@ -11,19 +11,16 @@ triggers:
   - "Designing or modifying SBB implementation diagrams"
   - "Mapping products / services to ABB capabilities"
   - "Reviewing vendor / platform solution boundaries"
----
 
 # Solution Building Block (SBB) — Draw.io Diagram Standard
 
 This standard defines the visual conventions for SBB diagrams and **extends** the [ABB Diagram Standard](../architecture-building-blocks/standard-abb-diagram.md). All ABB styles apply unless overridden here.
 
----
 
 ## Canvas
 
 SBB diagrams use the same canvas dimensions as ABB diagrams: **960 x 1080**, background `1.3`, grid 10px, margins 40-50px. This half-slide format allows the diagram to sit alongside a summary panel in a standard 1920 x 1080 presentation.
 
----
 
 ## SBB-Specific Hierarchy
 
@@ -54,7 +51,6 @@ The container label names the **specific vendor/product**, not the abstract conc
 
 Components inside these containers follow standard Level 1 / Level 2 colour roles and MUST have ABB ref badges tracing to the parent ABB's cross-cutting components.
 
----
 
 ## SBB Colour Assignments (Tokens)
 
@@ -74,7 +70,6 @@ Components inside these containers follow standard Level 1 / Level 2 colour role
 | Identity-linked stroke override | — | `2.1` | — |
 | Policy-linked stroke override | — | `2.5` | — |
 
----
 
 ## AI Agent Self-Verification Checklist
 
@@ -88,7 +83,6 @@ Before finalising an SBB diagram, verify:
 6. [ ] **Token Accuracy**: Did you use the `.3` suffix for 20% tints (e.g. `1.1.3`)?
 7. [ ] **Legend**: Does the legend include ABB Ref Badge, Platform container swatches, and all three cross-cutting container stroke colours?
 
----
 
 ## Quick Reference Style Snippet (Agent)
 

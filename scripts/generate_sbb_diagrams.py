@@ -1,150 +1,136 @@
 import os
 
-def create_drawio_xml(title, platform_name, components, interfaces, legend_elements):
+def create_sbb_drawio(sbb_id, sbb_name, platform_name, platform_color, components, interfaces):
     xml = [
-        '<mxfile host="Electron" agent="Mozilla/5.0" version="21.6.8">',
-        f'  <diagram id="diagram-1" name="{title}">',
+        '<mxfile host="Electron" agent="Mozilla/5.0" version="29.5.2">',
+        f'  <diagram id="{sbb_id}-diagram" name="{sbb_name}">',
         '    <mxGraphModel dx="1426" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">',
         '      <root>',
         '        <mxCell id="0" />',
-        '        <mxCell id="1" parent="0" />'
+        '        <mxCell id="1" parent="0" />',
+        # SBB Boundary
+        f'        <mxCell id="sbb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">',
+        '          <mxGeometry height="930" width="880" x="40" y="40" as="geometry" />',
+        '        </mxCell>',
+        # SBB Label
+        f'        <mxCell id="sbb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;SBB: {sbb_id} {sbb_name}&lt;/b&gt;" vertex="1">',
+        '          <mxGeometry height="22" width="450" x="60" y="42" as="geometry" />',
+        '        </mxCell>',
+        # Platform Container
+        f'        <mxCell id="platform-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor={platform_color};strokeWidth=2;" value="" vertex="1">',
+        '          <mxGeometry height="530" width="800" x="80" y="100" as="geometry" />',
+        '        </mxCell>',
+        f'        <mxCell id="platform-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor={platform_color};strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;{platform_name}&lt;/b&gt;" vertex="1">',
+        '          <mxGeometry height="24" width="250" x="86" y="104" as="geometry" />',
+        '        </mxCell>'
     ]
-    
-    # SBB Boundary
-    xml.append(f'''        <mxCell id="sbb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="930" width="880" x="40" y="40" as="geometry" />
-        </mxCell>
-        <mxCell id="sbb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;SBB: {title}&lt;/b&gt;" vertex="1">
-          <mxGeometry height="30" width="450" x="60" y="40" as="geometry" />
-        </mxCell>''')
-
-    # Platform Container
-    xml.append(f'''        <mxCell id="platform" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="600" width="800" x="80" y="100" as="geometry" />
-        </mxCell>
-        <mxCell id="platform-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;{platform_name}&lt;/b&gt;" vertex="1">
-          <mxGeometry height="30" width="300" x="90" y="100" as="geometry" />
-        </mxCell>''')
 
     # Components
-    base_x = 120
-    base_y = 160
-    col_width = 240
-    row_height = 100
-    
     for i, comp in enumerate(components):
-        row = i // 3
-        col = i % 3
-        x = base_x + (col * col_width)
-        y = base_y + (row * row_height)
+        cid = comp['id']
+        x, y = comp['x'], comp['y']
+        w, h = comp['w'], comp['h']
         
-        comp_id = f"comp-{i}"
+        fill = "#1A1A2E" if comp.get('primary', True) else "#A5ADD4"
+        font_col = "#FFFFFF" if comp.get('primary', True) else "#2C3038"
+        hr_col = "#8D8D97" if comp.get('primary', True) else "#BFC5CC"
         
-        # Determine styling
-        fill = "#1A1A2E"
-        stroke = "#2C3038"
-        text_col = "#FFFFFF"
-        if "Secondary" in comp.get('type', ''):
-            fill = "#A5ADD4"
-            stroke = "#6B7280"
-            text_col = "#2C3038"
-            
-        xml.append(f'''        <mxCell id="{comp_id}" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor={fill};strokeColor={stroke};strokeWidth=2;fontFamily=Helvetica;fontColor={text_col};verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;{comp['name']}&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;{comp['desc']}" vertex="1">
-          <mxGeometry height="80" width="220" x="{x}" y="{y}" as="geometry" />
+        xml.append(f'''        <mxCell id="{cid}" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor={fill};strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor={font_col};verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;{comp['name']}&lt;/b&gt;&lt;hr style=&quot;border-color:{hr_col};&quot;/&gt;{comp['desc']}" vertex="1">
+          <mxGeometry height="{h}" width="{w}" x="{x}" y="{y}" as="geometry" />
         </mxCell>''')
         
-        xml.append(f'''        <mxCell id="badge-{i}" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: {comp['abb']}" vertex="1">
-          <mxGeometry height="14" width="100" x="{x+110}" y="{y-7}" as="geometry" />
+        # ABB Ref Badge
+        xml.append(f'''        <mxCell id="badge-{cid}" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: {comp['abb']}" vertex="1">
+          <mxGeometry height="14" width="100" x="{x+w-110}" y="{y+7}" as="geometry" />
         </mxCell>''')
 
-    # Interfaces (mock arrows just to show connectivity exists)
-    for i, interface in enumerate(interfaces):
-        src = f"comp-{interface['src']}" if isinstance(interface['src'], int) else interface['src']
-        tgt = f"comp-{interface['tgt']}" if isinstance(interface['tgt'], int) else interface['tgt']
-        
-        xml.append(f'''        <mxCell id="edge-{i}" edge="1" parent="1" source="{src}" target="{tgt}" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;">
+    # Interfaces (Edges)
+    for i, edge in enumerate(interfaces):
+        xml.append(f'''        <mxCell id="edge-{i}" edge="1" parent="1" source="{edge['src']}" target="{edge['tgt']}" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX={edge.get('exitX', 0.5)};exitY={edge.get('exitY', 1)};entryX={edge.get('entryX', 0.5)};entryY={edge.get('entryY', 0)};">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>''')
+        if 'label' in edge:
+            lx, ly = edge.get('lx', 0), edge.get('ly', 0)
+            xml.append(f'''        <mxCell id="label-{i}" parent="1" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;{edge['label']}&lt;/b&gt;" vertex="1">
+              <mxGeometry height="15" width="80" x="{lx}" y="{ly}" as="geometry" />
+            </mxCell>''')
 
-    # Cross-cutting containers at bottom
-    xml.append(f'''        <mxCell id="cont-iam" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="160" width="240" x="80" y="750" as="geometry" />
+    # Cross-Cutting (Simplified for brevity but consistent with example)
+    xml.append('''        <mxCell id="iam-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="162" width="250" x="80" y="750" as="geometry" />
         </mxCell>
         <mxCell id="iam-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Identity &amp;amp; Access&lt;/b&gt;" vertex="1">
-          <mxGeometry height="23" width="160" x="90" y="755" as="geometry" />
-        </mxCell>''')
-        
-    xml.append(f'''        <mxCell id="cont-obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="160" width="240" x="360" y="750" as="geometry" />
+          <mxGeometry height="23" width="160" x="86" y="757" as="geometry" />
         </mxCell>
-        <mxCell id="obs-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Observability&lt;/b&gt;" vertex="1">
-          <mxGeometry height="23" width="120" x="370" y="755" as="geometry" />
+        <mxCell id="obs-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="162" width="250" x="355" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;Observability&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="140" x="361" y="757" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="162" width="250" x="630" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;Governance &amp;amp; Policy&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="180" x="636" y="757" as="geometry" />
         </mxCell>''')
 
-    xml.append(f'''        <mxCell id="cont-gov" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="160" width="240" x="640" y="750" as="geometry" />
+    # Legend
+    xml.append('''        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="110" width="880" x="40" y="980" as="geometry" />
         </mxCell>
-        <mxCell id="gov-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Governance &amp;amp; Policy&lt;/b&gt;" vertex="1">
-          <mxGeometry height="23" width="160" x="650" y="755" as="geometry" />
+        <mxCell id="legend-lbl" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="15" width="60" x="50" y="985" as="geometry" />
         </mxCell>''')
 
-    xml.append('''      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>''')
-    
+    xml.append('      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>')
     return "\n".join(xml)
 
-
-# Data for SB-001
+# Detailed data for SB-001
 sb1_comps = [
-    {"name": "Entra ID Tenant", "desc": "Cloud directory for all principals.", "abb": "Identity Store", "type": "Primary"},
-    {"name": "Entra ID Provisioning", "desc": "SCIM-based provisioning and Graph API.", "abb": "Identity Provisioning", "type": "Secondary"},
-    {"name": "Entra Workload ID", "desc": "Managed identities and federated credentials.", "abb": "Credential Mgmt", "type": "Primary"},
-    {"name": "Entra STS (v2.0)", "desc": "OIDC and OAuth 2.0 endpoints.", "abb": "Token Issuance", "type": "Primary"},
-    {"name": "Entra Token Validation", "desc": "Middleware-based validation of JWTs.", "abb": "Token Validation", "type": "Secondary"},
-    {"name": "Entra MFA", "desc": "Authenticator app, FIDO2, and SMS.", "abb": "MFA", "type": "Secondary"},
-    {"name": "Entra Conditional Access", "desc": "Signal-based access policy engine.", "abb": "Policy Engine", "type": "Primary"},
-    {"name": "Entra RBAC / App Roles", "desc": "Scoped application and directory roles.", "abb": "Role Mgmt", "type": "Secondary"},
-    {"name": "Entra B2B / Federation", "desc": "SAML/OIDC federation with external IdPs.", "abb": "Identity Federation", "type": "Secondary"},
+    {"id": "tenant", "name": "Entra ID Tenant", "abb": "Identity Store", "desc": "Central directory for principals.", "x": 100, "y": 160, "w": 220, "h": 90, "primary": True},
+    {"id": "sts", "name": "Entra STS", "abb": "Token Issuance", "desc": "OIDC/OAuth 2.0 security token service.", "x": 100, "y": 300, "w": 220, "h": 90, "primary": True},
+    {"id": "workload", "name": "Entra Workload ID", "abb": "Workload ID", "desc": "FIC exchange for agent identity.", "x": 360, "y": 300, "w": 220, "h": 90, "primary": True},
+    {"id": "ca", "name": "Conditional Access", "abb": "Policy Engine", "desc": "Real-time signal evaluation.", "x": 620, "y": 300, "w": 220, "h": 90, "primary": True}
+]
+sb1_edges = [
+    {"src": "workload", "tgt": "sts", "exitX": 0, "exitY": 0.5, "entryX": 1, "entryY": 0.5, "label": "I6 FIC", "lx": 320, "ly": 330},
+    {"src": "sts", "tgt": "tenant", "exitX": 0.5, "exitY": 0, "entryX": 0.5, "entryY": 1, "label": "Lookup", "lx": 170, "ly": 260},
+    {"src": "ca", "tgt": "sts", "exitX": 0, "exitY": 0.5, "entryX": 1, "entryY": 0.75, "label": "Policy", "lx": 580, "ly": 350}
 ]
 
-# Data for SB-002
+# Detailed data for SB-002
 sb2_comps = [
-    {"name": "OTel OTLP Receiver", "desc": "Ingests spans from instrumented services.", "abb": "Trace Collector", "type": "Primary"},
-    {"name": "OTel Prometheus Receiver", "desc": "Pulls or pushes metrics into collector.", "abb": "Metrics Collector", "type": "Secondary"},
-    {"name": "OTel Filelog Receiver", "desc": "Collects container and system logs.", "abb": "Log Aggregator", "type": "Secondary"},
-    {"name": "Azure Monitor Ingestion", "desc": "Secure ingestion of tamper-evident logs.", "abb": "Audit Ingestion", "type": "Primary"},
-    {"name": "Azure Monitor (App Insights)", "desc": "Automatic correlation via TraceID.", "abb": "Signal Correlation", "type": "Primary"},
-    {"name": "OTel Attributes Processor", "desc": "Adds domain, environment, version tags.", "abb": "Enrichment", "type": "Secondary"},
-    {"name": "Log Analytics Workspace", "desc": "Standard operational signal storage.", "abb": "Warm Storage", "type": "Primary"},
-    {"name": "Azure Managed Grafana", "desc": "Visualisation of metrics and traces.", "abb": "Dashboard Engine", "type": "Primary"},
-    {"name": "Azure Action Groups", "desc": "Routes alerts to email, SMS, Logic Apps.", "abb": "Notification Router", "type": "Secondary"},
+    {"id": "collector", "name": "OTel Collector", "abb": "Signal Collector", "desc": "Ingestion pipeline for OTLP telemetry.", "x": 100, "y": 160, "w": 220, "h": 90, "primary": True},
+    {"id": "insights", "name": "App Insights", "abb": "Correlation", "desc": "Distributed trace analysis engine.", "x": 360, "y": 160, "w": 220, "h": 90, "primary": True},
+    {"id": "log-analytics", "name": "Log Analytics", "abb": "Signal Storage", "desc": "KQL-queried repository for logs.", "x": 620, "y": 160, "w": 220, "h": 90, "primary": True},
+    {"id": "grafana", "name": "Managed Grafana", "abb": "Dashboarding", "desc": "Visualisation of OTLP and KQL data.", "x": 360, "y": 300, "w": 220, "h": 90, "primary": False}
+]
+sb2_edges = [
+    {"src": "collector", "tgt": "insights", "exitX": 1, "exitY": 0.5, "entryX": 0, "entryY": 0.5, "label": "I1 OTLP", "lx": 320, "ly": 190},
+    {"src": "insights", "tgt": "log-analytics", "exitX": 1, "exitY": 0.5, "entryX": 0, "entryY": 0.5, "label": "Export", "lx": 580, "ly": 190},
+    {"src": "grafana", "tgt": "log-analytics", "exitX": 1, "exitY": 0.5, "entryX": 0.5, "entryY": 1, "label": "I5 KQL", "lx": 600, "ly": 330}
 ]
 
-# Data for SB-003
+# Detailed data for SB-003
 sb3_comps = [
-    {"name": "OPA Engine (pdp-service)", "desc": "Core Rego evaluation unit.", "abb": "Policy Decision Pt", "type": "Primary"},
-    {"name": "OPA Bundle Service", "desc": "Distributes signed policy bundles via HTTP.", "abb": "Policy Distribution", "type": "Primary"},
-    {"name": "VS Code with OPA Plugin", "desc": "Rego policy development and unit testing.", "abb": "Policy Authoring", "type": "Secondary"},
-    {"name": "GitHub (Version Control)", "desc": "Version-controlled source for Rego files.", "abb": "Policy Repository", "type": "Secondary"},
-    {"name": "Envoy Proxy / OPA SDK", "desc": "Intercepts requests and calls OPA API.", "abb": "Enforcement Adapter", "type": "Primary"},
-    {"name": "OPA Decision Logs", "desc": "Structured JSON logs of every evaluation.", "abb": "Evidence Collector", "type": "Primary"},
-    {"name": "GitHub Actions", "desc": "Enforces review/approval before merging.", "abb": "Change Governance", "type": "Secondary"},
+    {"id": "pdp", "name": "OPA Engine", "abb": "Policy Decision Pt", "desc": "Rego evaluation unit (pdp-service).", "x": 100, "y": 160, "w": 220, "h": 90, "primary": True},
+    {"id": "bundle", "name": "Bundle Service", "abb": "Distribution", "desc": "Serves signed Rego policy bundles.", "x": 360, "y": 160, "w": 220, "h": 90, "primary": True},
+    {"id": "evidence", "name": "Decision Logs", "abb": "Evidence Collector", "desc": "Structured evaluation logs for audit.", "x": 100, "y": 300, "w": 220, "h": 90, "primary": True}
+]
+sb3_edges = [
+    {"src": "pdp", "tgt": "bundle", "exitX": 1, "exitY": 0.25, "entryX": 0, "entryY": 0.25, "label": "I4 Sync", "lx": 320, "ly": 170},
+    {"src": "pdp", "tgt": "evidence", "exitX": 0.5, "exitY": 1, "entryX": 0.5, "entryY": 0, "label": "I8 Log", "lx": 170, "ly": 260}
 ]
 
-def write_files():
-    xml1 = create_drawio_xml("Identity Lifecycle Service (Entra)", "Microsoft Entra ID", sb1_comps, [], [])
-    with open("foundation/building-blocks/solution-building-blocks/SB-001/components.drawio", "w", encoding="utf-8") as f:
-        f.write(xml1)
-        
-    xml2 = create_drawio_xml("Observability Ingestion Service (OTel)", "OpenTelemetry & Azure Monitor", sb2_comps, [], [])
-    with open("foundation/building-blocks/solution-building-blocks/SB-002/components.drawio", "w", encoding="utf-8") as f:
-        f.write(xml2)
-        
-    xml3 = create_drawio_xml("Policy Decision Service (OPA)", "Open Policy Agent", sb3_comps, [], [])
-    with open("foundation/building-blocks/solution-building-blocks/SB-003/components.drawio", "w", encoding="utf-8") as f:
-        f.write(xml3)
+# Write files
+with open("foundation/building-blocks/solution-building-blocks/SB-001/components.drawio", "w", encoding="utf-8") as f:
+    f.write(create_sbb_drawio("SB-001", "Identity Lifecycle Service (Entra)", "Microsoft Entra ID", "#4B5BAA", sb1_comps, sb1_edges))
 
-write_files()
-print("DrawIO XML files generated.")
+with open("foundation/building-blocks/solution-building-blocks/SB-002/components.drawio", "w", encoding="utf-8") as f:
+    f.write(create_sbb_drawio("SB-002", "Observability Ingestion Service (OTel)", "OpenTelemetry & Azure", "#4A90D9", sb2_comps, sb2_edges))
+
+with open("foundation/building-blocks/solution-building-blocks/SB-003/components.drawio", "w", encoding="utf-8") as f:
+    f.write(create_sbb_drawio("SB-003", "Policy Decision Service (OPA)", "Open Policy Agent", "#C4724E", sb3_comps, sb3_edges))
+
+print("Regenerated SBB diagrams with high fidelity and valid XML.")

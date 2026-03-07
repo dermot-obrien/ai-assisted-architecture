@@ -13,8 +13,8 @@ sidebar_position: 10
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-008` | Integration Services. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
-| **Domain** | Platform Foundations | L1 domain. |
+| **Status** | `draft`| Current lifecycle status. |
+| **Platform** | [PL-010 Integration](../../platforms/PL-010/) | Parent platform. |
 
 The organisation must be able to expose, secure, transform, and govern synchronous service interfaces through standard API mediation patterns and enforceable interface contracts.
 

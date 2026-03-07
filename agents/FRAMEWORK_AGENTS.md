@@ -7,10 +7,11 @@ This file defines top-level discovery and precedence rules for AI agents working
 | Skill | Claude Code | Cursor / Copilot | Description |
 |-------|-------------|-------------------|-------------|
 | Create Outcome/UC | `/create-strategy` | `@create-strategy` | Strategic and operational layer creation. |
+| Create Platform | `/create-platform` | `@create-platform` | Defining business platforms and strategic ownership. |
 | Create Capability | `/create-capability` | `@create-capability` | End-to-end capability creation and maturity mapping. |
 | Create Context | `/create-context` | `@create-context` | Defining Bounded Contexts and linguistic boundaries. |
 | Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: logical structure and diagrams. |
-| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: product mapping and realization. |
+| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: product mapping and realisation. |
 | Create Service | `/create-service` | `@create-service` | Runtime unit of execution definition. |
 
 ## Scripts
@@ -26,6 +27,7 @@ Always load these standards before creating or modifying artefacts:
 
 - **Visual design standard** - search the workspace for a folder named `visual-design` containing `visual-design-standard.md`. If found, load it. If not found, fall back to `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`.
 - `.ai-assisted-architecture/standards/strategy/standard-strategy.md`
+- `.ai-assisted-architecture/standards/platforms/platform-standard.md`
 - `.ai-assisted-architecture/standards/capabilities/standard-capability-document.md`
 - `.ai-assisted-architecture/standards/capabilities/standard-capability-diagram.md`
 - `.ai-assisted-architecture/standards/contexts/standard-bounded-context.md`
@@ -39,7 +41,9 @@ Always load these standards before creating or modifying artefacts:
 ## Scope Routing
 
 - For business outcomes and use cases, apply `standard-strategy.md` via `create-strategy.md`.
+- For business platforms, apply `platform-standard.md` via `create-platform.md`.
 - For capability documents, apply `standard-capability-document.md` via `create-capability.md`.
+- For capability diagrams (maps and traceability matrices), apply `standard-capability-diagram.md`.
 - For bounded context definitions, apply `standard-bounded-context.md` via `create-context.md`.
 - For ABB narrative/content documents, apply `standard-abb-document.md` via `create-abb.md`.
 - For SBB narrative/content documents, apply `standard-sbb-document.md` via `create-sbb.md`.
@@ -48,7 +52,7 @@ Always load these standards before creating or modifying artefacts:
 
 ## Enforcement Rules
 
-- Traceability requirements (**Outcome → Use Case → Capability → Context → ABB → SBB → Service**) must be applied to every new artefact.
+- Traceability requirements (**Outcome → Use Case → Platform → Capability → Context → ABB → SBB → Service**) must be applied to every new artefact.
 - Colour references must use identifiers (e.g., `1.1`) from the visual design standard.
 - Cross-references must use folder-relative paths and must not append `/index.md`.
 

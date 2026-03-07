@@ -1,5 +1,6 @@
 <mxfile host="Electron" modified="2026-03-07T23:45:00.000Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" version="21.6.8" type="device">
-  <mxGraphModel dx="960" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="960" pageHeight="1080" math="0" shadow="0">
+  <diagram id="sbb-summary" name="SB-001 Summary Panel">
+    <mxGraphModel dx="960" dy="1080" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" math="0" shadow="0">
     <root>
       <mxCell id="0" />
       <mxCell id="1" parent="0" />
@@ -8,4 +9,5 @@
       </mxCell>
     </root>
   </mxGraphModel>
+  </diagram>
 </mxfile>

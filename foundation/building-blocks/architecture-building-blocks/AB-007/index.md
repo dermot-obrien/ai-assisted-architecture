@@ -13,8 +13,10 @@ sidebar_position: 7
 | **ABB Name** | Storage & Persistence Platform | Human-readable name of the building block. |
 | **Short Name** | SPP | Used in diagrams and cross-references. |
 | **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `DRAFT` | Current lifecycle status. |
+| **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Infrastructure` | Logical grouping. |
+| **Parent Bounded Context** | [Infrastructure Bounded Context](../../../contexts/infrastructure-context.md) | Domain boundary for persistence infrastructure concerns. |
+| **Parent Capability** | [CAP-013 Data Storage & Lifecycle Management](../../../capabilities/CAP-013/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for structured and unstructured data persistence, lifecycle policy enforcement, durability, and recovery.
 
@@ -28,7 +30,9 @@ This ABB provides shared storage capabilities so workloads can persist and recov
 
 ### 2.1  Component Diagram
 
-Canonical component structure is defined in this document. Diagram artefacts for specific workspaces are expected to be generated in workspace copies of this ABB.
+The diagram below shows the storage and persistence boundary across persistence services, lifecycle management, and recovery responsibilities. Workload and operator actors are external to the ABB boundary, with IAM, observability, and governance controls represented as mandatory cross-cutting sub-ABBs.
+
+![AB-007 Storage & Persistence Platform Component Diagram](./components.png)
 
 ### 2.2  Fundamental functionality
 
@@ -154,4 +158,3 @@ Each SBB should define storage performance limits, retention ceilings, replicati
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | AB-007 Storage & Persistence Platform ABB created. |
-

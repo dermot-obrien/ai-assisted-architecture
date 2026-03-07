@@ -17,7 +17,7 @@ This folder contains seed capability content that can be copied into a workspace
 
 ## Archive
 
-- `archive/`: Historical/working diagram artifacts.
+- `archive/`: Historical/working diagram artefacts.
 
 ## Editing Rule
 
