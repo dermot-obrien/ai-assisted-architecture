@@ -1,418 +1,418 @@
-<mxfile host="65bd71144e">
-    <diagram id="hitl-sbb-teams-v2" name="HITL SBB -- Microsoft Teams (AWS)">
-        <mxGraphModel dx="2210" dy="1139" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
-            <root>
-                <mxCell id="0"/>
-                <mxCell id="1" parent="0"/>
-                <mxCell id="sbb-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=none;strokeColor=#4C1D95;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="20" y="119" width="1010" height="930" as="geometry"/>
-                </mxCell>
-                <mxCell id="sbb-label" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;SBB: Human-in-the-Loop -- Microsoft Teams&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4C1D95;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="46" y="126" width="454" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="agent-cont" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F2F1F5;strokeColor=#C07850;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="58" y="162" width="282" height="530" as="geometry"/>
-                </mxCell>
-                <mxCell id="agent-lbl" value="&lt;b&gt;AI Agent (AWS)&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#C07850;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="64" y="166" width="216" height="24" as="geometry"/>
-                </mxCell>
-                <mxCell id="orchestration" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Agent Orchestration&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color:#A58ECA;&quot;/&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Graph or Strands framework. Manages the reasoning loop, tool invocation, and state transitions. Pauses when human input is needed.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4C1D95;strokeColor=#2D2B3A;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="70" y="200" width="250" height="96" as="geometry"/>
-                </mxCell>
-                <mxCell id="v8" value="ABB: Agent Orchestration" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="212" y="207" width="100" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="reasoning" value="&lt;b&gt;Reasoning &amp;amp; Inference&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Amazon Bedrock (Claude / Nova) or self-hosted model. Generates responses, decisions, and plans.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="70" y="316" width="250" height="76" as="geometry"/>
-                </mxCell>
-                <mxCell id="v10" value="ABB: Reasoning &amp;amp; Inference" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="204" y="322" width="110" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="conv-state" value="&lt;b&gt;Conversation State&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Amazon DynamoDB or Aurora. Persists dialogue history, ConversationReference objects, pending approvals, and thread context.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="70" y="406" width="250" height="82" as="geometry"/>
-                </mxCell>
-                <mxCell id="v12" value="ABB: Conversation State" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="209" y="415" width="100" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="channel-abs" value="&lt;b&gt;Channel Abstraction&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Teams SDK / M365 Agents SDK CloudAdapter. Normalises Bot Framework Activity protocol. Runs in the AWS-hosted agent process.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C4C2CC;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="70" y="503" width="250" height="82" as="geometry"/>
-                </mxCell>
-                <mxCell id="v14" value="ABB: Channel Abstraction" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="212" y="511" width="100" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="agent-identity" value="&lt;b&gt;Agent Identity&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Entra Agent ID (non-human). Paired with AWS IAM role for local resource access. No stored secrets.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6B8F3A;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="70" y="600" width="250" height="78" as="geometry"/>
-                </mxCell>
-                <mxCell id="v16" value="ABB: Agent Identity" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="230" y="609" width="80" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="e17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="orchestration" target="reasoning" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="e18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="reasoning" target="conv-state" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="e19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="conv-state" target="channel-abs" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="channel-cont" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F2F1F5;strokeColor=#4C1D95;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="458" y="150" width="240" height="340" as="geometry"/>
-                </mxCell>
-                <mxCell id="channel-lbl" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Microsoft Teams&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4C1D95;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="468" y="156" width="216" height="45" as="geometry"/>
-                </mxCell>
-                <mxCell id="msg-routing" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Azure AI Bot Service&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #A58ECA;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Teams channel connector. Delivers proactive messages (via ConversationReference) and routes inbound activities to the agent HTTPS endpoint on AWS.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4C1D95;strokeColor=#2D2B3A;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="208" width="198" height="105" as="geometry"/>
-                </mxCell>
-                <mxCell id="v23" value="ABB: Message Routing" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="600" y="213" width="66" height="23.5" as="geometry"/>
-                </mxCell>
-                <mxCell id="msg-present" value="&lt;b&gt;Adaptive Cards&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Renders approval requests as interactive cards (v1.5+). Action.Execute for Universal Actions. Cross-client compatible.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="327" width="198" height="88" as="geometry"/>
-                </mxCell>
-                <mxCell id="v25" value="ABB: Msg Presentation" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="584" y="335" width="90" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="threading" value="&lt;b&gt;Teams Threading&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color:#6E6B7B;&quot;&gt;Activity Protocol. ConversationReference and reply chains for continuity.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F2F1F5;strokeColor=#C4C2CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="421" width="198" height="64" as="geometry"/>
-                </mxCell>
-                <mxCell id="e27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="msg-routing" target="msg-present" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="compute-cont" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F2F1F5;strokeColor=#C07850;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="457" y="505" width="237" height="226" as="geometry"/>
-                </mxCell>
-                <mxCell id="compute-lbl" value="&lt;b&gt;AWS Compute&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#C07850;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="463" y="509" width="214" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="runtime" value="&lt;b&gt;EKS / Agent Core&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Agent runs in a Kubernetes pod (shared namespace) or Agent Core container. HTTPS ingress via ALB for /api/messages.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="466" y="552" width="209" height="87" as="geometry"/>
-                </mxCell>
-                <mxCell id="v31" value="ABB: Agent Runtime" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="584" y="560" width="84" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="workload-id" value="&lt;b&gt;AWS IAM (IRSA / Pod ID)&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;IAM Roles for Service Accounts. Credential-less access to Bedrock, DynamoDB, Secrets Manager.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6B8F3A;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="466" y="650" width="209" height="76" as="geometry"/>
-                </mxCell>
-                <mxCell id="v33" value="ABB: Workload Identity" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="601" y="655" width="66" height="18" as="geometry"/>
-                </mxCell>
-                <mxCell id="iam-cont" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F2F1F5;strokeColor=#6B8F3A;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="58" y="759" width="443" height="162" as="geometry"/>
-                </mxCell>
-                <mxCell id="gov-cont" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F2F1F5;strokeColor=#E8637A;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="510" y="759" width="190" height="162" as="geometry"/>
-                </mxCell>
-                <mxCell id="gov-lbl" value="&lt;b&gt;Governance &amp;amp; Policy&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#E8637A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="515" y="766" width="180" height="23" as="geometry"/>
-                </mxCell>
-                <mxCell id="iam-lbl" value="&lt;b&gt;Microsoft Entra ID&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#6B8F3A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" parent="1" vertex="1">
-                    <mxGeometry x="64" y="766" width="240" height="23" as="geometry"/>
-                </mxCell>
-                <mxCell id="v36" value="ABB: Identity &amp;amp; Access Mgmt" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="327" y="770.5" width="113" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="id-prov" value="&lt;b&gt;Entra Agent ID&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Purpose-built agent identity. Lifecycle mgmt, sponsor assignment, blueprints.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="77" y="801" width="143" height="109" as="geometry"/>
-                </mxCell>
-                <mxCell id="authn" value="&lt;b&gt;OAuth 2.0 / OIDC&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Token issuance via client credentials. Federated to AWS IRSA via OIDC trust.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="230" y="801" width="130" height="109" as="geometry"/>
-                </mxCell>
-                <mxCell id="authz" value="&lt;b&gt;RBAC &amp;amp; Scoped Perms&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Graph API least-privilege. Agent-specific roles and consent framework.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="366" y="800" width="134" height="109" as="geometry"/>
-                </mxCell>
-                <mxCell id="gov-policy" value="&lt;b&gt;Conditional Access&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Agent-aware CA policies, risk-based blocking, DLP connector policies.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#E8637A;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="510" y="800" width="158" height="109" as="geometry"/>
-                </mxCell>
-                <mxCell id="v-gov" value="ABB: Governance &amp;amp; Policy" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="577" y="770.5" width="110" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="human" value="&lt;b style=&quot;font-size:18px;color:#FFFFFF;&quot;&gt;Human&lt;/b&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#4C1D95;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="900" y="180" width="100" height="90" as="geometry"/>
-                </mxCell>
-                <mxCell id="h-teams" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4C1D95;strokeWidth=2;endArrow=open;endSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="human" target="teams-ui" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="teams-h" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C07850;strokeWidth=2;endArrow=open;endSize=8;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="teams-ui" target="human" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i3-out" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4C1D95;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.4;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" parent="1" source="teams-ui" target="msg-routing" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="810" y="329"/>
-                            <mxPoint x="810" y="234"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="i3-label" value="&lt;b&gt;I3&lt;/b&gt;  Card rendered" style="text;html=1;align=center;verticalAlign=bottom;fontSize=11;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="770" y="210" width="120" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="i4-in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C07850;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" parent="1" source="msg-routing" target="teams-ui" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i4-label" value="&lt;b&gt;I4&lt;/b&gt;  User action" style="text;html=1;align=center;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#C07850;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="730" y="350" width="120" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="i1-out" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#4C1D95;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" parent="1" source="channel-abs" target="msg-routing" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i1-label" value="&lt;b&gt;I1&lt;/b&gt;  Proactive message&lt;br/&gt;&lt;i&gt;Approval Adaptive Card&lt;/i&gt;" style="text;html=1;align=left;verticalAlign=bottom;fontSize=11;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="358" y="202.5" width="102" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="i2-in" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C07850;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.65;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="msg-routing" target="channel-abs" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="430" y="276"/>
-                            <mxPoint x="430" y="565"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="i2-label" value="&lt;b&gt;I2&lt;/b&gt;  Action.Execute&lt;br/&gt;&lt;i&gt;Approve / Reject&lt;/i&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#C07850;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="348" y="565" width="105" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="i5-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#6B8F3A;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.213;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="agent-identity" target="iam-cont" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i5-label" value="&lt;b&gt;I5&lt;/b&gt;  Agent ID token" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#6B8F3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="204" y="735" width="136" height="13" as="geometry"/>
-                </mxCell>
-                <mxCell id="i6-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#6B8F3A;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.796;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="workload-id" target="iam-cont" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i6-label" value="&lt;b&gt;I6&lt;/b&gt;  OIDC federation" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#6B8F3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="419.5" y="735.5" width="136" height="13" as="geometry"/>
-                </mxCell>
-                <mxCell id="i7-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#E8637A;strokeWidth=2;dashed=1;dashPattern=1 2;endArrow=open;endSize=6;exitX=0.996;exitY=0.338;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="gov-policy" target="msg-routing" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <Array as="points">
-                            <mxPoint x="720" y="837"/>
-                            <mxPoint x="720" y="260"/>
-                        </Array>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="i7-label" value="&lt;b&gt;I7&lt;/b&gt;  Conditional Access" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#E8637A;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="737.5" y="450" width="72.5" height="13" as="geometry"/>
-                </mxCell>
-                <mxCell id="obs-cont" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F2F1F5;strokeColor=#A78BFA;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="797" y="500" width="226" height="510" as="geometry"/>
-                </mxCell>
-                <mxCell id="obs-lbl" value="&lt;b&gt;&lt;font style=&quot;color: rgb(15, 10, 30);&quot;&gt;Observability&lt;/font&gt;&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#0F0A1E;fillColor=#A78BFA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="801" y="504" width="219" height="40" as="geometry"/>
-                </mxCell>
-                <mxCell id="conv-recorder" value="&lt;b&gt;&lt;font style=&quot;color: rgb(15, 10, 30);&quot;&gt;CloudWatch + X-Ray&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #4C1D95;&quot;&gt;&lt;font style=&quot;color: rgb(15, 10, 30);&quot;&gt;Records every exchange. Custom metrics, distributed tracing across agent, Bedrock, and DynamoDB.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A78BFA;strokeColor=#2D2B3A;strokeWidth=2;fontFamily=Helvetica;fontColor=#0F0A1E;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="812" y="553" width="200" height="88" as="geometry"/>
-                </mxCell>
-                <mxCell id="v62" value="ABB: Conversation Recorder" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="928.75" y="558" width="79" height="20" as="geometry"/>
-                </mxCell>
-                <mxCell id="audit-trail" value="&lt;b&gt;Purview Audit Log&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Microsoft Purview captures Teams bot interactions for eDiscovery and regulatory review. Immutable.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D3C5FC;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="812" y="655" width="200" height="85" as="geometry"/>
-                </mxCell>
-                <mxCell id="v64" value="ABB: Audit Trail" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="936.5" y="659" width="68" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="telemetry" value="&lt;b&gt;CloudWatch Dashboards&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;SLA tracking, latency, throughput, error rates. Alarms for bot endpoint health.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D3C5FC;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="812" y="753" width="200" height="78" as="geometry"/>
-                </mxCell>
-                <mxCell id="compliance-rpt" value="&lt;b&gt;Compliance Reporting&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;QuickSight or Power BI dashboards. Data-retention policies; GDPR / AI Act aligned.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D3C5FC;strokeColor=#E8637A;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="812" y="845" width="200" height="72" as="geometry"/>
-                </mxCell>
-                <mxCell id="v67" value="ABB: Compliance Reporting" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="934" y="850.5" width="75" height="19" as="geometry"/>
-                </mxCell>
-                <mxCell id="entra-logs" value="&lt;b&gt;Entra Agent ID Logs&lt;/b&gt;&lt;hr style=&quot;border-color:#C4C2CC;&quot;/&gt;&lt;font style=&quot;color: rgb(45, 43, 58);&quot;&gt;Agent sign-in logs, risk events, and Conditional Access evaluation results.&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D3C5FC;strokeColor=#6E6B7B;strokeWidth=2;fontFamily=Helvetica;fontColor=#2D2B3A;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="812" y="940" width="200" height="62" as="geometry"/>
-                </mxCell>
-                <mxCell id="e69" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="conv-recorder" target="audit-trail" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="e70" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="audit-trail" target="telemetry" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="e71" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="telemetry" target="compliance-rpt" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="e72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2D2B3A;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="compliance-rpt" target="entra-logs" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i10-edge" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#E8637A;strokeWidth=2;dashed=1;dashPattern=1 2;endArrow=open;endSize=6;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="compliance-rpt" target="gov-policy" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="i10-label" value="&lt;b&gt;I10&lt;/b&gt; Compliance Data" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#E8637A;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="705" y="895" width="53" height="13" as="geometry"/>
-                </mxCell>
-                <mxCell id="stub-A" value="" style="endArrow=none;strokeColor=#A78BFA;strokeWidth=2;dashed=1;dashPattern=1 1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="orchestration" target="badge-A-src" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="badge-A-src" value="A" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="27" y="237" width="22" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="badge-A-tgt" value="A" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="785" y="578" width="22" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="desc-A" value="&lt;i&gt;Conversation events&lt;/i&gt;" style="text;html=1;align=right;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#A78BFA;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="714" y="583" width="69" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="stub-B" value="" style="endArrow=none;strokeColor=#A78BFA;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="678.0000000000002" y="217.25" as="sourcePoint"/>
-                        <mxPoint x="740" y="217" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="badge-B-src" value="B" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="737.5" y="207" width="22" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="badge-B-tgt" value="B" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="785" y="619" width="22" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="desc-B" value="&lt;i&gt;Delivery events&lt;/i&gt;" style="text;html=1;align=right;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#A78BFA;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="714" y="623" width="62" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="stub-C" value="" style="endArrow=none;strokeColor=#A78BFA;strokeWidth=2;dashed=1;dashPattern=1 1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="conv-state" target="badge-C-src" edge="1">
-                    <mxGeometry relative="1" as="geometry"/>
-                </mxCell>
-                <mxCell id="badge-C-src" value="C" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="27" y="436" width="22" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="badge-C-tgt" value="C" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" parent="1" vertex="1">
-                    <mxGeometry x="785" y="690" width="22" height="22" as="geometry"/>
-                </mxCell>
-                <mxCell id="desc-C" value="&lt;i&gt;State snapshots&lt;/i&gt;" style="text;html=1;align=right;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#A78BFA;fillColor=none;strokeColor=none;whiteSpace=wrap;" parent="1" vertex="1">
-                    <mxGeometry x="731" y="694" width="52" height="14" as="geometry"/>
-                </mxCell>
-                <mxCell id="legend-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F2F1F5;strokeColor=#C4C2CC;strokeWidth=1;" parent="1" vertex="1">
-                    <mxGeometry x="55" y="931" width="715" height="110" as="geometry"/>
-                </mxCell>
-                <mxCell id="v88" value="&lt;b&gt;Legend&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="67" y="929" width="49" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v89" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#4C1D95;strokeColor=#2D2B3A;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="67" y="958" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v90" value="L1 - Primary" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="87" y="955" width="90" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v91" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E9D3A1;strokeColor=#6E6B7B;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="67" y="974" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v92" value="L2 - Secondary" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="87" y="971" width="92" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v93" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C4C2CC;strokeColor=#6E6B7B;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="67" y="990" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v94" value="Adapter / boundary" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="87" y="987" width="95" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v95" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A78BFA;strokeColor=#2D2B3A;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="67" y="1006" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v96" value="Observability (primary)" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="87" y="1003" width="97" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="la1" value="" style="endArrow=open;endSize=6;strokeColor=#4C1D95;strokeWidth=2;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="220" y="963" as="sourcePoint"/>
-                        <mxPoint x="251" y="963" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="v98" value="Outbound" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="257" y="955" width="55" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="la2" value="" style="endArrow=open;endSize=6;strokeColor=#C07850;strokeWidth=2;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="220" y="979" as="sourcePoint"/>
-                        <mxPoint x="251" y="979" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="v100" value="Inbound" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="257" y="971" width="55" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="la3" value="" style="endArrow=open;endSize=6;strokeColor=#6B8F3A;strokeWidth=2;dashed=1;dashPattern=1 1;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="220" y="995" as="sourcePoint"/>
-                        <mxPoint x="251" y="995" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="v102" value="Identity / auth" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="257" y="987" width="70" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="la4" value="" style="endArrow=open;endSize=6;strokeColor=#E8637A;strokeWidth=2;dashed=1;dashPattern=1 1;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="220" y="1011" as="sourcePoint"/>
-                        <mxPoint x="251" y="1011" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="v104" value="Policy enforcement" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="257" y="1003" width="80" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="la5" value="" style="endArrow=open;endSize=6;strokeColor=#2D2B3A;strokeWidth=2;" parent="1" edge="1">
-                    <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="355" y="963" as="sourcePoint"/>
-                        <mxPoint x="386" y="963" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
-                <mxCell id="v106" value="Internal dep." style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="392" y="955" width="65" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v107" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#6B8F3A;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="355" y="978" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v108" value="IAM stroke (2.1)" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="375" y="975" width="80" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v109" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D3C5FC;strokeColor=#6E6B7B;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="355" y="994" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v110" value="Observability (secondary)" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="375" y="991" width="75" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="leg-gov-stroke" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#E8637A;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="355" y="1010" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="leg-gov-txt" value="Gov. &amp; Policy stroke (2.5)" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="375" y="1007" width="90" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="leg-obs-stroke" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#A78BFA;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="355" y="1026" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="leg-obs-stroke-txt" value="Observability stroke (2.4)" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="375" y="1023" width="90" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v111" value="X" style="ellipse;whiteSpace=wrap;html=1;fillColor=#A78BFA;strokeColor=none;fontFamily=Helvetica;fontColor=#0F0A1E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;fontSize=9;" parent="1" vertex="1">
-                    <mxGeometry x="227" y="1010" width="16" height="16" as="geometry"/>
-                </mxCell>
-                <mxCell id="v112" value="Obs. connector" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="249" y="1007" width="80" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v113" value="ABB ref" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#4C1D95;fillColor=#DBD2EA;strokeColor=#4C1D95;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="958" width="42" height="12" as="geometry"/>
-                </mxCell>
-                <mxCell id="v114" value="Traceability to ABB" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="528" y="955" width="100" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v115" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#0F0A1E;strokeColor=#4C1D95;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="978" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v116" value="External system" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="500" y="975" width="110" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v117" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F2F1F5;strokeColor=#4C1D95;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="994" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v118" value="Primary platform" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="500" y="991" width="100" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="v119" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F2F1F5;strokeColor=#C07850;strokeWidth=2;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="1010" width="15" height="9" as="geometry"/>
-                </mxCell>
-                <mxCell id="v120" value="Secondary platform" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2D2B3A;fillColor=none;strokeColor=none;" parent="1" vertex="1">
-                    <mxGeometry x="500" y="1007" width="80" height="15" as="geometry"/>
-                </mxCell>
-                <mxCell id="teams-ui" value="&lt;font&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Microsoft Teams&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;color: rgb(255, 255, 255); font-size: 9px;&quot;&gt;Client + Service&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#0F0A1E;strokeColor=#4C1D95;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;fontSize=11;" parent="1" vertex="1">
-                    <mxGeometry x="890" y="307" width="120" height="55" as="geometry"/>
-                </mxCell>
-            </root>
-        </mxGraphModel>
-    </diagram>
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram id="hitl-sbb-teams-v2" name="HITL SBB -- Microsoft Teams (AWS)">
+    <mxGraphModel dx="2852" dy="1682" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sbb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="930" width="1010" x="20" y="124" as="geometry" />
+        </mxCell>
+        <mxCell id="sbb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;SBB: Human-in-the-Loop -- Microsoft Teams&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="22" width="454" x="46" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#C4724E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="530" width="282" x="58" y="162" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#C4724E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;AI Agent (AWS)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="24" width="216" x="64" y="166" as="geometry" />
+        </mxCell>
+        <mxCell id="orchestration" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Agent Orchestration&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Graph or Strands framework. Manages the reasoning loop, tool invocation, and state transitions. Pauses when human input is needed.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="96" width="250" x="70" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="v8" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Agent Orchestration" vertex="1">
+          <mxGeometry height="14" width="100" x="212" y="207" as="geometry" />
+        </mxCell>
+        <mxCell id="reasoning" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Reasoning &amp;amp; Inference&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Amazon Bedrock (Claude / Nova) or self-hosted model. Generates responses, decisions, and plans.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="250" x="70" y="316" as="geometry" />
+        </mxCell>
+        <mxCell id="v10" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Reasoning &amp;amp; Inference" vertex="1">
+          <mxGeometry height="14" width="110" x="204" y="322" as="geometry" />
+        </mxCell>
+        <mxCell id="conv-state" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Conversation State&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Amazon DynamoDB or Aurora. Persists dialogue history, ConversationReference objects, pending approvals, and thread context.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="82" width="250" x="70" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="v12" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Conversation State" vertex="1">
+          <mxGeometry height="14" width="100" x="209" y="415" as="geometry" />
+        </mxCell>
+        <mxCell id="channel-abs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#BFC5CC;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Channel Abstraction&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Teams SDK / M365 Agents SDK CloudAdapter. Normalises Bot Framework Activity protocol. Runs in the AWS-hosted agent process.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="82" width="250" x="70" y="503" as="geometry" />
+        </mxCell>
+        <mxCell id="v14" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Channel Abstraction" vertex="1">
+          <mxGeometry height="14" width="100" x="212" y="511" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-identity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Agent Identity&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Entra Agent ID (non-human). Paired with AWS IAM role for local resource access. No stored secrets.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="78" width="250" x="70" y="600" as="geometry" />
+        </mxCell>
+        <mxCell id="v16" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Agent Identity" vertex="1">
+          <mxGeometry height="14" width="80" x="230" y="609" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="1" source="orchestration" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="reasoning" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="1" source="reasoning" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="conv-state" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="1" source="conv-state" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="channel-abs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="channel-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="340" width="240" x="458" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="channel-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Microsoft Teams&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="45" width="216" x="468" y="156" as="geometry" />
+        </mxCell>
+        <mxCell id="msg-routing" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Azure AI Bot Service&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #8D8D97;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Teams channel connector. Delivers proactive messages (via ConversationReference) and routes inbound activities to the agent HTTPS endpoint on AWS.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="105" width="198" x="480" y="208" as="geometry" />
+        </mxCell>
+        <mxCell id="v23" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" value="ABB: Message Routing" vertex="1">
+          <mxGeometry height="23.5" width="66" x="600" y="213" as="geometry" />
+        </mxCell>
+        <mxCell id="msg-present" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Adaptive Cards&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Renders approval requests as interactive cards (v1.5+). Action.Execute for Universal Actions. Cross-client compatible.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="198" x="480" y="327" as="geometry" />
+        </mxCell>
+        <mxCell id="v25" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Msg Presentation" vertex="1">
+          <mxGeometry height="14" width="90" x="584" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="threading" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Teams Threading&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color:#6B7280;&quot;&gt;Activity Protocol. ConversationReference and reply chains for continuity.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="64" width="198" x="480" y="421" as="geometry" />
+        </mxCell>
+        <mxCell id="e27" edge="1" parent="1" source="msg-routing" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="msg-present" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="compute-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#C4724E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="226" width="237" x="457" y="505" as="geometry" />
+        </mxCell>
+        <mxCell id="compute-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#C4724E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;AWS Compute&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="214" x="463" y="509" as="geometry" />
+        </mxCell>
+        <mxCell id="runtime" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;EKS / Agent Core&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Agent runs in a Kubernetes pod (shared namespace) or Agent Core container. HTTPS ingress via ALB for /api/messages.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="87" width="209" x="466" y="552" as="geometry" />
+        </mxCell>
+        <mxCell id="v31" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Agent Runtime" vertex="1">
+          <mxGeometry height="14" width="84" x="584" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="workload-id" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;AWS IAM (IRSA / Pod ID)&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;IAM Roles for Service Accounts. Credential-less access to Bedrock, DynamoDB, Secrets Manager.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="76" width="209" x="466" y="650" as="geometry" />
+        </mxCell>
+        <mxCell id="v33" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" value="ABB: Workload Identity" vertex="1">
+          <mxGeometry height="18" width="66" x="601" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="162" width="443" x="58" y="759" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="162" width="190" x="510" y="759" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;Governance &amp;amp; Policy&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="180" x="515" y="766" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Microsoft Entra ID&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="146" x="64" y="766" as="geometry" />
+        </mxCell>
+        <mxCell id="v36" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Identity &amp;amp; Access Mgmt" vertex="1">
+          <mxGeometry height="14" width="113" x="376.5" y="770.5" as="geometry" />
+        </mxCell>
+        <mxCell id="id-prov" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;Entra Agent ID&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Purpose-built agent identity. Lifecycle mgmt, sponsor assignment, blueprints.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="109" width="143" x="77" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="authn" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;OAuth 2.0 / OIDC&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Token issuance via client credentials. Federated to AWS IRSA via OIDC trust.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="109" width="130" x="230" y="801" as="geometry" />
+        </mxCell>
+        <mxCell id="authz" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=12;align=left;fontSize=10;" value="&lt;b&gt;RBAC &amp;amp; Scoped Perms&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Graph API least-privilege. Agent-specific roles and consent framework.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="109" width="134" x="366" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-policy" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#B86B9A;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Conditional Access&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Agent-aware CA policies, risk-based blocking, DLP connector policies.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="109" width="158" x="510" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="v-gov" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" value="ABB: Governance &amp;amp; Policy" vertex="1">
+          <mxGeometry height="29" width="50" x="672" y="760.5" as="geometry" />
+        </mxCell>
+        <mxCell id="human" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;" value="&lt;b style=&quot;font-size:18px;color:#FFFFFF;&quot;&gt;Human&lt;/b&gt;" vertex="1">
+          <mxGeometry height="90" width="100" x="900" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="h-teams" edge="1" parent="1" source="human" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="teams-ui" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="teams-h" edge="1" parent="1" source="teams-ui" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" target="human" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i3-out" edge="1" parent="1" source="teams-ui" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.4;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="msg-routing" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="329" />
+              <mxPoint x="810" y="234" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i3-label" parent="1" style="text;html=1;align=center;verticalAlign=bottom;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I3&lt;/b&gt;  Card rendered" vertex="1">
+          <mxGeometry height="15" width="120" x="770" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="i4-in" edge="1" parent="1" source="msg-routing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.8;entryDx=0;entryDy=0;" target="teams-ui" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i4-label" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;fillColor=none;strokeColor=none;" value="&lt;b&gt;I4&lt;/b&gt;  User action" vertex="1">
+          <mxGeometry height="15" width="120" x="730" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="i1-out" edge="1" parent="1" source="channel-abs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="msg-routing" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=bottom;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I1&lt;/b&gt;  Proactive message&lt;br/&gt;&lt;i&gt;Approval Adaptive Card&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="102" x="358" y="202.5" as="geometry" />
+        </mxCell>
+        <mxCell id="i2-in" edge="1" parent="1" source="msg-routing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;exitX=0;exitY=0.65;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="channel-abs" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="276" />
+              <mxPoint x="430" y="565" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I2&lt;/b&gt;  Action.Execute&lt;br/&gt;&lt;i&gt;Approve / Reject&lt;/i&gt;" vertex="1">
+          <mxGeometry height="40" width="105" x="348" y="565" as="geometry" />
+        </mxCell>
+        <mxCell id="i5-edge" edge="1" parent="1" source="agent-identity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.213;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="iam-cont" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i5-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#4B5BAA;fillColor=none;strokeColor=none;" value="&lt;b&gt;I5&lt;/b&gt;  Agent ID token" vertex="1">
+          <mxGeometry height="13" width="136" x="204" y="735" as="geometry" />
+        </mxCell>
+        <mxCell id="i6-edge" edge="1" parent="1" source="workload-id" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.796;entryY=0.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="iam-cont" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i6-label" parent="1" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#4B5BAA;fillColor=none;strokeColor=none;" value="&lt;b&gt;I6&lt;/b&gt;  OIDC federation" vertex="1">
+          <mxGeometry height="13" width="136" x="542" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="i7-edge" edge="1" parent="1" source="gov-policy" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#B86B9A;strokeWidth=2;dashed=1;dashPattern=1 2;endArrow=open;endSize=6;exitX=0.996;exitY=0.338;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="msg-routing" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="837" />
+              <mxPoint x="730" y="261" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i7-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#B86B9A;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I7&lt;/b&gt;  Conditional Access" vertex="1">
+          <mxGeometry height="13" width="72.5" x="737.5" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-cont" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="510" width="226" x="797" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;Observability&lt;/font&gt;&lt;/b&gt;" vertex="1">
+          <mxGeometry height="40" width="219" x="801" y="504" as="geometry" />
+        </mxCell>
+        <mxCell id="conv-recorder" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#9B72CF;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#1A1A2E;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;CloudWatch + X-Ray&lt;/font&gt;&lt;/b&gt;&lt;hr style=&quot;border-color: #1A1A2E;&quot;&gt;&lt;font style=&quot;color: rgb(26, 26, 46);&quot;&gt;Records every exchange. Custom metrics, distributed tracing across agent, Bedrock, and DynamoDB.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="88" width="200" x="812" y="553" as="geometry" />
+        </mxCell>
+        <mxCell id="v62" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" value="ABB: Conversation Recorder" vertex="1">
+          <mxGeometry height="20" width="79" x="928.75" y="558" as="geometry" />
+        </mxCell>
+        <mxCell id="audit-trail" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Purview Audit Log&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Microsoft Purview captures Teams bot interactions for eDiscovery and regulatory review. Immutable.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="85" width="200" x="812" y="655" as="geometry" />
+        </mxCell>
+        <mxCell id="v64" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Audit Trail" vertex="1">
+          <mxGeometry height="14" width="68" x="936.5" y="659" as="geometry" />
+        </mxCell>
+        <mxCell id="telemetry" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;CloudWatch Dashboards&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;SLA tracking, latency, throughput, error rates. Alarms for bot endpoint health.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="78" width="200" x="812" y="753" as="geometry" />
+        </mxCell>
+        <mxCell id="compliance-rpt" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#B86B9A;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Compliance Reporting&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;QuickSight or Power BI dashboards. Data-retention policies; GDPR / AI Act aligned.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="72" width="200" x="812" y="845" as="geometry" />
+        </mxCell>
+        <mxCell id="v67" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;whiteSpace=wrap;" value="ABB: Compliance Reporting" vertex="1">
+          <mxGeometry height="19" width="75" x="934" y="850.5" as="geometry" />
+        </mxCell>
+        <mxCell id="entra-logs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="&lt;b&gt;Entra Agent ID Logs&lt;/b&gt;&lt;hr style=&quot;border-color:#BFC5CC;&quot;/&gt;&lt;font style=&quot;color: rgb(44, 48, 56);&quot;&gt;Agent sign-in logs, risk events, and Conditional Access evaluation results.&lt;/font&gt;" vertex="1">
+          <mxGeometry height="62" width="200" x="812" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="e69" edge="1" parent="1" source="conv-recorder" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="audit-trail" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e70" edge="1" parent="1" source="audit-trail" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="telemetry" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e71" edge="1" parent="1" source="telemetry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="compliance-rpt" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e72" edge="1" parent="1" source="compliance-rpt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#2C3038;strokeWidth=2;endArrow=open;endSize=6;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="entra-logs" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i10-edge" edge="1" parent="1" source="compliance-rpt" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#B86B9A;strokeWidth=2;dashed=1;dashPattern=1 2;endArrow=open;endSize=6;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" target="gov-policy" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="i10-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#B86B9A;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;b&gt;I10&lt;/b&gt; Compliance Data" vertex="1">
+          <mxGeometry height="13" width="53" x="705" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="stub-A" edge="1" parent="1" source="orchestration" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" target="badge-A-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-A-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="27" y="237" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-A-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="A" vertex="1">
+          <mxGeometry height="22" width="22" x="785" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="desc-A" parent="1" style="text;html=1;align=right;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Conversation events&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="69" x="717" y="583" as="geometry" />
+        </mxCell>
+        <mxCell id="stub-B" edge="1" parent="1" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="678.0000000000002" y="217.25" as="sourcePoint" />
+            <mxPoint x="740" y="217" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="badge-B-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="737.5" y="207" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-B-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="B" vertex="1">
+          <mxGeometry height="22" width="22" x="785" y="619" as="geometry" />
+        </mxCell>
+        <mxCell id="desc-B" parent="1" style="text;html=1;align=right;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;Delivery events&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="62" x="714" y="623" as="geometry" />
+        </mxCell>
+        <mxCell id="stub-C" edge="1" parent="1" source="conv-state" style="endArrow=none;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="badge-C-src" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-C-src" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="C" vertex="1">
+          <mxGeometry height="22" width="22" x="27" y="436" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-C-tgt" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;" value="C" vertex="1">
+          <mxGeometry height="22" width="22" x="785" y="690" as="geometry" />
+        </mxCell>
+        <mxCell id="desc-C" parent="1" style="text;html=1;align=right;verticalAlign=middle;fontSize=9;fontFamily=Helvetica;fontColor=#9B72CF;fillColor=none;strokeColor=none;whiteSpace=wrap;" value="&lt;i&gt;State snapshots&lt;/i&gt;" vertex="1">
+          <mxGeometry height="14" width="52" x="731" y="694" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="110" width="715" x="55" y="931" as="geometry" />
+        </mxCell>
+        <mxCell id="v88" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=14;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=none;strokeColor=none;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="15" width="49" x="67" y="929" as="geometry" />
+        </mxCell>
+        <mxCell id="v89" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="67" y="958" as="geometry" />
+        </mxCell>
+        <mxCell id="v90" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="L1 - Primary" vertex="1">
+          <mxGeometry height="15" width="90" x="87" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="v91" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="67" y="974" as="geometry" />
+        </mxCell>
+        <mxCell id="v92" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="L2 - Secondary" vertex="1">
+          <mxGeometry height="15" width="92" x="87" y="971" as="geometry" />
+        </mxCell>
+        <mxCell id="v93" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#BFC5CC;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="67" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="v94" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Adapter / boundary" vertex="1">
+          <mxGeometry height="15" width="95" x="87" y="987" as="geometry" />
+        </mxCell>
+        <mxCell id="v95" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#9B72CF;strokeColor=#2C3038;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="67" y="1006" as="geometry" />
+        </mxCell>
+        <mxCell id="v96" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Observability (primary)" vertex="1">
+          <mxGeometry height="15" width="97" x="87" y="1003" as="geometry" />
+        </mxCell>
+        <mxCell id="la1" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#1A1A2E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="963" as="sourcePoint" />
+            <mxPoint x="251" y="963" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v98" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Outbound" vertex="1">
+          <mxGeometry height="15" width="55" x="257" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="la2" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#C4724E;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="979" as="sourcePoint" />
+            <mxPoint x="251" y="979" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v100" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Inbound" vertex="1">
+          <mxGeometry height="15" width="55" x="257" y="971" as="geometry" />
+        </mxCell>
+        <mxCell id="la3" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#4B5BAA;strokeWidth=2;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="995" as="sourcePoint" />
+            <mxPoint x="251" y="995" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v102" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Identity / auth" vertex="1">
+          <mxGeometry height="15" width="70" x="257" y="987" as="geometry" />
+        </mxCell>
+        <mxCell id="la4" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#B86B9A;strokeWidth=2;dashed=1;dashPattern=1 1;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="1011" as="sourcePoint" />
+            <mxPoint x="251" y="1011" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v104" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Policy enforcement" vertex="1">
+          <mxGeometry height="15" width="80" x="257" y="1003" as="geometry" />
+        </mxCell>
+        <mxCell id="la5" edge="1" parent="1" style="endArrow=open;endSize=6;strokeColor=#2C3038;strokeWidth=2;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="355" y="963" as="sourcePoint" />
+            <mxPoint x="386" y="963" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="v106" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Internal dep." vertex="1">
+          <mxGeometry height="15" width="65" x="392" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="v107" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="355" y="978" as="geometry" />
+        </mxCell>
+        <mxCell id="v108" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="IAM stroke (2.1)" vertex="1">
+          <mxGeometry height="15" width="80" x="375" y="975" as="geometry" />
+        </mxCell>
+        <mxCell id="v109" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="355" y="994" as="geometry" />
+        </mxCell>
+        <mxCell id="v110" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Observability (secondary)" vertex="1">
+          <mxGeometry height="15" width="75" x="375" y="991" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-gov-stroke" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="355" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-gov-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Gov. &amp; Policy stroke (2.5)" vertex="1">
+          <mxGeometry height="15" width="90" x="375" y="1007" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-obs-stroke" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=none;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="355" y="1026" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-obs-stroke-txt" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Observability stroke (2.4)" vertex="1">
+          <mxGeometry height="15" width="90" x="375" y="1023" as="geometry" />
+        </mxCell>
+        <mxCell id="v111" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#9B72CF;strokeColor=none;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;verticalAlign=middle;align=center;fontSize=9;" value="X" vertex="1">
+          <mxGeometry height="16" width="16" x="227" y="1020" as="geometry" />
+        </mxCell>
+        <mxCell id="v112" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Obs. connector" vertex="1">
+          <mxGeometry height="15" width="80" x="256" y="1019" as="geometry" />
+        </mxCell>
+        <mxCell id="v113" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB ref" vertex="1">
+          <mxGeometry height="12" width="42" x="508" y="958" as="geometry" />
+        </mxCell>
+        <mxCell id="v114" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Traceability to ABB" vertex="1">
+          <mxGeometry height="15" width="100" x="556" y="955" as="geometry" />
+        </mxCell>
+        <mxCell id="v115" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#1A1A2E;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="508" y="978" as="geometry" />
+        </mxCell>
+        <mxCell id="v116" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="External system" vertex="1">
+          <mxGeometry height="15" width="110" x="528" y="975" as="geometry" />
+        </mxCell>
+        <mxCell id="v117" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="508" y="994" as="geometry" />
+        </mxCell>
+        <mxCell id="v118" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Primary platform" vertex="1">
+          <mxGeometry height="15" width="100" x="528" y="991" as="geometry" />
+        </mxCell>
+        <mxCell id="v119" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#F0F2F5;strokeColor=#C4724E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="9" width="15" x="508" y="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="v120" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontFamily=Helvetica;fontColor=#2C3038;fillColor=none;strokeColor=none;" value="Secondary platform" vertex="1">
+          <mxGeometry height="15" width="80" x="528" y="1007" as="geometry" />
+        </mxCell>
+        <mxCell id="teams-ui" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#1A1A2E;strokeColor=#1A1A2E;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=middle;align=center;fontSize=11;" value="&lt;font&gt;&lt;b style=&quot;&quot;&gt;&lt;font style=&quot;color: rgb(255, 255, 255);&quot;&gt;Microsoft Teams&lt;/font&gt;&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;color: rgb(255, 255, 255); font-size: 9px;&quot;&gt;Client + Service&lt;/font&gt;&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="120" x="890" y="307" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
 </mxfile>

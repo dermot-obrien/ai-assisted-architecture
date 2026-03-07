@@ -79,7 +79,7 @@ category.colour[.tint]
 
 | Category | Prefix | Range | Description |
 |----------|--------|-------|-------------|
-| Primary | `1.` | `1.1` - `1.4` | Core brand colours |
+| Primary | `1.` | `1.1` - `1.3` | Core brand colours |
 | Secondary | `2.` | `2.1` - `2.6` | Data-viz and accent colours |
 | Supporting | `3.` | `3.1` - `3.4` | Neutral text/border/background colours |
 | Semantic | `4.` | `4.1` - `4.4` | Status colours |
@@ -94,9 +94,9 @@ For colours with tints:
 
 Examples:
 
-- `1.1` = Deep Purple base
-- `1.1.2` = Deep Purple 50%
-- `1.1.3` = Deep Purple 20%
+- `1.1` = Charcoal base
+- `1.1.2` = Charcoal 50%
+- `1.1.3` = Charcoal 20%
 
 Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1.1.
 
@@ -108,51 +108,50 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 
 | ID | Swatch | Colour Name | Hex | RGB | Contrast on White | Usage |
 |----|--------|-------------|-----|-----|-------------------|-------|
-| `1.1` | ![](./swatches/4C1D95.svg) | Deep Purple | `#4C1D95` | `RGB(76, 29, 149)` | `10.95:1` | Primary headers, key elements |
-| `1.2` | ![](./swatches/0F0A1E.svg) | Void | `#0F0A1E` | `RGB(15, 10, 30)` | `19.40:1` | Dark surfaces, premium sections |
-| `1.3` | ![](./swatches/D4A843.svg) | Signal Gold | `#D4A843` | `RGB(212, 168, 67)` | `2.21:1` (`8.76:1` on `1.2`) | Highlights, CTAs, accents |
-| `1.4` | ![](./swatches/FFFFFF.svg) | White | `#FFFFFF` | `RGB(255, 255, 255)` | N/A | Light surfaces, inverse text |
+| `1.1` | ![](./swatches/1A1A2E.svg) | Charcoal | `#1A1A2E` | `RGB(26, 26, 46)` | `14.89:1` | Primary headers, dark surfaces, key elements |
+| `1.2` | ![](./swatches/D14B6F.svg) | Cerise | `#D14B6F` | `RGB(209, 75, 111)` | `4.25:1` (`7.58:1` on `1.1`) | Highlights, CTAs, accents |
+| `1.3` | ![](./swatches/FFFFFF.svg) | White | `#FFFFFF` | `RGB(255, 255, 255)` | N/A | Light surfaces, inverse text |
 
 ### Secondary Colours (2.x)
 
 | ID | Swatch | Colour Name | Hex | RGB | Usage |
 |----|--------|-------------|-----|-----|-------|
-| `2.1` | ![](./swatches/6B8F3A.svg) | Olive Sage | `#6B8F3A` | `RGB(107, 143, 58)` | Growth metaphors, secondary accents |
-| `2.2` | ![](./swatches/0EA5E9.svg) | Signal Cyan | `#0EA5E9` | `RGB(14, 165, 233)` | Data streams, connectivity |
-| `2.3` | ![](./swatches/C07850.svg) | Copper | `#C07850` | `RGB(192, 120, 80)` | Warm accents, industrial context |
-| `2.4` | ![](./swatches/A78BFA.svg) | Lavender | `#A78BFA` | `RGB(167, 139, 250)` | AI and soft highlights |
-| `2.5` | ![](./swatches/E8637A.svg) | Guava | `#E8637A` | `RGB(232, 99, 122)` | Attention accents |
-| `2.6` | ![](./swatches/64748B.svg) | Slate | `#64748B` | `RGB(100, 116, 139)` | Neutral secondary |
+| `2.1` | ![](./swatches/4B5BAA.svg) | Indigo | `#4B5BAA` | `RGB(75, 91, 170)` | Growth metaphors, secondary accents |
+| `2.2` | ![](./swatches/4A90D9.svg) | Sky Blue | `#4A90D9` | `RGB(74, 144, 217)` | Data streams, connectivity |
+| `2.3` | ![](./swatches/C4724E.svg) | Terracotta | `#C4724E` | `RGB(196, 114, 78)` | Warm accents, industrial context |
+| `2.4` | ![](./swatches/9B72CF.svg) | Wisteria | `#9B72CF` | `RGB(155, 114, 207)` | AI and soft highlights |
+| `2.5` | ![](./swatches/B86B9A.svg) | Mauve | `#B86B9A` | `RGB(184, 107, 154)` | Attention accents |
+| `2.6` | ![](./swatches/5E6B7F.svg) | Storm | `#5E6B7F` | `RGB(94, 107, 127)` | Neutral secondary |
 
 ### Tints (Primary and Secondary)
 
 | ID | Swatch | Colour | Hex | RGB |
 |----|--------|--------|-----|-----|
-| `1.1.2` | ![](./swatches/A58ECA.svg) | Deep Purple 50% | `#A58ECA` | `RGB(165, 142, 202)` |
-| `1.1.3` | ![](./swatches/DBD2EA.svg) | Deep Purple 20% | `#DBD2EA` | `RGB(219, 210, 234)` |
-| `1.3.2` | ![](./swatches/E9D3A1.svg) | Signal Gold 50% | `#E9D3A1` | `RGB(233, 211, 161)` |
-| `1.3.3` | ![](./swatches/F6EDD9.svg) | Signal Gold 20% | `#F6EDD9` | `RGB(246, 237, 217)` |
-| `2.1.2` | ![](./swatches/B5C79C.svg) | Olive Sage 50% | `#B5C79C` | `RGB(181, 199, 156)` |
-| `2.1.3` | ![](./swatches/E1E9D8.svg) | Olive Sage 20% | `#E1E9D8` | `RGB(225, 233, 216)` |
-| `2.2.2` | ![](./swatches/86D2F4.svg) | Signal Cyan 50% | `#86D2F4` | `RGB(134, 210, 244)` |
-| `2.2.3` | ![](./swatches/CFEDFB.svg) | Signal Cyan 20% | `#CFEDFB` | `RGB(207, 237, 251)` |
-| `2.3.2` | ![](./swatches/DFBBA7.svg) | Copper 50% | `#DFBBA7` | `RGB(223, 187, 167)` |
-| `2.3.3` | ![](./swatches/F2E4DC.svg) | Copper 20% | `#F2E4DC` | `RGB(242, 228, 220)` |
-| `2.4.2` | ![](./swatches/D3C5FC.svg) | Lavender 50% | `#D3C5FC` | `RGB(211, 197, 252)` |
-| `2.4.3` | ![](./swatches/EDE8FE.svg) | Lavender 20% | `#EDE8FE` | `RGB(237, 232, 254)` |
-| `2.5.2` | ![](./swatches/F3B1BC.svg) | Guava 50% | `#F3B1BC` | `RGB(243, 177, 188)` |
-| `2.5.3` | ![](./swatches/FAE0E4.svg) | Guava 20% | `#FAE0E4` | `RGB(250, 224, 228)` |
-| `2.6.2` | ![](./swatches/B1B9C5.svg) | Slate 50% | `#B1B9C5` | `RGB(177, 185, 197)` |
-| `2.6.3` | ![](./swatches/E0E3E8.svg) | Slate 20% | `#E0E3E8` | `RGB(224, 227, 232)` |
+| `1.1.2` | ![](./swatches/8D8D97.svg) | Charcoal 50% | `#8D8D97` | `RGB(141, 141, 151)` |
+| `1.1.3` | ![](./swatches/D1D1D5.svg) | Charcoal 20% | `#D1D1D5` | `RGB(209, 209, 213)` |
+| `1.2.2` | ![](./swatches/E8A5B7.svg) | Cerise 50% | `#E8A5B7` | `RGB(232, 165, 183)` |
+| `1.2.3` | ![](./swatches/F6DBE2.svg) | Cerise 20% | `#F6DBE2` | `RGB(246, 219, 226)` |
+| `2.1.2` | ![](./swatches/A5ADD4.svg) | Indigo 50% | `#A5ADD4` | `RGB(165, 173, 212)` |
+| `2.1.3` | ![](./swatches/DBDEEE.svg) | Indigo 20% | `#DBDEEE` | `RGB(219, 222, 238)` |
+| `2.2.2` | ![](./swatches/A5C8EC.svg) | Sky Blue 50% | `#A5C8EC` | `RGB(165, 200, 236)` |
+| `2.2.3` | ![](./swatches/DAE9F7.svg) | Sky Blue 20% | `#DAE9F7` | `RGB(218, 233, 247)` |
+| `2.3.2` | ![](./swatches/E2B9A7.svg) | Terracotta 50% | `#E2B9A7` | `RGB(226, 185, 167)` |
+| `2.3.3` | ![](./swatches/F3E3DC.svg) | Terracotta 20% | `#F3E3DC` | `RGB(243, 227, 220)` |
+| `2.4.2` | ![](./swatches/CDB9E7.svg) | Wisteria 50% | `#CDB9E7` | `RGB(205, 185, 231)` |
+| `2.4.3` | ![](./swatches/EBE3F5.svg) | Wisteria 20% | `#EBE3F5` | `RGB(235, 227, 245)` |
+| `2.5.2` | ![](./swatches/DCB5CD.svg) | Mauve 50% | `#DCB5CD` | `RGB(220, 181, 205)` |
+| `2.5.3` | ![](./swatches/F1E1EB.svg) | Mauve 20% | `#F1E1EB` | `RGB(241, 225, 235)` |
+| `2.6.2` | ![](./swatches/AFB5BF.svg) | Storm 50% | `#AFB5BF` | `RGB(175, 181, 191)` |
+| `2.6.3` | ![](./swatches/DFE1E5.svg) | Storm 20% | `#DFE1E5` | `RGB(223, 225, 229)` |
 
 ### Supporting Colours (3.x)
 
 | ID | Swatch | Colour Name | Hex | RGB | Usage |
 |----|--------|-------------|-----|-----|-------|
-| `3.1` | ![](./swatches/2D2B3A.svg) | Graphite | `#2D2B3A` | `RGB(45, 43, 58)` | Primary body text |
-| `3.2` | ![](./swatches/6E6B7B.svg) | Iron | `#6E6B7B` | `RGB(110, 107, 123)` | Secondary text |
-| `3.3` | ![](./swatches/C4C2CC.svg) | Silver | `#C4C2CC` | `RGB(196, 194, 204)` | Borders and dividers |
-| `3.4` | ![](./swatches/F2F1F5.svg) | Mist | `#F2F1F5` | `RGB(242, 241, 245)` | Subtle backgrounds |
+| `3.1` | ![](./swatches/2C3038.svg) | Obsidian | `#2C3038` | `RGB(44, 48, 56)` | Primary body text |
+| `3.2` | ![](./swatches/6B7280.svg) | Pewter | `#6B7280` | `RGB(107, 114, 128)` | Secondary text |
+| `3.3` | ![](./swatches/BFC5CC.svg) | Ash | `#BFC5CC` | `RGB(191, 197, 204)` | Borders and dividers |
+| `3.4` | ![](./swatches/F0F2F5.svg) | Frost | `#F0F2F5` | `RGB(240, 242, 245)` | Subtle backgrounds |
 
 ### Semantic Colours (4.x)
 
@@ -167,42 +166,41 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 
 ```xml
 <!-- Primary -->
-<add as="Colour_1.1" value="#4C1D95"/>
-<add as="Colour_1.2" value="#0F0A1E"/>
-<add as="Colour_1.3" value="#D4A843"/>
-<add as="Colour_1.4" value="#FFFFFF"/>
+<add as="Colour_1.1" value="#1A1A2E"/>
+<add as="Colour_1.2" value="#D14B6F"/>
+<add as="Colour_1.3" value="#FFFFFF"/>
 
 <!-- Secondary -->
-<add as="Colour_2.1" value="#6B8F3A"/>
-<add as="Colour_2.2" value="#0EA5E9"/>
-<add as="Colour_2.3" value="#C07850"/>
-<add as="Colour_2.4" value="#A78BFA"/>
-<add as="Colour_2.5" value="#E8637A"/>
-<add as="Colour_2.6" value="#64748B"/>
+<add as="Colour_2.1" value="#4B5BAA"/>
+<add as="Colour_2.2" value="#4A90D9"/>
+<add as="Colour_2.3" value="#C4724E"/>
+<add as="Colour_2.4" value="#9B72CF"/>
+<add as="Colour_2.5" value="#B86B9A"/>
+<add as="Colour_2.6" value="#5E6B7F"/>
 
 <!-- Tints -->
-<add as="Colour_1.1.2" value="#A58ECA"/>
-<add as="Colour_1.1.3" value="#DBD2EA"/>
-<add as="Colour_1.3.2" value="#E9D3A1"/>
-<add as="Colour_1.3.3" value="#F6EDD9"/>
-<add as="Colour_2.1.2" value="#B5C79C"/>
-<add as="Colour_2.1.3" value="#E1E9D8"/>
-<add as="Colour_2.2.2" value="#86D2F4"/>
-<add as="Colour_2.2.3" value="#CFEDFB"/>
-<add as="Colour_2.3.2" value="#DFBBA7"/>
-<add as="Colour_2.3.3" value="#F2E4DC"/>
-<add as="Colour_2.4.2" value="#D3C5FC"/>
-<add as="Colour_2.4.3" value="#EDE8FE"/>
-<add as="Colour_2.5.2" value="#F3B1BC"/>
-<add as="Colour_2.5.3" value="#FAE0E4"/>
-<add as="Colour_2.6.2" value="#B1B9C5"/>
-<add as="Colour_2.6.3" value="#E0E3E8"/>
+<add as="Colour_1.1.2" value="#8D8D97"/>
+<add as="Colour_1.1.3" value="#D1D1D5"/>
+<add as="Colour_1.2.2" value="#E8A5B7"/>
+<add as="Colour_1.2.3" value="#F6DBE2"/>
+<add as="Colour_2.1.2" value="#A5ADD4"/>
+<add as="Colour_2.1.3" value="#DBDEEE"/>
+<add as="Colour_2.2.2" value="#A5C8EC"/>
+<add as="Colour_2.2.3" value="#DAE9F7"/>
+<add as="Colour_2.3.2" value="#E2B9A7"/>
+<add as="Colour_2.3.3" value="#F3E3DC"/>
+<add as="Colour_2.4.2" value="#CDB9E7"/>
+<add as="Colour_2.4.3" value="#EBE3F5"/>
+<add as="Colour_2.5.2" value="#DCB5CD"/>
+<add as="Colour_2.5.3" value="#F1E1EB"/>
+<add as="Colour_2.6.2" value="#AFB5BF"/>
+<add as="Colour_2.6.3" value="#DFE1E5"/>
 
 <!-- Supporting -->
-<add as="Colour_3.1" value="#2D2B3A"/>
-<add as="Colour_3.2" value="#6E6B7B"/>
-<add as="Colour_3.3" value="#C4C2CC"/>
-<add as="Colour_3.4" value="#F2F1F5"/>
+<add as="Colour_3.1" value="#2C3038"/>
+<add as="Colour_3.2" value="#6B7280"/>
+<add as="Colour_3.3" value="#BFC5CC"/>
+<add as="Colour_3.4" value="#F0F2F5"/>
 
 <!-- Semantic -->
 <add as="Colour_4.1" value="#22C55E"/>
@@ -217,13 +215,12 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 
 ### DO
 
-- Use `1.1` for primary headers and key elements.
-- Use `1.2` for dark backgrounds and high-contrast sections.
-- Use `1.3` for highlights and accents on dark backgrounds.
-- Use `1.4` for light surfaces and inverse text.
+- Use `1.1` for primary headers, key elements, and dark backgrounds.
+- Use `1.2` for highlights and accents on dark backgrounds.
+- Use `1.3` for light surfaces and inverse text.
 - Ensure at least `4.5:1` contrast for text.
 - Ensure at least `3:1` contrast for essential non-text graphics.
-- Use `1.2` as default text on bright accent and semantic fills.
+- Use `1.1` as default text on bright accent and semantic fills.
 - Use semantic colours (`4.1`-`4.4`) only for status meaning.
 - Use supporting colours (`3.1`-`3.4`) for text hierarchy and chrome.
 
@@ -231,7 +228,7 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 
 - Do not use colours outside the approved palette without explicit justification.
 - Do not use white text on semantic fills (`4.1`-`4.4`).
-- Do not use `1.3`, `2.2`, `4.1`, `4.2`, `4.4`, or `2.4` as standalone 1px indicators on `1.4`/`3.4`.
+- Do not use `1.2`, `2.2`, `4.1`, `4.2`, `4.4`, or `2.4` as standalone 1px indicators on `1.3`/`3.4`.
 - Do not use `2.5` as an error status colour; use `4.3`.
 - Do not rely on colour alone to encode meaning.
 
@@ -241,20 +238,20 @@ Use only explicitly defined identifiers. Do not use implicit aliases such as 2.1
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `ui.surface.default` | `1.4` | Main page surface |
+| `ui.surface.default` | `1.3` | Main page surface |
 | `ui.surface.subtle` | `3.4` | Secondary surface |
-| `ui.surface.inverse` | `1.2` | Inverse dark surface |
+| `ui.surface.inverse` | `1.1` | Inverse dark surface |
 | `ui.text.default` | `3.1` | Main text on light surfaces |
 | `ui.text.muted` | `3.2` | Secondary text |
-| `ui.text.inverse` | `1.4` | Text on dark surfaces |
-| `ui.text.on-accent` | `1.2` | Text on bright fills |
+| `ui.text.inverse` | `1.3` | Text on dark surfaces |
+| `ui.text.on-accent` | `1.1` | Text on bright fills |
 | `ui.link.default` | `1.1` | Default link state |
 | `ui.link.hover` | `1.2` | Hover link state |
 | `ui.link.visited` | `2.6` | Visited link state |
 | `ui.border.default` | `3.3` | Default border |
 | `ui.border.strong` | `3.2` | Strong border |
-| `ui.focus.light-surface` | `1.2` | Focus ring on light surfaces |
-| `ui.focus.dark-surface` | `1.3` | Focus ring on dark surfaces |
+| `ui.focus.light-surface` | `1.1` | Focus ring on light surfaces |
+| `ui.focus.dark-surface` | `1.2` | Focus ring on dark surfaces |
 | `ui.disabled.text` | `3.2` | Disabled text |
 | `ui.disabled.surface` | `3.4` | Disabled surface |
 | `ui.disabled.border` | `3.3` | Disabled border |
@@ -271,17 +268,17 @@ State rules:
 
 | Component | Default | Hover | Active | Disabled |
 |-----------|---------|-------|--------|----------|
-| Primary button | BG `1.1`, Text `1.4`, Border `1.1` | BG `1.2`, Text `1.4` | BG `1.2`, Text `1.3` | BG `3.4`, Text `3.2`, Border `3.3` |
-| Secondary button | BG `1.4`, Text `1.1`, Border `1.1` | BG `1.1.3`, Text `1.1` | BG `1.1.2`, Text `1.2` | BG `3.4`, Text `3.2`, Border `3.3` |
-| Tertiary button | BG transparent, Text `1.1` | BG `1.1.3`, Text `1.1` | BG `1.1.2`, Text `1.2` | Text `3.2` |
-| Danger button | BG `4.3`, Text `1.2`, Border `4.3` | BG `2.5`, Text `1.2` | BG `4.3`, Text `1.2`, Border `1.2` | BG `3.4`, Text `3.2`, Border `3.3` |
-| Input field | BG `1.4`, Text `3.1`, Border `3.3` | Border `3.2` | Border `1.1` | BG `3.4`, Text `3.2`, Border `3.3` |
-| Table header | BG `1.1`, Text `1.4` | N/A | N/A | N/A |
+| Primary button | BG `1.1`, Text `1.3`, Border `1.1` | BG `1.1.2`, Text `1.3` | BG `1.1`, Text `1.2` | BG `3.4`, Text `3.2`, Border `3.3` |
+| Secondary button | BG `1.3`, Text `1.1`, Border `1.1` | BG `1.1.3`, Text `1.1` | BG `1.1.2`, Text `1.1` | BG `3.4`, Text `3.2`, Border `3.3` |
+| Tertiary button | BG transparent, Text `1.1` | BG `1.1.3`, Text `1.1` | BG `1.1.2`, Text `1.1` | Text `3.2` |
+| Danger button | BG `4.3`, Text `1.1`, Border `4.3` | BG `2.5`, Text `1.1` | BG `4.3`, Text `1.1`, Border `1.1` | BG `3.4`, Text `3.2`, Border `3.3` |
+| Input field | BG `1.3`, Text `3.1`, Border `3.3` | Border `3.2` | Border `1.1` | BG `3.4`, Text `3.2`, Border `3.3` |
+| Table header | BG `1.1`, Text `1.3` | N/A | N/A | N/A |
 | Alternating row | BG `3.4`, Text `3.1` | N/A | N/A | N/A |
 
 Rules:
 
-- Long alert text should use neutral surfaces (`1.4`/`3.4`) with semantic border/icon.
+- Long alert text should use neutral surfaces (`1.3`/`3.4`) with semantic border/icon.
 - Full semantic fills are for compact badges/chips/short labels.
 
 ---
@@ -299,7 +296,7 @@ Default order (up to 8 series):
 5. `2.4`
 6. `2.5`
 7. `2.6`
-8. `1.3`
+8. `1.2`
 
 If semantic statuses are shown in the same chart, reserve `4.1`-`4.4` for statuses and use:
 
@@ -312,8 +309,8 @@ If semantic statuses are shown in the same chart, reserve `4.1`-`4.4` for status
 
 ### Sequential Palette
 
-- Purple ramp: `1.1.3` -> `1.1.2` -> `1.1` -> `1.2`
-- Slate ramp: `2.6.3` -> `2.6.2` -> `2.6` -> `3.1`
+- Charcoal ramp: `1.1.3` -> `1.1.2` -> `1.1` -> `3.1`
+- Storm ramp: `2.6.3` -> `2.6.2` -> `2.6` -> `3.1`
 
 ### Diverging Palette
 
@@ -386,15 +383,15 @@ This is principle-level alignment only. It is not intended to mimic another orga
 ### Canvas and Hierarchy
 
 - Canvas: 1920x1080
-- Background: `1.4` or `3.4`
+- Background: `1.3` or `3.4`
 - Grid: 10px, snap enabled
 - Margin: 40-50px
 
 Visual hierarchy:
 
-- Level 1: Fill `1.1` or `1.2`, text `1.4`, stroke `3.1`
-- Level 2: Fill `1.3.2` or `3.3`, text `3.1`, stroke `3.2`
-- Level 3: Fill `3.4` or `1.4`, text `3.1`, stroke `3.3`
+- Level 1: Fill `1.1`, text `1.3`, stroke `3.1`
+- Level 2: Fill `2.1.2` or `3.3`, text `3.1`, stroke `3.2`
+- Level 3: Fill `3.4` or `1.3`, text `3.1`, stroke `3.3`
 
 Connectors:
 
@@ -428,24 +425,23 @@ Before finalising visual output:
 
 ```text
 Primary
-  1.1 Deep Purple        #4C1D95
-  1.2 Void               #0F0A1E
-  1.3 Signal Gold        #D4A843
-  1.4 White              #FFFFFF
+  1.1 Charcoal           #1A1A2E
+  1.2 Cerise             #D14B6F
+  1.3 White              #FFFFFF
 
 Secondary
-  2.1 Olive Sage         #6B8F3A
-  2.2 Signal Cyan        #0EA5E9
-  2.3 Copper             #C07850
-  2.4 Lavender           #A78BFA
-  2.5 Guava              #E8637A
-  2.6 Slate              #64748B
+  2.1 Indigo             #4B5BAA
+  2.2 Sky Blue           #4A90D9
+  2.3 Terracotta         #C4724E
+  2.4 Wisteria           #9B72CF
+  2.5 Mauve              #B86B9A
+  2.6 Storm              #5E6B7F
 
 Supporting
-  3.1 Graphite           #2D2B3A
-  3.2 Iron               #6E6B7B
-  3.3 Silver             #C4C2CC
-  3.4 Mist               #F2F1F5
+  3.1 Obsidian           #2C3038
+  3.2 Pewter             #6B7280
+  3.3 Ash                #BFC5CC
+  3.4 Frost              #F0F2F5
 
 Semantic
   4.1 Success            #22C55E

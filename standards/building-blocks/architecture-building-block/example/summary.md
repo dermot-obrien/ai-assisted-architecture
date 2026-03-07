@@ -1,6 +1,6 @@
 # Human-in-the-Loop
 
-**AB-008** | **Version** 1.0.0 | **Status** DRAFT | **Category** Messaging & Integration
+**AB-004** | **Version** 1.0.0 | **Status** DRAFT | **Category** Messaging & Integration
 
 ## Purpose
 

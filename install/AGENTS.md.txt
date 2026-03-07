@@ -1,0 +1,6 @@
+# Agent Configuration
+
+Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instruction source for this repository.
+
+For ABB/SBB documents, diagrams, and related visual outputs, load and follow the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md`.
+Do not create or apply alternate local rules when `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` provides guidance.

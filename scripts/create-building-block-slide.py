@@ -55,8 +55,8 @@ SUMM_MAX_WIDTH = Emu(5387458) # 5.892in
 SUMM_MAX_HEIGHT = Emu(5970613) # 6.530in
 
 # Brand colours
-DEEP_PURPLE = RGBColor(0x4C, 0x1D, 0x95)  # 1.1
-GRAPHITE = RGBColor(0x2D, 0x2B, 0x3A)     # 3.1
+CHARCOAL = RGBColor(0x1A, 0x1A, 0x2E)    # 1.1
+OBSIDIAN = RGBColor(0x2C, 0x30, 0x38)     # 3.1
 
 
 def detect_block_type(folder: Path) -> str:
@@ -134,7 +134,7 @@ def create_slide(block_folder: Path, output_path: Path):
     run.font.name = "Helvetica"
     run.font.size = Pt(28)
     run.font.bold = True
-    run.font.color.rgb = DEEP_PURPLE
+    run.font.color.rgb = CHARCOAL
 
     # Components image (left) - fit within bounds
     try:
