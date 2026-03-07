@@ -55,7 +55,7 @@ These standards are mandatory and are intended to be machine-consumable.
 3. [Colour Usage Rules](#colour-usage-rules)
 4. [Web UI State Tokens](#web-ui-state-tokens)
 5. [Component Colour Mappings](#component-colour-mappings)
-6. [Data Visualization Palettes](#data-visualization-palettes)
+6. [Data Visualisation Palettes](#data-visualisation-palettes)
 7. [Colour-Blind-Safe Chart Rules](#colour-blind-safe-chart-rules)
 8. [Exemplar Principle Check](#exemplar-principle-check)
 9. [Typography Standards](#typography-standards)
@@ -283,7 +283,7 @@ Rules:
 
 ---
 
-## Data Visualization Palettes
+## Data Visualisation Palettes
 
 ### Categorical Palette
 
@@ -335,7 +335,7 @@ Rules:
 - For scatter charts, combine colour with symbol shape.
 - For grouped bars with many categories, use direct labels and pattern support where needed.
 - Avoid red-vs-green as the only critical distinction.
-- For more than 6 series, prefer direct labeling, grouping, or small multiples.
+- For more than 6 series, prefer direct labelling, grouping, or small multiples.
 - Validate readability in grayscale and at least one red-green simulation before release.
 
 ---

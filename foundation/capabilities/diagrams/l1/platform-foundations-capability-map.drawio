@@ -1,0 +1,103 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
+  <diagram name="Platform Foundations Capability Map" id="cap-map-platform-foundations">
+    <mxGraphModel dx="1426" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="l0-platform-foundations" parent="1" style="rounded=1;arcSize=5;fillColor=#DBDEEE;strokeColor=#4B5BAA;strokeWidth=2;fontFamily=Helvetica;container=0;" value="" vertex="1">
+          <mxGeometry height="360" width="1000" x="20" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="title-bar" parent="1" style="rounded=0;fillColor=#1A1A2E;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="60" width="1000" x="20" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="title-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=22;fontStyle=1;spacingLeft=20;" value="Platform Foundations — Capability Map" vertex="1">
+          <mxGeometry height="60" width="600" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="l0-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=16;fontStyle=1;spacingTop=8;" value="&lt;b&gt;Platform Foundations&lt;/b&gt;" vertex="1">
+          <mxGeometry height="32" width="680" x="150" y="106" as="geometry" />
+        </mxCell>
+        <mxCell id="l0-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=10;whiteSpace=wrap;" value="Core enterprise platform capabilities that provide the security, governance, and operational control needed by all architecture building blocks." vertex="1">
+          <mxGeometry height="28" width="1300" x="40" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-identity-access" parent="1" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1.5;fontFamily=Helvetica;container=0;" value="" vertex="1">
+          <mxGeometry height="210" width="460" x="70" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-operational-intelligence" parent="1" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1.5;fontFamily=Helvetica;container=0;" value="" vertex="1">
+          <mxGeometry height="210" width="440" x="544" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-bg" parent="1" style="rounded=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#BFC5CC;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="40" width="920" x="70" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=11;spacingLeft=10;" value="&lt;b&gt;Legend&lt;/b&gt;" vertex="1">
+          <mxGeometry height="20" width="60" x="70" y="405" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l0-swatch" parent="1" style="rounded=1;arcSize=5;fillColor=#DBDEEE;strokeColor=#4B5BAA;strokeWidth=1.5;" value="" vertex="1">
+          <mxGeometry height="14" width="20" x="140" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l0-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" value="L1 Domain" vertex="1">
+          <mxGeometry height="20" width="70" x="165" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l1-swatch" parent="1" style="rounded=1;arcSize=5;fillColor=#A5ADD4;strokeColor=#4B5BAA;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="20" x="250" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l1-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" value="L2 Group" vertex="1">
+          <mxGeometry height="20" width="70" x="275" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2-swatch" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="14" width="20" x="350" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-l2-text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#2C3038;fontSize=9;" value="L3 Capability" vertex="1">
+          <mxGeometry height="20" width="80" x="375" y="406" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-identity-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;" value="&lt;b&gt;Identity &amp; Access&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="460" x="70" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-identity-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Defines how identities are established, verified, authorised, and governed across human users, services, agents, and automation workloads." vertex="1">
+          <mxGeometry height="40" width="440" x="80" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-identity-lifecycle" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
+          <mxGeometry height="115" width="210" x="85" y="233" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-identity-lifecycle-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Identity Lifecycle Management" vertex="1">
+          <mxGeometry height="32" width="190" x="95" y="243" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-identity-lifecycle-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Manage the full identity lifecycle for human and non-human actors. Includes onboarding, authentication, federation, and deprovisioning." vertex="1">
+          <mxGeometry height="58" width="190" x="95" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-policy-access" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
+          <mxGeometry height="115" width="200" x="305" y="233" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-policy-access-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Policy-Based Access Control" vertex="1">
+          <mxGeometry height="32" width="180" x="315" y="243" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-policy-access-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Evaluate and enforce contextual policies before every sensitive action. Combines role, attribute, risk, and environmental signals." vertex="1">
+          <mxGeometry height="58" width="180" x="315" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-ops-label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=13;fontStyle=1;spacingTop=6;" value="&lt;b&gt;Operational Intelligence&lt;/b&gt;" vertex="1">
+          <mxGeometry height="26" width="430" x="544" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="l1-ops-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Provides visibility, alerting, and evidence services that help teams operate reliably and demonstrate control effectiveness over time." vertex="1">
+          <mxGeometry height="40" width="360" x="554" y="198" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-ops-monitoring" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
+          <mxGeometry height="115" width="200" x="564" y="237" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-ops-monitoring-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Operational Monitoring &amp; Alerting" vertex="1">
+          <mxGeometry height="32" width="180" x="574" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-ops-monitoring-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Collect, correlate, and analyse traces, metrics, and logs in real time. Trigger actionable alerts and operational escalation workflows." vertex="1">
+          <mxGeometry height="53" width="160" x="574" y="279" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-compliance" parent="1" style="rounded=1;arcSize=5;fillColor=#FFFFFF;strokeColor=#4B5BAA;strokeWidth=1;fontFamily=Helvetica;" value="" vertex="1">
+          <mxGeometry height="115" width="190" x="774" y="237" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-compliance-name" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=top;fontFamily=Helvetica;fontColor=#1A1A2E;fontSize=11;fontStyle=1;whiteSpace=wrap;" value="Compliance Evidence &amp; Reporting" vertex="1">
+          <mxGeometry height="32" width="180" x="774" y="247" as="geometry" />
+        </mxCell>
+        <mxCell id="l2-compliance-desc" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;fontFamily=Helvetica;fontColor=#6B7280;fontSize=9;whiteSpace=wrap;" value="Continuously collect immutable evidence mapped to internal and external controls. Generate audit-ready reports with traceable policy lineage." vertex="1">
+          <mxGeometry height="68" width="170" x="784" y="284" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

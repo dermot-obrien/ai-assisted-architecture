@@ -1,0 +1,82 @@
+<mxfile host="Electron" agent="Mozilla/5.0" version="21.6.8">
+  <diagram id="diagram-1" name="Policy Decision Service (OPA)">
+    <mxGraphModel dx="1426" dy="841" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sbb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=2;fillColor=none;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="930" width="880" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sbb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;SBB: Policy Decision Service (OPA)&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="450" x="60" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="platform" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#1A1A2E;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="600" width="800" x="80" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="platform-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;whiteSpace=wrap;" value="&lt;b&gt;Open Policy Agent&lt;/b&gt;" vertex="1">
+          <mxGeometry height="30" width="300" x="90" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-0" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;OPA Engine (pdp-service)&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Core Rego evaluation unit." vertex="1">
+          <mxGeometry height="80" width="220" x="120" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-0" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Policy Decision Pt" vertex="1">
+          <mxGeometry height="14" width="100" x="230" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;OPA Bundle Service&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Distributes signed policy bundles via HTTP." vertex="1">
+          <mxGeometry height="80" width="220" x="360" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-1" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Policy Distribution" vertex="1">
+          <mxGeometry height="14" width="100" x="470" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;VS Code with OPA Plugin&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Rego policy development and unit testing." vertex="1">
+          <mxGeometry height="80" width="220" x="600" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-2" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Policy Authoring" vertex="1">
+          <mxGeometry height="14" width="100" x="710" y="153" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;GitHub (Version Control)&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Version-controlled source for Rego files." vertex="1">
+          <mxGeometry height="80" width="220" x="120" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-3" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Policy Repository" vertex="1">
+          <mxGeometry height="14" width="100" x="230" y="253" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;Envoy Proxy / OPA SDK&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Intercepts requests and calls OPA API." vertex="1">
+          <mxGeometry height="80" width="220" x="360" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-4" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Enforcement Adapter" vertex="1">
+          <mxGeometry height="14" width="100" x="470" y="253" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;OPA Decision Logs&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Structured JSON logs of every evaluation." vertex="1">
+          <mxGeometry height="80" width="220" x="600" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-5" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Evidence Collector" vertex="1">
+          <mxGeometry height="14" width="100" x="710" y="253" as="geometry" />
+        </mxCell>
+        <mxCell id="comp-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=10;spacingLeft=12;align=left;fontSize=11;" value="&lt;b&gt;GitHub Actions&lt;/b&gt;&lt;hr style=&quot;border-color:#8D8D97;&quot;/&gt;Enforces review/approval before merging." vertex="1">
+          <mxGeometry height="80" width="220" x="120" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="badge-6" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=8;fontFamily=Helvetica;fontColor=#1A1A2E;fillColor=#D1D1D5;strokeColor=#1A1A2E;strokeWidth=1;rounded=1;spacingLeft=4;spacingRight=4;" value="ABB: Change Governance" vertex="1">
+          <mxGeometry height="14" width="100" x="230" y="353" as="geometry" />
+        </mxCell>
+        <mxCell id="cont-iam" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#4B5BAA;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="160" width="240" x="80" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#4B5BAA;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Identity &amp;amp; Access&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="160" x="90" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="cont-obs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="160" width="240" x="360" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Observability&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="120" x="370" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="cont-gov" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="160" width="240" x="640" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-lbl" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;strokeWidth=2;rounded=1;spacingLeft=12;spacingRight=12;" value="&lt;b&gt;Governance &amp;amp; Policy&lt;/b&gt;" vertex="1">
+          <mxGeometry height="23" width="160" x="650" y="755" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

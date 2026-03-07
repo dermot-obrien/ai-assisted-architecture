@@ -1,0 +1,24 @@
+id: core
+version: 1.0.0
+status: active
+description: Cross-cutting baseline profile for all workspaces.
+
+includes:
+  capabilities:
+    - CAP-001
+    - CAP-002
+    - CAP-003
+    - CAP-004
+    - CAP-005
+    - CAP-006
+    - CAP-007
+  architecture_building_blocks:
+    - AB-001
+    - AB-002
+    - AB-003
+  solution_building_blocks: []
+
+paths:
+  capabilities_root: ../../capabilities
+  architecture_building_blocks_root: ../../building-blocks/architecture-building-blocks
+  solution_building_blocks_root: ../../building-blocks/solution-building-blocks

@@ -1,0 +1,16 @@
+capability_id,capability_name,level,parent_id,domain,path,status,current_maturity,target_maturity
+CAP-001,Platform Foundations,L1,,Platform Foundations,capabilities/CAP-001/index.md,DRAFT,1,3
+CAP-002,Identity & Access,L2,CAP-001,Platform Foundations,capabilities/CAP-002/index.md,DRAFT,1,3
+CAP-003,Operational Intelligence,L2,CAP-001,Platform Foundations,capabilities/CAP-003/index.md,DRAFT,1,3
+CAP-004,Identity Lifecycle Management,L3,CAP-002,Platform Foundations,capabilities/CAP-004/index.md,DRAFT,1,3
+CAP-005,Policy-Based Access Control,L3,CAP-002,Platform Foundations,capabilities/CAP-005/index.md,DRAFT,1,3
+CAP-006,Operational Monitoring & Alerting,L3,CAP-003,Platform Foundations,capabilities/CAP-006/index.md,DRAFT,1,3
+CAP-007,Compliance Evidence & Reporting,L3,CAP-003,Platform Foundations,capabilities/CAP-007/index.md,DRAFT,1,3
+CAP-008,Integration Services,L2,CAP-001,Platform Foundations,capabilities/CAP-008/index.md,DRAFT,1,3
+CAP-009,Infrastructure Services,L2,CAP-001,Platform Foundations,capabilities/CAP-009/index.md,DRAFT,1,3
+CAP-010,API Mediation & Contract Enforcement,L3,CAP-008,Platform Foundations,capabilities/CAP-010/index.md,DRAFT,1,3
+CAP-011,Event Streaming & Asynchronous Integration,L3,CAP-008,Platform Foundations,capabilities/CAP-011/index.md,DRAFT,1,3
+CAP-012,Compute Runtime & Scheduling,L3,CAP-009,Platform Foundations,capabilities/CAP-012/index.md,DRAFT,1,3
+CAP-013,Data Storage & Lifecycle Management,L3,CAP-009,Platform Foundations,capabilities/CAP-013/index.md,DRAFT,1,3
+
+

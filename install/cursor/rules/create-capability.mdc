@@ -1,0 +1,8 @@
+---
+description: Create a new Capability
+globs: capabilities/**/*
+---
+
+When creating a new capability, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-capability.md`.
+
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` before producing any artefact.

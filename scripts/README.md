@@ -1,5 +1,28 @@
 # Scripts
 
+## seed-foundation.ps1
+
+Seeds a workspace with foundation capabilities and building blocks from the framework.
+
+### Usage
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture/scripts/seed-foundation.ps1 -Profile foundation
+```
+
+### Parameters
+
+- `-Profile core|integration|infrastructure|all|foundation` (default: `core`)
+- `-WorkspaceRoot <path>` (default: current directory)
+- `-Force` overwrite existing workspace files/folders
+- `-DryRun` preview copy actions without writing
+
+### Notes
+
+- Run this from the workspace root (not from `.ai-assisted-architecture`).
+- Workspace files are canonical after seeding.
+- Framework foundation remains read-only fallback/reference.
+
 ## create-building-block-slide.py
 
 Creates a PowerPoint slide for an ABB or SBB building block.

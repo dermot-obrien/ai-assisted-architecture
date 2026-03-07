@@ -1,0 +1,149 @@
+<mxfile host="Electron" version="29.5.2">
+  <diagram id="ab-005-abb" name="Event Streaming &amp; Messaging ABB">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="960" pageHeight="1080" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="abb-boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=none;strokeColor=#B3B3B3;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="30" y="20" width="900" height="930" as="geometry" />
+        </mxCell>
+        <mxCell id="abb-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=12;" value="<b><font style="color: rgb(255, 255, 255);">ABB: Event Streaming &amp; Messaging</font></b>" vertex="1">
+          <mxGeometry x="38" y="27" width="400" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="50" y="70" width="260" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="g1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Event Transport</b>" vertex="1">
+          <mxGeometry x="58" y="76" width="180" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g1-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Broker Runtime</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Provides durable publish-subscribe and queue transport.</font>" vertex="1">
+          <mxGeometry x="60" y="108" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g1-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Topic Management</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Controls topic and queue lifecycle and partitioning.</font>" vertex="1">
+          <mxGeometry x="60" y="204" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g1-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Subscription Control</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Manages consumer groups and delivery subscriptions.</font>" vertex="1">
+          <mxGeometry x="60" y="300" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="340" y="70" width="260" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="g2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Contract Governance</b>" vertex="1">
+          <mxGeometry x="348" y="76" width="180" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g2-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Schema Registry</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Stores versioned event contracts and metadata.</font>" vertex="1">
+          <mxGeometry x="350" y="108" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g2-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Producer Validation</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Validates event envelopes at publish boundaries.</font>" vertex="1">
+          <mxGeometry x="350" y="204" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g2-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Compatibility Checks</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Enforces schema evolution compatibility policy.</font>" vertex="1">
+          <mxGeometry x="350" y="300" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#999999;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="630" y="70" width="260" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="g3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#1A1A2E;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>Delivery Assurance</b>" vertex="1">
+          <mxGeometry x="638" y="76" width="180" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="g3-c1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#1A1A2E;strokeColor=#2C3038;strokeWidth=2;fontFamily=Helvetica;fontColor=#FFFFFF;verticalAlign=top;spacingTop=10;spacingLeft=10;align=left;fontSize=10;" value="<b><font style="color: rgb(255, 255, 255);">Retry Control</font></b><hr style="border-color: #8D8D97;"><font style="color: rgb(255, 255, 255);">Coordinates retry behaviour for transient failures.</font>" vertex="1">
+          <mxGeometry x="640" y="108" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g3-c2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Dead-Letter Handling</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Isolates failed events for controlled remediation.</font>" vertex="1">
+          <mxGeometry x="640" y="204" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="g3-c3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#A5ADD4;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Replay Services</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Replays event streams for recovery and reprocessing.</font>" vertex="1">
+          <mxGeometry x="640" y="300" width="240" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#2C5AA0;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="50" y="650" width="260" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#2C5AA0;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: IAM</b>" vertex="1">
+          <mxGeometry x="58" y="656" width="220" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="iam-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Producer/Consumer Identity</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Applies least-privilege identity controls for event access.</font>" vertex="1">
+          <mxGeometry x="60" y="686" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#9B72CF;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="340" y="650" width="260" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#9B72CF;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: Observability</b>" vertex="1">
+          <mxGeometry x="348" y="656" width="220" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="obs-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Stream Telemetry</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Monitors lag, throughput, failure rates, and consumer health.</font>" vertex="1">
+          <mxGeometry x="350" y="686" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-group" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=5;fillColor=#F0F2F5;strokeColor=#B86B9A;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="630" y="650" width="260" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=13;fontFamily=Helvetica;fontColor=#FFFFFF;fillColor=#B86B9A;strokeColor=none;rounded=1;spacingLeft=10;" value="<b>ABB: Governance &amp; Policy</b>" vertex="1">
+          <mxGeometry x="638" y="656" width="220" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="gov-comp" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;fillColor=#CDB9E7;strokeColor=#6B7280;strokeWidth=2;fontFamily=Helvetica;fontColor=#2C3038;verticalAlign=top;spacingTop=8;spacingLeft=10;align=left;fontSize=10;" value="<b>Event Policy Controls</b><hr style="border-color:#BFC5CC;"><font style="color: rgb(44, 48, 56);">Enforces classification, retention, and replay governance rules.</font>" vertex="1">
+          <mxGeometry x="640" y="686" width="240" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="<b>Producer<br>ABB</b>" vertex="1">
+          <mxGeometry x="840" y="150" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="actor-2" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1A1A2E;strokeColor=none;fontFamily=Helvetica;fontColor=#FFFFFF;fontSize=14;fontStyle=1;align=center;verticalAlign=middle;" value="<b>Consumer<br>ABB</b>" vertex="1">
+          <mxGeometry x="840" y="290" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="i1-edge" edge="1" parent="1" source="actor-1" target="g1-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="195" />
+              <mxPoint x="770" y="195" />
+              <mxPoint x="770" y="150" />
+              <mxPoint x="300" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i1-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;strokeColor=none;fillColor=none;" value="<b>I1</b> Request" vertex="1">
+          <mxGeometry x="760" y="170" width="80" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="i2-edge" edge="1" parent="1" source="g1-c1" target="actor-1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#C4724E;strokeWidth=2;endArrow=open;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="180" />
+              <mxPoint x="780" y="180" />
+              <mxPoint x="780" y="215" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i2-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#C4724E;strokeColor=none;fillColor=none;" value="<b>I2</b> Response" vertex="1">
+          <mxGeometry x="760" y="218" width="90" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="i3-edge" edge="1" parent="1" source="actor-2" target="g2-c1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#1A1A2E;strokeWidth=2;endArrow=open;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="335" />
+              <mxPoint x="760" y="335" />
+              <mxPoint x="760" y="150" />
+              <mxPoint x="590" y="150" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i3-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#1A1A2E;strokeColor=none;fillColor=none;" value="<b>I3</b> Contract" vertex="1">
+          <mxGeometry x="760" y="308" width="90" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="i6-edge" edge="1" parent="1" source="g2-c2" target="obs-comp" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeColor=#9B72CF;strokeWidth=2;dashed=1;dashPattern=1 1;endArrow=open;endSize=8;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="260" />
+              <mxPoint x="470" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="i6-label" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontFamily=Helvetica;fontColor=#9B72CF;strokeColor=none;fillColor=none;" value="<b>I6</b> Telemetry" vertex="1">
+          <mxGeometry x="478" y="470" width="95" height="16" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#F0F2F5;strokeColor=#6B7280;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry x="50" y="830" width="820" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="legend-text" parent="1" style="text;html=1;align=left;verticalAlign=top;fontSize=11;fontFamily=Helvetica;fontColor=#2C3038;strokeColor=none;fillColor=none;whiteSpace=wrap;spacingTop=6;spacingLeft=8;" value="<b>Legend</b><br>Primary component: dark fill. Secondary component: accent fill. Cross-cutting groups: IAM, Observability, Governance &amp; Policy. I1/I3 outbound, I2 inbound, I6 observability connector." vertex="1">
+          <mxGeometry x="60" y="838" width="800" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
