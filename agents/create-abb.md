@@ -15,12 +15,12 @@ Before creating anything, gather requirements from the user:
 
 Load and internalise these standards before producing any artefact:
 
-- `standards/building-blocks/architecture-building-block/standard-abb-document.md`
-- `standards/building-blocks/architecture-building-block/standard-abb-diagram.md`
-- `standards/visual-design/visual-design-standard.md`
-- `standards/building-blocks/standard-cross-referencing.md`
+- `ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-document.md`
+- `ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-diagram.md`
+- `ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
+- `ai-assisted-architecture/standards/building-blocks/standard-cross-referencing.md`
 
-Review the example in `standards/building-blocks/architecture-building-block/example/` for reference.
+Review the example in `ai-assisted-architecture/standards/building-blocks/architecture-building-block/example/` for reference.
 
 ## Phase 3: Create Artefacts (in order)
 
@@ -51,7 +51,7 @@ Export the summary panel to PNG at 300 DPI:
 ### Step 7: components-and-summary.pptx
 Generate the PowerPoint slide:
 ```bash
-python scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/AB-NNN/
+python ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/AB-NNN/
 ```
 
 ## Phase 4: Self-Verification

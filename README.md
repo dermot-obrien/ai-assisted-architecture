@@ -54,11 +54,29 @@ Create the folder structure:
 mkdir -p building-blocks/architecture-building-blocks building-blocks/solution-building-blocks
 ```
 
+## IDE Integration
+
+The `install/` folder contains configuration snippets for each supported AI tool. Copy or merge these into your workspace root so your AI tools can discover the framework.
+
+See [`install/README.md`](install/README.md) for the full list of files and where to place them.
+
+Supported tools: Claude Code, Cursor, GitHub Copilot, Gemini, Cline, Windsurf.
+
+## Agent Skills
+
+| Skill | Claude Code | Cursor / Copilot | Description |
+|-------|-------------|-------------------|-------------|
+| Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint. |
+| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint. |
+
+Each skill follows a four-phase workflow: Discovery, Load Standards, Create Artefacts, Self-Verification. See `agents/` for the full specifications.
+
 ## Repository Structure
 
 ```
 ai-assisted-architecture/
   agents/                  # Canonical agent specifications (IDE-agnostic)
+  install/                 # IDE configuration snippets (copy to workspace)
   scripts/                 # Automation scripts (PowerPoint generation)
   standards/
     visual-design/         # Visual design standard (override with your own)
@@ -75,15 +93,6 @@ ai-assisted-architecture/
   example/                 # Example workspace layout
   AGENTS.md                # Agent discovery and precedence rules
 ```
-
-## Agent Skills
-
-| Skill | Claude Code | Cursor / Copilot | Description |
-|-------|-------------|-------------------|-------------|
-| Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint. |
-| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint. |
-
-Each skill follows a four-phase workflow: Discovery, Load Standards, Create Artefacts, Self-Verification. See `agents/` for the full specifications.
 
 ## Standards
 
