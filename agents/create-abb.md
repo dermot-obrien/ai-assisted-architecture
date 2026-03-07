@@ -17,7 +17,7 @@ Load and internalise these standards before producing any artefact:
 
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-diagram.md`
-- **Visual design standard** — load `standards/visual-design/visual-design-standard.md` from the workspace root if it exists, otherwise fall back to `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
+- **Visual design standard** — search the workspace for a folder named `visual-design` containing `visual-design-standard.md`. Use the first match found. If none exists, fall back to `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`.
 - `.ai-assisted-architecture/standards/building-blocks/standard-cross-referencing.md`
 
 Review the example in `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/example/` for reference.
