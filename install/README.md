@@ -2,7 +2,7 @@
 
 This folder contains IDE configuration snippets for AI-Assisted Architecture. Copy or merge these into your workspace so your AI tools can discover the framework.
 
-All paths assume the submodule is installed at `ai-assisted-architecture/`. If you used a different path, update the references accordingly.
+All paths assume the submodule is installed at `.ai-assisted-architecture/`. If you used a different path, update the references accordingly.
 
 ## What to Copy
 

@@ -1,4 +1,4 @@
-Use `ai-assisted-architecture/AGENTS.md` as the canonical instructions file.
+Use `.ai-assisted-architecture/AGENTS.md` as the canonical instructions file.
 
-For any ABB/SBB work, load and follow the standards referenced by `ai-assisted-architecture/AGENTS.md`.
+For any ABB/SBB work, load and follow the standards referenced by `.ai-assisted-architecture/AGENTS.md`.
 Do not infer alternate rules from examples when a standard file states a requirement.

@@ -1,6 +1,6 @@
 # Agent Configuration
 
-This file defines top-level discovery and precedence rules for AI agents working with this framework. All paths are relative to the submodule root (`ai-assisted-architecture/`).
+This file defines top-level discovery and precedence rules for AI agents working with this framework. All paths are relative to the submodule root (`.ai-assisted-architecture/`).
 
 ## Agent Skills
 
@@ -13,18 +13,18 @@ This file defines top-level discovery and precedence rules for AI agents working
 
 | Script | Path | Prerequisites | Description |
 |--------|------|---------------|-------------|
-| Building Block Slide | `ai-assisted-architecture/scripts/create-building-block-slide.py` | `pip install python-pptx Pillow` | Creates a PowerPoint slide from a building block folder's `components.png` and `summary.png`. |
+| Building Block Slide | `.ai-assisted-architecture/scripts/create-building-block-slide.py` | `pip install python-pptx Pillow` | Creates a PowerPoint slide from a building block folder's `components.png` and `summary.png`. |
 
 ## Canonical Standards
 
 Always load these standards before creating or modifying ABB/SBB artefacts:
 
-- `ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
-- `ai-assisted-architecture/standards/building-blocks/standard-cross-referencing.md`
-- `ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-document.md`
-- `ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-diagram.md`
-- `ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-document.md`
-- `ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-diagram.md`
+- `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`
+- `.ai-assisted-architecture/standards/building-blocks/standard-cross-referencing.md`
+- `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-document.md`
+- `.ai-assisted-architecture/standards/building-blocks/architecture-building-block/standard-abb-diagram.md`
+- `.ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-document.md`
+- `.ai-assisted-architecture/standards/building-blocks/solution-building-block/standard-sbb-diagram.md`
 
 ## Scope Routing
 
@@ -33,7 +33,7 @@ Always load these standards before creating or modifying ABB/SBB artefacts:
 - For SBB narrative/content documents, apply `standard-sbb-document.md`.
 - For SBB diagrams and SBB visual artefacts, apply `standard-sbb-diagram.md`.
 - For links between ABB/SBB artefacts, apply `standard-cross-referencing.md`.
-- For PowerPoint generation, use `ai-assisted-architecture/scripts/create-building-block-slide.py`.
+- For PowerPoint generation, use `.ai-assisted-architecture/scripts/create-building-block-slide.py`.
 
 ## Precedence Rules
 

@@ -3,6 +3,6 @@ description: AI-Assisted Architecture standards discovery
 alwaysApply: true
 ---
 
-Use `ai-assisted-architecture/AGENTS.md` as the canonical source for ABB/SBB and visual standards.
+Use `.ai-assisted-architecture/AGENTS.md` as the canonical source for ABB/SBB and visual standards.
 
-For ABB/SBB tasks, load the standards listed in `ai-assisted-architecture/AGENTS.md` before producing output.
+For ABB/SBB tasks, load the standards listed in `.ai-assisted-architecture/AGENTS.md` before producing output.
