@@ -18,19 +18,19 @@ pip install python-pptx Pillow
 
 ### Visual Design Standard
 
-The framework needs a visual design standard that defines your organisation's colour tokens, typography, and accessibility rules. The agents look for it in this order:
+The framework needs a visual design standard that defines your organisation's colour tokens, typography, and accessibility rules. Agents search for it by folder name:
 
-1. **Workspace override (recommended):** `standards/visual-design/visual-design-standard.md` at your workspace root.
-2. **Framework default:** `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md` (a generic example palette).
+1. **Search the workspace** for any folder named `visual-design` that contains `visual-design-standard.md`. The folder can be anywhere in your workspace hierarchy (e.g. `standards/visual-design/`, `governance/visual-design/`, `docs/visual-design/`).
+2. **Fall back to the framework default** at `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md` if no workspace copy is found.
 
-To create your own, copy the framework's example and modify it:
+To create your own, copy the framework's example and place it wherever suits your workspace:
 
 ```bash
 mkdir -p standards/visual-design
 cp .ai-assisted-architecture/standards/visual-design/visual-design-standard.md standards/visual-design/
 ```
 
-Then edit `standards/visual-design/visual-design-standard.md` to match your organisation's brand. The colour token IDs (e.g. `1.1`, `2.6`, `4.3`) are referenced throughout the ABB/SBB diagram standards, so keep the same numbering scheme and update the hex values.
+Then edit `visual-design-standard.md` to match your organisation's brand. The colour token IDs (e.g. `1.1`, `2.6`, `4.3`) are referenced throughout the ABB/SBB diagram standards, so keep the same numbering scheme and update the hex values.
 
 If you do not provide an override, agents will use the framework's example palette. This is fine for evaluation but should be replaced before producing artefacts for your organisation.
 
@@ -112,7 +112,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 
 | Standard | Customise? | Description |
 |----------|-----------|-------------|
-| Visual design | Yes | Colour tokens, typography, contrast ratios, accessibility. Override at `standards/visual-design/visual-design-standard.md` in your workspace. |
+| Visual design | Yes | Colour tokens, typography, contrast ratios, accessibility. Place a `visual-design/visual-design-standard.md` folder anywhere in your workspace. |
 | ABB document | No | Document structure, metadata, and section layout for ABBs. |
 | ABB diagram | No | Draw.io diagram structure, styling, and export rules for ABBs. |
 | SBB document | No | Document structure, metadata, and section layout for SBBs. |
