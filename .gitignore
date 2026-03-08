@@ -64,3 +64,11 @@ scripts/fix_foundation_diagrams.py
 # Transient.
 patternode/
 archive/
+
+# Private drafts (not for public repo)
+**/bnz-*.md
+docs/articles/ai-assisted-architecture-framework/linkedin-post.md
+docs/articles/ai-assisted-architecture-framework/medium-post.md
+docs/articles/ai-assisted-architecture-framework/image-prompt.md
+docs/articles/ai-assisted-architecture-framework/banner-image.png
+docs/articles/ai-assisted-architecture-framework/ai-assisted-architecture-framework.md
