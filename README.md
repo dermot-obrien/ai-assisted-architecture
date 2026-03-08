@@ -1,8 +1,9 @@
 # AI-Assisted Architecture
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![Licence: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-blue.svg)](LICENSE-AGPL-3.0.txt)
+[![Licence: Commercial](https://img.shields.io/badge/commercial-licence-orange.svg)](LICENSE-COMMERCIAL.txt)
 [![Licence: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey.svg)](LICENSE)
-[![Licence: MIT](https://img.shields.io/badge/code-MIT-green.svg)](LICENSE-CODE)
 
 A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. Install it as a Git submodule in any enterprise architecture workspace.
 
@@ -209,8 +210,12 @@ See `.ai-assisted-architecture/foundation/foundation-manifest.yaml`.
 
 ## Licence
 
+This project is dual-licensed:
+
+- **Code** (scripts, configuration): [AGPL-3.0](LICENSE-AGPL-3.0.txt) for open-source and non-commercial use, or a [Commercial Licence](LICENSE-COMMERCIAL.txt) for proprietary/closed-source use.
 - **Documentation** (standards, agents, markdown files): [CC BY 4.0](LICENSE)
-- **Code** (scripts, configuration): [MIT](LICENSE-CODE)
+
+See [LICENSE](LICENSE) for details.
 
 ## Attribution
 
