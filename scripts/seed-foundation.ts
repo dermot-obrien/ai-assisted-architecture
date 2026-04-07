@@ -13,8 +13,18 @@
  *   bun .ai-assisted-architecture/scripts/seed-foundation.ts --profile core
  *   bun .ai-assisted-architecture/scripts/seed-foundation.ts --profile core --profile integration
  *   bun .ai-assisted-architecture/scripts/seed-foundation.ts --profile core,integration
+ *   bun .ai-assisted-architecture/scripts/seed-foundation.ts --all
  *   bun .ai-assisted-architecture/scripts/seed-foundation.ts --profile all --force
  *   bun .ai-assisted-architecture/scripts/seed-foundation.ts --profile core --dry-run
+ *
+ * Two modes:
+ *   • Targeted profile slice (--profile core|integration|infrastructure):
+ *     copies only the capabilities/ABBs/SBBs listed in that profile.yaml.
+ *   • All dimensions (--all  OR  --profile all  OR  --profile foundation):
+ *     walks every foundation seed_path declared in foundation-manifest.yaml
+ *     and copies every artefact (outcomes, use cases, platforms, contexts,
+ *     capabilities, ABBs, SBBs). Use this for new workspaces so AI agents
+ *     have the full reference architecture available locally.
  *
  * Run from the workspace root (the directory containing capabilities/ and
  * building-blocks/), or pass --workspace-root explicitly.
@@ -27,6 +37,7 @@ import {
   cpSync,
   rmSync,
   readFileSync,
+  readdirSync,
 } from "node:fs";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -39,6 +50,7 @@ interface Args {
   force: boolean;
   dryRun: boolean;
   help: boolean;
+  all: boolean;
 }
 
 const VALID_PROFILES = new Set([
@@ -56,6 +68,7 @@ function parseArgs(argv: string[]): Args {
     force: false,
     dryRun: false,
     help: false,
+    all: false,
   };
 
   for (let i = 0; i < argv.length; i++) {
@@ -67,6 +80,8 @@ function parseArgs(argv: string[]): Args {
       args.profiles.push(...splitCsv(next));
     } else if (a.startsWith("--profile=")) {
       args.profiles.push(...splitCsv(a.slice("--profile=".length)));
+    } else if (a === "--all" || a === "-a") {
+      args.all = true;
     } else if (a === "--workspace-root" || a === "-w") {
       const next = argv[++i];
       if (!next) throw new Error("--workspace-root requires a value");
@@ -108,16 +123,27 @@ function splitCsv(s: string): string[] {
 }
 
 function printHelp(): void {
-  console.log(`seed-foundation.ts — Seed a workspace from foundation/ profiles
+  console.log(`seed-foundation.ts — Seed a workspace from foundation/
 
 Usage:
   bun seed-foundation.ts [options]
 
+Modes:
+  Targeted profile slice — copies only the capabilities/ABBs/SBBs listed in
+  the named profile.yaml. Use this for narrow, controlled seeding.
+
+  All dimensions — walks every foundation seed_path (outcomes, use cases,
+  platforms, contexts, capabilities, ABBs, SBBs) and copies every artefact.
+  Use this for new workspaces so AI agents have the full reference
+  architecture available locally. Triggered by --all OR --profile all OR
+  --profile foundation.
+
 Options:
   -p, --profile <name>          Profile to seed. Repeatable or comma-separated.
                                 Valid: core, integration, infrastructure,
-                                       foundation (alias: all)
+                                       all (= every dimension; alias: foundation)
                                 Default: core
+  -a, --all                     Seed every dimension (same as --profile all)
   -w, --workspace-root <path>   Workspace root (default: current directory)
   -f, --force                   Overwrite existing files
   -n, --dry-run                 Print actions without making changes
@@ -126,7 +152,8 @@ Options:
 Examples:
   bun .ai-assisted-architecture/scripts/seed-foundation.ts
   bun .ai-assisted-architecture/scripts/seed-foundation.ts -p core,integration
-  bun .ai-assisted-architecture/scripts/seed-foundation.ts -p all --force
+  bun .ai-assisted-architecture/scripts/seed-foundation.ts --all --dry-run
+  bun .ai-assisted-architecture/scripts/seed-foundation.ts --all --force
   bun .ai-assisted-architecture/scripts/seed-foundation.ts -p core --dry-run
 `);
 }
@@ -227,6 +254,63 @@ function copySeedItem(
   return "copied";
 }
 
+// ─── All-dimensions walk (--all / --profile all / --profile foundation) ──
+//
+// Mirrors the seed_paths block in foundation/foundation-manifest.yaml.
+// When the user requests "all dimensions", we ignore profile lists and walk
+// each foundation subtree directly, copying every child folder/file.
+// Skip-existing semantics still apply per child.
+
+interface DimensionSpec {
+  subpath: string;
+  label: string;
+}
+
+const ALL_DIMENSIONS: DimensionSpec[] = [
+  { subpath: "strategy/outcomes", label: "outcomes" },
+  { subpath: "strategy/use-cases", label: "use cases" },
+  { subpath: "platforms", label: "platforms" },
+  { subpath: "contexts", label: "contexts" },
+  { subpath: "capabilities", label: "capabilities" },
+  { subpath: "building-blocks/architecture-building-blocks", label: "ABBs" },
+  { subpath: "building-blocks/solution-building-blocks", label: "SBBs" },
+];
+
+function seedAllDimensions(
+  foundationRoot: string,
+  workspaceRoot: string,
+  ctx: CopyContext,
+): Record<string, number> {
+  const counts: Record<string, number> = {};
+
+  for (const dim of ALL_DIMENSIONS) {
+    const srcRoot = join(foundationRoot, dim.subpath);
+    const dstRoot = join(workspaceRoot, dim.subpath);
+
+    if (!existsSync(srcRoot)) {
+      console.warn(`⚠ Foundation dimension missing on disk: ${dim.subpath}`);
+      counts[dim.label] = 0;
+      continue;
+    }
+
+    if (!ctx.dryRun) {
+      mkdirSync(dstRoot, { recursive: true });
+    }
+
+    let copied = 0;
+    for (const entry of readdirSync(srcRoot, { withFileTypes: true })) {
+      if (entry.name.startsWith(".")) continue;
+      const src = join(srcRoot, entry.name);
+      const dst = join(dstRoot, entry.name);
+      const result = copySeedItem(src, dst, entry.isDirectory(), ctx);
+      if (result === "copied" || result === "dryrun") copied++;
+    }
+    counts[dim.label] = copied;
+  }
+
+  return counts;
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────
 
 function main(): void {
@@ -264,13 +348,51 @@ function main(): void {
     );
   }
 
-  // Resolve profile aliases (all/foundation = core + integration + infrastructure)
-  let selectedProfiles: string[];
-  if (args.profiles.includes("all") || args.profiles.includes("foundation")) {
-    selectedProfiles = ["core", "integration", "infrastructure"];
-  } else {
-    selectedProfiles = [...new Set(args.profiles)];
+  // Decide whether to run in "all dimensions" mode or per-profile slice mode.
+  // --all OR --profile all OR --profile foundation → walk every foundation
+  // seed_path. Otherwise → per-profile capabilities/ABBs/SBBs slice.
+  const allDimensionsMode =
+    args.all ||
+    args.profiles.includes("all") ||
+    args.profiles.includes("foundation");
+
+  if (allDimensionsMode) {
+    console.log(`Framework root: ${frameworkRoot}`);
+    console.log(`Workspace root: ${workspaceRootAbs}`);
+    console.log("Mode: ALL DIMENSIONS — every artefact in foundation/");
+    if (args.dryRun) console.log("       (DryRun)");
+    else if (args.force) console.log("       (Force overwrite)");
+    console.log("");
+
+    if (!args.dryRun) {
+      mkdirSync(workspaceRootAbs, { recursive: true });
+    }
+
+    const ctx: CopyContext = { force: args.force, dryRun: args.dryRun };
+    const counts = seedAllDimensions(foundationRoot, workspaceRootAbs, ctx);
+
+    // Drop the workspace manifest example if the workspace doesn't have one.
+    copySeedItem(
+      join(foundationRoot, "workspace-manifest.example.yaml"),
+      join(workspaceRootAbs, "foundation-workspace.yaml"),
+      false,
+      ctx,
+    );
+
+    console.log("");
+    console.log("Seed complete (all dimensions).");
+    for (const dim of ALL_DIMENSIONS) {
+      const n = counts[dim.label] ?? 0;
+      console.log(`  ${dim.label.padEnd(13)} ${n}`);
+    }
+    console.log(
+      "Workspace content is canonical. Framework foundation is fallback/read-only.",
+    );
+    return;
   }
+
+  // ── Per-profile slice mode ────────────────────────────────────────────
+  const selectedProfiles = [...new Set(args.profiles)];
 
   console.log(`Framework root: ${frameworkRoot}`);
   console.log(`Workspace root: ${workspaceRootAbs}`);
