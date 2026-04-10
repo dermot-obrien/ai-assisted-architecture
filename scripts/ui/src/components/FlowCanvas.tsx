@@ -42,6 +42,14 @@ export default function FlowCanvas({
   // Store layout result so visual updates don't re-run ELK
   const layoutRef = useRef<{ children: Array<{ id: string; x: number; y: number; width: number; height: number }> } | null>(null);
 
+  // Keep refs to current visual state so the layout effect can apply styling at set-time
+  const traceRef = useRef(traceNodeIds);
+  const searchRef = useRef(searchMatchIds);
+  const highlightRef = useRef(highlightType);
+  traceRef.current = traceNodeIds;
+  searchRef.current = searchMatchIds;
+  highlightRef.current = highlightType;
+
   // Effect 1: Re-layout only when graph structure changes
   useEffect(() => {
     if (!graphNodes.length) {
@@ -54,7 +62,14 @@ export default function FlowCanvas({
     layoutGraph(graphNodes, graphEdges).then((layout) => {
       layoutRef.current = layout;
 
-      // Build initial nodes/edges (visual styling applied by Effect 2)
+      // Read current visual state at resolve-time (not stale closure)
+      const curTrace = traceRef.current;
+      const curSearch = searchRef.current;
+      const curHighlight = highlightRef.current;
+      const highlightNodeIds = curHighlight
+        ? new Set(graphNodes.filter((n) => n.type === curHighlight).map((n) => n.id))
+        : null;
+
       const rfNodes = layout.children.map((elkNode) => {
         const original = graphNodes.find((n) => n.id === elkNode.id);
         const nodeData = original || {
@@ -64,28 +79,42 @@ export default function FlowCanvas({
           status: "unknown",
           origin: "framework" as const,
         };
+
+        let opacity = 1;
+        if (curTrace && !curTrace.has(elkNode.id)) opacity = 0.15;
+        if (curSearch && !curSearch.has(elkNode.id)) opacity = Math.min(opacity, 0.15);
+        if (highlightNodeIds && !highlightNodeIds.has(elkNode.id)) opacity = Math.min(opacity, 0.25);
+
         return {
           id: elkNode.id,
           type: "dag" as const,
           position: { x: elkNode.x, y: elkNode.y },
           data: nodeData,
-          style: { width: elkNode.width, opacity: 1, transition: "opacity 0.3s ease" },
+          style: { width: elkNode.width, opacity, transition: "opacity 0.3s ease" },
         };
       });
 
-      const rfEdges = graphEdges.map((e, i) => ({
-        id: `e-${i}`,
-        source: e.source,
-        target: e.target,
-        label: e.label,
-        type: "smoothstep" as const,
-        animated: e.relationship === "cross-cutting",
-        style: { stroke: "#4a4e6a", strokeWidth: e.relationship === "primary" ? 2 : 1, opacity: e.relationship === "cross-cutting" ? 0.4 : 0.7, transition: "opacity 0.3s ease, stroke 0.3s ease" },
-        markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: e.relationship === "cross-cutting" ? "#555" : "#4a4e6a" },
-        labelStyle: { fill: "#6b7084", fontSize: 9, fontWeight: 500 },
-        labelBgStyle: { fill: "#0f1117", fillOpacity: 0.85 },
-        labelBgPadding: [4, 2] as [number, number],
-      }));
+      const rfEdges = graphEdges.map((e, i) => {
+        const isInTrace = curTrace ? curTrace.has(e.source) && curTrace.has(e.target) : true;
+        const baseStroke = e.relationship === "cross-cutting" ? "#555" : e.relationship === "supporting" ? "#666" : "#4a4e6a";
+        const stroke = curTrace ? (isInTrace ? "#8b9cf5" : baseStroke) : baseStroke;
+        const strokeWidth = curTrace ? (isInTrace ? 3 : (e.relationship === "primary" ? 2 : 1)) : (e.relationship === "primary" ? 2 : 1);
+        const edgeOpacity = curTrace ? (isInTrace ? 1 : 0.08) : (e.relationship === "cross-cutting" ? 0.4 : 0.7);
+
+        return {
+          id: `e-${i}`,
+          source: e.source,
+          target: e.target,
+          label: e.label,
+          type: "smoothstep" as const,
+          animated: e.relationship === "cross-cutting" || (curTrace !== null && isInTrace),
+          style: { stroke, strokeWidth, opacity: edgeOpacity, transition: "opacity 0.3s ease, stroke 0.3s ease" },
+          markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: curTrace && isInTrace ? "#8b9cf5" : (e.relationship === "cross-cutting" ? "#555" : "#4a4e6a") },
+          labelStyle: { fill: "#6b7084", fontSize: 9, fontWeight: 500 },
+          labelBgStyle: { fill: "#0f1117", fillOpacity: 0.85 },
+          labelBgPadding: [4, 2] as [number, number],
+        };
+      });
 
       setNodes(rfNodes);
       setEdges(rfEdges);
