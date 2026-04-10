@@ -18,6 +18,29 @@ export const TYPE_LABELS: Record<NodeType, string> = {
   sbb: "SBB",
 };
 
+// Lifecycle statuses — ordered from early to mature
+export type Status = "proposed" | "draft" | "approved" | "active" | "deprecated" | "unknown";
+
+export const STATUS_LABELS: Record<Status, string> = {
+  proposed: "Proposed",
+  draft: "Draft",
+  approved: "Approved",
+  active: "Active",
+  deprecated: "Deprecated",
+  unknown: "Unknown",
+};
+
+export const STATUS_COLOURS: Record<Status, string> = {
+  proposed: "#e0a832",   // amber — candidate, under evaluation
+  draft: "#6b7084",      // grey — work in progress
+  approved: "#5b8cd4",   // blue — reviewed and accepted
+  active: "#4caf78",     // green — live, in production
+  deprecated: "#c44",    // red — phasing out
+  unknown: "#555",
+};
+
+export const ALL_STATUSES: Status[] = ["proposed", "draft", "approved", "active", "deprecated"];
+
 export const TYPE_PARTITION: Record<NodeType, number> = {
   outcome: 0,
   platform: 1,

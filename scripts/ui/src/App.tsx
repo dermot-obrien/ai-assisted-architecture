@@ -7,13 +7,17 @@ import DetailPanel from "./components/DetailPanel";
 import FrameworkView from "./components/FrameworkView";
 import { useGraphData } from "./hooks/useGraphData";
 import { bfsConnected, bfsDirected, traceGoldenThread, traceConceptTree, expandOneHop } from "./graph-utils";
+import { ALL_STATUSES } from "./constants";
 import type { NodeType } from "./types";
+import type { Status } from "./constants";
 
 type ActiveView = "dag" | "framework";
 
 const ALL_TYPES: Set<NodeType> = new Set([
   "outcome", "platform", "context", "capability", "abb", "sbb",
 ]);
+
+const ALL_STATUS_SET: Set<Status> = new Set(ALL_STATUSES);
 
 export default function App() {
   const { graphData, concepts, loading, error, refresh } = useGraphData();
@@ -35,6 +39,7 @@ export default function App() {
   const [showCrossCutting, setShowCrossCutting] = useState(false);
   const [highlightType, setHighlightType] = useState<NodeType | null>(null);
   const [visibleTypes, setVisibleTypes] = useState<Set<NodeType>>(new Set(ALL_TYPES));
+  const [visibleStatuses, setVisibleStatuses] = useState<Set<Status>>(new Set(ALL_STATUS_SET));
   const [searchQuery, setSearchQuery] = useState("");
 
   // Compute search matches
@@ -67,6 +72,20 @@ export default function App() {
     });
   }, []);
 
+  // Toggle a single status in the visible set
+  const handleToggleStatus = useCallback((status: Status) => {
+    setVisibleStatuses((prev) => {
+      const next = new Set(prev);
+      if (next.has(status)) {
+        if (next.size <= 1) return prev;
+        next.delete(status);
+      } else {
+        next.add(status);
+      }
+      return next;
+    });
+  }, []);
+
   // Compute effective (filtered) graph data
   const effectiveData = useMemo(() => {
     if (!graphData || !graphData.nodes.length)
@@ -87,6 +106,11 @@ export default function App() {
     // Apply type filter
     if (visibleTypes.size < ALL_TYPES.size) {
       filteredNodes = filteredNodes.filter((n) => visibleTypes.has(n.type));
+    }
+
+    // Apply status filter
+    if (visibleStatuses.size < ALL_STATUS_SET.size) {
+      filteredNodes = filteredNodes.filter((n) => visibleStatuses.has((n.status || "unknown") as Status));
     }
 
     // Filter edges to only connect visible nodes
@@ -114,7 +138,7 @@ export default function App() {
     }
 
     return { nodes: filteredNodes, edges: filteredEdges };
-  }, [graphData, showFramework, showWorkspace, showCrossCutting, visibleTypes, isolatedSubgraph]);
+  }, [graphData, showFramework, showWorkspace, showCrossCutting, visibleTypes, visibleStatuses, isolatedSubgraph]);
 
   // Isolate to search results
   const handleSearchIsolate = useCallback(() => {
@@ -131,6 +155,7 @@ export default function App() {
     setContextMenu(null);
     setHighlightType(null);
     setVisibleTypes(new Set(ALL_TYPES));
+    setVisibleStatuses(new Set(ALL_STATUS_SET));
     setShowCrossCutting(false);
     setSearchQuery("");
   }, []);
@@ -322,6 +347,7 @@ export default function App() {
         hasActiveIsolation={hasActiveIsolation}
         highlightType={highlightType}
         visibleTypes={visibleTypes}
+        visibleStatuses={visibleStatuses}
         searchQuery={searchQuery}
         searchMatchCount={searchMatchIds?.size ?? 0}
         onSearchChange={setSearchQuery}
@@ -330,6 +356,7 @@ export default function App() {
         onToggleWorkspace={() => setShowWorkspace((p) => !p)}
         onToggleCrossCutting={() => setShowCrossCutting((p) => !p)}
         onToggleType={handleToggleType}
+        onToggleStatus={handleToggleStatus}
         onReset={resetView}
         onRefresh={refresh}
         onSwitchToFramework={() => setActiveView("framework")}

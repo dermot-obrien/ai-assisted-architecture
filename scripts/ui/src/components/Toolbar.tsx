@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
-import { TYPE_LABELS, TYPE_COLOURS } from "../constants";
+import { TYPE_LABELS, TYPE_COLOURS, STATUS_LABELS, STATUS_COLOURS, ALL_STATUSES } from "../constants";
 import type { NodeType, Graph } from "../types";
+import type { Status } from "../constants";
 
 interface ToolbarProps {
   graphData: Graph | null;
@@ -11,6 +12,7 @@ interface ToolbarProps {
   hasActiveIsolation: boolean;
   highlightType: NodeType | null;
   visibleTypes: Set<NodeType>;
+  visibleStatuses: Set<Status>;
   searchQuery: string;
   searchMatchCount: number;
   onSearchChange: (query: string) => void;
@@ -19,6 +21,7 @@ interface ToolbarProps {
   onToggleWorkspace: () => void;
   onToggleCrossCutting: () => void;
   onToggleType: (type: NodeType) => void;
+  onToggleStatus: (status: Status) => void;
   onReset: () => void;
   onRefresh: () => void;
   onSwitchToFramework: () => void;
@@ -58,6 +61,39 @@ function Legend({
   );
 }
 
+function StatusFilter({
+  visibleStatuses,
+  onToggleStatus,
+}: {
+  visibleStatuses: Set<Status>;
+  onToggleStatus: (status: Status) => void;
+}) {
+  return (
+    <div className="legend">
+      {ALL_STATUSES.map((st) => {
+        const active = visibleStatuses.has(st);
+        return (
+          <div
+            className={`legend-item${active ? "" : " dimmed"}`}
+            key={st}
+            onClick={() => onToggleStatus(st)}
+            title={`${active ? "Hide" : "Show"} ${STATUS_LABELS[st]} nodes`}
+          >
+            <div
+              className="legend-swatch"
+              style={{
+                background: STATUS_COLOURS[st],
+                opacity: active ? 1 : 0.3,
+              }}
+            />
+            {STATUS_LABELS[st]}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Toolbar({
   graphData,
   showFramework,
@@ -67,6 +103,7 @@ export default function Toolbar({
   hasActiveIsolation,
   highlightType,
   visibleTypes,
+  visibleStatuses,
   searchQuery,
   searchMatchCount,
   onSearchChange,
@@ -75,6 +112,7 @@ export default function Toolbar({
   onToggleWorkspace,
   onToggleCrossCutting,
   onToggleType,
+  onToggleStatus,
   onReset,
   onRefresh,
   onSwitchToFramework,
@@ -128,6 +166,10 @@ export default function Toolbar({
       <div className="separator" />
 
       <Legend visibleTypes={visibleTypes} onToggleType={onToggleType} />
+
+      <div className="separator" />
+
+      <StatusFilter visibleStatuses={visibleStatuses} onToggleStatus={onToggleStatus} />
 
       <div className="separator" />
 

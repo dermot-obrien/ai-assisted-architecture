@@ -202,7 +202,7 @@ function parseOutcome(id: string, content: string): { node: GraphNode; edges: Gr
     extractFrontmatterTitle(content)?.replace(/^OC-\d+\s+/, "") ||
     extractH1(content)?.replace(/^OC-\d+\s+/, "") ||
     id;
-  const status = extractTableProperty(content, "Status")?.replace(/`/g, "") || "unknown";
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
 
   const node: GraphNode = { id, name, type: "outcome", status, origin: getOrigin(id) };
   const edges: GraphEdge[] = [];
@@ -225,7 +225,7 @@ function parsePlatform(id: string, content: string): { node: GraphNode; edges: G
     extractFrontmatterTitle(content)?.replace(/^PL-\S+\s+/, "") ||
     extractH1(content)?.replace(/^PL-\S+\s+/, "") ||
     id;
-  const status = extractTableProperty(content, "Status")?.replace(/`/g, "") || "unknown";
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
 
   const node: GraphNode = { id, name, type: "platform", status, origin: getOrigin(id) };
   const edges: GraphEdge[] = [];
@@ -309,7 +309,7 @@ function parseCapability(id: string, content: string): { node: GraphNode; edges:
     extractFrontmatterTitle(content)?.replace(/^CAP-\S+\s+/, "") ||
     extractH1(content)?.replace(/^CAP-\S+\s+/, "") ||
     id;
-  const status = extractTableProperty(content, "Status")?.replace(/`/g, "") || "unknown";
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
   const level = extractTableProperty(content, "Level")?.replace(/`/g, "") || undefined;
   const parentRaw = extractTableProperty(content, "Parent")?.replace(/`/g, "") || undefined;
 
@@ -370,7 +370,7 @@ function parseABB(id: string, content: string): { node: GraphNode; edges: GraphE
     extractFrontmatterTitle(content)?.replace(/^AB-\S+\s+/, "") ||
     extractH1(content) ||
     id;
-  const status = extractTableProperty(content, "Status")?.replace(/`/g, "") || "unknown";
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
   const category = extractTableProperty(content, "Category")?.replace(/`/g, "") || undefined;
   const shortName = extractTableProperty(content, "Short Name") || undefined;
 
@@ -420,7 +420,7 @@ function parseSBB(id: string, content: string): { node: GraphNode; edges: GraphE
     extractFrontmatterTitle(content)?.replace(/^SB-\S+\s+/, "") ||
     extractH1(content) ||
     id;
-  const status = extractTableProperty(content, "Status")?.replace(/`/g, "") || "unknown";
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
   const category = extractTableProperty(content, "Category")?.replace(/`/g, "") || undefined;
   const shortName = extractTableProperty(content, "Short Name") || undefined;
 

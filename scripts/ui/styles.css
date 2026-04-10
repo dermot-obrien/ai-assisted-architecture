@@ -269,6 +269,17 @@ html, body, #root {
   opacity: 0.7;
   text-transform: uppercase;
 }
+.dag-node .status-badge {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  opacity: 0.85;
+}
 .dag-node .workspace-badge {
   display: inline-block;
   font-size: 8px;
