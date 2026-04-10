@@ -6,7 +6,6 @@ interface ToolbarProps {
   graphData: Graph | null;
   showFramework: boolean;
   showWorkspace: boolean;
-  showReference: boolean;
   showCrossCutting: boolean;
   hasActiveTrace: boolean;
   hasActiveIsolation: boolean;
@@ -18,7 +17,6 @@ interface ToolbarProps {
   onSearchIsolate: () => void;
   onToggleFramework: () => void;
   onToggleWorkspace: () => void;
-  onToggleReference: () => void;
   onToggleCrossCutting: () => void;
   onToggleType: (type: NodeType) => void;
   onReset: () => void;
@@ -64,7 +62,6 @@ export default function Toolbar({
   graphData,
   showFramework,
   showWorkspace,
-  showReference,
   showCrossCutting,
   hasActiveTrace,
   hasActiveIsolation,
@@ -76,7 +73,6 @@ export default function Toolbar({
   onSearchIsolate,
   onToggleFramework,
   onToggleWorkspace,
-  onToggleReference,
   onToggleCrossCutting,
   onToggleType,
   onReset,
@@ -180,17 +176,6 @@ export default function Toolbar({
         title="Open full framework concepts view"
       >
         Framework Guide
-      </button>
-
-      <button
-        onClick={onToggleReference}
-        style={
-          showReference
-            ? { background: "var(--accent)", borderColor: "var(--accent)" }
-            : {}
-        }
-      >
-        Reference
       </button>
 
       <button

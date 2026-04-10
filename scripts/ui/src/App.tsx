@@ -4,7 +4,6 @@ import Toolbar from "./components/Toolbar";
 import FlowCanvas from "./components/FlowCanvas";
 import ContextMenu from "./components/ContextMenu";
 import DetailPanel from "./components/DetailPanel";
-import ReferencePanel from "./components/ReferencePanel";
 import FrameworkView from "./components/FrameworkView";
 import { useGraphData } from "./hooks/useGraphData";
 import { bfsConnected, bfsDirected, traceGoldenThread, traceConceptTree, expandOneHop } from "./graph-utils";
@@ -31,7 +30,6 @@ export default function App() {
     nodeIds: Set<string>;
     edgeIndices: Set<number>;
   } | null>(null);
-  const [showReference, setShowReference] = useState(false);
   const [showFramework, setShowFramework] = useState(true);
   const [showWorkspace, setShowWorkspace] = useState(true);
   const [showCrossCutting, setShowCrossCutting] = useState(false);
@@ -264,13 +262,6 @@ export default function App() {
     [graphData, isolatedSubgraph, effectiveData, resetView]
   );
 
-  // Reference panel concept click
-  const handleConceptClick = useCallback((typeKey: string) => {
-    setHighlightType((prev) =>
-      prev === typeKey ? null : (typeKey as NodeType)
-    );
-  }, []);
-
   // Switch to DAG, optionally focusing on a node
   const switchToDAG = useCallback((focusNodeId?: string) => {
     setActiveView("dag");
@@ -315,7 +306,6 @@ export default function App() {
         graphData={graphData}
         showFramework={showFramework}
         showWorkspace={showWorkspace}
-        showReference={showReference}
         showCrossCutting={showCrossCutting}
         hasActiveTrace={hasActiveTrace}
         hasActiveIsolation={hasActiveIsolation}
@@ -327,7 +317,6 @@ export default function App() {
         onSearchIsolate={handleSearchIsolate}
         onToggleFramework={() => setShowFramework((p) => !p)}
         onToggleWorkspace={() => setShowWorkspace((p) => !p)}
-        onToggleReference={() => setShowReference((p) => !p)}
         onToggleCrossCutting={() => setShowCrossCutting((p) => !p)}
         onToggleType={handleToggleType}
         onReset={resetView}
@@ -360,18 +349,12 @@ export default function App() {
         />
       )}
 
-      <ReferencePanel
-        isOpen={showReference}
-        onClose={() => setShowReference(false)}
-        concepts={concepts}
-        highlightedType={highlightType}
-        onConceptClick={handleConceptClick}
-      />
-
       <DetailPanel
         selectedNode={selectedNode}
         graphData={graphData}
+        concepts={concepts}
         onClose={() => setSelectedNode(null)}
+        onNodeNavigate={handleNodeSelect}
       />
     </>
   );
