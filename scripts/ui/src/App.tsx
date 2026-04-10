@@ -238,7 +238,8 @@ export default function App() {
             }
           });
           setIsolatedSubgraph({ nodeIds: expandedIds, edgeIndices: expandedEdgeIndices });
-          setTraceNodeIds(null);
+          setTraceNodeIds(new Set([nodeId]));
+          setSelectedNode(nodeId);
           break;
         }
         case "isolate": {
