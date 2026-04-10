@@ -126,6 +126,10 @@ A **Bounded Context** is a linguistic and structural boundary where a specific d
 A **Service** (or Microservice) is the deployable unit of execution.
 *   **Relationship:** A Service is the runtime manifestation of an SBB. It implements the interfaces defined by the parent ABB. A single Bounded Context may contain multiple services that share the same domain model.
 
+### 2.7 Decision Records (The "Why")
+A **Decision Record** (DR) captures the rationale behind an architectural decision, typically the selection or rejection of SBB candidates during an assessment. The format follows [MADR](https://github.com/adr/madr) (Markdown Any Decision Records, Nygard 2011).
+*   **Relationship:** A DR evaluates one or more SBBs and is owned by a Platform. It traces the *why* that the Golden Thread's *what* and *how* otherwise omit. DRs carry tags that group related decisions into assessments (e.g., `coupa-jde-eval`), enabling filtering and traceability across evaluation cycles.
+
 
 ## 3. The Intersection of TOGAF, DDD, and Platform Engineering
 

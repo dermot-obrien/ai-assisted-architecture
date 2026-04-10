@@ -32,6 +32,7 @@ All artefacts must be linked according to the following downward and upward trac
 | **Bounded Context**| ABB | Bounded Context *contains* the logical model (ABB). |
 | **ABB** | SBB | SBB *is a concrete realisation* of the ABB. |
 | **SBB** | Service | Service *is the runtime manifestation* of the SBB. |
+| **Decision Record** | SBB | DR *evaluates* one or more SBB candidates. |
 
 
 ## 2. Linking Conventions

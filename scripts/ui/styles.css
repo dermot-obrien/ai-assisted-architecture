@@ -17,6 +17,7 @@
   --capability:   #d4915b;
   --abb:          #9b6ccf;
   --sbb:          #c26cb0;
+  --decision:     #4a90d9;
 
   /* Workspace badge */
   --workspace:    #d4a34e;
@@ -106,6 +107,17 @@ html, body, #root {
   color: var(--text-muted);
   opacity: 0.6;
 }
+.tag-filter {
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 11px;
+  cursor: pointer;
+  outline: none;
+}
+.tag-filter:focus { border-color: var(--accent); }
 .search-count {
   font-size: 10px;
   color: var(--text-muted);
@@ -236,8 +248,11 @@ html, body, #root {
   transform: translateY(-1px);
 }
 .dag-node.origin-workspace {
-  border-style: dashed;
-  border-width: 2px;
+  border-left: 3px solid var(--workspace);
+  background-image: repeating-linear-gradient(
+    135deg, transparent, transparent 6px,
+    rgba(212,163,78,0.06) 6px, rgba(212,163,78,0.06) 7px
+  );
 }
 .dag-node .node-id {
   font-size: 10px;
@@ -346,6 +361,26 @@ html, body, #root {
 }
 .dag-node.type-sbb:hover { box-shadow: 0 0 16px rgba(194, 108, 176, 0.3); }
 .dag-node.type-sbb .node-badge { background: rgba(194, 108, 176, 0.2); color: var(--sbb); }
+
+.dag-node.type-decision {
+  background: rgba(74, 144, 217, 0.12);
+  border-color: var(--decision);
+  color: #a0c8f0;
+  border-left: 4px solid var(--decision);
+  border-radius: 4px 8px 8px 4px;
+}
+.dag-node.type-decision:hover { box-shadow: 0 0 16px rgba(74, 144, 217, 0.3); }
+.dag-node.type-decision .node-badge { background: rgba(74, 144, 217, 0.2); color: var(--decision); }
+
+/* Status-driven border styles — uncommitted states use dashed */
+.dag-node.status-candidate {
+  border-style: dashed;
+  box-shadow: 0 0 8px rgba(224, 168, 50, 0.4);
+}
+.dag-node.status-rejected {
+  border-style: dashed;
+  opacity: 0.5;
+}
 
 /* ---------- Edge labels ---------- */
 .react-flow__edge-text {
@@ -460,6 +495,15 @@ html, body, #root {
 }
 .detail-origin-badge.workspace {
   background: rgba(212, 163, 78, 0.2); color: var(--workspace);
+}
+.detail-tags {
+  display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px;
+}
+.detail-tag-chip {
+  display: inline-block; font-size: 10px; font-weight: 600;
+  padding: 2px 8px; border-radius: 10px;
+  background: rgba(108, 126, 225, 0.15); color: var(--accent);
+  letter-spacing: 0.02em;
 }
 
 /* Sections */

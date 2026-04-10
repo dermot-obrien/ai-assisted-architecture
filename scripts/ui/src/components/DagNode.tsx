@@ -12,6 +12,7 @@ interface DagNodeData {
   level?: string;
   shortName?: string;
   origin: "framework" | "workspace";
+  parentContext?: string;
 }
 
 interface DagNodeProps {
@@ -19,7 +20,7 @@ interface DagNodeProps {
 }
 
 export default function DagNode({ data }: DagNodeProps) {
-  const { id, name, type, level, status, origin } = data;
+  const { id, name, type, level, status, origin, parentContext } = data;
   const badgeText = level ? `${TYPE_LABELS[type]} ${level}` : TYPE_LABELS[type];
   const isWorkspace = origin === "workspace";
   const st = (status || "unknown") as Status;
@@ -37,6 +38,7 @@ export default function DagNode({ data }: DagNodeProps) {
         <span className="node-badge">{badgeText}</span>
         <span className="status-badge" style={{ background: statusColour }}>{statusLabel}</span>
         {isWorkspace && <span className="workspace-badge">Workspace</span>}
+        {parentContext && <span className="bc-badge">{parentContext}</span>}
       </div>
       <Handle type="source" position={Position.Bottom} style={{ opacity: 0 }} />
     </div>

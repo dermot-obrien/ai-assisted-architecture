@@ -205,10 +205,11 @@ function GoldenThread({ onSelect }: { onSelect: (key: string) => void }) {
 // Concept detail section
 // ---------------------------------------------------------------------------
 
-const CONCEPT_ORDER: string[] = ["outcome", "platform", "capability", "context", "abb", "sbb"];
+const CONCEPT_ORDER: string[] = ["outcome", "platform", "capability", "context", "abb", "sbb", "decision"];
 const CONCEPT_LABELS: Record<string, string> = {
   outcome: "Outcome", platform: "Platform", context: "Bounded Context",
   capability: "Capability", abb: "Architecture Building Block (ABB)", sbb: "Solution Building Block (SBB)",
+  decision: "Decision Record (DR)",
 };
 
 // ---------------------------------------------------------------------------

@@ -57,3 +57,11 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
 
 **Purpose:** Runtime unit of execution definition.
+
+---
+
+### `/create-decision` - Create Decision Record
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-decision.md`
+
+**Purpose:** Record an architectural decision following MADR format.

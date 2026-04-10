@@ -3,6 +3,8 @@ import { TYPE_LABELS, TYPE_COLOURS, STATUS_LABELS, STATUS_COLOURS, ALL_STATUSES 
 import type { NodeType, Graph } from "../types";
 import type { Status } from "../constants";
 
+type ActiveView = "dag" | "table" | "framework";
+
 interface ToolbarProps {
   graphData: Graph | null;
   showFramework: boolean;
@@ -13,8 +15,11 @@ interface ToolbarProps {
   highlightType: NodeType | null;
   visibleTypes: Set<NodeType>;
   visibleStatuses: Set<Status>;
+  allTags: string[];
+  selectedTag: string | null;
   searchQuery: string;
   searchMatchCount: number;
+  activeView: ActiveView;
   onSearchChange: (query: string) => void;
   onSearchIsolate: () => void;
   onToggleFramework: () => void;
@@ -22,9 +27,11 @@ interface ToolbarProps {
   onToggleCrossCutting: () => void;
   onToggleType: (type: NodeType) => void;
   onToggleStatus: (status: Status) => void;
+  onSelectTag: (tag: string | null) => void;
   onReset: () => void;
   onRefresh: () => void;
   onSwitchToFramework: () => void;
+  onSwitchView: (view: ActiveView) => void;
 }
 
 function Legend({
@@ -104,8 +111,11 @@ export default function Toolbar({
   highlightType,
   visibleTypes,
   visibleStatuses,
+  allTags,
+  selectedTag,
   searchQuery,
   searchMatchCount,
+  activeView,
   onSearchChange,
   onSearchIsolate,
   onToggleFramework,
@@ -113,9 +123,11 @@ export default function Toolbar({
   onToggleCrossCutting,
   onToggleType,
   onToggleStatus,
+  onSelectTag,
   onReset,
   onRefresh,
   onSwitchToFramework,
+  onSwitchView,
 }: ToolbarProps) {
   const searchRef = useRef<HTMLInputElement>(null);
   const hasSearch = searchQuery.trim().length > 0;
@@ -123,6 +135,24 @@ export default function Toolbar({
   return (
     <div className="toolbar">
       <h1>AI-Assisted Architecture</h1>
+
+      {/* View toggle: DAG | Table */}
+      <div className="view-toggle">
+        <button
+          className={activeView === "dag" ? "view-toggle-active" : ""}
+          onClick={() => onSwitchView("dag")}
+          title="Graph view"
+        >
+          DAG
+        </button>
+        <button
+          className={activeView === "table" ? "view-toggle-active" : ""}
+          onClick={() => onSwitchView("table")}
+          title="Table view"
+        >
+          Table
+        </button>
+      </div>
 
       {/* Search */}
       <div className="search-box">
@@ -170,6 +200,23 @@ export default function Toolbar({
       <div className="separator" />
 
       <StatusFilter visibleStatuses={visibleStatuses} onToggleStatus={onToggleStatus} />
+
+      {allTags.length > 0 && (
+        <>
+          <div className="separator" />
+          <select
+            className="tag-filter"
+            value={selectedTag || ""}
+            onChange={(e) => onSelectTag(e.target.value || null)}
+            title="Filter by tag"
+          >
+            <option value="">All tags</option>
+            {allTags.map((tag) => (
+              <option key={tag} value={tag}>{tag}</option>
+            ))}
+          </select>
+        </>
+      )}
 
       <div className="separator" />
 

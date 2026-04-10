@@ -58,3 +58,11 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
 
 **Purpose:** Runtime unit of execution definition.
+
+---
+
+### `/create-decision` - Create Decision Record
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-decision.md`
+
+**Purpose:** Record an architectural decision following MADR format.

@@ -1,4 +1,4 @@
-export type NodeType = "outcome" | "platform" | "context" | "capability" | "abb" | "sbb";
+export type NodeType = "outcome" | "platform" | "context" | "capability" | "abb" | "sbb" | "decision";
 
 export interface GraphNode {
   id: string;
@@ -9,6 +9,9 @@ export interface GraphNode {
   level?: string;
   category?: string;
   shortName?: string;
+  tags?: string[];
+  parentContext?: string;
+  parentPlatform?: string;
 }
 
 export interface GraphEdge {

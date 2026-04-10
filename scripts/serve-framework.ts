@@ -46,7 +46,7 @@ function parseArgs(): { port: number; workspace: string | null; repoRoot: string
 // Types
 // ---------------------------------------------------------------------------
 
-type NodeType = "outcome" | "platform" | "context" | "capability" | "abb" | "sbb";
+type NodeType = "outcome" | "platform" | "context" | "capability" | "abb" | "sbb" | "decision";
 
 interface GraphNode {
   id: string;
@@ -57,6 +57,9 @@ interface GraphNode {
   level?: string;        // L1, L2, L3 for capabilities
   category?: string;     // for ABBs/SBBs
   shortName?: string;    // diagram abbreviation
+  tags?: string[];       // project/assessment tags
+  parentContext?: string; // BC ID that contains this node (for ABBs/SBBs)
+  parentPlatform?: string; // PL ID that owns this node (for BCs, Capabilities)
 }
 
 interface GraphEdge {
@@ -116,20 +119,20 @@ function extractTableProperty(content: string, key: string): string | null {
 
 /** Extract an artefact ID from text like `PL-001` or [PL-001 ...](url) */
 function extractId(text: string): string | null {
-  const match = text.match(/\b(OC|PL|BC|CAP|AB|SB|SBB)-(?:[A-Z]+-)?(\d{3})\b/);
+  const match = text.match(/\b(OC|PL|BC|CAP|AB|SB|SBB|DR)-(?:[A-Z]+-)?(\d{3})\b/);
   return match ? match[0] : null;
 }
 
 /** Extract all artefact IDs from a block of text */
 function extractAllIds(text: string): string[] {
-  const matches = text.matchAll(/\b(OC|PL|BC|CAP|AB|SB)-(?:[A-Z]+-)*\d{3}\b/g);
+  const matches = text.matchAll(/\b(OC|PL|BC|CAP|AB|SB|DR)-(?:[A-Z]+-)*\d{3}\b/g);
   return [...new Set([...matches].map((m) => m[0]))];
 }
 
 /** Extract markdown link references like [AB-004 Name](../path/) and return IDs */
 function extractLinkedIds(text: string): string[] {
   const matches = text.matchAll(
-    /\[([^\]]*?(?:OC|PL|BC|CAP|AB|SB)-(?:[A-Z]+-)*\d{3}[^\]]*?)\]\([^)]+\)/g
+    /\[([^\]]*?(?:OC|PL|BC|CAP|AB|SB|DR)-(?:[A-Z]+-)*\d{3}[^\]]*?)\]\([^)]+\)/g
   );
   const ids: string[] = [];
   for (const m of matches) {
@@ -137,6 +140,14 @@ function extractLinkedIds(text: string): string[] {
     if (id) ids.push(id);
   }
   return [...new Set(ids)];
+}
+
+/** Extract tags from a | **Tags** | row — comma-separated, backtick-stripped */
+function extractTags(content: string): string[] | undefined {
+  const raw = extractTableProperty(content, "Tags");
+  if (!raw) return undefined;
+  const tags = raw.split(",").map(t => t.trim().replace(/`/g, "")).filter(Boolean);
+  return tags.length > 0 ? tags : undefined;
 }
 
 /** Extract a named section's content (from heading to next same-or-higher-level heading or EOF) */
@@ -179,7 +190,7 @@ async function scanDirectory(dir: string): Promise<string[]> {
   try {
     const entries = await readdir(dir, { withFileTypes: true });
     return entries
-      .filter((e) => e.isDirectory() && /^(OC|PL|BC|CAP|AB|SB)-/.test(e.name))
+      .filter((e) => e.isDirectory() && /^(OC|PL|BC|CAP|AB|SB|DR)-/.test(e.name))
       .map((e) => e.name);
   } catch {
     return [];
@@ -203,8 +214,9 @@ function parseOutcome(id: string, content: string): { node: GraphNode; edges: Gr
     extractH1(content)?.replace(/^OC-\d+\s+/, "") ||
     id;
   const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
+  const tags = extractTags(content);
 
-  const node: GraphNode = { id, name, type: "outcome", status, origin: getOrigin(id) };
+  const node: GraphNode = { id, name, type: "outcome", status, origin: getOrigin(id), tags };
   const edges: GraphEdge[] = [];
 
   // Outcomes trace to capabilities via Traceability section
@@ -226,8 +238,9 @@ function parsePlatform(id: string, content: string): { node: GraphNode; edges: G
     extractH1(content)?.replace(/^PL-\S+\s+/, "") ||
     id;
   const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "unknown";
+  const tags = extractTags(content);
 
-  const node: GraphNode = { id, name, type: "platform", status, origin: getOrigin(id) };
+  const node: GraphNode = { id, name, type: "platform", status, origin: getOrigin(id), tags };
   const edges: GraphEdge[] = [];
 
   // Platform -> Outcomes (Strategic Outcomes section)
@@ -266,9 +279,10 @@ function parseContext(id: string, content: string): { node: GraphNode; edges: Gr
     extractFrontmatterTitle(content)?.replace(/^BC-\S+\s+/, "") ||
     extractH1(content)?.replace(/^BC-\S+\s+/, "") ||
     id;
-  const status = "draft"; // BCs don't always have explicit status
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "draft";
+  const tags = extractTags(content);
 
-  const node: GraphNode = { id, name, type: "context", status, origin: getOrigin(id) };
+  const node: GraphNode = { id, name, type: "context", status, origin: getOrigin(id), tags };
   const edges: GraphEdge[] = [];
 
   // BC -> Platform (via Platform property in table)
@@ -313,7 +327,9 @@ function parseCapability(id: string, content: string): { node: GraphNode; edges:
   const level = extractTableProperty(content, "Level")?.replace(/`/g, "") || undefined;
   const parentRaw = extractTableProperty(content, "Parent")?.replace(/`/g, "") || undefined;
 
-  const node: GraphNode = { id, name, type: "capability", status, origin: getOrigin(id), level };
+  const tags = extractTags(content);
+
+  const node: GraphNode = { id, name, type: "capability", status, origin: getOrigin(id), level, tags };
   const edges: GraphEdge[] = [];
 
   // Parent capability (hierarchy)
@@ -374,7 +390,9 @@ function parseABB(id: string, content: string): { node: GraphNode; edges: GraphE
   const category = extractTableProperty(content, "Category")?.replace(/`/g, "") || undefined;
   const shortName = extractTableProperty(content, "Short Name") || undefined;
 
-  const node: GraphNode = { id, name, type: "abb", status, origin: getOrigin(id), category, shortName };
+  const tags = extractTags(content);
+
+  const node: GraphNode = { id, name, type: "abb", status, origin: getOrigin(id), category, shortName, tags };
   const edges: GraphEdge[] = [];
 
   // Parent Bounded Context
@@ -424,7 +442,9 @@ function parseSBB(id: string, content: string): { node: GraphNode; edges: GraphE
   const category = extractTableProperty(content, "Category")?.replace(/`/g, "") || undefined;
   const shortName = extractTableProperty(content, "Short Name") || undefined;
 
-  const node: GraphNode = { id, name, type: "sbb", status, origin: getOrigin(id), category, shortName };
+  const tags = extractTags(content);
+
+  const node: GraphNode = { id, name, type: "sbb", status, origin: getOrigin(id), category, shortName, tags };
   const edges: GraphEdge[] = [];
 
   // Realizes ABB (note: both "Realizes" and "Realises" spellings)
@@ -435,6 +455,38 @@ function parseSBB(id: string, content: string): { node: GraphNode; edges: GraphE
     const abbId = extractId(abbVal);
     if (abbId) {
       edges.push({ source: abbId, target: id, label: "realised by" });
+    }
+  }
+
+  return { node, edges };
+}
+
+function parseDecisionRecord(id: string, content: string): { node: GraphNode; edges: GraphEdge[] } {
+  const name =
+    extractFrontmatterTitle(content)?.replace(/^DR-\S+\s+/, "") ||
+    extractH1(content)?.replace(/^DR-\S+\s+/, "") ||
+    id;
+  const status = extractTableProperty(content, "Status")?.replace(/`/g, "").toLowerCase().trim() || "proposed";
+  const tags = extractTags(content);
+
+  const node: GraphNode = { id, name, type: "decision", status, origin: getOrigin(id), tags };
+  const edges: GraphEdge[] = [];
+
+  // DR -> Platform
+  const platformVal = extractTableProperty(content, "Platform");
+  if (platformVal) {
+    const plId = extractId(platformVal);
+    if (plId) {
+      edges.push({ source: plId, target: id, label: "owns" });
+    }
+  }
+
+  // DR -> SBBs (via Evaluated SBBs property)
+  const sbbVal = extractTableProperty(content, "Evaluated SBBs");
+  if (sbbVal) {
+    const sbbIds = extractAllIds(sbbVal);
+    for (const sbbId of sbbIds) {
+      edges.push({ source: id, target: sbbId, label: "evaluates" });
     }
   }
 
@@ -477,6 +529,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
   let capabilitiesDir: string;
   let abbDir: string;
   let sbbDir: string;
+  let decisionsDir: string;
 
   if (config.workspace) {
     // Workspace mode -- artefacts at root level
@@ -486,6 +539,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     capabilitiesDir = join(config.workspace, "capabilities");
     abbDir = join(config.workspace, "building-blocks", "architecture-building-blocks");
     sbbDir = join(config.workspace, "building-blocks", "solution-building-blocks");
+    decisionsDir = join(config.workspace, "decisions");
   } else {
     // Foundation mode -- artefacts under foundation/
     const foundation = join(config.repoRoot, "foundation");
@@ -495,6 +549,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     capabilitiesDir = join(foundation, "capabilities");
     abbDir = join(foundation, "building-blocks", "architecture-building-blocks");
     sbbDir = join(foundation, "building-blocks", "solution-building-blocks");
+    decisionsDir = join(foundation, "decisions");
   }
 
   const sourceLabel = config.workspace || "foundation";
@@ -559,6 +614,16 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     for (const e of sbEdges) addEdge(e);
   }
 
+  // --- Scan Decision Records ---
+  const decisionIds = await scanDirectory(decisionsDir);
+  for (const drId of decisionIds) {
+    const content = await readArtefact(decisionsDir, drId);
+    if (!content) continue;
+    const { node, edges: drEdges } = parseDecisionRecord(drId, content);
+    addNode(node, content);
+    for (const e of drEdges) addEdge(e);
+  }
+
   // Store content cache
   cachedNodeContent = nodeContent;
 
@@ -566,6 +631,39 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
   const validEdges = edges.filter(
     (e) => seenNodes.has(e.source) && seenNodes.has(e.target)
   );
+
+  // Derive parentContext and parentPlatform from edges
+  const nodeMap = new Map(nodes.map((n) => [n.id, n]));
+
+  for (const edge of validEdges) {
+    const source = nodeMap.get(edge.source);
+    const target = nodeMap.get(edge.target);
+    if (!source || !target) continue;
+
+    // BC → ABB "contains" → stamp ABB with parentContext
+    if (edge.label === "contains" && source.type === "context" && target.type === "abb") {
+      target.parentContext = source.id;
+    }
+    // PL → BC "contains" → stamp BC with parentPlatform
+    if (edge.label === "contains" && source.type === "platform" && target.type === "context") {
+      target.parentPlatform = source.id;
+    }
+    // PL → CAP "provides" → stamp CAP with parentPlatform
+    if (edge.label === "provides" && source.type === "platform" && target.type === "capability") {
+      target.parentPlatform = source.id;
+    }
+  }
+
+  // Second pass: SBBs inherit parentContext from their parent ABB
+  for (const edge of validEdges) {
+    if (edge.label === "realised by") {
+      const source = nodeMap.get(edge.source);
+      const target = nodeMap.get(edge.target);
+      if (source?.type === "abb" && target?.type === "sbb" && source.parentContext) {
+        target.parentContext = source.parentContext;
+      }
+    }
+  }
 
   return {
     nodes,
@@ -663,7 +761,7 @@ async function extractFrameworkReference(repoRoot: string): Promise<FrameworkRef
         .join("\n");
     }
 
-    // Extract concept sections §2.1–§2.6
+    // Extract concept sections §2.1–§2.7
     const sectionMap: Array<{ pattern: RegExp; key: string }> = [
       { pattern: /### 2\.1\s+(.+)/, key: "outcome" },
       { pattern: /### 2\.2\s+(.+)/, key: "platform" },
@@ -671,6 +769,7 @@ async function extractFrameworkReference(repoRoot: string): Promise<FrameworkRef
       { pattern: /### 2\.4\s+(.+)/, key: "context" },
       { pattern: /### 2\.5\s+(.+)/, key: "abb" },
       { pattern: /### 2\.6\s+(.+)/, key: "sbb" },
+      { pattern: /### 2\.7\s+(.+)/, key: "decision" },
     ];
 
     const lines = content.split("\n");
@@ -708,6 +807,7 @@ async function extractFrameworkReference(repoRoot: string): Promise<FrameworkRef
     { path: "building-blocks/solution-building-blocks/standard-sbb-diagram.md", conceptType: "sbb" },
     { path: "runtime/standard-service.md", conceptType: "sbb" },
     { path: "visual-design/visual-design-standard.md", conceptType: "abb" },
+    { path: "decisions/standard-decision-record.md", conceptType: "decision" },
   ];
 
   for (const { path, conceptType } of standardMappings) {
@@ -746,6 +846,7 @@ async function extractFrameworkReference(repoRoot: string): Promise<FrameworkRef
     { file: "create-abb.md", conceptType: "abb" },
     { file: "create-sbb.md", conceptType: "sbb" },
     { file: "create-service.md", conceptType: "sbb" },
+    { file: "create-decision.md", conceptType: "decision" },
     { file: "FRAMEWORK_AGENTS.md", conceptType: "" },
   ];
   for (const { file, conceptType } of agentMappings) {

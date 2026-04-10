@@ -5,16 +5,17 @@ import FlowCanvas from "./components/FlowCanvas";
 import ContextMenu from "./components/ContextMenu";
 import DetailPanel from "./components/DetailPanel";
 import FrameworkView from "./components/FrameworkView";
+import TableView from "./components/TableView";
 import { useGraphData } from "./hooks/useGraphData";
 import { bfsConnected, bfsDirected, traceGoldenThread, traceConceptTree, expandOneHop } from "./graph-utils";
 import { ALL_STATUSES } from "./constants";
 import type { NodeType } from "./types";
 import type { Status } from "./constants";
 
-type ActiveView = "dag" | "framework";
+type ActiveView = "dag" | "table" | "framework";
 
 const ALL_TYPES: Set<NodeType> = new Set([
-  "outcome", "platform", "context", "capability", "abb", "sbb",
+  "outcome", "platform", "context", "capability", "abb", "sbb", "decision",
 ]);
 
 const ALL_STATUS_SET: Set<Status> = new Set(ALL_STATUSES);
@@ -34,12 +35,13 @@ export default function App() {
     nodeIds: Set<string>;
     edgeIndices: Set<number>;
   } | null>(null);
-  const [showFramework, setShowFramework] = useState(true);
+  const [showFramework, setShowFramework] = useState(false);
   const [showWorkspace, setShowWorkspace] = useState(true);
   const [showCrossCutting, setShowCrossCutting] = useState(false);
   const [highlightType, setHighlightType] = useState<NodeType | null>(null);
   const [visibleTypes, setVisibleTypes] = useState<Set<NodeType>>(new Set(ALL_TYPES));
   const [visibleStatuses, setVisibleStatuses] = useState<Set<Status>>(new Set(ALL_STATUS_SET));
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
 
   // Compute search matches
@@ -56,6 +58,16 @@ export default function App() {
     }
     return matchIds.size > 0 ? matchIds : null;
   }, [searchQuery, graphData]);
+
+  // Collect all unique tags from graph data
+  const allTags = useMemo(() => {
+    if (!graphData) return [];
+    const tagSet = new Set<string>();
+    for (const n of graphData.nodes) {
+      if (n.tags) for (const t of n.tags) tagSet.add(t);
+    }
+    return [...tagSet].sort();
+  }, [graphData]);
 
   // Toggle a single node type in the visible set
   const handleToggleType = useCallback((type: NodeType) => {
@@ -113,6 +125,11 @@ export default function App() {
       filteredNodes = filteredNodes.filter((n) => visibleStatuses.has((n.status || "unknown") as Status));
     }
 
+    // Apply tag filter
+    if (selectedTag) {
+      filteredNodes = filteredNodes.filter((n) => n.tags?.includes(selectedTag));
+    }
+
     // Filter edges to only connect visible nodes
     const nodeIds = new Set(filteredNodes.map((n) => n.id));
     filteredEdges = filteredEdges.filter(
@@ -138,7 +155,7 @@ export default function App() {
     }
 
     return { nodes: filteredNodes, edges: filteredEdges };
-  }, [graphData, showFramework, showWorkspace, showCrossCutting, visibleTypes, visibleStatuses, isolatedSubgraph]);
+  }, [graphData, showFramework, showWorkspace, showCrossCutting, visibleTypes, visibleStatuses, selectedTag, isolatedSubgraph]);
 
   // Isolate to search results
   const handleSearchIsolate = useCallback(() => {
@@ -157,6 +174,7 @@ export default function App() {
     setVisibleTypes(new Set(ALL_TYPES));
     setVisibleStatuses(new Set(ALL_STATUS_SET));
     setShowCrossCutting(false);
+    setSelectedTag(null);
     setSearchQuery("");
   }, []);
 
@@ -332,7 +350,7 @@ export default function App() {
     );
   }
 
-  // DAG view
+  // DAG or Table view — both share the toolbar
   const hasActiveTrace = traceNodeIds !== null;
   const hasActiveIsolation = isolatedSubgraph !== null;
 
@@ -348,8 +366,11 @@ export default function App() {
         highlightType={highlightType}
         visibleTypes={visibleTypes}
         visibleStatuses={visibleStatuses}
+        allTags={allTags}
+        selectedTag={selectedTag}
         searchQuery={searchQuery}
         searchMatchCount={searchMatchIds?.size ?? 0}
+        activeView={activeView}
         onSearchChange={setSearchQuery}
         onSearchIsolate={handleSearchIsolate}
         onToggleFramework={() => setShowFramework((p) => !p)}
@@ -357,24 +378,41 @@ export default function App() {
         onToggleCrossCutting={() => setShowCrossCutting((p) => !p)}
         onToggleType={handleToggleType}
         onToggleStatus={handleToggleStatus}
+        onSelectTag={setSelectedTag}
         onReset={resetView}
         onRefresh={refresh}
         onSwitchToFramework={() => setActiveView("framework")}
+        onSwitchView={(view) => setActiveView(view)}
       />
 
-      <div className="flow-container">
-        <ReactFlowProvider>
-          <FlowCanvas
+      {activeView === "table" ? (
+        <div className="table-container">
+          <TableView
             nodes={effectiveData.nodes}
             edges={effectiveData.edges}
-            traceNodeIds={traceNodeIds}
-            searchMatchIds={searchMatchIds}
-            highlightType={highlightType}
-            onNodeSelect={handleNodeSelect}
-            onNodeContextMenu={handleNodeContextMenu}
+            allNodes={graphData?.nodes || []}
+            onNodeNavigate={handleNodeSelect}
+            onSwitchToDAG={(nodeId) => {
+              setActiveView("dag");
+              if (nodeId) handleNodeSelect(nodeId);
+            }}
           />
-        </ReactFlowProvider>
-      </div>
+        </div>
+      ) : (
+        <div className="flow-container">
+          <ReactFlowProvider>
+            <FlowCanvas
+              nodes={effectiveData.nodes}
+              edges={effectiveData.edges}
+              traceNodeIds={traceNodeIds}
+              searchMatchIds={searchMatchIds}
+              highlightType={highlightType}
+              onNodeSelect={handleNodeSelect}
+              onNodeContextMenu={handleNodeContextMenu}
+            />
+          </ReactFlowProvider>
+        </div>
+      )}
 
       {contextMenu && (
         <ContextMenu

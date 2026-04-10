@@ -22,6 +22,7 @@ seed_paths:
   capabilities: capabilities/
   architecture_building_blocks: building-blocks/architecture-building-blocks/
   solution_building_blocks: building-blocks/solution-building-blocks/
+  decisions: decisions/
 
 core_assumptions:
   required_platforms:

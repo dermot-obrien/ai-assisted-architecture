@@ -17,6 +17,7 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 | `claude/commands/create-abb.md` | `.claude/commands/create-abb.md` | Copy |
 | `claude/commands/create-sbb.md` | `.claude/commands/create-sbb.md` | Copy |
 | `claude/commands/create-service.md` | `.claude/commands/create-service.md` | Copy |
+| `claude/commands/create-decision.md` | `.claude/commands/create-decision.md` | Copy |
 | `cursor/rules/standards.mdc` | `.cursor/rules/standards.mdc` | Copy |
 | `cursor/rules/create-strategy.mdc` | `.cursor/rules/create-strategy.mdc` | Copy |
 | `cursor/rules/create-platform.mdc` | `.cursor/rules/create-platform.mdc` | Copy |
@@ -25,6 +26,7 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 | `cursor/rules/create-abb.mdc` | `.cursor/rules/create-abb.mdc` | Copy |
 | `cursor/rules/create-sbb.mdc` | `.cursor/rules/create-sbb.mdc` | Copy |
 | `cursor/rules/create-service.mdc` | `.cursor/rules/create-service.mdc` | Copy |
+| `cursor/rules/create-decision.mdc` | `.cursor/rules/create-decision.mdc` | Copy |
 | `.cursorrules.txt` | `.cursorrules` | Merge into your existing file |
 | `github/copilot-instructions.txt` | `.github/copilot-instructions.md` | Merge into your existing file |
 | `github/prompts/create-strategy.prompt.md` | `.github/prompts/create-strategy.prompt.md` | Copy |
@@ -34,6 +36,7 @@ All paths assume the submodule is installed at `.ai-assisted-architecture/`. If 
 | `github/prompts/create-abb.prompt.md` | `.github/prompts/create-abb.prompt.md` | Copy |
 | `github/prompts/create-sbb.prompt.md` | `.github/prompts/create-sbb.prompt.md` | Copy |
 | `github/prompts/create-service.prompt.md` | `.github/prompts/create-service.prompt.md` | Copy |
+| `github/prompts/create-decision.prompt.md` | `.github/prompts/create-decision.prompt.md` | Copy |
 | `GEMINI.md.txt` | `GEMINI.md` | Merge into your existing file |
 | `gemini/styleguide.md` | `.gemini/styleguide.md` | Merge into your existing file |
 | `.clinerules.txt` | `.clinerules` | Merge into your existing file |
@@ -52,6 +55,7 @@ To maintain the "Golden Thread" of traceability, agents should ideally follow th
 5.  **`/create-abb`**: Define the logical architectural model.
 6.  **`/create-sbb`**: Define the physical product realisation.
 7.  **`/create-service`**: Define the runtime unit of execution.
+8.  **`/create-decision`**: Record an architectural decision (MADR).
 
 ## Foundation Seeding (Recommended)
 

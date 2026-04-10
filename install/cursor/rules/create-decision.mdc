@@ -1,0 +1,8 @@
+---
+description: Create a new Decision Record (DR)
+globs: decisions/**/*
+---
+
+When creating a new Decision Record, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-decision.md`.
+
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` before producing any artefact. Ensure the DR links to an owning Platform and evaluated SBBs.

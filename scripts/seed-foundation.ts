@@ -274,6 +274,7 @@ const ALL_DIMENSIONS: DimensionSpec[] = [
   { subpath: "capabilities", label: "capabilities" },
   { subpath: "building-blocks/architecture-building-blocks", label: "ABBs" },
   { subpath: "building-blocks/solution-building-blocks", label: "SBBs" },
+  { subpath: "decisions", label: "decisions" },
 ];
 
 function seedAllDimensions(

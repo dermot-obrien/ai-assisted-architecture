@@ -13,6 +13,7 @@ This file defines top-level discovery and precedence rules for AI agents working
 | Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: logical structure and diagrams. |
 | Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: product mapping and realisation. |
 | Create Service | `/create-service` | `@create-service` | Runtime unit of execution definition. |
+| Create Decision | `/create-decision` | `@create-decision` | Record an architectural decision (MADR). |
 
 ## Scripts
 
@@ -36,6 +37,7 @@ Always load these standards before creating or modifying artefacts:
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-diagram.md`
 - `.ai-assisted-architecture/standards/runtime/standard-service.md`
+- `.ai-assisted-architecture/standards/decisions/standard-decision-record.md`
 - `.ai-assisted-architecture/standards/standard-traceability.md`
 
 ## Scope Routing
@@ -48,6 +50,7 @@ Always load these standards before creating or modifying artefacts:
 - For ABB narrative/content documents, apply `standard-abb-document.md` via `create-abb.md`.
 - For SBB narrative/content documents, apply `standard-sbb-document.md` via `create-sbb.md`.
 - For runtime services, apply `standard-service.md` via `create-service.md`.
+- For decision records, apply `standard-decision-record.md` via `create-decision.md`.
 - For links between all layers, apply `standard-traceability.md`.
 
 ## Enforcement Rules

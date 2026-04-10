@@ -219,6 +219,7 @@ const TYPE_TO_CONCEPT: Record<NodeType, string> = {
   capability: "capability",
   abb: "abb",
   sbb: "sbb",
+  decision: "decision",
 };
 
 export default function DetailPanel({
@@ -317,6 +318,13 @@ export default function DetailPanel({
           <span className={`detail-origin-badge ${originClass}`}>{originLabel}</span>
           {node.category && <span className="detail-category">{node.category}</span>}
         </div>
+        {node.tags && node.tags.length > 0 && (
+          <div className="detail-tags">
+            {node.tags.map((tag) => (
+              <span key={tag} className="detail-tag-chip">{tag}</span>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Node content summary — first few sections from the actual document */}
