@@ -14,6 +14,9 @@ node_modules/
 npm-debug.log
 yarn-error.log
 
+# Bun build output
+scripts/ui/dist/
+
 # MkDocs
 site/
 
@@ -47,6 +50,11 @@ Thumbs.db
 AGENTS.md
 CLAUDE.md
 GEMINI.md
+
+# Re-include the framework's contributor CLAUDE.md (this repo's working guide
+# for AI agents editing the framework itself, distinct from install/CLAUDE.md.txt
+# which is the consumer template that workspaces install).
+!CLAUDE.md
 
 # GitHub IDE config (prompts, copilot-instructions)
 # Keep .github/ for Actions workflows etc. — only ignore IDE-specific files
