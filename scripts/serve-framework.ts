@@ -445,16 +445,21 @@ function parseSBB(id: string, content: string): { node: GraphNode; edges: GraphE
 // Graph builder
 // ---------------------------------------------------------------------------
 
+// Content cache: nodeId → markdown source
+let cachedNodeContent: Record<string, string> = {};
+
 async function buildGraph(config: { workspace: string | null; repoRoot: string }): Promise<Graph> {
   const nodes: GraphNode[] = [];
   const edges: GraphEdge[] = [];
   const seenNodes = new Set<string>();
   const seenEdges = new Set<string>();
+  const nodeContent: Record<string, string> = {};
 
-  function addNode(node: GraphNode) {
+  function addNode(node: GraphNode, markdown?: string) {
     if (seenNodes.has(node.id)) return;
     seenNodes.add(node.id);
     nodes.push(node);
+    if (markdown) nodeContent[node.id] = markdown;
   }
 
   function addEdge(edge: GraphEdge) {
@@ -500,7 +505,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     const content = await readArtefact(outcomesDir, ocId);
     if (!content) continue;
     const { node, edges: ocEdges } = parseOutcome(ocId, content);
-    addNode(node);
+    addNode(node, content);
     for (const e of ocEdges) addEdge(e);
   }
 
@@ -510,7 +515,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     const content = await readArtefact(platformsDir, plId);
     if (!content) continue;
     const { node, edges: plEdges } = parsePlatform(plId, content);
-    addNode(node);
+    addNode(node, content);
     for (const e of plEdges) addEdge(e);
   }
 
@@ -520,7 +525,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     const content = await readArtefact(contextsDir, bcId);
     if (!content) continue;
     const { node, edges: bcEdges } = parseContext(bcId, content);
-    addNode(node);
+    addNode(node, content);
     for (const e of bcEdges) addEdge(e);
   }
 
@@ -530,7 +535,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     const content = await readArtefact(capabilitiesDir, capId);
     if (!content) continue;
     const { node, edges: capEdges } = parseCapability(capId, content);
-    addNode(node);
+    addNode(node, content);
     for (const e of capEdges) addEdge(e);
   }
 
@@ -540,7 +545,7 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     const content = await readArtefact(abbDir, abId);
     if (!content) continue;
     const { node, edges: abEdges } = parseABB(abId, content);
-    addNode(node);
+    addNode(node, content);
     for (const e of abEdges) addEdge(e);
   }
 
@@ -550,9 +555,12 @@ async function buildGraph(config: { workspace: string | null; repoRoot: string }
     const content = await readArtefact(sbbDir, sbId);
     if (!content) continue;
     const { node, edges: sbEdges } = parseSBB(sbId, content);
-    addNode(node);
+    addNode(node, content);
     for (const e of sbEdges) addEdge(e);
   }
+
+  // Store content cache
+  cachedNodeContent = nodeContent;
 
   // Filter edges to only those whose source and target both exist
   const validEdges = edges.filter(
@@ -855,6 +863,27 @@ const server = Bun.serve({
         });
       }
       return new Response(JSON.stringify(doc, null, 2), {
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
+      });
+    }
+
+    // API endpoint — node markdown content
+    if (url.pathname === "/api/node") {
+      const nodeId = url.searchParams.get("id");
+      if (!nodeId) {
+        return new Response(JSON.stringify({ error: "Missing ?id= parameter" }), {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      const markdown = cachedNodeContent[nodeId];
+      if (!markdown) {
+        return new Response(JSON.stringify({ error: "Node not found" }), {
+          status: 404,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      return new Response(JSON.stringify({ id: nodeId, markdown }), {
         headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" },
       });
     }

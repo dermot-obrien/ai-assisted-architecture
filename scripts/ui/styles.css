@@ -506,6 +506,19 @@ html, body, #root {
 .detail-doc-path { font-size: 10px; color: var(--text-muted); display: block; margin-bottom: 12px; }
 .detail-doc-content { font-size: 12px; line-height: 1.6; color: var(--text); }
 
+/* Node content summary */
+.detail-node-content { border-top: 1px solid var(--border); padding-top: 12px; }
+.detail-node-summary {
+  font-size: 12px; line-height: 1.6; color: var(--text-muted);
+}
+.detail-node-summary p { margin: 4px 0; }
+.detail-view-full-btn {
+  background: rgba(108, 126, 225, 0.15); border: 1px solid rgba(108, 126, 225, 0.3);
+  color: var(--accent); font-size: 11px; padding: 4px 12px; border-radius: 4px;
+  cursor: pointer; margin-top: 8px; transition: background 0.15s;
+}
+.detail-view-full-btn:hover { background: rgba(108, 126, 225, 0.25); }
+
 /* ---------- Reference panel ---------- */
 .reference-panel {
   position: fixed;

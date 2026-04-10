@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { TYPE_LABELS, TYPE_COLOURS } from "../constants";
 import type { Graph, GraphNode, NodeType, FrameworkReference, FrameworkDoc } from "../types";
 
@@ -135,6 +135,58 @@ function RelationshipList({
   );
 }
 
+function NodeContentSummary({ markdown, onShowFull }: { markdown: string; onShowFull: () => void }) {
+  // Extract purpose section (usually section 1)
+  const lines = markdown.split("\n");
+  const summaryLines: string[] = [];
+  let inPurpose = false;
+  let foundPurpose = false;
+
+  for (const line of lines) {
+    // Skip the H1 title and properties table at top
+    if (line.startsWith("# ")) continue;
+
+    // Look for Purpose section
+    if (/^##\s+\d*\.?\s*Purpose/i.test(line)) {
+      inPurpose = true;
+      foundPurpose = true;
+      continue;
+    }
+    // Stop at next H2
+    if (inPurpose && /^##\s+/.test(line)) break;
+    if (inPurpose && line.trim()) {
+      summaryLines.push(line);
+    }
+  }
+
+  // If no purpose section, take the first non-table, non-heading paragraph
+  if (!foundPurpose) {
+    let inTable = false;
+    for (const line of lines) {
+      if (line.startsWith("# ") || line.startsWith("## ")) continue;
+      if (line.trim().startsWith("|")) { inTable = true; continue; }
+      if (inTable && !line.trim().startsWith("|")) inTable = false;
+      if (!inTable && line.trim() && !line.startsWith("---")) {
+        summaryLines.push(line);
+        if (summaryLines.length >= 4) break;
+      }
+    }
+  }
+
+  if (summaryLines.length === 0) return null;
+
+  return (
+    <div className="detail-section detail-node-content">
+      <div className="detail-node-summary">
+        {renderMarkdown(summaryLines.join("\n"))}
+      </div>
+      <button className="detail-view-full-btn" onClick={onShowFull}>
+        View full document
+      </button>
+    </div>
+  );
+}
+
 function DocCard({ doc, onOpen }: { doc: FrameworkDoc; onOpen: (doc: FrameworkDoc) => void }) {
   return (
     <div className="detail-doc-card" onClick={() => onOpen(doc)}>
@@ -177,6 +229,20 @@ export default function DetailPanel({
   onNodeNavigate,
 }: DetailPanelProps) {
   const [activeDoc, setActiveDoc] = useState<FrameworkDoc | null>(null);
+  const [nodeMarkdown, setNodeMarkdown] = useState<string | null>(null);
+  const [showFullDoc, setShowFullDoc] = useState(false);
+
+  // Fetch node content when selection changes
+  useEffect(() => {
+    setNodeMarkdown(null);
+    setActiveDoc(null);
+    setShowFullDoc(false);
+    if (!selectedNode) return;
+    fetch(`/api/node?id=${encodeURIComponent(selectedNode)}`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => { if (data?.markdown) setNodeMarkdown(data.markdown); })
+      .catch(() => {});
+  }, [selectedNode]);
 
   if (!selectedNode || !graphData) return null;
 
@@ -209,12 +275,29 @@ export default function DetailPanel({
   const originLabel = node.origin === "workspace" ? "Workspace" : "Framework";
   const colour = TYPE_COLOURS[node.type];
 
-  // If viewing a full document
+  // Strip frontmatter from markdown for display
+  const strippedMarkdown = nodeMarkdown?.replace(/^---\s*\n[\s\S]*?\n---\s*\n/, "") || null;
+
+  // If viewing a full framework doc (standard/agent)
   if (activeDoc) {
     return (
       <div className="detail-panel open">
         <button className="close-btn" onClick={onClose}>{"\u00D7"}</button>
         <DocViewer doc={activeDoc} onBack={() => setActiveDoc(null)} />
+      </div>
+    );
+  }
+
+  // If viewing the full node document
+  if (showFullDoc && strippedMarkdown) {
+    return (
+      <div className="detail-panel open">
+        <button className="close-btn" onClick={onClose}>{"\u00D7"}</button>
+        <div className="detail-doc-viewer">
+          <button className="detail-back-btn" onClick={() => setShowFullDoc(false)}>{"< Back"}</button>
+          <h3 className="detail-doc-viewer-title">{node.id} {node.name}</h3>
+          <div className="detail-doc-content">{renderMarkdown(strippedMarkdown)}</div>
+        </div>
       </div>
     );
   }
@@ -235,6 +318,14 @@ export default function DetailPanel({
           {node.category && <span className="detail-category">{node.category}</span>}
         </div>
       </div>
+
+      {/* Node content summary — first few sections from the actual document */}
+      {strippedMarkdown && (
+        <NodeContentSummary
+          markdown={strippedMarkdown}
+          onShowFull={() => setShowFullDoc(true)}
+        />
+      )}
 
       {/* Relationships */}
       <RelationshipList
