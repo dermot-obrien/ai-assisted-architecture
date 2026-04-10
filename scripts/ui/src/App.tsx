@@ -214,31 +214,41 @@ export default function App() {
         }
         case "expand-context": {
           if (!graphData) return;
-          // Get current isolation or trace all connected to this node
           const currentIds = isolatedSubgraph
-            ? isolatedSubgraph.nodeIds
+            ? new Set(isolatedSubgraph.nodeIds)
             : new Set(effectiveData.nodes.map((n) => n.id));
-          // Find nodes one hop out
-          const candidates = expandOneHop(currentIds, graphData.edges);
-          // Filter to only Platform and BC nodes
           const nodeTypeMap = new Map(graphData.nodes.map((n) => [n.id, n.type]));
-          const expandedIds = new Set(currentIds);
+
+          // Trace golden thread from the clicked node to find its related PL/BC
+          const thread = traceGoldenThread(nodeId, graphData.edges, "both");
+          const highlightIds = new Set<string>([nodeId]);
+          for (const id of thread.nodeIds) {
+            const type = nodeTypeMap.get(id);
+            if (type === "platform" || type === "context") {
+              highlightIds.add(id);
+              currentIds.add(id);
+            }
+          }
+
+          // Also expand one hop from current isolation for any adjacent PL/BC
+          const candidates = expandOneHop(currentIds, graphData.edges);
           for (const id of candidates) {
             const type = nodeTypeMap.get(id);
             if (type === "platform" || type === "context") {
-              expandedIds.add(id);
+              currentIds.add(id);
             }
           }
+
           // Rebuild edge indices
           const expandedEdgeIndices = new Set<number>();
           graphData.edges.forEach((e, i) => {
             if (e.relationship === "cross-cutting" || e.relationship === "supporting") return;
-            if (expandedIds.has(e.source) && expandedIds.has(e.target)) {
+            if (currentIds.has(e.source) && currentIds.has(e.target)) {
               expandedEdgeIndices.add(i);
             }
           });
-          setIsolatedSubgraph({ nodeIds: expandedIds, edgeIndices: expandedEdgeIndices });
-          setTraceNodeIds(new Set([nodeId]));
+          setIsolatedSubgraph({ nodeIds: currentIds, edgeIndices: expandedEdgeIndices });
+          setTraceNodeIds(highlightIds);
           setSelectedNode(nodeId);
           break;
         }
