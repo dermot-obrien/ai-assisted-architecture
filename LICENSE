@@ -1,38 +1,65 @@
-# Dual License
+# Licensing
 
-This software is dual-licensed. You may use it under the terms of either:
+This repository is permissively licensed to encourage the widest possible
+adoption — private, public, academic, and commercial. Attribution is the
+primary expectation.
 
-## 1. GNU Affero General Public License v3.0 (AGPL-3.0)
+## Two licences, by file type
 
-For open-source projects and non-commercial use, this software is available under the AGPL-3.0.
+| Asset | Licence | SPDX identifier |
+|-------|---------|-----------------|
+| Documentation, standards, agent specifications, foundation seeds (Markdown, YAML, CSV, Draw.io, diagrams, examples) | **Creative Commons Attribution 4.0 International** | `CC-BY-4.0` |
+| Executable code (`scripts/*.py`, `scripts/*.ps1`) | **Apache License, Version 2.0** | `Apache-2.0` |
 
-**Key Requirements:**
-- You must open-source your entire application under AGPL-3.0
-- You must share all source code, including modifications
-- This applies even if you only use the software over a network (e.g., SaaS, web services)
-- See LICENSE-AGPL-3.0.txt for full terms
+Per-file licensing is declared via SPDX identifiers and the `REUSE.toml`
+manifest at the repository root, following the
+[REUSE Specification 3.3](https://reuse.software/spec-3.3/). Full licence
+texts are in `LICENSES/`.
 
-## 2. Commercial License
+## What you may do
 
-For commercial, proprietary, or closed-source use, you must obtain a commercial license.
+- Use this framework in any context, including commercial work.
+- Apply it on paid client engagements.
+- Embed it in commercial products and internal tools.
+- Modify, fork, and redistribute it.
+- Translate it.
 
-**Commercial use includes:**
-- Using this software in a proprietary/closed-source product
-- Using this software in a SaaS or hosted service without open-sourcing your application
-- Embedding this software in commercial applications
-- Any use where you cannot comply with AGPL-3.0 requirements
+## What we ask in return
 
-**To obtain a commercial license:**
-Contact: Dermot O'Brien
-Email: dermots.stuff@gmail.com
-Terms: Custom pricing based on use case
+- **Attribute the original.** Both CC BY 4.0 and Apache-2.0 require attribution
+  to the original author. Keep author and copyright notices intact, and link
+  back to https://github.com/dermot-obrien/ai-assisted-architecture when
+  reasonable.
+- **Indicate changes.** If you modify the work, mark what you changed.
 
-## Documentation License
+## Trademark notice
 
-Documentation in this repository (Markdown files, diagrams, examples) is licensed under:
-**Creative Commons Attribution 4.0 International (CC BY 4.0)**
-https://creativecommons.org/licenses/by/4.0/
+"AI-Assisted Architecture" and any associated logos are trademarks of
+Dermot O'Brien. The licences above grant rights to the **content and code**
+only; they do **not** grant rights to use these marks.
 
----
+You may:
 
-Copyright (c) 2026 Dermot O'Brien. All rights reserved.
+- Refer to the framework by name when describing it, comparing it, or
+  citing it (nominative use).
+- State that your work is "based on AI-Assisted Architecture by Dermot O'Brien."
+
+You may not:
+
+- Use the name or logos to brand a forked or derivative product.
+- Imply endorsement, sponsorship, or official status.
+
+If you fork this project as a distinct offering, please choose a different
+name for it.
+
+## Contributions
+
+By submitting a contribution, you agree that your contribution is licensed
+under the same terms as the file it modifies (CC BY 4.0 for content,
+Apache-2.0 for code). See `CONTRIBUTING.md`.
+
+## Documentation copyright
+
+Copyright (c) 2026 Dermot O'Brien.
+
+Licensed under CC BY 4.0 (content) and Apache-2.0 (code) as described above.
