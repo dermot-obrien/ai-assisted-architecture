@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
 """Create a PowerPoint slide for an ABB or SBB building block.
 
 Reads components.png and summary.png from a building block folder and

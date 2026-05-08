@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
+
 import os
 
 def create_sbb_drawio(sbb_id, sbb_name, platform_name, platform_color, components, interfaces):

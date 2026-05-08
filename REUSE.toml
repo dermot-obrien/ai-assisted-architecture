@@ -1,0 +1,57 @@
+version = 1
+
+# AI-Assisted Architecture is dual-licensed:
+#   - Documentation, standards, agent specifications, foundation seeds,
+#     diagrams, and templates are licensed under CC BY 4.0.
+#   - Executable code (Python and PowerShell scripts) is licensed under
+#     Apache-2.0.
+#
+# This file follows the REUSE Specification 3.3 (https://reuse.software/).
+# It applies bulk licensing rules to files where adding an SPDX header in
+# the file itself is impractical (Markdown, YAML, CSV, Draw.io, binary
+# diagrams). Source code files SHOULD declare an SPDX-License-Identifier
+# header inline; the rule below acts as a safety net.
+
+# --- Documentation, standards, agent specs, foundation seeds, diagrams ---
+[[annotations]]
+path = [
+  "**.md",
+  "**.yaml",
+  "**.yml",
+  "**.csv",
+  "**.drawio",
+  "**.png",
+  "**.svg",
+  "**.pptx",
+  "**.txt",
+  "agents/**",
+  "install/**",
+  "docs/**",
+  "foundation/**",
+  "standards/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Dermot O'Brien"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# --- Executable code (override the broad rule above) ---
+[[annotations]]
+path = [
+  "scripts/**.py",
+  "scripts/**.ps1",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Dermot O'Brien"
+SPDX-License-Identifier = "Apache-2.0"
+
+# --- Repository metadata files (no creative content; use CC BY 4.0 by default) ---
+[[annotations]]
+path = [
+  ".gitignore",
+  ".gitattributes",
+  "REUSE.toml",
+  "LICENSE",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Dermot O'Brien"
+SPDX-License-Identifier = "CC-BY-4.0"
