@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
+
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $false)]

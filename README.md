@@ -1,9 +1,9 @@
 # AI-Assisted Architecture
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
-[![Licence: AGPL-3.0](https://img.shields.io/badge/code-AGPL--3.0-blue.svg)](LICENSE-AGPL-3.0.txt)
-[![Licence: Commercial](https://img.shields.io/badge/commercial-licence-orange.svg)](LICENSE-COMMERCIAL.txt)
-[![Licence: CC BY 4.0](https://img.shields.io/badge/docs-CC%20BY%204.0-lightgrey.svg)](LICENSE)
+[![Licence: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue.svg)](LICENSES/CC-BY-4.0.txt)
+[![Licence: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSES/Apache-2.0.txt)
+[![REUSE 3.3](https://img.shields.io/badge/REUSE-3.3-lightgrey.svg)](https://reuse.software/spec-3.3/)
 
 A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. Install it as a Git submodule in any enterprise architecture workspace.
 
@@ -210,15 +210,19 @@ See `.ai-assisted-architecture/foundation/foundation-manifest.yaml`.
 
 ## Licence
 
-This project is dual-licensed:
+This framework is permissively licensed to encourage the widest possible adoption — private, public, academic, and commercial. Attribution is the primary expectation.
 
-- **Code** (scripts, configuration): [AGPL-3.0](LICENSE-AGPL-3.0.txt) for open-source and non-commercial use, or a [Commercial Licence](LICENSE-COMMERCIAL.txt) for proprietary/closed-source use.
-- **Documentation** (standards, agents, markdown files): [CC BY 4.0](LICENSE)
+- **Documentation, standards, agent specifications, foundation seeds, diagrams** ([`CC BY 4.0`](LICENSES/CC-BY-4.0.txt)) — use, share, modify, and redistribute, including commercially, with attribution.
+- **Executable code** (`scripts/*.py`, `scripts/*.ps1`) ([`Apache-2.0`](LICENSES/Apache-2.0.txt)) — same permissions, with an explicit patent grant.
 
-See [LICENSE](LICENSE) for details.
+Per-file licensing is declared via SPDX identifiers and the [`REUSE.toml`](REUSE.toml) manifest, following the [REUSE Specification 3.3](https://reuse.software/spec-3.3/). See [`LICENSE`](LICENSE) for the full overview.
+
+### Trademark
+
+"AI-Assisted Architecture" and any associated logos are trademarks of Dermot O'Brien. The licences above grant rights to the **content and code** only; they do not grant rights to use these marks. Nominative use ("based on AI-Assisted Architecture") is welcome; please use a different name for forks or derivative offerings.
 
 ## Attribution
 
 Created by **Dermot O'Brien** ([@dermot-obrien](https://github.com/dermot-obrien)).
 
-If you use, fork, or build on this framework, please credit the original project and link to this repository.
+If you use, fork, or build on this framework, please credit the original project and link to this repository. Both CC BY 4.0 and Apache-2.0 require attribution; keep the copyright notices and indicate any changes you have made.

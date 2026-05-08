@@ -127,11 +127,29 @@ Please consider crediting the original project and linking to this repository. T
 
 If you create a derivative or fork:
 
-1. Keep the original LICENSE and LICENSE-CODE files
-2. Mention "Based on AI-Assisted Architecture by Dermot O'Brien" in your README
-3. Link to the original repository
+1. Keep the original `LICENSE`, `LICENSES/`, and `REUSE.toml` files intact.
+2. Preserve `SPDX-FileCopyrightText` and `SPDX-License-Identifier` headers in the files you carry over.
+3. Mention "Based on AI-Assisted Architecture by Dermot O'Brien" in your README, and link to the original repository.
+4. Indicate any changes you have made (required by both CC BY 4.0 and Apache-2.0).
+5. Choose a different name for forks distributed as a distinct product — "AI-Assisted Architecture" is a trademark.
 
-This isn't legally required for code (MIT), but is required for documentation (CC BY 4.0) and is appreciated regardless.
+## Licensing of Contributions
+
+This repository is dual-licensed:
+
+- **Content** (Markdown, YAML, CSV, Draw.io, agent specs, foundation seeds): [CC BY 4.0](LICENSES/CC-BY-4.0.txt)
+- **Code** (`scripts/*.py`, `scripts/*.ps1`): [Apache-2.0](LICENSES/Apache-2.0.txt)
+
+By submitting a contribution (pull request, patch, issue with code), you agree that your contribution is licensed under the same terms as the file you are modifying. New code files must include an SPDX header:
+
+```python
+# SPDX-FileCopyrightText: <year> <your name or organisation>
+# SPDX-License-Identifier: Apache-2.0
+```
+
+New content files are covered by the bulk rules in `REUSE.toml` and do not need per-file headers, but you may add one if you wish.
+
+The project follows the [REUSE Specification 3.3](https://reuse.software/spec-3.3/) for machine-checkable licensing metadata.
 
 ## Code of Conduct
 
