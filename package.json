@@ -1,0 +1,31 @@
+{
+  "name": "ai-assisted-architecture",
+  "version": "0.1.0",
+  "private": true,
+  "description": "TOGAF-aligned Architecture Building Block / Solution Building Block framework. Includes CLI tools to validate and operate on YAML/JSON files conforming to the modernisation ontology schema.",
+  "license": "Apache-2.0",
+  "author": "Dermot O'Brien",
+  "homepage": "https://github.com/dermot-obrien/ai-assisted-architecture",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dermot-obrien/ai-assisted-architecture.git"
+  },
+  "bin": {
+    "validate-ontology": "./scripts/ontology/validate.cjs",
+    "consolidate-ontology": "./scripts/ontology/consolidate.cjs",
+    "namespace-divergent-ontology": "./scripts/ontology/namespace-divergent.cjs"
+  },
+  "scripts": {
+    "validate": "node scripts/ontology/validate.cjs",
+    "consolidate": "node scripts/ontology/consolidate.cjs",
+    "namespace-divergent": "node scripts/ontology/namespace-divergent.cjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
