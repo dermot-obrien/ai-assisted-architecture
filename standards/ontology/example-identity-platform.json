@@ -1,0 +1,385 @@
+{
+  "$comment": "SPDX-FileCopyrightText: 2026 Dermot O'Brien\nSPDX-License-Identifier: CC-BY-4.0\nPart of the ai-assisted-architecture framework: https://github.com/dermot-obrien/ai-assisted-architecture",
+  "version": "1.3.0",
+  "ontology_id": "modernisation-ontology",
+  "platform": [
+    {
+      "id": "P201",
+      "name": "Identity Platform",
+      "owner": "Jane Smith, Director of Identity Engineering",
+      "domain_tag": "Core",
+      "description": "The enterprise platform providing authentication, authorisation, federation, and identity lifecycle services to all consuming applications.",
+      "boundary": {
+        "inside": "Authentication services, authorisation policy engine, federation gateway, identity lifecycle workflows, MFA service",
+        "outside": [
+          {
+            "description": "User directory mastering",
+            "owned_by_platform_id": "P203"
+          },
+          {
+            "description": "Customer master data",
+            "owned_by_platform_id": "P210"
+          }
+        ]
+      },
+      "lifecycle_status": "active",
+      "subject_to_driver_ids": [
+        "driver_ldap_eol",
+        "driver_federation_modernisation"
+      ],
+      "external_refs": [
+        {
+          "system": "leanix",
+          "external_id": "platform-tag-identity-platform"
+        }
+      ],
+      "notes": "Example: a partial population of the Identity Platform (P201) showing how the major entity types interrelate. Demonstrates ID conventions, structured narrative on Change, milestone roles, criterion-change relationships, transition between milestones, and external references. Industry-neutral by construction; capabilities are not anchored to any industry reference taxonomy (industry_reference_ids omitted) since identity capabilities are universal across industries. Organisations whose industry has an adopted reference taxonomy would populate industry_reference_ids on capabilities where it applies. Not a complete platform population; intended as a pattern guide."
+    }
+  ],
+  "capability": [
+    {
+      "id": "cap_P201_authentication",
+      "name": "Authentication",
+      "platform_id": "P201",
+      "maturity": "walk",
+      "description": "Verifying the identity of users and systems requesting access to enterprise resources.",
+      "external_refs": [
+        {
+          "system": "leanix",
+          "external_id": "capability-fs-4521"
+        }
+      ]
+    },
+    {
+      "id": "cap_P201_federation",
+      "name": "Federation",
+      "platform_id": "P201",
+      "maturity": "crawl",
+      "description": "Supporting federated authentication with external identity providers and downstream consumers."
+    }
+  ],
+  "component": [
+    {
+      "id": "comp_P201_authentication_service_abb",
+      "name": "Authentication Service (logical)",
+      "component_type": "service",
+      "building_block_type": "abb",
+      "realises_capability_ids": [
+        "cap_P201_authentication"
+      ],
+      "lifecycle_status": "active",
+      "description": "Logical authentication service providing federated identity verification with MFA. Technology-agnostic specification of what the platform requires.",
+      "notes": "ABB-flavour Component: technology-agnostic logical description. This is what enterprise architecture would specify in Phase B/C before product selection."
+    },
+    {
+      "id": "comp_P201_ldap_service",
+      "name": "Legacy LDAP authentication service",
+      "component_type": "service",
+      "building_block_type": "sbb",
+      "realises_capability_ids": [
+        "cap_P201_authentication"
+      ],
+      "realises_abb_ids": [
+        "comp_P201_authentication_service_abb"
+      ],
+      "lifecycle_status": "deprecated",
+      "description": "On-premise OpenLDAP-based authentication service supporting enterprise applications. End-of-life from vendor.",
+      "exposes_risk_ids": [
+        "risk_ldap_concentration"
+      ],
+      "external_refs": [
+        {
+          "system": "leanix",
+          "external_id": "application-fs-2104"
+        },
+        {
+          "system": "servicenow",
+          "external_id": "sys_id_abc123"
+        }
+      ],
+      "notes": "SBB: the legacy concrete implementation (LDAP). Realises the same logical ABB but is technology-specific."
+    },
+    {
+      "id": "comp_P201_sso_gateway",
+      "name": "SSO Gateway (Okta on AWS)",
+      "component_type": "service",
+      "building_block_type": "sbb",
+      "realises_capability_ids": [
+        "cap_P201_authentication",
+        "cap_P201_federation"
+      ],
+      "realises_abb_ids": [
+        "comp_P201_authentication_service_abb"
+      ],
+      "lifecycle_status": "planned",
+      "description": "Okta-based SSO gateway running on AWS, providing OAuth 2.1, OIDC, SAML 2.0, and MFA. Replaces the legacy LDAP service.",
+      "complies_with_standard_ids": [
+        "standard_oauth_2_1"
+      ],
+      "implements_pattern_ids": [
+        "pattern_zero_trust_auth"
+      ],
+      "notes": "SBB: the target concrete implementation (Okta-based). Realises the same logical ABB with modern technology."
+    }
+  ],
+  "driver": [
+    {
+      "id": "driver_ldap_eol",
+      "name": "LDAP vendor end-of-life",
+      "driver_type": "technology",
+      "description": "The LDAP vendor has announced end-of-life for the version we run, with security patch support ending in 18 months.",
+      "source": "Vendor announcement 2025-Q3; Internal Audit finding 2025-14",
+      "binding_level": "binding",
+      "inception_date": "2025-09-15",
+      "target_resolution_date": "2027-03-31",
+      "status": "active",
+      "affected_platform_ids": [
+        "P201",
+        "P210",
+        "P214"
+      ],
+      "external_refs": [
+        {
+          "system": "audit",
+          "external_id": "finding-2025-14"
+        }
+      ],
+      "theme": "cyber_resilience"
+    }
+  ],
+  "milestone": [
+    {
+      "id": "m_P201_baseline",
+      "name": "P201 Baseline",
+      "platform_id": "P201",
+      "role": "baseline",
+      "planned_date": "2026-01-01",
+      "actual_date": "2026-01-01",
+      "status": "arrived",
+      "description": "Current state of the Identity Platform at programme inception."
+    },
+    {
+      "id": "m_P201_m1",
+      "name": "P201 M1: SSO Gateway operational",
+      "platform_id": "P201",
+      "role": "interim",
+      "planned_date": "2026-09-30",
+      "forecast_date": "2026-09-30",
+      "status": "on_track",
+      "maturity_horizon": "walk",
+      "description": "SSO Gateway operational for new applications; LDAP remains in service for legacy consumers."
+    },
+    {
+      "id": "m_P201_target",
+      "name": "P201 Target: LDAP retired, full federation operational",
+      "platform_id": "P201",
+      "role": "target",
+      "planned_date": "2027-03-31",
+      "forecast_date": "2027-06-30",
+      "status": "at_risk",
+      "maturity_horizon": "run"
+    }
+  ],
+  "criterion": [
+    {
+      "id": "crit_P201_m1_sso_operational",
+      "milestone_id": "m_P201_m1",
+      "description": "SSO Gateway is operational and certified for use by new applications.",
+      "demanded_change_ids": [
+        "change_P201_introduce_sso_gateway"
+      ],
+      "satisfaction_status": "pending"
+    },
+    {
+      "id": "crit_P201_target_ldap_retired",
+      "milestone_id": "m_P201_target",
+      "description": "Legacy LDAP service is decommissioned with no remaining consumers.",
+      "demanded_change_ids": [
+        "change_P201_retire_ldap"
+      ],
+      "satisfaction_status": "pending"
+    }
+  ],
+  "change": [
+    {
+      "id": "change_P201_introduce_sso_gateway",
+      "name": "Introduce SSO Gateway",
+      "platform_id": "P201",
+      "change_type": "introduce",
+      "target_type": "component",
+      "target_id": "comp_P201_sso_gateway",
+      "responds_to_driver_ids": [
+        "driver_ldap_eol",
+        "driver_federation_modernisation"
+      ],
+      "addresses_risk_ids": [
+        "risk_ldap_concentration"
+      ],
+      "narrative": {
+        "summary": "Introduce a cloud-based SSO Gateway (Okta) to provide modern authentication and federation, initially for new applications.",
+        "rationale": "LDAP cannot support modern federation protocols (OAuth 2.1, OIDC) now required by consuming applications and is end-of-life from the vendor. SSO Gateway addresses both the protocol gap and the EOL risk while enabling future federation.",
+        "outcome": "SSO Gateway is operational in production, certified for enterprise applications, with MFA enabled by default and OAuth 2.1 / OIDC support fully functional.",
+        "target_effect": "New Component introduced in 'active' lifecycle state, realising the Authentication and Federation capabilities of the Identity Platform.",
+        "constraints": "Cannot be cut over to production traffic until certified by the security function and load-tested at 10x current LDAP peak."
+      },
+      "status": "committed"
+    },
+    {
+      "id": "change_P201_retire_ldap",
+      "name": "Retire LDAP service",
+      "platform_id": "P201",
+      "change_type": "retire",
+      "target_type": "component",
+      "target_id": "comp_P201_ldap_service",
+      "responds_to_driver_ids": [
+        "driver_ldap_eol"
+      ],
+      "addresses_risk_ids": [
+        "risk_ldap_concentration"
+      ],
+      "narrative": {
+        "summary": "Retire the legacy LDAP authentication service after all consumers have migrated to the SSO Gateway.",
+        "rationale": "LDAP is end-of-life from the vendor with security support ending. Retirement eliminates the concentration risk and unsupported-infrastructure risk currently carried.",
+        "outcome": "LDAP service is decommissioned and removed from production. No application has a remaining dependency on LDAP. The component is marked retired in CMDB and LeanIX.",
+        "target_effect": "Component lifecycle moves from 'deprecated' to 'retired'. The Authentication capability is no longer realised by LDAP."
+      },
+      "status": "committed"
+    }
+  ],
+  "commitment": [
+    {
+      "id": "comm_P201_m1_v1",
+      "milestone_id": "m_P201_m1",
+      "version": 1,
+      "endorsed_date": "2025-12-15",
+      "endorsed_by": "Technology Committee 2025-Q4",
+      "committed_date": "2026-09-30",
+      "committed_criteria_summary": "SSO Gateway operational for new applications; MFA enabled; OAuth 2.1 support verified."
+    }
+  ],
+  "transition": [
+    {
+      "id": "trans_P201_baseline_to_m1",
+      "from_milestone_id": "m_P201_baseline",
+      "to_milestone_id": "m_P201_m1",
+      "planned_start": "2026-01-01",
+      "planned_end": "2026-09-30",
+      "actual_start": "2026-01-15",
+      "health": "green",
+      "health_basis": "Initiative I-12 on track; SSO Gateway in UAT; no material slips declared."
+    },
+    {
+      "id": "trans_P201_m1_to_target",
+      "from_milestone_id": "m_P201_m1",
+      "to_milestone_id": "m_P201_target",
+      "planned_start": "2026-10-01",
+      "planned_end": "2027-03-31",
+      "health": "amber",
+      "health_basis": "Initiative I-14 (LDAP retirement) at risk: dependency on application teams completing migration is uncertain."
+    }
+  ],
+  "initiative": [
+    {
+      "id": "init_P201_i12_sso",
+      "name": "Build SSO Gateway",
+      "implements_transition_id": "trans_P201_baseline_to_m1",
+      "delivers_change_ids": [
+        "change_P201_introduce_sso_gateway"
+      ],
+      "planned_start": "2026-01-15",
+      "planned_end": "2026-09-15",
+      "actual_start": "2026-01-15",
+      "status": "in_progress",
+      "external_refs": [
+        {
+          "system": "leanix",
+          "external_id": "project-fs-I12"
+        }
+      ]
+    }
+  ],
+  "risk": [
+    {
+      "id": "risk_ldap_concentration",
+      "name": "Concentration of authentication on end-of-life LDAP infrastructure",
+      "risk_type": "concentration",
+      "description": "All enterprise authentication flows through LDAP. LDAP is end-of-life and unsupported within 18 months. Outage or security incident would affect all customer-facing services simultaneously.",
+      "inherent_likelihood": "likely",
+      "inherent_impact": "major",
+      "residual_likelihood": "possible",
+      "residual_impact": "major",
+      "exposes_component_ids": [
+        "comp_P201_ldap_service"
+      ],
+      "exposes_platform_ids": [
+        "P201"
+      ],
+      "status": "active",
+      "external_refs": [
+        {
+          "system": "risk_register",
+          "external_id": "RR-2025-0142"
+        }
+      ]
+    }
+  ],
+  "standard": [
+    {
+      "id": "standard_oauth_2_1",
+      "name": "Authentication protocol standard",
+      "standard_type": "security_baseline",
+      "category": "security_access",
+      "description": "All authentication services must support OAuth 2.1 or equivalent modern federation protocols. PKCE required for public clients. Refresh token rotation mandatory.",
+      "binding_level": "mandatory",
+      "waiver_process": "Waiver Decision required from Architecture Review Board with security function endorsement.",
+      "status": "active"
+    }
+  ],
+  "interface": [
+    {
+      "id": "iface_P201_sso_auth_contract",
+      "name": "Enterprise SSO authentication contract",
+      "interface_type": "api",
+      "building_block_type": "abb",
+      "provider_component_id": "comp_P201_sso_gateway",
+      "contract": "https://archlibrary.example/contracts/sso-auth-v1.openapi.yaml",
+      "synchronous": true,
+      "criticality": "critical",
+      "lifecycle_status": "active",
+      "complies_with_standard_ids": [
+        "standard_oauth_2_1"
+      ],
+      "notes": "ABB-flavour Interface: the contract specification, published by enterprise architecture, reusable across implementations."
+    },
+    {
+      "id": "iface_P201_sso_auth_endpoint_prod",
+      "name": "SSO authentication endpoint (production)",
+      "interface_type": "api",
+      "building_block_type": "sbb",
+      "provider_component_id": "comp_P201_sso_gateway",
+      "consumer_component_ids": [],
+      "contract": "https://api.example.internal/sso/v1",
+      "synchronous": true,
+      "criticality": "critical",
+      "lifecycle_status": "proposed",
+      "complies_with_standard_ids": [
+        "standard_oauth_2_1"
+      ],
+      "notes": "SBB-flavour Interface: the specific endpoint at a particular URL, provided by a specific Component."
+    }
+  ],
+  "stakeholder": [
+    {
+      "id": "stake_P201_board",
+      "name": "Board of Directors",
+      "stakeholder_type": "governance",
+      "concerns": [
+        "Are committed milestones being delivered on time?",
+        "What changed in our commitments since the last cycle?",
+        "What is the implication of any deviations?",
+        "Are material risks being addressed through committed changes?"
+      ]
+    }
+  ],
+  "viewpoint": []
+}

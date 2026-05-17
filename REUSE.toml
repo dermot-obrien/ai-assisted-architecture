@@ -3,8 +3,8 @@ version = 1
 # AI-Assisted Architecture is dual-licensed:
 #   - Documentation, standards, agent specifications, foundation seeds,
 #     diagrams, and templates are licensed under CC BY 4.0.
-#   - Executable code (Python and PowerShell scripts) is licensed under
-#     Apache-2.0.
+#   - Executable code (Python, PowerShell, and Node.js scripts) is
+#     licensed under Apache-2.0.
 #
 # This file follows the REUSE Specification 3.3 (https://reuse.software/).
 # It applies bulk licensing rules to files where adding an SPDX header in
@@ -18,6 +18,7 @@ path = [
   "**.md",
   "**.yaml",
   "**.yml",
+  "**.json",
   "**.csv",
   "**.drawio",
   "**.png",
@@ -39,6 +40,9 @@ SPDX-License-Identifier = "CC-BY-4.0"
 path = [
   "scripts/**.py",
   "scripts/**.ps1",
+  "scripts/**.cjs",
+  "scripts/**.mjs",
+  "scripts/**.js",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"
@@ -55,3 +59,13 @@ path = [
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"
 SPDX-License-Identifier = "CC-BY-4.0"
+
+# --- Node tooling metadata (override the broad **.json rule) ---
+[[annotations]]
+path = [
+  "package.json",
+  "package-lock.json",
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2026 Dermot O'Brien"
+SPDX-License-Identifier = "Apache-2.0"

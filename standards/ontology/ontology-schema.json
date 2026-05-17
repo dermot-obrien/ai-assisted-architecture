@@ -1,0 +1,1443 @@
+{
+  "$comment": "SPDX-FileCopyrightText: 2026 Dermot O'Brien\nSPDX-License-Identifier: CC-BY-4.0\nPart of the ai-assisted-architecture framework: https://github.com/dermot-obrien/ai-assisted-architecture",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json",
+  "title": "Modernisation Ontology",
+  "description": "Platform-centric enterprise architecture ontology supporting board reporting, regulator reporting, and ongoing architecture practice. Built around a minimal capability-centric core (Platform, Capability, Component, Change) with governance, risk, and view layers added in disciplined extensions. Standards-aligned to ArchiMate and TOGAF (views and viewpoints) and ISO/IEC/IEEE 42010 (architecture description); capabilities optionally anchor to whichever industry reference taxonomy applies (BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). See accompanying README.md for usage guidance and SPECIFICATION.md for design rationale.",
+  "version": "1.3.0",
+  "type": "object",
+  "properties": {
+    "$comment": {
+      "type": "string",
+      "description": "Reserved for SPDX licence headers and other ignored annotations. Not validated; used by tooling outside the ontology."
+    },
+    "version": {
+      "type": "string",
+      "const": "1.3.0",
+      "description": "Ontology schema version. Bump on breaking changes."
+    },
+    "ontology_id": {
+      "type": "string",
+      "const": "modernisation-ontology",
+      "description": "Identifier for this ontology. Allows validators to confirm schema applicability."
+    },
+    "platform": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Platform" },
+      "description": "All platforms governed by this ontology."
+    },
+    "capability": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Capability" },
+      "description": "All capabilities provided by platforms."
+    },
+    "component": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Component" },
+      "description": "All components realising capabilities."
+    },
+    "interface": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Interface" },
+      "description": "All interfaces between components."
+    },
+    "change": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Change" },
+      "description": "All architectural changes (introduce, uplift, retain, retire, modify, consolidate, migrate)."
+    },
+    "driver": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Driver" },
+      "description": "All drivers motivating change (strategic, regulatory, risk, etc.)."
+    },
+    "theme": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Theme" },
+      "description": "Enterprise modernisation themes. Reusable labels referenced from Driver.theme; enable cross-platform aggregation of drivers."
+    },
+    "milestone": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Milestone" },
+      "description": "All committed architectural milestones (baseline, interim, target)."
+    },
+    "criterion": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Criterion" },
+      "description": "All criteria defining what arrival at a milestone requires."
+    },
+    "commitment": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Commitment" },
+      "description": "All board-endorsed commitments for milestones. Versioned."
+    },
+    "transition": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Transition" },
+      "description": "All transitions between milestones."
+    },
+    "initiative": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Initiative" },
+      "description": "All funded initiatives implementing transitions."
+    },
+    "slip": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Slip" },
+      "description": "All declared slips on initiatives."
+    },
+    "decision": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Decision" },
+      "description": "All recorded decisions (architecture, rebaseline, waiver, standard_adoption, change_endorsement)."
+    },
+    "pattern": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Pattern" },
+      "description": "Reusable architectural patterns."
+    },
+    "standard": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Standard" },
+      "description": "Binding architectural standards (including platform guardrails as a standard_type)."
+    },
+    "quality_attribute": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/QualityAttribute" },
+      "description": "Non-functional quality attributes attached to components or interfaces."
+    },
+    "risk": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Risk" },
+      "description": "Risks exposing platforms and components. References enterprise risk register."
+    },
+    "control": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Control" },
+      "description": "Controls mitigating risks. Implemented by components or patterns."
+    },
+    "stakeholder": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Stakeholder" },
+      "description": "Stakeholders with concerns that views address."
+    },
+    "viewpoint": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/Viewpoint" },
+      "description": "Reusable specifications for constructing views (ArchiMate / TOGAF / custom)."
+    },
+    "view": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/View" },
+      "description": "Architectural views — instances of viewpoints addressing specific stakeholders."
+    },
+    "industry_reference_domain": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/IndustryReferenceDomain" },
+      "description": "Industry reference taxonomy domains referenced by capabilities. Loaded from whichever industry-standard reference model applies (e.g., BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail), typically via the EA tool's tag taxonomy. Optional — organisations in industries without an established reference model can leave this empty and anchor capabilities to their own taxonomy."
+    }
+  },
+  "required": ["version", "ontology_id", "platform", "capability", "component"],
+  "additionalProperties": false,
+
+  "$defs": {
+
+    "ExternalReference": {
+      "type": "object",
+      "title": "External Reference",
+      "description": "Reference to a master record in an external system. Used wherever the ontology references rather than owns. Carries the source system, the external identifier, and optionally a URL and fetch timestamp.",
+      "properties": {
+        "system": {
+          "type": "string",
+          "enum": ["leanix", "servicenow", "industry_reference", "grc", "risk_register", "strategy", "audit", "compliance", "vendor_mgmt", "other"],
+          "description": "Source system. Use 'industry_reference' for citations to an industry reference taxonomy (BIAN, eTOM, ACORD, NRF ARTS, etc.) — record which taxonomy in external_url or external_id. Use 'other' sparingly and document in external_url what system is meant."
+        },
+        "external_id": {
+          "type": "string",
+          "description": "Identifier in the source system (e.g., LeanIX fact sheet ID, ServiceNow sys_id, industry reference taxonomy code)."
+        },
+        "external_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional. Direct link to the record in the source system."
+        },
+        "fetched_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Optional. When this reference was last reconciled with the source system."
+        }
+      },
+      "required": ["system", "external_id"],
+      "additionalProperties": false
+    },
+
+    "Notes": {
+      "type": "string",
+      "description": "Optional free-text commentary about this entity. Use for caveats, design rationale not captured by structured fields, pedagogical scaffolding in examples, status quirks, or author notes. Not validated against any pattern. Not surfaced in Board or regulator pack views by default; for visible narrative use the entity's description, narrative, or evidence_ref fields."
+    },
+
+    "Platform": {
+      "type": "object",
+      "title": "Platform",
+      "description": "Sovereign, durable architectural unit. Provides capabilities to consumers; receives change via initiatives; subject to drivers; owns milestones. Governance accountability anchors here. AMBIGUITY: 'platform' has many meanings in industry — see README for the specific definition adopted here.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^P\\d{3}$",
+          "description": "Platform identifier in format P###. Three digits gives 900 possible platforms; adjust pattern if more are needed."
+        },
+        "name": {
+          "type": "string",
+          "description": "Canonical platform name (e.g., 'Identity Platform', 'Customer Master Platform')."
+        },
+        "owner": {
+          "type": "string",
+          "description": "Named accountable owner of the platform. The person responsible for milestones, commitments, and re-baseline decisions."
+        },
+        "domain_tag": {
+          "type": "string",
+          "description": "Optional lightweight grouping tag for heatmap display (e.g., 'Core', 'Customer', 'Data', 'Risk', 'Foundation'). NOT a governance entity — purely for view organisation."
+        },
+        "description": {
+          "type": "string",
+          "description": "Narrative description of platform purpose and scope."
+        },
+        "boundary": {
+          "type": "object",
+          "title": "Platform Boundary",
+          "description": "Explicit scope statement preserving the platform-centric discipline. 'inside' is what this platform is accountable for; 'outside' lists adjacent concerns owned by other platforms (cross-reference). Prevents scope creep and coverage gaps across the platform-of-platforms.",
+          "properties": {
+            "inside": {
+              "type": "string",
+              "description": "Plain-language description of what this platform owns and is accountable for."
+            },
+            "outside": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "description": { "type": "string" },
+                  "owned_by_platform_id": { "type": "string", "pattern": "^P\\d{3}$" }
+                },
+                "required": ["description"],
+                "additionalProperties": false
+              },
+              "description": "Explicitly excluded scope, with cross-reference to owning platform where known."
+            }
+          }
+        },
+        "lifecycle_status": {
+          "type": "string",
+          "enum": ["proposed", "active", "deprecated", "retired"],
+          "description": "Platform lifecycle. Platforms are durable — most are 'active'."
+        },
+        "subject_to_driver_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Drivers this platform is subject to. Exposure relationship — independent of whether changes have been proposed yet."
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "References to LeanIX (typically a tag or custom fact sheet representing the platform)."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "owner"],
+      "additionalProperties": false
+    },
+
+    "Capability": {
+      "type": "object",
+      "title": "Capability",
+      "description": "What a platform provides to consumers. Optionally anchored to industry reference taxonomy domain(s) (BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, etc.) for cross-industry-peer comparability. Decomposes recursively; realised by one or more components. In TOGAF terms, Capability is a Phase B concept describing what the enterprise needs to do — it is realised by ABBs (Architecture Building Blocks), but is NOT itself a building block.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^cap_P\\d{3}_[a-z0-9_]+$",
+          "description": "Capability identifier. Pattern: cap_P###_<local-id> where P### is the owning platform's id (e.g., cap_P201_authentication). The platform prefix prevents id collisions when capabilities from multiple platforms are aggregated into one document."
+        },
+        "name": {
+          "type": "string",
+          "description": "Capability name. Where anchored to an industry reference taxonomy, prefer matching the taxonomy's canonical name (e.g., BIAN Service Domain name for banking)."
+        },
+        "platform_id": {
+          "type": "string",
+          "pattern": "^P\\d{3}$",
+          "description": "The platform providing this capability."
+        },
+        "industry_reference_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Industry reference taxonomy domain references (e.g., BIAN Service Domain ids for banking, eTOM Process Element ids for telecom). Optional. Where an industry reference taxonomy exists and the capability fits it, usually 1, occasionally many. 0 is acceptable for capabilities that don't fit the chosen taxonomy, or where no reference taxonomy applies to the organisation's industry."
+        },
+        "parent_capability_id": {
+          "type": ["string", "null"],
+          "description": "Parent capability for recursive decomposition. Null for top-level capabilities on this platform."
+        },
+        "maturity": {
+          "type": "string",
+          "enum": ["crawl", "walk", "run", "fly"],
+          "description": "Current maturity level. Maturity targets are typically declared via milestone criteria, not on the capability itself."
+        },
+        "description": {
+          "type": "string",
+          "description": "Narrative description of what this capability does."
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "References to the EA tool's business-capability fact sheet (primary, e.g., LeanIX BusinessCapability). Optionally an industry reference taxonomy citation if the IndustryReferenceDomain entity isn't separately modelled."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "platform_id"],
+      "additionalProperties": false
+    },
+
+    "Component": {
+      "type": "object",
+      "title": "Component",
+      "description": "A logical implementation that realises one or more capabilities. In TOGAF terms, Component is a building block, classified as either an Architecture Building Block (ABB — technology-agnostic, vendor-neutral) or a Solution Building Block (SBB — technology-specific, product/vendor-aware) via the building_block_type attribute. The five component_type subtypes (application, service, technology, data, ux) align with the TOGAF content metamodel. ABB Component examples: 'authentication service', 'customer database', 'event broker'. SBB Component examples: 'Okta SSO Gateway', 'PostgreSQL 16 customer DB on AWS RDS', 'Confluent Kafka cluster'.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(comp|arch)_P\\d{3}_[a-z0-9_]+$",
+          "description": "Component identifier. Pattern: comp_P###_<local-id> (or arch_P###_<local-id> for architecturally-named building blocks) where P### is the owning platform's id (e.g., comp_P201_sso_gateway)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Component name (e.g., 'SSO Gateway (Okta)', 'Customer 360 service')."
+        },
+        "component_type": {
+          "type": "string",
+          "enum": ["application", "service", "technology", "data", "ux"],
+          "description": "Component subtype. 'application' = business-facing software (LeanIX Application). 'service' = backend service (including microservices; deployment shape is captured by architectural_style). 'technology' = infrastructure (databases, brokers, runtimes). 'data' = data assets/products (requires data_mastery). 'ux' = user-facing surface (channel apps, mobile apps, embedded widgets; in LeanIX typically tracked as IT Component)."
+        },
+        "architectural_style": {
+          "type": "string",
+          "enum": ["monolith", "modular_monolith", "microservice", "function", "batch_job"],
+          "description": "Optional. Deployment shape / architectural style of the component, orthogonal to component_type. 'monolith' = single deployable unit covering multiple bounded contexts. 'modular_monolith' = single deployable with strong internal module boundaries. 'microservice' = independently deployable bounded-context service. 'function' = function-as-a-service (Lambda, Cloud Functions, etc.). 'batch_job' = scheduled batch process. Most service-type components will be microservice or monolith; most application-type components will be monolith or modular_monolith. Leave unset for components where deployment shape is not yet decided or is not applicable (e.g., data, ux). LeanIX mapping is determined by component_type, not architectural_style — a microservice still maps to IT Component."
+        },
+        "building_block_type": {
+          "type": "string",
+          "enum": ["abb", "sbb"],
+          "description": "TOGAF classification. 'abb' (Architecture Building Block) = technology-agnostic logical component describing what functionality is required. 'sbb' (Solution Building Block) = technology-specific component identifying products and vendors. Components typically begin life as ABBs in Phase B/C architecture and are refined into SBBs in Phase E. Optional — when omitted, the component is treated as untyped at the building-block level (acceptable for legacy data)."
+        },
+        "realises_abb_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "When this component is an SBB, lists the ABB component(s) it realises. The canonical ABB-to-SBB refinement relationship. Empty for ABBs and for SBBs whose corresponding ABB is not modelled."
+        },
+        "realises_capability_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Capabilities this component realises. Mandatory — orphan components without realisation are not allowed."
+        },
+        "lifecycle_status": {
+          "type": "string",
+          "enum": ["planned", "active", "deprecated", "retired"],
+          "description": "Component lifecycle status."
+        },
+        "description": {
+          "type": "string",
+          "description": "Narrative description of what the component does."
+        },
+        "data_mastery": {
+          "type": "object",
+          "title": "Data Mastery",
+          "description": "Required when component_type = data. Captures System of Record (SoR) and scope.",
+          "properties": {
+            "system_of_record": {
+              "type": "string",
+              "description": "The platform or external system mastering this data."
+            },
+            "scope": {
+              "type": "string",
+              "description": "What aspect of the data is mastered (e.g., 'customer position records', 'transaction events')."
+            },
+            "classification": {
+              "type": "string",
+              "enum": ["Public", "Internal", "Confidential", "Highly Confidential"],
+              "description": "Data sensitivity classification."
+            }
+          },
+          "required": ["system_of_record", "scope"]
+        },
+        "implements_pattern_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Architectural patterns this component implements."
+        },
+        "complies_with_standard_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Standards this component complies with."
+        },
+        "quality_attribute_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Quality attributes attached to this component."
+        },
+        "exposes_risk_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Risks that manifest through this component."
+        },
+        "implements_control_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Controls this component implements."
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "References to LeanIX Application/ITComponent and/or ServiceNow CMDB (cmdb_ci_business_app, cmdb_ci_service, etc.)."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "component_type", "realises_capability_ids"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "properties": { "component_type": { "const": "data" } } },
+          "then": { "required": ["data_mastery"] }
+        }
+      ]
+    },
+
+    "Interface": {
+      "type": "object",
+      "title": "Interface",
+      "description": "A connection between components. Has provider and consumer(s), a contract, and properties. Promoted from the original ontology's component_type (integration/api/event) because connections are architecturally significant in their own right. In TOGAF terms, an Interface is part of a building block's specification (TOGAF lists 'Interfaces' as ABB content). When the Interface describes a technology-agnostic chosen contract (the ABB form), set building_block_type=abb. When it describes a concrete implemented endpoint with specific products/protocols (the SBB form), set building_block_type=sbb.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^iface_P\\d{3}_[a-z0-9_]+$",
+          "description": "Interface identifier. Pattern: iface_P###_<local-id> where P### is the provider component's platform id (e.g., iface_P201_sso_auth_endpoint_prod)."
+        },
+        "name": {
+          "type": "string",
+          "description": "Interface name (e.g., 'Customer search REST API')."
+        },
+        "interface_type": {
+          "type": "string",
+          "enum": ["api", "event", "file", "database", "ui", "rpc"],
+          "description": "Interface kind. 'api' = REST/GraphQL/SOAP. 'event' = pub/sub or streaming. 'file' = batch file exchange. 'database' = shared schema or replication. 'ui' = embedded UI. 'rpc' = direct procedure call."
+        },
+        "building_block_type": {
+          "type": "string",
+          "enum": ["abb", "sbb"],
+          "description": "TOGAF classification. 'abb' = technology-agnostic chosen contract (e.g., 'Customer Search API standard'). 'sbb' = technology-specific implemented endpoint (e.g., 'GET /v3/customers on api.example.internal/v3'). Optional — when omitted, the interface is treated as untyped at the building-block level."
+        },
+        "provider_component_id": {
+          "type": "string",
+          "description": "Component providing the interface."
+        },
+        "consumer_component_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Components consuming the interface. Often initially empty; populated as consumers are identified."
+        },
+        "contract": {
+          "type": "string",
+          "description": "Reference to the contract specification (URL, document, schema location)."
+        },
+        "synchronous": {
+          "type": "boolean",
+          "description": "Whether this is a synchronous interaction. Asynchronous interfaces (events, queues) are usually false."
+        },
+        "criticality": {
+          "type": "string",
+          "enum": ["critical", "high", "medium", "low"],
+          "description": "Operational criticality. Critical interfaces typically have stricter quality attributes."
+        },
+        "lifecycle_status": {
+          "type": "string",
+          "enum": ["proposed", "active", "deprecated", "retired"]
+        },
+        "complies_with_standard_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "quality_attribute_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "References to LeanIX Interface fact sheet (vanilla metamodel)."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "interface_type", "provider_component_id"],
+      "additionalProperties": false
+    },
+
+    "Change": {
+      "type": "object",
+      "title": "Change",
+      "description": "A typed architectural alteration of a capability, component, or interface. The atomic unit of architectural evolution. Carries structured narrative explaining what, why, and what 'done' looks like.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^change_P\\d{3}_[a-z0-9_]+$",
+          "description": "Change identifier. Pattern: change_P###_<local-id> where P### must equal the change's platform_id field (e.g., change_P201_introduce_sso_gateway)."
+        },
+        "name": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 120,
+          "description": "Short noun-phrase label (e.g., 'Retire LDAP service'). Used in diagrams and tables."
+        },
+        "platform_id": {
+          "type": "string",
+          "pattern": "^P\\d{3}$",
+          "description": "Platform affected by the change. Every change belongs to exactly one platform."
+        },
+        "change_type": {
+          "type": "string",
+          "enum": ["introduce", "uplift", "retain", "retire", "modify", "consolidate", "migrate"],
+          "description": "Kind of alteration. 'retain' is an explicit non-change declaration (sometimes important for clarity)."
+        },
+        "target_type": {
+          "type": "string",
+          "enum": ["capability", "component", "interface"],
+          "description": "What kind of entity the change targets."
+        },
+        "target_id": {
+          "type": "string",
+          "description": "Identifier of the targeted capability, component, or interface."
+        },
+        "responds_to_driver_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Drivers this change responds to."
+        },
+        "addresses_risk_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Risks this change addresses (reduces exposure, eliminates source, or implements control)."
+        },
+        "informed_by_decision_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Decisions that shaped this change (typically architecture decisions)."
+        },
+        "narrative": {
+          "type": "object",
+          "title": "Change Narrative",
+          "description": "Structured narrative explaining the change. Required fields ensure pack assembly is mechanical rather than ad-hoc.",
+          "properties": {
+            "summary": {
+              "type": "string",
+              "minLength": 10,
+              "maxLength": 280,
+              "description": "One-sentence plain-language description for non-architectural readers (Board, regulator)."
+            },
+            "rationale": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 1000,
+              "description": "Why this specific change is needed. Defensible under challenge."
+            },
+            "outcome": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 1000,
+              "description": "What the architecture looks like when delivered. Basis for criterion satisfaction evaluation."
+            },
+            "target_effect": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 500,
+              "description": "Specific effect on the targeted entity (lifecycle change, maturity change, etc.)."
+            },
+            "constraints": {
+              "type": "string",
+              "maxLength": 500,
+              "description": "Optional. Sequencing constraints, prerequisites, invariants during delivery."
+            }
+          },
+          "required": ["summary", "rationale", "outcome", "target_effect"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["proposed", "committed", "in_progress", "delivered", "deferred", "cancelled"],
+          "description": "Change lifecycle. 'proposed' is pre-commitment; 'committed' is endorsed via Decision; 'in_progress' = at least one Initiative actively delivering; 'delivered' = outcome criteria evidenced; 'deferred' or 'cancelled' = via Decision."
+        },
+        "evidence_ref": {
+          "type": "string",
+          "description": "Optional evidence reference for delivered changes. Format 'system:id' (e.g., 'servicenow:CHG0012345')."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "platform_id", "change_type", "target_type", "target_id", "narrative", "status"],
+      "additionalProperties": false
+    },
+
+    "Driver": {
+      "type": "object",
+      "title": "Driver",
+      "description": "Motivating force for architectural change. Durable, external in origin. References a master record in strategy, compliance, or risk systems. Drives changes; subject of platforms.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^driver_(P\\d{3}_)?[a-z0-9_]+$",
+          "description": "Driver identifier. Pattern: driver_<local-id> for enterprise-wide drivers; driver_P###_<local-id> for drivers that are platform-specific (e.g., an enterprise-strategy driver tailored to a specific platform's story)."
+        },
+        "name": {
+          "type": "string"
+        },
+        "driver_type": {
+          "type": "string",
+          "enum": ["strategic", "regulatory", "risk", "operational", "financial", "technology", "market"]
+        },
+        "theme": {
+          "type": "string",
+          "description": "Optional. Enterprise modernisation theme this driver belongs to. References a Theme entity by id. Enables aggregation of drivers by theme across platforms for executive and regulator reporting."
+        },
+        "description": {
+          "type": "string"
+        },
+        "source": {
+          "type": "string",
+          "description": "What named the driver (strategy doc, regulatory citation, audit finding ID)."
+        },
+        "binding_level": {
+          "type": "string",
+          "enum": ["binding", "expected", "advisory", "informational"],
+          "description": "How binding the driver is. Regulatory drivers are usually 'binding'; market drivers often 'advisory'."
+        },
+        "inception_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "target_resolution_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Expected by-when. Null for ongoing drivers (e.g., perpetual strategic direction)."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["active", "resolved", "superseded", "deferred"]
+        },
+        "affected_platform_ids": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^P\\d{3}$" },
+          "description": "Platforms subject to this driver. Independent of whether changes have been committed — used for exposure analysis."
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "Reference to source: strategy system, compliance register, risk register, audit findings."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "driver_type", "description", "binding_level", "status"],
+      "additionalProperties": false
+    },
+
+    "Theme": {
+      "type": "object",
+      "title": "Theme",
+      "description": "Enterprise modernisation theme. Reusable label that groups Drivers by motivation cluster (e.g., enterprise strategy alignment, regulatory compliance, cyber resilience). Themes are enterprise-wide, not platform-scoped. Referenced from Driver.theme to enable cross-platform aggregation in board and regulator reporting.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]+$",
+          "description": "Theme identifier in lowercase snake_case (e.g., 'enterprise_strategy_alignment'). Referenced by Driver.theme."
+        },
+        "title": {
+          "type": "string",
+          "description": "Human-readable name (e.g., 'Enterprise Strategy Alignment'). Used in reports and infographics."
+        },
+        "icon": {
+          "type": "string",
+          "description": "Optional short code (typically 3-5 uppercase letters) shown on infographic tiles as a visual abbreviation."
+        },
+        "accent": {
+          "type": "string",
+          "description": "Optional palette colour key for visual rendering. Recognised values reference the project's visual design palette (blue, gold, teal, light_teal, charcoal, wasabi, clementine, guava, aubergine)."
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Optional display and classification ordering. Lower numbers appear first."
+        },
+        "tagline": {
+          "type": "string",
+          "description": "Optional one or two sentence description rendered in reports and infographic tiles."
+        },
+        "description": {
+          "type": "string",
+          "description": "Optional full description for governance documentation."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "title"],
+      "additionalProperties": false
+    },
+
+    "Milestone": {
+      "type": "object",
+      "title": "Milestone",
+      "description": "Committed architectural state on a platform. Role determines whether it is the baseline (current state at programme inception), an interim state, or the target. Every platform should have exactly one baseline and one target.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^m_P\\d{3}_[a-z0-9_]+$",
+          "description": "Milestone identifier. Pattern: m_P###_<local-id> where P### must equal the milestone's platform_id field (e.g., m_P201_baseline, m_P201_m1, m_P201_target)."
+        },
+        "name": {
+          "type": "string"
+        },
+        "platform_id": {
+          "type": "string",
+          "pattern": "^P\\d{3}$"
+        },
+        "role": {
+          "type": "string",
+          "enum": ["baseline", "interim", "target"],
+          "description": "Baseline = committed starting state; cannot be re-baselined. Interim = intermediate stable state; can be re-baselined. Target = endpoint; re-baselining is highest-significance governance event."
+        },
+        "planned_date": {
+          "type": "string",
+          "format": "date",
+          "description": "Originally committed arrival date."
+        },
+        "forecast_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Current forecast arrival date. Updates between commitments without producing a new Commitment version."
+        },
+        "actual_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Actual arrival date when reached."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["committed", "on_track", "at_risk", "slipping", "arrived"]
+        },
+        "maturity_horizon": {
+          "type": "string",
+          "enum": ["crawl", "walk", "run", "fly"],
+          "description": "Optional maturity level this milestone represents. Independent of time horizon."
+        },
+        "description": {
+          "type": "string"
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "platform_id", "role", "planned_date", "status"],
+      "additionalProperties": false
+    },
+
+    "Criterion": {
+      "type": "object",
+      "title": "Criterion",
+      "description": "What must be true for a milestone to be considered arrived. A criterion demands one or more changes. The set of all criteria on a milestone defines its arrival condition.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^crit_P\\d{3}_[a-z0-9_]+$",
+          "description": "Criterion identifier. Pattern: crit_P###_<local-id> where P### is the platform of the criterion's milestone (e.g., crit_P201_m1_sso_operational)."
+        },
+        "milestone_id": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string",
+          "description": "Plain-language statement of what must be true (e.g., 'LDAP service retired and decommissioned')."
+        },
+        "demanded_change_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Changes this criterion demands. Mandatory minimum 1; without changes, the criterion is not actionable."
+        },
+        "satisfaction_status": {
+          "type": "string",
+          "enum": ["pending", "met", "not_met", "partial", "deferred", "waived"]
+        },
+        "evidence_ref": {
+          "type": "string",
+          "description": "Optional reference to evidence supporting current satisfaction status."
+        },
+        "satisfaction_as_of": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "milestone_id", "description", "demanded_change_ids", "satisfaction_status"],
+      "additionalProperties": false
+    },
+
+    "Commitment": {
+      "type": "object",
+      "title": "Commitment",
+      "description": "Board-endorsed baseline of a milestone. Versioned — every re-baseline produces a new version via a Decision. Provides the longitudinal record for commitment integrity reporting.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^comm_P\\d{3}_[a-z0-9_]+$",
+          "description": "Commitment identifier. Pattern: comm_P###_<local-id> where P### is the platform of the commitment's milestone (e.g., comm_P201_m1_v1)."
+        },
+        "milestone_id": {
+          "type": "string"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Version number. 1 = original commitment. Each re-baseline Decision produces version 2, 3, etc."
+        },
+        "endorsed_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "endorsed_by": {
+          "type": "string",
+          "description": "Forum that endorsed (e.g., 'Technology Committee 2026-Q1', 'Board 2026-05')."
+        },
+        "committed_date": {
+          "type": "string",
+          "format": "date",
+          "description": "The arrival date being committed to. Distinct from endorsed_date (which is when the commitment was made)."
+        },
+        "committed_criteria_summary": {
+          "type": "string",
+          "description": "Summary of the criteria included in this commitment version."
+        },
+        "supersedes_version": {
+          "type": ["integer", "null"],
+          "description": "Prior version this commitment replaces. Null for version 1."
+        },
+        "superseding_decision_id": {
+          "type": ["string", "null"],
+          "description": "Decision that produced this version. Null for version 1; required for versions 2+."
+        },
+        "rationale_for_version": {
+          "type": "string",
+          "description": "Why this version differs from the prior. Required for version > 1."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "milestone_id", "version", "endorsed_date", "committed_date"],
+      "additionalProperties": false
+    },
+
+    "Transition": {
+      "type": "object",
+      "title": "Transition",
+      "description": "Bounded directed move between two milestones on the same platform. Serves as the middle reporting grain between portfolio and initiative. Initiatives implement transitions.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^trans_P\\d{3}_[a-z0-9_]+$",
+          "description": "Transition identifier. Pattern: trans_P###_<local-id> where P### is the platform of both milestones (from and to must be on the same platform). E.g., trans_P201_baseline_to_m1."
+        },
+        "from_milestone_id": {
+          "type": "string"
+        },
+        "to_milestone_id": {
+          "type": "string"
+        },
+        "planned_start": {
+          "type": "string",
+          "format": "date"
+        },
+        "planned_end": {
+          "type": "string",
+          "format": "date"
+        },
+        "actual_start": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "actual_end": {
+          "type": ["string", "null"],
+          "format": "date"
+        },
+        "health": {
+          "type": "string",
+          "enum": ["green", "amber", "red", "unknown"]
+        },
+        "health_basis": {
+          "type": "string",
+          "description": "Quantitative basis for current health (e.g., 'amber: 2 of 5 changes forecast >1 quarter late')."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "from_milestone_id", "to_milestone_id", "planned_start", "planned_end", "health"],
+      "additionalProperties": false
+    },
+
+    "Initiative": {
+      "type": "object",
+      "title": "Initiative",
+      "description": "Funded unit of work implementing exactly one transition. Delivers one or more changes. Slips are declared on initiatives. Referenced from LeanIX Project. AMBIGUITY: programme membership is not modelled here in v1.0 — see open considerations in the specification.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^init_P\\d{3}_[a-z0-9_]+$",
+          "description": "Initiative identifier. Pattern: init_P###_<local-id> where P### is the platform whose transition this initiative implements (e.g., init_P201_i12_sso)."
+        },
+        "name": {
+          "type": "string"
+        },
+        "implements_transition_id": {
+          "type": "string",
+          "description": "The transition this initiative implements. Mandatory; an initiative without a transition has no architectural purpose in this model."
+        },
+        "delivers_change_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Changes this initiative delivers. Mandatory minimum 1."
+        },
+        "depends_on_initiative_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "parent_initiative_id": {
+          "type": "string",
+          "description": "Optional. ID of a parent Initiative that this Initiative rolls up into. Used to model thematic groupings: the parent is the rollup / theme shown on board views; the children are the delivery-level workstreams shown in detail views. The parent retains its own authored planned_start and planned_end so it can express a board-committed envelope that may legitimately differ from the literal min/max of its children. Validation does not enforce date alignment; that is left to authoring discipline or a separate linter."
+        },
+        "produces_decision_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Architecture Decisions made during this initiative."
+        },
+        "planned_start": { "type": "string", "format": "date" },
+        "planned_end": { "type": "string", "format": "date" },
+        "actual_start": { "type": ["string", "null"], "format": "date" },
+        "actual_end": { "type": ["string", "null"], "format": "date" },
+        "status": {
+          "type": "string",
+          "enum": ["planned", "in_progress", "completed", "paused", "cancelled"]
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "Reference to LeanIX Project fact sheet (primary master)."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "implements_transition_id", "delivers_change_ids", "planned_start", "planned_end", "status"],
+      "additionalProperties": false
+    },
+
+    "Slip": {
+      "type": "object",
+      "title": "Slip",
+      "description": "Declared deviation on an initiative. A governance event, not a status colour. Triggers impact analysis up through transition and milestone to commitment.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^slip_P\\d{3}_[a-z0-9_]+$",
+          "description": "Slip identifier. Pattern: slip_P###_<local-id> where P### is the platform of the initiative the slip is declared on (e.g., slip_P201_i12_q3_late)."
+        },
+        "initiative_id": {
+          "type": "string"
+        },
+        "declared_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "declared_by": {
+          "type": "string"
+        },
+        "magnitude_months": {
+          "type": "number",
+          "description": "Forecast slip in months. Negative values indicate acceleration (rare but possible)."
+        },
+        "cause": {
+          "type": "string"
+        },
+        "is_material": {
+          "type": "boolean",
+          "description": "Whether the slip exceeds materiality threshold and requires Board attention. Materiality criteria should be documented in organisational policy."
+        },
+        "affects_milestone_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Computed: milestones whose commitments are threatened."
+        },
+        "resolved_by_decision_id": {
+          "type": ["string", "null"]
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "initiative_id", "declared_date", "magnitude_months", "cause", "is_material"],
+      "additionalProperties": false
+    },
+
+    "Decision": {
+      "type": "object",
+      "title": "Decision",
+      "description": "A recorded choice. Polymorphic via decision_type — covers architecture decisions (ADRs), board re-baseline endorsements, standard waivers, standard adoptions, and change endorsements. One entity, many roles, consistent skeleton.",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "decision_type": {
+          "type": "string",
+          "enum": ["architecture", "rebaseline", "waiver", "standard_adoption", "change_endorsement"],
+          "description": "Kind of decision. 'architecture' = ADR-style design choice. 'rebaseline' = board response to material slip. 'waiver' = exception to a standard. 'standard_adoption' = endorses a new pattern/standard. 'change_endorsement' = approves a proposed change."
+        },
+        "decision_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "decision_forum": {
+          "type": "string",
+          "description": "Who decided (e.g., 'Architecture Review Board', 'Technology Committee', 'Board 2026-Q2', or named individual for ADRs)."
+        },
+        "context": {
+          "type": "string",
+          "description": "ADR-style context. The situation that motivated the decision."
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 20,
+          "description": "Reasoning behind the decision. Required for all decision types."
+        },
+        "options_considered": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Other options weighed before the final decision."
+        },
+        "consequences": {
+          "type": "string",
+          "description": "Consequences of the decision — both intended and accepted side-effects."
+        },
+        "slip_id": {
+          "type": ["string", "null"],
+          "description": "Required when decision_type = rebaseline; null otherwise."
+        },
+        "updates_commitment_id": {
+          "type": ["string", "null"],
+          "description": "Required when decision_type = rebaseline; identifies the commitment being updated."
+        },
+        "applies_pattern_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "invokes_standard_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "affects_entity_refs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "entity_type": { "type": "string", "enum": ["platform", "capability", "component", "interface", "change", "initiative", "standard", "pattern"] },
+              "entity_id": { "type": "string" }
+            },
+            "required": ["entity_type", "entity_id"]
+          },
+          "description": "Polymorphic list of entities the decision affects (used especially by architecture decisions)."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["proposed", "accepted", "superseded", "deprecated"],
+          "description": "ADR-style status. 'accepted' is current; 'superseded' means replaced by a later decision."
+        },
+        "superseded_by_decision_id": {
+          "type": ["string", "null"]
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "decision_type", "decision_date", "decision_forum", "rationale", "status"],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": { "properties": { "decision_type": { "const": "rebaseline" } } },
+          "then": { "required": ["slip_id", "updates_commitment_id"] }
+        }
+      ]
+    },
+
+    "Pattern": {
+      "type": "object",
+      "title": "Pattern",
+      "description": "Reusable architectural prescription — a recipe for assembling building blocks to address a recurring problem. Advisory by default (compare to Standard which is binding). In TOGAF terms, a Pattern is NOT itself a building block — it is a reference architecture or pattern from the Architecture Continuum that *informs* ABB design. Components implement patterns; decisions apply them. Examples: 'API Gateway pattern', 'CQRS pattern', 'Zero Trust authentication pattern'.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": {
+          "type": "string",
+          "description": "Domain category (e.g., 'integration', 'data', 'security', 'observability')."
+        },
+        "description": { "type": "string" },
+        "intent": {
+          "type": "string",
+          "description": "What problem the pattern solves."
+        },
+        "applicability": {
+          "type": "string",
+          "description": "When to use this pattern."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["proposed", "current", "deprecated"]
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "description", "status"],
+      "additionalProperties": false
+    },
+
+    "Standard": {
+      "type": "object",
+      "title": "Standard",
+      "description": "Binding architectural prescription. Components, interfaces, and changes must comply. Includes platform-level guardrails as a standard_type. Violations require waiver Decisions. In TOGAF terms, a Standard is NOT a building block — it is a prescriptive specification that building blocks (ABBs and SBBs) conform to. TOGAF explicitly lists 'conformance to standards' as a characteristic of ABBs.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^standard_(P\\d{3}_)?[a-z0-9_]+$"
+        },
+        "name": { "type": "string" },
+        "standard_type": {
+          "type": "string",
+          "enum": [
+            "technical_standard",
+            "platform_guardrail",
+            "security_baseline",
+            "data_standard",
+            "integration_standard",
+            "operational_standard"
+          ],
+          "description": "What kind of standard. 'platform_guardrail' specifically captures the original ontology's PlatformGuardrail concept — platform-level mandatory controls with compliance reporting."
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "security_access",
+            "safety",
+            "architecture_integration",
+            "evaluation_release",
+            "operations_observability",
+            "compliance_legal",
+            "data_governance",
+            "performance"
+          ],
+          "description": "Domain category. Aligns with original ontology's PlatformGuardrail categories where standard_type = platform_guardrail."
+        },
+        "description": { "type": "string" },
+        "applies_to_platform_ids": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^P\\d{3}$" },
+          "description": "When standard_type = platform_guardrail, lists the platforms this guardrail applies to. May be empty if the standard is enterprise-wide."
+        },
+        "binding_level": {
+          "type": "string",
+          "enum": ["mandatory", "expected", "recommended"]
+        },
+        "waiver_process": {
+          "type": "string",
+          "description": "How exceptions are granted. Typically references the Decision process (decision_type = waiver)."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "active", "deprecated"]
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "standard_type", "category", "description", "binding_level", "status"],
+      "additionalProperties": false
+    },
+
+    "QualityAttribute": {
+      "type": "object",
+      "title": "Quality Attribute",
+      "description": "Non-functional quality property of a component or interface. Captures NFRs measurably (availability target, latency budget, throughput, etc.).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^qa_P\\d{3}_[a-z0-9_]+$",
+          "description": "Quality attribute identifier. Pattern: qa_P###_<local-id> where P### is the platform of the target component or interface (e.g., qa_P201_sso_availability)."
+        },
+        "name": { "type": "string", "description": "e.g., 'Availability', 'P99 latency', 'Recovery Time Objective'." },
+        "attribute_type": {
+          "type": "string",
+          "enum": ["availability", "performance", "scalability", "security", "reliability", "maintainability", "portability", "usability", "compliance"]
+        },
+        "target_value": {
+          "type": "string",
+          "description": "Target value as a string (e.g., '99.95%', '200ms', '10000 tps'). String to accommodate units."
+        },
+        "current_value": {
+          "type": "string",
+          "description": "Current measured value, if known."
+        },
+        "measurement_method": {
+          "type": "string",
+          "description": "How the attribute is measured or monitored."
+        },
+        "applies_to_entity_type": {
+          "type": "string",
+          "enum": ["component", "interface"]
+        },
+        "applies_to_entity_id": {
+          "type": "string"
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "attribute_type", "target_value", "applies_to_entity_type", "applies_to_entity_id"],
+      "additionalProperties": false
+    },
+
+    "Risk": {
+      "type": "object",
+      "title": "Risk",
+      "description": "The possibility of an adverse outcome. Exists whether or not addressed by changes or controls. Referenced from the enterprise risk register; the ontology captures the architecturally-relevant aspects.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^risk_(P\\d{3}_)?[a-z0-9_]+$"
+        },
+        "name": { "type": "string" },
+        "risk_type": {
+          "type": "string",
+          "enum": ["operational", "resilience", "security", "data", "compliance", "concentration", "vendor", "technology_obsolescence", "financial"]
+        },
+        "description": { "type": "string" },
+        "inherent_likelihood": {
+          "type": "string",
+          "enum": ["rare", "unlikely", "possible", "likely", "almost_certain"]
+        },
+        "inherent_impact": {
+          "type": "string",
+          "enum": ["insignificant", "minor", "moderate", "major", "catastrophic"]
+        },
+        "residual_likelihood": {
+          "type": "string",
+          "enum": ["rare", "unlikely", "possible", "likely", "almost_certain"]
+        },
+        "residual_impact": {
+          "type": "string",
+          "enum": ["insignificant", "minor", "moderate", "major", "catastrophic"]
+        },
+        "exposes_component_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Components through which the risk could manifest."
+        },
+        "exposes_platform_ids": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^P\\d{3}$" }
+        },
+        "status": {
+          "type": "string",
+          "enum": ["identified", "active", "monitoring", "resolved", "accepted"]
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" },
+          "description": "Typically references the enterprise risk register."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "risk_type", "description", "inherent_likelihood", "inherent_impact", "status"],
+      "additionalProperties": false
+    },
+
+    "Control": {
+      "type": "object",
+      "title": "Control",
+      "description": "A mechanism that reduces a Risk's likelihood or impact. Implemented by architectural components, patterns, or external processes. AMBIGUITY: distinct from Standard (guardrail) — controls are operational mechanisms; standards/guardrails are design constraints.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^control_(P\\d{3}_)?[a-z0-9_]+$"
+        },
+        "name": { "type": "string" },
+        "control_type": {
+          "type": "string",
+          "enum": ["preventive", "detective", "corrective", "compensating"]
+        },
+        "description": { "type": "string" },
+        "mitigates_risk_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "implementation": {
+          "type": "object",
+          "description": "How the control is realised. At least one of these should be populated.",
+          "properties": {
+            "implemented_by_component_ids": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "implemented_by_pattern_ids": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "external_process": {
+              "type": "string",
+              "description": "If the control is realised outside the architecture (manual process, policy)."
+            }
+          }
+        },
+        "effectiveness": {
+          "type": "string",
+          "enum": ["effective", "partially_effective", "ineffective", "not_yet_assessed"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["proposed", "in_implementation", "operating", "deprecated"]
+        },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" }
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "control_type", "description", "mitigates_risk_ids", "status"],
+      "additionalProperties": false
+    },
+
+    "Stakeholder": {
+      "type": "object",
+      "title": "Stakeholder",
+      "description": "A role or party that consumes architectural information. Has ongoing concerns that views are produced to address. Aligned with ISO/IEC/IEEE 42010 stakeholder concept.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": {
+          "type": "string",
+          "description": "Stakeholder role (e.g., 'Board', 'Regulator', 'Platform Owner', 'Solution Architect')."
+        },
+        "stakeholder_type": {
+          "type": "string",
+          "enum": ["governance", "regulator", "executive", "platform_owner", "architect", "engineer", "delivery", "business", "external"]
+        },
+        "concerns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Durable concerns this stakeholder holds. e.g. for Board: 'milestone arrival on time', 'commitment integrity over time'. For Solution Architect: 'component dependencies', 'interface contracts'."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "stakeholder_type"],
+      "additionalProperties": false
+    },
+
+    "Viewpoint": {
+      "type": "object",
+      "title": "Viewpoint",
+      "description": "Reusable specification for constructing views of a particular kind. Defines which entity types are included, which relationships are shown, and how the view is presented. Standards-aligned to ArchiMate and TOGAF.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "description": "e.g., 'Capability Map', 'Component Cooperation', 'Migration', 'Portfolio Status'." },
+        "purpose": { "type": "string", "description": "What this viewpoint is for — the question it answers." },
+        "framework_source": {
+          "type": "string",
+          "enum": ["archimate", "togaf", "c4", "custom"]
+        },
+        "framework_reference": {
+          "type": "string",
+          "description": "Citation in source framework (e.g., 'ArchiMate 3.2 §10.4 Application Cooperation Viewpoint')."
+        },
+        "included_entity_types": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Which entity types this viewpoint includes."
+        },
+        "addresses_concern_types": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Kinds of concerns this viewpoint typically addresses."
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "purpose", "framework_source", "included_entity_types"],
+      "additionalProperties": false
+    },
+
+    "View": {
+      "type": "object",
+      "title": "View",
+      "description": "An architectural view — an instance of a Viewpoint, scoped to specific entities, addressing identified Stakeholders. AMBIGUITY: views resolve against current model state by default and are NOT stored snapshots. Set scope.as_of to render historical state.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "viewpoint_id": { "type": "string" },
+        "purpose": { "type": "string", "description": "What this specific view is for, in context." },
+        "addresses_stakeholder_ids": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "scope": {
+          "type": "object",
+          "description": "What this view shows. Defines which entities are in scope.",
+          "properties": {
+            "platform_ids": { "type": "array", "items": { "type": "string" } },
+            "milestone_ids": { "type": "array", "items": { "type": "string" } },
+            "initiative_ids": { "type": "array", "items": { "type": "string" } },
+            "capability_ids": { "type": "array", "items": { "type": "string" } },
+            "as_of": {
+              "type": ["string", "null"],
+              "format": "date",
+              "description": "Optional. If set, view resolves model state as of this date; otherwise current state."
+            }
+          }
+        },
+        "swimlane_narratives": {
+          "type": "object",
+          "description": "Per-capability narrative summarising what the change set is doing in that swimlane, in the context of this view's audience and scope. Map keys are capability IDs; values are 1-3 sentences for a board / rollup view, up to a short paragraph for a detail / full view. Authored once per view, not derived. Optional: renderers may fall back to an aggregate of the underlying Change.narrative.summary values when absent.",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 800
+          }
+        },
+        "author": { "type": "string" },
+        "created_date": { "type": "string", "format": "date" },
+        "status": {
+          "type": "string",
+          "enum": ["draft", "published", "deprecated"]
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "viewpoint_id", "purpose", "addresses_stakeholder_ids"],
+      "additionalProperties": false
+    },
+
+    "IndustryReferenceDomain": {
+      "type": "object",
+      "title": "Industry Reference Domain",
+      "description": "Reference to a domain in an industry reference taxonomy (BIAN Service Domain for banking, eTOM Process Element for telecom, ACORD Capability for insurance, NRF ARTS area for retail, HL7/FHIR resource grouping for healthcare, etc.). Loaded from whichever taxonomy applies to the organisation's industry, typically via the EA tool's tag taxonomy. Provides cross-industry-peer comparability for capabilities. Optional — organisations in industries without a widely-adopted reference taxonomy can omit this entity entirely.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Domain identifier (typically the taxonomy's canonical name in snake_case or PascalCase)."
+        },
+        "name": { "type": "string" },
+        "taxonomy": {
+          "type": "string",
+          "description": "The industry reference taxonomy this domain comes from (e.g., 'BIAN', 'eTOM', 'ACORD', 'NRF_ARTS', 'HL7_FHIR'). Free-text so organisations can name a taxonomy not in any predefined list."
+        },
+        "taxonomy_version": { "type": "string", "description": "Version of the reference taxonomy (e.g., 'BIAN V12', 'eTOM 23.0', 'ACORD 2.9')." },
+        "description": { "type": "string" },
+        "external_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ExternalReference" }
+        },
+        "notes": { "$ref": "#/$defs/Notes" }
+      },
+      "required": ["id", "name", "taxonomy", "taxonomy_version"],
+      "additionalProperties": false
+    }
+  }
+}
