@@ -21,6 +21,10 @@ pip install python-pptx Pillow
 
 [Draw.io Desktop](https://github.com/jgraph/drawio-desktop/releases) is required for exporting diagrams to PNG at 300 DPI.
 
+### Node.js (optional — only for the ontology scripts)
+
+[Node.js 18+](https://nodejs.org/) is required if you want to validate, consolidate, or namespace YAML/JSON files against the modernisation ontology. Run `npm install` once inside the framework directory (or inside the submodule if installed that way). See the [Ontology](#ontology) section below.
+
 ### Visual Design Standard
 
 The framework needs a visual design standard that defines your organisation's colour tokens, typography, and accessibility rules. Agents search for it by folder name:
@@ -142,7 +146,9 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
     create-sbb.md          # SBB creation
     create-service.md      # Service definition
   install/                 # IDE configuration snippets (copy to workspace)
-  scripts/                 # Automation scripts (PowerPoint generation, foundation seeding)
+  scripts/
+    *.py / *.ps1           # PowerPoint generation, foundation seeding
+    ontology/              # CLI tools for ontology data (validate, consolidate, namespace-divergent)
   foundation/              # Seed capabilities and building blocks for workspace bootstrap
   standards/
     standard-traceability.md          # Golden Thread linking all layers
@@ -167,8 +173,10 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
         example/
     runtime/
       standard-service.md             # Runtime Services
+    ontology/                         # Modernisation Ontology (JSON Schema + spec + example)
     visual-design/                    # Visual design standard (override in workspace)
   example/                 # Example workspace layout
+  package.json             # Node.js dependencies for the ontology scripts
 ```
 
 ## Standards
@@ -188,6 +196,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 | SBB document | No | Document structure, metadata, and section layout for SBBs. |
 | SBB diagram | No | Draw.io diagram structure, styling, and export rules for SBBs. |
 | Service | No | Structure and metadata for runtime Services. |
+| Ontology | No | JSON Schema for capturing the Platform / Capability / Component / Change / Milestone / Driver model in a queryable form. Independent of the ABB/SBB authoring standards above; used when you want machine-readable governance/reporting data. See [Modernisation Ontology](#modernisation-ontology) below. |
 
 ## Foundation Profiles
 
@@ -207,6 +216,79 @@ Profiles control what gets seeded:
 - `foundation` / `all`: all profiles combined.
 
 See `.ai-assisted-architecture/foundation/foundation-manifest.yaml`.
+
+## Modernisation Ontology
+
+The framework ships an optional **ontology**, which is a JSON Schema that gives shape to enterprise reporting. It captures Platforms, Capabilities, Components (ABB/SBB), Interfaces, Changes, Milestones, Commitments, Transitions, Initiatives, Slips, Decisions, Drivers, Risks, Standards, Patterns, Views, Stakeholders, and an optional anchor to industry reference taxonomies where available (e.g. eTOM for telecom, BIAN for banking, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). It is industry-neutral and tool-neutral: author your data in YAML or JSON, validate it against the schema, and aggregate it across platforms.
+
+The ontology is **parallel** to the ABB/SBB authoring standards. Use it if you want a queryable model for governance reporting; ignore it if markdown documents and diagrams alone are sufficient.
+
+### Where it lives
+
+```
+standards/ontology/
+  README.md                  # Usage guidance (read this first)
+  SPECIFICATION.md           # Design rationale and entity definitions
+  SCRIPTS.md                 # Reference docs for the CLI tools
+  ontology-schema.json       # The authoritative JSON Schema (draft 2020-12)
+  example-identity-platform.json   # Worked example for a single platform
+
+scripts/ontology/
+  validate.cjs               # Validate one file or a folder against the schema
+  consolidate.cjs            # Merge per-platform documents into one aggregate
+  namespace-divergent.cjs    # Resolve cross-platform ID collisions
+```
+
+### Installing the scripts
+
+The scripts are CommonJS Node.js (>=18). Install dependencies once:
+
+```bash
+# If you cloned the framework directly
+npm install
+
+# If you added the framework as a submodule at .ai-assisted-architecture/
+cd .ai-assisted-architecture && npm install && cd ..
+```
+
+This fetches `ajv`, `ajv-formats`, and `js-yaml` into `node_modules/` inside the framework directory. The three CLI scripts then work without further setup.
+
+### Using the scripts
+
+```bash
+# Validate every ontology document under a folder of per-platform YAML files
+node .ai-assisted-architecture/scripts/ontology/validate.cjs <your-ontology-data-root>
+
+# Validate a single file
+node .ai-assisted-architecture/scripts/ontology/validate.cjs path/to/platform.yaml
+
+# Merge all per-platform documents into one aggregate, validating as you go
+node .ai-assisted-architecture/scripts/ontology/consolidate.cjs <your-ontology-data-root> \
+  --output aggregate.yaml --on-collision first-wins --validate
+
+# Resolve cross-platform ID collisions (dry-run first)
+node .ai-assisted-architecture/scripts/ontology/namespace-divergent.cjs <your-ontology-data-root> --dry-run
+```
+
+Each script accepts `--help` for the full option list. See [`standards/ontology/SCRIPTS.md`](standards/ontology/SCRIPTS.md) for full reference docs, exit codes, and common workflows.
+
+### Wiring into CI
+
+The validator exits non-zero on failure, so it slots into any pre-commit hook or build step. Example npm script (in your workspace's `package.json`):
+
+```json
+{
+  "scripts": {
+    "validate:ontology": "node .ai-assisted-architecture/scripts/ontology/validate.cjs ontology-data"
+  }
+}
+```
+
+See [`standards/ontology/SCRIPTS.md`](standards/ontology/SCRIPTS.md) for husky + lint-staged patterns.
+
+### Authoring data
+
+The ontology assumes you author your platform data as YAML or JSON files with a top-level `ontology_id: "modernisation-ontology"` marker. Files without that marker are silently skipped by the validator, so you can keep ontology data alongside other YAML in the same tree. Start from [`standards/ontology/example-identity-platform.json`](standards/ontology/example-identity-platform.json), copy and rename for your platform, then add Capabilities, Components, etc.
 
 ## Licence
 

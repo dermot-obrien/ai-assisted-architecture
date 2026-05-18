@@ -4,6 +4,8 @@ This folder contains IDE configuration snippets for AI-Assisted Architecture. Co
 
 All paths assume the submodule is installed at `.ai-assisted-architecture/`. If you used a different path, update the references accordingly.
 
+> **Note:** This folder is only for IDE configuration (Claude, Cursor, Copilot, Gemini, Cline, Windsurf). If you also want to validate or consolidate ontology data, that uses Node.js scripts shipped under `.ai-assisted-architecture/scripts/ontology/` — see the [Modernisation Ontology](../README.md#modernisation-ontology) section of the top-level README.
+
 ## What to Copy
 
 | Source (this folder) | Destination (your workspace) | Action |
