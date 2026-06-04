@@ -1,0 +1,8 @@
+---
+description: Author an autonomous runtime agent as a catalogued service (builder skill)
+globs: **/*.agent.json
+---
+
+When authoring a runtime agent, read and follow the full agent instructions at `.ai-assisted-architecture/agents/create-runtime-agent.md`.
+
+Load standards from `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` (especially `standards/agent-native/agent-types.md`, `agent-specification.md`, and `operating-model.md`) before producing any artefact.

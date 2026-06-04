@@ -78,6 +78,7 @@ ai-raw ──(survives adversarial verify)──▶ ai-verified ──(blast-rad
 | Code changes | a structured commit trailer (`Provenance-Origin:`, `Task-Ref:`, `Review-State:`) |
 | Generated artefacts (models, exports) | a sidecar `*.provenance.yaml` |
 | Runtime records | carry the change's `prompt_digest` so each runtime event traces to the artefact + change + model that produced it |
+| Modernisation-ontology documents | the ontology schema has **no** per-entity provenance field, so provenance is carried in a sidecar `*.provenance.yaml` (or a document-level header), not inline. Agent profiles (`agent-profile.schema.json`) carry their own `provenance` block inline. |
 
 ## The gate
 
