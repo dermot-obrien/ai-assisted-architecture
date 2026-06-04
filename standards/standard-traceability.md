@@ -40,7 +40,7 @@ All artefacts must be linked according to the following downward and upward trac
 Use folder-relative paths for all links between artefacts. Do not link to `index.md` files explicitly.
 
 **Example Link (Service to SBB):**
-`[SB-003 Policy Decision Service](../../building-blocks/solution-building-blocks/SB-003/)`
+`[SBB-003 Policy Decision Service](../../building-blocks/solution-building-blocks/SBB-003/)`
 
 ### 2.2 Metadata Traceability (YAML)
 Every artefact must include its parent or related IDs in its front matter or metadata tables to allow for automated matrix generation.

@@ -16,8 +16,8 @@ Usage:
     python create-building-block-slide.py <block-folder> [--output <path>]
 
 Examples:
-    python create-building-block-slide.py building-blocks/architecture-building-blocks/AB-008/
-    python create-building-block-slide.py building-blocks/solution-building-blocks/SB-011/ --output slides/SB-011.pptx
+    python create-building-block-slide.py building-blocks/architecture-building-blocks/ABB-008/
+    python create-building-block-slide.py building-blocks/solution-building-blocks/SBB-011/ --output slides/SBB-011.pptx
 """
 
 import argparse

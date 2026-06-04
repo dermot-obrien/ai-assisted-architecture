@@ -21,7 +21,7 @@ The **Identity & Access Bounded Context** is responsible for establishing trust 
 - **Grant**: An explicit permission giving a principal access to a resource.
 
 ## 3. Contained ABBs
-- **[AB-001 Identity & Access Management](../../building-blocks/architecture-building-blocks/AB-001/)**
+- **[ABB-001 Identity & Access Management](../../building-blocks/architecture-building-blocks/ABB-001/)**
 
 ## 4. Realised Capabilities
 - **[CAP-004 Identity Lifecycle Management](../../capabilities/CAP-004/)**

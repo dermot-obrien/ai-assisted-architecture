@@ -33,9 +33,9 @@ core_assumptions:
     - BC-002
     - BC-003
   required_abbs:
-    - AB-001
-    - AB-002
-    - AB-003
+    - ABB-001
+    - ABB-002
+    - ABB-003
   required_capabilities:
     - CAP-001
     - CAP-002

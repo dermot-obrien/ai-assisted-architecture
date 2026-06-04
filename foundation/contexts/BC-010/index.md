@@ -21,8 +21,8 @@ The **Integration Bounded Context** defines the language and rules for service i
 - **Event Stream**: Ordered flow of domain or operational events consumed asynchronously.
 
 ## 3. Contained ABBs
-- **[AB-004 API Mediation & Gateway](../../building-blocks/architecture-building-blocks/AB-004/)**
-- **[AB-005 Event Streaming & Messaging](../../building-blocks/architecture-building-blocks/AB-005/)**
+- **[ABB-004 API Mediation & Gateway](../../building-blocks/architecture-building-blocks/ABB-004/)**
+- **[ABB-005 Event Streaming & Messaging](../../building-blocks/architecture-building-blocks/ABB-005/)**
 
 ## 4. Realised Capabilities
 - **[CAP-008 Integration Services](../../capabilities/CAP-008/)**

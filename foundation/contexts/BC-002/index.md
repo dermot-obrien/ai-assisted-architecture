@@ -21,7 +21,7 @@ The **Observability Bounded Context** provides the "Single Source of Truth" for 
 - **Normalisation**: The process of mapping signals to a common schema.
 
 ## 3. Contained ABBs
-- **[AB-002 Observability](../../building-blocks/architecture-building-blocks/AB-002/)**
+- **[ABB-002 Observability](../../building-blocks/architecture-building-blocks/ABB-002/)**
 
 ## 4. Realised Capabilities
 - **[CAP-006 Operational Monitoring & Alerting](../../capabilities/CAP-006/)**

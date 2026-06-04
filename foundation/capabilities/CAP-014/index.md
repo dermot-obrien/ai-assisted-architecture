@@ -86,17 +86,17 @@ Shared network topology exists but segmentation policies, service mesh adoption,
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-008 Network Connectivity & Security, with AB-006 Compute Orchestration Platform providing supporting runtime networking integration. Cross-cutting ABBs provide shared security, observability, and governance controls for network operations.
+This capability is realised primarily by ABB-008 Network Connectivity & Security, with ABB-006 Compute Orchestration Platform providing supporting runtime networking integration. Cross-cutting ABBs provide shared security, observability, and governance controls for network operations.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-008](../../building-blocks/architecture-building-blocks/AB-008/) | Network Connectivity & Security | `primary` | `full` | Provides network topology, traffic management, segmentation, and connectivity controls. |
-| [AB-006](../../building-blocks/architecture-building-blocks/AB-006/) | Compute Orchestration Platform | `supporting` | `partial` | Supports runtime networking integration for orchestrated workloads. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides network identity, access control, and administrator authentication. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `cross-cutting` | `full` | Provides network telemetry, traffic visibility, and incident investigation signals. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `supporting` | `full` | Provides network policy constraints for connectivity, segmentation, and change control. |
+| [ABB-008](../../building-blocks/architecture-building-blocks/ABB-008/) | Network Connectivity & Security | `primary` | `full` | Provides network topology, traffic management, segmentation, and connectivity controls. |
+| [ABB-006](../../building-blocks/architecture-building-blocks/ABB-006/) | Compute Orchestration Platform | `supporting` | `partial` | Supports runtime networking integration for orchestrated workloads. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides network identity, access control, and administrator authentication. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `cross-cutting` | `full` | Provides network telemetry, traffic visibility, and incident investigation signals. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `supporting` | `full` | Provides network policy constraints for connectivity, segmentation, and change control. |
 
 ### 4.3  Gaps
 

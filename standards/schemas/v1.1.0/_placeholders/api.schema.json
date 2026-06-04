@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "api.schema.json",
+  "title": "API Artefact (placeholder — finalised by WI-003)",
+  "description": "First-class API contract artefact (OpenAPI / AsyncAPI). Final shape designed by WI-003 (E8). Stub reserves kind and id pattern.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "api" },
+        "id":   { "type": "string", "pattern": "^AP-\\d{3}$" }
+      }
+    }
+  ]
+}

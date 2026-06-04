@@ -9,7 +9,7 @@ const yaml = require('js-yaml');
 const Ajv2020 = require('ajv/dist/2020');
 const addFormats = require('ajv-formats');
 
-const DEFAULT_SCHEMA = path.resolve(
+const FRAMEWORK_SCHEMA = path.resolve(
   __dirname,
   '..',
   '..',
@@ -17,6 +17,38 @@ const DEFAULT_SCHEMA = path.resolve(
   'ontology',
   'ontology-schema.json'
 );
+
+/**
+ * Resolve the effective schema path. Priority:
+ *   1. Explicit --schema argument (handled by caller)
+ *   2. ontology.schema from .aaw-config.yaml in the workspace root
+ *   3. Framework default (ontology-schema.json in this package)
+ */
+function resolveDefaultSchema() {
+  let dir = process.cwd();
+  const root = path.parse(dir).root;
+  while (dir !== root) {
+    const configPath = path.join(dir, '.aaw-config.yaml');
+    if (fs.existsSync(configPath)) {
+      try {
+        const config = yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.JSON_SCHEMA });
+        if (config && config.ontology && config.ontology.schema) {
+          const resolved = path.resolve(dir, config.ontology.schema);
+          if (fs.existsSync(resolved)) {
+            return resolved;
+          }
+        }
+      } catch (_) {
+        // Config unreadable; fall through to default
+      }
+      break;
+    }
+    dir = path.dirname(dir);
+  }
+  return FRAMEWORK_SCHEMA;
+}
+
+const DEFAULT_SCHEMA = resolveDefaultSchema();
 
 const DATA_EXTENSIONS = new Set(['.yaml', '.yml', '.json']);
 const SKIP_DIRS = new Set([

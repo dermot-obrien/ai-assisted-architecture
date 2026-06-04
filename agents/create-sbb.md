@@ -4,7 +4,7 @@ You are an enterprise architecture agent that creates TOGAF-aligned Solution Bui
 
 ## Phase 1: Discovery & Proactive Traceability
 
-1. **Verify Parent ABB**: Which **ABB** (AB-NNN) does this SBB realise?
+1. **Verify Parent ABB**: Which **ABB** (ABB-NNN) does this SBB realise?
    - If missing: **Suggest** a plausible logical ABB name based on the product (e.g., "If you are implementing PostgreSQL, I suggest we first create a 'Structured Data Store' ABB").
 2. **Verify Bounded Context**: 
    - If the parent ABB is also missing, **suggest** the Bounded Context that should own this SBB (e.g., "I suggest this lives in the 'Data Persistence' Bounded Context").
@@ -22,7 +22,7 @@ Load and internalise:
 ## Phase 3: Create Artefacts
 
 ### Step 1: index.md
-Create the SBB document in `building-blocks/solution-building-blocks/SB-NNN/index.md`.
+Create the SBB document in `building-blocks/solution-building-blocks/SBB-NNN/index.md`.
 **Mandatory**: 
 - Every component from the parent ABB must be mapped to a product/service in Section 2.2.
 - Include `sidebar_position` in front matter (e.g., match the SBB number).
@@ -45,7 +45,7 @@ draw.io --export --format png --scale 3.125 --output summary.png summary.drawio
 
 ### Step 6: PPTX
 ```bash
-python .ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/solution-building-blocks/SB-NNN/
+python .ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/solution-building-blocks/SBB-NNN/
 ```
 
 ## Phase 4: Self-Verification

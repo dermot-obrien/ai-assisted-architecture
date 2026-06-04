@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "transition.schema.json",
+  "title": "Architecture Transition Artefact (v1.1.0)",
+  "description": "A multi-step migration between two named architecture Snapshots. Sequenced Decision Records drive the change. Full design specified in WI-001-D01 §5.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "transition" },
+        "id":   { "type": "string", "pattern": "^TR-\\d{3}$" },
+
+        "from_snapshot": { "$ref": "envelope.schema.json#/$defs/snapshotId" },
+        "to_snapshot":   { "$ref": "envelope.schema.json#/$defs/snapshotId" },
+
+        "status": {
+          "$comment": "Overrides the envelope status enum with transition-specific lifecycle.",
+          "type": "string",
+          "enum": ["planned", "in-progress", "completed", "abandoned"]
+        },
+
+        "sequenced_decisions": {
+          "type": "array",
+          "items": { "$ref": "envelope.schema.json#/$defs/drId" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+
+        "sequenced_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["step", "summary"],
+            "properties": {
+              "step":        { "type": "integer", "minimum": 1 },
+              "summary":     { "type": "string", "minLength": 1 },
+              "target_date": { "type": "string" },
+              "owner":       { "type": "string" },
+              "status":      { "type": "string", "enum": ["pending", "in-progress", "completed", "blocked", "skipped"] }
+            }
+          }
+        },
+
+        "affected_artefacts": {
+          "type": "array",
+          "items": { "$ref": "envelope.schema.json#/$defs/anyId" },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": ["from_snapshot", "to_snapshot", "sequenced_decisions", "sequenced_steps", "affected_artefacts"]
+    }
+  ]
+}

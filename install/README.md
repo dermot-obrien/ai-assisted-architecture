@@ -1,8 +1,31 @@
 # Install
 
-This folder contains IDE configuration snippets for AI-Assisted Architecture. Copy or merge these into your workspace so your AI tools can discover the framework.
+## Quick install (recommended)
 
-All paths assume the submodule is installed at `.ai-assisted-architecture/`. If you used a different path, update the references accordingly.
+AAA installs through the shared AAW install engine (see `framework.manifest.yaml`).
+Add AAW + AAA as submodules, then run one command:
+
+```bash
+git submodule add https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
+git submodule add https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
+
+node .ai-assisted-architecture/bin/aaa.js install          # wire command shims for detected tools
+node .ai-assisted-architecture/bin/aaa.js install --seed    # ...and scaffold the foundation seed
+```
+
+This wires the `create-*` command shims for every detected tool (Claude/Cursor/
+Copilot/Gemini) and, with `--seed`, copies the selected profile's capabilities +
+building-blocks into your workspace (cross-platform Node port of the old
+`scripts/seed-foundation.ps1`). Re-run any time; existing files are left untouched.
+
+The `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` discovery files still need a one-time
+manual **merge** into your existing root files (see the table below) — the installer
+copies command shims, it does not merge your instruction files.
+
+## Manual copy (reference / merge files)
+
+The table below is the full file map, used for the merge-only files above and for
+tools the installer doesn't wire automatically.
 
 > **Note:** This folder is only for IDE configuration (Claude, Cursor, Copilot, Gemini, Cline, Windsurf). If you also want to validate or consolidate ontology data, that uses Node.js scripts shipped under `.ai-assisted-architecture/scripts/ontology/` — see the [Modernisation Ontology](../README.md#modernisation-ontology) section of the top-level README.
 

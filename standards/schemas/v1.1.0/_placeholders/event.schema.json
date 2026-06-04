@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "event.schema.json",
+  "title": "Event Artefact (placeholder — finalised by WI-002)",
+  "description": "Domain event as first-class catalog artefact. Final shape designed by WI-002 (E6). Stub reserves kind and id pattern.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "event" },
+        "id":   { "type": "string", "pattern": "^EV-\\d{3}$" }
+      }
+    }
+  ]
+}

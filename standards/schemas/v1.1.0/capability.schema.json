@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capability.schema.json",
+  "title": "Capability Artefact (v1.1.0)",
+  "description": "A business capability — what the organisation must be able to do, expressed in business terms, technology-agnostic. Multi-dimensional per TOGAF G189: organisation, people, processes, technology.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "capability" },
+        "id":   { "type": "string", "pattern": "^CAP-\\d{3}$" },
+
+        "level":  { "type": "string", "enum": ["L1", "L2", "L3"] },
+        "parent": { "anyOf": [{ "$ref": "envelope.schema.json#/$defs/capabilityId" }, { "type": "null" }] },
+
+        "components": {
+          "type": "object",
+          "required": ["organisation", "people", "processes", "technology"],
+          "properties": {
+            "organisation": { "type": "string", "minLength": 1 },
+            "people":       { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "processes":    { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "technology":   { "type": "string", "minLength": 1 }
+          }
+        },
+
+        "maturity": {
+          "type": "object",
+          "required": ["current", "target"],
+          "properties": {
+            "current":         { "type": "integer", "minimum": 0, "maximum": 5 },
+            "target":          { "type": "integer", "minimum": 0, "maximum": 5 },
+            "assessment_date": { "type": "string", "format": "date" },
+            "assessor":        { "type": "string" }
+          }
+        },
+
+        "subdomain_kind": { "type": "string", "enum": ["core", "supporting", "generic"] },
+
+        "provided_by_platform":  { "$ref": "envelope.schema.json#/$defs/platformId" },
+        "required_by_outcomes":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/outcomeId" }, "uniqueItems": true },
+        "realised_by_abbs":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "uniqueItems": true },
+        "gaps":                  { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["level", "components", "maturity", "provided_by_platform"]
+    },
+    {
+      "$comment": "L1 capabilities have no parent; L2/L3 must have one.",
+      "if":   { "properties": { "level": { "enum": ["L2", "L3"] } } },
+      "then": {
+        "required": ["parent"],
+        "properties": { "parent": { "type": "string", "pattern": "^CAP-\\d{3}$" } }
+      },
+      "else": {
+        "$comment": "L1 — parent should be null or omitted."
+      }
+    },
+    {
+      "$comment": "Only L3 capabilities map directly to ABBs.",
+      "if":   { "properties": { "level": { "const": "L3" } } },
+      "then": {
+        "required": ["realised_by_abbs"],
+        "properties": { "realised_by_abbs": { "minItems": 1 } }
+      }
+    }
+  ]
+}

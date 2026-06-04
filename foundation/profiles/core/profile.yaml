@@ -13,9 +13,9 @@ includes:
     - CAP-006
     - CAP-007
   architecture_building_blocks:
-    - AB-001
-    - AB-002
-    - AB-003
+    - ABB-001
+    - ABB-002
+    - ABB-003
   solution_building_blocks: []
 
 paths:

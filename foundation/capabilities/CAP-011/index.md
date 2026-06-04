@@ -86,17 +86,17 @@ Event-driven integration exists in selected workloads but broker usage, schema g
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-005 Event Streaming & Messaging, with AB-004 API Mediation & Gateway providing supporting entry-point and protocol-bridging patterns where synchronous and asynchronous interfaces meet. Cross-cutting ABBs ensure secure access, operational visibility, and policy-governed event handling.
+This capability is realised primarily by ABB-005 Event Streaming & Messaging, with ABB-004 API Mediation & Gateway providing supporting entry-point and protocol-bridging patterns where synchronous and asynchronous interfaces meet. Cross-cutting ABBs ensure secure access, operational visibility, and policy-governed event handling.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-005](../../building-blocks/architecture-building-blocks/AB-005/) | Event Streaming & Messaging | `primary` | `full` | Provides broker platform, schema/topic governance, delivery assurance, and replay controls. |
-| [AB-004](../../building-blocks/architecture-building-blocks/AB-004/) | API Mediation & Gateway | `supporting` | `partial` | Supports synchronous entry and partner-facing integration boundaries for event-driven flows. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides producer and consumer identity authentication and authorisation controls. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `supporting` | `full` | Provides event pipeline telemetry, lag monitoring, failure analysis, and trace correlation. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Provides event classification, retention, and policy requirements for asynchronous data flows. |
+| [ABB-005](../../building-blocks/architecture-building-blocks/ABB-005/) | Event Streaming & Messaging | `primary` | `full` | Provides broker platform, schema/topic governance, delivery assurance, and replay controls. |
+| [ABB-004](../../building-blocks/architecture-building-blocks/ABB-004/) | API Mediation & Gateway | `supporting` | `partial` | Supports synchronous entry and partner-facing integration boundaries for event-driven flows. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides producer and consumer identity authentication and authorisation controls. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `supporting` | `full` | Provides event pipeline telemetry, lag monitoring, failure analysis, and trace correlation. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Provides event classification, retention, and policy requirements for asynchronous data flows. |
 
 ### 4.3  Gaps
 

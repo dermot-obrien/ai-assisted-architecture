@@ -37,6 +37,7 @@ Always load these standards before creating or modifying artefacts:
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-diagram.md`
 - `.ai-assisted-architecture/standards/runtime/standard-service.md`
 - `.ai-assisted-architecture/standards/standard-traceability.md`
+- `.ai-assisted-architecture/standards/standard-frontmatter.md` *(v1.1.0)*
 
 ## Scope Routing
 
@@ -49,6 +50,7 @@ Always load these standards before creating or modifying artefacts:
 - For SBB narrative/content documents, apply `standard-sbb-document.md` via `create-sbb.md`.
 - For runtime services, apply `standard-service.md` via `create-service.md`.
 - For links between all layers, apply `standard-traceability.md`.
+- For the YAML frontmatter on every catalog artefact, apply `standard-frontmatter.md` *(v1.1.0)*. Schemas at [`standards/schemas/v1.1.0/`](../standards/schemas/v1.1.0/).
 
 ## Enforcement Rules
 

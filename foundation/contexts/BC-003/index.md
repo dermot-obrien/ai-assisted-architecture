@@ -21,7 +21,7 @@ The **Governance & Policy Bounded Context** codifies organisational rules into m
 - **Enforcement**: The application of a decision at a technical control point.
 
 ## 3. Contained ABBs
-- **[AB-003 Governance & Policy Enforcement](../../building-blocks/architecture-building-blocks/AB-003/)**
+- **[ABB-003 Governance & Policy Enforcement](../../building-blocks/architecture-building-blocks/ABB-003/)**
 
 ## 4. Realised Capabilities
 - **[CAP-005 Policy-Based Access Control](../../capabilities/CAP-005/)**

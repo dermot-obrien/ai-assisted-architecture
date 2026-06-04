@@ -86,17 +86,17 @@ API interfaces exist across domain teams, but contract governance and mediation 
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-004 API Mediation & Gateway, with AB-005 Event Streaming & Messaging providing supporting decoupling patterns for hybrid synchronous-asynchronous integration flows. Core cross-cutting controls (identity, observability, governance) ensure secure operation, operational insight, and policy compliance.
+This capability is realised primarily by ABB-004 API Mediation & Gateway, with ABB-005 Event Streaming & Messaging providing supporting decoupling patterns for hybrid synchronous-asynchronous integration flows. Core cross-cutting controls (identity, observability, governance) ensure secure operation, operational insight, and policy compliance.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-004](../../building-blocks/architecture-building-blocks/AB-004/) | API Mediation & Gateway | `primary` | `full` | Provides API routing, transformation, contract enforcement, and traffic policy controls. |
-| [AB-005](../../building-blocks/architecture-building-blocks/AB-005/) | Event Streaming & Messaging | `supporting` | `partial` | Supports asynchronous handoff patterns from synchronous entry-point APIs. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides authentication and authorisation controls for API publishers, consumers, and administrators. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `supporting` | `full` | Provides telemetry, tracing, and API performance monitoring for mediated interfaces. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Provides contract governance policy, lifecycle control, and compliance requirements for API interfaces. |
+| [ABB-004](../../building-blocks/architecture-building-blocks/ABB-004/) | API Mediation & Gateway | `primary` | `full` | Provides API routing, transformation, contract enforcement, and traffic policy controls. |
+| [ABB-005](../../building-blocks/architecture-building-blocks/ABB-005/) | Event Streaming & Messaging | `supporting` | `partial` | Supports asynchronous handoff patterns from synchronous entry-point APIs. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides authentication and authorisation controls for API publishers, consumers, and administrators. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `supporting` | `full` | Provides telemetry, tracing, and API performance monitoring for mediated interfaces. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Provides contract governance policy, lifecycle control, and compliance requirements for API interfaces. |
 
 ### 4.3  Gaps
 

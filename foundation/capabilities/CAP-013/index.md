@@ -86,17 +86,17 @@ Storage capabilities are available, but lifecycle controls, retention enforcemen
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-007 Storage & Persistence Platform, with AB-006 Compute Orchestration Platform providing supporting runtime integration for stateful workloads. Cross-cutting ABBs provide identity, monitoring, and governance controls for secure and compliant storage operations.
+This capability is realised primarily by ABB-007 Storage & Persistence Platform, with ABB-006 Compute Orchestration Platform providing supporting runtime integration for stateful workloads. Cross-cutting ABBs provide identity, monitoring, and governance controls for secure and compliant storage operations.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-007](../../building-blocks/architecture-building-blocks/AB-007/) | Storage & Persistence Platform | `primary` | `full` | Provides storage services, lifecycle policy controls, and backup/recovery capabilities. |
-| [AB-006](../../building-blocks/architecture-building-blocks/AB-006/) | Compute Orchestration Platform | `supporting` | `partial` | Provides runtime attachment and lifecycle integration for stateful workloads. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides data access identity controls, credential-less workload access, and administrator authentication. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `cross-cutting` | `full` | Provides storage telemetry, backup job monitoring, and recovery audit visibility. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Provides data classification, retention policy enforcement, and compliance reporting controls. |
+| [ABB-007](../../building-blocks/architecture-building-blocks/ABB-007/) | Storage & Persistence Platform | `primary` | `full` | Provides storage services, lifecycle policy controls, and backup/recovery capabilities. |
+| [ABB-006](../../building-blocks/architecture-building-blocks/ABB-006/) | Compute Orchestration Platform | `supporting` | `partial` | Provides runtime attachment and lifecycle integration for stateful workloads. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides data access identity controls, credential-less workload access, and administrator authentication. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `cross-cutting` | `full` | Provides storage telemetry, backup job monitoring, and recovery audit visibility. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Provides data classification, retention policy enforcement, and compliance reporting controls. |
 
 ### 4.3  Gaps
 

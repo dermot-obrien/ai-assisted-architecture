@@ -88,19 +88,19 @@ Basic role-based access control is in place, but conditional access policies are
 
 ### 4.1  Relationship Model
 
-This capability illustrates the **many-to-many relationship** between capabilities and ABBs. The IAM ABB (AB-001) provides the policy evaluation engine, role management, and conditional access enforcement. The Governance ABB (AB-003) provides the policy authoring, versioning, and distribution infrastructure. Neither ABB alone fully realises this capability — both are required.
+This capability illustrates the **many-to-many relationship** between capabilities and ABBs. The IAM ABB (ABB-001) provides the policy evaluation engine, role management, and conditional access enforcement. The Governance ABB (ABB-003) provides the policy authoring, versioning, and distribution infrastructure. Neither ABB alone fully realises this capability — both are required.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `primary` | `partial` | Provides the policy evaluation engine, role & permission management, conditional access, and token-based enforcement. Does not cover policy authoring or distribution. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `supporting` | `partial` | Provides policy authoring, policy repository, and policy distribution. Does not provide the real-time evaluation engine or role management. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `cross-cutting` | `full` | Receives access decision telemetry, policy evaluation metrics, and denial event alerts. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `primary` | `partial` | Provides the policy evaluation engine, role & permission management, conditional access, and token-based enforcement. Does not cover policy authoring or distribution. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `supporting` | `partial` | Provides policy authoring, policy repository, and policy distribution. Does not provide the real-time evaluation engine or role management. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `cross-cutting` | `full` | Receives access decision telemetry, policy evaluation metrics, and denial event alerts. |
 
 ### 4.3  Gaps
 
-All technology needs are realised by the combination of AB-001 and AB-003. No gaps exist when both ABBs are implemented.
+All technology needs are realised by the combination of ABB-001 and ABB-003. No gaps exist when both ABBs are implemented.
 
 
 ## 6  Revision History

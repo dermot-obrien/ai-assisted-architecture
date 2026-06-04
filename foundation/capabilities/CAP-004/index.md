@@ -91,15 +91,15 @@ Human identity provisioning is partially automated through HR-triggered workflow
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-001 Identity & Access Management, which provides the full identity lifecycle infrastructure. The cross-cutting ABBs (Observability, Governance) support this capability by providing audit trails and policy enforcement for identity operations.
+This capability is realised primarily by ABB-001 Identity & Access Management, which provides the full identity lifecycle infrastructure. The cross-cutting ABBs (Observability, Governance) support this capability by providing audit trails and policy enforcement for identity operations.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `primary` | `full` | Provides identity provisioning, credential management, token services, federation, workload identity, and decommissioning. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `cross-cutting` | `full` | Receives identity lifecycle events, authentication telemetry, and credential rotation signals. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Enforces identity provisioning policies, attestation requirements, and credential management standards. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `primary` | `full` | Provides identity provisioning, credential management, token services, federation, workload identity, and decommissioning. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `cross-cutting` | `full` | Receives identity lifecycle events, authentication telemetry, and credential rotation signals. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Enforces identity provisioning policies, attestation requirements, and credential management standards. |
 
 ### 4.3  Gaps
 

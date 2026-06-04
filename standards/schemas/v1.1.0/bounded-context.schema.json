@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bounded-context.schema.json",
+  "title": "Bounded Context Artefact (v1.1.0)",
+  "description": "A linguistic and structural boundary where a specific domain model is valid. Belongs to exactly one Platform; contains one or more ABBs; realises one or more Capabilities.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "bounded-context" },
+        "id":   { "type": "string", "pattern": "^BC-\\d{3}$" },
+
+        "part_of":  { "$ref": "envelope.schema.json#/$defs/platformId" },
+        "contains": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "minItems": 1, "uniqueItems": true },
+
+        "realises_capabilities": {
+          "type": "array",
+          "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+
+        "ubiquitous_language": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "required": ["term", "definition"],
+            "properties": {
+              "term":       { "type": "string", "minLength": 1 },
+              "definition": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["with", "pattern"],
+            "properties": {
+              "with":    { "$ref": "envelope.schema.json#/$defs/bcId" },
+              "pattern": {
+                "type": "string",
+                "enum": [
+                  "anti-corruption-layer", "open-host-service", "published-language",
+                  "conformist", "customer-supplier", "partnership",
+                  "shared-kernel", "separate-ways"
+                ]
+              },
+              "role": { "type": "string", "enum": ["upstream", "downstream", "peer", "customer", "supplier"] },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+
+        "subdomain_kind": { "type": "string", "enum": ["core", "supporting", "generic"] },
+        "c4_levels": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["container", "component"] },
+          "uniqueItems": true,
+          "minItems": 1
+        }
+      },
+      "required": ["part_of", "contains", "realises_capabilities", "ubiquitous_language", "owner"]
+    }
+  ]
+}

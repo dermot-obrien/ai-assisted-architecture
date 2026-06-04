@@ -54,8 +54,8 @@ Every platform has products — the consumable offerings it provides to other te
 | :--- | :--- | :--- |
 | The product itself | **Platform** (`PL-NNN`) | The team-owned unit with its boundary, ownership, and consumption model. |
 | What it offers | **Capabilities** (`CAP-NNN`) | The business abilities the platform provides — its product features. |
-| How it's structured | **ABBs** (`AB-NNN`) | The logical building blocks that deliver the capabilities. |
-| What it's built with | **SBBs** (`SB-NNN`) | The concrete technology choices that realise the building blocks. |
+| How it's structured | **ABBs** (`ABB-NNN`) | The logical building blocks that deliver the capabilities. |
+| What it's built with | **SBBs** (`SBB-NNN`) | The concrete technology choices that realise the building blocks. |
 | How it's consumed | **Self-Service Interfaces** | APIs, CLIs, SDKs, portals, documentation — the product surface. |
 | What it promises | **SLOs** | Availability, latency, and quality commitments to consumers. |
 
@@ -190,7 +190,7 @@ Every Platform must be documented with:
 - **Strategic Outcomes**: Link to the **Outcomes (OC-NNN)** this platform is accountable for delivering.
 - **Capabilities**: The **Capabilities (CAP-NNN)** this platform provides.
 - **Bounded Contexts**: The **Bounded Context(s)** contained within this platform, with their ubiquitous language.
-- **Contained ABBs**: The **Architecture Building Blocks (AB-NNN)** within the platform's bounded context(s).
+- **Contained ABBs**: The **Architecture Building Blocks (ABB-NNN)** within the platform's bounded context(s).
 - **Self-Service Interfaces**: How consuming teams interact with this platform (APIs, CLI, portal, SDKs).
 - **Consuming Teams**: Who uses this platform and in what capacity.
 - **SLOs**: Availability, latency, and quality commitments.

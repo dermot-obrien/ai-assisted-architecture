@@ -91,15 +91,15 @@ Basic logging and metrics collection exists, but signal formats vary across buil
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-002 Observability, which provides the full signal collection, correlation, storage, alerting, and dashboarding infrastructure. The cross-cutting ABBs ensure that the observability platform itself is secured and governed.
+This capability is realised primarily by ABB-002 Observability, which provides the full signal collection, correlation, storage, alerting, and dashboarding infrastructure. The cross-cutting ABBs ensure that the observability platform itself is secured and governed.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `primary` | `full` | Provides trace collection, metrics collection, log aggregation, signal correlation, alert evaluation, dashboard engine, and tiered storage. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Authenticates signal producers and authorises access to observability data and dashboards. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Enforces data retention policies, data classification for observability signals, and change governance for alert rules. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `primary` | `full` | Provides trace collection, metrics collection, log aggregation, signal correlation, alert evaluation, dashboard engine, and tiered storage. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Authenticates signal producers and authorises access to observability data and dashboards. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `cross-cutting` | `full` | Enforces data retention policies, data classification for observability signals, and change governance for alert rules. |
 
 ### 4.3  Gaps
 

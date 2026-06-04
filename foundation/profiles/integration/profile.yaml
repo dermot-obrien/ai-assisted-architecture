@@ -16,11 +16,11 @@ includes:
     - CAP-010
     - CAP-011
   architecture_building_blocks:
-    - AB-001
-    - AB-002
-    - AB-003
-    - AB-004
-    - AB-005
+    - ABB-001
+    - ABB-002
+    - ABB-003
+    - ABB-004
+    - ABB-005
   solution_building_blocks: []
 
 paths:

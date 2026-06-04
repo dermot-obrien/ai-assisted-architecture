@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
+#
+# Framework manifest — the shared install contract (see @aaw/installer in the
+# AI-Assisted Work repo). AAA depends on AAW for the shared install engine.
+# The core authoring workflow (create-* commands) is code-free markdown; the
+# two Python diagram/slide scripts in scripts/ are optional extras (install
+# python-pptx + Pillow manually if you want PNG/PPTX export).
+#
+# Install with:  aaa install            (shims only; add --seed to scaffold the
+#                                         foundation: capabilities + building-blocks)
+# or directly:   node .ai-assisted-work/bin/aaw.js install --framework .ai-assisted-architecture
+
+id: aaa
+name: AI-Assisted Architecture
+version: 0.2.0
+depends: [aaw]
+runtime: node
+source_token: .ai-assisted-architecture
+
+shims:
+  claude:  { src: install/claude/commands, dest: .claude/commands/aaa }
+  cursor:  { src: install/cursor/rules,    dest: .cursor/rules/aaa }
+  copilot: { src: install/github/prompts,  dest: .github/prompts/aaa }
+  gemini:  { src: install/gemini,          dest: .gemini/skills/aaa }
+
+config: []
+data_dirs: []
+
+# Opt-in (requires --seed). Cross-platform Node port of seed-foundation.ps1:
+# copies the selected profile's capabilities + building-blocks into the workspace.
+seed:
+  driver: node
+  entry: src/seed-foundation.mjs
+  args: [--profile, core]

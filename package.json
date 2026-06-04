@@ -1,8 +1,9 @@
 {
   "name": "ai-assisted-architecture",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "TOGAF-aligned Architecture Building Block / Solution Building Block framework. Includes CLI tools to validate and operate on YAML/JSON files conforming to the modernisation ontology schema.",
+  "type": "module",
+  "description": "AI-Assisted Architecture — TOGAF-aligned strategy/capability/ABB/SBB authoring (installs via the shared AAW engine), plus CLI tools to validate and operate on the modernisation ontology schema.",
   "license": "Apache-2.0",
   "author": "Dermot O'Brien",
   "homepage": "https://github.com/dermot-obrien/ai-assisted-architecture",
@@ -11,6 +12,7 @@
     "url": "https://github.com/dermot-obrien/ai-assisted-architecture.git"
   },
   "bin": {
+    "aaa": "./bin/aaa.js",
     "validate-ontology": "./scripts/ontology/validate.cjs",
     "consolidate-ontology": "./scripts/ontology/consolidate.cjs",
     "namespace-divergent-ontology": "./scripts/ontology/namespace-divergent.cjs"
@@ -20,7 +22,19 @@
     "consolidate": "node scripts/ontology/consolidate.cjs",
     "namespace-divergent": "node scripts/ontology/namespace-divergent.cjs"
   },
+  "files": [
+    "bin/",
+    "src/",
+    "scripts/",
+    "install/",
+    "agents/",
+    "standards/",
+    "foundation/",
+    "docs/",
+    "framework.manifest.yaml"
+  ],
   "dependencies": {
+    "ai-assisted-work": "github:dermot-obrien/ai-assisted-work",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "js-yaml": "^4.1.0"

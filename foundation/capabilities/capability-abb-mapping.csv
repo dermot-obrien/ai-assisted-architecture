@@ -1,35 +1,35 @@
 capability_id,capability_name,abb_id,abb_name,relationship,coverage,scope_relevance,source_capability_path,source_section,last_verified
-CAP-004,Identity Lifecycle Management,AB-001,Identity & Access Management,primary,full,core,capabilities/CAP-004/index.md,4.2 ABB Mapping,2026-03-07
-CAP-004,Identity Lifecycle Management,AB-002,Observability,cross-cutting,full,context,capabilities/CAP-004/index.md,4.2 ABB Mapping,2026-03-07
-CAP-004,Identity Lifecycle Management,AB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-004/index.md,4.2 ABB Mapping,2026-03-07
-CAP-005,Policy-Based Access Control,AB-001,Identity & Access Management,primary,partial,core,capabilities/CAP-005/index.md,4.2 ABB Mapping,2026-03-07
-CAP-005,Policy-Based Access Control,AB-003,Governance & Policy Enforcement,supporting,partial,core,capabilities/CAP-005/index.md,4.2 ABB Mapping,2026-03-07
-CAP-005,Policy-Based Access Control,AB-002,Observability,cross-cutting,full,context,capabilities/CAP-005/index.md,4.2 ABB Mapping,2026-03-07
-CAP-006,Operational Monitoring & Alerting,AB-002,Observability,primary,full,core,capabilities/CAP-006/index.md,4.2 ABB Mapping,2026-03-07
-CAP-006,Operational Monitoring & Alerting,AB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-006/index.md,4.2 ABB Mapping,2026-03-07
-CAP-006,Operational Monitoring & Alerting,AB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-006/index.md,4.2 ABB Mapping,2026-03-07
-CAP-007,Compliance Evidence & Reporting,AB-003,Governance & Policy Enforcement,primary,full,core,capabilities/CAP-007/index.md,4.2 ABB Mapping,2026-03-07
-CAP-007,Compliance Evidence & Reporting,AB-002,Observability,supporting,partial,core,capabilities/CAP-007/index.md,4.2 ABB Mapping,2026-03-07
-CAP-007,Compliance Evidence & Reporting,AB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-007/index.md,4.2 ABB Mapping,2026-03-07
-CAP-010,API Mediation & Contract Enforcement,AB-004,API Mediation & Gateway,primary,full,integration,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
-CAP-010,API Mediation & Contract Enforcement,AB-005,Event Streaming & Messaging,supporting,partial,integration,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
-CAP-010,API Mediation & Contract Enforcement,AB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
-CAP-010,API Mediation & Contract Enforcement,AB-002,Observability,supporting,full,integration,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
-CAP-010,API Mediation & Contract Enforcement,AB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
-CAP-011,Event Streaming & Asynchronous Integration,AB-005,Event Streaming & Messaging,primary,full,integration,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
-CAP-011,Event Streaming & Asynchronous Integration,AB-004,API Mediation & Gateway,supporting,partial,integration,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
-CAP-011,Event Streaming & Asynchronous Integration,AB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
-CAP-011,Event Streaming & Asynchronous Integration,AB-002,Observability,supporting,full,integration,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
-CAP-011,Event Streaming & Asynchronous Integration,AB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
-CAP-012,Compute Runtime & Scheduling,AB-006,Compute Orchestration Platform,primary,full,infrastructure,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
-CAP-012,Compute Runtime & Scheduling,AB-007,Storage & Persistence Platform,supporting,partial,infrastructure,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
-CAP-012,Compute Runtime & Scheduling,AB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
-CAP-012,Compute Runtime & Scheduling,AB-002,Observability,cross-cutting,full,context,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
-CAP-012,Compute Runtime & Scheduling,AB-003,Governance & Policy Enforcement,supporting,full,infrastructure,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
-CAP-013,Data Storage & Lifecycle Management,AB-007,Storage & Persistence Platform,primary,full,infrastructure,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
-CAP-013,Data Storage & Lifecycle Management,AB-006,Compute Orchestration Platform,supporting,partial,infrastructure,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
-CAP-013,Data Storage & Lifecycle Management,AB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
-CAP-013,Data Storage & Lifecycle Management,AB-002,Observability,cross-cutting,full,context,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
-CAP-013,Data Storage & Lifecycle Management,AB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
+CAP-004,Identity Lifecycle Management,ABB-001,Identity & Access Management,primary,full,core,capabilities/CAP-004/index.md,4.2 ABB Mapping,2026-03-07
+CAP-004,Identity Lifecycle Management,ABB-002,Observability,cross-cutting,full,context,capabilities/CAP-004/index.md,4.2 ABB Mapping,2026-03-07
+CAP-004,Identity Lifecycle Management,ABB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-004/index.md,4.2 ABB Mapping,2026-03-07
+CAP-005,Policy-Based Access Control,ABB-001,Identity & Access Management,primary,partial,core,capabilities/CAP-005/index.md,4.2 ABB Mapping,2026-03-07
+CAP-005,Policy-Based Access Control,ABB-003,Governance & Policy Enforcement,supporting,partial,core,capabilities/CAP-005/index.md,4.2 ABB Mapping,2026-03-07
+CAP-005,Policy-Based Access Control,ABB-002,Observability,cross-cutting,full,context,capabilities/CAP-005/index.md,4.2 ABB Mapping,2026-03-07
+CAP-006,Operational Monitoring & Alerting,ABB-002,Observability,primary,full,core,capabilities/CAP-006/index.md,4.2 ABB Mapping,2026-03-07
+CAP-006,Operational Monitoring & Alerting,ABB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-006/index.md,4.2 ABB Mapping,2026-03-07
+CAP-006,Operational Monitoring & Alerting,ABB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-006/index.md,4.2 ABB Mapping,2026-03-07
+CAP-007,Compliance Evidence & Reporting,ABB-003,Governance & Policy Enforcement,primary,full,core,capabilities/CAP-007/index.md,4.2 ABB Mapping,2026-03-07
+CAP-007,Compliance Evidence & Reporting,ABB-002,Observability,supporting,partial,core,capabilities/CAP-007/index.md,4.2 ABB Mapping,2026-03-07
+CAP-007,Compliance Evidence & Reporting,ABB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-007/index.md,4.2 ABB Mapping,2026-03-07
+CAP-010,API Mediation & Contract Enforcement,ABB-004,API Mediation & Gateway,primary,full,integration,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
+CAP-010,API Mediation & Contract Enforcement,ABB-005,Event Streaming & Messaging,supporting,partial,integration,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
+CAP-010,API Mediation & Contract Enforcement,ABB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
+CAP-010,API Mediation & Contract Enforcement,ABB-002,Observability,supporting,full,integration,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
+CAP-010,API Mediation & Contract Enforcement,ABB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-010/index.md,4.2 ABB Mapping,2026-03-07
+CAP-011,Event Streaming & Asynchronous Integration,ABB-005,Event Streaming & Messaging,primary,full,integration,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
+CAP-011,Event Streaming & Asynchronous Integration,ABB-004,API Mediation & Gateway,supporting,partial,integration,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
+CAP-011,Event Streaming & Asynchronous Integration,ABB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
+CAP-011,Event Streaming & Asynchronous Integration,ABB-002,Observability,supporting,full,integration,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
+CAP-011,Event Streaming & Asynchronous Integration,ABB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-011/index.md,4.2 ABB Mapping,2026-03-07
+CAP-012,Compute Runtime & Scheduling,ABB-006,Compute Orchestration Platform,primary,full,infrastructure,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
+CAP-012,Compute Runtime & Scheduling,ABB-007,Storage & Persistence Platform,supporting,partial,infrastructure,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
+CAP-012,Compute Runtime & Scheduling,ABB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
+CAP-012,Compute Runtime & Scheduling,ABB-002,Observability,cross-cutting,full,context,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
+CAP-012,Compute Runtime & Scheduling,ABB-003,Governance & Policy Enforcement,supporting,full,infrastructure,capabilities/CAP-012/index.md,4.2 ABB Mapping,2026-03-07
+CAP-013,Data Storage & Lifecycle Management,ABB-007,Storage & Persistence Platform,primary,full,infrastructure,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
+CAP-013,Data Storage & Lifecycle Management,ABB-006,Compute Orchestration Platform,supporting,partial,infrastructure,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
+CAP-013,Data Storage & Lifecycle Management,ABB-001,Identity & Access Management,cross-cutting,full,context,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
+CAP-013,Data Storage & Lifecycle Management,ABB-002,Observability,cross-cutting,full,context,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
+CAP-013,Data Storage & Lifecycle Management,ABB-003,Governance & Policy Enforcement,cross-cutting,full,context,capabilities/CAP-013/index.md,4.2 ABB Mapping,2026-03-07
 
 
