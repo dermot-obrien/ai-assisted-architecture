@@ -13,7 +13,7 @@
 
 id: aaa
 name: AI-Assisted Architecture
-version: 0.2.0
+version: 0.3.0
 depends: [aaw]
 runtime: node
 source_token: .ai-assisted-architecture

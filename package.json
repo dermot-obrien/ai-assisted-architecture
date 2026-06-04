@@ -1,6 +1,6 @@
 {
   "name": "ai-assisted-architecture",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "AI-Assisted Architecture — TOGAF-aligned strategy/capability/ABB/SBB authoring (installs via the shared AAW engine), plus CLI tools to validate and operate on the modernisation ontology schema.",

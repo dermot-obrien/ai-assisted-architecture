@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "agent-profile.schema.json",
+  "title": "Agent Profile (v1.1.0)",
+  "description": "Vendor-neutral specification of an AI agent (builder or runtime), attached to a service/Component artefact. Composes verified sub-schemas: tools from MCP (modelcontextprotocol.io, rev 2025-11-25), skills from A2A AgentSkill (a2a-protocol.org), packaged skills from Anthropic SKILL.md (platform.claude.com), extensibility from OASF Modules (docs.agntcy.org/oasf). See standards/agent-native/agent-specification.md.",
+  "type": "object",
+  "required": ["agent_kind", "identity", "model"],
+
+  "$defs": {
+    "mcpTool": {
+      "type": "object",
+      "description": "MCP Tool definition (modelcontextprotocol.io 2025-11-25).",
+      "required": ["name", "inputSchema"],
+      "properties": {
+        "name":        { "type": "string" },
+        "title":       { "type": "string" },
+        "description": { "type": "string" },
+        "icons":       { "type": "array", "items": { "type": "object" } },
+        "inputSchema": { "type": "object", "description": "JSON Schema (defaults to draft 2020-12). MUST NOT be null." },
+        "outputSchema":{ "type": "object" },
+        "annotations": { "type": "object", "description": "Behaviour hints. MUST be treated as untrusted unless from a trusted source." },
+        "execution": {
+          "type": "object",
+          "properties": {
+            "taskSupport": { "type": "string", "enum": ["forbidden", "optional", "required"], "default": "forbidden" }
+          }
+        }
+      }
+    },
+    "a2aSkill": {
+      "type": "object",
+      "description": "A2A AgentSkill (a2a-protocol.org) — a discovery descriptor advertised in the Agent Card.",
+      "required": ["id", "name", "description", "tags"],
+      "properties": {
+        "id":          { "type": "string" },
+        "name":        { "type": "string" },
+        "description": { "type": "string" },
+        "tags":        { "type": "array", "items": { "type": "string" } },
+        "examples":    { "type": "array", "items": { "type": "string" } },
+        "inputModes":  { "type": "array", "items": { "type": "string" } },
+        "outputModes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "packagedSkill": {
+      "type": "object",
+      "description": "Anthropic Agent Skill, SKILL.md form (platform.claude.com). Distinct from a2aSkill.",
+      "required": ["name", "description"],
+      "properties": {
+        "name":        { "type": "string", "maxLength": 64, "pattern": "^[a-z0-9-]+$", "description": "lowercase letters/digits/hyphens; not 'anthropic'/'claude'." },
+        "description": { "type": "string", "minLength": 1, "maxLength": 1024 },
+        "path":        { "type": "string", "description": "Filesystem location of the SKILL.md folder." }
+      }
+    },
+    "guardrailRef": {
+      "type": "object",
+      "description": "Reference to a platform_guardrail Standard, with the agent-native reversibility tier.",
+      "required": ["standard_id", "tier"],
+      "properties": {
+        "standard_id": { "type": "string", "description": "ontology Standard id (standard_type: platform_guardrail)." },
+        "tier":        { "type": "string", "enum": ["T0", "T1", "T2", "T3"] },
+        "applies_to":  { "type": "string", "enum": ["input", "output", "action", "memory"], "description": "where the check runs." }
+      }
+    },
+    "oasfModule": {
+      "type": "object",
+      "description": "OASF composable Module (docs.agntcy.org/oasf) — the extensibility mechanism.",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "data": {}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["origin", "review_state"],
+      "properties": {
+        "origin":       { "type": "string", "enum": ["ai-generated", "ai-edited", "human-authored", "human-edited"] },
+        "authored_by":  { "type": "string" },
+        "review_state": { "type": "string", "enum": ["ai-raw", "ai-verified", "human-reviewed", "human-approved"] }
+      }
+    }
+  },
+
+  "properties": {
+    "agent_kind": { "type": "string", "enum": ["builder", "runtime"], "description": "build-time agent vs deployed runtime agent (agent-types.md)." },
+
+    "identity": {
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id":          { "type": "string" },
+        "name":        { "type": "string" },
+        "version":     { "type": "string" },
+        "description": { "type": "string" },
+        "realises_abb_ids": { "type": "array", "items": { "type": "string" }, "description": "For a runtime card: the builder-time ABB profile it realises." }
+      }
+    },
+
+    "model": {
+      "type": "object",
+      "required": ["model"],
+      "properties": {
+        "model":            { "type": "string" },
+        "provider":         { "type": "string" },
+        "inference_params": { "type": "object", "description": "temperature, top_p, max_tokens, etc." }
+      }
+    },
+
+    "instructions": { "type": "string", "description": "System prompt / persona, inline or a reference." },
+
+    "tools":        { "type": "array", "items": { "$ref": "#/$defs/mcpTool" } },
+    "tool_sources": { "type": "array", "items": { "type": "object", "description": "MCP server endpoints providing tools." } },
+
+    "skills":          { "type": "array", "items": { "$ref": "#/$defs/a2aSkill" } },
+    "packaged_skills": { "type": "array", "items": { "$ref": "#/$defs/packagedSkill" } },
+
+    "memory": {
+      "type": "object",
+      "properties": {
+        "short_term": { "type": "object", "description": "working-context policy." },
+        "long_term":  { "type": "object", "description": "persistent-state store + write policy." }
+      }
+    },
+
+    "knowledge":  { "type": "array", "items": { "type": "object" }, "description": "MCP Resource / RAG source refs." },
+
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "allowed_actions": { "type": "array", "items": { "type": "string" } },
+        "forbidden":       { "type": "array", "items": { "type": "string" }, "description": "explicit denials, e.g. 'change own guardrails'." },
+        "boundaries":      { "type": "array", "items": { "type": "string" }, "description": "MCP Roots / scope boundaries." }
+      }
+    },
+
+    "guardrails": { "type": "array", "items": { "$ref": "#/$defs/guardrailRef" } },
+
+    "auth": {
+      "type": "object",
+      "properties": {
+        "schemes":          { "type": "array", "items": { "type": "string", "enum": ["api_key", "oauth2", "mtls", "spiffe", "none"] } },
+        "workload_identity":{ "type": "string", "description": "e.g. a SPIFFE ID for a runtime agent." }
+      }
+    },
+
+    "evaluation": {
+      "type": "object",
+      "properties": {
+        "evals":         { "type": "array", "items": { "type": "object" } },
+        "observability": { "type": "object" }
+      }
+    },
+
+    "discovery": {
+      "type": "object",
+      "description": "Runtime projection (runtime agents).",
+      "properties": {
+        "agent_card_url": { "type": "string", "description": "A2A Agent Card, e.g. /.well-known/agent-card.json." },
+        "oasf_record":    { "type": "string", "description": "OASF record locator." }
+      }
+    },
+
+    "modules":    { "type": "array", "items": { "$ref": "#/$defs/oasfModule" } },
+    "provenance": { "$ref": "#/$defs/provenance" }
+  }
+}

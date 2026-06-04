@@ -13,6 +13,7 @@ This file defines top-level discovery and precedence rules for AI agents working
 | Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: logical structure and diagrams. |
 | Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: product mapping and realisation. |
 | Create Service | `/create-service` | `@create-service` | Runtime unit of execution definition. |
+| Create Runtime Agent | `/create-runtime-agent` | `@create-runtime-agent` | (Builder skill) Author an autonomous **runtime agent** as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance. See `standards/agent-native/agent-types.md`. |
 
 ## Scripts
 
@@ -38,6 +39,12 @@ Always load these standards before creating or modifying artefacts:
 - `.ai-assisted-architecture/standards/runtime/standard-service.md`
 - `.ai-assisted-architecture/standards/standard-traceability.md`
 - `.ai-assisted-architecture/standards/standard-frontmatter.md` *(v1.1.0)*
+
+For **agent-native** workspaces (AI-majority engineering), also load:
+- `.ai-assisted-architecture/standards/agent-native/agent-types.md` *(builders vs runtime agents)*
+- `.ai-assisted-architecture/standards/agent-native/principles.md`
+- `.ai-assisted-architecture/standards/agent-native/operating-model.md`
+- `.ai-assisted-architecture/standards/agent-native/provenance.md`
 
 ## Scope Routing
 

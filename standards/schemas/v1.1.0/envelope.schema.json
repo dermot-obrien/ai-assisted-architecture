@@ -94,6 +94,35 @@
       "additionalProperties": false
     },
 
+    "provenance": {
+      "type": "object",
+      "description": "Agent-native AI-authorship lineage (optional). See standards/agent-native/provenance.md. Records how an artefact was produced and verified. Backward-compatible: absent on v1.0.0/v1.1.0 artefacts that predate it.",
+      "properties": {
+        "origin":        { "type": "string", "enum": ["ai-generated", "ai-edited", "human-authored", "human-edited"] },
+        "authored_by":   { "type": "string", "description": "Model/agent identifier or person." },
+        "authored_at":   { "type": "string", "format": "date-time" },
+        "task_ref":      { "type": "string", "description": "Work item / inquiry / prompt that triggered it." },
+        "prompt_digest": { "type": "string", "description": "Hash of the driving instruction (auditable, not raw text)." },
+        "review_state":  { "type": "string", "enum": ["ai-raw", "ai-verified", "human-reviewed", "human-approved"] },
+        "verified_by": {
+          "type": "array",
+          "description": "Adversarial verifier records (operating-model.md verify stage).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agent":   { "type": "string" },
+              "verdict": { "type": "string", "enum": ["pass", "fail"] },
+              "checks":  { "type": "array", "items": { "type": "string" } }
+            },
+            "additionalProperties": false
+          }
+        },
+        "supersedes_provenance": { "type": ["object", "null"] }
+      },
+      "required": ["origin", "review_state"],
+      "additionalProperties": false
+    },
+
     "universalRelations": {
       "type": "object",
       "description": "Universal relations subset. Per-kind schemas may make specific fields required and add their own specialised relations.",
@@ -138,6 +167,8 @@
     "governance_zone":  { "$ref": "#/$defs/governanceZone" },
 
     "references":       { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+
+    "provenance":       { "$ref": "#/$defs/provenance" },
 
     "tags":             { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "sidebar_label":    { "type": "string" },
