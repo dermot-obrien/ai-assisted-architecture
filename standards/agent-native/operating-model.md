@@ -85,6 +85,13 @@ it and how reversibly*. Guardrails are catalogued as ontology `Standard` artefac
 The rule: **T0/T1 limits live where an agent cannot rewrite them.** A change touching a
 T0/T1 artefact is blocked by CI unless its provenance reaches the required `review_state`.
 
+**Where the tier is recorded.** Reference guardrails by their ontology id
+(`standard_P<platform>_<name>`). The tier travels on the guardrail reference in the agent
+profile (`guardrails[].tier` in `agent-profile.schema.json`) and is stated in the `Standard`'s
+`description`. The modernisation-ontology `Standard` entity has no `tier` field today; a
+first-class `agent_native_tier` field is a candidate ontology extension (until then, the
+profile reference is the machine-readable source of the tier).
+
 ## Capability-scoped agents
 
 An agent is granted only the capabilities its task needs (least privilege). Critically:

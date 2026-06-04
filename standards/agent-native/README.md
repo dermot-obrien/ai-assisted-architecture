@@ -63,6 +63,25 @@ An agent-native workspace has **two segmentations of agent**, and both do work:
 **Builders build runtime agents.** Same principles, two enforcement planes. See
 [`agent-types.md`](agent-types.md) — read it early; it frames everything else.
 
+## Which AAA metamodel system
+
+Agent-native spans **both** of AAA's modelling systems — it adds no third:
+
+- The **modernisation ontology** (`standards/ontology/`) — `Platform` / `Capability` /
+  `Component` / `Interface` / `Standard`, ids like `P301`, `comp_P301_*`, `standard_P301_*`.
+  This is where a **runtime agent is catalogued** (a `Component`) and where its **guardrails**
+  live (`Standard` with `standard_type: platform_guardrail`). The worked example uses this.
+- The **v1.1.0 frontmatter catalog** (`standards/schemas/v1.1.0/`) — the universal envelope +
+  per-kind artefacts, ids like `PL-001`. This is where the **provenance envelope**
+  ([`provenance.md`](provenance.md)) lives and where an **agent profile**
+  ([`agent-profile.schema.json`](../schemas/v1.1.0/agent-profile.schema.json)) attaches.
+
+They are complementary, not competing: the ontology answers governance/reporting queries;
+the frontmatter catalog carries artefact authorship + the agent profile. Where a concept
+could live in either, this area fixes which: **guardrails → ontology `Standard`; provenance →
+frontmatter / profile / ontology sidecar; the agent profile references ontology `Standard`
+ids for its guardrails.** Drift between the two systems is caught by reconciliation **R5**.
+
 ## Contents
 
 | Standard | Purpose |

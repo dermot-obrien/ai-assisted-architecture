@@ -119,6 +119,9 @@ avoid proliferation:
 - Its run-time guardrails are **`Standard`** artefacts with `standard_type:
   platform_guardrail`, linked via `complies_with_standard_ids`.
 - Its contracts (what it consumes/produces) are **`Interface`** artefacts.
+- **Placement:** model the agent `Component` under the Bounded Context (or, if it serves many,
+  the Platform) that owns the capability it realises — preserving the unified thread
+  Platform → Capability → Context → ABB → SBB → Service.
 - Its **agent nature** — model, instructions, tools, skills, memory, capabilities, auth,
   evaluation — is carried in a first-class **agent profile**: see
   [`agent-specification.md`](agent-specification.md) and

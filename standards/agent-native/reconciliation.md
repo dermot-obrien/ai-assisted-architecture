@@ -42,6 +42,7 @@ Each is a scheduled job (a reconciler agent or check) comparing two sources:
 | R2 | **Contract ↔ implementation** | the `api` + event schemas + invariants | live endpoints / consumed-event shapes | the running service violates its own published contract |
 | R3 | **Graph ↔ code** | the catalogued relations (golden thread) | the actual module/dependency structure | a relation is claimed that the code doesn't have, or vice versa |
 | R4 | **Docs ↔ behaviour** | runbooks, READMEs, recorded facts | observed runtime behaviour | a documented fact is now false (a port, schedule, limit) |
+| R5 | **Ontology ↔ frontmatter catalog** | modernisation-ontology entities | v1.1.0 frontmatter artefacts / agent profiles | a `Component`/`Standard` and its frontmatter twin (or an agent profile and its ontology `Component`) disagree on owner / capability / guardrail. The ontology is authoritative for governance queries; the frontmatter catalog for agent authorship. |
 
 ## Gate vs loop — the division of labour
 
