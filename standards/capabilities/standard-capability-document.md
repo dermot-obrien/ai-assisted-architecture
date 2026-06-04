@@ -223,7 +223,7 @@ A table mapping this capability to its realising ABBs:
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-NNN](../../building-blocks/architecture-building-blocks/AB-NNN/) | Name | `primary` / `supporting` / `cross-cutting` | `full` / `partial` | Optional notes |
+| [ABB-NNN](../../building-blocks/architecture-building-blocks/ABB-NNN/) | Name | `primary` / `supporting` / `cross-cutting` | `full` / `partial` | Optional notes |
 
 **Relationship types:**
 
@@ -307,7 +307,7 @@ The workspace MUST contain a `capabilities/capability-model.md` file that provid
 - **Language:** Use British English spelling (e.g. "organisation", "optimisation", "behaviour").
 - **Tone:** Technology-agnostic. No product or vendor names in capability documents; those belong in SBBs.
 - **Horizontal rules:** Do not use `---` horizontal rules between sections. Markdown headings provide sufficient visual separation.
-- **Cross-references:** All links to ABBs MUST use relative folder paths (e.g. `../../building-blocks/architecture-building-blocks/AB-001/`). All links to sibling capabilities use `../CAP-NNN/`. See the [Traceability & Hierarchy Standard](../standard-traceability.md) for full rules.
+- **Cross-references:** All links to ABBs MUST use relative folder paths (e.g. `../../building-blocks/architecture-building-blocks/ABB-001/`). All links to sibling capabilities use `../CAP-NNN/`. See the [Traceability & Hierarchy Standard](../standard-traceability.md) for full rules.
 - **Bullet lead-ins:** When a bullet starts with a bold term, follow it with a full stop and a space, not a dash. Write `**Name.** Description text.` not `**Name** — Description text.`
 - **L3 granularity:** An L3 capability should be specific enough that it maps to 1–5 ABBs. If an L3 maps to more than 5 ABBs, consider splitting it into multiple L3 capabilities. If it maps to zero ABBs, it is either a gap (document in Section 4.3) or too abstract (demote to L2 and create L3 children).
 

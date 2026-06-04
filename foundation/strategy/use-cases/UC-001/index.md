@@ -19,4 +19,4 @@ A new AI agent is deployed. The system automatically provisions a unique identit
 - No static client secrets exist in the pod configuration.
 
 ## 3. Realisation
-- **[AB-001 Identity & Access Management](../../../building-blocks/architecture-building-blocks/AB-001/)**
+- **[ABB-001 Identity & Access Management](../../../building-blocks/architecture-building-blocks/ABB-001/)**

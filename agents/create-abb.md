@@ -24,7 +24,7 @@ Load and internalise:
 ## Phase 3: Create Artefacts (in order)
 
 ### Step 1: index.md
-Create the ABB document in `building-blocks/architecture-building-blocks/AB-NNN/index.md`. Use the next available identifier.
+Create the ABB document in `building-blocks/architecture-building-blocks/ABB-NNN/index.md`. Use the next available identifier.
 **Mandatory**: Link back to the parent Bounded Context and Capability in the metadata.
 
 ### Step 2: components.drawio
@@ -39,7 +39,7 @@ Create `summary.md` and `summary.drawio` as defined in the standard.
 
 ### Step 4: PPTX
 ```bash
-python .ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/AB-NNN/
+python .ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/ABB-NNN/
 ```
 
 ## Phase 4: Self-Verification

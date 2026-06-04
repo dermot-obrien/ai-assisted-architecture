@@ -100,10 +100,25 @@ Directories ignored during the walk: `node_modules`, `build`, `dist`, `.next`, `
 
 | Flag | Description |
 |---|---|
-| `--schema <path>` | Use a non-default schema. Defaults to `standards/ontology/ontology-schema.json` (resolved relative to the script). |
+| `--schema <path>` | Use a specific schema, overriding both config and default. |
 | `--quiet` | Suppress per-file OK lines; only print failures and the summary. |
 | `--verbose` | Also list files skipped because they are not ontology documents. |
 | `-h`, `--help` | Show usage. |
+
+### Schema resolution order
+
+All scripts resolve the schema in this priority:
+
+1. **Explicit `--schema` argument** — highest priority, used as-is.
+2. **`ontology.schema` from `.aaw-config.yaml`** — the script walks up from `cwd` to find `.aaw-config.yaml`. If found and `ontology.schema` is set to a valid path, that schema is used. This is how workspaces point to an extension schema.
+3. **Framework default** — `standards/ontology/ontology-schema.json` in this package.
+
+Example `.aaw-config.yaml`:
+
+```yaml
+ontology:
+  schema: path/to/my-extension-schema.json
+```
 
 ### Exit codes
 

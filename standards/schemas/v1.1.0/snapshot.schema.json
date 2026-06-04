@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "snapshot.schema.json",
+  "title": "Architecture Snapshot Artefact (v1.1.0)",
+  "description": "A named architecture state at a point in time. Manifest of artefact-id@version pairs. Used to express baseline / target / transition architectures (TOGAF Phase B/E/F). Full design specified in WI-001-D01 §4.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "snapshot" },
+        "id":   { "type": "string", "pattern": "^SN-\\d{3}$" },
+
+        "snapshot_kind": {
+          "type": "string",
+          "enum": ["baseline", "target", "transition"]
+        },
+
+        "effective_date": { "anyOf": [{ "type": "string", "format": "date" }, { "type": "null" }] },
+        "target_date":    { "anyOf": [{ "type": "string", "format": "date" }, { "type": "null" }] },
+
+        "supersedes_snapshot": { "anyOf": [{ "$ref": "envelope.schema.json#/$defs/snapshotId" }, { "type": "null" }] },
+
+        "artefacts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "version"],
+            "properties": {
+              "id":      { "$ref": "envelope.schema.json#/$defs/anyId" },
+              "version": { "$ref": "envelope.schema.json#/$defs/semver" },
+              "lifecycle_state": { "$ref": "envelope.schema.json#/$defs/lifecycleState" }
+            }
+          }
+        }
+      },
+      "required": ["snapshot_kind", "artefacts"]
+    },
+    {
+      "$comment": "Baseline snapshots require an effective_date; target snapshots require a target_date.",
+      "if":   { "properties": { "snapshot_kind": { "const": "baseline" } } },
+      "then": { "required": ["effective_date"], "properties": { "effective_date": { "type": "string" } } }
+    },
+    {
+      "if":   { "properties": { "snapshot_kind": { "const": "target" } } },
+      "then": { "required": ["target_date"],    "properties": { "target_date":    { "type": "string" } } }
+    }
+  ]
+}

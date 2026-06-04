@@ -19,4 +19,4 @@ A developer registers a new service. The API Gateway automatically enforces the 
 - Breaking changes are detected via contract validation at the gateway.
 
 ## 3. Realisation
-- **[AB-004 API Mediation & Gateway](../../../building-blocks/architecture-building-blocks/AB-004/)**
+- **[ABB-004 API Mediation & Gateway](../../../building-blocks/architecture-building-blocks/ABB-004/)**

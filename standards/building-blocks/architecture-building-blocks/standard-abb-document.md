@@ -16,7 +16,7 @@ triggers:
 
 # Architecture Building Block (ABB) — Document Standard
 
-This standard defines the structure, sections, and conventions for an Architecture Building Block document aligned to TOGAF. Every ABB document MUST follow this structure. Refer to the `example/` folder for a concrete implementation (AB-008 Human-in-the-Loop).
+This standard defines the structure, sections, and conventions for an Architecture Building Block document aligned to TOGAF. Every ABB document MUST follow this structure. Refer to the `example/` folder for a concrete implementation (ABB-008 Human-in-the-Loop).
 
 
 ## File Structure
@@ -26,7 +26,7 @@ Each ABB is a folder named by its identifier, placed under `building-blocks/arch
 ```
 building-blocks/
   architecture-building-blocks/
-    AB-001/
+    ABB-001/
       index.md            # The ABB document (this standard)
       summary.md          # Plain-text summary content
       summary.drawio      # Summary panel diagram (see Summary Panel section)
@@ -37,9 +37,9 @@ building-blocks/
 
 ### Identifier Assignment
 
-- ABB identifiers use the format `AB-NNN` (zero-padded to 3 digits).
+- ABB identifiers use the format `ABB-NNN` (zero-padded to 3 digits).
 - When creating a new ABB, use the next available sequential number.
-- The folder name MUST match the ABB identifier exactly (e.g. `AB-008/`).
+- The folder name MUST match the ABB identifier exactly (e.g. `ABB-008/`).
 
 
 ## Document Structure
@@ -68,7 +68,7 @@ A metadata table immediately after the heading:
 
 | Property | Value | Notes |
 |----------|-------|-------|
-| **ABB ID** | `AB-NNN` | Unique identifier. Sequential numbering, zero-padded to 3 digits. |
+| **ABB ID** | `ABB-NNN` | Unique identifier. Sequential numbering, zero-padded to 3 digits. |
 | **ABB Name** | Full name | Human-readable name of the building block. |
 | **Short Name** | Acronym/abbreviation | Used in diagrams and cross-references. |
 | **Version** | `MAJOR.MINOR.PATCH` | Semantic versioning. |
@@ -299,7 +299,7 @@ Every ABB folder MUST include a `summary.drawio` file and its exported `summary.
 ### File Structure
 
 ```
-AB-NNN/
+ABB-NNN/
   summary.drawio    # Draw.io text panel (this section)
   summary.png       # Exported PNG of the summary panel
 ```
@@ -358,16 +358,16 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - **PNG export:** All `.drawio` files MUST be exported to PNG at **300 DPI** to ensure small text remains legible in presentations. Use the Draw.io CLI flag `--scale 3.125` (300 ÷ 96 = 3.125) or set the DPI in the Draw.io desktop export dialog.
 - **Bullet lead-ins:** When a bullet starts with a bold term, follow it with a full stop and a space, not a dash. Write `**Name.** Description text.` not `**Name** — Description text.`
 - **Inline emphasis:** Do not use dash-bracketed callouts (` — like this — `) or bold text for emphasis within running sentences. Keep prose plain; reserve bold for lead-in terms at the start of bullets.
-- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../AB-003/`), never `index.md` explicitly. See the [Traceability & Hierarchy Standard](../../standard-traceability.md) for full rules and examples.
+- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../ABB-003/`), never `index.md` explicitly. See the [Traceability & Hierarchy Standard](../../standard-traceability.md) for full rules and examples.
 
 
 ## AI Agent Self-Verification Checklist
 
 Before finalising an ABB document, verify:
 
-1. [ ] **Folder-Relative Links**: Did you use folder-relative paths (e.g. `../AB-003/`) for all links? (No `index.md` in links).
+1. [ ] **Folder-Relative Links**: Did you use folder-relative paths (e.g. `../ABB-003/`) for all links? (No `index.md` in links).
 2. [ ] **Technology-Agnostic**: Is the language free of specific product or vendor names?
-3. [ ] **Correct Identifier**: Does the `AB-NNN` identifier follow the sequential order and match the folder name?
+3. [ ] **Correct Identifier**: Does the `ABB-NNN` identifier follow the sequential order and match the folder name?
 4. [ ] **Interface Consistency**: Do the Interface IDs (`I1`, `I2`, etc.) match those used in the diagram and Section 3.1 table?
 5. [ ] **British English**: Did you use British English spelling (e.g., "organisation", "localisation")?
 6. [ ] **Traceability**: Does Section 2.2 list every component shown in the diagram?

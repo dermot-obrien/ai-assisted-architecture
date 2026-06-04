@@ -23,7 +23,7 @@ This standard defines the rules for **Services** (the unit of execution). A Serv
 | **Service Name** | kebab-case name | e.g., `identity-lifecycle-svc`. |
 | **Parent Context** | Context Name | The Bounded Context this service resides in. |
 | **Runtime Type** | Container / Serverless | The execution environment. |
-| **SBB Realised** | `SB-NNN` | The SBB this service implements. |
+| **SBB Realised** | `SBB-NNN` | The SBB this service implements. |
 
 
 ## 2. Structural Rules

@@ -89,7 +89,7 @@ def create_sbb_drawio(sbb_id, sbb_name, platform_name, platform_color, component
     xml.append('      </root>\n    </mxGraphModel>\n  </diagram>\n</mxfile>')
     return "\n".join(xml)
 
-# Detailed data for SB-001
+# Detailed data for SBB-001
 sb1_comps = [
     {"id": "tenant", "name": "Entra ID Tenant", "abb": "Identity Store", "desc": "Central directory for principals.", "x": 100, "y": 160, "w": 220, "h": 90, "primary": True},
     {"id": "sts", "name": "Entra STS", "abb": "Token Issuance", "desc": "OIDC/OAuth 2.0 security token service.", "x": 100, "y": 300, "w": 220, "h": 90, "primary": True},
@@ -102,7 +102,7 @@ sb1_edges = [
     {"src": "ca", "tgt": "sts", "exitX": 0, "exitY": 0.5, "entryX": 1, "entryY": 0.75, "label": "Policy", "lx": 580, "ly": 350}
 ]
 
-# Detailed data for SB-002
+# Detailed data for SBB-002
 sb2_comps = [
     {"id": "collector", "name": "OTel Collector", "abb": "Signal Collector", "desc": "Ingestion pipeline for OTLP telemetry.", "x": 100, "y": 160, "w": 220, "h": 90, "primary": True},
     {"id": "insights", "name": "App Insights", "abb": "Correlation", "desc": "Distributed trace analysis engine.", "x": 360, "y": 160, "w": 220, "h": 90, "primary": True},
@@ -115,7 +115,7 @@ sb2_edges = [
     {"src": "grafana", "tgt": "log-analytics", "exitX": 1, "exitY": 0.5, "entryX": 0.5, "entryY": 1, "label": "I5 KQL", "lx": 600, "ly": 330}
 ]
 
-# Detailed data for SB-003
+# Detailed data for SBB-003
 sb3_comps = [
     {"id": "pdp", "name": "OPA Engine", "abb": "Policy Decision Pt", "desc": "Rego evaluation unit (pdp-service).", "x": 100, "y": 160, "w": 220, "h": 90, "primary": True},
     {"id": "bundle", "name": "Bundle Service", "abb": "Distribution", "desc": "Serves signed Rego policy bundles.", "x": 360, "y": 160, "w": 220, "h": 90, "primary": True},
@@ -127,13 +127,13 @@ sb3_edges = [
 ]
 
 # Write files
-with open("foundation/building-blocks/solution-building-blocks/SB-001/components.drawio", "w", encoding="utf-8") as f:
-    f.write(create_sbb_drawio("SB-001", "Identity Lifecycle Service (Entra)", "Microsoft Entra ID", "#4B5BAA", sb1_comps, sb1_edges))
+with open("foundation/building-blocks/solution-building-blocks/SBB-001/components.drawio", "w", encoding="utf-8") as f:
+    f.write(create_sbb_drawio("SBB-001", "Identity Lifecycle Service (Entra)", "Microsoft Entra ID", "#4B5BAA", sb1_comps, sb1_edges))
 
-with open("foundation/building-blocks/solution-building-blocks/SB-002/components.drawio", "w", encoding="utf-8") as f:
-    f.write(create_sbb_drawio("SB-002", "Observability Ingestion Service (OTel)", "OpenTelemetry & Azure", "#4A90D9", sb2_comps, sb2_edges))
+with open("foundation/building-blocks/solution-building-blocks/SBB-002/components.drawio", "w", encoding="utf-8") as f:
+    f.write(create_sbb_drawio("SBB-002", "Observability Ingestion Service (OTel)", "OpenTelemetry & Azure", "#4A90D9", sb2_comps, sb2_edges))
 
-with open("foundation/building-blocks/solution-building-blocks/SB-003/components.drawio", "w", encoding="utf-8") as f:
-    f.write(create_sbb_drawio("SB-003", "Policy Decision Service (OPA)", "Open Policy Agent", "#C4724E", sb3_comps, sb3_edges))
+with open("foundation/building-blocks/solution-building-blocks/SBB-003/components.drawio", "w", encoding="utf-8") as f:
+    f.write(create_sbb_drawio("SBB-003", "Policy Decision Service (OPA)", "Open Policy Agent", "#C4724E", sb3_comps, sb3_edges))
 
 print("Regenerated SBB diagrams with high fidelity and valid XML.")

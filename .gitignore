@@ -63,4 +63,4 @@ scripts/fix_foundation_diagrams.py
 
 # Transient.
 patternode/
-archive/
+archive/*.tgz

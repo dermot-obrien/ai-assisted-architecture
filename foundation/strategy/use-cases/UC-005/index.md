@@ -19,4 +19,4 @@ An AI workload requires specific GPU resources. The scheduler automatically iden
 - High availability is maintained through automated multi-zone distribution.
 
 ## 3. Realisation
-- **[AB-006 Compute Orchestration Platform](../../../building-blocks/architecture-building-blocks/AB-006/)**
+- **[ABB-006 Compute Orchestration Platform](../../../building-blocks/architecture-building-blocks/ABB-006/)**

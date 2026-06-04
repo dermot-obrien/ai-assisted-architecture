@@ -48,7 +48,7 @@ Manual provisioning is the single largest source of developer wait time and plat
 
 - **Infrastructure-as-Code Engine.** Declarative resource provisioning with drift detection and reconciliation.
 - **Provisioning Orchestrator.** Workflow engine coordinating multi-step provisioning sequences.
-- **Policy Evaluation Service (from AB-003).** Real-time policy checks applied at provisioning time.
+- **Policy Evaluation Service (from ABB-003).** Real-time policy checks applied at provisioning time.
 - **Provisioning Event Log.** Immutable audit trail of all provisioning actions and outcomes.
 
 

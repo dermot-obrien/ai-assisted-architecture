@@ -23,7 +23,7 @@ Load and internalise:
 Create the Bounded Context folder and `index.md`. Include the Ubiquitous Language section and map the context to the parent business Capability folders it realises.
 
 ### Step 2: Map ABBs
-Identify which logical ABBs (AB-NNN) live within this context. Link them using folder-relative paths.
+Identify which logical ABBs (ABB-NNN) live within this context. Link them using folder-relative paths.
 
 ## Phase 4: Self-Verification
 

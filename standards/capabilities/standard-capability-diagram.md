@@ -182,7 +182,7 @@ A matrix with L3 capabilities as rows and ABBs as columns:
 │  Title: "Capability-ABB Traceability Matrix"         Version | Date    │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                         │
-│              │  AB-001     │  AB-002        │  AB-003       │           │
+│              │  ABB-001     │  ABB-002        │  ABB-003       │           │
 │              │  IAM        │  Observability │  Governance   │           │
 │  ────────────┼─────────────┼────────────────┼───────────────┤           │
 │  CAP-004     │  PRIMARY    │  Cross-cutting │  Cross-cutting│           │
@@ -255,7 +255,7 @@ capabilities/diagrams/l1/
 - **Cell IDs:** Use descriptive kebab-case (e.g. `l0-platform-foundations`, `l1-identity-access`, `l2-identity-lifecycle`)
 - **Prefix by level:** `l0-`, `l1-`, `l2-` for hierarchy boxes
 - **Legend IDs:** Prefix with `leg-`
-- **Matrix IDs:** `matrix-cap-NNN-ab-NNN` for traceability cells
+- **Matrix IDs:** `matrix-cap-NNN-abb-NNN` for traceability cells
 
 
 ## AI Agent Self-Verification Checklist

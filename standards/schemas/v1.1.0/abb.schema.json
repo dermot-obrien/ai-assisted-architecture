@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "abb.schema.json",
+  "title": "Architecture Building Block (v1.1.0)",
+  "description": "A technology-agnostic logical component (TOGAF). Lives inside exactly one Bounded Context; realises one or more Capabilities; realised by one or more SBBs.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "abb" },
+        "id":   { "type": "string", "pattern": "^AB-\\d{3}$" },
+
+        "category": { "type": "string", "minLength": 1 },
+
+        "part_of":              { "$ref": "envelope.schema.json#/$defs/bcId" },
+        "realises_capabilities":{ "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "minItems": 1, "uniqueItems": true },
+        "realised_by":          { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/sbbId" }, "uniqueItems": true },
+
+        "domains": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["business", "data", "application", "technology"] },
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "TOGAF metamodel domains this ABB spans (multi-valued; an API Gateway ABB spans application + technology, etc.)."
+        },
+
+        "interfaces": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "direction", "type", "description"],
+            "properties": {
+              "id":          { "type": "string", "pattern": "^I\\d+$" },
+              "direction":   { "type": "string", "enum": ["in", "out", "bidirectional"] },
+              "type":        { "type": "string", "enum": ["request", "event", "stream", "callback", "query"] },
+              "description": { "type": "string", "minLength": 1 }
+            }
+          }
+        },
+
+        "mandatory_subabbs": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["iam", "observability", "governance"] },
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true,
+          "default": ["iam", "observability", "governance"]
+        },
+        "cross_cutting": { "type": "boolean", "default": false }
+      },
+      "required": ["category", "part_of", "realises_capabilities", "domains", "interfaces", "mandatory_subabbs"]
+    }
+  ]
+}

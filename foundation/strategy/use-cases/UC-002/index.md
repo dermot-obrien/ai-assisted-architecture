@@ -19,4 +19,4 @@ A user reports a slow response. The operator uses a single Trace ID to see the r
 - Visualisation shows latency per span.
 
 ## 3. Realisation
-- **[AB-002 Observability](../../../building-blocks/architecture-building-blocks/AB-002/)**
+- **[ABB-002 Observability](../../../building-blocks/architecture-building-blocks/ABB-002/)**

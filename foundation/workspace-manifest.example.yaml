@@ -2,7 +2,14 @@ version: 1.0.0
 foundation_source: .ai-assisted-architecture/foundation
 
 imported_profiles:
-  - core
+- core
+
+ontology:
+  # Path to the schema used for ontology validation (relative to workspace root).
+  # When omitted, defaults to the framework base schema:
+  #   .ai-assisted-architecture/standards/ontology/ontology-schema.json
+  # Set this to an extension schema that composes on the base via allOf.
+  schema: null
 
 policy:
   workspace_is_canonical: true

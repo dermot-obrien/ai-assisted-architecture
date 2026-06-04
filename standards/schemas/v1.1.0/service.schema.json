@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "service.schema.json",
+  "title": "Service Artefact (v1.1.0)",
+  "description": "A runtime unit of execution. Realises an SBB. The 'last mile' before code. Source-code linkage frontmatter is finalised by WI-003 (E4); this schema includes the v1.0.0 baseline plus reserved fields.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "service" },
+        "id":   { "$ref": "envelope.schema.json#/$defs/serviceId" },
+        "numeric_id": { "$ref": "envelope.schema.json#/$defs/numericServiceId" },
+
+        "realises": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/sbbId" }, "minItems": 1, "uniqueItems": true },
+        "part_of":  { "$ref": "envelope.schema.json#/$defs/bcId" },
+
+        "runtime_type": {
+          "type": "string",
+          "enum": ["container", "serverless", "jvm", "native", "managed-service"]
+        },
+
+        "provides_apis": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/apiId" }, "uniqueItems": true },
+        "consumes_apis": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/apiId" }, "uniqueItems": true },
+
+        "repo": {
+          "type": "object",
+          "description": "Source-code repository pointer (finalised by WI-003).",
+          "properties": {
+            "url":  { "type": "string", "format": "uri" },
+            "path": { "type": "string", "description": "Workspace-relative path (typically a submodule)." }
+          }
+        },
+        "module_path": { "type": "string", "description": "Repo-relative path to this service's entry module." },
+        "packages":    { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "key_classes": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "entry_points":{ "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+
+        "deployed_to": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/dnId" }, "uniqueItems": true }
+      },
+      "required": ["realises", "part_of", "runtime_type"]
+    }
+  ]
+}

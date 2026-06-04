@@ -1,6 +1,6 @@
 ---
-title: "AB-004 Human-in-the-Loop"
-sidebar_label: "AB-004 Human-in-the-Loop"
+title: "ABB-004 Human-in-the-Loop"
+sidebar_label: "ABB-004 Human-in-the-Loop"
 sidebar_position: 4
 ---
 # Human-in-the-Loop
@@ -9,7 +9,7 @@ sidebar_position: 4
 
 | Property | Value |
 |----------|-------|
-| **ABB ID** | `AB-004` |
+| **ABB ID** | `ABB-004` |
 | **ABB Name** | Human-in-the-Loop |
 | **Short Name** | HITL |
 | **Version** | `1.0.0` |
@@ -34,7 +34,7 @@ This building block captures the architecture requirements for bidirectional int
 
 The diagram below shows the full scope boundary of the Human-in-the-Loop ABB. The central AI Agent group contains the orchestration, reasoning, and state components. The Messaging Channel group handles message routing and presentation to the human participant. Compute Platform hosts the agent runtime and workload identity. Three cross-cutting sub-ABBs (Identity & Access Management, Observability, and Governance & Policy) span the bottom and right of the diagram. Connector pairs (A, B, C) link agent components to the observability stack.
 
-![AB-008 Agent Human Interface Component Diagram](./components.png)
+![ABB-008 Agent Human Interface Component Diagram](./components.png)
 
 
 ### 2.2  Fundamental functionality
@@ -146,7 +146,7 @@ This ABB provides the technology-agnostic foundation for human–agent interacti
 Each channel-specific SBB should include:
 
 **Channel Adapter**  
-Maps AB-008's normalised interfaces (I1/I2/I3/I4) to the target channel's native APIs and protocols (e.g., SMTP/IMAP for Email or Teams Bot Framework for Teams). The adapter is the only part that varies per channel; all upstream agent logic and downstream audit/compliance logic remain uniform.
+Maps ABB-008's normalised interfaces (I1/I2/I3/I4) to the target channel's native APIs and protocols (e.g., SMTP/IMAP for Email or Teams Bot Framework for Teams). The adapter is the only part that varies per channel; all upstream agent logic and downstream audit/compliance logic remain uniform.
 
 **Rendered Message Schemas**  
 Defines what the human sees and how they interact:
@@ -162,7 +162,7 @@ Channel-specific timing and fallback behaviour:
 - Teams: Typically synchronous; define conversation expiry and re-engagement patterns
 
 **Integration Points**  
-Explicit mapping of channel APIs back to AB-008:
+Explicit mapping of channel APIs back to ABB-008:
 - I1 (Agent → Channel): How does the channel receive normalised payloads?
 - I2 (Channel → Agent): How are human responses serialised back to the agent?
 - I3/I4 (Channel ↔ Human): How does the channel render and capture user actions?
@@ -171,12 +171,12 @@ Explicit mapping of channel APIs back to AB-008:
 
 ### 5.2  Shared Patterns
 
-The following patterns and capabilities are **inherited directly** from AB-008; do not replicate them in the SBB:
+The following patterns and capabilities are **inherited directly** from ABB-008; do not replicate them in the SBB:
 
-- **Conversation State Management.** Leverage AB-008's state checkpoint model; do not implement channel-specific state stores
-- **Agent Workload Identity.** Use federated credentials as defined in AB-008; do not introduce channel-specific service accounts
-- **Audit & Compliance.** All channel interactions must feed the same immutable audit trail (I10/I11); use AB-008's compliance reporting
-- **Observability & Telemetry.** Channel SBBs produce events conforming to AB-008's telemetry schema (I8/I9) for unified dashboards and alerting
+- **Conversation State Management.** Leverage ABB-008's state checkpoint model; do not implement channel-specific state stores
+- **Agent Workload Identity.** Use federated credentials as defined in ABB-008; do not introduce channel-specific service accounts
+- **Audit & Compliance.** All channel interactions must feed the same immutable audit trail (I10/I11); use ABB-008's compliance reporting
+- **Observability & Telemetry.** Channel SBBs produce events conforming to ABB-008's telemetry schema (I8/I9) for unified dashboards and alerting
 
 ### 5.3  Channel-Specific Constraints
 

@@ -21,8 +21,8 @@ The **Infrastructure Bounded Context** defines the language and controls for sha
 - **Recovery Objective**: Defined target for restoring service and data after disruption.
 
 ## 3. Contained ABBs
-- **[AB-006 Compute Orchestration Platform](../../building-blocks/architecture-building-blocks/AB-006/)**
-- **[AB-007 Storage & Persistence Platform](../../building-blocks/architecture-building-blocks/AB-007/)**
+- **[ABB-006 Compute Orchestration Platform](../../building-blocks/architecture-building-blocks/ABB-006/)**
+- **[ABB-007 Storage & Persistence Platform](../../building-blocks/architecture-building-blocks/ABB-007/)**
 
 ## 4. Realised Capabilities
 - **[CAP-009 Infrastructure Services](../../capabilities/CAP-009/)**

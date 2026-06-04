@@ -95,13 +95,13 @@ This capability illustrates the **many-to-many relationship** in a different pat
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `primary` | `full` | Provides regulatory compliance manager, compliance evidence collector, compliance report generator, exception manager, and policy-to-regulation mapping. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `supporting` | `partial` | Provides immutable cold storage for audit trails, audit ingestion pipeline, and compliance reporting infrastructure. Does not provide regulatory mapping or exception management. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Authenticates and authorises access to compliance evidence and reports. Provides identity audit trails as compliance evidence. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `primary` | `full` | Provides regulatory compliance manager, compliance evidence collector, compliance report generator, exception manager, and policy-to-regulation mapping. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `supporting` | `partial` | Provides immutable cold storage for audit trails, audit ingestion pipeline, and compliance reporting infrastructure. Does not provide regulatory mapping or exception management. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Authenticates and authorises access to compliance evidence and reports. Provides identity audit trails as compliance evidence. |
 
 ### 4.3  Gaps
 
-All technology needs are realised by the combination of AB-003 and AB-002. No gaps exist when both ABBs are implemented.
+All technology needs are realised by the combination of ABB-003 and ABB-002. No gaps exist when both ABBs are implemented.
 
 
 ## 6  Revision History

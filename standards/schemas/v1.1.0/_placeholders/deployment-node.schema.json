@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "deployment-node.schema.json",
+  "title": "Deployment Node Artefact (placeholder — finalised by WI-002)",
+  "description": "Infrastructure node hosting one or more Services. Final shape designed by WI-002 (E7). Stub reserves kind and id pattern.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "deployment-node" },
+        "id":   { "type": "string", "pattern": "^DN-\\d{3}$" }
+      }
+    }
+  ]
+}

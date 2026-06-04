@@ -45,8 +45,8 @@ python scripts/create-building-block-slide.py <block-folder> [--output <path>]
 
 ```bash
 # ABB
-python scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/AB-008/
+python scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/ABB-008/
 
 # SBB with custom output path
-python scripts/create-building-block-slide.py building-blocks/solution-building-blocks/SB-011/ -o slides/SB-011.pptx
+python scripts/create-building-block-slide.py building-blocks/solution-building-blocks/SBB-011/ -o slides/SBB-011.pptx
 ```

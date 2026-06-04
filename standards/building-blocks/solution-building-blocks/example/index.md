@@ -1,15 +1,15 @@
 ---
-title: "SB-004 Human-in-the-Loop via Microsoft Teams"
-sidebar_label: "SB-004 Human-in-the-Loop via Microsoft Teams"
+title: "SBB-004 Human-in-the-Loop via Microsoft Teams"
+sidebar_label: "SBB-004 Human-in-the-Loop via Microsoft Teams"
 sidebar_position: 4
 ---
-# SB-004 Human-in-the-Loop via Microsoft Teams
+# SBB-004 Human-in-the-Loop via Microsoft Teams
 
 ## Document Control
 
 | Property | Value |
 |----------|-------|
-| **SBB ID** | `SB-004` |
+| **SBB ID** | `SBB-004` |
 | **SBB Name** | Human-in-the-Loop via Microsoft Teams |
 | **Short Name** | HITL Teams |
 | **Version** | `1.0` |
@@ -18,7 +18,7 @@ sidebar_position: 4
 
 ## 1.  Purpose
 
-This solution building block (SBB) realises the Human-in-the-Loop ABB ([AB-004](../../architecture-building-blocks/AB-004/)) using Microsoft Teams as the human-facing channel and AWS as the agent compute platform. The human interacts with the Teams client (desktop / mobile / web), which routes messages through the Teams backend service to Azure AI Bot Service. The Bot Service relays activities to the agent running on AWS (EKS or Agent Core). The agent uses Graph or Strands for orchestration, Amazon Bedrock for inference, and Entra Agent ID for its non-human identity.
+This solution building block (SBB) realises the Human-in-the-Loop ABB ([ABB-004](../../architecture-building-blocks/ABB-004/)) using Microsoft Teams as the human-facing channel and AWS as the agent compute platform. The human interacts with the Teams client (desktop / mobile / web), which routes messages through the Teams backend service to Azure AI Bot Service. The Bot Service relays activities to the agent running on AWS (EKS or Agent Core). The agent uses Graph or Strands for orchestration, Amazon Bedrock for inference, and Entra Agent ID for its non-human identity.
 
 This SBB is the Teams channel variant; the Outlook variant is Human-in-the-Loop via Microsoft Outlook. Both share identical agent runtime, IAM, and observability layers; only the channel abstraction differs.
 
@@ -27,7 +27,7 @@ This SBB is the Teams channel variant; the Outlook variant is Human-in-the-Loop 
 
 ### 2.1  Component Diagram
 
-![SB-011 Human-in-the-Loop via Microsoft Teams Diagram](./components.png)
+![SBB-011 Human-in-the-Loop via Microsoft Teams Diagram](./components.png)
 
 
 ### 2.2  Product mapping (ABB → SBB)
@@ -36,7 +36,7 @@ This SBB is the Teams channel variant; the Outlook variant is Human-in-the-Loop 
 |---------------|----------------------|-------|
 | Agent Orchestration | Graph / Strands (AWS) | Manages reasoning loop, tool invocation, state transitions. |
 | Reasoning & Inference | Amazon Bedrock | Claude / Nova or self-hosted model. |
-| Conversation State | AB-004 state store pattern (e.g., DynamoDB / Aurora) | ConversationReference + history. |
+| Conversation State | ABB-004 state store pattern (e.g., DynamoDB / Aurora) | ConversationReference + history. |
 | Channel Abstraction | CloudAdapter (Teams SDK) | Runs in AWS agent process. |
 | Agent Identity | Entra Agent ID | Non-human; OIDC to AWS. |
 | Message Routing | Azure AI Bot Service | Teams channel connector. |

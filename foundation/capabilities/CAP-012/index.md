@@ -86,17 +86,17 @@ Shared compute runtime patterns exist, but scheduling policy, scaling controls, 
 
 ### 4.1  Relationship Model
 
-This capability is realised primarily by AB-006 Compute Orchestration Platform, with AB-007 Storage & Persistence Platform providing supporting stateful runtime patterns. Cross-cutting ABBs provide shared security, observability, and governance controls for runtime operations.
+This capability is realised primarily by ABB-006 Compute Orchestration Platform, with ABB-007 Storage & Persistence Platform providing supporting stateful runtime patterns. Cross-cutting ABBs provide shared security, observability, and governance controls for runtime operations.
 
 ### 4.2  ABB Mapping
 
 | ABB ID | ABB Name | Relationship | Coverage | Notes |
 |--------|----------|-------------|----------|-------|
-| [AB-006](../../building-blocks/architecture-building-blocks/AB-006/) | Compute Orchestration Platform | `primary` | `full` | Provides runtime scheduling, orchestration, scaling, and deployment lifecycle controls. |
-| [AB-007](../../building-blocks/architecture-building-blocks/AB-007/) | Storage & Persistence Platform | `supporting` | `partial` | Supports stateful runtime patterns requiring persistent data attachments. |
-| [AB-001](../../building-blocks/architecture-building-blocks/AB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides workload identity, runtime access control, and administrator authentication. |
-| [AB-002](../../building-blocks/architecture-building-blocks/AB-002/) | Observability | `cross-cutting` | `full` | Provides runtime telemetry, health visibility, and incident investigation signals. |
-| [AB-003](../../building-blocks/architecture-building-blocks/AB-003/) | Governance & Policy Enforcement | `supporting` | `full` | Provides runtime policy constraints for deployment, configuration, and change control. |
+| [ABB-006](../../building-blocks/architecture-building-blocks/ABB-006/) | Compute Orchestration Platform | `primary` | `full` | Provides runtime scheduling, orchestration, scaling, and deployment lifecycle controls. |
+| [ABB-007](../../building-blocks/architecture-building-blocks/ABB-007/) | Storage & Persistence Platform | `supporting` | `partial` | Supports stateful runtime patterns requiring persistent data attachments. |
+| [ABB-001](../../building-blocks/architecture-building-blocks/ABB-001/) | Identity & Access Management | `cross-cutting` | `full` | Provides workload identity, runtime access control, and administrator authentication. |
+| [ABB-002](../../building-blocks/architecture-building-blocks/ABB-002/) | Observability | `cross-cutting` | `full` | Provides runtime telemetry, health visibility, and incident investigation signals. |
+| [ABB-003](../../building-blocks/architecture-building-blocks/ABB-003/) | Governance & Policy Enforcement | `supporting` | `full` | Provides runtime policy constraints for deployment, configuration, and change control. |
 
 ### 4.3  Gaps
 

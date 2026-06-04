@@ -5,7 +5,42 @@
 [![Licence: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSES/Apache-2.0.txt)
 [![REUSE 3.3](https://img.shields.io/badge/REUSE-3.3-lightgrey.svg)](https://reuse.software/spec-3.3/)
 
-A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. Install it as a Git submodule in any enterprise architecture workspace.
+A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance.
+
+## Install
+
+AAA installs through the shared AAW engine (it depends on AAW). Both models below work
+**without npm-registry access**. The installer wires the `create-*` command shims for
+every detected tool (Claude/Cursor/Copilot/Gemini); add `--seed` to scaffold the
+foundation (capabilities + building-blocks) into your workspace.
+
+### Option A — npm git-dependency (recommended)
+
+Installing AAA auto-pulls AAW (declared as its dependency):
+
+```bash
+npm i github:dermot-obrien/ai-assisted-architecture
+npx aaa install            # add --seed to also scaffold the foundation
+```
+
+### Option B — git submodules
+
+```bash
+git submodule add https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
+git submodule add https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
+node .ai-assisted-architecture/bin/aaa.js install      # add --seed to scaffold
+```
+
+See [install/README.md](install/README.md) for the per-tool file map and the
+discovery files (`AGENTS.md`/`CLAUDE.md`/`GEMINI.md`) you merge once.
+
+> **Developers:** the `aaa` launcher and the foundation seeder
+> (`src/seed-foundation.mjs`, a cross-platform Node port of the old
+> `seed-foundation.ps1`) are zero-dependency Node scripts — nothing to build. The
+> launcher delegates to AAW's engine (found via npm dependency, `node_modules`, or the
+> `.ai-assisted-work` submodule). The two **optional** Python diagram/slide scripts in
+> `scripts/` need `pip install python-pptx Pillow` (see Prerequisites) and are not
+> required for the core authoring workflow.
 
 ## Prerequisites
 
@@ -69,12 +104,12 @@ your-workspace/
     ...
   building-blocks/
     architecture-building-blocks/
-      AB-001/
-      AB-002/
+      ABB-001/
+      ABB-002/
       ...
     solution-building-blocks/
-      SB-001/
-      SB-002/
+      SBB-001/
+      SBB-002/
       ...
 ```
 
@@ -185,6 +220,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 |----------|-----------|-------------|
 | Visual design | Yes | Colour tokens, typography, contrast ratios, accessibility. Place a `visual-design/visual-design-standard.md` folder anywhere in your workspace. |
 | Traceability | No | The "Golden Thread" linking all layers from Outcomes to Services. |
+| [AAW work seam](standards/aaw-work-seam.md) | No | How AAW work classes connect to AAA artefacts: `decision` → Decision Record; cross-cutting `intervention` → Capability/ABB/SBB. |
 | Strategy | No | Structure and metadata for Business Outcomes and Use Cases. |
 | Platform | No | Structure and metadata for Platforms, platform-as-product model. |
 | Platform diagrams | No | Platform landscape card-grid layout and styling rules. |

@@ -84,7 +84,7 @@ Staring at a blank workspace is demoralising, and AI agents work better when the
 
 A single script seeds the workspace. Profiles let you be selective: `core` for cross-cutting baseline, `integration` for API and messaging, `infrastructure` for compute and storage, or `foundation` for everything. Delete what doesn't apply, rename what doesn't fit, extend what's useful.
 
-The seed content also serves as a worked example of every standard in the framework. Reading AB-001 (Identity and Access Management) teaches you more about the ABB standard than reading the standard itself.
+The seed content also serves as a worked example of every standard in the framework. Reading ABB-001 (Identity and Access Management) teaches you more about the ABB standard than reading the standard itself.
 
 ## What this is and isn't
 

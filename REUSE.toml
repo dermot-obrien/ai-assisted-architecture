@@ -43,6 +43,10 @@ path = [
   "scripts/**.cjs",
   "scripts/**.mjs",
   "scripts/**.js",
+  "bin/**.js",
+  "bin/**.mjs",
+  "src/**.js",
+  "src/**.mjs",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"
@@ -60,11 +64,12 @@ precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"
 SPDX-License-Identifier = "CC-BY-4.0"
 
-# --- Node tooling metadata (override the broad **.json rule) ---
+# --- Node tooling metadata (override the broad **.json/**.yaml rule) ---
 [[annotations]]
 path = [
   "package.json",
   "package-lock.json",
+  "framework.manifest.yaml",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"

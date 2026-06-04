@@ -26,7 +26,7 @@ Each SBB is a folder named by its identifier, placed under `building-blocks/solu
 ```
 building-blocks/
   solution-building-blocks/
-    SB-001/
+    SBB-001/
       index.md            # The SBB document (this standard)
       summary.md          # Plain-text summary content
       summary.drawio      # Summary panel diagram (see Summary Panel section)
@@ -37,44 +37,48 @@ building-blocks/
 
 ### Identifier Assignment
 
-- SBB identifiers use the format `SB-NNN` (zero-padded to 3 digits).
+- SBB identifiers use the format `SBB-NNN` (zero-padded to 3 digits).
 - When creating a new SBB, use the next available sequential number.
-- The folder name MUST match the SBB identifier exactly (e.g. `SB-011/`).
+- The folder name MUST match the SBB identifier exactly (e.g. `SBB-011/`).
 
 
 ## Document Structure
 
 ### Front Matter
 
-YAML front matter with Docusaurus-compatible metadata:
+YAML front matter with Docusaurus-compatible metadata and building block identity:
 
 ```yaml
 ---
 title: "<SBB-ID> <SBB Name>"
 sidebar_label: "<SBB-ID> <SBB Name>"
 sidebar_position: <integer>
+id: <SBB-ID>
+status: Draft
+version: "0.1"
+last_modified: <YYYY-MM-DD>
+primary_abb: <ABB-NNN>
+realises_abbs: [<ABB-NNN>, ...]
+profile: "<Profile Name>"
+short_name: "<Acronym or abbreviation for diagrams and cross-references>"
+category: "<Logical grouping, e.g. Agent Runtime, Security and Identity, Agent Governance>"
+lifecycle_stage: <Plan | Encourage | Sustain | Retire>
+current_maturity: <Not Established | Ad-hoc | Basic | Defined | Mature>
+target_maturity: <Defined | Mature>
+author: "<Author name>"
+provenance:
+  origin: ai-generated
+  review_state: ai-raw
 ---
 ```
+
+The front matter captures all identity and classification metadata for the SBB. Do NOT duplicate this information in a Document Control table in the body.
 
 ### Heading
 
 ```markdown
 # <SBB-ID> <SBB Name>
 ```
-
-### Document Control
-
-A metadata table immediately after the heading:
-
-| Property | Value | Notes |
-|----------|-------|-------|
-| **SBB ID** | `SB-NNN` | Unique identifier. Sequential numbering, zero-padded to 3 digits. |
-| **SBB Name** | Full name | Human-readable name including the channel or platform variant. |
-| **Short Name** | Acronym/abbreviation | Used in diagrams and cross-references. |
-| **Version** | `MAJOR.MINOR.PATCH` | Semantic versioning. |
-| **Status** | `draft`| Current lifecycle status. |
-| **Category** | Category name | Logical grouping (e.g. `Messaging & Integration`, `Security`, `Compute`). |
-
 
 ### Section 1 — Purpose
 
@@ -283,7 +287,7 @@ Every SBB folder MUST include a `summary.drawio` file and its exported `summary.
 ### File Structure
 
 ```
-SB-NNN/
+SBB-NNN/
   summary.drawio    # Draw.io text panel (this section)
   summary.png       # Exported PNG of the summary panel
 ```
@@ -334,7 +338,7 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - **PNG export:** All `.drawio` files MUST be exported to PNG at **300 DPI** to ensure small text remains legible in presentations. Use the Draw.io CLI flag `--scale 3.125` (300 ÷ 96 = 3.125) or set the DPI in the Draw.io desktop export dialog.
 - **Bullet lead-ins:** When a bullet starts with a bold term, follow it with a full stop and a space, not a dash. Write `**Name.** Description text.` not `**Name** — Description text.`
 - **Inline emphasis:** Do not use dash-bracketed callouts (` — like this — `) or bold text for emphasis within running sentences. Keep prose plain; reserve bold for lead-in terms at the start of bullets.
-- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../SB-010/`, `../../architecture-building-blocks/AB-008/`), never `index.md` explicitly. See the [Traceability & Hierarchy Standard](../../standard-traceability.md) for full rules and examples.
+- **Cross-references:** All links to other building blocks MUST use relative folder paths (e.g. `../SBB-010/`, `../../architecture-building-blocks/ABB-008/`), never `index.md` explicitly. See the [Traceability & Hierarchy Standard](../../standard-traceability.md) for full rules and examples.
 - **Variants:** When multiple SBBs realise the same ABB (e.g. different channels), each SBB document should reference its siblings and state what differs.
 
 

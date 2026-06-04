@@ -19,4 +19,4 @@ A building block receives a request to export data. Before proceeding, it calls 
 - Decision log captured in Observability context.
 
 ## 3. Realisation
-- **[AB-003 Governance & Policy Enforcement](../../../building-blocks/architecture-building-blocks/AB-003/)**
+- **[ABB-003 Governance & Policy Enforcement](../../../building-blocks/architecture-building-blocks/ABB-003/)**

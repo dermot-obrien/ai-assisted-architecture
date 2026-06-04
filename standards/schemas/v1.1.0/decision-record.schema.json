@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "decision-record.schema.json",
+  "title": "Decision Record Artefact (v1.1.0)",
+  "description": "An architectural decision (MADR body + Y-statement). First-class artefact added in v1.1.0 (extension E1). Cross-cuts the framework: a DR may apply to any artefact kind via `applies_to`. Full design specified in WI-001-D01 §3.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "decision-record" },
+        "id":   { "type": "string", "pattern": "^DR-\\d{3}$" },
+
+        "y_statement": {
+          "type": "string",
+          "minLength": 50,
+          "description": "One-sentence summary in Y-statement form: 'In the context of <X>, facing <Y>, we decided for <A> over <B>, to achieve <Q>, accepting <Z>.'"
+        },
+
+        "decision_drivers":   { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "considered_options": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
+        "decision_outcome":   { "type": "string", "minLength": 1 },
+
+        "consequences": {
+          "type": "object",
+          "properties": {
+            "positive": { "type": "array", "items": { "type": "string" } },
+            "negative": { "type": "array", "items": { "type": "string" } },
+            "neutral":  { "type": "array", "items": { "type": "string" } }
+          }
+        },
+
+        "change_type": {
+          "type": "string",
+          "enum": ["introduce", "modify", "retire", "replace", "principle"]
+        },
+
+        "affects_artefacts": {
+          "type": "array",
+          "items": { "$ref": "envelope.schema.json#/$defs/anyId" },
+          "uniqueItems": true,
+          "description": "Artefacts whose state is changed by this DR. Empty allowed only when change_type=principle."
+        },
+
+        "contributes_to_transition": { "anyOf": [{ "$ref": "envelope.schema.json#/$defs/transitionId" }, { "type": "null" }] }
+      },
+      "required": ["y_statement", "decision_drivers", "considered_options", "decision_outcome", "change_type"]
+    },
+    {
+      "$comment": "If change_type is not 'principle', at least one affected artefact is required.",
+      "if":   { "properties": { "change_type": { "not": { "const": "principle" } } } },
+      "then": {
+        "required": ["affects_artefacts"],
+        "properties": { "affects_artefacts": { "minItems": 1 } }
+      }
+    }
+  ]
+}

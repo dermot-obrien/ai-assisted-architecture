@@ -388,13 +388,86 @@ If migrating from an organisation-specific enterprise architecture ontology, see
 - Old `Roadmap` and `Horizon` are no longer entities — they are views and tags respectively.
 - Old `PlatformGuardrail` becomes `Standard` with `standard_type = platform_guardrail`.
 
+## Schema extension mechanism
+
+The base ontology (`ontology-schema.json`) is intentionally industry-neutral and reusable across workspaces. Organisations often need additional entity types or fields for domain-specific use cases (board reporting formats, delivery tracking, value realisation, etc.) without forking the base schema.
+
+The extension mechanism uses **JSON Schema composition** (`allOf`) to layer organisation-specific definitions on top of the base.
+
+### How it works
+
+1. **Base schema** — `ontology-schema.json` remains untouched in the framework. It defines the 22 core entities, enforces `additionalProperties: false` at the top level, and validates all base-entity fields.
+
+2. **Extension schema** — a separate JSON Schema file in the workspace that:
+   - References the base schema via `allOf: [{ "$ref": "<path-to-base>" }]`
+   - Adds new top-level properties (new entity arrays)
+   - Defines new entity types in its own `$defs`
+   - Can extend existing entities by providing supplementary field definitions (e.g., `InitiativeExtension`)
+   - Overrides the `version` constraint to the extension version
+
+3. **Workspace configuration** — the `.aaw-config.yaml` in the workspace root declares which schema to use:
+
+```yaml
+ontology:
+  schema: change/enterprise-modernisation/board-updates/may-2026-update/working/pipeline-ontology-extension.json
+```
+
+When `ontology.schema` is not set, scripts default to the framework's base schema at `.ai-assisted-architecture/standards/ontology/ontology-schema.json`.
+
+### Extension schema template
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "my-extension.json",
+  "title": "My Ontology Extension",
+  "allOf": [
+    { "$ref": "../../.ai-assisted-architecture/standards/ontology/ontology-schema.json" }
+  ],
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "const": "1.4.0" },
+    "my_new_entity": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/MyNewEntity" }
+    }
+  },
+  "unevaluatedProperties": false,
+  "$defs": {
+    "MyNewEntity": {
+      "type": "object",
+      "properties": { "id": { "type": "string" }, "name": { "type": "string" } },
+      "required": ["id", "name"],
+      "additionalProperties": false
+    }
+  }
+}
+```
+
+### Rules for extensions
+
+1. **Never modify the base schema** in the framework submodule for organisation-specific needs.
+2. **Extension entities** should use a distinct naming convention (e.g., `delivery_gate`, `use_case`) that won't collide with future base entities.
+3. **Extended fields on base entities** are documented in a companion `$defs` entry (e.g., `InitiativeExtension`) and merged at validation time.
+4. **Version the extension** — bump the `version` const when the extension shape changes.
+5. **One extension per workspace** — the config points to a single schema that composes everything needed.
+
+### Script resolution order
+
+All ontology scripts (`validate.cjs`, `consolidate.cjs`, `namespace-divergent.cjs`) resolve the schema in this order:
+
+1. Explicit `--schema <path>` argument (highest priority)
+2. `ontology.schema` from `.aaw-config.yaml` in the workspace root (if present)
+3. Framework default: `.ai-assisted-architecture/standards/ontology/ontology-schema.json`
+
 ## Versioning
 
 This is version 1.0.0. Breaking changes bump the major version. Additive changes bump the minor version. Documentation-only changes bump the patch version. Always declare the version when consuming the schema; reject inputs with a mismatched ontology_id.
 
 ## Files in this package
 
-- `modernisation-ontology-schema.json` — the JSON Schema (authoritative).
+- `ontology-schema.json` — the JSON Schema (authoritative).
 - `README.md` — this document.
 - `SPECIFICATION.md` — formal specification with motivations, design choices, and open considerations.
-- `examples/` — example data illustrating common patterns (if present).
+- `SCRIPTS.md` — CLI script reference.
+- `example-identity-platform.json` — worked example illustrating entity relationships.

@@ -128,9 +128,9 @@ The three mandatory cross-cutting ABBs have **reserved** colour assignments. The
 
 | ABB | Role | Primary | 50% Tint | Usage |
 |-----|------|---------|----------|-------|
-| AB-001 Identity & Access Management | `2.1` Indigo | `#4B5BAA` | `#A5ADD4` | Sub-ABB stroke, badge, identity edges |
-| AB-002 Observability | `2.4` Wisteria | `#9B72CF` | `#CDB9E7` | Sub-ABB stroke, badge, observability edges |
-| AB-003 Governance & Policy Enforcement | `2.5` Mauve | `#B86B9A` | `#DCB5CD` | Sub-ABB stroke, badge, policy edges |
+| ABB-001 Identity & Access Management | `2.1` Indigo | `#4B5BAA` | `#A5ADD4` | Sub-ABB stroke, badge, identity edges |
+| ABB-002 Observability | `2.4` Wisteria | `#9B72CF` | `#CDB9E7` | Sub-ABB stroke, badge, observability edges |
+| ABB-003 Governance & Policy Enforcement | `2.5` Mauve | `#B86B9A` | `#DCB5CD` | Sub-ABB stroke, badge, policy edges |
 
 These three colours are **permanently reserved** and MUST NOT be used as the primary palette for any other ABB.
 
@@ -225,8 +225,8 @@ Before finalising an ABB diagram, verify:
 9. [ ] **Traceability**: Does every component in the diagram match the ABB's capability list?
 10. [ ] **Accessibility**: Is text on dark fills (`1.1`, `2.1`) set to White (`1.3`) and text on bright accent fills (`2.3`, `2.4`, `2.5`) set to Charcoal (`1.1`)?
 11. [ ] **Legend**: Does the legend include swatches for all element types, edge types, sub-ABB strokes, and badge pairs?
-12. [ ] **Consistency**: Does this diagram match the structural density and layout pattern of existing ABB diagrams (AB-001, AB-002)?
-13. [ ] **Colour Strategy**: Are Level 1/Level 2 components using the default palette (`1.1`/`2.1.2`)? Only AB-001, AB-002, and AB-003 use reserved colours for their own primary components.
+12. [ ] **Consistency**: Does this diagram match the structural density and layout pattern of existing ABB diagrams (ABB-001, ABB-002)?
+13. [ ] **Colour Strategy**: Are Level 1/Level 2 components using the default palette (`1.1`/`2.1.2`)? Only ABB-001, ABB-002, and ABB-003 use reserved colours for their own primary components.
 
 ---
 
@@ -273,9 +273,9 @@ When creating a new ABB diagram, ALWAYS open and study the existing ABB diagrams
 
 | ABB | Path | Key Patterns to Follow |
 |-----|------|----------------------|
-| AB-001 Identity & Access Management | `AB-001/components.drawio` | 4 domain groups as columns, external actors (Consumer ABB, External IdP) on right, descriptive labels, observability badge pairs, full legend |
-| AB-002 Observability | `AB-002/components.drawio` | 4 domain groups (3 columns + spanning Storage), external actors (Producer ABB, Consumer, Notification Systems) on right, descriptive labels, full legend |
-| AB-003 Governance & Policy Enforcement | `AB-003/components.drawio` | 4 domain groups (3 columns + spanning Data Governance), external actors (Building Block, Policy Author, Compliance Stakeholder) on right, descriptive labels, observability badge pairs, full legend |
+| ABB-001 Identity & Access Management | `ABB-001/components.drawio` | 4 domain groups as columns, external actors (Consumer ABB, External IdP) on right, descriptive labels, observability badge pairs, full legend |
+| ABB-002 Observability | `ABB-002/components.drawio` | 4 domain groups (3 columns + spanning Storage), external actors (Producer ABB, Consumer, Notification Systems) on right, descriptive labels, full legend |
+| ABB-003 Governance & Policy Enforcement | `ABB-003/components.drawio` | 4 domain groups (3 columns + spanning Data Governance), external actors (Building Block, Policy Author, Compliance Stakeholder) on right, descriptive labels, observability badge pairs, full legend |
 
 **When in doubt about how to implement any rule in this standard, open an existing ABB `.drawio` file and match its structure.** New ABB diagrams MUST be visually consistent with existing ones in terms of information density, layout pattern, and component content. A diagram that looks noticeably sparser or structurally different from the reference examples is non-compliant.
 

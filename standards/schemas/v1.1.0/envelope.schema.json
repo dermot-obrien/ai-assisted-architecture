@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "envelope.schema.json",
+  "title": "Universal Artefact Envelope (v1.1.0)",
+  "description": "Common frontmatter fields carried by every catalog artefact in .ai-assisted-architecture v1.1.0. Per-kind schemas import this via $ref and add their own constraints.",
+  "type": "object",
+
+  "$defs": {
+    "isoDate": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+
+    "semver": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
+      "description": "Semantic version (major.minor.patch with optional pre-release)."
+    },
+
+    "status": {
+      "type": "string",
+      "enum": ["draft", "proposed", "accepted", "active", "deprecated", "superseded", "retired"]
+    },
+
+    "lifecycleState": {
+      "type": "string",
+      "enum": ["baseline", "in-flight", "target", "retired"],
+      "default": "baseline"
+    },
+
+    "classification": {
+      "type": "string",
+      "enum": ["public", "internal", "confidential", "restricted"],
+      "default": "internal"
+    },
+
+    "governanceZone": {
+      "type": "string",
+      "enum": ["foundation", "core", "extension", "application"],
+      "default": "application"
+    },
+
+    "kindEnum": {
+      "type": "string",
+      "enum": [
+        "outcome", "use-case", "platform", "capability", "bounded-context",
+        "abb", "sbb", "api", "service", "view", "decision-record",
+        "event", "deployment-node", "snapshot", "transition"
+      ]
+    },
+
+    "anyId": {
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|CAP|BC|AB|SB|AP|SV|VW|DR|EV|DN|SN|TR followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "type": "string",
+      "pattern": "^(OC|UC|PL|CAP|BC|AB|SB|AP|SV|VW|DR|EV|DN|SN|TR)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+
+    "platformId":   { "type": "string", "pattern": "^PL-\\d{3}$" },
+    "capabilityId": { "type": "string", "pattern": "^CAP-\\d{3}$" },
+    "outcomeId":    { "type": "string", "pattern": "^OC-\\d{3}$" },
+    "useCaseId":    { "type": "string", "pattern": "^UC-\\d{3}$" },
+    "bcId":         { "type": "string", "pattern": "^BC-\\d{3}$" },
+    "abbId":        { "type": "string", "pattern": "^AB-\\d{3}$" },
+    "sbbId":        { "type": "string", "pattern": "^SB-\\d{3}$" },
+    "apiId":        { "type": "string", "pattern": "^AP-\\d{3}$" },
+    "viewId":       { "type": "string", "pattern": "^VW-\\d{3}$" },
+    "drId":         { "type": "string", "pattern": "^DR-\\d{3}$" },
+    "eventId":      { "type": "string", "pattern": "^EV-\\d{3}$" },
+    "dnId":         { "type": "string", "pattern": "^DN-\\d{3}$" },
+    "snapshotId":   { "type": "string", "pattern": "^SN-\\d{3}$" },
+    "transitionId": { "type": "string", "pattern": "^TR-\\d{3}$" },
+    "serviceId":    {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
+      "description": "Kebab-case slug for Service kind (preserves v1.0.0 convention)."
+    },
+    "numericServiceId": { "type": "string", "pattern": "^SV-\\d{3}$" },
+
+    "reference": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["jira", "linear", "github-pr", "github-issue", "source", "doc", "runbook", "external"]
+        },
+        "id":   { "type": "string" },
+        "url":  { "type": "string", "format": "uri" },
+        "repo": { "type": "string" },
+        "path": { "type": "string" },
+        "ref":  { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+
+    "universalRelations": {
+      "type": "object",
+      "description": "Universal relations subset. Per-kind schemas may make specific fields required and add their own specialised relations.",
+      "properties": {
+        "part_of":         { "$ref": "#/$defs/anyId" },
+        "contains":        { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+        "realises":        { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+        "realised_by":     { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+        "depends_on":      { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+        "depended_on_by":  { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+        "applies_to":      { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+        "governed_by":     { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true }
+      }
+    }
+  },
+
+  "properties": {
+    "$schema":            { "type": "string" },
+
+    "id":                 { "$ref": "#/$defs/anyId" },
+    "kind":               { "$ref": "#/$defs/kindEnum" },
+    "title":              { "type": "string", "minLength": 1 },
+    "short_name":         { "type": "string" },
+    "description":        { "type": "string" },
+
+    "version":            { "$ref": "#/$defs/semver" },
+    "status":             { "$ref": "#/$defs/status" },
+    "created":            { "$ref": "#/$defs/isoDate" },
+    "last_modified":      { "$ref": "#/$defs/isoDate" },
+    "last_modified_by":   { "type": "string" },
+
+    "lifecycle_state":      { "$ref": "#/$defs/lifecycleState" },
+    "architecture_snapshot":{ "anyOf": [{ "$ref": "#/$defs/snapshotId" }, { "type": "null" }] },
+    "valid_from":           { "$ref": "#/$defs/isoDate" },
+    "valid_until":          { "anyOf": [{ "$ref": "#/$defs/isoDate" }, { "type": "null" }] },
+    "supersedes":           { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+    "superseded_by":        { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
+
+    "owner":            { "type": "string", "minLength": 1 },
+    "strategic_owner":  { "anyOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
+    "classification":   { "$ref": "#/$defs/classification" },
+    "governance_zone":  { "$ref": "#/$defs/governanceZone" },
+
+    "references":       { "type": "array", "items": { "$ref": "#/$defs/reference" } },
+
+    "tags":             { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "sidebar_label":    { "type": "string" },
+    "sidebar_position": { "type": "integer" }
+  },
+
+  "required": ["id", "kind", "title", "version", "status", "created", "last_modified", "owner"],
+
+  "allOf": [
+    {
+      "$comment": "If status is 'superseded', superseded_by must be present and non-empty.",
+      "if":   { "properties": { "status": { "const": "superseded" } } },
+      "then": {
+        "required": ["superseded_by"],
+        "properties": { "superseded_by": { "minItems": 1 } }
+      }
+    },
+    {
+      "$comment": "If valid_until is set, it must be on or after valid_from.",
+      "if": {
+        "required": ["valid_from", "valid_until"],
+        "properties": { "valid_until": { "type": "string" } }
+      },
+      "then": {
+        "$comment": "Date ordering not expressible in pure JSON Schema; enforced by the validator script."
+      }
+    }
+  ]
+}

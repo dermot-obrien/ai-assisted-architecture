@@ -90,7 +90,7 @@ This table is the authoritative source for hierarchy and maturity. Parent-child 
 
 This matrix shows the many-to-many relationship between L3 capabilities and Architecture Building Blocks. Only L3 capabilities map directly to ABBs.
 
-| Capability | AB-001 IAM | AB-002 Observability | AB-003 Governance | AB-004 API Gateway | AB-005 Event Messaging | AB-006 Compute Platform | AB-007 Storage Platform | AB-008 Network Platform |
+| Capability | ABB-001 IAM | ABB-002 Observability | ABB-003 Governance | ABB-004 API Gateway | ABB-005 Event Messaging | ABB-006 Compute Platform | ABB-007 Storage Platform | ABB-008 Network Platform |
 |------------|------------|----------------------|-------------------|--------------------|------------------------|-------------------------|-------------------------|--------------------------|
 | **CAP-004** Identity Lifecycle Management | **Primary** | Cross-cutting | Cross-cutting | - | - | - | - | - |
 | **CAP-005** Policy-Based Access Control | **Primary** | Cross-cutting | Supporting | - | - | - | - | - |

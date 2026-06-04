@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "outcome.schema.json",
+  "title": "Outcome Artefact (v1.1.0)",
+  "description": "A measurable business result (the 'Why'). Lives at the top of the framework's traceability chain; owned by exactly one Platform; required by Use Cases; achieved through Capabilities.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "outcome" },
+        "id":   { "type": "string", "pattern": "^OC-\\d{3}$" },
+
+        "kpi": { "type": "string", "minLength": 1 },
+        "kpi_target": {
+          "type": "object",
+          "required": ["value", "unit"],
+          "properties": {
+            "value":       { "type": ["number", "string"] },
+            "unit":        { "type": "string" },
+            "measurement": { "type": "string", "description": "How / where the metric is measured." }
+          }
+        },
+        "target_date":        { "type": "string", "format": "date" },
+        "business_rationale": { "type": "string", "minLength": 1 },
+        "time_horizon":       { "type": "string", "enum": ["short", "medium", "long"] },
+
+        "owned_by_platform":      { "$ref": "envelope.schema.json#/$defs/platformId" },
+        "requires_capabilities":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true },
+        "realised_by_use_cases":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true }
+      },
+      "required": ["kpi", "target_date", "business_rationale", "owned_by_platform"]
+    }
+  ]
+}
