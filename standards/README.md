@@ -12,12 +12,16 @@ This directory contains the canonical standards for all architectural layers in 
 | `contexts/` | **Solution** | Bounded Context boundaries and model ownership. |
 | `building-blocks/` | **Logical & Physical** | ABBs and SBBs. |
 | `runtime/` | **Runtime** | Services and execution units. |
+| `ontology/` | **Model** | The modernisation ontology (entities, schema, CLI tooling). |
+| `agent-native/` | **Operating model** | How the framework operates when most engineers/architects are AI agents (builds on every layer above). |
 | `visual-design/` | **Visual** | Colour palette, typography, and diagram styling. |
 
 ## Key Standards
 
 - **[Platform Standard](./platforms/platform-standard.md)**: The primary organisational and architectural unit.
 - **[Traceability & Hierarchy Standard](./standard-traceability.md)**: The "Golden Thread" linking all layers.
+- **[Frontmatter Standard](./standard-frontmatter.md)**: The universal artefact envelope (machine-validatable via [`schemas/v1.1.0/`](./schemas/v1.1.0/)).
+- **[Agent-Native Architecture](./agent-native/README.md)**: The operating model for an AI-majority workforce — principles, the author→verify→reconcile loop, the provenance envelope, executable contracts, and continuous reconciliation.
 - **[Visual Design Standard](./visual-design/visual-design-standard.md)**: The core UI/UX rules for diagrams and docs.
 
 ## Enforcement
