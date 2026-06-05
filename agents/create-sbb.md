@@ -20,6 +20,7 @@ Decide whether this SBB is **simple** (one product/family, flat product mapping)
 Load and internalise:
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-diagram.md`
+- `.ai-assisted-architecture/standards/building-blocks/standard-c4-context-diagram.md` (the C4 System Context / outside-in view this SBB appears in as an internal system — the zoom-out companion to a composite SBB diagram)
 - `.ai-assisted-architecture/standards/standard-frontmatter.md` (§6.7 and §6.7.1 for composite fields)
 - `.ai-assisted-architecture/standards/standard-traceability.md`
 - **Visual design standard**.
@@ -42,6 +43,8 @@ For a **composite** SBB also:
 For a **simple** SBB: create the Draw.io diagram (960x1080) with ABB Ref Badges on every component and mandatory cross-cutting containers (IAM, Obs, Gov).
 
 For a **composite** SBB: the **Mermaid composite-structure diagram** is the normative §2.1 view (the Draw.io pair is optional). Follow the *Composite Structure Diagrams (Mermaid)* section of `standard-sbb-diagram.md`: parts as nested subgraphs, provided ports as `:::provided` circles, required ports as `:::required` asymmetric nodes, delegation as dotted edges, assembly as solid labelled edges. The diagram MUST be a faithful 1:1 projection of the frontmatter `ports`/`parts`/`connectors` (no extra nodes, none missing).
+
+The composite diagram is the **inside** view of this SBB (C4 Level 2/3). Its complement is the **outside** view (C4 Level 1) — the **C4 System Context diagram** of the parent Capability / top-level ABB, where this SBB appears as one `[Software System]` node inside the boundary. After authoring a composite SBB, offer to **create or refresh** that Context diagram (a `c4-context.md` alongside the system's `index.md`) so this system and its external dependencies are reflected. Follow `.ai-assisted-architecture/standards/building-blocks/standard-c4-context-diagram.md` (Mermaid `flowchart`, never the experimental `C4Context` type), cross-link the two views as a zoom pair, and reconcile the context view's `[External System]` nodes with this composite's `required` boundary ports so the two zoom levels agree. See the worked pair at `standards/building-blocks/solution-building-blocks/example-composite/` (`c4-context.md` outside, `index.md` inside).
 
 ### Step 3: summary.md
 Create the plain-text summary source in `summary.md` following the "Summary Panel" section of the standard. Use `• ` characters for bullets and `. ` for lead-ins.

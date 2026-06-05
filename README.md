@@ -198,6 +198,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
     contexts/
       standard-bounded-context.md     # Bounded Contexts
     building-blocks/
+      standard-c4-context-diagram.md  # C4 System Context diagrams (Mermaid, outside-in view)
       architecture-building-blocks/
         standard-abb-document.md
         standard-abb-diagram.md
@@ -206,6 +207,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
         standard-sbb-document.md
         standard-sbb-diagram.md
         example/
+        example-composite/            # Composite SBB (inside) + c4-context.md (outside) worked pair
     runtime/
       standard-service.md             # Runtime Services
     ontology/                         # Modernisation Ontology (JSON Schema + spec + example)
@@ -227,6 +229,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 | Capability document | No | Document structure, maturity model, and ABB mapping for capabilities. |
 | Capability diagrams | No | Capability map and capability-to-ABB traceability diagram structure and styling rules. |
 | Bounded Context | No | Structure and metadata for Bounded Contexts and linguistic boundaries. |
+| C4 System Context diagram | No | The **Mermaid `flowchart`** convention for C4 Level 1 (System Context) views — the outside-in view of a top-level ABB/Capability (persons, the system boundary, external systems). The zoom-out companion to the composite SBB (inside) view. Uses a plain `flowchart`, **not** the experimental `C4Context` type. |
 | ABB document | No | Document structure, metadata, and section layout for ABBs, including **capability dependencies** (the `requires` field — abstract ABB→ABB dependencies that feed gap analysis). |
 | ABB diagram | No | Draw.io diagram structure, styling, and export rules for ABBs. |
 | SBB document | No | Document structure, metadata, and section layout for SBBs, including **composite SBBs** (UML parts / ports / connectors) and when to use composite vs simple. |
