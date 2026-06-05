@@ -2,8 +2,16 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "sbb.schema.json",
   "title": "Solution Building Block (v1.1.0)",
-  "description": "A concrete realisation of one or more ABBs using specific products/services (TOGAF). Realised at runtime by one or more Services.",
+  "description": "A concrete realisation of one or more ABBs using specific products/services (TOGAF). Realised at runtime by one or more Services. May be a composite assembled from sub-SBBs (UML composite structure: parts + ports + connectors).",
   "type": "object",
+
+  "$defs": {
+    "endpointRef": {
+      "type": "string",
+      "description": "A connector endpoint. Either a boundary port name ('api-gateway') or a part-scoped point in dotted form ('order-handler.input'). The validator script checks every endpoint resolves to a declared port or a declared part.",
+      "pattern": "^[a-z][a-z0-9-]*(\\.[a-z][a-z0-9-]*)?$"
+    }
+  },
 
   "allOf": [
     { "$ref": "envelope.schema.json" },
@@ -45,9 +53,97 @@
 
         "cloud_provider":   { "type": "string", "enum": ["azure", "aws", "gcp", "onprem", "multi", "none"] },
         "variants":         { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-        "deployment_model": { "type": "string", "enum": ["managed", "self-hosted", "hybrid"] }
+        "deployment_model": { "type": "string", "enum": ["managed", "self-hosted", "hybrid"] },
+
+        "composite": {
+          "type": "boolean",
+          "default": false,
+          "description": "True when this SBB is an assembly of sub-SBBs described as a UML composite structure. When true, 'parts' and 'connectors' are required."
+        },
+
+        "ports": {
+          "type": "array",
+          "description": "Interaction points on the composite boundary (UML ports). A provided port offers a contract to the environment; a required port consumes one. The technology-agnostic contract lives on the parent ABB Interface; the port names the concrete protocol/contract.",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["name", "direction"],
+            "additionalProperties": false,
+            "properties": {
+              "name":      { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "Kebab-case port name, unique within the SBB." },
+              "direction": { "type": "string", "enum": ["provided", "required"], "description": "'provided' = ball (lollipop) interface offered; 'required' = socket interface consumed." },
+              "protocol":  { "type": "string", "description": "Concrete wire protocol, e.g. 'REST/HTTP', 'pub-sub', 'gRPC'." },
+              "contract":  { "type": "string", "description": "Contract identifier or media type, e.g. 'openapi/v3', 'cloudevents/v1', or an AP-NNN api id." },
+              "abb_interface": { "type": "string", "description": "ID of the parent ABB Interface this port realises, e.g. 'I1'. Establishes port -> ABB service-contract traceability." },
+              "description": { "type": "string" }
+            }
+          }
+        },
+
+        "parts": {
+          "type": "array",
+          "description": "Typed roles inside the composite (UML parts). Each part is normally played by a sub-SBB, making this SBB a composite-of-composites.",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["name", "role"],
+            "additionalProperties": false,
+            "properties": {
+              "name":         { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "Kebab-case role name (the part's role within this composite), unique within the SBB. UML role-name, not the type name." },
+              "sbb":          { "$ref": "envelope.schema.json#/$defs/sbbId", "description": "The sub-SBB that plays this role (SB-NNN). Present for composite-of-composite parts." },
+              "role":         { "type": "string", "minLength": 1, "description": "What this part does within the composite." },
+              "multiplicity": { "type": "string", "pattern": "^(\\d+|\\d+\\.\\.(\\d+|\\*)|\\*)$", "default": "1", "description": "UML multiplicity, e.g. '1', '0..1', '1..*', '*'." },
+              "ports":        {
+                "type": "array",
+                "description": "Optional declaration of the part's own interaction points, referenced by connectors as 'part-name.port-name'.",
+                "items": {
+                  "type": "object",
+                  "required": ["name", "direction"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "name":      { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+                    "direction": { "type": "string", "enum": ["provided", "required"] }
+                  }
+                }
+              }
+            }
+          }
+        },
+
+        "connectors": {
+          "type": "array",
+          "description": "Links wiring ports and parts (UML connectors). A 'delegation' connector forwards a boundary port to a part's matching port; an 'assembly' connector wires one part's required interface to another part's provided interface.",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "type"],
+            "additionalProperties": false,
+            "properties": {
+              "from":        { "$ref": "#/$defs/endpointRef" },
+              "to":          { "$ref": "#/$defs/endpointRef" },
+              "type":        { "type": "string", "enum": ["delegation", "assembly"], "description": "'delegation' = boundary port <-> internal part port; 'assembly' = part-to-part (required socket meets provided ball)." },
+              "protocol":    { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
       },
       "required": ["realises", "products", "product_mapping"]
+    },
+
+    {
+      "$comment": "Composite SBBs MUST declare their internal structure: at least one part and at least one connector. Endpoint-resolution (every connector endpoint maps to a declared port or part, and delegation endpoints pair a boundary port with a part port) is enforced by the validator script, not expressible in pure JSON Schema.",
+      "if": {
+        "properties": { "composite": { "const": true } },
+        "required": ["composite"]
+      },
+      "then": {
+        "required": ["parts", "connectors"],
+        "properties": {
+          "parts":      { "minItems": 1 },
+          "connectors": { "minItems": 1 }
+        }
+      }
     }
   ]
 }
