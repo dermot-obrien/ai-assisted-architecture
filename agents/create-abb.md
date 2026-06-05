@@ -13,7 +13,7 @@ Before creating the ABB, you MUST verify its parentage. If parents are missing, 
 3. **The Proposal**: Present these suggestions to the user. Ask: "I've identified that the required parent Bounded Context and Capability don't exist yet. Would you like me to create this full vertical slice (Context + Capability + ABB) for you?"
 4. **Requirement Gathering**: Once the hierarchy is agreed, ask about key interfaces and planned SBBs.
 5. **Capability Dependencies**: Ask which **other ABBs this ABB depends on** to deliver its capability — the logical building blocks that must be present for it to function (e.g. "An AI Agent Platform needs a Reasoning Engine, Tool Integration, and Safety & Guardrails"). For each, capture:
-   - the required ABB ID (`AB-NNN`) — if it does not yet exist, note it as a **gap** and offer to create it as a minimal ABB;
+   - the required ABB ID (`ABB-NNN`) — if it does not yet exist, note it as a **gap** and offer to create it as a minimal ABB;
    - the **cardinality** (`1`, `0..1`, `1..n`, `0..n`; default `1`);
    - a one-line **rationale**.
    Exclude the three mandatory cross-cutting concerns (IAM, Observability, Governance) — those are always assumed and captured by `mandatory_subabbs`, not `requires`. Exclude internal components (they belong in §2.2) and concrete product wiring (that belongs in the realising SBB). If there are no dependencies beyond the cross-cutting trio, leave `requires` out.

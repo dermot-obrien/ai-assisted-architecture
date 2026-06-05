@@ -381,7 +381,7 @@ This SBB is composite. It assembles the sub-SBBs below behind a <N>-port boundar
 
 | Part (role) | Sub-SBB | Responsibility | Multiplicity |
 |-------------|---------|----------------|--------------|
-| `bar-builder` | [SB-310](../SB-310/) | Aggregates ticks into OHLCV bars | 1 |
+| `bar-builder` | [SBB-310](../SBB-310/) | Aggregates ticks into OHLCV bars | 1 |
 
 **Connectors**
 
@@ -393,7 +393,7 @@ This SBB is composite. It assembles the sub-SBBs below behind a <N>-port boundar
 
 Every `parts[].sbb` MUST also appear in the SBB's `contains` relation (and the sub-SBB carries the inverse `part_of`), so the composition is bidirectionally traceable per the [Traceability Standard](../../standard-traceability.md).
 
-A complete worked example lives at [`example-composite/`](./example-composite/) (`SB-301 Strategy Engine`): a composite SBB assembling three sub-SBBs behind a two-port boundary, with the matching Mermaid composite diagram and §2.10 tables. For a simple SBB, see [`example/`](./example/).
+A complete worked example lives at [`example-composite/`](./example-composite/) (`SBB-301 Strategy Engine`): a composite SBB assembling three sub-SBBs behind a two-port boundary, with the matching Mermaid composite diagram and §2.10 tables. For a simple SBB, see [`example/`](./example/).
 
 
 ## Conventions

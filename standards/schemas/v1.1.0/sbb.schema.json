@@ -18,7 +18,7 @@
     {
       "properties": {
         "kind": { "const": "sbb" },
-        "id":   { "type": "string", "pattern": "^SB-\\d{3}$" },
+        "id":   { "type": "string", "pattern": "^SBB-\\d{3}$" },
 
         "realises":              { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "minItems": 1, "uniqueItems": true },
         "realised_by_services":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/serviceId" }, "uniqueItems": true },
@@ -90,7 +90,7 @@
             "additionalProperties": false,
             "properties": {
               "name":         { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "Kebab-case role name (the part's role within this composite), unique within the SBB. UML role-name, not the type name." },
-              "sbb":          { "$ref": "envelope.schema.json#/$defs/sbbId", "description": "The sub-SBB that plays this role (SB-NNN). Present for composite-of-composite parts." },
+              "sbb":          { "$ref": "envelope.schema.json#/$defs/sbbId", "description": "The sub-SBB that plays this role (SBB-NNN). Present for composite-of-composite parts." },
               "role":         { "type": "string", "minLength": 1, "description": "What this part does within the composite." },
               "multiplicity": { "type": "string", "pattern": "^(\\d+|\\d+\\.\\.(\\d+|\\*)|\\*)$", "default": "1", "description": "UML multiplicity, e.g. '1', '0..1', '1..*', '*'." },
               "ports":        {

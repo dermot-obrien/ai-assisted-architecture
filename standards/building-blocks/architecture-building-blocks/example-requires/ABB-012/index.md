@@ -4,9 +4,9 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 ---
 $schema: ../../../../schemas/v1.1.0/abb.schema.json
-id: AB-012
+id: ABB-012
 kind: abb
-title: "AB-012 Tool Integration"
+title: "ABB-012 Tool Integration"
 short_name: "Tools"
 description: "The logical building block through which an agent acts on the world — discovering, invoking, and normalising the result of external tools."
 
@@ -37,7 +37,7 @@ mandatory_subabbs: [iam, observability, governance]
 cross_cutting: false
 
 tags: [ai, agent, example, requires]
-sidebar_label: "AB-012 Tool Integration"
+sidebar_label: "ABB-012 Tool Integration"
 sidebar_position: 12
 
 provenance:
@@ -46,9 +46,9 @@ provenance:
   review_state: ai-raw
 ---
 
-# AB-012 Tool Integration
+# ABB-012 Tool Integration
 
-> **Minimal example** — one of the four ABBs required by [AB-010 AI Agent Platform](../AB-010/).
+> **Minimal example** — one of the four ABBs required by [ABB-010 AI Agent Platform](../ABB-010/).
 > Shows a `cardinality: "1..n"` `requires` target (an agent has one or more tools). Kept brief.
 
 ## 1  Purpose
@@ -87,4 +87,4 @@ Tool Integration is the logical component that lets an agent *act*: it exposes a
 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
-| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as a `requires` target of AB-010. |
+| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as a `requires` target of ABB-010. |

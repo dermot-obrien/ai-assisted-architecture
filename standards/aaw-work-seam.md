@@ -38,8 +38,8 @@ AAA's building blocks — created or revised via the `create-*` agents:
 | The intervention changes… | AAA artefact | Agent |
 |---------------------------|--------------|-------|
 | a business/operational capability | **Capability** (`CAP-NNN`) | `create-capability` |
-| a reusable architecture pattern | **Architecture Building Block** (`AB-NNN`) | `create-abb` |
-| a concrete technology realisation | **Solution Building Block** (`SB-NNN`) | `create-sbb` |
+| a reusable architecture pattern | **Architecture Building Block** (`ABB-NNN`) | `create-abb` |
+| a concrete technology realisation | **Solution Building Block** (`SBB-NNN`) | `create-sbb` |
 | a bounded context / platform / service | Context · Platform · Service | `create-context` / `create-platform` / `create-service` |
 | a baseline → target migration | **Snapshot** (`SN-NNN`) + **Transition** (`TR-NNN`) | (sequenced by Decision Records) |
 

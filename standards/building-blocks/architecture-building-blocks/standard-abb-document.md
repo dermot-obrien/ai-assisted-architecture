@@ -216,7 +216,7 @@ A table mapping ABB-to-ABB dependencies:
 
 **Heading:** `### 3.4  Capability dependencies (requires)`
 
-Where §3.3 lists *interface-level* dependencies (which named interface this ABB consumes from a peer), this section declares **capability-level** dependencies: the other ABBs that MUST be present in the architecture for this one to deliver its capability. These are recorded in the frontmatter `requires` field (see [Frontmatter Standard §6.6](../../standard-frontmatter.md#66-architecture-building-block-ab-nnn)) and surfaced here as a table.
+Where §3.3 lists *interface-level* dependencies (which named interface this ABB consumes from a peer), this section declares **capability-level** dependencies: the other ABBs that MUST be present in the architecture for this one to deliver its capability. These are recorded in the frontmatter `requires` field (see [Frontmatter Standard §6.6](../../standard-frontmatter.md#66-architecture-building-block-abb-nnn)) and surfaced here as a table.
 
 **When to declare a `requires` relationship.** Declare a dependency when the ABB cannot realise its capability unless another *logical* ABB exists — for example, an AI Agent Platform requires a Reasoning Engine (no agent without a model to reason), a Tool Integration ABB (agents act through tools), and Safety & Guardrails (production agents must be bounded). Declare it at the level of *logical need*, not concrete product. Do **not** use `requires` for:
 
@@ -233,10 +233,10 @@ Surface the declared dependencies as a table:
 ```markdown
 | Required ABB | Cardinality | Rationale |
 |--------------|-------------|-----------|
-| [AB-011](../AB-011/) Reasoning Engine | 1 | Every agent needs a reasoning engine. |
-| [AB-012](../AB-012/) Tool Integration | 1..n | Agents interact with external systems via tools. |
-| [AB-013](../AB-013/) Agent Memory | 0..1 | Stateful agents need persistent memory; stateless agents do not. |
-| [AB-014](../AB-014/) Safety & Guardrails | 1 | Production agents require safety guardrails. |
+| [ABB-011](../ABB-011/) Reasoning Engine | 1 | Every agent needs a reasoning engine. |
+| [ABB-012](../ABB-012/) Tool Integration | 1..n | Agents interact with external systems via tools. |
+| [ABB-013](../ABB-013/) Agent Memory | 0..1 | Stateful agents need persistent memory; stateless agents do not. |
+| [ABB-014](../ABB-014/) Safety & Guardrails | 1 | Production agents require safety guardrails. |
 ```
 
 If the ABB has no capability dependencies beyond the mandatory cross-cutting trio, state "No capability dependencies beyond the mandatory cross-cutting sub-ABBs." and omit the `requires` field from the frontmatter.
@@ -403,7 +403,7 @@ Before finalising an ABB document, verify:
 7. [ ] **Cross-Cutting Sections**: Does the document include all three mandatory sections — 2.5 (IAM), 2.6 (Observability), 2.7 (Governance & Policy)?
 8. [ ] **Cross-Cutting Diagram**: Does the component diagram show IAM, Observability, and Governance & Policy as sub-ABB groups?
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
-10. [ ] **Capability Dependencies**: If the ABB depends on other logical ABBs, are they declared in the `requires` frontmatter (with cardinality and rationale) and reflected in §3.4? Are the referenced ABB IDs valid (`AB-NNN`)?
+10. [ ] **Capability Dependencies**: If the ABB depends on other logical ABBs, are they declared in the `requires` frontmatter (with cardinality and rationale) and reflected in §3.4? Are the referenced ABB IDs valid (`ABB-NNN`)?
 
 
 ## Quick Reference Sections

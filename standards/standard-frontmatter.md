@@ -50,7 +50,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
 | `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
-| `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for AB-001). |
+| `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
 
 ### 2.2 Versioning and lifecycle
@@ -181,22 +181,22 @@ references:
 
 **Multiple coexistent artefact-versions for the same `id`** are permitted when they have different `lifecycle_state` values. For example, the workspace may simultaneously hold:
 
-- `AB-007/index.md` with `version: 2.0.0`, `lifecycle_state: baseline`
-- `AB-007-target/index.md` with `version: 3.0.0`, `lifecycle_state: target`
+- `ABB-007/index.md` with `version: 2.0.0`, `lifecycle_state: baseline`
+- `ABB-007-target/index.md` with `version: 3.0.0`, `lifecycle_state: target`
 
 The directory layout convention for coexistent versions is:
 
 ```
 building-blocks/architecture-building-blocks/
-  AB-007/                        # default (baseline)
+  ABB-007/                        # default (baseline)
     index.md
-  AB-007-target/                 # explicit target
+  ABB-007-target/                 # explicit target
     index.md
-  AB-007-v2.0.0/                 # historical retired
+  ABB-007-v2.0.0/                 # historical retired
     index.md
 ```
 
-Folder name pattern: `<ID>` for the canonical (baseline) version; `<ID>-target` for the target version; `<ID>-v<semver>` for explicit historical versions. The `id` frontmatter remains `AB-007` for all of them; the validator checks that exactly one folder per `id` carries `lifecycle_state: baseline` (or omits the field, defaulting to baseline).
+Folder name pattern: `<ID>` for the canonical (baseline) version; `<ID>-target` for the target version; `<ID>-v<semver>` for explicit historical versions. The `id` frontmatter remains `ABB-007` for all of them; the validator checks that exactly one folder per `id` carries `lifecycle_state: baseline` (or omits the field, defaulting to baseline).
 
 See [Snapshot](#) and [Transition](#) artefact types (forthcoming as separate standards) for how named architecture states are assembled and how multi-step migrations are described.
 
@@ -280,7 +280,7 @@ frequency: low | medium | high
 volume: "≥ 10k decisions/sec"
 
 supports_outcome: OC-001             # required
-realised_by_abbs: [AB-001, AB-003]   # required, ≥1
+realised_by_abbs: [ABB-001, ABB-003]   # required, ≥1
 ```
 
 **Schema:** [`schemas/v1.1.0/use-case.schema.json`](./schemas/v1.1.0/use-case.schema.json).
@@ -331,7 +331,7 @@ subdomain_kind: core | supporting | generic   # optional DDD classifier
 
 provided_by_platform: PL-001         # required
 required_by_outcomes: [OC-001, OC-002]
-realised_by_abbs: [AB-001, AB-003]   # required for L3 capabilities
+realised_by_abbs: [ABB-001, ABB-003]   # required for L3 capabilities
 gaps: ["Continuous Access Evaluation not yet implemented"]
 ```
 
@@ -346,7 +346,7 @@ title: "BC-001 Identity & Access"
 owner: "Identity Platform Team"
 
 part_of: PL-001                      # required: parent Platform
-contains: [AB-001]                   # required: contained ABBs, ≥1
+contains: [ABB-001]                   # required: contained ABBs, ≥1
 realises_capabilities: [CAP-004]     # required, ≥1
 
 ubiquitous_language:                 # required, 5-50 entries
@@ -362,21 +362,21 @@ c4_levels: [container] | [component] | [container, component]
 
 **Schema:** [`schemas/v1.1.0/bounded-context.schema.json`](./schemas/v1.1.0/bounded-context.schema.json).
 
-### 6.6 Architecture Building Block (`AB-NNN`)
+### 6.6 Architecture Building Block (`ABB-NNN`)
 
 ```yaml
 kind: abb
-id: AB-001
-title: "AB-001 Identity & Access Management"
+id: ABB-001
+title: "ABB-001 Identity & Access Management"
 short_name: "IAM"
 category: "Security"
 
 part_of: BC-001                      # required: parent BC
 realises_capabilities: [CAP-004]     # required, ≥1
-realised_by: [SB-001]                # multi: SBBs
+realised_by: [SBB-001]                # multi: SBBs
 
 requires:                            # optional: capability-level dependencies on other ABBs
-  - { abb: AB-005, cardinality: "1", rationale: "Sign-in and lifecycle events are published to the event backbone" }
+  - { abb: ABB-005, cardinality: "1", rationale: "Sign-in and lifecycle events are published to the event backbone" }
 
 domains: [business, application]     # required, ≥1; multi-valued TOGAF metamodel domains
 interfaces:                          # required, ≥1
@@ -394,7 +394,7 @@ cross_cutting: false                 # true for ABBs that are themselves cross-c
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `requires[]` | array of objects | optional | Capability-level ABB→ABB dependencies. Omit when the ABB has no logical dependencies beyond the mandatory cross-cutting trio. |
-| `requires[].abb` | `AB-NNN` | * (per entry) | ID of the required ABB. |
+| `requires[].abb` | `ABB-NNN` | * (per entry) | ID of the required ABB. |
 | `requires[].cardinality` | enum | optional (default `1`) | `1` = exactly one (hard dependency); `0..1` = optional single; `1..n` = one or more; `0..n` = zero or more. |
 | `requires[].rationale` | string | recommended | Why the dependency exists — read by reviewers and by gap analysis. |
 
@@ -402,14 +402,14 @@ cross_cutting: false                 # true for ABBs that are themselves cross-c
 
 **Schema:** [`schemas/v1.1.0/abb.schema.json`](./schemas/v1.1.0/abb.schema.json).
 
-### 6.7 Solution Building Block (`SB-NNN`)
+### 6.7 Solution Building Block (`SBB-NNN`)
 
 ```yaml
 kind: sbb
-id: SB-001
-title: "SB-001 Identity Lifecycle Service (Entra)"
+id: SBB-001
+title: "SBB-001 Identity Lifecycle Service (Entra)"
 
-realises: [AB-001]                   # required, ≥1
+realises: [ABB-001]                   # required, ≥1
 realised_by_services: [identity-lifecycle-svc]
 
 products:                            # required, ≥1
@@ -445,14 +445,14 @@ ports:                               # interaction points on the SBB boundary
 
 parts:                               # typed roles inside the composite
   - name: bar-builder                # kebab-case role name, unique within the SBB
-    sbb: SB-310                       # the sub-SBB that plays this role (composite-of-composites)
+    sbb: SBB-310                       # the sub-SBB that plays this role (composite-of-composites)
     role: "Aggregates ticks into OHLCV bars"
     multiplicity: "1"                # UML multiplicity: 1 | 0..1 | 1..* | *  (default 1)
     ports:                           # optional: the part's own ports, referenced by connectors
       - { name: ticks-in,  direction: required }
       - { name: bars-out,  direction: provided }
   - name: signal-generator
-    sbb: SB-311
+    sbb: SBB-311
     role: "Produces trade signals from bars"
 
 connectors:                          # links wiring ports and parts
@@ -499,7 +499,7 @@ id: identity-lifecycle-svc           # kebab-case slug (preserves v1.0.0 convent
 numeric_id: SV-001                   # optional secondary ID for cross-kind queries
 title: "Identity Lifecycle Service"
 
-realises: [SB-001]                   # required, ≥1
+realises: [SBB-001]                   # required, ≥1
 part_of: BC-001                      # required: parent BC
 runtime_type: container | serverless | jvm | native | managed-service   # required
 
@@ -576,7 +576,7 @@ supersedes_snapshot: null                        # for transition snapshots
 artefacts:                                       # required, ≥1; the manifest
   - { id: PL-001, version: 1.0.0 }
   - { id: PL-002, version: 1.0.0 }
-  - { id: AB-001, version: 1.5.0 }
+  - { id: ABB-001, version: 1.5.0 }
 ```
 
 **Schema:** [`schemas/v1.1.0/snapshot.schema.json`](./schemas/v1.1.0/snapshot.schema.json) (full body structure forthcoming as a separate Snapshot standard).
@@ -595,7 +595,7 @@ sequenced_decisions: [DR-014, DR-015, DR-016]    # required, ≥1
 sequenced_steps:                                  # required, ≥1
   - { step: 1, summary: "Provision multi-region infra", target_date: 2027-Q1, owner: "Platform Team" }
   - { step: 2, summary: "Dual-write data layer", target_date: 2027-Q2, owner: "Data Team" }
-affected_artefacts: [PL-100, BC-105, AB-110]      # required, ≥1
+affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
 ```
 
 **Schema:** [`schemas/v1.1.0/transition.schema.json`](./schemas/v1.1.0/transition.schema.json) (full body structure forthcoming as a separate Transition standard).
@@ -670,8 +670,8 @@ classDiagram
     class Platform { PL-NNN }
     class Capability { CAP-NNN }
     class BoundedContext { BC-NNN }
-    class ABB { AB-NNN }
-    class SBB { SB-NNN }
+    class ABB { ABB-NNN }
+    class SBB { SBB-NNN }
     class Service { kebab or SV-NNN }
     class DecisionRecord { DR-NNN }
     class Snapshot { SN-NNN }
@@ -717,11 +717,11 @@ flowchart TB
     end
 
     subgraph LOGICAL ["4 — Logical"]
-        AB[ABB<br/>AB-NNN]
+        AB[ABB<br/>ABB-NNN]
     end
 
     subgraph PHYSICAL ["5 — Physical"]
-        SB[SBB<br/>SB-NNN]
+        SB[SBB<br/>SBB-NNN]
     end
 
     subgraph RUNTIME ["6 — Runtime / Code"]
@@ -775,17 +775,17 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph BASELINE ["Snapshot SN-001<br/>baseline · 2026-Q2"]
-        AB1[AB-007 v2.0.0<br/>baseline]
-        SB1[SB-007 v1.0.0<br/>baseline]
+        AB1[ABB-007 v2.0.0<br/>baseline]
+        SB1[SBB-007 v1.0.0<br/>baseline]
     end
 
     subgraph TARGET ["Snapshot SN-002<br/>target · 2027-Q4"]
-        AB2[AB-007 v3.0.0<br/>target]
-        SB2[SB-007 v2.0.0<br/>target]
+        AB2[ABB-007 v3.0.0<br/>target]
+        SB2[SBB-007 v2.0.0<br/>target]
     end
 
-    DR1{{DR-014<br/>change_type: replace<br/>affects AB-007, SB-007}}
-    DR2{{DR-015<br/>change_type: modify<br/>affects SB-007}}
+    DR1{{DR-014<br/>change_type: replace<br/>affects ABB-007, SBB-007}}
+    DR2{{DR-015<br/>change_type: modify<br/>affects SBB-007}}
 
     TR1[(Transition TR-001<br/>SN-001 → SN-002<br/>sequenced: DR-014, DR-015)]
 
@@ -799,7 +799,7 @@ flowchart LR
     DR2 -. applies_to .-> SB2
 ```
 
-The same artefact `id` (e.g. `AB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, sequenced by Decision Records.
+The same artefact `id` (e.g. `ABB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, sequenced by Decision Records.
 
 ---
 
@@ -847,7 +847,7 @@ subdomain_kind: generic
 # Relations
 provided_by_platform: PL-001
 required_by_outcomes: [OC-001, OC-002]
-realised_by_abbs: [AB-001, AB-003]
+realised_by_abbs: [ABB-001, ABB-003]
 applies_to: []
 references:
   - { type: doc, url: "https://www.opengroup.org/togaf-series-guide-business-capabilities" }
