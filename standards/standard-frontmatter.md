@@ -375,6 +375,9 @@ part_of: BC-001                      # required: parent BC
 realises_capabilities: [CAP-004]     # required, ≥1
 realised_by: [SB-001]                # multi: SBBs
 
+requires:                            # optional: capability-level dependencies on other ABBs
+  - { abb: AB-005, cardinality: "1", rationale: "Sign-in and lifecycle events are published to the event backbone" }
+
 domains: [business, application]     # required, ≥1; multi-valued TOGAF metamodel domains
 interfaces:                          # required, ≥1
   - { id: "I1", direction: "in", type: "request", description: "Token request (OIDC)" }
@@ -382,6 +385,20 @@ interfaces:                          # required, ≥1
 mandatory_subabbs: [iam, observability, governance]   # required; exactly these three
 cross_cutting: false                 # true for ABBs that are themselves cross-cutting (IAM, Obs, Gov)
 ```
+
+**The `requires` field (ABB capability dependencies).** `requires` declares the other ABBs this ABB depends on at the **logical / capability level** — *which* building blocks must be present for this one to do its job. It is an **abstract** dependency between logical components, deliberately distinct from two neighbouring concepts:
+
+- It is **not** `mandatory_subabbs` (the three cross-cutting concerns every ABB embeds — IAM, Observability, Governance). `requires` captures *domain* dependencies particular to this ABB.
+- It is **not** the part/connector wiring of a [composite SBB](#671-composite-sbbs-uml-composite-structure). `requires` says "an Agent Memory ABB must exist"; a composite SBB's `parts`/`connectors` say "*this concrete* memory product is wired to *that* port." Logical need vs concrete realisation.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `requires[]` | array of objects | optional | Capability-level ABB→ABB dependencies. Omit when the ABB has no logical dependencies beyond the mandatory cross-cutting trio. |
+| `requires[].abb` | `AB-NNN` | * (per entry) | ID of the required ABB. |
+| `requires[].cardinality` | enum | optional (default `1`) | `1` = exactly one (hard dependency); `0..1` = optional single; `1..n` = one or more; `0..n` = zero or more. |
+| `requires[].rationale` | string | recommended | Why the dependency exists — read by reviewers and by gap analysis. |
+
+**When to use:** declare a `requires` entry when this ABB cannot deliver its capability without another *logical* ABB being present (e.g. an AI Agent Platform requires a Reasoning Engine and Safety & Guardrails). Do **not** use it for internal composition of the ABB itself, nor for runtime product wiring — that belongs in the realising SBB. The inverse is not auto-materialised as a relation; `requires` is a forward-only declaration consumed by gap analysis (a required ABB absent from the catalogue is a gap — see the [ABB Document Standard §3.4](./building-blocks/architecture-building-blocks/standard-abb-document.md#34-capability-dependencies-requires)).
 
 **Schema:** [`schemas/v1.1.0/abb.schema.json`](./schemas/v1.1.0/abb.schema.json).
 

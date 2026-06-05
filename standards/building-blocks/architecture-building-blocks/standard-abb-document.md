@@ -212,6 +212,35 @@ A table mapping ABB-to-ABB dependencies:
 |-----|----------------------|--------------------|
 | Source ABB → Target ABB | What the dependency provides | I-refs (e.g. I1, I2) |
 
+#### 3.4 Capability Dependencies (`requires`)
+
+**Heading:** `### 3.4  Capability dependencies (requires)`
+
+Where §3.3 lists *interface-level* dependencies (which named interface this ABB consumes from a peer), this section declares **capability-level** dependencies: the other ABBs that MUST be present in the architecture for this one to deliver its capability. These are recorded in the frontmatter `requires` field (see [Frontmatter Standard §6.6](../../standard-frontmatter.md#66-architecture-building-block-ab-nnn)) and surfaced here as a table.
+
+**When to declare a `requires` relationship.** Declare a dependency when the ABB cannot realise its capability unless another *logical* ABB exists — for example, an AI Agent Platform requires a Reasoning Engine (no agent without a model to reason), a Tool Integration ABB (agents act through tools), and Safety & Guardrails (production agents must be bounded). Declare it at the level of *logical need*, not concrete product. Do **not** use `requires` for:
+
+- The three mandatory cross-cutting sub-ABBs (IAM, Observability, Governance) — those are captured by `mandatory_subabbs` and the §2.5–2.7 sections, and are assumed for every ABB.
+- Internal composition of this ABB (its own components — those live in §2.2).
+- Runtime product wiring — that is the realising SBB's concern.
+
+**`requires` vs composite-SBB parts.** A `requires` relationship is an **abstract dependency between logical building blocks**: it asserts *that* an Agent Memory ABB must exist, with what multiplicity, and why. The [parts and connectors of a composite SBB](../solution-building-blocks/standard-sbb-document.md#composite-sbbs) are the **concrete wiring**: *this* memory product is plugged into *that* port over *this* protocol. The ABB layer says what logical pieces must be present; the SBB layer says how a specific set of products is assembled to satisfy them. One `requires` entry on an ABB may be satisfied by a part in many different composite SBBs.
+
+**How `requires` feeds gap analysis.** Because `requires` names ABB IDs, it is machine-checkable. A standing gap-analysis check walks every ABB's `requires` list and flags any required `abb` that is **absent from the catalogue** (no folder, or only a placeholder) as an **architecture gap** — a logical building block the architecture depends on but has not yet defined or realised. Cardinality sharpens the report: a missing `cardinality: "1"` dependency is a hard gap (the dependent ABB cannot function); a missing `0..1`/`0..n` dependency is an optional/enhancement gap. The realising SBBs add the second half of the picture — an ABB whose `requires` are all catalogued but whose required ABBs have no accepted SBB is a *realisation* gap.
+
+Surface the declared dependencies as a table:
+
+```markdown
+| Required ABB | Cardinality | Rationale |
+|--------------|-------------|-----------|
+| [AB-011](../AB-011/) Reasoning Engine | 1 | Every agent needs a reasoning engine. |
+| [AB-012](../AB-012/) Tool Integration | 1..n | Agents interact with external systems via tools. |
+| [AB-013](../AB-013/) Agent Memory | 0..1 | Stateful agents need persistent memory; stateless agents do not. |
+| [AB-014](../AB-014/) Safety & Guardrails | 1 | Production agents require safety guardrails. |
+```
+
+If the ABB has no capability dependencies beyond the mandatory cross-cutting trio, state "No capability dependencies beyond the mandatory cross-cutting sub-ABBs." and omit the `requires` field from the frontmatter.
+
 
 ### Section 4 — Mapping
 
@@ -374,13 +403,14 @@ Before finalising an ABB document, verify:
 7. [ ] **Cross-Cutting Sections**: Does the document include all three mandatory sections — 2.5 (IAM), 2.6 (Observability), 2.7 (Governance & Policy)?
 8. [ ] **Cross-Cutting Diagram**: Does the component diagram show IAM, Observability, and Governance & Policy as sub-ABB groups?
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
+10. [ ] **Capability Dependencies**: If the ABB depends on other logical ABBs, are they declared in the `requires` frontmatter (with cardinality and rationale) and reflected in §3.4? Are the referenced ABB IDs valid (`AB-NNN`)?
 
 
 ## Quick Reference Sections
 
 1. **Purpose**: Why it exists (agnostic).
 2. **Building block**: Component Diagram + Functionality + Attributes + Semantic + **IAM** + **Observability** + **Governance & Policy**.
-3. **Interfaces**: ID + Direction + Type + Description.
+3. **Interfaces**: ID + Direction + Type + Description + **Capability dependencies (`requires`)**.
 4. **Mapping**: To business entities, policies, and capabilities.
 5. **SBB Guidance**: Structural patterns and shared capabilities.
 6. **Revision History**: Semantic versioning log.
