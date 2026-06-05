@@ -329,6 +329,73 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 - The `summary.md` file is retained as a plain-text source for the panel content.
 
 
+## Composite SBBs
+
+Most SBBs are **simple**: one boundary, a flat product mapping from ABB components to products. A **composite** SBB is instead an *assembly of sub-SBBs* — it has internal structure worth modelling explicitly. The framework models that structure with the UML 2 composite-structure grammar: **parts**, **ports**, and **connectors**.
+
+| UML concept | Meaning in an SBB | Frontmatter field |
+|---|---|---|
+| **Part** | A typed role inside the composite, normally played by a sub-SBB (composite-of-composites). | `parts[]` |
+| **Port** | An interaction point on the SBB boundary. `provided` = a contract offered (ball/lollipop); `required` = a contract consumed (socket). | `ports[]` |
+| **Connector — delegation** | Forwards a boundary port inward to the part that implements (or needs) it. | `connectors[].type: delegation` |
+| **Connector — assembly** | Wires one part's *required* interface to another part's *provided* interface (ball-and-socket). | `connectors[].type: assembly` |
+
+The composite structure is declared in frontmatter (see [Frontmatter Standard §6.7.1](../../standard-frontmatter.md#671-composite-sbbs-uml-composite-structure)) and drawn with the Mermaid composite-structure convention in the [SBB Diagram Standard](./standard-sbb-diagram.md#composite-structure-diagrams-mermaid). Ports map to TOGAF service contracts: a `provided` port is the SBB-level realisation of one of the parent ABB's `interfaces` (link them with `ports[].abb_interface`), so the technology-agnostic contract on the ABB stays stable while the products beneath the SBB change ([Executable Contracts Standard](../../agent-native/executable-contracts.md)).
+
+### <a id="composite-vs-simple-sbbs"></a>When to use composite vs simple SBBs
+
+Use a **composite SBB** when **two or more** of the following hold:
+
+- The realisation decomposes into **sub-SBBs that are independently versioned, deployed, or owned** (each is a candidate for its own folder and its own runtime Service).
+- The internal wiring is itself an architectural decision — the **assembly** of parts, not just the parts, carries meaning (e.g. an order-execution part must sit behind a risk-check part).
+- The SBB exposes a **small, stable boundary contract** (a handful of ports) over a **larger, churning interior** — the classic Thinnest-Viable-Platform / blast-radius-containment shape ([Agent-Native principle P8](../../agent-native/principles.md)).
+- You want the parts to be **substitutable**: a part typed by a sub-SBB can be swapped for a sibling sub-SBB that provides the same port contracts.
+
+Use a **simple SBB** (omit `composite`, `ports`, `parts`, `connectors`; keep the flat `product_mapping`) when:
+
+- The SBB is **one product or one tightly-coupled product family** with no meaningful internal seam (e.g. SBB-001 Identity Lifecycle Service realised entirely on Microsoft Entra).
+- Decomposition would create sub-SBBs that are **never reused or deployed independently** — the seam would be fiction.
+- The realisation is small enough that one component diagram and one product-mapping table tell the whole story.
+
+> **Rule of thumb:** if you would draw boxes-inside-a-box and the inner boxes have their own lifecycles, it is composite. If you would draw one box with a parts list, it is simple. When in doubt, start simple — promoting a simple SBB to composite later is additive (add the four fields; the existing `product_mapping` stays as the per-part detail).
+
+### Composite-specific document sections
+
+A composite SBB's `index.md` adds two things to the structure above:
+
+1. **§2.1 Component Diagram** uses the **Mermaid composite-structure diagram** (parts as nested subgraphs, ports on the boundary, connectors between them) — see the diagram standard. The Draw.io `components.drawio`/`.png` pair is **optional** for composites; the Mermaid block is the normative view because it renders the parts/ports/connectors directly from the frontmatter and stays diffable.
+2. A new subsection **§2.10 Composite Structure** that documents, in prose + tables, the parts, ports, and connectors:
+
+```markdown
+### 2.10  Composite structure
+
+This SBB is composite. It assembles the sub-SBBs below behind a <N>-port boundary.
+
+**Boundary ports**
+
+| Port | Direction | Protocol | Contract | Realises ABB interface |
+|------|-----------|----------|----------|------------------------|
+| `order-api` | provided | REST/HTTP | openapi/v3 | I1 |
+
+**Parts**
+
+| Part (role) | Sub-SBB | Responsibility | Multiplicity |
+|-------------|---------|----------------|--------------|
+| `bar-builder` | [SB-310](../SB-310/) | Aggregates ticks into OHLCV bars | 1 |
+
+**Connectors**
+
+| From | To | Type | Notes |
+|------|----|------|-------|
+| `order-api` | `order-router.command-in` | delegation | Boundary order requests routed to the order router. |
+| `bar-builder.bars-out` | `signal-generator.bars-in` | assembly | Bars feed signal generation. |
+```
+
+Every `parts[].sbb` MUST also appear in the SBB's `contains` relation (and the sub-SBB carries the inverse `part_of`), so the composition is bidirectionally traceable per the [Traceability Standard](../../standard-traceability.md).
+
+A complete worked example lives at [`example-composite/`](./example-composite/) (`SB-301 Strategy Engine`): a composite SBB assembling three sub-SBBs behind a two-port boundary, with the matching Mermaid composite diagram and §2.10 tables. For a simple SBB, see [`example/`](./example/).
+
+
 ## Conventions
 
 - **Language:** Use British English spelling (e.g. "organisation", "localisation", "behaviour").
@@ -355,6 +422,8 @@ Before finalising an SBB document, verify:
 7. [ ] **Cross-Cutting Diagram**: Does the component diagram show IAM, Observability, and Governance & Policy as containers with products?
 8. [ ] **Revision History**: Is the versioning and history updated for this change?
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
+10. [ ] **Composite (if applicable)**: If `composite: true`, are `parts` (≥1) and `connectors` (≥1) declared, is there a §2.10 Composite Structure section, and does §2.1 use the Mermaid composite-structure diagram?
+11. [ ] **Composite traceability (if applicable)**: Does every `parts[].sbb` appear in `contains`, with the inverse `part_of` on the sub-SBB, and does every boundary `provided` port link to a parent ABB interface via `abb_interface`?
 
 
 ## Quick Reference Sections

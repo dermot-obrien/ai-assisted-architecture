@@ -407,6 +407,69 @@ deployment_model: managed | self-hosted | hybrid
 
 **Schema:** [`schemas/v1.1.0/sbb.schema.json`](./schemas/v1.1.0/sbb.schema.json).
 
+#### 6.7.1 Composite SBBs (UML composite structure)
+
+An SBB may be **composite** — an assembly of sub-SBBs wired together — rather than a flat product mapping. A composite SBB models its internals as a UML composite structure: typed **parts** (roles played by sub-SBBs), **ports** (interaction points on the boundary), and **connectors** (links between ports and parts). This lets a large realisation (e.g. a trading "Strategy Engine") be decomposed into independently-ownable sub-SBBs while keeping one catalogued boundary contract.
+
+```yaml
+composite: true                      # optional; default false. When true, parts + connectors are required.
+
+ports:                               # interaction points on the SBB boundary
+  - name: order-api                  # kebab-case, unique within the SBB
+    direction: provided              # provided (ball/lollipop) | required (socket)
+    protocol: REST/HTTP
+    contract: openapi/v3             # contract id or media type; may be an AP-NNN api id
+    abb_interface: I1                # the parent ABB Interface this port realises (traceability)
+  - name: market-data-feed
+    direction: required
+    protocol: pub-sub
+    contract: cloudevents/v1
+    abb_interface: I4
+
+parts:                               # typed roles inside the composite
+  - name: bar-builder                # kebab-case role name, unique within the SBB
+    sbb: SB-310                       # the sub-SBB that plays this role (composite-of-composites)
+    role: "Aggregates ticks into OHLCV bars"
+    multiplicity: "1"                # UML multiplicity: 1 | 0..1 | 1..* | *  (default 1)
+    ports:                           # optional: the part's own ports, referenced by connectors
+      - { name: ticks-in,  direction: required }
+      - { name: bars-out,  direction: provided }
+  - name: signal-generator
+    sbb: SB-311
+    role: "Produces trade signals from bars"
+
+connectors:                          # links wiring ports and parts
+  - from: order-api                  # boundary port ...
+    to: order-router.command-in      # ... delegated to a part's port (dotted form)
+    type: delegation                 # delegation: boundary port <-> part port
+  - from: bar-builder.bars-out       # part-to-part
+    to: signal-generator.bars-in
+    type: assembly                   # assembly: required socket meets provided ball
+```
+
+**Field rules:**
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `composite` | boolean | optional (default `false`) | Set `true` to declare an assembled SBB. |
+| `ports[]` | array | recommended for composite | Boundary interaction points. `name` + `direction` required per port. |
+| `ports[].direction` | enum | * (per port) | `provided` \| `required`. |
+| `parts[]` | array | * when `composite: true` (≥1) | Each has `name` + `role`; `sbb` references the sub-SBB playing the role. |
+| `connectors[]` | array | * when `composite: true` (≥1) | Each has `from`, `to`, `type`. |
+| `connectors[].type` | enum | * (per connector) | `delegation` (boundary↔part) \| `assembly` (part↔part). |
+| `connectors[].from` / `.to` | endpoint | * (per connector) | A boundary port name (`order-api`) or a part-scoped point in dotted form (`part-name.port-name`). |
+
+**Validation rules** (the JSON Schema enforces the first three; the validator script enforces reference resolution):
+
+1. When `composite: true`, both `parts` (≥1) and `connectors` (≥1) MUST be present.
+2. Port and part `name`s are kebab-case and unique within the SBB.
+3. A `delegation` connector MUST have exactly one endpoint that is a boundary port and one that is a part port; an `assembly` connector MUST wire two part ports.
+4. Every `connectors[].from` / `.to` endpoint MUST resolve to a declared boundary port or a declared part (and, in dotted form, a declared part port).
+5. A `delegation` connector crosses the boundary (one boundary-port end, one part-port end) and is drawn in data-flow direction: inward for a request/stream arriving on the port, outward for a result an inner part surfaces on a `provided` port. An `assembly` connector joins two part ports, drawn provided → required (producer → consumer).
+6. Each `parts[].sbb` SHOULD exist as a catalogued SBB and SHOULD carry the inverse `part_of` (or be listed under this SBB's `contains`) so the composition is bidirectionally traceable.
+
+A **simple** (non-composite) SBB omits all four fields and keeps the flat `product_mapping`. See [§ When to use composite vs simple SBBs](./building-blocks/solution-building-blocks/standard-sbb-document.md#composite-vs-simple-sbbs) in the SBB document standard.
+
 ### 6.8 API (`AP-NNN`)
 
 Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/api.schema.json`](./schemas/v1.1.0/_placeholders/api.schema.json).
