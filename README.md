@@ -227,7 +227,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
 | Capability document | No | Document structure, maturity model, and ABB mapping for capabilities. |
 | Capability diagrams | No | Capability map and capability-to-ABB traceability diagram structure and styling rules. |
 | Bounded Context | No | Structure and metadata for Bounded Contexts and linguistic boundaries. |
-| ABB document | No | Document structure, metadata, and section layout for ABBs. |
+| ABB document | No | Document structure, metadata, and section layout for ABBs, including **capability dependencies** (the `requires` field — abstract ABB→ABB dependencies that feed gap analysis). |
 | ABB diagram | No | Draw.io diagram structure, styling, and export rules for ABBs. |
 | SBB document | No | Document structure, metadata, and section layout for SBBs, including **composite SBBs** (UML parts / ports / connectors) and when to use composite vs simple. |
 | SBB diagram | No | Draw.io diagram structure, styling, and export rules for SBBs, plus the **Mermaid composite-structure** convention for composite SBBs. |

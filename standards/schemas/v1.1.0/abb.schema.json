@@ -18,6 +18,22 @@
         "realises_capabilities":{ "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "minItems": 1, "uniqueItems": true },
         "realised_by":          { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/sbbId" }, "uniqueItems": true },
 
+        "requires": {
+          "type": "array",
+          "description": "Capability-level dependencies on other ABBs: the logical building blocks this ABB needs in order to function. This is an abstract dependency between logical components (which ABB must be present), distinct from the concrete part/connector wiring of a composite SBB. Feeds gap analysis: a required ABB that is absent from the catalogue is a gap.",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["abb"],
+            "additionalProperties": false,
+            "properties": {
+              "abb":         { "$ref": "envelope.schema.json#/$defs/abbId", "description": "ID of the required ABB (AB-NNN)." },
+              "cardinality": { "type": "string", "enum": ["1", "0..1", "1..n", "0..n"], "default": "1", "description": "How many instances of the required ABB this one depends on. '1' = exactly one (hard dependency); '0..1' = optional single; '1..n' = one or more; '0..n' = zero or more." },
+              "rationale":   { "type": "string", "description": "Why this dependency exists." }
+            }
+          }
+        },
+
         "domains": {
           "type": "array",
           "items": { "type": "string", "enum": ["business", "data", "application", "technology"] },
