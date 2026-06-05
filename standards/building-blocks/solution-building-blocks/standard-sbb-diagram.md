@@ -81,13 +81,13 @@ Mermaid ships no composite-structure diagram type. We render one with a **`flowc
 
 | UML composite element | Mermaid construct | Notation in this standard |
 |---|---|---|
-| Composite classifier (the SBB) | outermost `subgraph` | label `«composite» SB-NNN Name` |
-| Part (role played by a sub-SBB) | nested `subgraph` | label `role-name : SB-NNN` |
+| Composite classifier (the SBB) | outermost `subgraph` | label `«composite» SBB-NNN Name` |
+| Part (role played by a sub-SBB) | nested `subgraph` | label `role-name : SBB-NNN` |
 | Provided port (ball / lollipop) | circle/stadium node | `(("▷ name"))` styled `:::provided` |
 | Required port (socket) | asymmetric node | `>"◁ name"]` styled `:::required` |
 | Delegation connector | dotted edge | `-. delegate .->` |
 | Assembly connector | solid labelled edge | `-->|contract|` (provided → required, i.e. data-flow direction) |
-| Multiplicity | text in the part label | `… : SB-310 [1..*]` |
+| Multiplicity | text in the part label | `… : SBB-310 [1..*]` |
 | External actor / system | node outside the outer subgraph | `:::external` |
 
 ### Mermaid limitations and the workarounds this standard mandates
@@ -96,8 +96,8 @@ Mermaid ships no composite-structure diagram type. We render one with a **`flowc
 |---|---|
 | No true **ball-and-socket** glyph. | Encode direction with node **shape + class + a Unicode marker**: provided ports are circular `(("▷ …"))` `:::provided`; required ports are asymmetric `>"◁ …"]` `:::required`. |
 | Ports cannot be pinned **on** a subgraph border. | Declare boundary-port nodes **inside** the outer SBB subgraph, before the part subgraphs; the `:::provided` / `:::required` classes make them read as boundary ports. |
-| Subgraphs are not first-class typed parts. | Put the **type in the label** (`role-name : SB-NNN`) and the **role-name as the subgraph id** so connectors can address `part.port`. |
-| No native **«stereotype»** rendering. | Write guillemets in label text: `"«composite» SB-301 Strategy Engine"`. |
+| Subgraphs are not first-class typed parts. | Put the **type in the label** (`role-name : SBB-NNN`) and the **role-name as the subgraph id** so connectors can address `part.port`. |
+| No native **«stereotype»** rendering. | Write guillemets in label text: `"«composite» SBB-301 Strategy Engine"`. |
 | Edge direction is the only built-in semantics; UML connector kinds are not distinguished. | Use the **line-style convention**: delegation = dotted (`-. delegate .->`), assembly = solid with a contract label (`-->|…|`). |
 | Deep nesting gets visually noisy. | Cap at **three subgraph levels** (SBB → part → sub-part). Below that, link to the sub-SBB's own composite diagram instead of inlining. |
 
@@ -130,16 +130,16 @@ One provided boundary port delegated inward to a part input, two parts joined by
 
 ```mermaid
 flowchart LR
-    subgraph SB["«composite» SB-301 Strategy Engine"]
+    subgraph SB["«composite» SBB-301 Strategy Engine"]
         direction LR
         order-api(["▷ order-api<br/>provided · REST/HTTP"]):::provided
 
-        subgraph bar-builder["bar-builder : SB-310"]
+        subgraph bar-builder["bar-builder : SBB-310"]
             bar-builder_ticks-in>"◁ ticks-in"]:::required
             bar-builder_bars-out(["▷ bars-out"]):::provided
         end
 
-        subgraph signal-generator["signal-generator : SB-311"]
+        subgraph signal-generator["signal-generator : SBB-311"]
             signal-generator_command-in>"◁ command-in"]:::required
             signal-generator_bars-in>"◁ bars-in"]:::required
         end
@@ -161,20 +161,20 @@ A provided `order-api` and a `required` `market-data-feed` on the boundary; thre
 flowchart LR
     md[("Market Data Provider")]:::external
 
-    subgraph SB["«composite» SB-301 Strategy Engine"]
+    subgraph SB["«composite» SBB-301 Strategy Engine"]
         direction LR
         order-api(["▷ order-api<br/>provided · REST/HTTP · openapi/v3 · realises I1"]):::provided
         market-data-feed>"◁ market-data-feed<br/>required · pub-sub · cloudevents/v1 · realises I4"]:::required
 
-        subgraph bar-builder["bar-builder : SB-310"]
+        subgraph bar-builder["bar-builder : SBB-310"]
             bar-builder_ticks-in>"◁ ticks-in"]:::required
             bar-builder_bars-out(["▷ bars-out"]):::provided
         end
-        subgraph signal-generator["signal-generator : SB-311"]
+        subgraph signal-generator["signal-generator : SBB-311"]
             signal-generator_bars-in>"◁ bars-in"]:::required
             signal-generator_signals-out(["▷ signals-out"]):::provided
         end
-        subgraph order-router["order-router : SB-312"]
+        subgraph order-router["order-router : SBB-312"]
             order-router_command-in>"◁ command-in"]:::required
             order-router_signals-in>"◁ signals-in"]:::required
             order-router_orders-out(["▷ orders-out"]):::provided
@@ -199,20 +199,20 @@ A part may itself be composite. Show one extra level of nesting; stop there and 
 
 ```mermaid
 flowchart TB
-    subgraph SB["«composite» SB-301 Strategy Engine"]
+    subgraph SB["«composite» SBB-301 Strategy Engine"]
         direction TB
         order-api(["▷ order-api<br/>provided"]):::provided
 
-        subgraph order-router["order-router : SB-312 «composite»"]
+        subgraph order-router["order-router : SBB-312 «composite»"]
             direction LR
             order-router_command-in>"◁ command-in"]:::required
             order-router_orders-out(["▷ orders-out"]):::provided
 
-            subgraph risk-check["risk-check : SB-320"]
+            subgraph risk-check["risk-check : SBB-320"]
                 risk-check_in>"◁ in"]:::required
                 risk-check_out(["▷ out"]):::provided
             end
-            subgraph gateway-adapter["gateway-adapter : SB-321"]
+            subgraph gateway-adapter["gateway-adapter : SBB-321"]
                 gateway-adapter_in>"◁ in"]:::required
                 gateway-adapter_out(["▷ out"]):::provided
             end

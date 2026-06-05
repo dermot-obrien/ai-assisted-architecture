@@ -4,9 +4,9 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 ---
 $schema: ../../../../schemas/v1.1.0/abb.schema.json
-id: AB-014
+id: ABB-014
 kind: abb
-title: "AB-014 Safety & Guardrails"
+title: "ABB-014 Safety & Guardrails"
 short_name: "Guardrails"
 description: "The logical building block that bounds what an agent may do — checking every proposed action against safety policy before it is dispatched."
 
@@ -36,7 +36,7 @@ mandatory_subabbs: [iam, observability, governance]
 cross_cutting: false
 
 tags: [ai, agent, example, requires]
-sidebar_label: "AB-014 Safety & Guardrails"
+sidebar_label: "ABB-014 Safety & Guardrails"
 sidebar_position: 14
 
 provenance:
@@ -45,9 +45,9 @@ provenance:
   review_state: ai-raw
 ---
 
-# AB-014 Safety & Guardrails
+# ABB-014 Safety & Guardrails
 
-> **Minimal example** — one of the four ABBs required by [AB-010 AI Agent Platform](../AB-010/).
+> **Minimal example** — one of the four ABBs required by [ABB-010 AI Agent Platform](../ABB-010/).
 > Shows a hard dependency (`cardinality: "1"`): a production agent must have a guardrail engine.
 > Kept brief.
 >
@@ -57,7 +57,7 @@ provenance:
 
 ## 1  Purpose
 
-Safety & Guardrails is the logical component that bounds agent behaviour. Before the agent platform dispatches any action, it submits the proposed action to this ABB, which evaluates it against safety policy (allow-lists, exposure limits, prohibited operations, human-approval thresholds) and returns a verdict. It is what makes an autonomous agent safe to run in production, which is why AB-010 requires it with `cardinality: "1"`.
+Safety & Guardrails is the logical component that bounds agent behaviour. Before the agent platform dispatches any action, it submits the proposed action to this ABB, which evaluates it against safety policy (allow-lists, exposure limits, prohibited operations, human-approval thresholds) and returns a verdict. It is what makes an autonomous agent safe to run in production, which is why ABB-010 requires it with `cardinality: "1"`.
 
 ## 2  Building block
 
@@ -90,4 +90,4 @@ Safety & Guardrails is the logical component that bounds agent behaviour. Before
 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
-| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as a hard `requires` target of AB-010. |
+| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as a hard `requires` target of ABB-010. |

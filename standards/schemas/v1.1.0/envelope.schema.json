@@ -51,9 +51,9 @@
     },
 
     "anyId": {
-      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|CAP|BC|AB|SB|AP|SV|VW|DR|EV|DN|SN|TR followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
       "type": "string",
-      "pattern": "^(OC|UC|PL|CAP|BC|AB|SB|AP|SV|VW|DR|EV|DN|SN|TR)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      "pattern": "^(OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
     },
 
     "platformId":   { "type": "string", "pattern": "^PL-\\d{3}$" },
@@ -61,8 +61,8 @@
     "outcomeId":    { "type": "string", "pattern": "^OC-\\d{3}$" },
     "useCaseId":    { "type": "string", "pattern": "^UC-\\d{3}$" },
     "bcId":         { "type": "string", "pattern": "^BC-\\d{3}$" },
-    "abbId":        { "type": "string", "pattern": "^AB-\\d{3}$" },
-    "sbbId":        { "type": "string", "pattern": "^SB-\\d{3}$" },
+    "abbId":        { "type": "string", "pattern": "^ABB-\\d{3}$" },
+    "sbbId":        { "type": "string", "pattern": "^SBB-\\d{3}$" },
     "apiId":        { "type": "string", "pattern": "^AP-\\d{3}$" },
     "viewId":       { "type": "string", "pattern": "^VW-\\d{3}$" },
     "drId":         { "type": "string", "pattern": "^DR-\\d{3}$" },

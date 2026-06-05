@@ -4,9 +4,9 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 ---
 $schema: ../../../../schemas/v1.1.0/abb.schema.json
-id: AB-010
+id: ABB-010
 kind: abb
-title: "AB-010 AI Agent Platform"
+title: "ABB-010 AI Agent Platform"
 short_name: "Agent Platform"
 description: "Logical building block for a production AI agent: the runtime that turns a goal into actions by reasoning over context, invoking tools, optionally remembering across turns, and operating within safety guardrails."
 
@@ -30,16 +30,16 @@ realised_by: []
 
 # --- Capability dependencies (requires): logical ABBs this ABB needs ---
 requires:
-  - abb: AB-011
+  - abb: ABB-011
     cardinality: "1"
     rationale: "Every agent needs a reasoning engine"
-  - abb: AB-012
+  - abb: ABB-012
     cardinality: "1..n"
     rationale: "Agents interact with external systems via tools"
-  - abb: AB-013
+  - abb: ABB-013
     cardinality: "0..1"
     rationale: "Stateful agents need persistent memory"
-  - abb: AB-014
+  - abb: ABB-014
     cardinality: "1"
     rationale: "Production agents require safety guardrails"
 
@@ -54,7 +54,7 @@ mandatory_subabbs: [iam, observability, governance]
 cross_cutting: false
 
 tags: [ai, agent, example, requires]
-sidebar_label: "AB-010 AI Agent Platform"
+sidebar_label: "ABB-010 AI Agent Platform"
 sidebar_position: 10
 
 provenance:
@@ -63,12 +63,12 @@ provenance:
   review_state: ai-raw
 ---
 
-# AB-010 AI Agent Platform
+# ABB-010 AI Agent Platform
 
 > **Worked example** — the canonical reference for the ABB **`requires`** field (capability
 > dependencies between logical building blocks). It demonstrates how one ABB declares the
 > other ABBs it depends on, with cardinality and rationale, and how those dependencies feed
-> gap analysis. The four required ABBs (AB-011…AB-014) exist as minimal examples in sibling
+> gap analysis. The four required ABBs (ABB-011…ABB-014) exist as minimal examples in sibling
 > folders. The AI-agent domain is illustrative; the *dependency pattern* is the point.
 
 ## 1  Purpose
@@ -100,7 +100,7 @@ The diagram shows the agent platform as an orchestration boundary that depends o
 
 ### 2.4  Semantic
 
-Inside the boundary: the agent loop, context assembly, action dispatch, and trace emission. Outside the boundary: the model that does the reasoning (AB-011), the tools the agent acts through (AB-012), any cross-turn memory (AB-013), and the safety policy engine (AB-014). The platform is the *coordinator*; the capabilities it coordinates are separate ABBs it `requires`.
+Inside the boundary: the agent loop, context assembly, action dispatch, and trace emission. Outside the boundary: the model that does the reasoning (ABB-011), the tools the agent acts through (ABB-012), any cross-turn memory (ABB-013), and the safety policy engine (ABB-014). The platform is the *coordinator*; the capabilities it coordinates are separate ABBs it `requires`.
 
 ### 2.5  Identity & Access Management
 
@@ -151,10 +151,10 @@ This ABB depends on four other logical ABBs to deliver its capability. These are
 
 | Required ABB | Cardinality | Rationale |
 |--------------|-------------|-----------|
-| [AB-011](../AB-011/) Reasoning Engine | 1 | Every agent needs a reasoning engine — without a model to plan and decide, there is no agent. |
-| [AB-012](../AB-012/) Tool Integration | 1..n | Agents interact with external systems via tools; a useful agent has at least one, usually many. |
-| [AB-013](../AB-013/) Agent Memory | 0..1 | Stateful agents need persistent memory across turns; purely reactive agents may omit it. |
-| [AB-014](../AB-014/) Safety & Guardrails | 1 | Production agents require safety guardrails on every action before it is dispatched. |
+| [ABB-011](../ABB-011/) Reasoning Engine | 1 | Every agent needs a reasoning engine — without a model to plan and decide, there is no agent. |
+| [ABB-012](../ABB-012/) Tool Integration | 1..n | Agents interact with external systems via tools; a useful agent has at least one, usually many. |
+| [ABB-013](../ABB-013/) Agent Memory | 0..1 | Stateful agents need persistent memory across turns; purely reactive agents may omit it. |
+| [ABB-014](../ABB-014/) Safety & Guardrails | 1 | Production agents require safety guardrails on every action before it is dispatched. |
 
 ## 4  Mapping
 
@@ -165,7 +165,7 @@ This ABB depends on four other logical ABBs to deliver its capability. These are
 
 ### 4.2  Mapping to business/organisational policies
 
-- **AI Use Policy.** The platform enforces approved-use and human-oversight rules via AB-014.
+- **AI Use Policy.** The platform enforces approved-use and human-oversight rules via ABB-014.
 - **Data Handling Policy.** Classification is propagated through context, memory, and tool calls.
 
 ### 4.3  Mapping to capabilities
@@ -176,7 +176,7 @@ Capability mapping is illustrative in this worked example. In a real workspace t
 
 ### 5.1  Structural Pattern for Agent SBBs
 
-A realising SBB selects a concrete model (for AB-011), a tool runtime (for AB-012), an optional memory store (for AB-013), and a policy engine (for AB-014), then wires them — often as a **composite SBB** whose parts realise the required ABBs. The `requires` list tells the SBB author exactly which logical pieces must be satisfied.
+A realising SBB selects a concrete model (for ABB-011), a tool runtime (for ABB-012), an optional memory store (for ABB-013), and a policy engine (for ABB-014), then wires them — often as a **composite SBB** whose parts realise the required ABBs. The `requires` list tells the SBB author exactly which logical pieces must be satisfied.
 
 ### 5.2  Shared Patterns
 

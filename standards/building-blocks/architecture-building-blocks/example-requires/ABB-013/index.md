@@ -4,9 +4,9 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 ---
 $schema: ../../../../schemas/v1.1.0/abb.schema.json
-id: AB-013
+id: ABB-013
 kind: abb
-title: "AB-013 Agent Memory"
+title: "ABB-013 Agent Memory"
 short_name: "Memory"
 description: "The logical building block that gives an agent state across turns — storing, retrieving, and summarising prior context."
 
@@ -36,7 +36,7 @@ mandatory_subabbs: [iam, observability, governance]
 cross_cutting: false
 
 tags: [ai, agent, example, requires]
-sidebar_label: "AB-013 Agent Memory"
+sidebar_label: "ABB-013 Agent Memory"
 sidebar_position: 13
 
 provenance:
@@ -45,15 +45,15 @@ provenance:
   review_state: ai-raw
 ---
 
-# AB-013 Agent Memory
+# ABB-013 Agent Memory
 
-> **Minimal example** — one of the four ABBs required by [AB-010 AI Agent Platform](../AB-010/).
+> **Minimal example** — one of the four ABBs required by [ABB-010 AI Agent Platform](../ABB-010/).
 > Shows an **optional** dependency (`cardinality: "0..1"`): stateful agents need it, reactive
 > ones do not. Kept brief.
 
 ## 1  Purpose
 
-Agent Memory is the logical component that lets an agent remember. It persists turns, facts, and summaries, and retrieves the relevant slice of that history into the agent's working context on demand. It is optional: a purely reactive agent that treats every request independently does not require it, which is why AB-010 declares it with `cardinality: "0..1"`.
+Agent Memory is the logical component that lets an agent remember. It persists turns, facts, and summaries, and retrieves the relevant slice of that history into the agent's working context on demand. It is optional: a purely reactive agent that treats every request independently does not require it, which is why ABB-010 declares it with `cardinality: "0..1"`.
 
 ## 2  Building block
 
@@ -86,4 +86,4 @@ Agent Memory is the logical component that lets an agent remember. It persists t
 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
-| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as an optional `requires` target of AB-010. |
+| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as an optional `requires` target of ABB-010. |

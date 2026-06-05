@@ -4,9 +4,9 @@ SPDX-License-Identifier: CC-BY-4.0
 -->
 ---
 $schema: ../../../../schemas/v1.1.0/abb.schema.json
-id: AB-011
+id: ABB-011
 kind: abb
-title: "AB-011 Reasoning Engine"
+title: "ABB-011 Reasoning Engine"
 short_name: "Reasoning"
 description: "The logical building block that turns context into a plan or decision — the model and inference loop an agent reasons with."
 
@@ -36,7 +36,7 @@ mandatory_subabbs: [iam, observability, governance]
 cross_cutting: false
 
 tags: [ai, agent, example, requires]
-sidebar_label: "AB-011 Reasoning Engine"
+sidebar_label: "ABB-011 Reasoning Engine"
 sidebar_position: 11
 
 provenance:
@@ -45,9 +45,9 @@ provenance:
   review_state: ai-raw
 ---
 
-# AB-011 Reasoning Engine
+# ABB-011 Reasoning Engine
 
-> **Minimal example** — one of the four ABBs required by [AB-010 AI Agent Platform](../AB-010/).
+> **Minimal example** — one of the four ABBs required by [ABB-010 AI Agent Platform](../ABB-010/).
 > Shows the *target* of a `requires` entry (`cardinality: "1"`). Kept deliberately brief.
 
 ## 1  Purpose
@@ -84,4 +84,4 @@ The Reasoning Engine is the logical component that, given a goal and the current
 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
-| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as a `requires` target of AB-010. |
+| 0.1.0 | 2026-06-06 | Initial Draft | Minimal example created as a `requires` target of ABB-010. |
