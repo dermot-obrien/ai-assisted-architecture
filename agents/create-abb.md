@@ -23,6 +23,7 @@ Before creating the ABB, you MUST verify its parentage. If parents are missing, 
 Load and internalise:
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-blocks/standard-abb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md`
+- `.ai-assisted-architecture/standards/building-blocks/standard-c4-context-diagram.md` (the C4 System Context / outside-in view — only for a **top-level** ABB; see Step 2b)
 - `.ai-assisted-architecture/standards/standard-traceability.md`
 - **Visual design standard** (Search workspace for `visual-design-standard.md`).
 
@@ -35,6 +36,14 @@ Create the ABB document in `building-blocks/architecture-building-blocks/ABB-NNN
 
 ### Step 2: components.drawio
 Create the diagram (960x1080). Include the mandatory cross-cutting sub-ABBs (IAM, Observability, Governance) and a legend.
+
+### Step 2b: C4 System Context diagram (top-level ABBs only)
+Decide whether this ABB is **top-level** — i.e. it represents a whole system a stakeholder would name (a trading platform, a payments system), not a fine-grained internal building block. If it is, add a **C4 System Context diagram** to `index.md` as §2.1.1, per `standard-c4-context-diagram.md`:
+- Render a Mermaid `flowchart` (NOT the experimental `C4Context` type) with the mandated `classDef` palette.
+- Show persons (left), the dashed ABB boundary (centre) with its internal systems, and external systems (right). Each node carries Name + `[Person]`/`[Software System]`/`[External System]` + a 2–4 word description.
+- Document the AAA mapping: the boundary is *this ABB*; external systems often correspond to this ABB's `requires` dependencies (cite them); persons have no AAA artefact.
+- If a realising composite SBB exists, cross-link the context view to it as the **zoom-in** companion (and reconcile external systems with the composite's `required` ports).
+Skip this step for fine-grained ABBs that are only ever seen inside a larger system — their component diagram is sufficient.
 
 ### Step 3: PNG & Summary
 Export `components.png` and `summary.png` at **300 DPI** using the scale factor `3.125`:

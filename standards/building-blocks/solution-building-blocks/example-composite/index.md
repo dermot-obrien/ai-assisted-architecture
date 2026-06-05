@@ -129,6 +129,11 @@ provenance:
 > UML composite-structure pattern (parts, ports, connectors) in frontmatter and the matching
 > Mermaid composite diagram. The trading domain (Patternode) is illustrative; the *structure*
 > is the point. For a simple SBB, see [`../example/`](../example/).
+>
+> **Zoom-out companion:** this composite shows the **inside** of the Strategy Engine. For the
+> **outside** view — the actors and external systems of the wider Patternode platform — see the
+> [C4 System Context diagram](./c4-context.md). Read the two as a pair: context (elevator pitch)
+> first, then this composite (the wiring). See the [C4 System Context standard](../../standard-c4-context-diagram.md).
 
 ## 1  Purpose
 

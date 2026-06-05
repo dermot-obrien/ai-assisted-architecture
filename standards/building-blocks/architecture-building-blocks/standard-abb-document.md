@@ -107,6 +107,14 @@ Embed the exported PNG of the component diagram immediately after the paragraph:
 ![<ABB-ID> <Diagram Title> Component Diagram](./components.png)
 ```
 
+#### 2.1.1 C4 System Context (top-level ABBs)
+
+A **top-level ABB** — one that represents a whole system a stakeholder would name (a trading platform, a payments system), rather than a fine-grained internal building block — SHOULD additionally carry a **C4 System Context diagram**. Where the component diagram (§2.1) shows the ABB's *internal* logical structure, the context diagram shows its *external* surface: who uses it (persons / personas) and which external systems it integrates with. It is the most stakeholder-friendly view in the framework and is normally the first diagram a non-technical reader sees.
+
+Render it in Mermaid `flowchart` form per the [C4 System Context standard](../../standard-c4-context-diagram.md) (not the experimental `C4Context` type). Document the AAA mapping the standard requires: the boundary is *this ABB*, internal nodes are its components or realising SBBs, external nodes often correspond to this ABB's [`requires`](#34-capability-dependencies-requires) dependencies, and persons have no AAA artefact. Fine-grained ABBs only ever seen *inside* a larger system do not need a context view — their component diagram is sufficient.
+
+The context view is the **zoom-out** companion to the realising composite SBB's [composite-structure diagram](../solution-building-blocks/standard-sbb-diagram.md#composite-structure-diagrams-mermaid) (the **zoom-in**): the same boundary drawn opaque (context) then transparent (composite). See the worked pair at [`solution-building-blocks/example-composite/`](../solution-building-blocks/example-composite/).
+
 #### 2.2 Fundamental Functionality
 
 **Heading:** `### 2.2  Fundamental functionality`
