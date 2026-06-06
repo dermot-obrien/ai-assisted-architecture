@@ -15,8 +15,8 @@
         "from_snapshot": { "$ref": "envelope.schema.json#/$defs/snapshotId" },
         "to_snapshot":   { "$ref": "envelope.schema.json#/$defs/snapshotId" },
 
-        "status": {
-          "$comment": "Overrides the envelope status enum with transition-specific lifecycle.",
+        "transition_status": {
+          "$comment": "Transition-specific lifecycle, distinct from the envelope 'status' field. Named separately so it does not collide with the envelope status enum under allOf composition (a transition still carries the universal envelope 'status', e.g. 'draft'/'active').",
           "type": "string",
           "enum": ["planned", "in-progress", "completed", "abandoned"]
         },

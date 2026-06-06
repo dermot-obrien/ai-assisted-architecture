@@ -589,7 +589,7 @@ id: TR-001
 title: "Migrate to Multi-Region Deployment"
 from_snapshot: SN-001                # required
 to_snapshot: SN-002                  # required
-status: planned | in-progress | completed | abandoned
+transition_status: planned | in-progress | completed | abandoned   # transition lifecycle; the envelope `status` (draft/active/…) still applies separately
 
 sequenced_decisions: [DR-014, DR-015, DR-016]    # required, ≥1
 sequenced_steps:                                  # required, ≥1
