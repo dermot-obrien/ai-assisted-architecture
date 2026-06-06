@@ -9,6 +9,26 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-001 Platform Foundations"
 sidebar_label: "CAP-001 Platform Foundations"
 sidebar_position: 1
+governance_zone: foundation
+level: L1
+components:
+  organisation: Platform Security Team, Platform Operations Team, Governance Office, Architecture Review Board
+  people:
+    - Security Architects
+    - Site Reliability Engineers
+    - Compliance Analysts
+    - Policy Authors
+  processes:
+    - Identity Lifecycle
+    - Incident Response
+    - Policy Change
+    - Compliance Assessment
+  technology: Centralised Identity Platform, Unified Observability Platform, Policy Decision Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
 ---
 
 # CAP-001 Platform Foundations
@@ -119,5 +139,6 @@ Gaps are documented at the L3 level in individual capability documents.
 |---------|------|-------------|-------------|
 | 1.1 | 2026-03-07 | Updated | Added Integration Services and Infrastructure Services L2 linkages and expanded L3 mapping references. |
 | 1.0 | 2026-03-07 | Initial Draft | CAP-001 Platform Foundations capability created. |
+
 
 

@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-007 Supply Chain Security Platform"
+governance_zone: foundation
+strategic_owner: Head of Application Security
+provides_capabilities:
+  - CAP-028
+  - CAP-029
+  - CAP-030
+contains_bounded_contexts:
+  - BC-007
+owns_outcomes:
+  - OC-008
 ---
 
 # PL-007 Supply Chain Security Platform
@@ -32,3 +42,4 @@ The **Supply Chain Security Platform** protects the organisation from risks intr
 
 ## 4. Bounded Contexts
 - **[BC-007 Supply Chain Security](../../contexts/BC-007/)**
+

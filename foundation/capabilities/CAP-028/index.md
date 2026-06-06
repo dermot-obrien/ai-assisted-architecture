@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-028 Artifact Provenance & Signing"
 sidebar_label: "CAP-028 Artifact Provenance & Signing"
 sidebar_position: 28
+governance_zone: foundation
+level: L3
+parent: CAP-027
+provided_by_platform: PL-007
+required_by_outcomes:
+  - OC-008
+components:
+  organisation: Application Security Team, Platform Engineering Team, Operations Team
+  people:
+    - Security Engineers
+    - Build Engineers
+    - Operations Engineers
+  processes:
+    - Key Management
+    - Build Signing
+    - Provenance Generation
+    - Admission Verification
+  technology: Artifact Signing Service, Key Management Service, Provenance Attestation Generator, Admission Controller
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-028 Artifact Provenance & Signing
@@ -113,3 +136,4 @@ ABB mappings pending creation of the Supply Chain Security ABB.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-028 Artifact Provenance & Signing capability created. |
+

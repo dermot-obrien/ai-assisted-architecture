@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "UC-001 Automated Workload Identity Provisioning"
+governance_zone: foundation
+primary_actor: Developer / Pipeline
+supports_outcome: OC-001
+success_criteria:
+  - Pod receives a valid OIDC token upon startup.
+  - No static client secrets exist in the pod configuration.
+realised_by_abbs:
+  - ABB-001
 ---
 
 # UC-001 Automated Workload Identity Provisioning
@@ -27,3 +35,4 @@ A new AI agent is deployed. The system automatically provisions a unique identit
 
 ## 3. Realisation
 - **[ABB-001 Identity & Access Management](../../../building-blocks/architecture-building-blocks/ABB-001/)**
+

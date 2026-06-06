@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-021 Cost Optimisation & Rightsizing"
 sidebar_label: "CAP-021 Cost Optimisation & Rightsizing"
 sidebar_position: 21
+governance_zone: foundation
+level: L3
+parent: CAP-019
+provided_by_platform: PL-005
+required_by_outcomes:
+  - OC-006
+components:
+  organisation: FinOps Team, Platform Engineering Team, Service Owners
+  people:
+    - FinOps Engineers
+    - Cloud Architects
+    - SREs
+  processes:
+    - Usage Analysis
+    - Rightsizing Recommendations
+    - Reservation Management
+    - Idle Resource Cleanup
+  technology: Usage Analytics Engine, Rightsizing Recommender, Reservation Manager, Idle Resource Detector
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-021 Cost Optimisation & Rightsizing
@@ -106,3 +129,4 @@ ABB mappings will be defined when the Cost Management ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-021 Cost Optimisation & Rightsizing capability created. |
+

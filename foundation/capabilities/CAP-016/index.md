@@ -9,6 +9,28 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-016 Self-Service Provisioning"
 sidebar_label: "CAP-016 Self-Service Provisioning"
 sidebar_position: 16
+governance_zone: foundation
+level: L3
+parent: CAP-015
+provided_by_platform: PL-004
+required_by_outcomes:
+  - OC-005
+components:
+  organisation: Platform Engineering Team, Security and Compliance Teams
+  people:
+    - Platform Engineers
+    - DevOps Engineers
+    - Policy Authors
+  processes:
+    - Standard Provisioning Request
+    - Exception Provisioning
+    - Provisioning Audit
+  technology: Infrastructure-as-Code Engine, Provisioning Orchestrator, Policy Evaluation Service (from ABB-003), Provisioning Event Log
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-016 Self-Service Provisioning
@@ -109,3 +131,4 @@ ABB mappings will be defined when the Developer Experience ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-016 Self-Service Provisioning capability created. |
+

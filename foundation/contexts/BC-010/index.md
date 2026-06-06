@@ -7,6 +7,23 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-010 Integration Bounded Context"
+governance_zone: foundation
+part_of: PL-010
+subdomain_kind: generic
+contains:
+  - ABB-004
+  - ABB-005
+realises_capabilities:
+  - CAP-008
+  - CAP-010
+  - CAP-011
+ubiquitous_language:
+  - term: Contract
+    definition: Versioned schema and behavioural agreement between providers and consumers.
+  - term: Mediation
+    definition: Policy-governed routing and transformation between integration endpoints.
+  - term: Event Stream
+    definition: Ordered flow of domain or operational events consumed asynchronously.
 ---
 
 # BC-010 Integration Bounded Context
@@ -35,3 +52,4 @@ The **Integration Bounded Context** defines the language and rules for service i
 - **[CAP-008 Integration Services](../../capabilities/CAP-008/)**
 - **[CAP-010 API Mediation & Contract Enforcement](../../capabilities/CAP-010/)**
 - **[CAP-011 Event Streaming & Asynchronous Integration](../../capabilities/CAP-011/)**
+

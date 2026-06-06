@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-033 Data Lifecycle & Retention"
 sidebar_label: "CAP-033 Data Lifecycle & Retention"
 sidebar_position: 33
+governance_zone: foundation
+level: L3
+parent: CAP-031
+provided_by_platform: PL-008
+required_by_outcomes:
+  - OC-009
+components:
+  organisation: Data Governance Team, Legal Team, Platform Engineering Team
+  people:
+    - Data Stewards
+    - Platform Engineers
+    - Legal Advisors
+  processes:
+    - Retention Policy Definition
+    - Lifecycle Enforcement
+    - Deletion Verification
+    - Legal Hold
+  technology: Retention Policy Engine, Lifecycle Automation Service, Deletion Verification Service, Legal Hold Manager
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-033 Data Lifecycle & Retention
@@ -111,3 +134,4 @@ ABB realisation pending creation of the Data Management architecture building bl
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-033 Data Lifecycle & Retention capability created. |
+

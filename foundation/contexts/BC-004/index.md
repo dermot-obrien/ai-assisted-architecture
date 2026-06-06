@@ -7,6 +7,21 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-004 Developer Platform Bounded Context"
+governance_zone: foundation
+part_of: PL-004
+subdomain_kind: supporting
+realises_capabilities:
+  - CAP-016
+  - CAP-017
+  - CAP-018
+  - CAP-043
+ubiquitous_language:
+  - term: Golden Path
+    definition: A pre-approved, opinionated workflow for a common task (e.g., deploy a containerised service).
+  - term: Template
+    definition: A parameterised blueprint that generates infrastructure and application scaffolding.
+  - term: Catalog Entry
+    definition: A registered, discoverable service or component with ownership and lifecycle metadata.
 ---
 
 # BC-004 Developer Platform Bounded Context
@@ -35,3 +50,4 @@ The **Developer Platform Bounded Context** provides the self-service layer throu
 - **[CAP-017 Golden Path & Template Management](../../capabilities/CAP-017/)**
 - **[CAP-018 Service Catalog & Developer Portal](../../capabilities/CAP-018/)**
 - **[CAP-043 Environment Lifecycle Management](../../capabilities/CAP-043/)**
+

@@ -7,6 +7,13 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-011 Integration Efficiency & Interoperability"
+governance_zone: foundation
+kpi: 100% of internal API calls adhere to versioned contracts.
+business_rationale: Reduces integration friction, prevents breaking changes from propagating, and enables independent evolution of services.
+owned_by_platform: PL-010
+requires_capabilities:
+  - CAP-010
+  - CAP-011
 ---
 
 # OC-011 Integration Efficiency & Interoperability
@@ -27,3 +34,4 @@ Reduces integration friction, prevents breaking changes from propagating, and en
 ## 3. Traceability
 - **[CAP-010 API Mediation & Contract Enforcement](../../../capabilities/CAP-010/)**
 - **[CAP-011 Event Streaming & Asynchronous Integration](../../../capabilities/CAP-011/)**
+

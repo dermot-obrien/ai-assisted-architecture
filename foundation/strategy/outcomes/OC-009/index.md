@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-009 Data Governance & Privacy"
+governance_zone: foundation
+kpi: 100% of data stores have classification labels applied and retention policies enforced, with zero sovereignty violations.
+business_rationale: Regulatory penalties for data mishandling (GDPR, sovereignty laws) are material and reputational. Without automated classification and lifecycle management, data accumulates without governance, increasing risk exposure and storage costs.
+owned_by_platform: PL-008
+requires_capabilities:
+  - CAP-032
+  - CAP-033
+  - CAP-034
 ---
 
 # OC-009 Data Governance & Privacy
@@ -28,3 +36,4 @@ Regulatory penalties for data mishandling (GDPR, sovereignty laws) are material 
 - **[CAP-032 Data Classification & Privacy](../../../capabilities/CAP-032/)**
 - **[CAP-033 Data Lifecycle & Retention](../../../capabilities/CAP-033/)**
 - **[CAP-034 Data Sovereignty & Residency](../../../capabilities/CAP-034/)**
+

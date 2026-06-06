@@ -7,6 +7,20 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-002 Observability Bounded Context"
+governance_zone: foundation
+part_of: PL-002
+subdomain_kind: supporting
+contains:
+  - ABB-002
+realises_capabilities:
+  - CAP-006
+ubiquitous_language:
+  - term: Signal
+    definition: A discrete piece of telemetry (Log, Metric, or Trace).
+  - term: Span
+    definition: A logical unit of work within a distributed trace.
+  - term: Normalisation
+    definition: The process of mapping signals to a common schema.
 ---
 
 # BC-002 Observability Bounded Context
@@ -32,3 +46,4 @@ The **Observability Bounded Context** provides the "Single Source of Truth" for 
 
 ## 4. Realised Capabilities
 - **[CAP-006 Operational Monitoring & Alerting](../../capabilities/CAP-006/)**
+

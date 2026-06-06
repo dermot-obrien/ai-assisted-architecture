@@ -9,6 +9,34 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-004 Identity Lifecycle Management"
 sidebar_label: "CAP-004 Identity Lifecycle Management"
 sidebar_position: 4
+governance_zone: foundation
+level: L3
+parent: CAP-002
+provided_by_platform: PL-001
+required_by_outcomes:
+  - OC-002
+components:
+  organisation: Identity Governance Team, HR and Onboarding, Platform Engineering
+  people:
+    - Identity Engineers
+    - Security Architects
+    - Access Reviewers
+  processes:
+    - Joiner/Mover/Leaver
+    - Non-Human Identity Request
+    - Attestation Review
+    - Credential Rotation
+    - Federation Trust
+  technology: Identity Store, Provisioning Engine, Token Service, Multi-Factor Authentication Service, Federation Service, Workload Identity Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-004 Identity Lifecycle Management
@@ -118,3 +146,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-004 Identity Lifecycle Management capability created. |
+

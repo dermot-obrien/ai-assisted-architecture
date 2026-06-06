@@ -7,6 +7,20 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-009 Configuration & Secrets Bounded Context"
+governance_zone: foundation
+part_of: PL-009
+subdomain_kind: generic
+realises_capabilities:
+  - CAP-036
+  - CAP-037
+  - CAP-038
+ubiquitous_language:
+  - term: Configuration Source
+    definition: A versioned store of key-value pairs or structured configuration that services consume at runtime.
+  - term: Secret
+    definition: A sensitive credential (API key, certificate, connection string) that must be encrypted at rest and in transit.
+  - term: Feature Flag
+    definition: A runtime toggle that controls the availability of a feature without redeployment.
 ---
 
 # BC-009 Configuration & Secrets Bounded Context
@@ -34,3 +48,4 @@ The **Configuration & Secrets Bounded Context** defines the model for managing a
 - **[CAP-036 Centralised Configuration Management](../../capabilities/CAP-036/)**
 - **[CAP-037 Secret Lifecycle & Rotation](../../capabilities/CAP-037/)**
 - **[CAP-038 Feature Management & Progressive Delivery](../../capabilities/CAP-038/)**
+

@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-002 Identity & Access"
 sidebar_label: "CAP-002 Identity & Access"
 sidebar_position: 2
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-001
+components:
+  organisation: Identity Governance Team, Security Architecture Team, Privileged Access Management Team
+  people:
+    - Identity Engineers
+    - Security Engineers
+    - Access Reviewers
+  processes:
+    - Identity Provisioning
+    - Access Certification
+    - Credential Rotation
+    - Federation Trust
+  technology: Identity Store, Token Issuance Service, Policy Evaluation Engine, Federation Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
 ---
 
 # CAP-002 Identity & Access
@@ -113,3 +134,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-002 Identity & Access capability created. |
+

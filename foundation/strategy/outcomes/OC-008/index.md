@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-008 Software Supply Chain Integrity"
+governance_zone: foundation
+kpi: 100% of production artifacts have verified provenance signatures and current SBOM with no critical/high vulnerabilities unresolved beyond SLA.
+business_rationale: Software supply chain attacks (SolarWinds, Log4Shell, xz-utils) demonstrate that unmanaged dependencies are a critical attack vector. Regulatory frameworks (EU CRA, US EO 14028) increasingly mandate SBOM and provenance verification.
+owned_by_platform: PL-007
+requires_capabilities:
+  - CAP-028
+  - CAP-029
+  - CAP-030
 ---
 
 # OC-008 Software Supply Chain Integrity
@@ -28,3 +36,4 @@ Software supply chain attacks (SolarWinds, Log4Shell, xz-utils) demonstrate that
 - **[CAP-028 Artifact Provenance & Signing](../../../capabilities/CAP-028/)**
 - **[CAP-029 Dependency & Vulnerability Scanning](../../../capabilities/CAP-029/)**
 - **[CAP-030 SBOM Management & Compliance](../../../capabilities/CAP-030/)**
+

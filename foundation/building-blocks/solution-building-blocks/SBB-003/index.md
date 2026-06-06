@@ -9,6 +9,48 @@ owner: "dermot.obrien@patternode.com"
 title: "SBB-003 Policy Decision Service (OPA)"
 sidebar_label: "SBB-003 Policy Decision Service (OPA)"
 sidebar_position: 3
+governance_zone: foundation
+realises:
+  - ABB-003
+short_name: OPA Service
+product_mapping:
+  - abb_component: Policy Authoring
+    sbb_product: VS Code with OPA Plugin
+    notes: Rego policy development and unit testing.
+  - abb_component: Policy Repository
+    sbb_product: GitHub / GitLab
+    notes: Version-controlled source of truth for Rego files.
+  - abb_component: Policy Distribution
+    sbb_product: OPA Bundle Service
+    notes: Distributes signed policy bundles via HTTP.
+  - abb_component: Policy Decision Point
+    sbb_product: OPA Engine (pdp-service)
+    notes: Core Rego evaluation unit (Docker/Sidecar).
+  - abb_component: Policy Enforcement Adapter
+    sbb_product: OPA SDK / Envoy Plugin
+    notes: Intercepts requests and calls the OPA API.
+  - abb_component: Compliance Evidence Collector
+    sbb_product: OPA Decision Logs
+    notes: Structured JSON logs of every evaluation.
+  - abb_component: Change Governance Engine
+    sbb_product: GitHub Actions
+    notes: Enforces review/approval before merging Rego changes.
+  - abb_component: Identity (cross-cutting)
+    sbb_product: Entra Workload ID
+    notes: Secures the OPA-to-Bundle-Service communication.
+  - abb_component: Observability (cross-cutting)
+    sbb_product: OTel Collector
+    notes: Exports OPA decision logs to Log Analytics.
+products:
+  - name: VS Code with OPA Plugin
+  - name: GitHub / GitLab
+  - name: OPA Bundle Service
+  - name: OPA Engine (pdp-service)
+  - name: OPA SDK / Envoy Plugin
+  - name: OPA Decision Logs
+  - name: GitHub Actions
+  - name: Entra Workload ID
+  - name: OTel Collector
 ---
 
 # SBB-003 Policy Decision Service (OPA)
@@ -101,3 +143,4 @@ The diagram below shows the physical realisation of the Governance ABB. OPA is d
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | Retrospective standardisation of SBB-003. |
+

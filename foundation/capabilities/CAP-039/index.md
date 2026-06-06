@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-039 Continuous Delivery"
 sidebar_label: "CAP-039 Continuous Delivery"
 sidebar_position: 39
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-012
+components:
+  organisation: Delivery Platform Team, Application Development Teams
+  people:
+    - Platform Engineers
+    - Release Engineers
+    - Developer Advocates
+  processes:
+    - Pipeline Template Lifecycle
+    - Artifact Promotion
+    - Release Management
+    - Deployment Audit
+  technology: Build Orchestration Engine, Deployment Controller, Artifact Registry, Pipeline-as-Code Runtime
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-039 Continuous Delivery
@@ -118,3 +139,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-039 Continuous Delivery capability created. |
+

@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-036 Centralised Configuration Management"
 sidebar_label: "CAP-036 Centralised Configuration Management"
 sidebar_position: 36
+governance_zone: foundation
+level: L3
+parent: CAP-035
+provided_by_platform: PL-009
+required_by_outcomes:
+  - OC-010
+components:
+  organisation: Platform Engineering Team, Development Teams, Operations Team
+  people:
+    - Platform Engineers
+    - Developers
+    - Operations Engineers
+  processes:
+    - Configuration Entry Management
+    - Environment Promotion
+    - Runtime Refresh
+    - Drift Detection
+  technology: Configuration Service, Configuration Client SDK, Drift Detection Engine, Change Audit Log
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-036 Centralised Configuration Management
@@ -106,3 +129,4 @@ ABB mappings will be defined when the Configuration & Secret Management ABB is c
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-036 Centralised Configuration Management capability created. |
+

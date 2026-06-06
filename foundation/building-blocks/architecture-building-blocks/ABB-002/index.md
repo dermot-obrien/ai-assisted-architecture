@@ -9,6 +9,31 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-002 Observability"
 sidebar_label: "ABB-002 Observability"
 sidebar_position: 2
+governance_zone: foundation
+category: Operations
+short_name: Obs
+realises_capabilities:
+  - CAP-006
+part_of: BC-002
+interfaces:
+  - id: I1
+    direction: in
+    type: stream
+    description: Admission of logs, metrics, and traces into the observability engine.
+  - id: I5
+    direction: in
+    type: event
+    description: Request to analyse and visualise telemetry data.
+  - id: I7
+    direction: out
+    type: event
+    description: External notification of a triggered alert rule.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # ABB-002 Observability
@@ -63,3 +88,4 @@ The diagram below shows the logical structure of the Observability ABB, includin
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-002 Observability ABB created. |
+

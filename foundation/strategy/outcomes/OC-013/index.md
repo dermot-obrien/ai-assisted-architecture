@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-013 Continuous Delivery Velocity"
+governance_zone: foundation
+kpi: Deployment frequency ≥ daily per service; lead time from commit to production ≤ 1 hour for standard changes.
+business_rationale: Slow and manual release processes are the primary bottleneck for delivering value to customers. Automating the path from commit to production reduces lead time, lowers change failure rate, and enables rapid feedback loops — the four DORA metrics that correlate with organisational performance.
+owned_by_platform: PL-012
+requires_capabilities:
+  - CAP-040
+  - CAP-041
+  - CAP-042
 ---
 
 # OC-013 Continuous Delivery Velocity
@@ -28,3 +36,4 @@ Slow and manual release processes are the primary bottleneck for delivering valu
 - **[CAP-040 Build & Test Automation](../../../capabilities/CAP-040/)**
 - **[CAP-041 Deployment Orchestration](../../../capabilities/CAP-041/)**
 - **[CAP-042 Artifact Management](../../../capabilities/CAP-042/)**
+

@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-031 Data Management"
 sidebar_label: "CAP-031 Data Management"
 sidebar_position: 31
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-008
+components:
+  organisation: Data Governance Team, Legal & Privacy Team, Platform Engineering Team
+  people:
+    - Data Stewards
+    - Privacy Engineers
+    - Platform Engineers
+  processes:
+    - Data Classification
+    - Retention Enforcement
+    - Sovereignty Validation
+    - Privacy Impact Assessment
+  technology: Classification Engine, Retention Policy Engine, Sovereignty Enforcement Service, Data Catalog & Lineage
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-031 Data Management
@@ -114,3 +135,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-031 Data Management capability created. |
+

@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-007 Compliance Evidence & Reporting"
 sidebar_label: "CAP-007 Compliance Evidence & Reporting"
 sidebar_position: 7
+governance_zone: foundation
+level: L3
+parent: CAP-003
+provided_by_platform: PL-003
+required_by_outcomes:
+  - OC-004
+components:
+  organisation: Compliance & Audit Team, Data Protection Office, Internal Audit, Risk Management
+  people:
+    - Compliance Analysts
+    - Audit Engineers
+    - Legal Counsel
+  processes:
+    - Evidence Collection
+    - Regulatory Mapping
+    - Compliance Reporting
+    - Exception Governance
+  technology: Compliance Evidence Store, Regulatory Compliance Manager, Compliance Report Generator, Exception Management Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-003
+  - ABB-002
+  - ABB-001
 ---
 
 # CAP-007 Compliance Evidence & Reporting
@@ -116,3 +143,4 @@ All technology needs are realised by the combination of ABB-003 and ABB-002. No 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-007 Compliance Evidence & Reporting capability created. |
+

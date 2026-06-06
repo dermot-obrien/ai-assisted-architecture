@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-011 Event Streaming & Asynchronous Integration"
 sidebar_label: "CAP-011 Event Streaming & Asynchronous Integration"
 sidebar_position: 11
+governance_zone: foundation
+level: L3
+parent: CAP-008
+provided_by_platform: PL-010
+components:
+  organisation: Platform Integration Team, Domain Service Teams, Reliability Engineering
+  people:
+    - Event Platform Engineers
+    - Integration Architects
+    - Service Engineers
+  processes:
+    - Event Contract Lifecycle
+    - Delivery Assurance Management
+    - Consumer Onboarding
+    - Event Reliability Review
+  technology: Event Broker Platform, Schema and Topic Registry, Delivery Assurance Services, Consumer Group Management
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-005
+  - ABB-004
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-011 Event Streaming & Asynchronous Integration
@@ -115,3 +142,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-011 Event Streaming & Asynchronous Integration capability created. |
+

@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-001 Security Platform"
+governance_zone: foundation
+strategic_owner: Chief Information Security Officer (CISO)
+provides_capabilities:
+  - CAP-004
+  - CAP-005
+contains_bounded_contexts:
+  - BC-001
+owns_outcomes:
+  - OC-001
+  - OC-002
 ---
 
 # PL-001 Security Platform
@@ -32,3 +42,4 @@ The **Security Platform** is responsible for protecting the organisation's asset
 
 ## 4. Bounded Contexts
 - **[BC-001 Identity & Access](../../contexts/BC-001/)**
+

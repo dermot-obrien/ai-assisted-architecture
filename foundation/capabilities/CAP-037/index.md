@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-037 Secret Lifecycle & Rotation"
 sidebar_label: "CAP-037 Secret Lifecycle & Rotation"
 sidebar_position: 37
+governance_zone: foundation
+level: L3
+parent: CAP-035
+provided_by_platform: PL-009
+required_by_outcomes:
+  - OC-010
+components:
+  organisation: Security Team, Platform Engineering Team, Development Teams
+  people:
+    - Security Engineers
+    - Platform Engineers
+    - Developers
+  processes:
+    - Secret Creation
+    - Secret Distribution
+    - Secret Rotation
+    - Secret Revocation
+  technology: Secret Vault, Rotation Automation Engine, Secret Injection Agent, Access Audit Log
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-037 Secret Lifecycle & Rotation
@@ -106,3 +129,4 @@ ABB mappings will be defined when the Configuration & Secret Management ABB is c
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-037 Secret Lifecycle & Rotation capability created. |
+

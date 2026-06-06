@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-035 Configuration & Secret Management"
 sidebar_label: "CAP-035 Configuration & Secret Management"
 sidebar_position: 35
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-009
+components:
+  organisation: Platform Engineering Team, Security Team, Development Teams
+  people:
+    - Platform Engineers
+    - Security Engineers
+    - Developers
+  processes:
+    - Configuration Lifecycle
+    - Secret Rotation
+    - Environment Promotion
+    - Feature Rollout
+  technology: Configuration Service, Secret Vault, Feature Flag Service, Configuration Drift Detector
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-035 Configuration & Secret Management
@@ -119,3 +140,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-035 Configuration & Secret Management capability created. |
+

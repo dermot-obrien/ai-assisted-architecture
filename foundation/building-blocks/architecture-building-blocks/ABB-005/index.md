@@ -9,6 +9,51 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-005 Event Streaming & Messaging"
 sidebar_label: "ABB-005 Event Streaming & Messaging"
 sidebar_position: 5
+governance_zone: foundation
+category: Integration
+short_name: ESM
+realises_capabilities:
+  - CAP-011
+part_of: BC-010
+interfaces:
+  - id: I1
+    direction: in
+    type: event
+    description: Event publication request to topic or queue endpoint.
+  - id: I2
+    direction: out
+    type: event
+    description: Asynchronous delivery to subscribed consumers.
+  - id: I3
+    direction: bidirectional
+    type: request
+    description: Contract validation against registered schema versions.
+  - id: I4
+    direction: in
+    type: request
+    description: Consumer acknowledgement and offset progression.
+  - id: I5
+    direction: in
+    type: request
+    description: Controlled replay or backfill operation request.
+  - id: I6
+    direction: out
+    type: stream
+    description: Event throughput, lag, failures, and delivery telemetry.
+  - id: I7
+    direction: out
+    type: query
+    description: Runtime checks for retention, classification, and handling rules.
+  - id: I8
+    direction: out
+    type: request
+    description: Producer/consumer authentication and authorisation checks.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # Event Streaming & Messaging
@@ -166,3 +211,4 @@ Each SBB should define delivery semantics, throughput bounds, retention ceilings
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-005 Event Streaming & Messaging ABB created. |
+

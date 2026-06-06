@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-017 Golden Path & Template Management"
 sidebar_label: "CAP-017 Golden Path & Template Management"
 sidebar_position: 17
+governance_zone: foundation
+level: L3
+parent: CAP-015
+provided_by_platform: PL-004
+required_by_outcomes:
+  - OC-005
+components:
+  organisation: Platform Engineering Team, Architecture Review Board, Domain Teams
+  people:
+    - Template Engineers
+    - Security Architects
+    - Developer Advocates
+  processes:
+    - Template Design & Review
+    - Template Versioning
+    - Template Testing
+    - Template Adoption Tracking
+  technology: Template Registry, Template Rendering Engine, Template Testing Framework, Adoption Analytics
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-017 Golden Path & Template Management
@@ -111,3 +134,4 @@ ABB mappings will be defined when the Developer Experience ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-017 Golden Path & Template Management capability created. |
+

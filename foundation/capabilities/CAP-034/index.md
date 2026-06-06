@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-034 Data Sovereignty & Residency"
 sidebar_label: "CAP-034 Data Sovereignty & Residency"
 sidebar_position: 34
+governance_zone: foundation
+level: L3
+parent: CAP-031
+provided_by_platform: PL-008
+required_by_outcomes:
+  - OC-009
+components:
+  organisation: Legal & Privacy Team, Platform Engineering Team, Data Governance Team
+  people:
+    - Privacy Engineers
+    - Platform Engineers
+    - Compliance Analysts
+  processes:
+    - Residency Rule Definition
+    - Provisioning Enforcement
+    - Transfer Control
+    - Compliance Monitoring
+  technology: Residency Rule Engine, Provisioning Policy Service, Transfer Control Gateway, Residency Compliance Monitor
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-034 Data Sovereignty & Residency
@@ -111,3 +134,4 @@ ABB realisation pending creation of the Data Management architecture building bl
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-034 Data Sovereignty & Residency capability created. |
+

@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-027 Supply Chain Security"
 sidebar_label: "CAP-027 Supply Chain Security"
 sidebar_position: 27
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-007
+components:
+  organisation: Application Security Team, Platform Engineering Team, Development Teams
+  people:
+    - Security Engineers
+    - Build Engineers
+    - Developers
+  processes:
+    - Build-time Signing
+    - Dependency Scanning
+    - SBOM Generation
+    - Vulnerability Response
+  technology: Artifact Signing Service, Dependency Scanner, SBOM Generator, Vulnerability Management Platform
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-027 Supply Chain Security
@@ -119,3 +140,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-027 Supply Chain Security capability created. |
+

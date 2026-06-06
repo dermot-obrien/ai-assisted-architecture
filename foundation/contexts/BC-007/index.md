@@ -7,6 +7,20 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-007 Supply Chain Security Bounded Context"
+governance_zone: foundation
+part_of: PL-007
+subdomain_kind: core
+realises_capabilities:
+  - CAP-028
+  - CAP-029
+  - CAP-030
+ubiquitous_language:
+  - term: Provenance
+    definition: Cryptographically verifiable evidence of where, when, and how an artifact was built.
+  - term: Attestation
+    definition: A signed statement about an artifact's properties (e.g., "this image was built from commit X by pipeline Y").
+  - term: SBOM (Software Bill of Materials)
+    definition: A machine-readable inventory of all components and dependencies in an artifact.
 ---
 
 # BC-007 Supply Chain Security Bounded Context
@@ -34,3 +48,4 @@ The **Supply Chain Security Bounded Context** defines the model for verifying th
 - **[CAP-028 Artifact Provenance & Signing](../../capabilities/CAP-028/)**
 - **[CAP-029 Dependency & Vulnerability Scanning](../../capabilities/CAP-029/)**
 - **[CAP-030 SBOM Management & Compliance](../../capabilities/CAP-030/)**
+

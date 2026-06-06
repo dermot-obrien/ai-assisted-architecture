@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-022 Budget Governance & Anomaly Detection"
 sidebar_label: "CAP-022 Budget Governance & Anomaly Detection"
 sidebar_position: 22
+governance_zone: foundation
+level: L3
+parent: CAP-019
+provided_by_platform: PL-005
+required_by_outcomes:
+  - OC-006
+components:
+  organisation: FinOps Team, Finance Team, Service Owners
+  people:
+    - FinOps Engineers
+    - Budget Owners
+    - Platform Engineers
+  processes:
+    - Budget Setting
+    - Threshold Alerting
+    - Anomaly Investigation
+    - Spend Controls
+  technology: Budget Management Service, Anomaly Detection Engine, Alert & Notification Service, Spend Control Enforcer
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-022 Budget Governance & Anomaly Detection
@@ -106,3 +129,4 @@ ABB mappings will be defined when the Cost Management ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-022 Budget Governance & Anomaly Detection capability created. |
+

@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-023 Reliability & Resilience"
 sidebar_label: "CAP-023 Reliability & Resilience"
 sidebar_position: 23
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-006
+components:
+  organisation: Site Reliability Engineering Team, Service Owning Teams, Business Continuity Team
+  people:
+    - SREs
+    - Service Owners
+    - DR Coordinators
+  processes:
+    - SLO Lifecycle
+    - Error Budget Policy
+    - DR Planning
+    - Resilience Testing
+  technology: SLO Monitoring & Dashboard, Error Budget Tracker, DR Orchestration Platform, Chaos Engineering Framework
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-023 Reliability & Resilience
@@ -119,3 +140,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-023 Reliability & Resilience capability created. |
+

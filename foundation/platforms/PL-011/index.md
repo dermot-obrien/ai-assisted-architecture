@@ -7,6 +7,18 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-011 Infrastructure Platform"
+governance_zone: foundation
+strategic_owner: Head of Platform Infrastructure
+provides_capabilities:
+  - CAP-009
+  - CAP-012
+  - CAP-013
+  - CAP-014
+  - CAP-044
+contains_bounded_contexts:
+  - BC-011
+owns_outcomes:
+  - OC-012
 ---
 
 # PL-011 Infrastructure Platform
@@ -34,3 +46,4 @@ The **Infrastructure Platform** provides the fundamental compute, storage, and n
 
 ## 4. Bounded Contexts
 - **[BC-011 Infrastructure](../../contexts/BC-011/)**
+

@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-008 Integration Services"
 sidebar_label: "CAP-008 Integration Services"
 sidebar_position: 8
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-010
+components:
+  organisation: Platform Integration Team, Domain Service Teams, Architecture Review Board
+  people:
+    - Integration Architects
+    - API Engineers
+    - Reliability Engineers
+  processes:
+    - Interface Contract Lifecycle
+    - Integration Change Control
+    - Delivery Assurance
+    - Compatibility Testing
+  technology: API Mediation Layer, Contract Registry, Event Routing Fabric, Delivery Control Services
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
 ---
 
 # CAP-008 Integration Services
@@ -113,3 +134,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-008 Integration Services capability created. |
+

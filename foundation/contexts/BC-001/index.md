@@ -7,6 +7,20 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-001 Identity & Access Bounded Context"
+governance_zone: foundation
+part_of: PL-001
+subdomain_kind: generic
+contains:
+  - ABB-001
+realises_capabilities:
+  - CAP-004
+ubiquitous_language:
+  - term: Principal
+    definition: Any entity (user, service, agent) that can be authenticated.
+  - term: Claim
+    definition: A statement about a principal issued by an authority.
+  - term: Grant
+    definition: An explicit permission giving a principal access to a resource.
 ---
 
 # BC-001 Identity & Access Bounded Context
@@ -32,3 +46,4 @@ The **Identity & Access Bounded Context** is responsible for establishing trust 
 
 ## 4. Realised Capabilities
 - **[CAP-004 Identity Lifecycle Management](../../capabilities/CAP-004/)**
+

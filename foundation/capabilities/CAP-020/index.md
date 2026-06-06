@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-020 Cost Visibility & Allocation"
 sidebar_label: "CAP-020 Cost Visibility & Allocation"
 sidebar_position: 20
+governance_zone: foundation
+level: L3
+parent: CAP-019
+provided_by_platform: PL-005
+required_by_outcomes:
+  - OC-006
+components:
+  organisation: FinOps Team, Platform Engineering Team, Finance Team
+  people:
+    - FinOps Engineers
+    - Platform Engineers
+    - Financial Analysts
+  processes:
+    - Tag Governance
+    - Cost Aggregation
+    - Allocation Rules
+    - Cost Reporting
+  technology: Cost Data Pipeline, Tag Enforcement Engine, Cost Dashboard, Allocation Rules Engine
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-020 Cost Visibility & Allocation
@@ -106,3 +129,4 @@ ABB mappings will be defined when the Cost Management ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-020 Cost Visibility & Allocation capability created. |
+

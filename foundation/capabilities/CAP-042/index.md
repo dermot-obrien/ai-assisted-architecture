@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-042 Artifact Management"
 sidebar_label: "CAP-042 Artifact Management"
 sidebar_position: 42
+governance_zone: foundation
+level: L3
+parent: CAP-039
+provided_by_platform: PL-012
+required_by_outcomes:
+  - OC-013
+components:
+  organisation: Delivery Platform Team, Development Teams, Security Team
+  people:
+    - Platform Engineers
+    - Developers
+    - Security Engineers
+  processes:
+    - Artifact Publishing
+    - Retention Management
+    - Vulnerability Scanning
+    - Artifact Provenance
+  technology: Container Registry, Package Repository, Helm Chart Repository, Artifact Lifecycle Manager
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-042 Artifact Management
@@ -106,3 +129,4 @@ ABB mappings will be defined when the relevant ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-042 Artifact Management capability created. |
+

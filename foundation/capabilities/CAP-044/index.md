@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-044 Service Mesh & Connectivity"
 sidebar_label: "CAP-044 Service Mesh & Connectivity"
 sidebar_position: 44
+governance_zone: foundation
+level: L3
+parent: CAP-009
+provided_by_platform: PL-011
+required_by_outcomes:
+  - OC-012
+components:
+  organisation: Platform Engineering Team, Development Teams, Security Team
+  people:
+    - Platform Engineers
+    - Network Engineers
+    - Security Engineers
+  processes:
+    - Service Registration
+    - Traffic Policy Management
+    - mTLS Certificate Lifecycle
+    - Network Observability
+  technology: Service Mesh Control Plane, Service Discovery Registry, Ingress/Egress Gateway, Network Policy Engine
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-044 Service Mesh & Connectivity
@@ -106,3 +129,4 @@ ABB mappings will be defined when the relevant ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-044 Service Mesh & Connectivity capability created. |
+
