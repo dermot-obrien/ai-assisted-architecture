@@ -17,7 +17,7 @@ triggers:
 
 > **Status:** Iterative consolidation in progress.
 >
-> This file is the merged metamodel for the AI-Assisted Architecture framework. It supersedes the earlier `standard-frontmatter.md` draft and the BNZ-flavoured `governance/schema.json` schema.
+> This file is the merged metamodel for the AI-Assisted Architecture framework. It supersedes the earlier `standard-frontmatter.md` draft and a prior enterprise-architecture `governance/schema.json` schema.
 >
 > The merge proceeds **grouping by grouping**. Each grouping draws on canonical external sources (TOGAF, ArchiMate, BMM, BIZBOK, DDD, C4) and is consolidated against actual usage. Groupings are listed in [§1 Groupings](#1-groupings); each has its own section once consolidated.
 >
@@ -34,16 +34,16 @@ The framework's metamodel is partitioned into groupings — each is a top-level 
 | 1 | **Strategy / Motivation** | `motivation/` | **In consolidation** (this iteration) | BMM (Ends/Means/Influencers/Assessments), TOGAF Phase A artefacts, ArchiMate Motivation Layer |
 | 2 | Organisation / Platform | `platforms/` | Pending | Team Topologies, CNCF Platforms WP, BIZBOK |
 | 3 | Capability | `capabilities/` | Pending | TOGAF G189, BIZBOK |
-| 4 | Building Blocks (Logical / Physical) | `building-blocks/` | Pending | TOGAF Architecture Content (ABB/SBB), BNZ ABB+SBB |
+| 4 | Building Blocks (Logical / Physical) | `building-blocks/` | Pending | TOGAF Architecture Content (ABB/SBB) |
 | 5 | Solution Boundary (Bounded Context, optional) | `contexts/` | Pending | DDD strategic design |
 | 6 | Runtime / Code (optional) | `runtime/` | Pending | C4 Container/Component, framework v1.0.0 |
-| 7 | Demand | `demand/` | Pending | BNZ ValueStream + UseCase |
-| 8 | Guidance (Pattern, Profile, Reference Architecture) | `guidance/` | Pending | BNZ |
-| 9 | Governance (Principle, Standard, ADR) | `governance/` | Pending | BNZ + framework v1.0.0 ADRs |
-| 10 | Roadmap | `roadmap/` | Pending | BNZ RoadmapItem |
-| 11 | Technology Tracking | `radar/` | Pending | ThoughtWorks Tech Radar / BNZ |
-| 12 | Inter-platform Contracts | `dependencies/` | Pending | BNZ PlatformDependency |
-| 13 | Lifecycle / Change | (cross-cutting) | Pending | BNZ state_triple OR framework Snapshot/Transition |
+| 7 | Demand | `demand/` | Pending | Value Stream + Use Case (BIZBOK / TOGAF) |
+| 8 | Guidance (Pattern, Profile, Reference Architecture) | `guidance/` | Pending | TOGAF Reference Architectures, pattern catalogues |
+| 9 | Governance (Principle, Standard, ADR) | `governance/` | Pending | TOGAF Principles + MADR + framework v1.0.0 ADRs |
+| 10 | Roadmap | `roadmap/` | Pending | TOGAF Implementation & Migration roadmap |
+| 11 | Technology Tracking | `radar/` | Pending | ThoughtWorks Tech Radar |
+| 12 | Inter-platform Contracts | `dependencies/` | Pending | Team Topologies (platform dependencies) |
+| 13 | Lifecycle / Change | (cross-cutting) | Pending | Framework Snapshot/Transition (state-triple lifecycle) |
 
 Each grouping has: (a) external sources, (b) candidate entity inventory drawn from those sources, (c) a recommended subset, (d) entity field shapes, (e) relations to other groupings.
 
@@ -212,14 +212,14 @@ requires_capabilities: [CAP-004, CAP-005]    # populated when Capability groupin
 ---
 ```
 
-Universal envelope shape (`status`, `version`, `last_modified`, `author`, `provenance`, etc.) is being aligned with BNZ; final form decided in §9.
+Universal envelope shape (`status`, `version`, `last_modified`, `author`, `provenance`, etc.) is being aligned across the consolidated groupings; final form decided in §9.
 
 ### 2.7 Open decisions on this grouping
 
 - **M1** Which subset (A / B / C / D) — or a custom set — defines the framework's Motivation entity inventory?
-- **M2** Folder name: `motivation/` (TOGAF/ArchiMate idiom) or `strategy/` (BNZ idiom for ValueStream/UseCase) or `strategy-and-motivation/` (explicit)?
-- **M3** Where does **ValueStream** sit? (BNZ puts it in `demand/`; ArchiMate 3.1+ has a Strategy layer that includes it; could be Motivation or a separate Demand grouping.)
-- **M4** Where do **UseCases** sit? (BNZ puts in `demand/`; framework v1.0.0 had UC realised by ABB. Probably *not* Motivation — they're operational, not motivational.)
+- **M2** Folder name: `motivation/` (TOGAF/ArchiMate idiom) or `strategy/` (a demand-led idiom for ValueStream/UseCase) or `strategy-and-motivation/` (explicit)?
+- **M3** Where does **ValueStream** sit? (some enterprise models put it in `demand/`; ArchiMate 3.1+ has a Strategy layer that includes it; could be Motivation or a separate Demand grouping.)
+- **M4** Where do **UseCases** sit? (some enterprise models put it in `demand/`; framework v1.0.0 had UC realised by ABB. Probably *not* Motivation — they're operational, not motivational.)
 - **M5** Should Vision be a single document per workspace, or multiple Visions (e.g. per ValueStream)?
 - **M6** ID conventions for slug-based vs `<TYPE>-NNN` — e.g. is Stakeholder a slug or `STK-NNN`? Defer to §9 once cross-cutting envelope is decided.
 
@@ -271,5 +271,5 @@ Universal envelope shape (`status`, `version`, `last_modified`, `author`, `prove
 - BIZBOK Guide v10 — capability mapping; relevant for the Capability grouping.
 - DDD strategic design — Bounded Context, Context Maps; relevant for §6.
 - C4 Model — Container / Component zoom; relevant for §7.
-- BNZ refactored-repo `governance/schema.json` v3.3 — practical reference, particularly for ValueStream, Profile, ADR, Standard, Principle, RoadmapItem, TechnologyRadarEntry shapes.
+- A prior enterprise `governance/schema.json` (v3.3) — practical reference, particularly for ValueStream, Profile, ADR, Standard, Principle, RoadmapItem, TechnologyRadarEntry shapes.
 - AI-Assisted Architecture v1.0.0 — Platform, ABB-inside-BC, Capability four-component model.

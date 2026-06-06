@@ -12,7 +12,7 @@ A platform-centric enterprise architecture ontology, expressed as JSON Schema, d
 - **Regulator reporting** — risk-aware architectural evolution, control implementation, standards conformance.
 - **Ongoing architecture practice** — enterprise and solution architects modelling current state and proposed change in the same vocabulary.
 
-The ontology has 23 entities organised in four layers (reporting backbone, architecture practice, risk and control, views and stakeholders) plus an ExternalReference helper used wherever the ontology references rather than owns. It is standards-aligned to ArchiMate and TOGAF (views) and ISO/IEC/IEEE 42010 (architecture description). Capabilities optionally anchor to whichever industry reference taxonomy applies (BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.) — modelled uniformly via the `IndustryReferenceDomain` entity.
+The ontology has 23 entities organised in four layers (reporting backbone, architecture practice, risk and control, views and stakeholders) plus an ExternalReference helper used wherever the ontology references rather than owns. It is standards-aligned to ArchiMate and TOGAF (views) and ISO/IEC/IEEE 42010 (architecture description). Capabilities optionally anchor to whichever industry reference taxonomy applies (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.) — modelled uniformly via the `IndustryReferenceDomain` entity.
 
 This README explains how to use the ontology. For the design rationale and the formal specification, see SPECIFICATION.md.
 
@@ -286,7 +286,7 @@ When in doubt, prefer the type the source system uses. ServiceNow's classificati
 
 ### Ambiguity 3: Industry reference taxonomy anchor
 
-Capabilities may anchor to an industry reference taxonomy domain via `industry_reference_ids`, which is optional and allows an empty array. Resolution depends on whether your organisation's industry has an adopted reference taxonomy (BIAN for banking, eTOM for telecom, ACORD for insurance, etc.):
+Capabilities may anchor to an industry reference taxonomy domain via `industry_reference_ids`, which is optional and allows an empty array. Resolution depends on whether your organisation's industry has an adopted reference taxonomy (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, etc.):
 
 - If your industry has an adopted reference taxonomy and the organisation has chosen to use it, anchor each capability where it fits. Capabilities that genuinely cannot map should document the reason in their description field and be flagged for architecture review.
 - If your industry has no widely-adopted reference taxonomy, or the organisation has chosen not to adopt one, leave `industry_reference_ids` empty across all capabilities. The IndustryReferenceDomain entity collection can be omitted entirely.

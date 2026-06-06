@@ -38,7 +38,7 @@ Seven principles shaped the model. Each is a deliberate choice with alternatives
 
 *Alternative rejected:* portfolio-centric or programme-centric models. Portfolio implies aggregation of platforms; programme implies temporary delivery wrappers. Both can be added as overlays but should not be the governance unit. Where they conflict with platform-centric thinking, platform wins.
 
-**3.2 Capability-anchored.** Capabilities are what platforms provide to consumers. They optionally anchor to an industry reference taxonomy (BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.) for cross-industry-peer comparability. The capability layer is the durable, recursively decomposable model of what the enterprise can do; the component layer is the volatile model of how it does it.
+**3.2 Capability-anchored.** Capabilities are what platforms provide to consumers. They optionally anchor to an industry reference taxonomy (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.) for cross-industry-peer comparability. The capability layer is the durable, recursively decomposable model of what the enterprise can do; the component layer is the volatile model of how it does it.
 
 *Alternative rejected:* component-centric (BMC-style) models that treat components as primary. Components are too volatile — every implementation change forces model restructure. Capabilities are stable; components are volatile; this asymmetry should be preserved in the model's shape.
 
@@ -870,7 +870,7 @@ erDiagram
   IndustryReferenceDomain }o--o{ Capability : "anchored_to (Capability.industry_reference_ids)"
 ```
 
-Referenced taxonomy, not architecture. Loaded from whichever industry reference taxonomy applies to the organisation's industry — BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, and so on — typically via the EA tool's tag taxonomy. Optional: organisations in industries without an established reference taxonomy can omit the entity entirely.
+Referenced taxonomy, not architecture. Loaded from whichever industry reference taxonomy applies to the organisation's industry — eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, and so on — typically via the EA tool's tag taxonomy. Optional: organisations in industries without an established reference taxonomy can omit the entity entirely.
 
 Flat single-level model. Reference taxonomies typically organise their domains in multi-level hierarchies (BIAN has Business Area / Business Domain / Service Domain; eTOM has Process Levels 1–4); this ontology does not model those parent levels. Each IndustryReferenceDomain instance is a single anchor point, and `taxonomy` plus `taxonomy_version` identify which reference model and version it came from. The reasoning: queries from capabilities go directly to a leaf-level domain; the parent levels are navigation aids in the source taxonomy and rarely the unit of architectural reasoning.
 
@@ -1303,7 +1303,7 @@ flowchart LR
 | Stakeholder | User Group fact sheet, or Subscription on related FS | Tier 1 — direct | ISO/IEC/IEEE 42010 Stakeholder ≈ LeanIX User Group |
 | Viewpoint | LeanIX Report template | Tier 4 | LeanIX Reports are reusable view templates |
 | View | LeanIX Report configured instance | Tier 4 | Each saved report configuration ≈ a View |
-| IndustryReferenceDomain | Tag taxonomy for the chosen industry reference taxonomy (e.g., BIAN for banking, eTOM for telecom, ACORD for insurance) | Tier 2 | Referenced taxonomy, loaded from whichever industry standard applies. Single-level in the ontology even if the source taxonomy is multi-level |
+| IndustryReferenceDomain | Tag taxonomy for the chosen industry reference taxonomy (e.g., eTOM for telecom, ACORD for insurance, NRF ARTS for retail) | Tier 2 | Referenced taxonomy, loaded from whichever industry standard applies. Single-level in the ontology even if the source taxonomy is multi-level |
 
 #### Mapping rules to apply
 
@@ -1353,7 +1353,7 @@ The ontology needs its own governance — meta-governance for the governance ont
 
 This ontology was developed through critique and iteration of an earlier enterprise architecture ontology. The refactoring conversation explored each design decision against the original assessor criticism, the practical needs of working architects, and the standards landscape. Key references:
 
-- **Industry reference taxonomies** for capability anchoring, where one applies to the organisation's industry. Examples: **BIAN** (Banking Industry Architecture Network) Service Domain Reference for banking; **TM Forum eTOM** for telecommunications; **ACORD** Capability Model for insurance; **NRF ARTS** for retail; **HL7/FHIR** resource groupings for healthcare. The ontology models these uniformly as `IndustryReferenceDomain`, regardless of which taxonomy is in use.
+- **Industry reference taxonomies** for capability anchoring, where one applies to the organisation's industry. Examples: **TM Forum eTOM** for telecommunications; **ACORD** Capability Model for insurance; **NRF ARTS** for retail; **HL7/FHIR** resource groupings for healthcare. The ontology models these uniformly as `IndustryReferenceDomain`, regardless of which taxonomy is in use.
 - **ArchiMate 3.2** (The Open Group). Provides the viewpoint catalogue and the structure of architecture description.
 - **TOGAF 10** (The Open Group). Provides the migration architecture, transition architecture, gap analysis, and Architecture/Solution Building Block (ABB/SBB) layering concepts.
 - **ISO/IEC/IEEE 42010:2022** (Architecture description). Provides the Stakeholder / Concern / Viewpoint / View structure.
