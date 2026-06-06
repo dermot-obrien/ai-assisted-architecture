@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-009 Infrastructure Services"
 sidebar_label: "CAP-009 Infrastructure Services"
 sidebar_position: 9
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-011
+components:
+  organisation: Platform Infrastructure Team, Site Reliability Engineering, Security and Governance Teams
+  people:
+    - Platform Engineers
+    - Reliability Engineers
+    - Infrastructure Security Engineers
+  processes:
+    - Platform Provisioning
+    - Runtime Release Management
+    - Capacity and Cost Management
+    - Backup and Recovery Management
+  technology: Compute Runtime Platform, Storage Platform, Infrastructure Policy Controls, Operational Automation
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
 ---
 
 # CAP-009 Infrastructure Services
@@ -115,4 +136,5 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-009 Infrastructure Services capability created. |
+
 

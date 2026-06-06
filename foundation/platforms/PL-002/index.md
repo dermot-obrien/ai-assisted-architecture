@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-002 Observability Platform"
+governance_zone: foundation
+strategic_owner: Head of Platform Operations
+provides_capabilities:
+  - CAP-006
+contains_bounded_contexts:
+  - BC-002
+owns_outcomes:
+  - OC-003
 ---
 
 # PL-002 Observability Platform
@@ -30,3 +38,4 @@ The **Observability Platform** ensures the reliability, performance, and visibil
 
 ## 4. Bounded Contexts
 - **[BC-002 Observability](../../contexts/BC-002/)**
+

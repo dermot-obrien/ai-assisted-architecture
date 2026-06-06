@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-040 Build & Test Automation"
 sidebar_label: "CAP-040 Build & Test Automation"
 sidebar_position: 40
+governance_zone: foundation
+level: L3
+parent: CAP-039
+provided_by_platform: PL-012
+required_by_outcomes:
+  - OC-013
+components:
+  organisation: Delivery Platform Team, Development Teams, Quality Engineering Team
+  people:
+    - Platform Engineers
+    - Developers
+    - Quality Engineers
+  processes:
+    - Build Pipeline Execution
+    - Quality Gate Enforcement
+    - Build Cache Management
+    - Flaky Test Management
+  technology: Build Engine, Test Orchestrator, Code Quality Scanner, Pipeline Cache
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-040 Build & Test Automation
@@ -106,3 +129,4 @@ ABB mappings will be defined when the relevant ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-040 Build & Test Automation capability created. |
+

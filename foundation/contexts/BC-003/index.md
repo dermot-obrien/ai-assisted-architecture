@@ -7,6 +7,21 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-003 Governance & Policy Bounded Context"
+governance_zone: foundation
+part_of: PL-003
+subdomain_kind: generic
+contains:
+  - ABB-003
+realises_capabilities:
+  - CAP-005
+  - CAP-007
+ubiquitous_language:
+  - term: Policy
+    definition: A machine-readable rule set defining intended state or behaviour.
+  - term: Decision
+    definition: The result of a policy evaluation (Permit, Deny, etc.).
+  - term: Enforcement
+    definition: The application of a decision at a technical control point.
 ---
 
 # BC-003 Governance & Policy Bounded Context
@@ -33,3 +48,4 @@ The **Governance & Policy Bounded Context** codifies organisational rules into m
 ## 4. Realised Capabilities
 - **[CAP-005 Policy-Based Access Control](../../capabilities/CAP-005/)**
 - **[CAP-007 Compliance Evidence & Reporting](../../capabilities/CAP-007/)**
+

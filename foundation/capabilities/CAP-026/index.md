@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-026 Chaos Engineering & Resilience Testing"
 sidebar_label: "CAP-026 Chaos Engineering & Resilience Testing"
 sidebar_position: 26
+governance_zone: foundation
+level: L3
+parent: CAP-023
+provided_by_platform: PL-006
+required_by_outcomes:
+  - OC-007
+components:
+  organisation: SRE Team, Service Owners, Security Team
+  people:
+    - Chaos Engineers
+    - SREs
+    - Service Owners
+  processes:
+    - Experiment Design
+    - Experiment Execution
+    - Result Analysis
+    - Remediation Tracking
+  technology: Fault Injection Framework, Experiment Orchestrator, Steady-State Monitor, Experiment Results Dashboard
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-026 Chaos Engineering & Resilience Testing
@@ -113,3 +136,4 @@ ABB mappings pending creation of the Reliability & Resilience ABB.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-026 Chaos Engineering & Resilience Testing capability created. |
+

@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-006 Cloud Cost Efficiency"
+governance_zone: foundation
+kpi: Infrastructure unit cost per transaction decreases by 20% year-over-year with full cost attribution to owning teams.
+business_rationale: Unattributed cloud spend grows unchecked and creates budget surprises. Cost visibility and automated governance enable informed trade-offs between performance, reliability, and cost.
+owned_by_platform: PL-005
+requires_capabilities:
+  - CAP-020
+  - CAP-021
+  - CAP-022
 ---
 
 # OC-006 Cloud Cost Efficiency
@@ -28,3 +36,4 @@ Unattributed cloud spend grows unchecked and creates budget surprises. Cost visi
 - **[CAP-020 Cost Visibility & Allocation](../../../capabilities/CAP-020/)**
 - **[CAP-021 Cost Optimisation & Rightsizing](../../../capabilities/CAP-021/)**
 - **[CAP-022 Budget Governance & Anomaly Detection](../../../capabilities/CAP-022/)**
+

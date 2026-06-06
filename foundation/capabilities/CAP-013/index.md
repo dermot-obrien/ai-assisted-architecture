@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-013 Data Storage & Lifecycle Management"
 sidebar_label: "CAP-013 Data Storage & Lifecycle Management"
 sidebar_position: 13
+governance_zone: foundation
+level: L3
+parent: CAP-009
+provided_by_platform: PL-011
+components:
+  organisation: Platform Infrastructure Team, Data Platform Team, Security and Compliance Teams
+  people:
+    - Storage Platform Engineers
+    - Data Engineers
+    - Compliance Analysts
+  processes:
+    - Storage Provisioning
+    - Data Lifecycle Management
+    - Backup and Restore Validation
+    - Capacity and Cost Review
+  technology: Storage Services Portfolio, Lifecycle Policy Engine, Backup and Recovery Services, Durability and Encryption Controls
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-007
+  - ABB-006
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-013 Data Storage & Lifecycle Management
@@ -115,3 +142,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-013 Data Storage & Lifecycle Management capability created. |
+

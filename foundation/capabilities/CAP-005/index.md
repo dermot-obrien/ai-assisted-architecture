@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-005 Policy-Based Access Control"
 sidebar_label: "CAP-005 Policy-Based Access Control"
 sidebar_position: 5
+governance_zone: foundation
+level: L3
+parent: CAP-002
+provided_by_platform: PL-001
+required_by_outcomes:
+  - OC-001
+components:
+  organisation: Security Architecture Team, Policy Authors, Business Application Owners
+  people:
+    - Policy Engineers
+    - Security Analysts
+    - Application Architects
+  processes:
+    - Policy Authoring
+    - Access Decision Monitoring
+    - Separation of Duties Review
+    - Policy Impact Analysis
+  technology: Policy Evaluation Engine, Role & Permission Store, Conditional Access Service, Policy Distribution Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-003
+  - ABB-002
 ---
 
 # CAP-005 Policy-Based Access Control
@@ -115,3 +142,4 @@ All technology needs are realised by the combination of ABB-001 and ABB-003. No 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-005 Policy-Based Access Control capability created. |
+

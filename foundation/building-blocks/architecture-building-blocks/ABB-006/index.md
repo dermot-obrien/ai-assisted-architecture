@@ -9,6 +9,51 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-006 Compute Orchestration Platform"
 sidebar_label: "ABB-006 Compute Orchestration Platform"
 sidebar_position: 6
+governance_zone: foundation
+category: Infrastructure
+short_name: COP
+realises_capabilities:
+  - CAP-012
+part_of: BC-011
+interfaces:
+  - id: I1
+    direction: in
+    type: request
+    description: Request to deploy or update workload definitions.
+  - id: I2
+    direction: out
+    type: request
+    description: Placement and execution instruction for workload instances.
+  - id: I3
+    direction: out
+    type: event
+    description: Rollout progress, health status, and failure notifications.
+  - id: I4
+    direction: out
+    type: request
+    description: Attach and manage workload persistence resources as required.
+  - id: I5
+    direction: out
+    type: request
+    description: Workload identity issuance and runtime authorisation checks.
+  - id: I6
+    direction: out
+    type: stream
+    description: Runtime health, scheduling, scaling, and deployment telemetry.
+  - id: I7
+    direction: out
+    type: query
+    description: Admission and runtime policy enforcement requests.
+  - id: I8
+    direction: in
+    type: request
+    description: Scaling, maintenance, and runtime policy configuration operations.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # Compute Orchestration Platform
@@ -166,3 +211,4 @@ Each SBB should define scaling ceilings, scheduling limitations, tenancy model, 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-006 Compute Orchestration Platform ABB created. |
+

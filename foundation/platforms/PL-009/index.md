@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-009 Configuration & Secret Management Platform"
+governance_zone: foundation
+strategic_owner: Head of Platform Engineering
+provides_capabilities:
+  - CAP-036
+  - CAP-037
+  - CAP-038
+contains_bounded_contexts:
+  - BC-009
+owns_outcomes:
+  - OC-010
 ---
 
 # PL-009 Configuration & Secret Management Platform
@@ -32,3 +42,4 @@ The **Configuration & Secret Management Platform** ensures that application conf
 
 ## 4. Bounded Contexts
 - **[BC-009 Configuration & Secrets](../../contexts/BC-009/)**
+

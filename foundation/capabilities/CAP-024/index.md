@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-024 SLO Management & Error Budgets"
 sidebar_label: "CAP-024 SLO Management & Error Budgets"
 sidebar_position: 24
+governance_zone: foundation
+level: L3
+parent: CAP-023
+provided_by_platform: PL-006
+required_by_outcomes:
+  - OC-007
+components:
+  organisation: SRE Team, Service Owners, Leadership
+  people:
+    - SREs
+    - Service Owners
+    - Product Managers
+  processes:
+    - SLO Definition
+    - Error Budget Tracking
+    - Budget Exhaustion Response
+    - Quarterly SLO Review
+  technology: SLI Collection Pipeline, SLO Calculation Engine, Error Budget Dashboard, Budget Alert Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-024 SLO Management & Error Budgets
@@ -113,3 +136,4 @@ ABB mappings pending creation of the Reliability & Resilience ABB.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-024 SLO Management & Error Budgets capability created. |
+

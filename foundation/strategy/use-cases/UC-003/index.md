@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "UC-003 Real-time Policy Decision Evaluation"
+governance_zone: foundation
+primary_actor: System Component
+supports_outcome: OC-004
+success_criteria:
+  - Evaluation result returned in < 10ms.
+  - Decision log captured in Observability context.
+realised_by_abbs:
+  - ABB-003
 ---
 
 # UC-003 Real-time Policy Decision Evaluation
@@ -27,3 +35,4 @@ A building block receives a request to export data. Before proceeding, it calls 
 
 ## 3. Realisation
 - **[ABB-003 Governance & Policy Enforcement](../../../building-blocks/architecture-building-blocks/ABB-003/)**
+

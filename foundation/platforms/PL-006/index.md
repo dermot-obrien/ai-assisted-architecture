@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-006 Reliability & Resilience Platform"
+governance_zone: foundation
+strategic_owner: Head of Site Reliability Engineering
+provides_capabilities:
+  - CAP-024
+  - CAP-025
+  - CAP-026
+contains_bounded_contexts:
+  - BC-006
+owns_outcomes:
+  - OC-007
 ---
 
 # PL-006 Reliability & Resilience Platform
@@ -32,3 +42,4 @@ The **Reliability & Resilience Platform** ensures platform services meet their a
 
 ## 4. Bounded Contexts
 - **[BC-006 Reliability & Resilience](../../contexts/BC-006/)**
+

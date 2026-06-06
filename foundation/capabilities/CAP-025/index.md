@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-025 Disaster Recovery & Business Continuity"
 sidebar_label: "CAP-025 Disaster Recovery & Business Continuity"
 sidebar_position: 25
+governance_zone: foundation
+level: L3
+parent: CAP-023
+provided_by_platform: PL-006
+required_by_outcomes:
+  - OC-007
+components:
+  organisation: Business Continuity Team, Platform Engineering Team, Service Owners
+  people:
+    - DR Coordinators
+    - Platform Engineers
+    - Service Owners
+  processes:
+    - DR Plan Maintenance
+    - Recovery Exercise
+    - RTO/RPO Validation
+    - Post-Exercise Review
+  technology: Backup & Replication Service, Failover Orchestrator, DR Exercise Platform, Recovery Validation Dashboard
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-025 Disaster Recovery & Business Continuity
@@ -113,3 +136,4 @@ ABB mappings pending creation of the Reliability & Resilience ABB.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-025 Disaster Recovery & Business Continuity capability created. |
+

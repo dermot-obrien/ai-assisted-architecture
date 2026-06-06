@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-041 Deployment Orchestration"
 sidebar_label: "CAP-041 Deployment Orchestration"
 sidebar_position: 41
+governance_zone: foundation
+level: L3
+parent: CAP-039
+provided_by_platform: PL-012
+required_by_outcomes:
+  - OC-013
+components:
+  organisation: Delivery Platform Team, Development Teams, Operations Team
+  people:
+    - Platform Engineers
+    - Release Engineers
+    - Site Reliability Engineers
+  processes:
+    - Deployment Strategy Selection
+    - Environment Promotion
+    - Rollback Execution
+    - Deployment Observability
+  technology: Deployment Controller, Progressive Delivery Engine, Environment Promotion Pipeline, Rollback Automation
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-041 Deployment Orchestration
@@ -106,3 +129,4 @@ ABB mappings will be defined when the relevant ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-041 Deployment Orchestration capability created. |
+

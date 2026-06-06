@@ -9,6 +9,55 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-004 API Mediation & Gateway"
 sidebar_label: "ABB-004 API Mediation & Gateway"
 sidebar_position: 4
+governance_zone: foundation
+category: Integration
+short_name: APIGW
+realises_capabilities:
+  - CAP-010
+part_of: BC-010
+interfaces:
+  - id: I1
+    direction: in
+    type: request
+    description: Inbound synchronous request from a consuming service or channel.
+  - id: I2
+    direction: out
+    type: request
+    description: Routed and transformed request forwarded to provider service.
+  - id: I3
+    direction: in
+    type: callback
+    description: Response returned for transformation and policy checks before consumer return.
+  - id: I4
+    direction: in
+    type: query
+    description: API contract metadata and lifecycle status updates.
+  - id: I5
+    direction: out
+    type: query
+    description: Schema and policy metadata retrieval for runtime validation.
+  - id: I6
+    direction: out
+    type: stream
+    description: Request traces, metrics, errors, and policy-evaluation telemetry.
+  - id: I7
+    direction: out
+    type: query
+    description: Runtime policy decision requests for interface and data controls.
+  - id: I8
+    direction: out
+    type: request
+    description: Token and claims verification for publishers, consumers, and operators.
+  - id: I9
+    direction: in
+    type: request
+    description: Route, policy, transformation, and lifecycle configuration operations.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # API Mediation & Gateway
@@ -167,3 +216,4 @@ Each SBB should define protocol support, policy engine limits, transformation ca
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-004 API Mediation & Gateway ABB created. |
+

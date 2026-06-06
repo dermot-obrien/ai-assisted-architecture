@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-043 Environment Lifecycle Management"
 sidebar_label: "CAP-043 Environment Lifecycle Management"
 sidebar_position: 43
+governance_zone: foundation
+level: L3
+parent: CAP-015
+provided_by_platform: PL-004
+required_by_outcomes:
+  - OC-005
+components:
+  organisation: Platform Engineering Team, Development Teams, FinOps Team
+  people:
+    - Platform Engineers
+    - Developers
+    - FinOps Engineers
+  processes:
+    - Environment Provisioning
+    - Environment Composition
+    - Lifecycle Enforcement
+    - Environment Compliance
+  technology: Environment Orchestrator, Environment Template Engine, Namespace/Cluster Manager, Preview Environment Controller
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-043 Environment Lifecycle Management
@@ -106,3 +129,4 @@ ABB mappings will be defined when the relevant ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-043 Environment Lifecycle Management capability created. |
+

@@ -9,6 +9,76 @@ owner: "dermot.obrien@patternode.com"
 title: "SBB-002 Observability Ingestion Service (OTel)"
 sidebar_label: "SBB-002 Observability Ingestion Service (OTel)"
 sidebar_position: 2
+governance_zone: foundation
+realises:
+  - ABB-002
+short_name: OTel Collector
+product_mapping:
+  - abb_component: Trace Collector
+    sbb_product: OTel OTLP Receiver
+    notes: Ingests spans from OTel-instrumented services.
+  - abb_component: Metrics Collector
+    sbb_product: OTel Prometheus Receiver
+    notes: Pulls or pushes metrics into the collector.
+  - abb_component: Log Aggregator
+    sbb_product: OTel Filelog Receiver
+    notes: Collects container and system logs.
+  - abb_component: Audit Ingestion
+    sbb_product: Azure Monitor Ingestion API
+    notes: Secure ingestion of tamper-evident audit logs.
+  - abb_component: Signal Correlation Engine
+    sbb_product: Azure Monitor (App Insights)
+    notes: Automatic correlation via TraceID and SpanID.
+  - abb_component: Signal Enrichment
+    sbb_product: OTel Attributes Processor
+    notes: Adds domain, environment, and version tags.
+  - abb_component: Alert Evaluation
+    sbb_product: Azure Monitor Alerts
+    notes: KQL-based alert rules and evaluation.
+  - abb_component: Hot Storage
+    sbb_product: Azure Data Explorer (ADX)
+    notes: Low-latency telemetry storage.
+  - abb_component: Warm Storage
+    sbb_product: Log Analytics Workspace
+    notes: Standard operational signal storage.
+  - abb_component: Cold Storage
+    sbb_product: Azure Storage (Immutable)
+    notes: WORM-compliant storage for audit logs.
+  - abb_component: Dashboard Engine
+    sbb_product: Azure Managed Grafana
+    notes: Visualisation of metrics and traces.
+  - abb_component: Query Interface
+    sbb_product: Kusto Query Language (KQL)
+    notes: Unified query language for all signals.
+  - abb_component: Compliance Reporting
+    sbb_product: Azure Monitor Workbooks
+    notes: Pre-built compliance and audit report templates.
+  - abb_component: Notification Router
+    sbb_product: Azure Action Groups
+    notes: Routes alerts to email, SMS, and Logic Apps.
+  - abb_component: Identity (cross-cutting)
+    sbb_product: Entra Managed Identity
+    notes: Used for secure OTel-to-Azure communication.
+  - abb_component: Governance (cross-cutting)
+    sbb_product: Azure Policy (Guest Config)
+    notes: Enforces agent presence and compliance.
+products:
+  - name: OTel OTLP Receiver
+  - name: OTel Prometheus Receiver
+  - name: OTel Filelog Receiver
+  - name: Azure Monitor Ingestion API
+  - name: Azure Monitor (App Insights)
+  - name: OTel Attributes Processor
+  - name: Azure Monitor Alerts
+  - name: Azure Data Explorer (ADX)
+  - name: Log Analytics Workspace
+  - name: Azure Storage (Immutable)
+  - name: Azure Managed Grafana
+  - name: Kusto Query Language (KQL)
+  - name: Azure Monitor Workbooks
+  - name: Azure Action Groups
+  - name: Entra Managed Identity
+  - name: Azure Policy (Guest Config)
 ---
 
 # SBB-002 Observability Ingestion Service (OTel)
@@ -108,3 +178,4 @@ The diagram below shows the physical realisation of the Observability ABB. The O
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | Retrospective standardisation of SBB-002. |
+

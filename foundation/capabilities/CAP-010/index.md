@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-010 API Mediation & Contract Enforcement"
 sidebar_label: "CAP-010 API Mediation & Contract Enforcement"
 sidebar_position: 10
+governance_zone: foundation
+level: L3
+parent: CAP-008
+provided_by_platform: PL-010
+components:
+  organisation: Platform Integration Team, Domain Service Teams, Architecture Review Board
+  people:
+    - API Platform Engineers
+    - Integration Architects
+    - Service Engineers
+  processes:
+    - API Contract Lifecycle
+    - Compatibility Validation
+    - Policy Publication
+    - Consumer Migration
+  technology: API Gateway and Mediation Layer, Contract Registry, Traffic Control Services, API Analytics Services
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-004
+  - ABB-005
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-010 API Mediation & Contract Enforcement
@@ -115,3 +142,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-010 API Mediation & Contract Enforcement capability created. |
+

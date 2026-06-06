@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-029 Dependency & Vulnerability Scanning"
 sidebar_label: "CAP-029 Dependency & Vulnerability Scanning"
 sidebar_position: 29
+governance_zone: foundation
+level: L3
+parent: CAP-027
+provided_by_platform: PL-007
+required_by_outcomes:
+  - OC-008
+components:
+  organisation: Application Security Team, Development Teams, Platform Engineering Team
+  people:
+    - Security Engineers
+    - Developers
+    - Build Engineers
+  processes:
+    - Build-time Scanning
+    - Runtime Scanning
+    - Vulnerability Triage
+    - Remediation Tracking
+  technology: Dependency Scanner, Vulnerability Database, License Compliance Checker, Remediation Tracker
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-029 Dependency & Vulnerability Scanning
@@ -113,3 +136,4 @@ ABB mappings pending creation of the Supply Chain Security ABB.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-029 Dependency & Vulnerability Scanning capability created. |
+

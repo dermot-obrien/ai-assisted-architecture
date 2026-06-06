@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-005 Developer Self-Service Efficiency"
+governance_zone: foundation
+kpi: 90% of standard infrastructure requests fulfilled without manual intervention within 15 minutes.
+business_rationale: Manual provisioning creates bottlenecks, increases lead time, and diverts platform engineering effort from strategic work to ticket-driven toil.
+owned_by_platform: PL-004
+requires_capabilities:
+  - CAP-016
+  - CAP-017
+  - CAP-018
 ---
 
 # OC-005 Developer Self-Service Efficiency
@@ -28,3 +36,4 @@ Manual provisioning creates bottlenecks, increases lead time, and diverts platfo
 - **[CAP-016 Self-Service Provisioning](../../../capabilities/CAP-016/)**
 - **[CAP-017 Golden Path & Template Management](../../../capabilities/CAP-017/)**
 - **[CAP-018 Service Catalog & Developer Portal](../../../capabilities/CAP-018/)**
+

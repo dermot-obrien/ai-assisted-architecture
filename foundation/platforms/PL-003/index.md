@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-003 Governance & Compliance Platform"
+governance_zone: foundation
+strategic_owner: Chief Risk & Compliance Officer
+provides_capabilities:
+  - CAP-007
+contains_bounded_contexts:
+  - BC-003
+owns_outcomes:
+  - OC-004
 ---
 
 # PL-003 Governance & Compliance Platform
@@ -30,3 +38,4 @@ The **Governance & Compliance Platform** governs the organisation's adherence to
 
 ## 4. Bounded Contexts
 - **[BC-003 Governance & Policy](../../contexts/BC-003/)**
+

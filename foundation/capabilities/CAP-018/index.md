@@ -9,6 +9,28 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-018 Service Catalog & Developer Portal"
 sidebar_label: "CAP-018 Service Catalog & Developer Portal"
 sidebar_position: 18
+governance_zone: foundation
+level: L3
+parent: CAP-015
+provided_by_platform: PL-004
+required_by_outcomes:
+  - OC-005
+components:
+  organisation: Platform Engineering Team, All Service-Owning Teams, Architecture Team
+  people:
+    - Portal Engineers
+    - Service Owners
+    - Technical Writers
+  processes:
+    - Service Registration
+    - Catalog Curation
+    - Deprecation & Sunset
+  technology: Service Catalog Platform, Developer Portal, API Documentation Engine, Ownership Registry
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-018 Service Catalog & Developer Portal
@@ -110,3 +132,4 @@ ABB mappings will be defined when the Developer Experience ABB is created.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-018 Service Catalog & Developer Portal capability created. |
+

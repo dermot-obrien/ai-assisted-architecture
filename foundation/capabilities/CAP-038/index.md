@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-038 Feature Management & Progressive Delivery"
 sidebar_label: "CAP-038 Feature Management & Progressive Delivery"
 sidebar_position: 38
+governance_zone: foundation
+level: L3
+parent: CAP-035
+provided_by_platform: PL-009
+required_by_outcomes:
+  - OC-010
+components:
+  organisation: Development Teams, Platform Engineering Team, Product Teams
+  people:
+    - Developers
+    - Product Managers
+    - SREs
+  processes:
+    - Flag Definition
+    - Progressive Rollout
+    - Impact Monitoring
+    - Automated Rollback
+  technology: Feature Flag Service, Targeting & Segmentation Engine, Rollout Controller, Impact Correlation Engine
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-038 Feature Management & Progressive Delivery
@@ -106,3 +129,4 @@ ABB mappings will be defined when the Configuration & Secret Management ABB is c
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-038 Feature Management & Progressive Delivery capability created. |
+

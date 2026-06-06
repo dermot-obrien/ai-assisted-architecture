@@ -7,6 +7,12 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-003 MTTD Reduction"
+governance_zone: foundation
+kpi: MTTD for multi-service incidents < 5 minutes.
+business_rationale: Minimizes impact of system failures and improves overall availability.
+owned_by_platform: PL-002
+requires_capabilities:
+  - CAP-006
 ---
 
 # OC-003 MTTD Reduction
@@ -26,3 +32,4 @@ Minimizes impact of system failures and improves overall availability.
 
 ## 3. Traceability
 - **[CAP-006 Operational Monitoring](../../../capabilities/CAP-006/)**
+

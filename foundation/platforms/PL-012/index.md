@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-012 Continuous Delivery Platform"
+governance_zone: foundation
+strategic_owner: Head of Platform Engineering
+provides_capabilities:
+  - CAP-040
+  - CAP-041
+  - CAP-042
+contains_bounded_contexts:
+  - BC-012
+owns_outcomes:
+  - OC-013
 ---
 
 # PL-012 Continuous Delivery Platform
@@ -32,3 +42,4 @@ The **Continuous Delivery Platform** automates the path from code commit to prod
 
 ## 4. Bounded Contexts
 - **[BC-012 Continuous Delivery](../../contexts/BC-012/)**
+

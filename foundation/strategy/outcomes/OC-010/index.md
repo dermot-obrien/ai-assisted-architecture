@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-010 Configuration Consistency & Secret Hygiene"
+governance_zone: foundation
+kpi: Zero production incidents caused by configuration drift or expired/leaked secrets, with 100% of secrets automatically rotated within policy.
+business_rationale: Configuration drift is a leading cause of deployment failures and environment-specific bugs. Hard-coded or long-lived secrets are among the most common causes of security breaches. Central management eliminates both risks.
+owned_by_platform: PL-009
+requires_capabilities:
+  - CAP-036
+  - CAP-037
+  - CAP-038
 ---
 
 # OC-010 Configuration Consistency & Secret Hygiene
@@ -28,3 +36,4 @@ Configuration drift is a leading cause of deployment failures and environment-sp
 - **[CAP-036 Centralised Configuration Management](../../../capabilities/CAP-036/)**
 - **[CAP-037 Secret Lifecycle & Rotation](../../../capabilities/CAP-037/)**
 - **[CAP-038 Feature Management & Progressive Delivery](../../../capabilities/CAP-038/)**
+

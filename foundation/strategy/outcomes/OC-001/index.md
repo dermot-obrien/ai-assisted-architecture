@@ -7,6 +7,13 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-001 Zero Trust Workload Posture"
+governance_zone: foundation
+kpi: 100% of internal service calls are authenticated via workload identity tokens.
+business_rationale: Reduces the blast radius of a potential compromise by ensuring every interaction is explicitly verified.
+owned_by_platform: PL-001
+requires_capabilities:
+  - CAP-004
+  - CAP-005
 ---
 
 # OC-001 Zero Trust Workload Posture
@@ -27,3 +34,4 @@ Reduces the blast radius of a potential compromise by ensuring every interaction
 ## 3. Traceability
 - **[CAP-004 Identity Lifecycle Management](../../../capabilities/CAP-004/)**
 - **[CAP-005 Policy-Based Access Control](../../../capabilities/CAP-005/)**
+

@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-005 Cost Management Platform"
+governance_zone: foundation
+strategic_owner: Head of FinOps / CFO Delegate
+provides_capabilities:
+  - CAP-020
+  - CAP-021
+  - CAP-022
+contains_bounded_contexts:
+  - BC-005
+owns_outcomes:
+  - OC-006
 ---
 
 # PL-005 Cost Management Platform
@@ -32,3 +42,4 @@ The **Cost Management Platform** governs the financial accountability of platfor
 
 ## 4. Bounded Contexts
 - **[BC-005 Cost Management](../../contexts/BC-005/)**
+

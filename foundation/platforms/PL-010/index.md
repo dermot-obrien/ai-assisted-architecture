@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-010 Integration Platform"
+governance_zone: foundation
+strategic_owner: Head of Platform Integration
+provides_capabilities:
+  - CAP-008
+  - CAP-010
+  - CAP-011
+contains_bounded_contexts:
+  - BC-010
+owns_outcomes:
+  - OC-011
 ---
 
 # PL-010 Integration Platform
@@ -32,3 +42,4 @@ The **Integration Platform** ensures seamless interoperability between disparate
 
 ## 4. Bounded Contexts
 - **[BC-010 Integration](../../contexts/BC-010/)**
+

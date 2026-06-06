@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "UC-005 Automated Workload Scheduling"
+governance_zone: foundation
+primary_actor: Deployment Pipeline
+supports_outcome: OC-012
+success_criteria:
+  - Workload is placed on optimal hardware within < 30 seconds.
+  - High availability is maintained through automated multi-zone distribution.
+realised_by_abbs:
+  - ABB-006
 ---
 
 # UC-005 Automated Workload Scheduling
@@ -27,3 +35,4 @@ An AI workload requires specific GPU resources. The scheduler automatically iden
 
 ## 3. Realisation
 - **[ABB-006 Compute Orchestration Platform](../../../building-blocks/architecture-building-blocks/ABB-006/)**
+

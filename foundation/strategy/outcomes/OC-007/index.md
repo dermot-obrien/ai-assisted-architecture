@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-007 Service Reliability Target"
+governance_zone: foundation
+kpi: All Tier-1 platform services maintain 99.9% availability with SLO compliance tracked and reported monthly.
+business_rationale: Unmanaged reliability leads to either over-investment in availability (wasting resources) or under-investment (causing outages). SLO-driven reliability management balances cost and availability through data-driven decisions.
+owned_by_platform: PL-006
+requires_capabilities:
+  - CAP-024
+  - CAP-025
+  - CAP-026
 ---
 
 # OC-007 Service Reliability Target
@@ -28,3 +36,4 @@ Unmanaged reliability leads to either over-investment in availability (wasting r
 - **[CAP-024 SLO Management & Error Budgets](../../../capabilities/CAP-024/)**
 - **[CAP-025 Disaster Recovery & Business Continuity](../../../capabilities/CAP-025/)**
 - **[CAP-026 Chaos Engineering & Resilience Testing](../../../capabilities/CAP-026/)**
+

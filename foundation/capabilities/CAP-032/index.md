@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-032 Data Classification & Privacy"
 sidebar_label: "CAP-032 Data Classification & Privacy"
 sidebar_position: 32
+governance_zone: foundation
+level: L3
+parent: CAP-031
+provided_by_platform: PL-008
+required_by_outcomes:
+  - OC-009
+components:
+  organisation: Data Governance Team, Legal & Privacy Team, Data Owners
+  people:
+    - Data Stewards
+    - Privacy Engineers
+    - Data Owners
+  processes:
+    - Classification Assignment
+    - Classification Review
+    - Privacy Control Mapping
+    - Data Discovery
+  technology: Classification Engine, Data Discovery Scanner, Privacy Control Framework, Classification Audit Log
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-032 Data Classification & Privacy
@@ -111,3 +134,4 @@ ABB realisation pending creation of the Data Management architecture building bl
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-032 Data Classification & Privacy capability created. |
+

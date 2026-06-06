@@ -7,6 +7,26 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-011 Infrastructure Bounded Context"
+governance_zone: foundation
+part_of: PL-011
+subdomain_kind: generic
+contains:
+  - ABB-006
+  - ABB-007
+  - ABB-008
+realises_capabilities:
+  - CAP-009
+  - CAP-012
+  - CAP-013
+  - CAP-014
+  - CAP-044
+ubiquitous_language:
+  - term: Runtime Scheduling
+    definition: Policy-controlled placement and scaling of workload execution units.
+  - term: Persistence Tiering
+    definition: Policy-driven movement of data across performance and retention tiers.
+  - term: Recovery Objective
+    definition: Defined target for restoring service and data after disruption.
 ---
 
 # BC-011 Infrastructure Bounded Context
@@ -30,6 +50,7 @@ The **Infrastructure Bounded Context** defines the language and controls for sha
 ## 3. Contained ABBs
 - **[ABB-006 Compute Orchestration Platform](../../building-blocks/architecture-building-blocks/ABB-006/)**
 - **[ABB-007 Storage & Persistence Platform](../../building-blocks/architecture-building-blocks/ABB-007/)**
+- **[ABB-008 Network Connectivity & Security](../../building-blocks/architecture-building-blocks/ABB-008/)**
 
 ## 4. Realised Capabilities
 - **[CAP-009 Infrastructure Services](../../capabilities/CAP-009/)**
@@ -37,3 +58,4 @@ The **Infrastructure Bounded Context** defines the language and controls for sha
 - **[CAP-013 Data Storage & Lifecycle Management](../../capabilities/CAP-013/)**
 - **[CAP-014 Network Connectivity & Security](../../capabilities/CAP-014/)**
 - **[CAP-044 Service Mesh & Connectivity](../../capabilities/CAP-044/)**
+

@@ -7,6 +7,16 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-008 Data Management Platform"
+governance_zone: foundation
+strategic_owner: Chief Data Officer
+provides_capabilities:
+  - CAP-032
+  - CAP-033
+  - CAP-034
+contains_bounded_contexts:
+  - BC-008
+owns_outcomes:
+  - OC-009
 ---
 
 # PL-008 Data Management Platform
@@ -32,3 +42,4 @@ The **Data Management Platform** ensures that data across the platform is classi
 
 ## 4. Bounded Contexts
 - **[BC-008 Data Governance](../../contexts/BC-008/)**
+

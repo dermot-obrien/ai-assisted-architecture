@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-003 Operational Intelligence"
 sidebar_label: "CAP-003 Operational Intelligence"
 sidebar_position: 3
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-002
+components:
+  organisation: Platform Operations Team, Compliance & Audit Team, Security Operations Centre
+  people:
+    - Observability Engineers
+    - Compliance Analysts
+    - Incident Responders
+  processes:
+    - Signal Onboarding
+    - Alert Management
+    - Compliance Reporting
+    - Retention Management
+  technology: Signal Collection Infrastructure, Tiered Storage, Correlation and Alerting Engine, Compliance Evidence Store
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
 ---
 
 # CAP-003 Operational Intelligence
@@ -113,3 +134,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-003 Operational Intelligence capability created. |
+

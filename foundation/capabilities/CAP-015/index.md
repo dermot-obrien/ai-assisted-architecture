@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-015 Developer Experience"
 sidebar_label: "CAP-015 Developer Experience"
 sidebar_position: 15
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-004
+components:
+  organisation: Platform Engineering Team, Application Development Teams
+  people:
+    - Platform Engineers
+    - Developer Advocates
+    - UX Engineers
+  processes:
+    - Template Lifecycle
+    - Self-Service Request Fulfilment
+    - Catalog Curation
+    - Developer Feedback Loop
+  technology: Self-Service Provisioning Engine, Template Registry, Service Catalog & Portal, Developer CLI & SDK
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-015 Developer Experience
@@ -119,3 +140,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-015 Developer Experience capability created. |
+

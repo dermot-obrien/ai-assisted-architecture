@@ -7,6 +7,13 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "OC-012 Infrastructure Resilience & Elasticity"
+governance_zone: foundation
+kpi: Achieve 99.99% availability for core infrastructure services.
+business_rationale: Ensures business continuity and cost-efficiency by matching resource allocation to actual usage patterns.
+owned_by_platform: PL-011
+requires_capabilities:
+  - CAP-012
+  - CAP-013
 ---
 
 # OC-012 Infrastructure Resilience & Elasticity
@@ -27,3 +34,4 @@ Ensures business continuity and cost-efficiency by matching resource allocation 
 ## 3. Traceability
 - **[CAP-012 Compute Runtime & Scheduling](../../../capabilities/CAP-012/)**
 - **[CAP-013 Data Storage & Lifecycle Management](../../../capabilities/CAP-013/)**
+

@@ -7,6 +7,17 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "PL-004 Developer Experience Platform"
+governance_zone: foundation
+strategic_owner: Head of Platform Engineering
+provides_capabilities:
+  - CAP-016
+  - CAP-017
+  - CAP-018
+  - CAP-043
+contains_bounded_contexts:
+  - BC-004
+owns_outcomes:
+  - OC-005
 ---
 
 # PL-004 Developer Experience Platform
@@ -33,3 +44,4 @@ The **Developer Experience Platform** ensures that platform capabilities are con
 
 ## 4. Bounded Contexts
 - **[BC-004 Developer Platform](../../contexts/BC-004/)**
+

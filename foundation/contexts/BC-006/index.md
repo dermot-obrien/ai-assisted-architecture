@@ -7,6 +7,20 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "BC-006 Reliability & Resilience Bounded Context"
+governance_zone: foundation
+part_of: PL-006
+subdomain_kind: core
+realises_capabilities:
+  - CAP-024
+  - CAP-025
+  - CAP-026
+ubiquitous_language:
+  - term: SLO (Service Level Objective)
+    definition: A target value for a service reliability metric (e.g., 99.9% availability).
+  - term: Error Budget
+    definition: The permitted amount of unreliability within an SLO period, consumed by incidents and deployments.
+  - term: Chaos Experiment
+    definition: A controlled fault injection that validates system behaviour under failure conditions.
 ---
 
 # BC-006 Reliability & Resilience Bounded Context
@@ -34,3 +48,4 @@ The **Reliability & Resilience Bounded Context** defines the model for measuring
 - **[CAP-024 SLO Management & Error Budgets](../../capabilities/CAP-024/)**
 - **[CAP-025 Disaster Recovery & Business Continuity](../../capabilities/CAP-025/)**
 - **[CAP-026 Chaos Engineering & Resilience Testing](../../capabilities/CAP-026/)**
+

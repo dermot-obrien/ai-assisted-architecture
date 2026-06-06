@@ -9,6 +9,51 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-007 Storage & Persistence Platform"
 sidebar_label: "ABB-007 Storage & Persistence Platform"
 sidebar_position: 7
+governance_zone: foundation
+category: Infrastructure
+short_name: SPP
+realises_capabilities:
+  - CAP-013
+part_of: BC-011
+interfaces:
+  - id: I1
+    direction: in
+    type: query
+    description: Application-level data read/write interaction via managed interfaces.
+  - id: I2
+    direction: in
+    type: request
+    description: Storage resource provisioning and configuration operations.
+  - id: I3
+    direction: out
+    type: request
+    description: Policy-driven backup and snapshot execution.
+  - id: I4
+    direction: in
+    type: request
+    description: Recovery operation request for defined recovery scenarios.
+  - id: I5
+    direction: out
+    type: request
+    description: Access-control validation for data and administration operations.
+  - id: I6
+    direction: out
+    type: stream
+    description: Storage health, usage, lifecycle, and recovery telemetry.
+  - id: I7
+    direction: out
+    type: query
+    description: Retention, classification, and lifecycle policy enforcement checks.
+  - id: I8
+    direction: in
+    type: request
+    description: Compute runtime integration for stateful workloads.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # Storage & Persistence Platform
@@ -166,3 +211,4 @@ Each SBB should define storage performance limits, retention ceilings, replicati
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-007 Storage & Persistence Platform ABB created. |
+

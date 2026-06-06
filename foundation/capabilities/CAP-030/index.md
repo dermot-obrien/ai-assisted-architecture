@@ -9,6 +9,29 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-030 SBOM Management & Compliance"
 sidebar_label: "CAP-030 SBOM Management & Compliance"
 sidebar_position: 30
+governance_zone: foundation
+level: L3
+parent: CAP-027
+provided_by_platform: PL-007
+required_by_outcomes:
+  - OC-008
+components:
+  organisation: Application Security Team, Development Teams, Incident Response Team
+  people:
+    - Security Engineers
+    - Build Engineers
+    - Incident Responders
+  processes:
+    - SBOM Generation
+    - SBOM Storage
+    - Impact Query
+    - Regulatory Reporting
+  technology: SBOM Generator, SBOM Repository, Impact Analysis Engine, Compliance Export Service
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-030 SBOM Management & Compliance
@@ -113,3 +136,4 @@ ABB mappings pending creation of the Supply Chain Security ABB.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-030 SBOM Management & Compliance capability created. |
+

@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-006 Operational Monitoring & Alerting"
 sidebar_label: "CAP-006 Operational Monitoring & Alerting"
 sidebar_position: 6
+governance_zone: foundation
+level: L3
+parent: CAP-003
+provided_by_platform: PL-002
+required_by_outcomes:
+  - OC-003
+components:
+  organisation: Platform Operations Team, Site Reliability Engineering, Security Operations Centre
+  people:
+    - Observability Engineers
+    - Site Reliability Engineers
+    - On-Call Responders
+  processes:
+    - Signal Onboarding
+    - Alert Lifecycle
+    - Incident Investigation
+    - Capacity Planning
+  technology: Trace Collection Service, Metrics Collection Service, Log Aggregation Service, Signal Correlation Engine, Alert Evaluation Engine, Dashboard Engine, Hot and Warm Storage
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-002
+  - ABB-001
+  - ABB-003
 ---
 
 # CAP-006 Operational Monitoring & Alerting
@@ -118,3 +145,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-006 Operational Monitoring & Alerting capability created. |
+

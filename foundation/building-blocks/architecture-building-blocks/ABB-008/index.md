@@ -9,6 +9,51 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-008 Network Connectivity & Security"
 sidebar_label: "ABB-008 Network Connectivity & Security"
 sidebar_position: 8
+governance_zone: foundation
+category: Infrastructure
+short_name: NCS
+realises_capabilities:
+  - CAP-014
+part_of: BC-011
+interfaces:
+  - id: I1
+    direction: in
+    type: request
+    description: Service discovery, DNS resolution, and endpoint connectivity.
+  - id: I2
+    direction: out
+    type: request
+    description: Controlled outbound traffic through NAT and firewall rules.
+  - id: I3
+    direction: in
+    type: request
+    description: Inbound traffic through load balancers and WAF.
+  - id: I4
+    direction: out
+    type: request
+    description: Network interface and policy injection for workload runtimes.
+  - id: I5
+    direction: out
+    type: request
+    description: Service mesh identity issuance and network access control.
+  - id: I6
+    direction: out
+    type: stream
+    description: Network flow, DNS, load balancer, and mesh telemetry.
+  - id: I7
+    direction: out
+    type: query
+    description: Network segmentation and firewall policy enforcement.
+  - id: I8
+    direction: in
+    type: request
+    description: Topology changes, peering, and security rule management.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # Network Connectivity & Security
@@ -175,3 +220,4 @@ Each SBB should define network address space allocation, peering and connectivit
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | ABB-008 Network Connectivity & Security ABB created. |
+

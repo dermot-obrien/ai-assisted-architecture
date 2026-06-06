@@ -9,6 +9,59 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-001 Identity & Access Management"
 sidebar_label: "ABB-001 Identity & Access Management"
 sidebar_position: 1
+governance_zone: foundation
+category: Security
+short_name: IAM
+realises_capabilities:
+  - CAP-004
+part_of: BC-001
+interfaces:
+  - id: I1
+    direction: in
+    type: request
+    description: Authentication request from a building block's identity (human or non-human) to obtain a security token.
+  - id: I2
+    direction: out
+    type: callback
+    description: Issued security token carrying identity claims, roles, and scopes.
+  - id: I3
+    direction: in
+    type: request
+    description: Request to verify a presented token's integrity, expiry, audience, and claims.
+  - id: I4
+    direction: in
+    type: request
+    description: Request to evaluate whether an identity may perform a specific action on a specific resource.
+  - id: I5
+    direction: out
+    type: callback
+    description: Permit, deny, or step-up decision returned to the requesting building block.
+  - id: I6
+    direction: in
+    type: query
+    description: Platform-native assertion (compute metadata, signed claim) exchanged for a security token without stored secrets.
+  - id: I7
+    direction: in
+    type: request
+    description: Inbound federated authentication from an external identity provider or partner organisation.
+  - id: I8
+    direction: out
+    type: stream
+    description: Authentication events, policy decisions, identity lifecycle events, and privilege-escalation alerts.
+  - id: I9
+    direction: out
+    type: event
+    description: Sign-in logs, conditional access logs, and governance data for regulatory reporting.
+  - id: I10
+    direction: in
+    type: request
+    description: Identity creation, role assignment, policy modification, and federation trust configuration.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # ABB-001 Identity & Access Management
@@ -92,3 +145,4 @@ The diagram below shows the full scope boundary of the Identity & Access Managem
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-001 Identity & Access Management ABB created. |
+

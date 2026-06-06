@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "UC-004 Standardised API Governance"
+governance_zone: foundation
+primary_actor: Service Developer
+supports_outcome: OC-011
+success_criteria:
+  - Policy enforcement is automated without manual gateway configuration.
+  - Breaking changes are detected via contract validation at the gateway.
+realised_by_abbs:
+  - ABB-004
 ---
 
 # UC-004 Standardised API Governance
@@ -27,3 +35,4 @@ A developer registers a new service. The API Gateway automatically enforces the 
 
 ## 3. Realisation
 - **[ABB-004 API Mediation & Gateway](../../../building-blocks/architecture-building-blocks/ABB-004/)**
+

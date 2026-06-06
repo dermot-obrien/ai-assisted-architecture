@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-014 Network Connectivity & Security"
 sidebar_label: "CAP-014 Network Connectivity & Security"
 sidebar_position: 14
+governance_zone: foundation
+level: L3
+parent: CAP-009
+provided_by_platform: PL-011
+components:
+  organisation: Platform Network Team, Security Operations, Platform Security Team
+  people:
+    - Network Engineers
+    - Security Engineers
+    - Service Engineers
+  processes:
+    - Network Provisioning
+    - Firewall Rule Management
+    - Certificate Lifecycle Management
+    - Connectivity Change Management
+  technology: Virtual Network Platform, Traffic Management Services, Service Mesh, Network Security Services
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-008
+  - ABB-006
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-014 Network Connectivity & Security
@@ -115,3 +142,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-014 Network Connectivity & Security capability created. |
+

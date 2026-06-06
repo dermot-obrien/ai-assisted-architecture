@@ -9,6 +9,31 @@ owner: "dermot.obrien@patternode.com"
 title: "ABB-003 Governance & Policy Enforcement"
 sidebar_label: "ABB-003 Governance & Policy Enforcement"
 sidebar_position: 3
+governance_zone: foundation
+category: Compliance
+short_name: Gov
+realises_capabilities:
+  - CAP-005
+part_of: BC-003
+interfaces:
+  - id: I1
+    direction: in
+    type: callback
+    description: Request to evaluate a specific context against a policy set.
+  - id: I4
+    direction: bidirectional
+    type: request
+    description: Request to pull latest policies from the distribution service.
+  - id: I8
+    direction: out
+    type: event
+    description: Streaming of evaluation results for audit.
+domains:
+  - application
+mandatory_subabbs:
+  - iam
+  - observability
+  - governance
 ---
 
 # ABB-003 Governance & Policy Enforcement
@@ -61,3 +86,4 @@ The diagram below shows the logical components for policy authoring, distributio
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | ABB-003 Governance & Policy Enforcement ABB created. |
+

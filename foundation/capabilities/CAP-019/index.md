@@ -9,6 +9,27 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-019 Cost Management"
 sidebar_label: "CAP-019 Cost Management"
 sidebar_position: 19
+governance_zone: foundation
+level: L2
+parent: CAP-001
+provided_by_platform: PL-005
+components:
+  organisation: FinOps Team, Platform Engineering Team, Finance Team
+  people:
+    - FinOps Engineers
+    - Cloud Architects
+    - Budget Owners
+  processes:
+    - Cost Tagging Enforcement
+    - Monthly Cost Review
+    - Optimisation Cycle
+    - Anomaly Response
+  technology: Cost Aggregation & Attribution Engine, Optimisation Recommendation Service, Budget Enforcement & Alerting, Chargeback/Showback Reporting
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-08"
+  assessor: Architecture Team
 ---
 
 # CAP-019 Cost Management
@@ -119,3 +140,4 @@ Gaps are documented at the L3 level in individual capability documents.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-08 | Initial Draft | CAP-019 Cost Management capability created. |
+

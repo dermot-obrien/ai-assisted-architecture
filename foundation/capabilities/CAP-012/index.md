@@ -9,6 +9,33 @@ owner: "dermot.obrien@patternode.com"
 title: "CAP-012 Compute Runtime & Scheduling"
 sidebar_label: "CAP-012 Compute Runtime & Scheduling"
 sidebar_position: 12
+governance_zone: foundation
+level: L3
+parent: CAP-009
+provided_by_platform: PL-011
+components:
+  organisation: Platform Infrastructure Team, Site Reliability Engineering, Platform Security Team
+  people:
+    - Runtime Platform Engineers
+    - Reliability Engineers
+    - Service Engineers
+  processes:
+    - Workload Onboarding
+    - Scheduling Policy Management
+    - Autoscaling Management
+    - Patch and Upgrade Management
+  technology: Compute Orchestration Control Plane, Execution Runtime, Autoscaling Services, Deployment and Rollback Services
+maturity:
+  current: 1
+  target: 3
+  assessment_date: "2026-03-07"
+  assessor: Architecture Team
+realised_by_abbs:
+  - ABB-006
+  - ABB-007
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-012 Compute Runtime & Scheduling
@@ -115,3 +142,4 @@ All technology needs are realised by the mapped ABBs.
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | CAP-012 Compute Runtime & Scheduling capability created. |
+

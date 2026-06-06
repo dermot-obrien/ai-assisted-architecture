@@ -7,6 +7,14 @@ created: "2026-06-06"
 last_modified: "2026-06-06"
 owner: "dermot.obrien@patternode.com"
 title: "UC-002 Cross-Context Request Tracing"
+governance_zone: foundation
+primary_actor: SRE / Support
+supports_outcome: OC-003
+success_criteria:
+  - Trace ID persists across all Bounded Context boundaries.
+  - Visualisation shows latency per span.
+realised_by_abbs:
+  - ABB-002
 ---
 
 # UC-002 Cross-Context Request Tracing
@@ -27,3 +35,4 @@ A user reports a slow response. The operator uses a single Trace ID to see the r
 
 ## 3. Realisation
 - **[ABB-002 Observability](../../../building-blocks/architecture-building-blocks/ABB-002/)**
+
