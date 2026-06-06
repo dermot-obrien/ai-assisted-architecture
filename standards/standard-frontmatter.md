@@ -254,7 +254,7 @@ id: OC-001
 title: "OC-001 Zero Trust Workload Posture"
 kpi: "Reduce credential-related incidents to zero"
 kpi_target: { value: 0, unit: "incidents/quarter", measurement: "security-incident-tracker" }
-target_date: 2027-03-31
+target_date: 2027-03-31              # recommended; omit rather than fabricate a date for undated/seed outcomes
 business_rationale: "Eliminate standing credentials per zero-trust mandate."
 time_horizon: short | medium | long  # short ≤ 1y; medium 1–3y; long > 3y
 
@@ -329,11 +329,13 @@ maturity:
   assessor: "Identity Platform Team"
 subdomain_kind: core | supporting | generic   # optional DDD classifier
 
-provided_by_platform: PL-001         # required
+provided_by_platform: PL-001         # required for L3 (L1/L2 span platforms, so optional)
 required_by_outcomes: [OC-001, OC-002]
-realised_by_abbs: [ABB-001, ABB-003]   # required for L3 capabilities
+realised_by_abbs: [ABB-001, ABB-003]   # recommended; an unrealised L3 capability is a gap, not an error
 gaps: ["Continuous Access Evaluation not yet implemented"]
 ```
+
+> **Realisation completeness is a gap, not a validation error.** `realised_by_abbs` is *recommended*, never required — an L3 capability with no realising ABB is a legitimate architecture **gap** surfaced by gap analysis (the foundation catalogue ships such placeholders deliberately, awaiting their ABBs). `provided_by_platform` is required only for L3 capabilities; L1/L2 capabilities are cross-platform groupings and may omit it.
 
 **Schema:** [`schemas/v1.1.0/capability.schema.json`](./schemas/v1.1.0/capability.schema.json).
 
@@ -346,10 +348,10 @@ title: "BC-001 Identity & Access"
 owner: "Identity Platform Team"
 
 part_of: PL-001                      # required: parent Platform
-contains: [ABB-001]                   # required: contained ABBs, ≥1
+contains: [ABB-001]                   # recommended; an empty (placeholder) context is a gap, not an error
 realises_capabilities: [CAP-004]     # required, ≥1
 
-ubiquitous_language:                 # required, 5-50 entries
+ubiquitous_language:                 # required, 3-50 entries
   - { term: "Principal", definition: "Any actor authenticated by the system" }
   - { term: "Claim", definition: "A statement issued by an IdP about a Principal" }
 
@@ -609,30 +611,22 @@ affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
 For v1.1.0:
 
 - **New artefacts** (created after v1.1.0 ships) MUST have all required envelope fields (§2.1, §2.2, §2.4) and the per-kind required fields (§6).
-- **Existing v1.0.0 artefacts** retain their existing frontmatter and continue to validate. The new required fields are *recommended* for them, not required.
-- A migration script walks an existing workspace and **promotes** values from Document Control body tables into the frontmatter, leaving body tables intact.
+- **Existing v1.0.0 artefacts** are brought up to the v1.1.0 contract by a **one-way migration** rather than tolerated indefinitely by a relaxed validator. There is a single schema set — the strict v1.1.0 schemas in [`schemas/v1.1.0/`](./schemas/v1.1.0/) — and the goal is that every artefact validates against it.
 
-The JSON Schemas implement this distinction via two profiles:
-
-- **`strict-v1.1.0`** — enforces all new required fields. Default for new artefacts.
-- **`lenient-v1.0.0-compat`** — relaxes new fields to optional. Default during migration.
-
-A workspace declares its profile in `<workspace>/governance.yaml`:
-
-```yaml
-schema_profile: strict-v1.1.0   # or: lenient-v1.0.0-compat
-```
+> **No two-profile mechanism.** Earlier drafts of this standard described a `strict-v1.1.0` / `lenient-v1.0.0-compat` pair selected via a `governance.yaml` `schema_profile` key. That mechanism was never built, and the framework now **migrates rather than tolerates**: run the migration script (below) to bring a workspace to v1.1.0, then validate against the single strict schema set. (If a future frontmatter-validator CLI needs a gradual-adoption mode, a lenient profile can be reintroduced then, designed against a real validator rather than ahead of one.)
 
 ### 7.2 Migration script behaviour
 
-For each existing artefact `index.md`, the migration script:
+The migration is performed by [`scripts/migrate-frontmatter.mjs`](../scripts/migrate-frontmatter.mjs) (Node, zero runtime dependencies beyond `js-yaml`). For each artefact `index.md` under the target root it:
 
-1. Parses the existing frontmatter.
-2. Parses the "Document Control" Markdown table (the structure is consistent across kinds — first table after the H1).
-3. For each table row, maps the field name to the frontmatter field name (e.g. `Capability ID` → `id`; `Status` → `status`; `Version` → `version`; `Platform` → `provided_by_platform`).
-4. Adds missing fields to the frontmatter.
-5. Leaves the body table in place (humans still read it).
-6. Reports any field it could not map for manual review.
+1. Infers `kind` from the directory path and `id` from the folder name.
+2. Parses the existing frontmatter (preserved verbatim — no existing key is ever overwritten, so the migration is idempotent).
+3. Adds the universal envelope fields (`id`, `kind`, `version` `0.1.0`, `status` `draft`, `created`/`last_modified`, `owner`, `governance_zone: foundation`).
+4. **Extracts the per-kind required fields from the document body** — the Document Control table and the numbered prose sections — e.g. ABB `interfaces` from the §3 interface table, SBB `product_mapping` from the §2.2 table, capability `components`/`maturity` from §2/§3, BC `ubiquitous_language` and `contains` from their sections, plus relations recovered by reverse index (an ABB's parent BC, an Outcome's owning Platform).
+5. Leaves the body in place (humans still read it).
+6. Reports, per file, exactly which fields were added and any heuristic/defaulted values for review.
+
+After migrating, validate the result with [`scripts/validate-frontmatter.mjs`](../scripts/validate-frontmatter.mjs), which checks every artefact's frontmatter against its per-kind schema (the universal envelope composed in via `$ref`). The foundation seed shipped with the framework validates clean.
 
 ### 7.3 Standards documents are unchanged
 
