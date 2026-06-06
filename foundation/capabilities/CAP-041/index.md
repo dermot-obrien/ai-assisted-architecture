@@ -1,4 +1,11 @@
 ---
+id: CAP-041
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-041 Deployment Orchestration"
 sidebar_label: "CAP-041 Deployment Orchestration"
 sidebar_position: 41

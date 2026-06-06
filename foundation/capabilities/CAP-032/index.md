@@ -1,4 +1,11 @@
 ---
+id: CAP-032
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-032 Data Classification & Privacy"
 sidebar_label: "CAP-032 Data Classification & Privacy"
 sidebar_position: 32

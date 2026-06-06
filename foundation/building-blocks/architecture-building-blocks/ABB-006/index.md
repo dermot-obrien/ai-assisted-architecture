@@ -1,8 +1,16 @@
 ---
+id: ABB-006
+kind: abb
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "ABB-006 Compute Orchestration Platform"
 sidebar_label: "ABB-006 Compute Orchestration Platform"
 sidebar_position: 6
 ---
+
 # Compute Orchestration Platform
 
 ## Document Control

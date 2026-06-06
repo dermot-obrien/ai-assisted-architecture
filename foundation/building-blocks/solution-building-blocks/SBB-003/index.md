@@ -1,4 +1,11 @@
 ---
+id: SBB-003
+kind: sbb
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "SBB-003 Policy Decision Service (OPA)"
 sidebar_label: "SBB-003 Policy Decision Service (OPA)"
 sidebar_position: 3

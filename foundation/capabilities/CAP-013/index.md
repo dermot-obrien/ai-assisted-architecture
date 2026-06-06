@@ -1,4 +1,11 @@
 ---
+id: CAP-013
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-013 Data Storage & Lifecycle Management"
 sidebar_label: "CAP-013 Data Storage & Lifecycle Management"
 sidebar_position: 13

@@ -1,4 +1,11 @@
 ---
+id: CAP-017
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-017 Golden Path & Template Management"
 sidebar_label: "CAP-017 Golden Path & Template Management"
 sidebar_position: 17

@@ -1,4 +1,11 @@
 ---
+id: SBB-001
+kind: sbb
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "SBB-001 Identity Lifecycle Service (Entra)"
 sidebar_label: "SBB-001 Identity Lifecycle Service (Entra)"
 sidebar_position: 1
