@@ -50,29 +50,38 @@ YAML front matter with Docusaurus-compatible metadata and building block identit
 
 ```yaml
 ---
+# Docusaurus presentation
 title: "<SBB-ID> <SBB Name>"
 sidebar_label: "<SBB-ID> <SBB Name>"
 sidebar_position: <integer>
-id: <SBB-ID>
-status: Draft
-version: "0.1"
+
+# Universal envelope (required)
+id: <SBB-NNN>                          # must match the folder name and the ^SBB-\d{3}$ pattern
+kind: sbb
+version: "0.1.0"                       # semver: major.minor.patch
+status: draft                          # draft | proposed | accepted | active | deprecated | superseded | retired
+created: <YYYY-MM-DD>
 last_modified: <YYYY-MM-DD>
-primary_abb: <ABB-NNN>
-realises_abbs: [<ABB-NNN>, ...]
-profile: "<Profile Name>"
+last_modified_by: "<Author name>"      # who last edited (replaces the old `author` field)
+owner: "<Owning team or person>"
+
+# Envelope (optional but recommended)
 short_name: "<Acronym or abbreviation for diagrams and cross-references>"
-category: "<Logical grouping, e.g. Agent Runtime, Security and Identity, Agent Governance>"
-lifecycle_stage: <Plan | Encourage | Sustain | Retire>
-current_maturity: <Not Established | Ad-hoc | Basic | Defined | Mature>
-target_maturity: <Defined | Mature>
-author: "<Author name>"
-provenance:
-  origin: ai-generated
-  review_state: ai-raw
+
+# SBB-specific (required by sbb.schema.json)
+realises: [<ABB-NNN>, ...]             # one or more parent ABBs this SBB realises (≥1)
+products:                              # ≥1 concrete product/service
+  - { name: "<Product name>", vendor: "<Vendor>", licensing: "<Licensing model>" }
+product_mapping:                       # ≥1 ABB-component → SBB-product row
+  - { abb_component: "<ABB component>", sbb_product: "<Product / service>", notes: "<Implementation detail>" }
+
+# SBB-specific (optional)
+cloud_provider: <azure | aws | gcp | onprem | multi | none>
+deployment_model: <managed | self-hosted | hybrid>
 ---
 ```
 
-The front matter captures all identity and classification metadata for the SBB. Do NOT duplicate this information in a Document Control table in the body.
+The front matter captures all identity and classification metadata for the SBB. Do NOT duplicate this information in a Document Control table in the body. The fields above validate against [`sbb.schema.json`](../../schemas/v1.1.0/sbb.schema.json) (which composes the universal [`envelope.schema.json`](../../schemas/v1.1.0/envelope.schema.json)); see the [Frontmatter Standard](../../standard-frontmatter.md) for the full field catalogue. Composite SBBs add `composite`, `ports`, `parts`, and `connectors` — see the Composite SBBs section below.
 
 ### Heading
 
