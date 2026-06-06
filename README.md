@@ -258,7 +258,7 @@ See `.ai-assisted-architecture/foundation/foundation-manifest.yaml`.
 
 ## Modernisation Ontology
 
-The framework ships an optional **ontology**, which is a JSON Schema that gives shape to enterprise reporting. It captures Platforms, Capabilities, Components (ABB/SBB), Interfaces, Changes, Milestones, Commitments, Transitions, Initiatives, Slips, Decisions, Drivers, Risks, Standards, Patterns, Views, Stakeholders, and an optional anchor to industry reference taxonomies where available (e.g. eTOM for telecom, BIAN for banking, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). It is industry-neutral and tool-neutral: author your data in YAML or JSON, validate it against the schema, and aggregate it across platforms.
+The framework ships an optional **ontology**, which is a JSON Schema that gives shape to enterprise reporting. It captures Platforms, Capabilities, Components (ABB/SBB), Interfaces, Changes, Milestones, Commitments, Transitions, Initiatives, Slips, Decisions, Drivers, Risks, Standards, Patterns, Views, Stakeholders, and an optional anchor to industry reference taxonomies where available (e.g. eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). It is industry-neutral and tool-neutral: author your data in YAML or JSON, validate it against the schema, and aggregate it across platforms.
 
 The ontology is **parallel** to the ABB/SBB authoring standards. Use it if you want a queryable model for governance reporting; ignore it if markdown documents and diagrams alone are sufficient.
 

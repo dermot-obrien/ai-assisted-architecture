@@ -3,7 +3,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json",
   "title": "Modernisation Ontology",
-  "description": "Platform-centric enterprise architecture ontology supporting board reporting, regulator reporting, and ongoing architecture practice. Built around a minimal capability-centric core (Platform, Capability, Component, Change) with governance, risk, and view layers added in disciplined extensions. Standards-aligned to ArchiMate and TOGAF (views and viewpoints) and ISO/IEC/IEEE 42010 (architecture description); capabilities optionally anchor to whichever industry reference taxonomy applies (BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). See accompanying README.md for usage guidance and SPECIFICATION.md for design rationale.",
+  "description": "Platform-centric enterprise architecture ontology supporting board reporting, regulator reporting, and ongoing architecture practice. Built around a minimal capability-centric core (Platform, Capability, Component, Change) with governance, risk, and view layers added in disciplined extensions. Standards-aligned to ArchiMate and TOGAF (views and viewpoints) and ISO/IEC/IEEE 42010 (architecture description); capabilities optionally anchor to whichever industry reference taxonomy applies (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). See accompanying README.md for usage guidance and SPECIFICATION.md for design rationale.",
   "version": "1.4.0",
   "type": "object",
   "properties": {
@@ -180,7 +180,7 @@
       "items": {
         "$ref": "#/$defs/IndustryReferenceDomain"
       },
-      "description": "Industry reference taxonomy domains referenced by capabilities. Loaded from whichever industry-standard reference model applies (e.g., BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail), typically via the EA tool's tag taxonomy. Optional — organisations in industries without an established reference model can leave this empty and anchor capabilities to their own taxonomy."
+      "description": "Industry reference taxonomy domains referenced by capabilities. Loaded from whichever industry-standard reference model applies (e.g., eTOM for telecom, ACORD for insurance, NRF ARTS for retail), typically via the EA tool's tag taxonomy. Optional — organisations in industries without an established reference model can leave this empty and anchor capabilities to their own taxonomy."
     },
     "programme": {
       "type": "array",
@@ -375,7 +375,7 @@
     "Capability": {
       "type": "object",
       "title": "Capability",
-      "description": "What a platform provides to consumers. Optionally anchored to industry reference taxonomy domain(s) (BIAN for banking, eTOM for telecom, ACORD for insurance, NRF ARTS for retail, etc.) for cross-industry-peer comparability. Decomposes recursively; realised by one or more components. In TOGAF terms, Capability is a Phase B concept describing what the enterprise needs to do — it is realised by ABBs (Architecture Building Blocks), but is NOT itself a building block.",
+      "description": "What a platform provides to consumers. Optionally anchored to industry reference taxonomy domain(s) (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, etc.) for cross-industry-peer comparability. Decomposes recursively; realised by one or more components. In TOGAF terms, Capability is a Phase B concept describing what the enterprise needs to do — it is realised by ABBs (Architecture Building Blocks), but is NOT itself a building block.",
       "properties": {
         "id": {
           "type": "string",
@@ -384,7 +384,7 @@
         },
         "name": {
           "type": "string",
-          "description": "Capability name. Where anchored to an industry reference taxonomy, prefer matching the taxonomy's canonical name (e.g., BIAN Service Domain name for banking)."
+          "description": "Capability name. Where anchored to an industry reference taxonomy, prefer matching the taxonomy's canonical name (e.g., the eTOM Process Element name for telecom)."
         },
         "platform_id": {
           "type": "string",
@@ -396,7 +396,7 @@
           "items": {
             "type": "string"
           },
-          "description": "Industry reference taxonomy domain references (e.g., BIAN Service Domain ids for banking, eTOM Process Element ids for telecom). Optional. Where an industry reference taxonomy exists and the capability fits it, usually 1, occasionally many. 0 is acceptable for capabilities that don't fit the chosen taxonomy, or where no reference taxonomy applies to the organisation's industry."
+          "description": "Industry reference taxonomy domain references (e.g., eTOM Process Element ids for telecom, ACORD Capability ids for insurance). Optional. Where an industry reference taxonomy exists and the capability fits it, usually 1, occasionally many. 0 is acceptable for capabilities that don't fit the chosen taxonomy, or where no reference taxonomy applies to the organisation's industry."
         },
         "parent_capability_id": {
           "type": [
@@ -2254,7 +2254,7 @@
     "IndustryReferenceDomain": {
       "type": "object",
       "title": "Industry Reference Domain",
-      "description": "Reference to a domain in an industry reference taxonomy (BIAN Service Domain for banking, eTOM Process Element for telecom, ACORD Capability for insurance, NRF ARTS area for retail, HL7/FHIR resource grouping for healthcare, etc.). Loaded from whichever taxonomy applies to the organisation's industry, typically via the EA tool's tag taxonomy. Provides cross-industry-peer comparability for capabilities. Optional — organisations in industries without a widely-adopted reference taxonomy can omit this entity entirely.",
+      "description": "Reference to a domain in an industry reference taxonomy (eTOM Process Element for telecom, ACORD Capability for insurance, NRF ARTS area for retail, HL7/FHIR resource grouping for healthcare, etc.). Loaded from whichever taxonomy applies to the organisation's industry, typically via the EA tool's tag taxonomy. Provides cross-industry-peer comparability for capabilities. Optional — organisations in industries without a widely-adopted reference taxonomy can omit this entity entirely.",
       "properties": {
         "id": {
           "type": "string",
