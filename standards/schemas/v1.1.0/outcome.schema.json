@@ -22,7 +22,7 @@
             "measurement": { "type": "string", "description": "How / where the metric is measured." }
           }
         },
-        "target_date":        { "type": "string", "format": "date" },
+        "target_date":        { "type": "string", "format": "date", "description": "Recommended. The date by which the Outcome's KPI target should be met. Optional because catalogued/seed Outcomes are frequently undated until a Platform commits to a horizon — leave unset rather than fabricate a date." },
         "business_rationale": { "type": "string", "minLength": 1 },
         "time_horizon":       { "type": "string", "enum": ["short", "medium", "long"] },
 
@@ -30,7 +30,7 @@
         "requires_capabilities":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true },
         "realised_by_use_cases":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true }
       },
-      "required": ["kpi", "target_date", "business_rationale", "owned_by_platform"]
+      "required": ["kpi", "business_rationale", "owned_by_platform"]
     }
   ]
 }

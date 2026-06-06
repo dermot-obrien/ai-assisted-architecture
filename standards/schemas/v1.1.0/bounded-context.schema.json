@@ -24,7 +24,7 @@
 
         "ubiquitous_language": {
           "type": "array",
-          "minItems": 5,
+          "minItems": 3,
           "maxItems": 50,
           "items": {
             "type": "object",
@@ -65,7 +65,8 @@
           "minItems": 1
         }
       },
-      "required": ["part_of", "contains", "realises_capabilities", "ubiquitous_language", "owner"]
+      "$comment": "`contains` (the ABBs inside this context) is recommended but NOT required: a Bounded Context may be catalogued before its ABBs are authored (a placeholder context awaiting realisation). An empty context is an architecture GAP surfaced by gap analysis, not a structural-validity error.",
+      "required": ["part_of", "realises_capabilities", "ubiquitous_language", "owner"]
     }
   ]
 }

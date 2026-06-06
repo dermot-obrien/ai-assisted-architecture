@@ -44,7 +44,7 @@
         "realised_by_abbs":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "uniqueItems": true },
         "gaps":                  { "type": "array", "items": { "type": "string" } }
       },
-      "required": ["level", "components", "maturity", "provided_by_platform"]
+      "required": ["level", "components", "maturity"]
     },
     {
       "$comment": "L1 capabilities have no parent; L2/L3 must have one.",
@@ -58,11 +58,10 @@
       }
     },
     {
-      "$comment": "Only L3 capabilities map directly to ABBs.",
+      "$comment": "L3 capabilities are provided by exactly one Platform, so provided_by_platform is required for them; L1/L2 capabilities are cross-platform groupings and may omit it. Realisation by ABBs (realised_by_abbs) is intentionally NOT required, even for L3: an L3 capability with no realising ABB is a legitimate architecture GAP surfaced by gap analysis, not a structural-validity error. The foundation catalogue ships such unrealised placeholders deliberately.",
       "if":   { "properties": { "level": { "const": "L3" } } },
       "then": {
-        "required": ["realised_by_abbs"],
-        "properties": { "realised_by_abbs": { "minItems": 1 } }
+        "required": ["provided_by_platform"]
       }
     }
   ]
