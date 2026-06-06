@@ -1,4 +1,11 @@
 ---
+id: BC-002
+kind: bounded-context
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "BC-002 Observability Bounded Context"
 ---
 

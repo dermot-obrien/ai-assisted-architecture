@@ -1,4 +1,11 @@
 ---
+id: CAP-014
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-014 Network Connectivity & Security"
 sidebar_label: "CAP-014 Network Connectivity & Security"
 sidebar_position: 14

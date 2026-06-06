@@ -1,4 +1,11 @@
 ---
+id: PL-005
+kind: platform
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "PL-005 Cost Management Platform"
 ---
 

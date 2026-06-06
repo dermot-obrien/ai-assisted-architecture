@@ -1,4 +1,11 @@
 ---
+id: CAP-034
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-034 Data Sovereignty & Residency"
 sidebar_label: "CAP-034 Data Sovereignty & Residency"
 sidebar_position: 34

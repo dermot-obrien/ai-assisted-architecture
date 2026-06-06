@@ -1,8 +1,16 @@
 ---
+id: ABB-007
+kind: abb
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "ABB-007 Storage & Persistence Platform"
 sidebar_label: "ABB-007 Storage & Persistence Platform"
 sidebar_position: 7
 ---
+
 # Storage & Persistence Platform
 
 ## Document Control

@@ -1,4 +1,11 @@
 ---
+id: CAP-021
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-021 Cost Optimisation & Rightsizing"
 sidebar_label: "CAP-021 Cost Optimisation & Rightsizing"
 sidebar_position: 21

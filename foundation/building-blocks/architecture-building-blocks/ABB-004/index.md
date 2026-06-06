@@ -1,8 +1,16 @@
 ---
+id: ABB-004
+kind: abb
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "ABB-004 API Mediation & Gateway"
 sidebar_label: "ABB-004 API Mediation & Gateway"
 sidebar_position: 4
 ---
+
 # API Mediation & Gateway
 
 ## Document Control

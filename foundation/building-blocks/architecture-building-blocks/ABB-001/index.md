@@ -1,7 +1,15 @@
 ---
+id: ABB-001
+kind: abb
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "ABB-001 Identity & Access Management"
 sidebar_label: "ABB-001 Identity & Access Management"
 sidebar_position: 1
+---
 
 # ABB-001 Identity & Access Management
 

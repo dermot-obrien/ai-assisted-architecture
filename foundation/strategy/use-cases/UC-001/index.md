@@ -1,4 +1,11 @@
 ---
+id: UC-001
+kind: use-case
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "UC-001 Automated Workload Identity Provisioning"
 ---
 

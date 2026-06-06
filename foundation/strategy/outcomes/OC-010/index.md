@@ -1,4 +1,11 @@
 ---
+id: OC-010
+kind: outcome
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "OC-010 Configuration Consistency & Secret Hygiene"
 ---
 

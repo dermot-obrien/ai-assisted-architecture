@@ -1,4 +1,11 @@
 ---
+id: CAP-008
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-008 Integration Services"
 sidebar_label: "CAP-008 Integration Services"
 sidebar_position: 8

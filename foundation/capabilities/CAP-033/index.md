@@ -1,4 +1,11 @@
 ---
+id: CAP-033
+kind: capability
+version: "0.1.0"
+status: draft
+created: "2026-06-06"
+last_modified: "2026-06-06"
+owner: "dermot.obrien@patternode.com"
 title: "CAP-033 Data Lifecycle & Retention"
 sidebar_label: "CAP-033 Data Lifecycle & Retention"
 sidebar_position: 33
