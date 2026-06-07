@@ -38,19 +38,16 @@ discovery files (`AGENTS.md`/`CLAUDE.md`/`GEMINI.md`) you merge once.
 > (`src/seed-foundation.mjs`, a cross-platform Node port of the old
 > `seed-foundation.ps1`) are zero-dependency Node scripts — nothing to build. The
 > launcher delegates to AAW's engine (found via npm dependency, `node_modules`, or the
-> `.ai-assisted-work` submodule). The two **optional** Python diagram/slide scripts in
-> `scripts/` need `pip install python-pptx Pillow` (see Prerequisites) and are not
-> required for the core authoring workflow.
+> `.ai-assisted-work` submodule). The **optional** Python diagram helper in
+> `scripts/` (`generate_sbb_diagrams.py`) uses only the Python standard library and is
+> not required for the core authoring workflow.
 
 ## Prerequisites
 
-### Python
+### Python (optional)
 
-Python 3.10+ is required to run the PowerPoint generation script.
-
-```bash
-pip install python-pptx Pillow
-```
+Python 3.10+ is only needed for the optional `scripts/generate_sbb_diagrams.py` diagram
+helper, which uses the standard library — no third-party packages required.
 
 ### Draw.io Desktop
 
@@ -182,7 +179,7 @@ Each skill follows a four-phase workflow: Discovery, Load Standards, Create Arte
     create-service.md      # Service definition
   install/                 # IDE configuration snippets (copy to workspace)
   scripts/
-    *.py / *.ps1           # PowerPoint generation, foundation seeding
+    *.py / *.ps1           # SBB diagram helper, foundation seeding
     ontology/              # CLI tools for ontology data (validate, consolidate, namespace-divergent)
   foundation/              # Seed capabilities and building blocks for workspace bootstrap
   standards/

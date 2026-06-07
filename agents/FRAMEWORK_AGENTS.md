@@ -19,7 +19,6 @@ This file defines top-level discovery and precedence rules for AI agents working
 
 | Script | Path | Prerequisites | Description |
 |--------|------|---------------|-------------|
-| Building Block Slide | `.ai-assisted-architecture/scripts/create-building-block-slide.py` | `pip install python-pptx Pillow` | Creates a PowerPoint slide from a building block folder's `components.png` and `summary.png`. |
 | Seed Foundation | `.ai-assisted-architecture/scripts/seed-foundation.ps1` | PowerShell | Seeds workspace `capabilities/` and `building-blocks/` from foundation profiles (`core`, `integration`, `infrastructure`). |
 
 ## Canonical Standards

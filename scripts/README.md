@@ -23,30 +23,30 @@ powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture/scripts/seed-
 - Workspace files are canonical after seeding.
 - Framework foundation remains read-only fallback/reference.
 
-## create-building-block-slide.py
+## generate_sbb_diagrams.py
 
-Creates a PowerPoint slide for an ABB or SBB building block.
+Regenerates the Draw.io component diagrams for the foundation SBBs (SBB-001/002/003). The component definitions are declared inline in the script; run it from the workspace root after editing those definitions.
 
-Reads `components.png` and `summary.png` from a building block folder and produces a single-slide `.pptx` with the images positioned for a 16:9 widescreen presentation.
-
-### Prerequisites
-
-```bash
-pip install python-pptx Pillow
-```
+Uses only the Python standard library — no third-party packages required.
 
 ### Usage
 
 ```bash
-python scripts/create-building-block-slide.py <block-folder> [--output <path>]
+python scripts/generate_sbb_diagrams.py
 ```
 
-### Examples
+## gen-capability-csvs.mjs
+
+Regenerates the two derived capability CSVs (`foundation/capabilities/capability-hierarchy.csv` and `capability-abb-mapping.csv`) from the authoritative `capability-model.md` (the Canonical Capability Registry and the Capability-to-ABB Traceability Matrix). Coverage/scope columns are derived from each relationship by a fixed rule (primary→full/core, supporting→partial/core, cross-cutting→full/context). Zero-dependency Node.
 
 ```bash
-# ABB
-python scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/ABB-008/
+node scripts/gen-capability-csvs.mjs
+```
 
-# SBB with custom output path
-python scripts/create-building-block-slide.py building-blocks/solution-building-blocks/SBB-011/ -o slides/SBB-011.pptx
+## sync-cap-abb-frontmatter.mjs
+
+Aligns each L3 capability's `realised_by_abbs` frontmatter with the traceability matrix in `capability-model.md`, so the model, the per-capability frontmatter, and the mapping CSV stay in lock-step. Idempotent, zero-dependency Node.
+
+```bash
+node scripts/sync-cap-abb-frontmatter.mjs
 ```

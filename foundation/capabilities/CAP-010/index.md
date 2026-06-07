@@ -32,9 +32,9 @@ maturity:
   assessor: Architecture Team
 realised_by_abbs:
   - ABB-004
+  - ABB-002
   - ABB-005
   - ABB-001
-  - ABB-002
   - ABB-003
 ---
 

@@ -32,6 +32,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-024 SLO Management & Error Budgets
@@ -40,7 +44,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-024` | Unique identifier. |
 | **Capability Name** | SLO Management & Error Budgets | Human-readable name. |
-| **Realizes Outcome**| [OC-007 Service Reliability Target](../../../strategy/outcomes/OC-007/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-007 Service Reliability Target](../../strategy/outcomes/OC-007/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-023` | Reliability & Resilience. |
 | **Version** | `1.0.0` | Semantic versioning. |

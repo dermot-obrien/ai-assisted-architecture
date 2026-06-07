@@ -32,6 +32,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-025 Disaster Recovery & Business Continuity
@@ -40,7 +44,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-025` | Unique identifier. |
 | **Capability Name** | Disaster Recovery & Business Continuity | Human-readable name. |
-| **Realizes Outcome**| [OC-007 Service Reliability Target](../../../strategy/outcomes/OC-007/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-007 Service Reliability Target](../../strategy/outcomes/OC-007/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-023` | Reliability & Resilience. |
 | **Version** | `1.0.0` | Semantic versioning. |

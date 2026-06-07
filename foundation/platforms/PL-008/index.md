@@ -43,3 +43,23 @@ The **Data Management Platform** ensures that data across the platform is classi
 ## 4. Bounded Contexts
 - **[BC-008 Data Governance](../../contexts/BC-008/)**
 
+## 5. Self-Service Interfaces
+- **Data classification and tagging API.** Endpoints for assigning sensitivity labels and privacy classifications to datasets and data flows.
+- **Retention and lifecycle policy portal.** Self-service definition of retention schedules, archival rules, and automated deletion with audit evidence.
+- **Data residency and sovereignty controls.** Declarative configuration of storage location constraints and cross-border transfer restrictions.
+- **Privacy and consent SDK.** Libraries for enforcing classification-driven access and consent decisions within services.
+- **Documentation and golden paths.** Onboarding guides and reference patterns for compliant-by-default data handling.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Classify, retain, and locate their data in line with regulatory and privacy requirements.
+- **All other platform teams.** Apply classification and residency controls to the data their services generate and store.
+- **Data governance and compliance.** Consume classification and lifecycle telemetry for audit, reporting, and regulatory response.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| Classification and policy service availability | 99.9% monthly |
+| Newly registered datasets classified | < 24 hours |
+| Retention and deletion policy enforcement | 100% of governed datasets |
+| Cross-border transfer policy evaluation (p99) | < 200 ms |
+

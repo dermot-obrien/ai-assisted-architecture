@@ -1,6 +1,6 @@
 # /create-sbb
 
-Create a new Solution Building Block (SBB) with document, diagram, summary, and PowerPoint.
+Create a new Solution Building Block (SBB) with document, diagram, and summary.
 
 ## Instructions
 

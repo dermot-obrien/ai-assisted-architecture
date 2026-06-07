@@ -45,8 +45,8 @@ mandatory_subabbs:
 | **ABB ID** | `ABB-003` | Unique identifier. |
 | **ABB Name** | Governance & Policy Enforcement | Human-readable name. |
 | **Short Name** | Gov | Used in diagrams. |
-| **Bounded Context**| [Governance & Policy](../../../contexts/governance-context.md) | Owning technical boundary. |
-| **Realizes Capability**| [CAP-005 Policy-Based Access Control](../../../capabilities/CAP-005/) | Primary business ability. |
+| **Bounded Context**| [Governance & Policy](../../../contexts/BC-003/) | Owning technical boundary. |
+| **Realises Capability**| [CAP-005 Policy-Based Access Control](../../../capabilities/CAP-005/) | Primary business ability. |
 | **Version** | `1.0.0` | Semantic versioning. |
 | **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Compliance` | Logical grouping. |

@@ -47,3 +47,23 @@ The **Infrastructure Platform** provides the fundamental compute, storage, and n
 ## 4. Bounded Contexts
 - **[BC-011 Infrastructure](../../contexts/BC-011/)**
 
+## 5. Self-Service Interfaces
+- **Infrastructure-as-code modules.** Versioned, opinionated modules for provisioning compute, storage, and networking through declarative configuration.
+- **Compute workload portal.** Self-service requests for container runtimes, scheduling policies, and autoscaling profiles with sensible defaults.
+- **Storage provisioning APIs.** On-demand allocation of block, object, and managed data stores with lifecycle and retention policies.
+- **Network and connectivity catalogue.** Self-service segmentation, ingress, egress, and service-mesh routing with policy-gated approval.
+- **Platform documentation and golden paths.** Reference architectures and onboarding guides for secure, resilient infrastructure consumption.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Provision and run their workloads on managed compute, storage, and networking.
+- **Other platform teams.** Build their higher-order services on the shared infrastructure substrate and service mesh.
+- **Site reliability and operations.** Consume capacity, health, and topology data to manage resilience and cost.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| Compute control-plane availability | 99.95% monthly |
+| Workload scheduling latency (p99) | < 30 seconds |
+| Persistent storage durability | 99.999999999% annually |
+| Infrastructure provisioning fulfilment | < 10 minutes |
+

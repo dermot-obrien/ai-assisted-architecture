@@ -26,7 +26,7 @@ requires_capabilities:
 | **Status** | `draft`|
 
 ## 1. Definition
-Ensure all service-to-service communication is governed by explicit, versioned contracts and mediated through standardized gateways.
+Ensure all service-to-service communication is governed by explicit, versioned contracts and mediated through standardised gateways.
 
 ## 2. Business Rationale
 Reduces integration friction, prevents breaking changes from propagating, and enables independent evolution of services.

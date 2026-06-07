@@ -39,3 +39,23 @@ The **Governance & Compliance Platform** governs the organisation's adherence to
 ## 4. Bounded Contexts
 - **[BC-003 Governance & Policy](../../contexts/BC-003/)**
 
+## 5. Self-Service Interfaces
+- **Policy-as-code repository and SDK.** Authoring, testing, and versioning of policies as code with libraries for embedding decisions in services.
+- **Policy decision endpoints.** Real-time evaluation APIs for admission, authorisation, and configuration checks at runtime.
+- **Compliance evidence portal.** Self-service access to control mappings, evidence artefacts, and attestation status.
+- **Audit and reporting APIs.** Programmatic export of decision logs and compliance reports for auditors and regulators.
+- **Documentation and golden paths.** Reference patterns for compliant-by-default service configuration and control onboarding.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Embed policy decisions and satisfy controls in their delivery pipelines.
+- **All other platform teams.** Enforce governance policies and produce compliance evidence for their own services.
+- **Risk, compliance, and audit functions.** Consume evidence, reports, and decision logs for assurance and regulatory reporting.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| Policy decision endpoint availability | 99.95% monthly |
+| Policy evaluation latency (p99) | < 50 ms |
+| Compliance evidence freshness | < 24 hours |
+| Audit log query response (p95) | < 5 seconds |
+

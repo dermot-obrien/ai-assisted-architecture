@@ -32,6 +32,12 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-008
+  - ABB-006
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-044 Service Mesh & Connectivity
@@ -40,7 +46,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-044` | Unique identifier. |
 | **Capability Name** | Service Mesh & Connectivity | Human-readable name. |
-| **Realizes Outcome**| [OC-012 Infrastructure Resilience & Elasticity](../../../strategy/outcomes/OC-012/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-012 Infrastructure Resilience & Elasticity](../../strategy/outcomes/OC-012/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-009` | Infrastructure. |
 | **Version** | `1.0.0` | Semantic versioning. |

@@ -43,3 +43,23 @@ The **Security Platform** is responsible for protecting the organisation's asset
 ## 4. Bounded Contexts
 - **[BC-001 Identity & Access](../../contexts/BC-001/)**
 
+## 5. Self-Service Interfaces
+- **Identity APIs (OIDC / OAuth 2.0).** Token issuance, validation, and introspection endpoints for human and workload identities.
+- **Access request portal.** Self-service role and entitlement requests with policy-gated approval and periodic access reviews.
+- **Workload identity federation.** Declarative configuration for secret-less workload authentication.
+- **Policy-as-code SDK and CLI.** Libraries for integrating access decisions into services.
+- **Documentation and golden paths.** Onboarding guides and reference patterns for secure-by-default integration.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Authenticate users and workloads and enforce authorisation.
+- **All other platform teams.** Rely on this platform for workload identity and access control of their own services.
+- **Security operations.** Consume sign-in and decision telemetry for monitoring and response.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| Token issuance / validation availability | 99.95% monthly |
+| Token validation latency (p99) | < 100 ms |
+| Automated access-request fulfilment | < 5 minutes |
+| Critical credential revocation propagation | < 15 minutes |
+

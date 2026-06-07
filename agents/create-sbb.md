@@ -59,11 +59,6 @@ draw.io --export --format png --scale 3.125 --output components.png components.d
 draw.io --export --format png --scale 3.125 --output summary.png summary.drawio
 ```
 
-### Step 6: PPTX
-```bash
-python .ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/solution-building-blocks/SBB-NNN/
-```
-
 ## Phase 4: Self-Verification
 
 Execute the **AI Agent Self-Verification Checklist** from `standard-sbb-document.md` and `standard-traceability.md`.

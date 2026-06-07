@@ -31,6 +31,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-016 Self-Service Provisioning
@@ -39,7 +43,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-016` | Unique identifier. |
 | **Capability Name** | Self-Service Provisioning | Human-readable name. |
-| **Realizes Outcome**| [OC-005 Developer Self-Service Efficiency](../../../strategy/outcomes/OC-005/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-005 Developer Self-Service Efficiency](../../strategy/outcomes/OC-005/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-015` | Developer Experience. |
 | **Version** | `1.0.0` | Semantic versioning. |

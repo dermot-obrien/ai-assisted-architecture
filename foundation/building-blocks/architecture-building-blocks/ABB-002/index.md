@@ -45,8 +45,8 @@ mandatory_subabbs:
 | **ABB ID** | `ABB-002` | Unique identifier. |
 | **ABB Name** | Observability | Human-readable name. |
 | **Short Name** | Obs | Used in diagrams. |
-| **Bounded Context**| [Observability](../../../contexts/observability-context.md) | Owning technical boundary. |
-| **Realizes Capability**| [CAP-006 Operational Monitoring & Alerting](../../../capabilities/CAP-006/) | Primary business ability. |
+| **Bounded Context**| [Observability](../../../contexts/BC-002/) | Owning technical boundary. |
+| **Realises Capability**| [CAP-006 Operational Monitoring & Alerting](../../../capabilities/CAP-006/) | Primary business ability. |
 | **Version** | `1.0.0` | Semantic versioning. |
 | **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Operations` | Logical grouping. |

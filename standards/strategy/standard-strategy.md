@@ -11,6 +11,7 @@ triggers:
   - "Defining new business outcomes"
   - "Creating operational use cases"
   - "Justifying architectural investment"
+---
 
 # Strategy Standard (Outcomes & Use Cases)
 
@@ -38,7 +39,7 @@ An Outcome is a measurable business result. It represents the "North Star" for a
 | **Outcome ID** | `OC-NNN` | Unique ID (e.g., `OC-001`). |
 | **Name** | Outcome Name | Clear, result-oriented name. |
 | **Measure** | KPI / Metric | How success will be quantified. |
-| **Target Date** | YYYY-MM-DD | When the outcome is expected to be achieved. |
+| **Target Date** | YYYY-MM-DD | Optional (recommended). When the outcome is expected to be achieved. Catalogued or seed outcomes are frequently undated until a platform commits to a horizon — leave unset rather than fabricate a date (matches `outcome.schema.json`, where `target_date` is optional). |
 
 ### 2.2 Outcome Format
 Every Outcome must be documented with:

@@ -72,7 +72,7 @@ mandatory_subabbs:
 | **Version** | `1.0.0` | Semantic versioning. |
 | **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Integration` | Logical grouping. |
-| **Parent Bounded Context** | [Integration Bounded Context](../../../contexts/integration-context.md) | Domain boundary for integration concerns. |
+| **Parent Bounded Context** | [Integration Bounded Context](../../../contexts/BC-010/) | Domain boundary for integration concerns. |
 | **Parent Capability** | [CAP-010 API Mediation & Contract Enforcement](../../../capabilities/CAP-010/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for exposing and governing synchronous APIs through shared mediation, contract enforcement, and traffic-control controls.

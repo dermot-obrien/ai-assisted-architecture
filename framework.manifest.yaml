@@ -4,8 +4,8 @@
 # Framework manifest — the shared install contract (see @aaw/installer in the
 # AI-Assisted Work repo). AAA depends on AAW for the shared install engine.
 # The core authoring workflow (create-* commands) is code-free markdown; the
-# two Python diagram/slide scripts in scripts/ are optional extras (install
-# python-pptx + Pillow manually if you want PNG/PPTX export).
+# Python diagram helper in scripts/ (generate_sbb_diagrams.py) is an optional
+# extra and uses only the Python standard library.
 #
 # Install with:  aaa install            (shims only; add --seed to scaffold the
 #                                         foundation: capabilities + building-blocks)

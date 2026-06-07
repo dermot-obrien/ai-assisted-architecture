@@ -2,15 +2,44 @@ capability_id,capability_name,level,parent_id,domain,path,status,current_maturit
 CAP-001,Platform Foundations,L1,,Platform Foundations,capabilities/CAP-001/index.md,DRAFT,1,3
 CAP-002,Identity & Access,L2,CAP-001,Platform Foundations,capabilities/CAP-002/index.md,DRAFT,1,3
 CAP-003,Operational Intelligence,L2,CAP-001,Platform Foundations,capabilities/CAP-003/index.md,DRAFT,1,3
+CAP-008,Integration Services,L2,CAP-001,Platform Foundations,capabilities/CAP-008/index.md,DRAFT,1,3
+CAP-009,Infrastructure Services,L2,CAP-001,Platform Foundations,capabilities/CAP-009/index.md,DRAFT,1,3
+CAP-015,Developer Experience,L2,CAP-001,Platform Foundations,capabilities/CAP-015/index.md,DRAFT,1,3
+CAP-019,Cost Management,L2,CAP-001,Platform Foundations,capabilities/CAP-019/index.md,DRAFT,1,3
+CAP-023,Reliability & Resilience,L2,CAP-001,Platform Foundations,capabilities/CAP-023/index.md,DRAFT,1,3
+CAP-027,Supply Chain Security,L2,CAP-001,Platform Foundations,capabilities/CAP-027/index.md,DRAFT,1,3
+CAP-031,Data Management,L2,CAP-001,Platform Foundations,capabilities/CAP-031/index.md,DRAFT,1,3
+CAP-035,Configuration & Secret Management,L2,CAP-001,Platform Foundations,capabilities/CAP-035/index.md,DRAFT,1,3
 CAP-004,Identity Lifecycle Management,L3,CAP-002,Platform Foundations,capabilities/CAP-004/index.md,DRAFT,1,3
 CAP-005,Policy-Based Access Control,L3,CAP-002,Platform Foundations,capabilities/CAP-005/index.md,DRAFT,1,3
 CAP-006,Operational Monitoring & Alerting,L3,CAP-003,Platform Foundations,capabilities/CAP-006/index.md,DRAFT,1,3
 CAP-007,Compliance Evidence & Reporting,L3,CAP-003,Platform Foundations,capabilities/CAP-007/index.md,DRAFT,1,3
-CAP-008,Integration Services,L2,CAP-001,Platform Foundations,capabilities/CAP-008/index.md,DRAFT,1,3
-CAP-009,Infrastructure Services,L2,CAP-001,Platform Foundations,capabilities/CAP-009/index.md,DRAFT,1,3
 CAP-010,API Mediation & Contract Enforcement,L3,CAP-008,Platform Foundations,capabilities/CAP-010/index.md,DRAFT,1,3
 CAP-011,Event Streaming & Asynchronous Integration,L3,CAP-008,Platform Foundations,capabilities/CAP-011/index.md,DRAFT,1,3
 CAP-012,Compute Runtime & Scheduling,L3,CAP-009,Platform Foundations,capabilities/CAP-012/index.md,DRAFT,1,3
 CAP-013,Data Storage & Lifecycle Management,L3,CAP-009,Platform Foundations,capabilities/CAP-013/index.md,DRAFT,1,3
-
-
+CAP-014,Network Connectivity & Security,L3,CAP-009,Platform Foundations,capabilities/CAP-014/index.md,DRAFT,1,3
+CAP-016,Self-Service Provisioning,L3,CAP-015,Platform Foundations,capabilities/CAP-016/index.md,DRAFT,1,3
+CAP-017,Golden Path & Template Management,L3,CAP-015,Platform Foundations,capabilities/CAP-017/index.md,DRAFT,1,3
+CAP-018,Service Catalog & Developer Portal,L3,CAP-015,Platform Foundations,capabilities/CAP-018/index.md,DRAFT,1,3
+CAP-020,Cost Visibility & Allocation,L3,CAP-019,Platform Foundations,capabilities/CAP-020/index.md,DRAFT,1,3
+CAP-021,Cost Optimisation & Rightsizing,L3,CAP-019,Platform Foundations,capabilities/CAP-021/index.md,DRAFT,1,3
+CAP-022,Budget Governance & Anomaly Detection,L3,CAP-019,Platform Foundations,capabilities/CAP-022/index.md,DRAFT,1,3
+CAP-024,SLO Management & Error Budgets,L3,CAP-023,Platform Foundations,capabilities/CAP-024/index.md,DRAFT,1,3
+CAP-025,Disaster Recovery & Business Continuity,L3,CAP-023,Platform Foundations,capabilities/CAP-025/index.md,DRAFT,1,3
+CAP-026,Chaos Engineering & Resilience Testing,L3,CAP-023,Platform Foundations,capabilities/CAP-026/index.md,DRAFT,1,3
+CAP-028,Artifact Provenance & Signing,L3,CAP-027,Platform Foundations,capabilities/CAP-028/index.md,DRAFT,1,3
+CAP-029,Dependency & Vulnerability Scanning,L3,CAP-027,Platform Foundations,capabilities/CAP-029/index.md,DRAFT,1,3
+CAP-030,SBOM Management & Compliance,L3,CAP-027,Platform Foundations,capabilities/CAP-030/index.md,DRAFT,1,3
+CAP-032,Data Classification & Privacy,L3,CAP-031,Platform Foundations,capabilities/CAP-032/index.md,DRAFT,1,3
+CAP-033,Data Lifecycle & Retention,L3,CAP-031,Platform Foundations,capabilities/CAP-033/index.md,DRAFT,1,3
+CAP-034,Data Sovereignty & Residency,L3,CAP-031,Platform Foundations,capabilities/CAP-034/index.md,DRAFT,1,3
+CAP-036,Centralised Configuration Management,L3,CAP-035,Platform Foundations,capabilities/CAP-036/index.md,DRAFT,1,3
+CAP-037,Secret Lifecycle & Rotation,L3,CAP-035,Platform Foundations,capabilities/CAP-037/index.md,DRAFT,1,3
+CAP-038,Feature Management & Progressive Delivery,L3,CAP-035,Platform Foundations,capabilities/CAP-038/index.md,DRAFT,1,3
+CAP-039,Continuous Delivery,L2,CAP-001,Platform Foundations,capabilities/CAP-039/index.md,DRAFT,1,3
+CAP-040,Build & Test Automation,L3,CAP-039,Platform Foundations,capabilities/CAP-040/index.md,DRAFT,1,3
+CAP-041,Deployment Orchestration,L3,CAP-039,Platform Foundations,capabilities/CAP-041/index.md,DRAFT,1,3
+CAP-042,Artifact Management,L3,CAP-039,Platform Foundations,capabilities/CAP-042/index.md,DRAFT,1,3
+CAP-043,Environment Lifecycle Management,L3,CAP-015,Platform Foundations,capabilities/CAP-043/index.md,DRAFT,1,3
+CAP-044,Service Mesh & Connectivity,L3,CAP-009,Platform Foundations,capabilities/CAP-044/index.md,DRAFT,1,3

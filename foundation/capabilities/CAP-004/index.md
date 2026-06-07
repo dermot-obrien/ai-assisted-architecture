@@ -45,8 +45,8 @@ realised_by_abbs:
 |----------|-------|-------|
 | **Capability ID** | `CAP-004` | Unique identifier. |
 | **Capability Name** | Identity Lifecycle Management | Human-readable name. |
-| **Realizes Outcome**| [OC-002 Credential-less Infrastructure](../../../strategy/outcomes.md#oc-002-credential-less-infrastructure) | Primary strategic goal. |
-| **Enables Use Case**| [UC-001 Automated Workload Identity Provisioning](../../../strategy/use-cases.md#uc-001-automated-workload-identity-provisioning) | Primary operational scenario. |
+| **Realises Outcome**| [OC-002 Credential-less Infrastructure](../../strategy/outcomes/OC-002/) | Primary strategic goal. |
+| **Enables Use Case**| [UC-001 Automated Workload Identity Provisioning](../../strategy/use-cases/UC-001/) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-002` | Identity & Access. |
 | **Version** | `1.0.0` | Semantic versioning. |

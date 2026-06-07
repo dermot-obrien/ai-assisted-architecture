@@ -1,6 +1,6 @@
 {
   "$comment": "SPDX-FileCopyrightText: 2026 Dermot O'Brien\nSPDX-License-Identifier: CC-BY-4.0\nPart of the ai-assisted-architecture framework: https://github.com/dermot-obrien/ai-assisted-architecture",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "ontology_id": "modernisation-ontology",
   "platform": [
     {

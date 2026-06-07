@@ -42,6 +42,7 @@ tools the installer doesn't wire automatically.
 | `claude/commands/create-abb.md` | `.claude/commands/create-abb.md` | Copy |
 | `claude/commands/create-sbb.md` | `.claude/commands/create-sbb.md` | Copy |
 | `claude/commands/create-service.md` | `.claude/commands/create-service.md` | Copy |
+| `claude/commands/create-runtime-agent.md` | `.claude/commands/create-runtime-agent.md` | Copy |
 | `cursor/rules/standards.mdc` | `.cursor/rules/standards.mdc` | Copy |
 | `cursor/rules/create-strategy.mdc` | `.cursor/rules/create-strategy.mdc` | Copy |
 | `cursor/rules/create-platform.mdc` | `.cursor/rules/create-platform.mdc` | Copy |
@@ -50,6 +51,7 @@ tools the installer doesn't wire automatically.
 | `cursor/rules/create-abb.mdc` | `.cursor/rules/create-abb.mdc` | Copy |
 | `cursor/rules/create-sbb.mdc` | `.cursor/rules/create-sbb.mdc` | Copy |
 | `cursor/rules/create-service.mdc` | `.cursor/rules/create-service.mdc` | Copy |
+| `cursor/rules/create-runtime-agent.mdc` | `.cursor/rules/create-runtime-agent.mdc` | Copy |
 | `.cursorrules.txt` | `.cursorrules` | Merge into your existing file |
 | `github/copilot-instructions.txt` | `.github/copilot-instructions.md` | Merge into your existing file |
 | `github/prompts/create-strategy.prompt.md` | `.github/prompts/create-strategy.prompt.md` | Copy |
@@ -59,6 +61,7 @@ tools the installer doesn't wire automatically.
 | `github/prompts/create-abb.prompt.md` | `.github/prompts/create-abb.prompt.md` | Copy |
 | `github/prompts/create-sbb.prompt.md` | `.github/prompts/create-sbb.prompt.md` | Copy |
 | `github/prompts/create-service.prompt.md` | `.github/prompts/create-service.prompt.md` | Copy |
+| `github/prompts/create-runtime-agent.prompt.md` | `.github/prompts/create-runtime-agent.prompt.md` | Copy |
 | `GEMINI.md.txt` | `GEMINI.md` | Merge into your existing file |
 | `gemini/styleguide.md` | `.gemini/styleguide.md` | Merge into your existing file |
 | `.clinerules.txt` | `.clinerules` | Merge into your existing file |
@@ -77,6 +80,10 @@ To maintain the "Golden Thread" of traceability, agents should ideally follow th
 5.  **`/create-abb`**: Define the logical architectural model.
 6.  **`/create-sbb`**: Define the physical product realisation.
 7.  **`/create-service`**: Define the runtime unit of execution.
+
+Outside the linear Golden Thread, a builder skill is available:
+
+- **`/create-runtime-agent`**: Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.
 
 ## Foundation Seeding (Recommended)
 

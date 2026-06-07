@@ -32,6 +32,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-022 Budget Governance & Anomaly Detection
@@ -40,7 +44,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-022` | Unique identifier. |
 | **Capability Name** | Budget Governance & Anomaly Detection | Human-readable name. |
-| **Realizes Outcome**| [OC-006 Cloud Cost Efficiency](../../../strategy/outcomes/OC-006/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-006 Cloud Cost Efficiency](../../strategy/outcomes/OC-006/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-019` | Cost Management. |
 | **Version** | `1.0.0` | Semantic versioning. |

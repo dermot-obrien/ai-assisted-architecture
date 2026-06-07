@@ -71,6 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `agents/FRAMEWORK_AGENTS.md` references the new Frontmatter Standard in canonical-standards list and scope-routing section.
 
 ### Removed
+- **PowerPoint generation removed entirely.** Deleted the `scripts/create-building-block-slide.py` slide generator, every `components-and-summary.pptx` artefact (foundation ABBs/SBBs and the ABB/SBB worked examples), and the `python-pptx` / `Pillow` dependency. ABBs and SBBs now ship their `components.drawio`/`.png` and `summary.drawio`/`.png` only; assembling those into a slide is left to the consumer's own tooling. The `create-abb`/`create-sbb` agents (and their install shims) no longer have a PPTX step, and the building-block file-set standards no longer list a `.pptx`. **Migration:** delete any `components-and-summary.pptx` files in your workspace; they are no longer part of the building-block deliverable set.
 - `LICENSE-AGPL-3.0.txt` and `LICENSE-COMMERCIAL.txt` (superseded by `LICENSES/CC-BY-4.0.txt` and `LICENSES/Apache-2.0.txt`).
 
 ### Notes

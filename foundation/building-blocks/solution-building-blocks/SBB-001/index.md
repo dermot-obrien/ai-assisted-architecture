@@ -74,25 +74,9 @@ products:
 
 # SBB-001 Identity Lifecycle Service (Entra)
 
-## Document Control
-
-| Property | Value | Notes |
-|----------|-------|-------|
-| **SBB ID** | `SBB-001` | Unique identifier. |
-| **SBB Name** | Identity Lifecycle Service (Entra) | Human-readable name. |
-| **Short Name** | Entra IAM | Used in diagrams. |
-| **Realizes ABB**| [ABB-001 Identity & Access Management](../../architecture-building-blocks/ABB-001/) | Parent logical model. |
-| **Version** | `1.0.0` | Semantic versioning. |
-| **Status** | `draft`| Current lifecycle status. |
-| **Category** | `Security` | Logical grouping. |
-
----
-
 ## 1  Purpose
 
-This SBB realises the logical [ABB-001 Identity & Access Management](../../architecture-building-blocks/ABB-001/) using **Microsoft Entra ID**. It provides the core mechanism for assigning and managing identities for AI agents, services, and human users within the cloud-native ecosystem. 
-
----
+This SBB realises the logical [ABB-001 Identity & Access Management](../../architecture-building-blocks/ABB-001/) using Microsoft Entra ID. It provides the core mechanism for assigning and managing identities for AI agents, services, and human users within the cloud-native ecosystem.
 
 ## 2  Building block
 
@@ -123,19 +107,36 @@ The diagram below shows the physical realisation of the IAM ABB using Entra ID s
 
 ### 2.3  Key design decisions
 
-- **Federated Credentials Only**. No static secrets (client secrets or passwords) are permitted for workload-to-workload communication.
-- **Just-In-Time (JIT) Admin**. Administrative roles are not permanently assigned; they require Entra PIM elevation with approval.
-- **Modern Auth Only**. Legacy protocols (NTLM, Basic Auth) are disabled at the tenant level.
+- **Federated credentials only.** No static secrets (client secrets or passwords) are permitted for workload-to-workload communication.
+- **Just-in-time (JIT) admin.** Administrative roles are not permanently assigned; they require Entra PIM elevation with approval.
+- **Modern auth only.** Legacy protocols (NTLM, Basic Auth) are disabled at the tenant level.
 
-### 2.4  Message Flow
+### 2.4  Message flow
 
-1. **Assertion**. A workload (e.g., K8s pod) generates a platform-native identity assertion.
-2. **Exchange**. The workload sends the assertion to the Entra STS endpoint.
-3. **Verification**. Entra STS verifies the assertion against the configured trust relationship.
-4. **Issuance**. Entra STS issues a short-lived OIDC/OAuth JWT token.
-5. **Consumption**. The workload presents the token to a target building block.
+1. **Assertion.** A workload (e.g. K8s pod) generates a platform-native identity assertion.
+2. **Exchange.** The workload sends the assertion to the Entra STS endpoint.
+3. **Verification.** Entra STS verifies the assertion against the configured trust relationship.
+4. **Issuance.** Entra STS issues a short-lived OIDC/OAuth JWT token.
+5. **Consumption.** The workload presents the token to a target building block.
 
----
+### 2.5  Identity & Access Management
+
+- **Microsoft Entra ID.** The tenant is the identity provider for all human and workload principals; OIDC and OAuth 2.0 are the standard authentication protocols.
+- **Entra Workload ID (Federated Identity Credentials).** Workloads authenticate without stored secrets by exchanging platform-native assertions for tokens.
+- **Phishing-resistant MFA.** FIDO2 security keys and passkeys are required for privileged and high-risk operations.
+- **Entra Privileged Identity Management (PIM).** Administrative access is just-in-time, approval-gated, and time-bound.
+
+### 2.6  Observability
+
+- **Entra sign-in and audit logs.** Streamed via Diagnostic Settings to Azure Monitor / Log Analytics for retention and query.
+- **Azure Monitor Workbooks.** Dashboards for sign-in success/failure, MFA coverage, and Conditional Access outcomes.
+- **Microsoft Entra ID Protection.** Surfaces risk detections (leaked credentials, impossible travel) to drive continuous access evaluation.
+
+### 2.7  Governance & Policy Enforcement
+
+- **Entra Conditional Access.** Central enforcement of Zero Trust access policy on every sign-in based on risk, device, and location signals.
+- **Entra ID Governance (Access Reviews & Entitlement Management).** Periodic attestation of access and automated joiner/mover/leaver lifecycle.
+- **Privileged Identity Management.** Audited, time-bound elevation with retained evidence for regulatory compliance.
 
 ## 3  Interfaces
 
@@ -154,7 +155,13 @@ The diagram below shows the physical realisation of the IAM ABB using Entra ID s
 | **I9** | Entra → Workbooks | Compliance | Structured data feeds into Azure Monitor compliance dashboards. |
 | **I10**| Admin → Entra | Graph API | Programmatic or portal-based directory and policy management. |
 
----
+### 3.2  Dependent building blocks
+
+| SBB Dependency | Product / Service | Interface |
+|----------------|------------------|-----------|
+| Consumer SBBs → SBB-001 | Entra STS token issuance and validation | I1, I2, I3 |
+| SBB-001 → [SBB-002](../SBB-002/) Observability | Azure Monitor / Log Analytics log sink | I8, I9 |
+| SBB-001 → [SBB-003](../SBB-003/) Policy Decision | Governance and policy evidence | I9 |
 
 ## 4  Mapping
 
@@ -165,13 +172,33 @@ The diagram below shows the physical realisation of the IAM ABB using Entra ID s
 
 ### 4.2  Policy mapping
 
-- **Zero Trust Policy** → Enforced via Entra CA and FIC.
+- **Zero Trust Policy.** Enforced via Entra Conditional Access and Federated Identity Credentials.
 
----
+## 5. ABB Traceability
+
+This SBB realises [ABB-001 Identity & Access Management](../../architecture-building-blocks/ABB-001/). Every component in the parent ABB's Section 2.2, including the mandatory cross-cutting concerns, is accounted for by an Entra product or service.
+
+| ABB Capability | SBB Realisation |
+|----------------|-----------------|
+| Identity Provisioning | Entra ID Provisioning (SCIM and Graph API). |
+| Credential Management | Entra Workload ID (managed identities and federated credentials). |
+| Identity Decommissioning | Entra ID Governance (automated lifecycle workflows and access reviews). |
+| Token Issuance | Entra STS v2.0 (OIDC and OAuth 2.0 endpoints). |
+| Token Validation | Entra token validation (JWT validation via OIDC metadata and JWKS). |
+| Multi-Factor Authentication | Entra MFA (Authenticator, FIDO2, passkeys). |
+| Policy Evaluation Engine | Entra Conditional Access (signal-based policy engine). |
+| Role & Permission Management | Entra RBAC / App Roles (scoped application and directory roles). |
+| Conditional Access | Entra CA Policies (real-time risk and context evaluation). |
+| Identity Federation | Entra B2B / Federation (SAML/OIDC with external IdPs). |
+| Workload Identity Federation | Entra Workload ID FIC (federation with Kubernetes and other compute platforms). |
+| Directory Services | Entra ID Tenant (cloud directory for all principals). |
+| Observability (cross-cutting) | Entra sign-in logs exported to Azure Monitor / Log Analytics. |
+| Governance (cross-cutting) | Entra ID Governance and Privileged Identity Management (PIM). |
 
 ## 6. Revision History
 
 | Version | Date | Change Type | Description |
 |---------|------|-------------|-------------|
 | 1.0 | 2026-03-07 | Initial Draft | Retrospective standardisation of SBB-001. |
+| 1.1 | 2026-06-08 | Guidance | Conformed to the SBB document standard: removed the Document Control table and horizontal rules, added §2.5–2.7 cross-cutting sections, §3.2 dependent building blocks, and §5 ABB traceability. |
 

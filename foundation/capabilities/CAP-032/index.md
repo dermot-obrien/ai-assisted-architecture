@@ -32,6 +32,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-032 Data Classification & Privacy
@@ -40,7 +44,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-032` | Unique identifier. |
 | **Capability Name** | Data Classification & Privacy | Human-readable name. |
-| **Realizes Outcome**| [OC-009 Data Governance & Privacy](../../strategy/outcomes/OC-009/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-009 Data Governance & Privacy](../../strategy/outcomes/OC-009/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-031` | Data Management. |
 | **Version** | `1.0.0` | Semantic versioning. |
