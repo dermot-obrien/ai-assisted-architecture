@@ -38,7 +38,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-abb.md`
 
-**Purpose:** End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint.
+**Purpose:** End-to-end ABB creation: discovery, document, diagram, summary.
 
 ---
 
@@ -46,7 +46,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
 
-**Purpose:** End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint.
+**Purpose:** End-to-end SBB creation: discovery, document, diagram, summary.
 
 ---
 
@@ -55,3 +55,11 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
 
 **Purpose:** Runtime unit of execution definition.
+
+---
+
+### `/create-runtime-agent` - Create Runtime Agent
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-runtime-agent.md`
+
+**Purpose:** (Builder skill) Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.

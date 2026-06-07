@@ -32,6 +32,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-030 SBOM Management & Compliance
@@ -40,7 +44,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-030` | Unique identifier. |
 | **Capability Name** | SBOM Management & Compliance | Human-readable name. |
-| **Realizes Outcome**| [OC-008 Software Supply Chain Integrity](../../../strategy/outcomes/OC-008/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-008 Software Supply Chain Integrity](../../strategy/outcomes/OC-008/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-027` | Supply Chain Security. |
 | **Version** | `1.0.0` | Semantic versioning. |

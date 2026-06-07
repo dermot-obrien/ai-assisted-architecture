@@ -44,8 +44,8 @@ realised_by_abbs:
 |----------|-------|-------|
 | **Capability ID** | `CAP-007` | Unique identifier. |
 | **Capability Name** | Compliance Evidence & Reporting | Human-readable name. |
-| **Realizes Outcome**| [OC-004 Continuous Compliance Audit](../../../strategy/outcomes.md#oc-004-continuous-compliance-audit) | Primary strategic goal. |
-| **Enables Use Case**| [UC-003 Real-time Policy Decision Evaluation](../../../strategy/use-cases.md#uc-003-real-time-policy-decision-evaluation) | Primary operational scenario. |
+| **Realises Outcome**| [OC-004 Continuous Compliance Audit](../../strategy/outcomes/OC-004/) | Primary strategic goal. |
+| **Enables Use Case**| [UC-003 Real-time Policy Decision Evaluation](../../strategy/use-cases/UC-003/) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-003` | Operational Intelligence. |
 | **Version** | `1.0.0` | Semantic versioning. |

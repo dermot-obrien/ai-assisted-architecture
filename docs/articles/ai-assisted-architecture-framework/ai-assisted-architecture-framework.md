@@ -55,7 +55,7 @@ The practical benefit: when an AI agent creates a building block, it knows where
 
 The framework is also opinionated about architecture diagram format. After working through different options over the last year, I've settled on Draw.io being a good and editable diagram format that most (but not all) LLMs can generate and consume. I found a diagrams-as-code approach (Mermaid, PlantUML, D2, etc.) too frustrating to wrangle diagrams into the shape I needed, apart from narrow areas such as sequence diagrams.
 
-The ABB diagram standard in the framework specifies using Draw.io for diagrams ready to paste into PowerPoint slides as images. It specifies compatible canvas dimensions, component box content requirements, external actor placement (right side, outside boundary, specific dimensions), interface label formats ("I1 Policy query", not just "I1"), and cross-cutting sub-group positioning.
+The ABB diagram standard in the framework specifies using Draw.io for diagrams ready to paste into presentation slides as images. It specifies compatible canvas dimensions, component box content requirements, external actor placement (right side, outside boundary, specific dimensions), interface label formats ("I1 Policy query", not just "I1"), and cross-cutting sub-group positioning.
 
 This level of detail might look excessive. It's deliberate. When two different agents create diagrams on two different days, the output should look like it came from the same hand. That only happens when the specification leaves no room for interpretation. However, the differences between current foundation models mean that diagram quality may become inconsistent if you switch models frequently.
 
@@ -67,7 +67,7 @@ Each of the seven agent skills (one per hierarchy layer) follows a four-phase pa
 
 **Load Standards.** Before generating anything, the agent reads the relevant standards from the framework. The ABB skill loads the document standard, diagram standard, visual design standard, and traceability standard.
 
-**Create Artefacts.** The agent produces the full artefact set: structured markdown, draw.io diagrams, PNG exports at 300 DPI, and PowerPoint slides. All following the loaded standards.
+**Create Artefacts.** The agent produces the full artefact set: structured markdown, draw.io diagrams, and PNG exports at 300 DPI. All following the loaded standards.
 
 **Self-Verification.** The agent runs through a checklist derived from the standard. Missing traceability links, empty mandatory sections, bare component names without descriptions, incorrect colour references: all get flagged before the agent considers the job done.
 

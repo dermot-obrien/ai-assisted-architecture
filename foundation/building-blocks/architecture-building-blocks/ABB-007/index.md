@@ -68,7 +68,7 @@ mandatory_subabbs:
 | **Version** | `1.0.0` | Semantic versioning. |
 | **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Infrastructure` | Logical grouping. |
-| **Parent Bounded Context** | [Infrastructure Bounded Context](../../../contexts/infrastructure-context.md) | Domain boundary for persistence infrastructure concerns. |
+| **Parent Bounded Context** | [Infrastructure Bounded Context](../../../contexts/BC-011/) | Domain boundary for persistence infrastructure concerns. |
 | **Parent Capability** | [CAP-013 Data Storage & Lifecycle Management](../../../capabilities/CAP-013/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for structured and unstructured data persistence, lifecycle policy enforcement, durability, and recovery.

@@ -43,3 +43,23 @@ The **Supply Chain Security Platform** protects the organisation from risks intr
 ## 4. Bounded Contexts
 - **[BC-007 Supply Chain Security](../../contexts/BC-007/)**
 
+## 5. Self-Service Interfaces
+- **Artifact signing and verification API.** Endpoints for signing build artifacts and verifying provenance attestations before deployment.
+- **Dependency and vulnerability scanning service.** On-demand and pipeline-integrated scanning of dependencies with severity-graded findings and remediation guidance.
+- **SBOM generation and registry.** Automated production, storage, and querying of software bills of materials for every released artifact.
+- **Policy-as-code SDK and CLI.** Libraries for enforcing supply-chain admission policies within build and deployment pipelines.
+- **Documentation and golden paths.** Onboarding guides and reference patterns for secure-by-default build and release workflows.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Sign artifacts, scan dependencies, and generate SBOMs as part of their delivery pipelines.
+- **All other platform teams.** Subject their own build artifacts to provenance and vulnerability controls before release.
+- **Security and compliance operations.** Consume scan findings and SBOM data for audit, reporting, and incident response.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| Signing and verification service availability | 99.9% monthly |
+| Dependency scan completion (per build) | < 10 minutes |
+| Critical vulnerability detection-to-alert | < 30 minutes |
+| SBOM coverage of released artifacts | 100% |
+

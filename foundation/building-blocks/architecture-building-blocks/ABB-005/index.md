@@ -68,7 +68,7 @@ mandatory_subabbs:
 | **Version** | `1.0.0` | Semantic versioning. |
 | **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Integration` | Logical grouping. |
-| **Parent Bounded Context** | [Integration Bounded Context](../../../contexts/integration-context.md) | Domain boundary for integration concerns. |
+| **Parent Bounded Context** | [Integration Bounded Context](../../../contexts/BC-010/) | Domain boundary for integration concerns. |
 | **Parent Capability** | [CAP-011 Event Streaming & Asynchronous Integration](../../../capabilities/CAP-011/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for asynchronous event transport, event contract governance, and delivery-assurance controls across platform services.

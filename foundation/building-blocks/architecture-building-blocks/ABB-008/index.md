@@ -68,7 +68,7 @@ mandatory_subabbs:
 | **Version** | `1.0.0` | Semantic versioning. |
 | **Status** | `draft`| Current lifecycle status. |
 | **Category** | `Infrastructure` | Logical grouping. |
-| **Parent Bounded Context** | [Infrastructure Bounded Context](../../../contexts/infrastructure-context.md) | Domain boundary for runtime infrastructure concerns. |
+| **Parent Bounded Context** | [Infrastructure Bounded Context](../../../contexts/BC-011/) | Domain boundary for runtime infrastructure concerns. |
 | **Parent Capability** | [CAP-014 Network Connectivity & Security](../../../capabilities/CAP-014/) | Primary capability realised by this ABB. |
 
 Defines the technology-agnostic capabilities, interfaces, and functional requirements for virtual network topology, traffic routing, DNS resolution, ingress/egress security, and service-to-service connectivity.

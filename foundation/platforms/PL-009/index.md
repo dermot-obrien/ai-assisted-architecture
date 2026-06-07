@@ -43,3 +43,23 @@ The **Configuration & Secret Management Platform** ensures that application conf
 ## 4. Bounded Contexts
 - **[BC-009 Configuration & Secrets](../../contexts/BC-009/)**
 
+## 5. Self-Service Interfaces
+- **Centralised configuration API.** Versioned storage and retrieval of environment-scoped configuration with change history and rollback.
+- **Secret management and rotation service.** Self-service creation, retrieval, and automated rotation of secrets with short-lived credential issuance.
+- **Feature flag and progressive delivery portal.** Declarative management of feature flags, targeting rules, and staged rollouts.
+- **Configuration and secrets SDK and CLI.** Libraries for secret-less retrieval of configuration and credentials at runtime.
+- **Documentation and golden paths.** Onboarding guides and reference patterns for drift-free, secret-safe service configuration.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Source configuration, consume secrets, and control rollouts for their own services.
+- **All other platform teams.** Manage their service configuration and credentials through the central platform rather than bespoke stores.
+- **Security operations.** Consume secret access and rotation telemetry for monitoring and compliance.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| Configuration and secret retrieval availability | 99.95% monthly |
+| Configuration / secret read latency (p99) | < 100 ms |
+| Automated secret rotation cadence | At least every 90 days |
+| Feature flag change propagation | < 60 seconds |
+

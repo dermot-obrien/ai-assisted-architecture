@@ -1,6 +1,6 @@
 # /create-abb
 
-Create a new Architecture Building Block (ABB) with document, diagram, summary, and PowerPoint.
+Create a new Architecture Building Block (ABB) with document, diagram, and summary.
 
 ## Instructions
 

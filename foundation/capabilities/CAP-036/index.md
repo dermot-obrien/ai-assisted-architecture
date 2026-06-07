@@ -32,6 +32,10 @@ maturity:
   target: 3
   assessment_date: "2026-03-08"
   assessor: Architecture Team
+realised_by_abbs:
+  - ABB-001
+  - ABB-002
+  - ABB-003
 ---
 
 # CAP-036 Centralised Configuration Management
@@ -40,7 +44,7 @@ maturity:
 |----------|-------|-------|
 | **Capability ID** | `CAP-036` | Unique identifier. |
 | **Capability Name** | Centralised Configuration Management | Human-readable name. |
-| **Realizes Outcome**| [OC-010 Configuration Consistency & Secret Hygiene](../../../strategy/outcomes/OC-010/) | Primary strategic goal. |
+| **Realises Outcome**| [OC-010 Configuration Consistency & Secret Hygiene](../../strategy/outcomes/OC-010/) | Primary strategic goal. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-035` | Configuration & Secret Management. |
 | **Version** | `1.0.0` | Semantic versioning. |

@@ -44,8 +44,8 @@ realised_by_abbs:
 |----------|-------|-------|
 | **Capability ID** | `CAP-006` | Unique identifier. |
 | **Capability Name** | Operational Monitoring & Alerting | Human-readable name. |
-| **Realizes Outcome**| [OC-003 MTTD Reduction](../../../strategy/outcomes.md#oc-003-mean-time-to-detect-mttd-reduction) | Primary strategic goal. |
-| **Enables Use Case**| [UC-002 Cross-Context Request Tracing](../../../strategy/use-cases.md#uc-002-cross-context-request-tracing) | Primary operational scenario. |
+| **Realises Outcome**| [OC-003 MTTD Reduction](../../strategy/outcomes/OC-003/) | Primary strategic goal. |
+| **Enables Use Case**| [UC-002 Cross-Context Request Tracing](../../strategy/use-cases/UC-002/) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-003` | Operational Intelligence. |
 | **Version** | `1.0.0` | Semantic versioning. |

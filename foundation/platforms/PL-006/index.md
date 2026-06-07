@@ -43,3 +43,23 @@ The **Reliability & Resilience Platform** ensures platform services meet their a
 ## 4. Bounded Contexts
 - **[BC-006 Reliability & Resilience](../../contexts/BC-006/)**
 
+## 5. Self-Service Interfaces
+- **SLO definition and error-budget API.** Declarative configuration of service level objectives with automated error-budget tracking and burn-rate alerting.
+- **Disaster recovery runbook portal.** Self-service registration of recovery plans, recovery point and recovery time objectives, and scheduled failover rehearsals.
+- **Chaos experiment SDK and CLI.** Libraries for defining, scheduling, and running controlled fault-injection experiments against services.
+- **Resilience scorecard dashboards.** Per-service views of availability trends, error-budget consumption, and outstanding reliability risks.
+- **Documentation and golden paths.** Onboarding guides and reference patterns for reliability-by-default service design.
+
+## 6. Consuming Teams
+- **Application and stream-aligned teams.** Define service level objectives and run resilience experiments against their own services.
+- **All other platform teams.** Adopt error-budget policies and disaster-recovery practices for the services they operate.
+- **Incident and operations management.** Consume reliability telemetry and error-budget status to prioritise response and remediation.
+
+## 7. SLOs
+| Objective | Target |
+| :--- | :--- |
+| SLO and error-budget service availability | 99.9% monthly |
+| Error-budget burn-rate alert latency | < 2 minutes |
+| Disaster-recovery failover rehearsal cadence | At least quarterly |
+| Recovery time objective for tier-1 services | < 1 hour |
+

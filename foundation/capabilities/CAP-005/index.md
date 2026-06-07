@@ -44,8 +44,8 @@ realised_by_abbs:
 |----------|-------|-------|
 | **Capability ID** | `CAP-005` | Unique identifier. |
 | **Capability Name** | Policy-Based Access Control | Human-readable name. |
-| **Realizes Outcome**| [OC-001 Zero Trust Workload Posture](../../../strategy/outcomes.md#oc-001-zero-trust-workload-posture) | Primary strategic goal. |
-| **Enables Use Case**| [UC-003 Real-time Policy Decision Evaluation](../../../strategy/use-cases.md#uc-003-real-time-policy-decision-evaluation) | Primary operational scenario. |
+| **Realises Outcome**| [OC-001 Zero Trust Workload Posture](../../strategy/outcomes/OC-001/) | Primary strategic goal. |
+| **Enables Use Case**| [UC-003 Real-time Policy Decision Evaluation](../../strategy/use-cases/UC-003/) | Primary operational scenario. |
 | **Level** | `L3` | Specific capability. |
 | **Parent** | `CAP-002` | Identity & Access. |
 | **Version** | `1.0.0` | Semantic versioning. |

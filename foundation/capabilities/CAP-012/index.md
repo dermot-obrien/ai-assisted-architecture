@@ -32,10 +32,11 @@ maturity:
   assessor: Architecture Team
 realised_by_abbs:
   - ABB-006
+  - ABB-003
   - ABB-007
+  - ABB-008
   - ABB-001
   - ABB-002
-  - ABB-003
 ---
 
 # CAP-012 Compute Runtime & Scheduling

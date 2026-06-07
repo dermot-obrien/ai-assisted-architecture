@@ -52,11 +52,6 @@ draw.io --export --format png --scale 3.125 --output components.png components.d
 ```
 Create `summary.md` and `summary.drawio` as defined in the standard.
 
-### Step 4: PPTX
-```bash
-python .ai-assisted-architecture/scripts/create-building-block-slide.py building-blocks/architecture-building-blocks/ABB-NNN/
-```
-
 ## Phase 4: Self-Verification
 
 Execute the **AI Agent Self-Verification Checklist** from `standard-abb-document.md` and `standard-traceability.md`.

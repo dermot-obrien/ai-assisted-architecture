@@ -41,7 +41,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-abb.md`
 
-**Purpose:** End-to-end ABB creation: discovery, document, diagram, summary, PowerPoint.
+**Purpose:** End-to-end ABB creation: discovery, document, diagram, summary.
 
 ---
 
@@ -49,7 +49,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
 
-**Purpose:** End-to-end SBB creation: discovery, document, diagram, summary, PowerPoint.
+**Purpose:** End-to-end SBB creation: discovery, document, diagram, summary.
 
 ---
 
@@ -58,3 +58,11 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 **Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
 
 **Purpose:** Runtime unit of execution definition.
+
+---
+
+### `/create-runtime-agent` - Create Runtime Agent
+
+**Full instructions:** Read `.ai-assisted-architecture/agents/create-runtime-agent.md`
+
+**Purpose:** (Builder skill) Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.
