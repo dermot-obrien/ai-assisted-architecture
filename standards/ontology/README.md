@@ -446,7 +446,7 @@ When `ontology.schema` is not set, scripts default to the framework's base schem
 
 ### Rules for extensions
 
-1. **Never modify the base schema** in the framework submodule for organisation-specific needs.
+1. **Never modify the base schema** in the framework clone for organisation-specific needs.
 2. **Extension entities** should use a distinct naming convention (e.g., `delivery_gate`, `use_case`) that won't collide with future base entities.
 3. **Extended fields on base entities** are documented in a companion `$defs` entry (e.g., `InitiativeExtension`) and merged at validation time.
 4. **Version the extension** — bump the `version` const when the extension shape changes.

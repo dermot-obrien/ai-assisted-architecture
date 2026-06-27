@@ -13,22 +13,25 @@
 //   aaa --help
 
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
 import process from "node:process";
+import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
 
 const HELP = `aaa — AI-Assisted Architecture installer
 
 Usage:
-  aaa install            Wire AAA command shims for detected AI tools
+  aaa install [--workspace PATH]
+                         Wire AAA command shims for detected AI tools
   aaa install --seed     ...and scaffold the foundation seed into this workspace
                          (capabilities/ + building-blocks/)
   aaa --help             Show this help
 
-AAA depends on AAW: the .ai-assisted-work submodule must be present (it provides
-the shared install engine).
+AAA depends on AAW: install AAW into the target workspace first. AAA resolves
+AAW from that workspace's .aaw-config.yaml when available, then falls back to
+local conventions such as .ai-assisted-work.
 `;
 
 function findWorkspaceRoot(start) {
@@ -43,7 +46,50 @@ function findWorkspaceRoot(start) {
   }
 }
 
-/** Locate the AAW install engine across: npm dependency, hoisted node_modules, then submodule. */
+function workspaceArg(args) {
+  const i = args.indexOf("--workspace");
+  if (i === -1) return void 0;
+  const value = args[i + 1];
+  if (value === void 0 || value.startsWith("--")) {
+    throw new Error("--workspace requires a path argument");
+  }
+  return path.resolve(process.cwd(), value);
+}
+
+async function resolveWorkspaceRoot(args) {
+  const explicit = workspaceArg(args);
+  if (explicit) return explicit;
+
+  const detected = findWorkspaceRoot(process.cwd());
+  if (!process.stdin.isTTY || !process.stdout.isTTY) return detected;
+
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    const answer = (await rl.question(`Install into workspace [${detected}]: `)).trim();
+    return answer === "" ? detected : path.resolve(process.cwd(), answer);
+  } finally {
+    rl.close();
+  }
+}
+
+function recordedAawBin(workspaceRoot) {
+  const configPath = path.join(workspaceRoot, ".aaw-config.yaml");
+  if (!existsSync(configPath)) return void 0;
+  try {
+    const text = readFileSync(configPath, "utf8");
+    const match = text.match(/(?:^|\n)modules:\s*\n(?:^[ \t].*\n)*?^[ \t]+aaw:\s*\n(?:^[ \t].*\n)*?^[ \t]+source_root:\s*([^\n]+)/m);
+    if (!match) return void 0;
+    const raw = match[1].trim().replace(/^['"]|['"]$/g, "");
+    if (raw === "") return void 0;
+    const sourceRoot = path.resolve(workspaceRoot, raw);
+    const bin = path.join(sourceRoot, "bin", "aaw.js");
+    return existsSync(bin) ? bin : void 0;
+  } catch {
+    return void 0;
+  }
+}
+
+/** Locate the AAW install engine across: npm dependency, hoisted node_modules, then a workspace-local clone. */
 function resolveAawBin(workspaceRoot) {
   try {
     const pkg = createRequire(import.meta.url).resolve("ai-assisted-work/package.json");
@@ -52,14 +98,16 @@ function resolveAawBin(workspaceRoot) {
   } catch {
     /* not an npm dep — try other layouts */
   }
+  const recorded = recordedAawBin(workspaceRoot);
+  if (recorded) return recorded;
   const hoisted = path.join(workspaceRoot, "node_modules", "ai-assisted-work", "bin", "aaw.js");
   if (existsSync(hoisted)) return hoisted;
-  const submodule = path.join(workspaceRoot, ".ai-assisted-work", "bin", "aaw.js");
-  if (existsSync(submodule)) return submodule;
+  const localClone = path.join(workspaceRoot, ".ai-assisted-work", "bin", "aaw.js");
+  if (existsSync(localClone)) return localClone;
   return undefined;
 }
 
-function main(argv) {
+async function main(argv) {
   const command = argv[0];
   if (command === "--help" || command === "-h" || command === "help") {
     process.stdout.write(HELP);
@@ -71,24 +119,24 @@ function main(argv) {
   }
 
   const frameworkRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-  const workspaceRoot = findWorkspaceRoot(process.cwd());
+  const passthrough = command === "install" ? argv.slice(1) : [];
+  const workspaceRoot = await resolveWorkspaceRoot(passthrough);
   const aawBin = resolveAawBin(workspaceRoot);
   if (!aawBin) {
     process.stderr.write(
-      "AAA requires AAW (it provides the shared install engine). Install it as an\n" +
-        "npm dependency (npm i github:dermot-obrien/ai-assisted-work) or add the\n" +
-        ".ai-assisted-work submodule, then re-run `aaa install`.\n",
+      "AAA requires AAW (it provides the shared install engine). Install AAW into\n" +
+        "this target workspace first, or ensure .aaw-config.yaml records\n" +
+        "modules.aaw.source_root, then re-run `aaa install`.\n",
     );
     return 1;
   }
 
-  const passthrough = command === "install" ? argv.slice(1) : [];
   const result = spawnSync(
     "node",
-    [aawBin, "install", "--framework", frameworkRoot, ...passthrough],
+    [aawBin, "install", "--framework", frameworkRoot, "--workspace", workspaceRoot, ...passthrough],
     { stdio: "inherit" },
   );
   return result.status ?? 1;
 }
 
-process.exit(main(process.argv.slice(2)));
+main(process.argv.slice(2)).then((code) => process.exit(code));

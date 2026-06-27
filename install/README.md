@@ -3,15 +3,19 @@
 ## Quick install (recommended)
 
 AAA installs through the shared AAW install engine (see `framework.manifest.yaml`).
-Add AAW + AAA as submodules, then run one command:
+Clone AAW + AAA into your workspace, then run one command:
 
 ```bash
-git submodule add https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
-git submodule add https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
+git clone https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
+git clone https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
 
 node .ai-assisted-architecture/bin/aaa.js install          # wire command shims for detected tools
 node .ai-assisted-architecture/bin/aaa.js install --seed    # ...and scaffold the foundation seed
 ```
+
+The installer prompts for the target workspace and defaults to the current workspace. You can
+reuse one local AAA clone across multiple workspaces; AAA uses the chosen workspace's
+`.aaw-config.yaml` to resolve the matching AAW install source when it delegates to the shared engine.
 
 This wires the `create-*` command shims for every detected tool (Claude/Cursor/
 Copilot/Gemini) and, with `--seed`, copies the selected profile's capabilities +

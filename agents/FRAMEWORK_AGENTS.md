@@ -1,6 +1,6 @@
 # Agent Configuration
 
-This file defines top-level discovery and precedence rules for AI agents working with this framework. All paths are relative to the submodule root (`.ai-assisted-architecture/`).
+This file defines top-level discovery and precedence rules for AI agents working with this framework. All paths are relative to the framework root (`.ai-assisted-architecture/`).
 
 ## Agent Skills
 
