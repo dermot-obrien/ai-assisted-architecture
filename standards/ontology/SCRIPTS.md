@@ -28,10 +28,10 @@ The scripts live at `scripts/ontology/`. The schema and this document live at `s
 The framework uses a single Node install at its root. Requires Node.js 18 or later.
 
 ```powershell
-# If you cloned the framework directly
+# If you are in the framework directory
 npm install
 
-# If you added it as a submodule at .ai-assisted-architecture/
+# If the framework is installed in your workspace at .ai-assisted-architecture/
 cd .ai-assisted-architecture; npm install; cd ..
 ```
 
@@ -39,13 +39,13 @@ That fetches `ajv`, `ajv-formats`, and `js-yaml` into `node_modules/` inside the
 
 ### Invocation paths
 
-Examples below use forms that work when you are running from the framework directory itself. When the framework is installed as a submodule, prefix the script paths with `.ai-assisted-architecture/`:
+Examples below use forms that work when you are running from the framework directory itself. When the framework is installed in your workspace at `.ai-assisted-architecture/`, prefix the script paths with `.ai-assisted-architecture/`:
 
 ```powershell
 # From inside the framework
 node scripts/ontology/validate.cjs <root>
 
-# From a workspace that consumes the framework as a submodule
+# From a workspace that consumes the framework via a local clone
 node .ai-assisted-architecture/scripts/ontology/validate.cjs <root>
 ```
 

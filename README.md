@@ -23,13 +23,18 @@ npm i github:dermot-obrien/ai-assisted-architecture
 npx aaa install            # add --seed to also scaffold the foundation
 ```
 
-### Option B — git submodules
+### Option B — local git clones
 
 ```bash
-git submodule add https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
-git submodule add https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
+git clone https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
+git clone https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
 node .ai-assisted-architecture/bin/aaa.js install      # add --seed to scaffold
 ```
+
+`aaa install` asks which workspace to install into and defaults to the current workspace.
+If AAW was previously installed into that workspace from a different local clone, AAA resolves
+the shared AAW engine from `.aaw-config.yaml` rather than assuming `.ai-assisted-work` exists
+inside the workspace.
 
 See [install/README.md](install/README.md) for the per-tool file map and the
 discovery files (`AGENTS.md`/`CLAUDE.md`/`GEMINI.md`) you merge once.
@@ -38,7 +43,7 @@ discovery files (`AGENTS.md`/`CLAUDE.md`/`GEMINI.md`) you merge once.
 > (`src/seed-foundation.mjs`, a cross-platform Node port of the old
 > `seed-foundation.ps1`) are zero-dependency Node scripts — nothing to build. The
 > launcher delegates to AAW's engine (found via npm dependency, `node_modules`, or the
-> `.ai-assisted-work` submodule). The **optional** Python diagram helper in
+> `.ai-assisted-work` local clone). The **optional** Python diagram helper in
 > `scripts/` (`generate_sbb_diagrams.py`) uses only the Python standard library and is
 > not required for the core authoring workflow.
 
@@ -55,7 +60,7 @@ helper, which uses the standard library — no third-party packages required.
 
 ### Node.js (optional — only for the ontology scripts)
 
-[Node.js 18+](https://nodejs.org/) is required if you want to validate, consolidate, or namespace YAML/JSON files against the modernisation ontology. Run `npm install` once inside the framework directory (or inside the submodule if installed that way). See the [Ontology](#ontology) section below.
+[Node.js 18+](https://nodejs.org/) is required if you want to validate, consolidate, or namespace YAML/JSON files against the modernisation ontology. Run `npm install` once inside the framework directory. See the [Ontology](#ontology) section below.
 
 ### Visual Design Standard
 
@@ -79,10 +84,10 @@ The ABB and SBB standards (document structure, diagram layout, cross-referencing
 
 ## Installation
 
-Add as a Git submodule to your workspace:
+Clone the framework anywhere you want to keep it, then install it into a workspace:
 
 ```bash
-git submodule add https://github.com/dermot-obrien/ai-assisted-architecture.git .ai-assisted-architecture
+git clone https://github.com/dermot-obrien/ai-assisted-architecture.git .ai-assisted-architecture
 ```
 
 ## Workspace Setup
@@ -93,7 +98,7 @@ Your workspace must contain a `capabilities/` folder and a `building-blocks/` fo
 
 ```
 your-workspace/
-  .ai-assisted-architecture/  # This framework (submodule)
+  .ai-assisted-architecture/  # This framework (local clone)
   capabilities/
     capability-model.md        # Master capability taxonomy
     CAP-001/
@@ -280,10 +285,10 @@ scripts/ontology/
 The scripts are CommonJS Node.js (>=18). Install dependencies once:
 
 ```bash
-# If you cloned the framework directly
+# If you are in the framework directory
 npm install
 
-# If you added the framework as a submodule at .ai-assisted-architecture/
+# If the framework is installed in your workspace at .ai-assisted-architecture/
 cd .ai-assisted-architecture && npm install && cd ..
 ```
 

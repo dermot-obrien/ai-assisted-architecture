@@ -29,7 +29,7 @@
           "description": "Source-code repository pointer (finalised by WI-003).",
           "properties": {
             "url":  { "type": "string", "format": "uri" },
-            "path": { "type": "string", "description": "Workspace-relative path (typically a submodule)." }
+            "path": { "type": "string", "description": "Workspace-relative path (typically a local framework clone)." }
           }
         },
         "module_path": { "type": "string", "description": "Repo-relative path to this service's entry module." },
