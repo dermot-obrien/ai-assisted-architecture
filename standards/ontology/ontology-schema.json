@@ -4,7 +4,7 @@
   "$id": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json",
   "title": "Modernisation Ontology",
   "description": "Platform-centric enterprise architecture ontology supporting board reporting, regulator reporting, and ongoing architecture practice. Built around a minimal capability-centric core (Platform, Capability, Component, Change) with governance, risk, and view layers added in disciplined extensions. Standards-aligned to ArchiMate and TOGAF (views and viewpoints) and ISO/IEC/IEEE 42010 (architecture description); capabilities optionally anchor to whichever industry reference taxonomy applies (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). See accompanying README.md for usage guidance and SPECIFICATION.md for design rationale.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "type": "object",
   "properties": {
     "$comment": {
@@ -13,7 +13,7 @@
     },
     "version": {
       "type": "string",
-      "const": "1.4.0",
+      "const": "1.5.0",
       "description": "Ontology schema version. Bump on breaking changes."
     },
     "ontology_id": {
@@ -223,6 +223,27 @@
         "$ref": "#/$defs/DeliveryStatus"
       },
       "description": "Point-in-time delivery status reports for initiatives."
+    },
+    "integration_dependency_domain": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/IntegrationDependencyDomain"
+      },
+      "description": "Named dependency domains used to group integration dependencies for use cases and initiatives."
+    },
+    "integration": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Integration"
+      },
+      "description": "Integration touchpoints and systems used by initiatives and use cases."
+    },
+    "integration_dependency_link": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/IntegrationDependencyLink"
+      },
+      "description": "Explicit dependency links from integrations to dependent use cases and initiatives."
     }
   },
   "required": [
@@ -1393,13 +1414,15 @@
         },
         "value_profile": {
           "type": "object",
-          "description": "Financial value profile for this initiative.",
+          "description": "Financial value profile for this initiative. Captures benefit targets and classification for board and investment reporting.",
           "properties": {
             "annual_value_musd": {
-              "type": "number"
+              "type": "number",
+              "description": "Total annualised value at full run-rate, in millions USD."
             },
             "run_rate_musd": {
-              "type": "number"
+              "type": "number",
+              "description": "Target exit run-rate for the current fiscal year, in millions USD."
             },
             "value_type": {
               "type": "string",
@@ -1409,8 +1432,75 @@
                 "net"
               ]
             },
+            "benefit_type": {
+              "type": "string",
+              "enum": [
+                "productivity_gain",
+                "cost_avoidance",
+                "revenue_increase",
+                "risk_reduction",
+                "regulatory_compliance",
+                "customer_experience",
+                "mixed"
+              ],
+              "description": "Primary benefit category. Use 'mixed' only when two or more types contribute roughly equally and cannot be decomposed. Enables benefit-type aggregation across the portfolio."
+            },
             "basis_note": {
               "type": "string"
+            },
+            "investment_profile": {
+              "type": "object",
+              "description": "Cost-to-deliver profile, separating investment from value_profile benefit. Enables ROI computation and quarterly budget allocation reporting.",
+              "properties": {
+                "total_cost_musd": {
+                  "type": "number",
+                  "description": "Total estimated delivery cost in millions USD across all quarters."
+                },
+                "cost_type": {
+                  "type": "string",
+                  "enum": [
+                    "opex",
+                    "capex",
+                    "mixed"
+                  ],
+                  "description": "Accounting treatment of the investment."
+                },
+                "quarterly_breakdown": {
+                  "type": "array",
+                  "description": "Per-quarter cost allocation for budget planning and actuals tracking.",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "quarter": {
+                        "type": "string",
+                        "pattern": "^Q[1-4]-FY[0-9]{2}$",
+                        "description": "Fiscal quarter in format Q#-FY## (e.g., Q1-FY27)."
+                      },
+                      "planned_cost_musd": {
+                        "type": "number",
+                        "description": "Planned spend in this quarter, in millions USD."
+                      },
+                      "actual_cost_musd": {
+                        "type": [
+                          "number",
+                          "null"
+                        ],
+                        "description": "Actual spend once the quarter is closed. Null while open."
+                      }
+                    },
+                    "required": [
+                      "quarter",
+                      "planned_cost_musd"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "assumption_note": {
+                  "type": "string",
+                  "description": "Key cost assumptions (vendor contracts, FTE rate, licence costs, etc.)."
+                }
+              },
+              "additionalProperties": false
             }
           },
           "additionalProperties": false
@@ -2337,7 +2427,7 @@
     "InitiativePhase": {
       "type": "object",
       "title": "InitiativePhase",
-      "description": "A delivery phase within an initiative (e.g., mobilise, solutioning, delivery, ongoing_delivery, stabilise).",
+      "description": "A delivery phase within an initiative. Carries an explicit fiscal quarter label, deliverable details, and phase-level cost assumptions so quarter-by-quarter reporting is mechanical rather than narrative.",
       "properties": {
         "id": {
           "type": "string"
@@ -2354,6 +2444,98 @@
             "ongoing_delivery",
             "stabilise"
           ]
+        },
+        "quarter": {
+          "type": "string",
+          "pattern": "^Q[1-4]-FY[0-9]{2}$",
+          "description": "Fiscal quarter in which this phase primarily lands, in format Q#-FY## (e.g., Q1-FY27)."
+        },
+        "deliverable": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500,
+          "description": "What is produced or achieved in this phase, in plain language for board and programme reporting."
+        },
+        "value_in_quarter_musd": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "description": "Optional. Value realised (or forecast) within this phase/quarter in millions USD."
+        },
+        "phase_cost": {
+          "type": "object",
+          "description": "Core phase-level cost model for the roadmap. Captures labour assumptions (FTE x duration x blended rate), procurement spend, and contingency.",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "enum": [
+                "USD"
+              ]
+            },
+            "estimated_fte": {
+              "type": "number",
+              "minimum": 0
+            },
+            "duration_months": {
+              "type": "number",
+              "minimum": 0.1
+            },
+            "blended_rate_per_fte_year_usd": {
+              "type": "number",
+              "minimum": 1
+            },
+            "labour_cost_musd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "procurement_cost_musd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "contingency_cost_musd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "total_cost_musd": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cost_basis": {
+              "type": "string",
+              "enum": [
+                "bottom_up",
+                "parametric",
+                "vendor_quote_mix",
+                "analogous"
+              ]
+            },
+            "assumptions": {
+              "type": "string"
+            },
+            "confidence": {
+              "type": "string",
+              "enum": [
+                "high",
+                "medium",
+                "low"
+              ]
+            }
+          },
+          "required": [
+            "currency",
+            "estimated_fte",
+            "duration_months",
+            "blended_rate_per_fte_year_usd",
+            "labour_cost_musd",
+            "procurement_cost_musd",
+            "contingency_cost_musd",
+            "total_cost_musd",
+            "cost_basis",
+            "assumptions",
+            "confidence"
+          ],
+          "additionalProperties": false
         },
         "planned_start": {
           "type": "string",
@@ -2390,6 +2572,7 @@
         "id",
         "initiative_id",
         "phase_type",
+        "phase_cost",
         "planned_start",
         "planned_end"
       ],
@@ -2561,6 +2744,138 @@
       "required": [
         "id",
         "name"
+      ],
+      "additionalProperties": false
+    },
+    "IntegrationDependencyDomain": {
+      "type": "object",
+      "title": "IntegrationDependencyDomain",
+      "description": "A reusable domain grouping for integration dependencies.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^depdom_[a-z0-9_]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "applies_to_use_case_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "applies_to_initiative_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "Integration": {
+      "type": "object",
+      "title": "Integration",
+      "description": "A system or touchpoint that initiatives and use cases integrate with.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(conn|intg)_[a-z0-9_]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "integration_type": {
+          "type": "string",
+          "enum": [
+            "collaboration",
+            "knowledge",
+            "content_repository",
+            "core_system",
+            "document_repository",
+            "crm",
+            "workflow",
+            "risk_system",
+            "onboarding_system",
+            "identity",
+            "fulfilment",
+            "external"
+          ]
+        },
+        "priority": {
+          "type": "integer"
+        },
+        "anchor_home": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "conditional",
+            "tbc"
+          ]
+        },
+        "dependency_domain_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data_accessed": {
+          "type": "string"
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "$ref": "#/$defs/Notes"
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "integration_type"
+      ],
+      "additionalProperties": false
+    },
+    "IntegrationDependencyLink": {
+      "type": "object",
+      "title": "IntegrationDependencyLink",
+      "description": "A dependency mapping from an integration to the use cases and initiatives that depend on it.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^idep_[a-z0-9_]+$"
+        },
+        "integration_id": {
+          "type": "string"
+        },
+        "depended_on_by_use_case_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "depended_on_by_initiative_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "$ref": "#/$defs/Notes"
+        }
+      },
+      "required": [
+        "id",
+        "integration_id"
       ],
       "additionalProperties": false
     },
