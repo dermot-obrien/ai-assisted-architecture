@@ -1103,7 +1103,7 @@
     "Criterion": {
       "type": "object",
       "title": "Criterion",
-      "description": "What must be true for a milestone to be considered arrived. A criterion demands one or more changes. The set of all criteria on a milestone defines its arrival condition.",
+      "description": "What must be true for a milestone to be considered arrived. A criterion demands one or more changes. The set of all criteria on a milestone defines its arrival condition. OKR layer: a Criterion IS a Key Result — a measurable condition whose satisfaction signals outcome progress.",
       "properties": {
         "id": {
           "type": "string",
@@ -1135,6 +1135,14 @@
             "deferred",
             "waived"
           ]
+        },
+        "kr_type": {
+          "type": "string",
+          "enum": [
+            "leading",
+            "lagging"
+          ],
+          "description": "Optional OKR annotation: this Criterion viewed as a Key Result - leading (predicts future value) or lagging (the value itself)."
         },
         "evidence_ref": {
           "type": "string",
@@ -1313,8 +1321,8 @@
           "items": {
             "type": "string"
           },
-          "minItems": 1,
-          "description": "Changes this initiative delivers. Mandatory minimum 1."
+          "minItems": 0,
+          "description": "Changes this initiative delivers. May be empty for early-stage initiatives (relaxed from 1)."
         },
         "depends_on_initiative_ids": {
           "type": "array",
@@ -1383,6 +1391,30 @@
           "type": "string",
           "description": "Stage in pipeline lifecycle (e.g., stage_2, stage_3, stage_4)."
         },
+        "gate_status": {
+          "type": "string",
+          "enum": [
+            "pending",
+            "approved",
+            "rejected"
+          ],
+          "default": "pending",
+          "description": "AI Programme governance gate decision, set at the programme gate meeting. Only 'approved' initiatives are published as Docusaurus cards. Optional/additive; non-breaking."
+        },
+        "gate_date": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Date of the gate decision (ISO-8601)."
+        },
+        "gate_ref": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Reference to the gate meeting / governance record."
+        },
         "confidence_level": {
           "type": "string",
           "enum": [
@@ -1405,12 +1437,27 @@
           "type": "integer",
           "description": "Display ordering on the board slide."
         },
+        "value_of_doing": {
+          "type": "string",
+          "description": "Optional narrative. The benefit or value of doing this initiative (why it matters), for board and roadmap detail and initiative cards. Complements the financial value_profile. Optional/additive; non-breaking."
+        },
+        "implication_if_not_done": {
+          "type": "string",
+          "description": "Optional narrative. The implication or cost of inaction if this initiative is not done, for board and roadmap detail and initiative cards. Optional/additive; non-breaking."
+        },
         "implements_use_case_ids": {
           "type": "array",
           "items": {
             "type": "string"
           },
           "description": "Use cases this initiative implements."
+        },
+        "advances_criterion_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Optional OKR link: Criterion (Key Result) ids this initiative advances. Convenience over walking implements_transition_id -> Milestone -> Criterion."
         },
         "value_profile": {
           "type": "object",
@@ -2694,7 +2741,7 @@
           "type": "string"
         },
         "order": {
-          "type": "integer"
+          "type": "number"
         },
         "board_ref": {
           "type": ["integer", "string", "null"],
