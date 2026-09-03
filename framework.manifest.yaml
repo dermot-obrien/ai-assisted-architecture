@@ -14,17 +14,19 @@
 id: aaa
 name: AI-Assisted Architecture
 version: 0.3.0
-depends: [aaw]
+depends: [ aaw ]
 runtime: node
 source_token: .ai-assisted-architecture
 
 shims:
-  claude:  { src: install/claude/commands, dest: .claude/commands/aaa }
-  cursor:  { src: install/cursor/rules,    dest: .cursor/rules/aaa }
-  copilot: { src: install/github/prompts,  dest: .github/prompts/aaa }
-  gemini:  { src: install/gemini,          dest: .gemini/skills/aaa }
+  claude: { src: install/claude/commands, dest: .claude/commands/aaa }
+  cursor: { src: install/cursor/rules, dest: .cursor/rules/aaa }
+  copilot: { src: install/github/prompts, dest: .github/prompts/aaa }
+  gemini: { src: install/gemini, dest: .gemini/skills/aaa }
 
-config: []
+config:
+- file: .aaa-config.yaml
+  template: install/templates/aaa-config.yaml
 data_dirs: []
 
 # Opt-in (requires --seed). Cross-platform Node port of seed-foundation.ps1:
@@ -32,4 +34,4 @@ data_dirs: []
 seed:
   driver: node
   entry: src/seed-foundation.mjs
-  args: [--profile, core]
+  args: [ --profile, core ]
