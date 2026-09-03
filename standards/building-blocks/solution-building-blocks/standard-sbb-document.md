@@ -118,7 +118,7 @@ Embed the exported PNG of the component diagram immediately after the paragraph:
 
 <Introductory paragraph describing the diagram.>
 
-![<SBB-ID> <Diagram Title> Component Diagram](./components.png)
+![<SBB-ID> <Diagram Title> Component Diagram](components.png)
 ```
 
 #### 2.2 Product Mapping (ABB → SBB)

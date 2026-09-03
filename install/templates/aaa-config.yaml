@@ -1,0 +1,8 @@
+version: 1
+mode: local-fs
+
+ontology:
+  # Workspace-root-relative path to the canonical ontology schema.
+  schema: governance/metamodel/ontology-schema.json
+  # Optional companion specification document.
+  specification: governance/metamodel/ontology-specification.md
