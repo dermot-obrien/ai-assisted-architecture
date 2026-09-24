@@ -1,12 +1,12 @@
 ## AI-Assisted Architecture
 
-Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instruction source for capability, ABB/SBB, and visual standards.
+Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical instruction source for capability, ABB/SBB, and visual standards.
 
-For any capability or ABB/SBB task, load and apply the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md`.
+For any capability or ABB/SBB task, load and apply the standards listed in `.ai-assisted-architecture/standards/standards-index.md`.
 
 ### `/create-strategy` - Create Outcome / Use Case
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-strategy.md`
+**Full instructions:** Read `the /aaa-create-strategy skill`
 
 **Purpose:** Strategic and operational layer creation.
 
@@ -14,7 +14,7 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-platform` - Create Platform
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-platform.md`
+**Full instructions:** Read `the /aaa-create-platform skill`
 
 **Purpose:** Defining platforms and executive ownership.
 
@@ -22,7 +22,7 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-capability` - Create Capability
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-capability.md`
+**Full instructions:** Read `the /aaa-create-capability skill`
 
 **Purpose:** End-to-end capability creation: discovery, document, ABB mapping, maturity assessment.
 
@@ -30,7 +30,7 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-context` - Create Bounded Context
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-context.md`
+**Full instructions:** Read `the /aaa-create-context skill`
 
 **Purpose:** Defining Bounded Contexts and linguistic boundaries.
 
@@ -38,7 +38,7 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-abb` - Create Architecture Building Block
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-abb.md`
+**Full instructions:** Read `the /aaa-create-abb skill`
 
 **Purpose:** End-to-end ABB creation: discovery, document, diagram, summary.
 
@@ -46,7 +46,7 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-sbb` - Create Solution Building Block
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
+**Full instructions:** Read `the /aaa-create-sbb skill`
 
 **Purpose:** End-to-end SBB creation: discovery, document, diagram, summary.
 
@@ -54,7 +54,7 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-service` - Create Service
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
+**Full instructions:** Read `the /aaa-create-service skill`
 
 **Purpose:** Runtime unit of execution definition.
 
@@ -62,6 +62,6 @@ For any capability or ABB/SBB task, load and apply the standards listed in `.ai-
 
 ### `/create-runtime-agent` - Create Runtime Agent
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-runtime-agent.md`
+**Full instructions:** Read `the /aaa-create-runtime-agent skill`
 
 **Purpose:** (Builder skill) Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.

@@ -25,7 +25,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- `agents/create-deck.md`. It was an orphan: wired into no shim and absent from the manifest, the README and `FRAMEWORK_AGENTS.md`. It was also specific to one workspace's Docusaurus site rather than framework-general, and a separate deck skill now covers the need.
+- **BREAKING: the per-tool `create-*` command shims** under `install/claude/`, `install/cursor/rules/create-*.mdc` and `install/github/prompts/`, and the instruction files under `agents/`. A workspace that still invokes `/create-abb` will find nothing behind it; use `/aaa-create-abb`. `aaa install` sweeps away shims it previously wrote, since they point at files that no longer exist. Requires AAW 3.0.0 or later.
+- **BREAKING: the `shims` and `source_token` manifest keys are no longer set.** Both existed only for the shims. A skill is self-contained and holds no path back into the framework, so nothing needs rewriting at install time.
+- `agents/create-deck.md`. It was an orphan: wired into no shim and absent from the manifest, the README and the standards index. It was also specific to one workspace's Docusaurus site rather than framework-general, and a separate deck skill now covers the need.
+
+### Moved
+
+- `agents/FRAMEWORK_AGENTS.md` → `standards/standards-index.md`. It is a standards discovery and precedence document, not an agent, and it outlived the `agents/` directory it sat in. Every discovery file under `install/` was repointed.
 
 ### BREAKING CHANGES
 

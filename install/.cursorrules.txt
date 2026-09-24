@@ -1,11 +1,11 @@
-Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instructions file.
+Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical instructions file.
 
-For any capability, ABB/SBB work, load and follow the standards referenced by `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md`.
+For any capability, ABB/SBB work, load and follow the standards referenced by `.ai-assisted-architecture/standards/standards-index.md`.
 Do not infer alternate rules from examples when a standard file states a requirement.
 
 ### `/create-strategy` - Create Outcome / Use Case
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-strategy.md`
+**Full instructions:** Read `the /aaa-create-strategy skill`
 
 **Purpose:** Strategic and operational layer creation.
 
@@ -13,7 +13,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-platform` - Create Platform
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-platform.md`
+**Full instructions:** Read `the /aaa-create-platform skill`
 
 **Purpose:** Defining platforms and executive ownership.
 
@@ -21,7 +21,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-capability` - Create Capability
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-capability.md`
+**Full instructions:** Read `the /aaa-create-capability skill`
 
 **Purpose:** End-to-end capability creation: discovery, document, ABB mapping, maturity assessment.
 
@@ -29,7 +29,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-context` - Create Bounded Context
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-context.md`
+**Full instructions:** Read `the /aaa-create-context skill`
 
 **Purpose:** Defining Bounded Contexts and linguistic boundaries.
 
@@ -37,7 +37,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-abb` - Create Architecture Building Block
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-abb.md`
+**Full instructions:** Read `the /aaa-create-abb skill`
 
 **Purpose:** End-to-end ABB creation: discovery, document, diagram, summary.
 
@@ -45,7 +45,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-sbb` - Create Solution Building Block
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
+**Full instructions:** Read `the /aaa-create-sbb skill`
 
 **Purpose:** End-to-end SBB creation: discovery, document, diagram, summary.
 
@@ -53,7 +53,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-service` - Create Service
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
+**Full instructions:** Read `the /aaa-create-service skill`
 
 **Purpose:** Runtime unit of execution definition.
 
@@ -61,6 +61,6 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ### `/create-runtime-agent` - Create Runtime Agent
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-runtime-agent.md`
+**Full instructions:** Read `the /aaa-create-runtime-agent skill`
 
 **Purpose:** (Builder skill) Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.

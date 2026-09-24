@@ -57,57 +57,35 @@ tree. See any skill's `references/standards-discovery.md`.
 Do not commit the installed skills into a consuming repository. They are generated from this
 clone; gitignore `.agents/skills/aaa-*` and re-run the installer instead.
 
-## Manual copy (reference / merge files)
+## Manual copy (merge-only files)
 
-The table below is the full file map, used for the merge-only files above and for
-tools the installer doesn't wire automatically.
-
-> **The `create-*` command shims below are superseded** by the Agent Skills above and are
-> retained only for installs that have not yet moved. A shim carries no `description`, so an
-> assistant can only run it when the user types the command, and it points at one large
-> instruction file read whole on every invocation.
-
-> **Note:** This folder is only for IDE configuration (Claude, Cursor, Copilot, Gemini, Cline, Windsurf). If you also want to validate or consolidate ontology data, that uses Node.js scripts shipped under `.ai-assisted-architecture/scripts/ontology/` — see the [Modernisation Ontology](../README.md#modernisation-ontology) section of the top-level README.
-
-## What to Copy
+The installer places the skills. These discovery files are the only things you merge by hand,
+once, into your existing root files.
 
 | Source (this folder) | Destination (your workspace) | Action |
 |---|---|---|
 | `AGENTS.md.txt` | `AGENTS.md` | **Required.** Primary discovery file. |
 | `CLAUDE.md.txt` | `.claude/CLAUDE.md` or root `CLAUDE.md` | Merge into your existing file |
-| `claude/commands/create-strategy.md` | `.claude/commands/create-strategy.md` | Copy |
-| `claude/commands/create-platform.md` | `.claude/commands/create-platform.md` | Copy |
-| `claude/commands/create-capability.md` | `.claude/commands/create-capability.md` | Copy |
-| `claude/commands/create-context.md` | `.claude/commands/create-context.md` | Copy |
-| `claude/commands/create-abb.md` | `.claude/commands/create-abb.md` | Copy |
-| `claude/commands/create-sbb.md` | `.claude/commands/create-sbb.md` | Copy |
-| `claude/commands/create-service.md` | `.claude/commands/create-service.md` | Copy |
-| `claude/commands/create-runtime-agent.md` | `.claude/commands/create-runtime-agent.md` | Copy |
-| `cursor/rules/standards.mdc` | `.cursor/rules/standards.mdc` | Copy |
-| `cursor/rules/create-strategy.mdc` | `.cursor/rules/create-strategy.mdc` | Copy |
-| `cursor/rules/create-platform.mdc` | `.cursor/rules/create-platform.mdc` | Copy |
-| `cursor/rules/create-capability.mdc` | `.cursor/rules/create-capability.mdc` | Copy |
-| `cursor/rules/create-context.mdc` | `.cursor/rules/create-context.mdc` | Copy |
-| `cursor/rules/create-abb.mdc` | `.cursor/rules/create-abb.mdc` | Copy |
-| `cursor/rules/create-sbb.mdc` | `.cursor/rules/create-sbb.mdc` | Copy |
-| `cursor/rules/create-service.mdc` | `.cursor/rules/create-service.mdc` | Copy |
-| `cursor/rules/create-runtime-agent.mdc` | `.cursor/rules/create-runtime-agent.mdc` | Copy |
-| `.cursorrules.txt` | `.cursorrules` | Merge into your existing file |
-| `github/copilot-instructions.txt` | `.github/copilot-instructions.md` | Merge into your existing file |
-| `github/prompts/create-strategy.prompt.md` | `.github/prompts/create-strategy.prompt.md` | Copy |
-| `github/prompts/create-platform.prompt.md` | `.github/prompts/create-platform.prompt.md` | Copy |
-| `github/prompts/create-capability.prompt.md` | `.github/prompts/create-capability.prompt.md` | Copy |
-| `github/prompts/create-context.prompt.md` | `.github/prompts/create-context.prompt.md` | Copy |
-| `github/prompts/create-abb.prompt.md` | `.github/prompts/create-abb.prompt.md` | Copy |
-| `github/prompts/create-sbb.prompt.md` | `.github/prompts/create-sbb.prompt.md` | Copy |
-| `github/prompts/create-service.prompt.md` | `.github/prompts/create-service.prompt.md` | Copy |
-| `github/prompts/create-runtime-agent.prompt.md` | `.github/prompts/create-runtime-agent.prompt.md` | Copy |
 | `GEMINI.md.txt` | `GEMINI.md` | Merge into your existing file |
 | `gemini/styleguide.md` | `.gemini/styleguide.md` | Merge into your existing file |
+| `github/copilot-instructions.txt` | `.github/copilot-instructions.md` | Merge into your existing file |
+| `cursor/rules/standards.mdc` | `.cursor/rules/standards.mdc` | Copy. Always-applied standards discovery |
+| `.cursorrules.txt` | `.cursorrules` | Merge into your existing file |
 | `.clinerules.txt` | `.clinerules` | Merge into your existing file |
 | `.windsurfrules.txt` | `.windsurfrules` | Merge into your existing file |
 
-**Copy** means the file can be used as-is. **Merge** means append or integrate the content into your existing file for that tool.
+**Copy** means the file can be used as-is. **Merge** means append or integrate the content into
+your existing file for that tool.
+
+> The per-tool `create-*` command shims that used to live in `claude/commands/`,
+> `cursor/rules/` and `github/prompts/` were removed alongside AAW 3.0.0. They are superseded
+> by the Agent Skills above, and `aaa install` sweeps away any it previously wrote, since they
+> point at instruction files that no longer exist.
+
+> **Note:** This folder is only for IDE configuration. If you also want to validate or
+> consolidate ontology data, that uses Node.js scripts shipped under
+> `.ai-assisted-architecture/scripts/ontology/` — see the
+> [Modernisation Ontology](../README.md#modernisation-ontology) section of the top-level README.
 
 ## Hierarchy & Creation Order
 
