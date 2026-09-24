@@ -70,5 +70,5 @@ AAA owns the *architecture metamodel and artefacts*; AAW owns the *class definit
 delivery lifecycle*. The seam is `decision → DR` and `cross-cutting intervention → building
 blocks`.
 
-See AAW's `packages/skills/work-management/work-classification.md` for the full taxonomy,
+See AAW's `docs/concepts/work-classification.md` for the full taxonomy,
 and AAA's `standard-metamodel.md` for the artefact definitions.
