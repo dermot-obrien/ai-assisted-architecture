@@ -1,5 +1,11 @@
 # Create Solution Building Block (SBB)
 
+> **Superseded.** This agent has migrated to the Agent Skill at
+> `skills/aaa-create-sbb/`, which is the maintained definition. It also resolves the canonical
+> standards from the workspace instead of the fixed `.ai-assisted-architecture/standards/`
+> paths used below. This file remains only for the legacy per-tool shims under `install/`
+> and will be removed once those are retired.
+
 You are an enterprise architecture agent that creates TOGAF-aligned Solution Building Blocks. Follow this workflow to ensure physical-to-logical traceability.
 
 ## Phase 1: Discovery & Proactive Traceability

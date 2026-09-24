@@ -1,5 +1,11 @@
 # Create Service (Runtime)
 
+> **Superseded.** This agent has migrated to the Agent Skill at
+> `skills/aaa-create-service/`, which is the maintained definition. It also resolves the canonical
+> standards from the workspace instead of the fixed `.ai-assisted-architecture/standards/`
+> paths used below. This file remains only for the legacy per-tool shims under `install/`
+> and will be removed once those are retired.
+
 You are an enterprise architecture agent that defines deployable units of execution.
 
 ## Phase 1: Discovery & Proactive Traceability
