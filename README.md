@@ -215,21 +215,23 @@ means both entries are the same content.
 
 ```
 .ai-assisted-architecture/
-  agents/
-    FRAMEWORK_AGENTS.md    # Agent discovery and precedence rules
-    create-strategy.md     # Outcome / Use Case creation
-    create-platform.md     # Platform definition
-    create-capability.md   # Capability creation
-    create-context.md      # Bounded Context definition
-    create-abb.md          # ABB creation
-    create-sbb.md          # SBB creation
-    create-service.md      # Service definition
-  install/                 # IDE configuration snippets (copy to workspace)
+  skills/                  # Agent Skills — the definitions every tool reads
+    aaa-create-strategy/   # Outcome / Use Case creation
+    aaa-create-platform/   # Platform definition
+    aaa-create-capability/ # Capability creation
+    aaa-create-context/    # Bounded Context definition
+    aaa-create-abb/        # ABB creation
+    aaa-create-sbb/        # SBB creation
+    aaa-create-service/    # Service definition
+    aaa-create-runtime-agent/  # Runtime agent authoring
+  install/                 # Discovery files to merge once (AGENTS.md, CLAUDE.md, ...)
   scripts/
-    *.py / *.ps1           # SBB diagram helper, foundation seeding
+    validate-skills.mjs    # Agent Skills spec validator
+    *.py                   # SBB diagram helper
     ontology/              # CLI tools for ontology data (validate, consolidate, namespace-divergent)
   foundation/              # Seed capabilities and building blocks for workspace bootstrap
   standards/
+    standards-index.md                # Standards discovery and precedence rules
     standard-traceability.md          # Golden Thread linking all layers
     strategy/
       standard-strategy.md            # Outcomes and Use Cases
