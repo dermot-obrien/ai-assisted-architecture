@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Agent Skills as the distribution format.** All eight `create-*` agents now ship as standalone [Agent Skills](https://agentskills.io) under `skills/`: a directory holding a `SKILL.md` with `name` and `description` frontmatter plus `references/`. One definition works in every skills-compatible tool. `aaa install` wires them through the shared AAW engine's new `skills` manifest key: each lands in `.agents/skills/<name>/`, read natively by Codex, Cursor, GitHub Copilot, VS Code and Gemini CLI, with `.claude/skills/<name>` linked at it for Claude Code, which reads only its own path. Requires AAW 2.1.0 or later.
+- **Workspace-first standards resolution.** Skills resolve the canonical standards by searching the workspace before falling back to the framework copy, instead of the fixed `.ai-assisted-architecture/standards/…` paths the shims hard-code. An organisation that governs its standards in its own tree (for example under `governance/standards/`) now works without patching the skill. Each skill carries the resolution order and its own required-standards table in `references/standards-discovery.md`, and stops rather than proceeding on an assumed contract when a standard cannot be found.
+- `/aaa-create-service` now hands off to `/aaa-create-runtime-agent` when the service is an autonomous agent, since that path needs guardrails, capability scope and provenance the service skill does not author.
+- `scripts/validate-skills.mjs` — zero-dependency validator for the agentskills.io spec — and a CI workflow that runs it, installs into a scratch workspace and checks the Claude Code links resolve. AAA had no CI before this.
+
+### Changed
+
+- Skills are invoked as `/aaa-create-abb` and so on. The Agent Skills format has no namespacing of its own, so the `aaa-` prefix is what prevents collisions. The legacy shims keep their unprefixed `/create-abb` names.
+- `agents/FRAMEWORK_AGENTS.md` and `install/README.md` updated: skills documented as the primary integration, shims marked superseded, and the retired `scripts/seed-foundation.ps1` replaced by `src/seed-foundation.mjs` via `aaa install --seed`.
+
+### Deprecated
+
+- The per-tool shims under `install/claude/`, `install/cursor/` and `install/github/`, and the instruction files under `agents/`, each now carrying a superseded header. They remain installed for setups that have not moved. A shim carries no `description`, so an assistant can only run it when the user types the command, and it points at one large instruction file read whole on every invocation.
+
+### Removed
+
+- `agents/create-deck.md`. It was an orphan: wired into no shim and absent from the manifest, the README and `FRAMEWORK_AGENTS.md`. It was also specific to one workspace's Docusaurus site rather than framework-general, and a separate deck skill now covers the need.
+
 ### BREAKING CHANGES
 
 - **Transition `status` renamed to `transition_status`** (`standards/schemas/v1.1.0/transition.schema.json`). The transition schema composes the universal envelope — which defines `status` with the lifecycle enum `draft | proposed | accepted | active | deprecated | superseded | retired` — and then redefined `status` with a transition-specific enum (`planned | in-progress | completed | abandoned`). Under `allOf` both constraints applied to the same `status` property, so no value satisfied both and every Transition artefact failed validation. The transition-specific lifecycle now lives in a separate `transition_status` field; the envelope `status` still applies. The §6.15 example in `standard-frontmatter.md` was updated to match. **Migration:** rename `status: <planned|in-progress|completed|abandoned>` to `transition_status:` on every Transition artefact (the envelope `status` remains for `draft`/`active`/…).
