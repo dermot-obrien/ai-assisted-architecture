@@ -18,6 +18,13 @@ depends: [aaw]
 runtime: node
 source_token: .ai-assisted-architecture
 
+# Standalone Agent Skills (agentskills.io). Self-contained, so no source_token
+# rewrite applies. Installed to .agents/skills/<name>, with .claude/skills/<name>
+# linked at it for Claude Code.
+skills: { src: skills }
+
+# Legacy per-tool command shims. Superseded by `skills` above; retained for installs
+# that have not yet moved.
 shims:
   claude:  { src: install/claude/commands, dest: .claude/commands/aaa }
   cursor:  { src: install/cursor/rules,    dest: .cursor/rules/aaa }
