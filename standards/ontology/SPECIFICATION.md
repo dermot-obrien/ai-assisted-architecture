@@ -157,11 +157,11 @@ flowchart LR
   SL -- yes --> DEC[Decision<br/>rebaseline]:::govern
   DEC --> CMT2["Commitment v2<br/>(supersedes v1)"]:::govern
   SL -- no --> DELIV[Delivered]:::success
-  classDef motive fill:#E95160,stroke:#5A1E58,color:#fff
-  classDef primary fill:#002F6B,stroke:#002F6B,color:#fff
-  classDef govern fill:#FAA61A,stroke:#5A5A5A,color:#5A5A5A
+  classDef motive fill:#C25B54,stroke:#5B4363,color:#fff
+  classDef primary fill:#2C4A6E,stroke:#2C4A6E,color:#fff
+  classDef govern fill:#E0A33A,stroke:#5A5A5A,color:#5A5A5A
   classDef decision fill:#FFFFFF,stroke:#5A5A5A
-  classDef success fill:#B5CD71,stroke:#5A5A5A
+  classDef success fill:#B9C98A,stroke:#5A5A5A
 ```
 
 ### 3.5.4 End-to-end conceptual map
@@ -324,8 +324,8 @@ flowchart LR
   ST -. "conformed to by (inherited)" .-> SBBC
   PL == "composed of" ==> SBBC
   PL == "composed of" ==> ABBC
-  classDef bb fill:#0B909F,stroke:#002F6B,stroke-width:2px,color:#fff
-  classDef nb fill:#E9F0D4,stroke:#5A5A5A,stroke-dasharray:4 2
+  classDef bb fill:#2C8391,stroke:#2C4A6E,stroke-width:2px,color:#fff
+  classDef nb fill:#ECF0DE,stroke:#5A5A5A,stroke-dasharray:4 2
 ```
 
 Colour coding. The cyan boxes (Component, Interface) are TOGAF building blocks and carry `building_block_type`. The four dashed boxes (Capability, Pattern, Standard, Platform) are not building blocks and do not carry `building_block_type`.
@@ -448,8 +448,8 @@ flowchart TB
   A3 ==> S3
   A4 ==> S4
   A5 ==> S5
-  classDef abb fill:#CEE9EC,stroke:#0B909F,color:#002F6B
-  classDef sbb fill:#002F6B,stroke:#002F6B,color:#fff
+  classDef abb fill:#DCEAEC,stroke:#2C8391,color:#2C4A6E
+  classDef sbb fill:#2C4A6E,stroke:#2C4A6E,color:#fff
 ```
 
 Worked examples for each cell, with the typical architectural_style:
@@ -520,8 +520,8 @@ flowchart TB
   A4 -. .-> S4
   A5 -. .-> S5
   A6 -. .-> S6
-  classDef abb fill:#CEE9EC,stroke:#0B909F,color:#002F6B
-  classDef sbb fill:#002F6B,stroke:#002F6B,color:#fff
+  classDef abb fill:#DCEAEC,stroke:#2C8391,color:#2C4A6E
+  classDef sbb fill:#2C4A6E,stroke:#2C4A6E,color:#fff
 ```
 
 Note the asymmetry with Component. Interface has the `building_block_type` flag but no `realises_abb_ids` field. The refinement edge between an ABB Interface contract and the SBB Interface endpoint(s) that implement it is conceptual, not stored. See §7.21 for the related ABB-to-SBB traceability open consideration.
@@ -1265,10 +1265,10 @@ flowchart LR
     VP[Viewpoint]:::ont --> RPT_T[Report template]:::lix3
     VW[View]:::ont --> RPT_I[Configured report instance]:::lix3
   end
-  classDef ont fill:#002F6B,stroke:#002F6B,color:#fff
-  classDef lix fill:#0B909F,stroke:#002F6B,color:#fff
-  classDef lix2 fill:#99CAD2,stroke:#0B909F,color:#002F6B
-  classDef lix3 fill:#B5CD71,stroke:#5A5A5A,color:#002F6B
+  classDef ont fill:#2C4A6E,stroke:#2C4A6E,color:#fff
+  classDef lix fill:#2C8391,stroke:#2C4A6E,color:#fff
+  classDef lix2 fill:#A8C8CE,stroke:#2C8391,color:#2C4A6E
+  classDef lix3 fill:#B9C98A,stroke:#5A5A5A,color:#2C4A6E
 ```
 
 #### Complete mapping table
