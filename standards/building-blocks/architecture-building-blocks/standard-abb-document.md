@@ -104,7 +104,7 @@ Embed the exported PNG of the component diagram immediately after the paragraph:
 
 <Introductory paragraph describing the diagram.>
 
-![<ABB-ID> <Diagram Title> Component Diagram](./components.png)
+![<ABB-ID> <Diagram Title> Component Diagram](components.png)
 ```
 
 #### 2.1.1 C4 System Context (top-level ABBs)

@@ -4,19 +4,21 @@
 # Framework manifest — the shared install contract (see @aaw/installer in the
 # AI-Assisted Work repo). AAA depends on AAW for the shared install engine.
 # The core authoring workflow ships as Agent Skills under skills/, code-free
-# markdown; the
-# Python diagram helper in scripts/ (generate_sbb_diagrams.py) is an optional
-# extra and uses only the Python standard library.
+# markdown; the Python diagram helper in scripts/ (generate_sbb_diagrams.py) is
+# an optional extra and uses only the Python standard library.
 #
 # Install with:  aaa install            (skills; add --seed to scaffold the
 #                                         foundation: capabilities + building-blocks)
 # or directly:   node .ai-assisted-work/bin/aaw.js install --framework .ai-assisted-architecture
+#
+# Requires AAW 3.0.0 or later for the `skills` key.
 
 id: aaa
 name: AI-Assisted Architecture
 version: 0.3.0
 depends: [aaw]
 runtime: node
+
 # Standalone Agent Skills (agentskills.io). Installed to .agents/skills/<name>,
 # with .claude/skills/<name> linked at it for Claude Code.
 #
@@ -25,7 +27,10 @@ runtime: node
 # path back into the framework, so nothing needs rewriting at install time.
 skills: { src: skills }
 
-config: []
+# Idempotent: only seeded if the host has no .aaa-config.yaml yet.
+config:
+  - { file: .aaa-config.yaml, template: install/templates/aaa-config.yaml }
+
 data_dirs: []
 
 # Opt-in (requires --seed). Cross-platform Node port of seed-foundation.ps1:
