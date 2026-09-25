@@ -24,7 +24,7 @@ This standard is the prose form. The machine-validatable form lives at [`schemas
 > - [Traceability & Hierarchy Standard](./standard-traceability.md) — the relationship semantics this standard implements.
 > - [Architectural Framework](../docs/architectural-framework.md) — the conceptual hierarchy this standard formalises.
 > - [`schemas/v1.1.0/`](./schemas/v1.1.0/) — JSON Schemas (machine validators).
-> - [`agents/FRAMEWORK_AGENTS.md`](../agents/FRAMEWORK_AGENTS.md) — discovery and precedence.
+> - [`standards/standards-index.md`](standards-index.md) — discovery and precedence.
 
 ---
 

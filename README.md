@@ -157,37 +157,81 @@ Supported tools: Claude Code, Cursor, GitHub Copilot, Gemini, Cline, Windsurf.
 
 ## Agent Skills
 
-| Skill | Claude Code | Cursor / Copilot | Description |
-|-------|-------------|-------------------|-------------|
-| Create Outcome/UC | `/create-strategy` | `@create-strategy` | Strategic and operational layer creation. |
-| Create Platform | `/create-platform` | `@create-platform` | Defining platforms and executive ownership. |
-| Create Capability | `/create-capability` | `@create-capability` | End-to-end capability creation and maturity mapping. |
-| Create Context | `/create-context` | `@create-context` | Defining Bounded Contexts and linguistic boundaries. |
-| Create ABB | `/create-abb` | `@create-abb` | End-to-end ABB creation: logical structure and diagrams. |
-| Create SBB | `/create-sbb` | `@create-sbb` | End-to-end SBB creation: product mapping and realisation. |
-| Create Service | `/create-service` | `@create-service` | Runtime unit of execution definition. |
+All eight skills are standalone [Agent Skills](https://agentskills.io): a directory holding a
+`SKILL.md` plus its `references/`. One definition works in every skills-compatible tool.
 
-Each skill follows a four-phase workflow: Discovery, Load Standards, Create Artefacts, Self-Verification. See `agents/` for the full specifications.
+| Skill | Invoke | Description |
+|-------|--------|-------------|
+| Create Outcome/UC | `/aaa-create-strategy` | Strategic and operational layer creation. |
+| Create Platform | `/aaa-create-platform` | Business platforms and executive ownership. |
+| Create Capability | `/aaa-create-capability` | Capability creation and maturity mapping. |
+| Create Context | `/aaa-create-context` | Bounded contexts and linguistic boundaries. |
+| Create ABB | `/aaa-create-abb` | Logical structure and diagrams. |
+| Create SBB | `/aaa-create-sbb` | Product mapping, realisation, composite structure. |
+| Create Service | `/aaa-create-service` | Runtime unit of execution. |
+| Create Runtime Agent | `/aaa-create-runtime-agent` | An autonomous runtime agent as a catalogued service, with guardrails, capability scope and provenance. |
+
+Each follows the same four-phase workflow: Discovery, Load Standards, Create Artefacts,
+Self-Verification. Each carries a `description`, so an assistant can invoke it when a request
+matches rather than only when you type the slash command.
+
+Skills resolve the canonical standards from the workspace rather than from a fixed
+`.ai-assisted-architecture/standards/...` path, so they keep working when an organisation
+governs the standards in its own tree. See each skill's
+`references/standards-discovery.md`.
+
+The per-tool shims under `install/claude/`, `install/cursor/` and `install/github/`, and the
+instruction files under `agents/`, are superseded. They are retained for installs that have not
+yet moved and are no longer the maintained definitions.
+
+### Installing
+
+`aaa install` wires the skills automatically:
+
+```bash
+node .ai-assisted-architecture/bin/aaa.js install
+```
+
+Skills land in `.agents/skills/<name>/`, which Codex, Cursor, GitHub Copilot, VS Code and
+Gemini CLI read natively. Claude Code reads only `.claude/skills/`, so the installer links
+`.claude/skills/<name>` at the same directory rather than copying twice: a symlink, or a
+directory junction on Windows, which needs neither elevation nor developer mode. Where the
+filesystem refuses both, it falls back to a copy and says so.
+
+Verify by typing `/` in your assistant: the eight `/aaa-*` skills should appear.
+
+To install by hand instead:
+
+```bash
+mkdir -p .agents/skills
+cp -r .ai-assisted-architecture/skills/aaa-* .agents/skills/
+```
+
+One caveat worth knowing: Cursor and Copilot read both `.agents/skills/` and `.claude/skills/`,
+so a workspace also set up for Claude Code may list a skill twice in those tools. The link
+means both entries are the same content.
 
 ## Repository Structure
 
 ```
 .ai-assisted-architecture/
-  agents/
-    FRAMEWORK_AGENTS.md    # Agent discovery and precedence rules
-    create-strategy.md     # Outcome / Use Case creation
-    create-platform.md     # Platform definition
-    create-capability.md   # Capability creation
-    create-context.md      # Bounded Context definition
-    create-abb.md          # ABB creation
-    create-sbb.md          # SBB creation
-    create-service.md      # Service definition
-  install/                 # IDE configuration snippets (copy to workspace)
+  skills/                  # Agent Skills — the definitions every tool reads
+    aaa-create-strategy/   # Outcome / Use Case creation
+    aaa-create-platform/   # Platform definition
+    aaa-create-capability/ # Capability creation
+    aaa-create-context/    # Bounded Context definition
+    aaa-create-abb/        # ABB creation
+    aaa-create-sbb/        # SBB creation
+    aaa-create-service/    # Service definition
+    aaa-create-runtime-agent/  # Runtime agent authoring
+  install/                 # Discovery files to merge once (AGENTS.md, CLAUDE.md, ...)
   scripts/
-    *.py / *.ps1           # SBB diagram helper, foundation seeding
+    validate-skills.mjs    # Agent Skills spec validator
+    *.py                   # SBB diagram helper
     ontology/              # CLI tools for ontology data (validate, consolidate, namespace-divergent)
   foundation/              # Seed capabilities and building blocks for workspace bootstrap
   standards/
+    standards-index.md                # Standards discovery and precedence rules
     standard-traceability.md          # Golden Thread linking all layers
     strategy/
       standard-strategy.md            # Outcomes and Use Cases

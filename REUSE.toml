@@ -1,7 +1,7 @@
 version = 1
 
 # AI-Assisted Architecture is dual-licensed:
-#   - Documentation, standards, agent specifications, foundation seeds,
+#   - Documentation, standards, Agent Skills, foundation seeds,
 #     diagrams, and templates are licensed under CC BY 4.0.
 #   - Executable code (Python, PowerShell, and Node.js scripts) is
 #     licensed under Apache-2.0.
@@ -25,7 +25,7 @@ path = [
   "**.svg",
   "**.pptx",
   "**.txt",
-  "agents/**",
+  "skills/**",
   "install/**",
   "docs/**",
   "foundation/**",

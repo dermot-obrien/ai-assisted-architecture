@@ -3,30 +3,34 @@
 #
 # Framework manifest — the shared install contract (see @aaw/installer in the
 # AI-Assisted Work repo). AAA depends on AAW for the shared install engine.
-# The core authoring workflow (create-* commands) is code-free markdown; the
-# Python diagram helper in scripts/ (generate_sbb_diagrams.py) is an optional
-# extra and uses only the Python standard library.
+# The core authoring workflow ships as Agent Skills under skills/, code-free
+# markdown; the Python diagram helper in scripts/ (generate_sbb_diagrams.py) is
+# an optional extra and uses only the Python standard library.
 #
-# Install with:  aaa install            (shims only; add --seed to scaffold the
+# Install with:  aaa install            (skills; add --seed to scaffold the
 #                                         foundation: capabilities + building-blocks)
 # or directly:   node .ai-assisted-work/bin/aaw.js install --framework .ai-assisted-architecture
+#
+# Requires AAW 3.0.0 or later for the `skills` key.
 
 id: aaa
 name: AI-Assisted Architecture
 version: 0.3.0
-depends: [ aaw ]
+depends: [aaw]
 runtime: node
-source_token: .ai-assisted-architecture
 
-shims:
-  claude: { src: install/claude/commands, dest: .claude/commands/aaa }
-  cursor: { src: install/cursor/rules, dest: .cursor/rules/aaa }
-  copilot: { src: install/github/prompts, dest: .github/prompts/aaa }
-  gemini: { src: install/gemini, dest: .gemini/skills/aaa }
+# Standalone Agent Skills (agentskills.io). Installed to .agents/skills/<name>,
+# with .claude/skills/<name> linked at it for Claude Code.
+#
+# There is no `shims` key and no `source_token`. Both existed only for the per-tool
+# command shims, retired alongside AAW 3.0.0. A skill is self-contained and holds no
+# path back into the framework, so nothing needs rewriting at install time.
+skills: { src: skills }
 
+# Idempotent: only seeded if the host has no .aaa-config.yaml yet.
 config:
-- file: .aaa-config.yaml
-  template: install/templates/aaa-config.yaml
+  - { file: .aaa-config.yaml, template: install/templates/aaa-config.yaml }
+
 data_dirs: []
 
 # Opt-in (requires --seed). Cross-platform Node port of seed-foundation.ps1:
@@ -34,4 +38,4 @@ data_dirs: []
 seed:
   driver: node
   entry: src/seed-foundation.mjs
-  args: [ --profile, core ]
+  args: [--profile, core]

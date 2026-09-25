@@ -1,13 +1,13 @@
 # Agent Configuration
 
-Use `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` as the canonical instruction source for this repository.
+Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical instruction source for this repository.
 
-For capability, ABB/SBB documents, diagrams, and related visual outputs, load and follow the standards listed in `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md`.
-Do not create or apply alternate local rules when `.ai-assisted-architecture/agents/FRAMEWORK_AGENTS.md` provides guidance.
+For capability, ABB/SBB documents, diagrams, and related visual outputs, load and follow the standards listed in `.ai-assisted-architecture/standards/standards-index.md`.
+Do not create or apply alternate local rules when `.ai-assisted-architecture/standards/standards-index.md` provides guidance.
 
 ### `/create-strategy` - Create Outcome / Use Case
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-strategy.md`
+**Full instructions:** Read `the /aaa-create-strategy skill`
 
 **Purpose:** Strategic and operational layer creation.
 
@@ -15,7 +15,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-platform` - Create Platform
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-platform.md`
+**Full instructions:** Read `the /aaa-create-platform skill`
 
 **Purpose:** Defining platforms and executive ownership.
 
@@ -23,7 +23,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-capability` - Create Capability
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-capability.md`
+**Full instructions:** Read `the /aaa-create-capability skill`
 
 **Purpose:** End-to-end capability creation: discovery, document, ABB mapping, maturity assessment.
 
@@ -31,7 +31,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-context` - Create Bounded Context
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-context.md`
+**Full instructions:** Read `the /aaa-create-context skill`
 
 **Purpose:** Defining Bounded Contexts and linguistic boundaries.
 
@@ -39,7 +39,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-abb` - Create Architecture Building Block
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-abb.md`
+**Full instructions:** Read `the /aaa-create-abb skill`
 
 **Purpose:** End-to-end ABB creation: discovery, document, diagram, summary.
 
@@ -47,7 +47,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-sbb` - Create Solution Building Block
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-sbb.md`
+**Full instructions:** Read `the /aaa-create-sbb skill`
 
 **Purpose:** End-to-end SBB creation: discovery, document, diagram, summary.
 
@@ -55,7 +55,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-service` - Create Service
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-service.md`
+**Full instructions:** Read `the /aaa-create-service skill`
 
 **Purpose:** Runtime unit of execution definition.
 
@@ -63,6 +63,6 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/age
 
 ### `/create-runtime-agent` - Create Runtime Agent
 
-**Full instructions:** Read `.ai-assisted-architecture/agents/create-runtime-agent.md`
+**Full instructions:** Read `the /aaa-create-runtime-agent skill`
 
 **Purpose:** (Builder skill) Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.
