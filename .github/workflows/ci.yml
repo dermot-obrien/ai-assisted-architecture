@@ -42,9 +42,15 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install
+      # AAA declares `depends: [aaw]`, so AAW must be installed into the target
+      # workspace first. Otherwise the dependency check warns, and a warning is a
+      # non-zero exit even though the install itself succeeded. This is also the
+      # order a real user installs them in.
+      - name: Install AAW, then AAA
         run: |
           mkdir -p /tmp/ws/.claude && cd /tmp/ws && git init -q .
+          node "$GITHUB_WORKSPACE/aaw/bin/aaw.js" install \
+            --framework "$GITHUB_WORKSPACE/aaw" --no-python
           node "$GITHUB_WORKSPACE/aaw/bin/aaw.js" install \
             --framework "$GITHUB_WORKSPACE/aaa" --no-python
 
