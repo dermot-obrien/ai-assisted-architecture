@@ -2,6 +2,13 @@
 
 # Changelog
 
+## [0.3.0] - 2026-09-26
+
+### Changed
+
+- A reference architecture and a pattern are described as two classes of one construct, told apart by intent and scope rather than by whether their boxes are logical building blocks or products. Any mix of boxes is allowed, and the derived abstraction that `model validate` reports is what says whether a model can be built from. Requires `model` 0.4.0.
+- Scenarios are presented by the animated walkthrough. `publish.py` renders only the structure view, runs `model animate` before building the deck so an embedded walkthrough slide is current, and renders per-scenario images only with `--scenario-images`. `--no-animate` skips the walkthrough.
+
 ## [0.2.0] - 2026-09-25
 
 ### Added
