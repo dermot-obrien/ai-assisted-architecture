@@ -1,0 +1,255 @@
+{
+  "name": "REF-002 Knowledge Retrieval",
+  "version": "0.1",
+  "source": "index.md",
+  "nodes": [
+    {
+      "id": "ABB-017",
+      "label": "Context Retrieval Service",
+      "group": "PAT-018",
+      "attrs": {
+        "role_in_this_reference_architecture": "The seam. Accepts a query plus caller identity, returns cited passages or an explicit no-answer"
+      }
+    },
+    {
+      "id": "ABB-094",
+      "label": "Embedding Service",
+      "group": "PAT-019",
+      "attrs": {
+        "role_in_this_reference_architecture": "Turns chunks into vectors, and holds the embedding model version"
+      }
+    },
+    {
+      "id": "ABB-028",
+      "label": "Vector Database",
+      "group": "PAT-019",
+      "attrs": {
+        "role_in_this_reference_architecture": "Stores vectors with their permission labels and source references"
+      }
+    },
+    {
+      "id": "ABB-104",
+      "label": "Knowledge Graph",
+      "group": "PAT-018",
+      "attrs": {
+        "role_in_this_reference_architecture": "Holds relationships between entities that vector similarity alone cannot express"
+      }
+    },
+    {
+      "id": "ABB-026",
+      "label": "Policy Enforcement Engine",
+      "group": "loose",
+      "attrs": {
+        "role_in_this_reference_architecture": "Evaluates the caller's entitlements at query time, inside the retrieval boundary"
+      }
+    },
+    {
+      "id": "ABB-024",
+      "label": "Identity Provider",
+      "group": "loose",
+      "attrs": {
+        "role_in_this_reference_architecture": "Establishes who is asking, and issues the token retrieval evaluates"
+      }
+    },
+    {
+      "id": "ABB-036",
+      "label": "Audit Logging Service",
+      "group": "loose",
+      "attrs": {
+        "role_in_this_reference_architecture": "Records every query, every decision and every passage returned"
+      }
+    },
+    {
+      "id": "ABB-050",
+      "label": "LLM Gateway",
+      "group": "loose",
+      "attrs": {
+        "role_in_this_reference_architecture": "The consumer. Composes the grounded context into a prompt and routes the call"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "ABB-017",
+      "target": "ABB-050",
+      "id": "IF-01",
+      "label": "cited passages or an explicit no-answer",
+      "attrs": {
+        "protocol": "HTTPS",
+        "payload": "RetrievalResult v1",
+        "sync": "Sync",
+        "errors_and_retry": "Timeout 2s, retry twice on 503, never on 4xx",
+        "nfrs": "p95 800ms, 99.9%"
+      }
+    },
+    {
+      "source": "ABB-024",
+      "target": "ABB-017",
+      "id": "IF-02",
+      "label": "caller identity, as an audience-bound token",
+      "attrs": {
+        "protocol": "HTTPS",
+        "payload": "JWT",
+        "sync": "Sync",
+        "errors_and_retry": "Non-retryable; fail closed",
+        "nfrs": "p95 50ms"
+      }
+    },
+    {
+      "source": "ABB-026",
+      "target": "ABB-017",
+      "id": "IF-03",
+      "label": "entitlement decision for this caller and corpus",
+      "attrs": {
+        "protocol": "HTTPS",
+        "payload": "PolicyDecision v1",
+        "sync": "Sync",
+        "errors_and_retry": "Fail closed on timeout, no cached allow",
+        "nfrs": "p95 80ms, 99.95%"
+      }
+    },
+    {
+      "source": "ABB-028",
+      "target": "ABB-017",
+      "id": "IF-04",
+      "label": "nearest neighbours with permission labels",
+      "attrs": {
+        "protocol": "gRPC",
+        "payload": "VectorQuery v1",
+        "sync": "Sync",
+        "errors_and_retry": "Timeout 500ms, one retry, then degrade",
+        "nfrs": "p95 200ms"
+      }
+    },
+    {
+      "source": "ABB-104",
+      "target": "ABB-017",
+      "id": "IF-05",
+      "label": "related entities for query expansion",
+      "attrs": {
+        "protocol": "HTTPS",
+        "payload": "GraphQuery v1",
+        "sync": "Sync",
+        "errors_and_retry": "Optional path; on failure retrieval proceeds without it",
+        "nfrs": "p95 150ms"
+      }
+    },
+    {
+      "source": "ABB-094",
+      "target": "ABB-028",
+      "id": "IF-06",
+      "label": "vectors plus the embedding model version",
+      "attrs": {
+        "protocol": "Batch",
+        "payload": "EmbeddingBatch v1",
+        "sync": "Async",
+        "errors_and_retry": "At-least-once; idempotent on chunk id",
+        "nfrs": "10k chunks/min"
+      }
+    },
+    {
+      "source": "ABB-017",
+      "target": "ABB-036",
+      "id": "IF-07",
+      "label": "query, decision and passages returned",
+      "attrs": {
+        "protocol": "Async",
+        "payload": "AuditEvent v1",
+        "sync": "Async",
+        "errors_and_retry": "Buffered; retrieval fails if the buffer is full",
+        "nfrs": "no loss"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "PAT-018",
+      "label": "PAT-018"
+    },
+    {
+      "id": "PAT-019",
+      "label": "PAT-019"
+    },
+    {
+      "id": "loose",
+      "label": "loose"
+    }
+  ],
+  "scenarios": [
+    {
+      "key": "S1",
+      "name": "Grounded answer",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "ABB-050",
+          "action": "forward the question with the caller's token",
+          "edge": "IF-01",
+          "target": "ABB-017"
+        },
+        {
+          "step": 2,
+          "actor": "ABB-017",
+          "action": "validate the token and resolve the caller",
+          "edge": "IF-02",
+          "target": "ABB-024"
+        },
+        {
+          "step": 3,
+          "actor": "ABB-017",
+          "action": "ask whether this caller may query this corpus",
+          "edge": "IF-03",
+          "target": "ABB-026"
+        },
+        {
+          "step": 4,
+          "actor": "ABB-017",
+          "action": "retrieve nearest neighbours, filtered by entitlement",
+          "edge": "IF-04",
+          "target": "ABB-028"
+        },
+        {
+          "step": 5,
+          "actor": "ABB-017",
+          "action": "expand with related entities where the graph has them",
+          "edge": "IF-05",
+          "target": "ABB-104"
+        },
+        {
+          "step": 6,
+          "actor": "ABB-017",
+          "action": "record the query, the decision and what was returned",
+          "edge": "IF-07",
+          "target": "ABB-036"
+        }
+      ]
+    },
+    {
+      "key": "S2",
+      "name": "Source onboarding",
+      "steps": [
+        {
+          "step": 1,
+          "actor": "ABB-094",
+          "action": "write vectors with permission labels and the model version",
+          "edge": "IF-06",
+          "target": "ABB-028"
+        },
+        {
+          "step": 2,
+          "actor": "ABB-028",
+          "action": "register entities and relationships found in the batch",
+          "edge": "IF-05",
+          "target": "ABB-104"
+        },
+        {
+          "step": 3,
+          "actor": "ABB-017",
+          "action": "record the corpus version now serving queries",
+          "edge": "IF-07",
+          "target": "ABB-036"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+---
+sidebar_label: Reference Architecture Template
+status: Draft
+version: "0.2"
+last_modified: 2026-09-25
+author: "<your name>"
+provenance:
+  origin: ai-generated
+  review_state: ai-raw
+---
+
+# REF-XXX Reference Architecture Name
+
+<!--
+HOW TO USE THIS TEMPLATE
+- This file is both the reference-architecture template and its authoring instructions.
+- Guidance lives in HTML comments, which Markdown renderers do not display. An MDX-based
+  site must treat .md files as CommonMark for HTML comments to be legal (in Docusaurus,
+  markdown.format 'detect'). Delete each guidance comment as you complete its section.
+- Copy this file into the directory your repository binds as `outputDir`, as
+  <slug>/index.md, and add your repository's standard front matter.
+- A reference architecture is a technology-specific collaboration of solution building
+  blocks that defines an implementable architecture for a domain, platform or hosting
+  profile. If you are solving ONE recurring problem, and can express it without naming a
+  product, author a pattern instead.
+- Identifiers below are written as COMP-NNN for components, IF-NN for interfaces and
+  PAT-NNN for patterns. Your repository's own series come from its binding file; if it
+  declares a template of its own, use that instead of this one, because a house template
+  carries the series, the deliverable code and the palette that belong to the repository
+  rather than to a published skill.
+- Never hyperlink identifiers in body text. Write the plain identifier and its name
+  together; publishing rewrites them into links.
+- If your repository binds an `ontologySchema`, the section order below is what that
+  schema expects: mandatory core body first, optional facets where noted. Do not remove
+  a mandatory section.
+- Target length is about 10 pages. Tables carry the volume; prose is reserved for the
+  architecturally significant minority. Unmaintained detail is the documented decay mode
+  for this artefact type, so omit rather than pad.
+- Deck tags: sections marked with a deck:slide tag are rendered into an HTML deck and PDF
+  by the reference-architecture-deck skill. The tags are HTML comments and are invisible
+  in the published docs page. See the companion specification for the tag vocabulary.
+-->
+
+<!-- deck:cover subtitle="One-line subtitle for the cover slide" -->
+
+## Context
+
+<!--
+MANDATORY. The domain/capability scope, the drivers, and the target-state problem space
+this reference architecture addresses. Say what "done" looks like for the domain.
+Name the audience: who is expected to build against this.
+-->
+
+### Non-Goals
+
+<!--
+RECOMMENDED. What this reference architecture is explicitly NOT for. The dominant
+documented failure mode for this artefact is adoption for legitimacy rather than fit,
+and stating the non-goals is the cheapest mitigation. Three to five bullets.
+-->
+
+### Quality Attributes
+
+<!--
+RECOMMENDED. The quality attributes this architecture is designed to meet, each with a
+response measure so conformance is testable. Use the six-part form: source, stimulus,
+environment, artifact, response, response measure. Reference QualityAttribute entities
+where they exist rather than restating them.
+-->
+
+| Quality attribute | Scenario | Response measure |
+|---|---|---|
+| Availability | Retrieval service loses its primary index | Degraded answer served within 2s, no error to the caller |
+
+### Principles Upheld
+
+<!--
+OPTIONAL FACET. The principles this reference architecture upholds, one line each on HOW.
+Use plain PRN-NNN identifiers. Delete this subsection if none apply.
+-->
+
+| Principle | How this reference architecture upholds it |
+|---|---|
+| PRN-NNN Principle name | One-sentence statement |
+
+<!-- deck:slide label="Component View" -->
+
+## Diagram
+
+<!--
+MANDATORY. Every reference architecture MUST carry a diagram. One with no diagram is not one.
+
+Author ONE draw.io source beside this file, holding the component view on the base layer
+and one layer per scenario. Export to SVG (preferred) or PNG.
+
+  components.drawio  ->  components.svg          the component view, base layer only
+                     ->  scenario-1.svg          base layer plus one scenario layer
+
+Use layers, not pages, for scenario overlays. Duplicating the page regenerates every
+mxCell id, so scenario arrows stop referencing the real components and every building
+block appears twice to the miner.
+
+--- MINEABLE IDENTIFIERS (mandatory) ---
+Set compressed="false" on the mxfile root and untick Compressed in draw.io Preferences,
+or the file is one unreadable Base64 line and nothing below works.
+
+Every component shape carries its catalogue identifier as a custom attribute, added via
+Edit then Edit Data (Ctrl+M). This wraps the shape in an object element:
+
+    <object id="COMP-024" label="Identity Provider" component_id="COMP-024">
+      <mxCell style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxGeometry x="200" y="100" width="160" height="60" as="geometry" />
+      </mxCell>
+    </object>
+
+Do NOT rely on the mxCell id as the catalogue key. draw.io regenerates it on copy, paste,
+duplicate and id collision. The custom attribute is part of the cell's user object and is
+cloned with it, so the identifier survives. Setting id and the identifier attribute to
+the same value is deliberate: a copy-pasted shape gets a random id while keeping the
+identifier, which is how the validator
+detects accidental duplication.
+
+Attribute vocabulary (the actual names come from your binding file's
+`model.node_id_attrs` and `model.edge_id_attr`; these are the defaults):
+  component_id      the catalogue identifier, on every component shape
+  iface_id          the interface identifier, on every connector between components
+  scenario          the scenario key (S1, S2, ...), on every overlay element
+  step              the step number within that scenario, on every overlay element
+  from / to         the endpoints a scenario arrow asserts, cross-checked against
+                    the resolved source and target
+
+Reserved names that must NOT be used as custom attributes: id, label, placeholders,
+tooltip, link, linkTarget, tags, treeRoot.
+
+--- BASE LAYER (the component view) ---
+- Nodes: every building block from ## Building Blocks, plus external actors and domain
+  boundaries. Overlay the applied patterns as labelled bands so the reader sees which
+  pattern owns which region, and which building blocks are the connective tissue.
+- Box label: line 1 bold "COMP-NNN Official Name"; line 2 the short role in THIS
+  reference architecture. Do not invent names; use the catalogue's official name.
+- Every connector is labelled with what flows and carries an iface_id. No unlabeled arrows.
+- Include a KEY on the canvas explaining colours, shapes and line semantics. A diagram
+  without a key is a primary comprehension failure.
+- Colour by role, and show the same key in a small legend. Your repository's palette
+  comes from the `style` section of its binding file; if it has none, any consistent
+  scheme works as long as the legend explains it.
+- Canvas: pageWidth about 1920, white background, no page grid.
+
+--- SCENARIO LAYERS (one per scenario) ---
+Each scenario is a named layer holding numbered badges and flow arrows drawn over the
+base components. This is a UML communication diagram, which C4 calls a dynamic diagram.
+- Badge: a small filled circle carrying the step number, placed on or beside the acting
+  component, with scenario and step attributes.
+- Flow arrow: source and target set to the real base-layer component shapes, labelled
+  "N: what happens", with scenario, step, from_abb and to_abb attributes.
+- Step numbers are contiguous from 1 with no gaps and no duplicates.
+- One scenario per layer. Two overlays on the same boxes collide and destroy readability.
+
+Embed the exported views under ## Diagram and in each scenario:
+
+    ![REF-XXX components](./components.svg)
+-->
+
+## Applicability
+
+<!-- MANDATORY. When to adopt this reference architecture. -->
+
+## Not Applicable
+
+<!-- MANDATORY. When NOT to adopt it; the boundary cases it explicitly excludes. -->
+
+## Patterns Applied
+
+<!--
+MANDATORY. At least one PAT. The patterns this reference architecture composes, the
+defining characteristic that distinguishes it from a single pattern. Use plain PAT-NNN
+identifiers; do not restate each pattern's body, summarise its role here.
+-->
+
+| Pattern | Role in this reference architecture |
+|---|---|
+| PAT-NNN Pattern Name | What this pattern contributes to the end-to-end design |
+
+<!-- deck:slide label="Building Blocks" -->
+
+## Building Blocks
+
+<!--
+MANDATORY. At least one ABB. These are the components on the diagram, and the table is
+the authoritative list that the draw.io miner validates against. Every row must have a
+shape on the base layer carrying the matching identifier attribute, and every shape must
+have a row.
+
+Both pattern-owned AND loose building blocks belong here. Loose ones are the connective
+tissue that no single pattern owns. Mark which is which in Source.
+
+Write prose beneath this table ONLY for the architecturally significant components, as a
+### subsection each. Most components need nothing beyond the row.
+-->
+
+| Building Block | Role in this reference architecture | Source |
+|---|---|---|
+| COMP-NNN Official Name | What it does here, one clause | PAT-NNN / loose |
+
+<!-- deck:slide label="Interfaces" -->
+
+## Interfaces
+
+<!--
+RECOMMENDED. Every connector on the component diagram, as a row. This is the section that
+makes the difference between a picture and an architecture: TOGAF requires interfaces as
+one of the four minimum building-block specification items, and integration points are
+the primary stability risk in any composed design.
+
+Every row must have a connector on the base layer carrying the matching iface_id, and
+every connector must have a row.
+
+Expand to a ### subsection only for interfaces that are externally contracted or carry
+non-obvious failure semantics. For those, add: resources provided with syntax and
+semantics, pre- and post-conditions, data types, variability, and rationale.
+-->
+
+| Interface | Provider | Consumer | Purpose | Protocol | Payload | Sync | Errors and retry | NFRs |
+|---|---|---|---|---|---|---|---|---|
+| IF-01 | COMP-NNN | COMP-NNN | What flows and why | HTTPS / JSON-RPC | Schema ref | Sync | Timeout 5s, retry 3x on 503, non-retryable on 4xx | p95 200ms, 99.9% |
+
+## Scenarios
+
+<!--
+RECOMMENDED. Two to four scenarios. The criterion is architectural relevance, not
+coverage: a large number of scenarios is explicitly not the goal. Each scenario is a
+numbered overlay on the component diagram plus numbered prose steps keyed to the badges.
+
+A scenario is the right form for a happy-path flow of roughly five to ten steps. It
+CANNOT express branching, loops, concurrency or failure paths, because a communication
+diagram has no combined fragments. If the flow has real alternatives or error handling,
+use a mermaid sequenceDiagram instead and say why in one line.
+
+Repeat the block below per scenario. Keep the heading key (S1, S2) aligned to the
+scenario attribute on the draw.io layer.
+-->
+
+<!-- deck:slide label="Scenario S1" -->
+
+### S1 Scenario name
+
+<!-- One sentence on what this scenario proves and which quality attribute it exercises. -->
+
+![REF-XXX scenario S1](./scenario-1.svg)
+
+| Step | Actor | Action | Interface |
+|---:|---|---|---|
+| 1 | COMP-NNN | What happens | IF-01 |
+
+<!-- deck:skip -->
+<!--
+Prose that belongs in the document but not on the slide goes between deck:skip markers.
+Use it for the detail a reader needs and an audience does not.
+-->
+<!-- /deck:skip -->
+
+## Key Concepts
+
+<!-- OPTIONAL FACET. Definitions of the load-bearing terms this reference architecture
+introduces. Delete if unused. -->
+
+## Standards Applied
+
+<!-- OPTIONAL FACET. The binding standards this reference architecture mandates
+conformance to. Use plain standard_* identifiers. Delete if none apply. -->
+
+| Standard | What it constrains |
+|---|---|
+| standard_xxx | Conformance requirement |
+
+## Controls and Guardrails
+
+<!-- MANDATORY. The enforceable controls this reference architecture establishes across
+its composed patterns, and where each is enforced. -->
+
+| Control | Source Standard/Policy | Enforcement Point |
+|---|---|---|
+| Control statement | standard_xxx / Policy | Build / Release / Runtime |
+
+### Cross-Cutting Concerns
+
+<!--
+RECOMMENDED. Identity, security, observability, data handling, error and retry, and
+lifecycle. These belong to no single component or interface, so a structure made only of
+components and interfaces loses them. One line each, pointing at where the concern is
+discharged.
+-->
+
+| Concern | How it is discharged here |
+|---|---|
+| Identity | Which building block, which pattern |
+
+### Variation Points
+
+<!--
+RECOMMENDED. What is mandatory, what is guidance, and where a team may legitimately
+deviate and how. A reference architecture with no escape hatch for legitimate edge cases
+gets abandoned rather than followed.
+-->
+
+| Element | Mandatory or guidance | Permitted deviation and route |
+|---|---|---|
+
+## Decisions
+
+<!--
+RECOMMENDED. The decisions this reference architecture rests on, with the alternative
+rejected in one clause. Link to the ADR rather than restating it; the Decision entity
+already points at this reference architecture from its side, so this list is a
+convenience for the reader, not a second source of truth.
+-->
+
+| Decision | What was chosen, and what was rejected |
+|---|---|
+| ADR-XXXX | One clause |
+
+## Risks and Trade-offs
+
+<!-- MANDATORY. Residual risks, known gaps and accepted design trade-offs, each with a
+mitigation. State the gaps honestly; a reference architecture that claims no gaps is not
+believed. -->
+
+| Risk/Trade-off | Mitigation |
+|---|---|
+| Risk statement | Mitigation |

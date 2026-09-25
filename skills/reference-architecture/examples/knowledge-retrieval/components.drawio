@@ -1,0 +1,85 @@
+<mxfile host="model-skill" type="device" compressed="false">
+  <diagram id="p-ref-002-knowledge-retrieval" name="REF-002 Knowledge Retrieval">
+    <mxGraphModel dx="1422" dy="798" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1080" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" value="Structure" parent="0" />
+        <object id="ABB-017" label="Context Retrieval Service" abb_id="ABB-017" pattern="PAT-018" role_in_this_reference_architecture="The seam. Accepts a query plus caller identity, returns cited passages or an explicit no-answer">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="580" y="470" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-094" label="Embedding Service" abb_id="ABB-094" pattern="PAT-019" role_in_this_reference_architecture="Turns chunks into vectors, and holds the embedding model version">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="1160" y="900" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-028" label="Vector Database" abb_id="ABB-028" pattern="PAT-019" role_in_this_reference_architecture="Stores vectors with their permission labels and source references">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="1160" y="470" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-104" label="Knowledge Graph" abb_id="ABB-104" pattern="PAT-018" role_in_this_reference_architecture="Holds relationships between entities that vector similarity alone cannot express">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="1160" y="680" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-026" label="Policy Enforcement Engine" abb_id="ABB-026" pattern="loose" role_in_this_reference_architecture="Evaluates the caller's entitlements at query time, inside the retrieval boundary">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="1160" y="250" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-024" label="Identity Provider" abb_id="ABB-024" pattern="loose" role_in_this_reference_architecture="Establishes who is asking, and issues the token retrieval evaluates">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="1160" y="60" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-036" label="Audit Logging Service" abb_id="ABB-036" pattern="loose" role_in_this_reference_architecture="Records every query, every decision and every passage returned">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="40" y="900" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="ABB-050" label="LLM Gateway" abb_id="ABB-050" pattern="loose" role_in_this_reference_architecture="The consumer. Composes the grounded context into a prompt and routes the call">
+          <mxCell style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2A3D;fontColor=#1F2A3D;fontSize=14;align=center;verticalAlign=middle;" vertex="1" parent="1">
+            <mxGeometry x="40" y="470" width="290" height="90" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-01" label="cited passages or an explicit no-answer" iface_id="IF-01">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-017" target="ABB-050">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-02" label="caller identity, as an audience-bound token" iface_id="IF-02">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-024" target="ABB-017">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-03" label="entitlement decision for this caller and corpus" iface_id="IF-03">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-026" target="ABB-017">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-04" label="nearest neighbours with permission labels" iface_id="IF-04">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-028" target="ABB-017">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-05" label="related entities for query expansion" iface_id="IF-05">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-104" target="ABB-017">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-06" label="vectors plus the embedding model version" iface_id="IF-06">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-094" target="ABB-028">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <object id="IF-07" label="query, decision and passages returned" iface_id="IF-07">
+          <mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;fontSize=11;strokeColor=#33404F;fontColor=#33404F;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="ABB-017" target="ABB-036">
+            <mxGeometry relative="1" as="geometry" />
+          </mxCell>
+        </object>
+        <mxCell id="key-0" value="KEY" style="text;html=1;fontStyle=1;fontSize=16;fontColor=#1F2A3D;" vertex="1" parent="1"><mxGeometry x="60" y="1080" width="700" height="28" as="geometry" /></mxCell><mxCell id="key-1" value="solid = interface     dashed red = scenario step     number = step order" style="text;html=1;fontSize=13;fontColor=#33404F;" vertex="1" parent="1"><mxGeometry x="60" y="1115" width="700" height="28" as="geometry" /></mxCell><mxCell id="lyr-S1" value="S1 Grounded answer" parent="0" visible="0" /><object id="S1-badge-1" label="1" scenario="S1" step="1"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S1"><mxGeometry x="25" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S1-flow-1" label="1" scenario="S1" step="1" iface_id="IF-01" from="ABB-050" to="ABB-017"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S1" source="ABB-050" target="ABB-017"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S1-badge-2" label="2" scenario="S1" step="2"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S1"><mxGeometry x="565" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S1-flow-2" label="2" scenario="S1" step="2" iface_id="IF-02" from="ABB-017" to="ABB-024"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S1" source="ABB-017" target="ABB-024"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S1-badge-3" label="3" scenario="S1" step="3"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S1"><mxGeometry x="601" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S1-flow-3" label="3" scenario="S1" step="3" iface_id="IF-03" from="ABB-017" to="ABB-026"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S1" source="ABB-017" target="ABB-026"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S1-badge-4" label="4" scenario="S1" step="4"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S1"><mxGeometry x="637" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S1-flow-4" label="4" scenario="S1" step="4" iface_id="IF-04" from="ABB-017" to="ABB-028"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S1" source="ABB-017" target="ABB-028"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S1-badge-5" label="5" scenario="S1" step="5"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S1"><mxGeometry x="673" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S1-flow-5" label="5" scenario="S1" step="5" iface_id="IF-05" from="ABB-017" to="ABB-104"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S1" source="ABB-017" target="ABB-104"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S1-badge-6" label="6" scenario="S1" step="6"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S1"><mxGeometry x="709" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S1-flow-6" label="6" scenario="S1" step="6" iface_id="IF-07" from="ABB-017" to="ABB-036"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S1" source="ABB-017" target="ABB-036"><mxGeometry relative="1" as="geometry" /></mxCell></object><mxCell id="lyr-S2" value="S2 Source onboarding" parent="0" visible="0" /><object id="S2-badge-1" label="1" scenario="S2" step="1"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S2"><mxGeometry x="1145" y="885" width="30" height="30" as="geometry" /></mxCell></object><object id="S2-flow-1" label="1" scenario="S2" step="1" iface_id="IF-06" from="ABB-094" to="ABB-028"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S2" source="ABB-094" target="ABB-028"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S2-badge-2" label="2" scenario="S2" step="2"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S2"><mxGeometry x="1145" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S2-flow-2" label="2" scenario="S2" step="2" iface_id="IF-05" from="ABB-028" to="ABB-104"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S2" source="ABB-028" target="ABB-104"><mxGeometry relative="1" as="geometry" /></mxCell></object><object id="S2-badge-3" label="3" scenario="S2" step="3"><mxCell style="ellipse;whiteSpace=wrap;html=1;fillColor=#E95160;strokeColor=none;fontColor=#FFFFFF;fontSize=14;fontStyle=1;" vertex="1" parent="lyr-S2"><mxGeometry x="565" y="455" width="30" height="30" as="geometry" /></mxCell></object><object id="S2-flow-3" label="3" scenario="S2" step="3" iface_id="IF-07" from="ABB-017" to="ABB-036"><mxCell style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;dashed=1;strokeWidth=2;strokeColor=#E95160;fontColor=#E95160;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;" edge="1" parent="lyr-S2" source="ABB-017" target="ABB-036"><mxGeometry relative="1" as="geometry" /></mxCell></object></root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

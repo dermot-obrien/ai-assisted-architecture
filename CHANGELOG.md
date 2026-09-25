@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **`reference-architecture` skill.** Authors a reference architecture as one Markdown document
+  that is also the model and also the deck: it generates the draw.io diagram and numbered
+  scenario overlays from the document's own tables, validates that diagram and document agree,
+  and publishes HTML slides and a PDF. Different in kind from the `create-*` skills, which each
+  author one catalogue artefact. It needs `model` and `markdown-deck`, which ship with
+  AI-Assisted Work; AAA already depends on AAW for the install engine, so installing both into
+  a workspace provides them. Repository specifics — output directory, template, id series,
+  ontology schema — come from `.agents/skill-bindings.toml`, so the skill carries none.
 - **Agent Skills as the distribution format.** All eight `create-*` agents now ship as standalone [Agent Skills](https://agentskills.io) under `skills/`: a directory holding a `SKILL.md` with `name` and `description` frontmatter plus `references/`. One definition works in every skills-compatible tool. `aaa install` wires them through the shared AAW engine's new `skills` manifest key: each lands in `.agents/skills/<name>/`, read natively by Codex, Cursor, GitHub Copilot, VS Code and Gemini CLI, with `.claude/skills/<name>` linked at it for Claude Code, which reads only its own path. Requires AAW 2.1.0 or later.
 - **Workspace-first standards resolution.** Skills resolve the canonical standards by searching the workspace before falling back to the framework copy, instead of the fixed `.ai-assisted-architecture/standards/…` paths the shims hard-code. An organisation that governs its standards in its own tree (for example under `governance/standards/`) now works without patching the skill. Each skill carries the resolution order and its own required-standards table in `references/standards-discovery.md`, and stops rather than proceeding on an assumed contract when a standard cannot be found.
 - `/aaa-create-service` now hands off to `/aaa-create-runtime-agent` when the service is an autonomous agent, since that path needs guardrails, capability scope and provenance the service skill does not author.
