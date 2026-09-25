@@ -45,12 +45,24 @@ def nonempty(path):
 
 
 def deck_theme(folder):
+    """The bound deck theme: a built-in name, or a path to a .css file.
+
+    A repository that keeps its own theme rather than one in the skill names it by path.
+    That path is written relative to the binding file, as every other path in that file
+    is, so resolve it here; otherwise it would depend on where publish was run from.
+    """
     r = run([sys.executable, MODEL, "doctor", "--skill", "reference-architecture",
              "--near", folder, "--json"])
     try:
-        return json.loads(r.stdout)["resolved"].get("deckTheme") or "default"
+        doc = json.loads(r.stdout)
+        theme = doc["resolved"].get("deckTheme") or "default"
     except (ValueError, KeyError):
         return "default"
+    if theme.endswith(".css") and not os.path.isabs(theme):
+        bindings = doc.get("bindingFile")
+        if bindings:
+            theme = os.path.normpath(os.path.join(os.path.dirname(bindings), theme))
+    return theme
 
 
 def deck_name(doc):
