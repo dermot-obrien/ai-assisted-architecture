@@ -23,5 +23,5 @@ python "$MODEL" render components.drawio --out scenario-s1.svg --layer Structure
 python "$MODEL" render components.drawio --out scenario-s2.svg --layer Structure --layer "S2 Source onboarding"
 
 echo "6. publish the deck"
-node "$DECK" build index.md --out dist --theme bnz --eyebrow "REF-002 Knowledge Retrieval"
+node "$DECK" build index.md --out dist --theme default --eyebrow "REF-002 Knowledge Retrieval"
 node "$DECK" pdf dist/deck.html --out dist/deck.pdf
