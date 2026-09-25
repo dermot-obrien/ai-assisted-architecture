@@ -1,0 +1,20 @@
+# Normalise line endings so a checkout is byte-identical on every platform.
+#
+# Without this, core.autocrlf=true on Windows rewrites every text file to CRLF on
+# checkout. The installer copies files verbatim, so the installed skills differ by
+# platform, and anything reading a SKILL.md with an LF-only parser rejects a file
+# that is perfectly valid. Agents tolerate CRLF; tooling does not always.
+* text=auto eol=lf
+
+# The committed CLI bundle is generated. Keeping it LF means the bundle-freshness
+# check in CI compares like with like, wherever it was built.
+bin/aaa.js text eol=lf
+
+# Binary: never touch these.
+*.png binary
+*.jpg binary
+*.gif binary
+*.pdf binary
+*.ico binary
+*.woff binary
+*.woff2 binary

@@ -39,12 +39,20 @@ const MAX_COMPATIBILITY = 500;
 const BODY_LINE_GUIDANCE = 500;
 const NAME_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
-/** Split `---\n...\n---\n` off the front. Returns null when absent. */
+/**
+ * Split the `---` delimited frontmatter off the front. Returns null when absent.
+ *
+ * Normalises CRLF first. The spec says nothing about line endings, and a checkout
+ * on Windows with core.autocrlf=true has CRLF in every file, so an LF-only reader
+ * rejects skills that are perfectly valid — and the agents load them fine. CI never
+ * caught this because Linux runners check out LF.
+ */
 function splitFrontmatter(text) {
-  if (!text.startsWith("---\n")) return null;
-  const end = text.indexOf("\n---\n", 3);
+  const s = text.replace(/\r\n/g, "\n");
+  if (!s.startsWith("---\n")) return null;
+  const end = s.indexOf("\n---\n", 3);
   if (end === -1) return null;
-  return { frontmatter: text.slice(4, end + 1), body: text.slice(end + 5) };
+  return { frontmatter: s.slice(4, end + 1), body: s.slice(end + 5) };
 }
 
 /** Parse the flat scalars and one level of nesting a SKILL.md frontmatter may hold. */
