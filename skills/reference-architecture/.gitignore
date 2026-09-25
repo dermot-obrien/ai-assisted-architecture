@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.tmp/
+# The worked example's outputs ARE committed; see examples/*/README.md.
+!examples/**/dist/
+*.egg-info/
