@@ -1,0 +1,29 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Where this repository keeps the artefacts this skill authors. The skill carries the
+# method, not the layout: it has no default for any directory below, because a default
+# would be whichever repository the skill was written in, wrong everywhere else while
+# looking like a feature.
+#
+# Answer in [suite.aaa-create-context] of the repository's .agents/skill-bindings.toml.
+# Paths resolve against that file's directory, never the working directory.
+#
+# Checked by:  python <skills>/model/bin/model.py doctor --skill aaa-create-context
+
+[inputs]
+short_description = "Where Bounded Contexts are authored"
+
+[inputs.options.contextDir]
+type = "dir"
+required = true
+description = """Directory Bounded Context folders are created in, one folder per BC-NNN."""
+
+[inputs.options.platformDir]
+type = "dir"
+required = true
+description = """Where Platforms live. Searched to establish which PL-NNN the context realises."""
+
+[inputs.options.capabilityDir]
+type = "dir"
+required = false
+description = """Where Capabilities live, for mapping a context to the capabilities it realises."""

@@ -2,7 +2,7 @@
 name: aaa-create-sbb
 description: Create a TOGAF-aligned Solution Building Block realising a parent ABB, deciding simple versus composite, mapping every ABB component to a real product, and authoring the composite structure diagram with its ports, parts and connectors. Use when asked to create, add or scaffold an SBB or solution building block, to map a product or vendor technology onto an ABB, or to model a composite assembly of sub-SBBs.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH.
+compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
@@ -17,6 +17,27 @@ allowed to appear.
 
 Resolve and load the canonical standards before Phase 3, per
 [references/standards-discovery.md](references/standards-discovery.md).
+
+## Step 0, before anything else
+
+Run the resolver and use only the paths it prints. This skill carries the method; where the
+artefacts live is the repository's to declare, and there is no default to fall back on:
+
+```bash
+python <skills>/model/bin/model.py doctor --skill aaa-create-sbb --json
+```
+
+`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
+proceed on an error and do not guess a path.
+
+| Binding | Used for |
+|---|---|
+| `sbbDir` | Where a new SBB folder is created, composites included |
+| `abbDir` (optional) | The logical ABB a physical SBB realises |
+
+The contract is declared in `inputs.toml` beside this file. The repository answers it in
+`[suite.aaa-create-sbb]` of its `.agents/skill-bindings.toml`. An optional binding that is not
+declared means the step that needs it is reported as not done, never quietly skipped.
 
 ## Phase 1: Discovery and proactive traceability
 
@@ -51,7 +72,7 @@ a composite, also load the C4 context diagram standard.
 
 ### Step 1: index.md
 
-Create the SBB document at `building-blocks/solution-building-blocks/SBB-NNN/index.md`.
+Create the SBB document at `<sbbDir>/SBB-NNN/index.md`.
 
 Every component from the parent ABB must be mapped to a product or service in section 2.2. An
 unmapped ABB component is a gap: name it as one rather than leaving it silently absent.

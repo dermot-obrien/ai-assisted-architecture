@@ -1,0 +1,24 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Where this repository keeps the artefacts this skill authors. The skill carries the
+# method, not the layout: it has no default for any directory below, because a default
+# would be whichever repository the skill was written in, wrong everywhere else while
+# looking like a feature.
+#
+# Answer in [suite.aaa-create-sbb] of the repository's .agents/skill-bindings.toml.
+# Paths resolve against that file's directory, never the working directory.
+#
+# Checked by:  python <skills>/model/bin/model.py doctor --skill aaa-create-sbb
+
+[inputs]
+short_description = "Where Solution Building Blocks are authored"
+
+[inputs.options.sbbDir]
+type = "dir"
+required = true
+description = """Directory SBB folders are created in, one folder per SBB-NNN, composites included."""
+
+[inputs.options.abbDir]
+type = "dir"
+required = false
+description = """Where ABBs live, for the link from a physical SBB to the logical ABB it realises."""

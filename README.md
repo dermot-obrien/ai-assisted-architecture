@@ -188,6 +188,61 @@ Skills resolve the canonical standards from the workspace rather than from a fix
 governs the standards in its own tree. See each skill's
 `references/standards-discovery.md`.
 
+### Where artefacts are written
+
+Every skill takes its artefact locations from the repository, and none has a default. A
+default would be whichever repository the skill was written in, wrong everywhere else while
+looking like a feature, so an unbound skill stops and says which key it is waiting for.
+
+Each skill declares its contract in its own `inputs.toml`, and the repository answers in
+`[suite.<skill-name>]` of `.agents/skill-bindings.toml`. Check any of them with:
+
+```bash
+python .agents/skills/model/bin/model.py doctor --skill aaa-create-abb
+```
+
+A repository laid out the way this framework expects can paste this and adjust:
+
+```toml
+[suite.aaa-create-strategy]
+outcomeDir    = "../strategy/outcomes"
+useCaseDir    = "../strategy/use-cases"
+
+[suite.aaa-create-platform]
+platformDir   = "../platforms"
+outcomeDir    = "../strategy/outcomes"
+
+[suite.aaa-create-capability]
+capabilityDir = "../capabilities"
+platformDir   = "../platforms"
+
+[suite.aaa-create-context]
+contextDir    = "../contexts"
+platformDir   = "../platforms"
+capabilityDir = "../capabilities"
+
+[suite.aaa-create-abb]
+abbDir        = "../building-blocks/architecture-building-blocks"
+contextDir    = "../contexts"
+capabilityDir = "../capabilities"
+
+[suite.aaa-create-sbb]
+sbbDir        = "../building-blocks/solution-building-blocks"
+abbDir        = "../building-blocks/architecture-building-blocks"
+
+[suite.aaa-create-service]
+serviceDir    = "../runtime/services"
+contextDir    = "../contexts"
+sbbDir        = "../building-blocks/solution-building-blocks"
+
+[suite.aaa-create-runtime-agent]
+agentProfileSchema = "../schemas/v1.1.0/agent-profile.schema.json"
+ontologyValidator  = "../scripts/ontology/validate.cjs"
+```
+
+That block is a suggestion in documentation, which is where a framework's opinion about
+layout belongs. It is not a fallback in code, which is where it would become a dependency.
+
 The per-tool shims under `install/claude/`, `install/cursor/` and `install/github/`, and the
 instruction files under `agents/`, are superseded. They are retained for installs that have not
 yet moved and are no longer the maintained definitions.
