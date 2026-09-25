@@ -1,0 +1,69 @@
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  skills:
+    name: Agent Skills validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # AAA ships no node_modules; the validator is zero-dependency on purpose.
+      - name: Validate skills against the agentskills.io spec
+        run: node scripts/validate-skills.mjs skills
+
+  install:
+    name: Install into a scratch workspace
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: aaa
+
+      # AAA installs through the shared AAW engine, so CI needs both clones.
+      - uses: actions/checkout@v4
+        with:
+          repository: dermot-obrien/ai-assisted-work
+          path: aaw
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # AAA declares `depends: [aaw]`, so AAW must be installed into the target
+      # workspace first. Otherwise the dependency check warns, and a warning is a
+      # non-zero exit even though the install itself succeeded. This is also the
+      # order a real user installs them in.
+      - name: Install AAW, then AAA
+        run: |
+          mkdir -p /tmp/ws/.claude && cd /tmp/ws && git init -q .
+          node "$GITHUB_WORKSPACE/aaw/bin/aaw.js" install \
+            --framework "$GITHUB_WORKSPACE/aaw" --no-python
+          node "$GITHUB_WORKSPACE/aaw/bin/aaw.js" install \
+            --framework "$GITHUB_WORKSPACE/aaa" --no-python
+
+      - name: Check the installed skills resolve
+        run: |
+          node "$GITHUB_WORKSPACE/aaa/scripts/validate-skills.mjs" /tmp/ws/.agents/skills
+          for s in /tmp/ws/.claude/skills/aaa-*; do
+            test -f "$s/SKILL.md" || { echo "::error::$s does not resolve"; exit 1; }
+          done
+
+  reuse:
+    name: REUSE compliance
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: fsfe/reuse-action@v6
