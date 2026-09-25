@@ -405,7 +405,7 @@ The extension mechanism uses **JSON Schema composition** (`allOf`) to layer orga
    - Can extend existing entities by providing supplementary field definitions (e.g., `InitiativeExtension`)
    - Overrides the `version` constraint to the extension version
 
-3. **Workspace configuration** — the `.aaw-config.yaml` in the workspace root declares which schema to use:
+3. **Workspace configuration** — the `.aaa-config.yaml` in the workspace root declares which schema to use:
 
 ```yaml
 ontology:
@@ -457,8 +457,9 @@ When `ontology.schema` is not set, scripts default to the framework's base schem
 All ontology scripts (`validate.cjs`, `consolidate.cjs`, `namespace-divergent.cjs`) resolve the schema in this order:
 
 1. Explicit `--schema <path>` argument (highest priority)
-2. `ontology.schema` from `.aaw-config.yaml` in the workspace root (if present)
-3. Framework default: `.ai-assisted-architecture/standards/ontology/ontology-schema.json`
+2. `ontology.schema` from `.aaa-config.yaml` in the workspace root (if present)
+3. `ontology.schema` from `.aaw-config.yaml` (legacy compatibility; also supports `modules.aaa.ontology_schema`)
+4. Framework default: `.ai-assisted-architecture/standards/ontology/ontology-schema.json`
 
 ## Versioning
 
