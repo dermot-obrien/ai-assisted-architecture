@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **The eight `aaa-create-*` skills take their artefact locations from the repository**
+  (breaking). Each declares an `inputs.toml` contract and reads `[suite.<skill-name>]` of the
+  repository's `.agents/skill-bindings.toml`, resolved through the model skill's `doctor`, the
+  same way `reference-architecture` already worked. They previously wrote to hardcoded paths
+  such as `building-blocks/architecture-building-blocks/ABB-NNN/index.md`, which made the
+  framework's own layout a condition of using it. There is no default: an unbound skill stops
+  and names the key it is waiting for. The README carries a paste-ready block for a repository
+  that does use the expected layout, which is where an opinion about layout belongs.
+- `aaa-create-runtime-agent` no longer names a fixed validator or profile schema. Both are
+  bindings, and both are optional: where one is undeclared the skill reports the record as
+  authored but not validated, rather than skipping the step quietly.
+
 ### Added
 
 - **`reference-architecture` skill.** Authors a reference architecture as one Markdown document

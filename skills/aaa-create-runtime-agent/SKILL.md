@@ -2,7 +2,7 @@
 name: aaa-create-runtime-agent
 description: Author an autonomous runtime agent as a catalogued artefact with its agent profile, contracts, tiered guardrails, capability scope and output provenance, so it cannot change its own limits. Use when asked to create, define or catalogue a runtime agent, an autonomous agent that acts in the live system, an agent profile or A2A agent card, or to specify agent guardrails and capability scope.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Validation uses scripts/ontology/validate.cjs, which needs Node.js.
+compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Validation uses scripts/ontology/validate.cjs, which needs Node.js. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
@@ -20,6 +20,27 @@ the runtime plane. You build it, it acts. It must never be able to change its ow
 
 Resolve and load the canonical standards before Phase 3, per
 [references/standards-discovery.md](references/standards-discovery.md).
+
+## Step 0, before anything else
+
+Run the resolver and use only the paths it prints. This skill carries the method; where the
+artefacts live is the repository's to declare, and there is no default to fall back on:
+
+```bash
+python <skills>/model/bin/model.py doctor --skill aaa-create-runtime-agent --json
+```
+
+`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
+proceed on an error and do not guess a path.
+
+| Binding | Used for |
+|---|---|
+| `agentProfileSchema` (optional) | Validates the authored agent profile |
+| `ontologyValidator` (optional) | Validates each record this skill writes |
+
+The contract is declared in `inputs.toml` beside this file. The repository answers it in
+`[suite.aaa-create-runtime-agent]` of its `.agents/skill-bindings.toml`. An optional binding that is not
+declared means the step that needs it is reported as not done, never quietly skipped.
 
 ## Phase 1: Discovery and traceability
 
@@ -45,7 +66,7 @@ ontology README and schema, and the service standard.
    `realises_capability_ids` set to the operated capability. In `notes`, declare it a runtime
    agent and link its agent profile.
 2. **Agent profile**: author the full specification per the agent specification standard,
-   validated against `schemas/v1.1.0/agent-profile.schema.json`. It carries identity, model,
+   validated against the `agentProfileSchema` binding. It carries identity, model,
    instructions, tools (MCP-shaped), skills (A2A-shaped) or packaged_skills (SKILL.md-shaped),
    memory, capabilities both allowed and forbidden, tiered guardrail references, auth with a
    workload identity for runtime, evaluation, and provenance. On deploy the agent publishes an
@@ -78,7 +99,9 @@ ontology README and schema, and the service standard.
 4. [ ] Does every consumed and produced contract have an Interface?
 5. [ ] Is output provenance specified: agent, model and release on every action?
 6. [ ] Are irreversible and high-stakes actions routed to human approval, per P7?
-7. [ ] Does it validate? `node scripts/ontology/validate.cjs <path>`
+7. [ ] Does it validate? Run the `ontologyValidator` binding over each record written, and
+   the `agentProfileSchema` binding over the profile. Where either is undeclared, say the
+   record was authored but not validated, and why.
 
 Then confirm the framework-level checks in
 [references/traceability.md](references/traceability.md).

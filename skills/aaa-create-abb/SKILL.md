@@ -2,7 +2,7 @@
 name: aaa-create-abb
 description: Create a TOGAF-aligned Architecture Building Block (ABB) with its index document, components diagram, C4 system context view, PNG exports and summary, keeping the golden thread of traceability from Strategic Outcome down to the ABB intact. Use when asked to create, add or scaffold an ABB or architecture building block, to define a logical building block under a capability or bounded context, or to fill an ABB gap surfaced by another artefact's requires list.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH.
+compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
@@ -18,6 +18,28 @@ Before Phase 3, resolve and load the canonical standards. They live in the works
 this skill, so they stay governed by the organisation rather than by the framework version.
 Read [references/standards-discovery.md](references/standards-discovery.md) for how to find
 them and which ones this skill needs.
+
+## Step 0, before anything else
+
+Run the resolver and use only the paths it prints. This skill carries the method; where the
+artefacts live is the repository's to declare, and there is no default to fall back on:
+
+```bash
+python <skills>/model/bin/model.py doctor --skill aaa-create-abb --json
+```
+
+`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
+proceed on an error and do not guess a path.
+
+| Binding | Used for |
+|---|---|
+| `abbDir` | Where a new ABB folder is created |
+| `contextDir` (optional) | The parent Bounded Context, for the mandatory link back |
+| `capabilityDir` (optional) | The parent Capability, for the mandatory link back |
+
+The contract is declared in `inputs.toml` beside this file. The repository answers it in
+`[suite.aaa-create-abb]` of its `.agents/skill-bindings.toml`. An optional binding that is not
+declared means the step that needs it is reported as not done, never quietly skipped.
 
 ## Phase 1: Discovery and proactive upward traceability
 
@@ -61,8 +83,7 @@ Do not produce any artefact before these are loaded.
 
 ### Step 1: index.md
 
-Create the ABB document at `building-blocks/architecture-building-blocks/ABB-NNN/index.md`,
-using the next available identifier.
+Create the ABB document at `<abbDir>/ABB-NNN/index.md`, using the next available identifier.
 
 Link back to the parent Bounded Context and Capability in the metadata. This is mandatory.
 
