@@ -4,8 +4,8 @@ description: Author a reference architecture as one Markdown document that is al
 license: Apache-2.0
 compatibility: Python 3.11+ and Node 18+. Requires the `model` and `markdown-deck` skills, which ship with AI-Assisted Work; installing AAW into the same workspace provides both. Rendering diagrams needs draw.io desktop; PDF export needs playwright.
 metadata:
-  version: "0.2.0"
-  x-skill-requires: "model@^0.1.0, markdown-deck@^0.1.0"
+  version: "0.3.0"
+  x-skill-requires: "model@^0.4.0, markdown-deck@^0.1.0"
 ---
 
 # Reference Architecture
@@ -46,9 +46,11 @@ If `doctor` does not list both under `siblings`, stop and tell the user to insta
 
 ## What a reference architecture is
 
-A technology-specific collaboration of solution building blocks that defines an implementable architecture for a domain, platform or hosting profile. Reusable as a reference, unlike a solution design, which instantiates it for one consumer.
+An architecture model that composes a design for a domain, capability area, platform, hosting profile or epic: building blocks, the interfaces between them and the scenarios that walk across them, applying whatever patterns exist and adding the connective tissue no single pattern owns. Reusable as a reference, unlike a solution design, which instantiates it for one consumer.
 
-The test against a pattern is composition level, not subject matter. If you can express it without naming a product, it is a pattern. If you cannot, it is a reference architecture.
+A pattern is the same construct answering one recurring problem. The two are told apart by intent and scope, never by the kind of box. A twelve-box model of an epic is a reference architecture even when every box is a local role; a four-box answer to one problem is a pattern even when every box is a product. This skill's procedure serves both: a pattern swaps Context for Intent and usually has fewer boxes.
+
+Any mix of boxes is allowed: local roles, catalogued logical building blocks, catalogued products, and external context. How abstract the model is, conceptual, logical, physical or mixed, is derived from those boxes by `model validate`, never declared. Report it. A conceptual reference architecture explains and scopes; one that a team will build from must be physical.
 
 ## Structure
 
@@ -73,7 +75,7 @@ Target about ten pages. Tables carry the volume; prose is for the architecturall
 
 Copy the template into `<outputDir>/<slug>/index.md`, using the `template` binding if the repository declares one and `assets/template.md` from this skill if it does not. A repository's own template carries its identifier series, its deliverable code and its palette; the one shipped here is deliberately free of all three. Fill it in this order, which is not document order:
 
-Context and Non-Goals, then Patterns Applied, then Building Blocks, then Interfaces. Interfaces is where most of the real thinking happens and it usually sends you back to revise Building Blocks. Only then the diagram, then Scenarios, then the controls and decisions, which are the residue of everything above.
+Context and Non-Goals, then Patterns Applied where published patterns cover part of the design, then Building Blocks, then Interfaces. Interfaces is where most of the real thinking happens and it usually sends you back to revise Building Blocks. Only then the diagram, then Scenarios, then the controls and decisions, which are the residue of everything above.
 
 ### 2. Generate the diagram
 
@@ -104,16 +106,20 @@ python <model>/bin/model.py validate index.md
 
 Report what it finds. The findings that matter are the ones invisible to the eye: an interface wired one way in the table and another on the canvas, an overlay step whose endpoints disagree with its metadata, an identifier drawn twice because a shape was copy-pasted.
 
-### 4. Render the views
+### 4. Render the view and animate the scenarios
 
 ```bash
-python <model>/bin/model.py layers components.drawio
 python <model>/bin/model.py render components.drawio --out components.svg --layer Structure
-python <model>/bin/model.py render components.drawio --out scenario-1.svg \
-  --layer Structure --layer "S1 <name>"
+python <model>/bin/model.py animate index.md
 ```
 
-One image per scenario, each the structure plus exactly one overlay. Two overlays on the same boxes collide and destroy readability.
+The structure is the one static image. The scenarios are shown by the animated walkthrough, `scenarios.html`, a self-contained page that opens from disk and steps through each scenario on the structure: the step's number on the acting box, the arrow to its target, the rest dimmed. Link to `./scenarios.html` at the top of `## Scenarios` and give it one deck slide:
+
+```markdown
+<!-- deck:html src="./scenarios.html" title="Scenario walkthrough" header="true" -->
+```
+
+Each scenario keeps its steps table, because the walkthrough is generated from it, but carries no image and no slide tag of its own. Re-run `animate` after moving shapes. A static image per scenario, the structure plus exactly one overlay, is still available with `render --layer Structure --layer "S1 <name>"` when a medium cannot run the page.
 
 ### 5. Publish the deck
 
@@ -123,7 +129,7 @@ Tag the sections an audience needs, typically six to twelve, then publish the fo
 python <skills>/reference-architecture/scripts/publish.py <folder>
 ```
 
-It runs `model scan`, and for every document that declares a diagram and passes validation it renders `<stem>.svg` plus one `<stem>-sN.svg` per scenario beside the document, then builds `dist/<name>/deck.html` and `deck.pdf` with the bound `deckTheme`. `<name>` is the file stem, or the folder name for an `index.md`. Reference the views in the document by those names. A model that fails validation is skipped unless `--force`; `--dry-run` says what would be done, `--no-pdf` stops at HTML, and `--thumbnails` opens each deck's slide index with thumbnails rather than titles. The script works on any declared model, not only reference architectures, so a folder holding a reference architecture and two alternative views publishes all three in one run.
+It runs `model scan`, and for every document that declares a diagram and passes validation it renders `<stem>.svg` beside the document, builds the animated walkthrough when the model has scenarios, then builds `dist/<name>/deck.html` and `deck.pdf` with the bound `deckTheme`. `--scenario-images` also renders one `<stem>-sN.svg` per scenario; `--no-animate` skips the walkthrough. `<name>` is the file stem, or the folder name for an `index.md`. Reference the views in the document by those names. A model that fails validation is skipped unless `--force`; `--dry-run` says what would be done, `--no-pdf` stops at HTML, and `--thumbnails` opens each deck's slide index with thumbnails rather than titles. The script works on any declared model, not only reference architectures, so a folder holding a reference architecture and two alternative views publishes all three in one run.
 
 The document keeps its detail; the deck shows a selection of it. Untagged sections stay document-only, and `deck:skip` removes detail from a slide without removing it from the document.
 
@@ -141,4 +147,4 @@ Identifiers are never hyperlinked in body text. Write the plain identifier and i
 
 ## Reporting back
 
-Say which of the four artefacts you produced, give the counts from the validator, name anything that failed and why, and give the paths. Never report a render or a PDF as successful without checking the file exists and is non-empty.
+Say which of the artefacts you produced (document, diagram, walkthrough, deck), give the counts and the derived abstraction from the validator, name anything that failed and why, and give the paths. Never report a render or a PDF as successful without checking the file exists and is non-empty.

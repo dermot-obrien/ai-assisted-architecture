@@ -1,8 +1,8 @@
 ---
 sidebar_label: Reference Architecture Template
 status: Draft
-version: "0.2"
-last_modified: 2026-09-25
+version: "0.3"
+last_modified: 2026-09-26
 author: "<your name>"
 provenance:
   origin: ai-generated
@@ -19,10 +19,15 @@ HOW TO USE THIS TEMPLATE
   markdown.format 'detect'). Delete each guidance comment as you complete its section.
 - Copy this file into the directory your repository binds as `outputDir`, as
   <slug>/index.md, and add your repository's standard front matter.
-- A reference architecture is a technology-specific collaboration of solution building
-  blocks that defines an implementable architecture for a domain, platform or hosting
-  profile. If you are solving ONE recurring problem, and can express it without naming a
-  product, author a pattern instead.
+- A reference architecture is an architecture model that composes a design for a
+  domain, capability area, platform, hosting profile or epic. A pattern is the same
+  construct answering ONE recurring problem; if that is what you are writing, swap
+  ## Context for ## Intent (the problem, its forces, the invariant enforced). The two are
+  told apart by intent and scope, never by the kind of box.
+- Boxes may be any mix of local roles (01 Gateway), catalogued logical building blocks,
+  catalogued products and external context. model validate derives the abstraction from
+  them: all local is conceptual, logical blocks is logical, every box a product is
+  physical, anything else is mixed. Only a physical one is something a team builds from.
 - Identifiers below are written as COMP-NNN for components, IF-NN for interfaces and
   PAT-NNN for patterns. Your repository's own series come from its binding file; if it
   declares a template of its own, use that instead of this one, because a house template
@@ -94,7 +99,8 @@ Author ONE draw.io source beside this file, holding the component view on the ba
 and one layer per scenario. Export to SVG (preferred) or PNG.
 
   components.drawio  ->  components.svg          the component view, base layer only
-                     ->  scenario-1.svg          base layer plus one scenario layer
+  index.md + drawio  ->  scenarios.html          the animated scenario walkthrough
+                                                 (model animate index.md)
 
 Use layers, not pages, for scenario overlays. Duplicating the page regenerates every
 mxCell id, so scenario arrows stop referencing the real components and every building
@@ -104,8 +110,10 @@ block appears twice to the miner.
 Set compressed="false" on the mxfile root and untick Compressed in draw.io Preferences,
 or the file is one unreadable Base64 line and nothing below works.
 
-Every component shape carries its catalogue identifier as a custom attribute, added via
-Edit then Edit Data (Ctrl+M). This wraps the shape in an object element:
+Every component shape carries its identifier as a custom attribute, added via Edit then
+Edit Data (Ctrl+M): the catalogue identifier, or local_id for a local role such as 01.
+Generating the diagram from the tables with model emit sets them for you. The attribute
+wraps the shape in an object element:
 
     <object id="COMP-024" label="Identity Provider" component_id="COMP-024">
       <mxCell style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -172,9 +180,11 @@ Embed the exported views under ## Diagram and in each scenario:
 ## Patterns Applied
 
 <!--
-MANDATORY. At least one PAT. The patterns this reference architecture composes, the
-defining characteristic that distinguishes it from a single pattern. Use plain PAT-NNN
-identifiers; do not restate each pattern's body, summarise its role here.
+OPTIONAL FACET, expected wherever a published pattern covers part of the design. The
+patterns this reference architecture applies. Use plain PAT-NNN identifiers; do not
+restate each pattern's body, summarise its role here. A conceptual model drawn before its
+patterns exist may say so in one line. Scope, not this list, is what makes this a
+reference architecture rather than a pattern.
 -->
 
 | Pattern | Role in this reference architecture |
@@ -186,10 +196,11 @@ identifiers; do not restate each pattern's body, summarise its role here.
 ## Building Blocks
 
 <!--
-MANDATORY. At least one ABB. These are the components on the diagram, and the table is
-the authoritative list that the draw.io miner validates against. Every row must have a
-shape on the base layer carrying the matching identifier attribute, and every shape must
-have a row.
+MANDATORY. At least one building block, of any kind. These are the components on the
+diagram, and the table is the authoritative list the diagram is generated from and
+validated against. Every row must have a shape on the base layer carrying the matching
+identifier attribute, and every shape must have a row. Mix kinds freely: a catalogue
+identifier where an entry exists, a local number such as 07 where it does not.
 
 Both pattern-owned AND loose building blocks belong here. Loose ones are the connective
 tissue that no single pattern owns. Mark which is which in Source.
@@ -201,6 +212,7 @@ Write prose beneath this table ONLY for the architecturally significant componen
 | Building Block | Role in this reference architecture | Source |
 |---|---|---|
 | COMP-NNN Official Name | What it does here, one clause | PAT-NNN / loose |
+| 07 Local role name | A role with no catalogue entry yet | loose |
 
 <!-- deck:slide label="Interfaces" -->
 
@@ -229,7 +241,10 @@ semantics, pre- and post-conditions, data types, variability, and rationale.
 <!--
 RECOMMENDED. Two to four scenarios. The criterion is architectural relevance, not
 coverage: a large number of scenarios is explicitly not the goal. Each scenario is a
-numbered overlay on the component diagram plus numbered prose steps keyed to the badges.
+numbered overlay layer on the component diagram plus a steps table, and all of them are
+presented through one animated walkthrough, scenarios.html, generated by
+model animate index.md. Keep the link and the deck:html slide below; give the scenario
+sections no image and no slide tag of their own.
 
 A scenario is the right form for a happy-path flow of roughly five to ten steps. It
 CANNOT express branching, loops, concurrency or failure paths, because a communication
@@ -240,17 +255,17 @@ Repeat the block below per scenario. Keep the heading key (S1, S2) aligned to th
 scenario attribute on the draw.io layer.
 -->
 
-<!-- deck:slide label="Scenario S1" -->
+Step through them in the [animated scenario walkthrough](./scenarios.html): each step is numbered on the acting box, the arrow is drawn to its target and the rest of the diagram dims. It opens from disk; arrow keys step and space plays.
+
+<!-- deck:html src="./scenarios.html" title="Scenario walkthrough" header="true" -->
 
 ### S1 Scenario name
 
 <!-- One sentence on what this scenario proves and which quality attribute it exercises. -->
 
-![REF-XXX scenario S1](./scenario-1.svg)
-
-| Step | Actor | Action | Interface |
-|---:|---|---|---|
-| 1 | COMP-NNN | What happens | IF-01 |
+| Step | Actor | Target | Action | Interface |
+|---:|---|---|---|---|
+| 1 | COMP-NNN | COMP-NNN | What happens | IF-01 |
 
 <!-- deck:skip -->
 <!--
