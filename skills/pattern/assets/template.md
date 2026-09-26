@@ -237,6 +237,11 @@ the primary stability risk in any composed design.
 Every row must have a connector on the base layer carrying the matching iface_id, and
 every connector must have a row.
 
+Write Provider and Consumer as the building block's identifier followed by its name, as in
+Building Blocks: "COMP-NNN Official Name" or "07 Local role name". A bare identifier makes
+the reader, and every deck slide of this table, look the name up. The model reads only the
+leading identifier, so the name costs nothing. scripts/name-endpoints.py fills it in.
+
 Expand to a ### subsection only for interfaces that are externally contracted or carry
 non-obvious failure semantics. For those, add: resources provided with syntax and
 semantics, pre- and post-conditions, data types, variability, and rationale.
@@ -244,7 +249,7 @@ semantics, pre- and post-conditions, data types, variability, and rationale.
 
 | Interface | Provider | Consumer | Purpose | Protocol | Payload | Sync | Errors and retry | NFRs |
 |---|---|---|---|---|---|---|---|---|
-| IF-01 | COMP-NNN | COMP-NNN | What flows and why | HTTPS / JSON-RPC | Schema ref | Sync | Timeout 5s, retry 3x on 503, non-retryable on 4xx | p95 200ms, 99.9% |
+| IF-01 | COMP-NNN Official Name | 07 Local role name | What flows and why | HTTPS / JSON-RPC | Schema ref | Sync | Timeout 5s, retry 3x on 503, non-retryable on 4xx | p95 200ms, 99.9% |
 
 ## Scenarios
 

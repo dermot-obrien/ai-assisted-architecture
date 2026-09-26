@@ -96,13 +96,13 @@ Do not adopt it for content that is open to everyone in the organisation and nee
 
 | Interface | Provider | Consumer | Purpose | Protocol | Payload | Sync | Errors and retry | NFRs |
 |---|---|---|---|---|---|---|---|---|
-| IF-01 | ABB-017 | ABB-050 | cited passages or an explicit no-answer | HTTPS | RetrievalResult v1 | Sync | Timeout 2s, retry twice on 503, never on 4xx | p95 800ms, 99.9% |
-| IF-02 | ABB-024 | ABB-017 | caller identity, as an audience-bound token | HTTPS | JWT | Sync | Non-retryable; fail closed | p95 50ms |
-| IF-03 | ABB-026 | ABB-017 | entitlement decision for this caller and corpus | HTTPS | PolicyDecision v1 | Sync | Fail closed on timeout, no cached allow | p95 80ms, 99.95% |
-| IF-04 | ABB-028 | ABB-017 | nearest neighbours with permission labels | gRPC | VectorQuery v1 | Sync | Timeout 500ms, one retry, then degrade | p95 200ms |
-| IF-05 | ABB-104 | ABB-017 | related entities for query expansion | HTTPS | GraphQuery v1 | Sync | Optional path; on failure retrieval proceeds without it | p95 150ms |
-| IF-06 | ABB-094 | ABB-028 | vectors plus the embedding model version | Batch | EmbeddingBatch v1 | Async | At-least-once; idempotent on chunk id | 10k chunks/min |
-| IF-07 | ABB-017 | ABB-036 | query, decision and passages returned | Async | AuditEvent v1 | Async | Buffered; retrieval fails if the buffer is full | no loss |
+| IF-01 | ABB-017 Context Retrieval Service | ABB-050 LLM Gateway | cited passages or an explicit no-answer | HTTPS | RetrievalResult v1 | Sync | Timeout 2s, retry twice on 503, never on 4xx | p95 800ms, 99.9% |
+| IF-02 | ABB-024 Identity Provider | ABB-017 Context Retrieval Service | caller identity, as an audience-bound token | HTTPS | JWT | Sync | Non-retryable; fail closed | p95 50ms |
+| IF-03 | ABB-026 Policy Enforcement Engine | ABB-017 Context Retrieval Service | entitlement decision for this caller and corpus | HTTPS | PolicyDecision v1 | Sync | Fail closed on timeout, no cached allow | p95 80ms, 99.95% |
+| IF-04 | ABB-028 Vector Database | ABB-017 Context Retrieval Service | nearest neighbours with permission labels | gRPC | VectorQuery v1 | Sync | Timeout 500ms, one retry, then degrade | p95 200ms |
+| IF-05 | ABB-104 Knowledge Graph | ABB-017 Context Retrieval Service | related entities for query expansion | HTTPS | GraphQuery v1 | Sync | Optional path; on failure retrieval proceeds without it | p95 150ms |
+| IF-06 | ABB-094 Embedding Service | ABB-028 Vector Database | vectors plus the embedding model version | Batch | EmbeddingBatch v1 | Async | At-least-once; idempotent on chunk id | 10k chunks/min |
+| IF-07 | ABB-017 Context Retrieval Service | ABB-036 Audit Logging Service | query, decision and passages returned | Async | AuditEvent v1 | Async | Buffered; retrieval fails if the buffer is full | no loss |
 
 <!-- deck:skip -->
 IF-03 and IF-07 are the two that must not be softened. Failing open on the entitlement decision turns the service into a way to read documents you cannot otherwise open, and dropping audit events removes the only evidence that retrieval respected permissions at all. Everything else can degrade.
