@@ -2,6 +2,12 @@
 
 # Changelog
 
+## [0.7.0] - 2026-09-26
+
+### Added
+
+- Interface endpoints carry names. Provider and Consumer in the Interfaces table are written as the identifier followed by the name, as Building Blocks has it, in the template, the example and the method, so the table and its deck slide read without a lookup. `scripts/name-endpoints.py <file-or-folder>` rewrites bare identifiers from the document's own Building Blocks table and reports an endpoint with no row; `--check` changes nothing and exits 1 when something would change. `publish.py` adds a note for a document that still has bare endpoints, and does not fail on it. The model reads only the leading identifier, so diagrams and validation are unchanged.
+
 ## [0.6.0] - 2026-09-26
 
 ### Added

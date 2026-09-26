@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`evidence` and `cost-model` reference types** in the envelope's `references[].type`, read by the ladder at R5 and R4 (with the existing `runbook` at R6).
 - **Outcome measures as criteria.** Optional `measures[]` on an outcome (`id` as `OC-NNN-M<n>`, `measure`, `target`, `unit`). Planning cites the ids as `advances_criterion_ids`, and a consideration may list them in its `criteria`. The strategy standard (§2.3) sets the numbering rule, and `aaa-create-strategy` creates an id for every measure.
 - **Pattern `realises`.** The `pattern` skill (0.6.0) template and method gain optional `realises: [CAP-NNN]`, `flows` and `cost-model` and `evidence` references, so a pattern counts toward the rungs of the capabilities it realises.
+- **Named interface endpoints.** The `pattern` skill (0.7.0) writes Provider and Consumer as identifier and name, with `scripts/name-endpoints.py` to bring existing documents up to it and a note from `publish.py` for any that still need it.
 - **The planning seam.** `standards/aaw-work-seam.md` maps deliverable types to artefact kinds and so to rungs, names `definition-ladder.csv` as the ladder AAW's quarter planning reads, and describes derived rungs feeding an epic's framing: its starting rung, its first product from the blocker, and the rung reached at close.
 
 ### Changed
