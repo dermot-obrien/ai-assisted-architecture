@@ -4,7 +4,7 @@ description: Author an architecture pattern as one Markdown document that is als
 license: Apache-2.0
 compatibility: Python 3.11+ and Node 18+. Requires the `model` and `markdown-deck` skills, which ship with AI-Assisted Work; installing AAW into the same workspace provides both. draw.io desktop is optional; without it, views are exported by hand from draw.io desktop or online and stamped. PDF export needs playwright.
 metadata:
-  version: "0.5.0"
+  version: "0.6.0"
   x-skill-requires: "model@^0.5.0, markdown-deck@^0.1.0"
 ---
 
@@ -56,6 +56,20 @@ Patterns differ by semantic type, which has two parts:
 | Abstraction | `conceptual`, `logical`, `physical`, `mixed` | Derived by `model validate` from the kinds of box, never declared |
 
 A problem-scope pattern opens with Intent: the problem, the forces it balances and the invariant it enforces, and is usually short. A wider-scope pattern opens with Context and names the narrower patterns it applies. Any mix of boxes is allowed: local roles, catalogued logical building blocks, catalogued products, and external context. Report the derived abstraction. A conceptual pattern explains and scopes; one that a team will build from must be physical.
+
+## Tying a pattern to capabilities
+
+A pattern names the capabilities it realises in its front matter, so the capabilities' rungs on the definition ladder can count it:
+
+```yaml
+realises: [CAP-012]          # the capabilities this pattern realises
+flows: [take-order]          # optional: only these flows of them; omit to cover every flow
+references:
+  - { type: cost-model, path: "../cost/order-intake.xlsx" }
+  - { type: evidence, path: "../../evaluations/order-intake-trial/" }
+```
+
+`realises` is optional, and a pattern without it is still a valid pattern. It just counts toward no capability. The derived abstraction decides which rung it can evidence: a logical pattern, every box an ABB, is part of R3 Decided; a physical pattern, every box an SBB, with a `cost-model` reference is part of R4 Buildable; an `evidence` reference on that physical pattern is R5 Proven. The `aaa-rung` skill reads these fields. The rungs are defined in the Definition Ladder Standard (`standards/capabilities/standard-definition-ladder.md`).
 
 ## Structure
 
@@ -163,4 +177,4 @@ Identifiers are never hyperlinked in body text. Write the plain identifier and i
 
 ## Reporting back
 
-Say which of the artefacts you produced (document, diagram, walkthrough, deck), give the counts and the derived abstraction from the validator, name anything that failed and why, and give the paths. Never report a render or a PDF as successful without checking the file exists and is non-empty.
+Say which of the artefacts you produced (document, diagram, walkthrough, deck), give the counts and the derived abstraction from the validator, the capabilities the pattern `realises` if any, name anything that failed and why, and give the paths. Never report a render or a PDF as successful without checking the file exists and is non-empty.

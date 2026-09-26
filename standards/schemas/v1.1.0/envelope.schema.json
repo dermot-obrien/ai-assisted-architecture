@@ -46,14 +46,14 @@
       "enum": [
         "outcome", "use-case", "platform", "capability", "bounded-context",
         "abb", "sbb", "api", "service", "view", "decision-record",
-        "event", "deployment-node", "snapshot", "transition"
+        "event", "deployment-node", "snapshot", "transition", "consideration"
       ]
     },
 
     "anyId": {
-      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR|CN followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
       "type": "string",
-      "pattern": "^(OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      "pattern": "^(OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR|CN)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
     },
 
     "platformId":   { "type": "string", "pattern": "^PL-\\d{3}$" },
@@ -70,6 +70,7 @@
     "dnId":         { "type": "string", "pattern": "^DN-\\d{3}$" },
     "snapshotId":   { "type": "string", "pattern": "^SN-\\d{3}$" },
     "transitionId": { "type": "string", "pattern": "^TR-\\d{3}$" },
+    "considerationId": { "type": "string", "pattern": "^CN-\\d{3}$" },
     "serviceId":    {
       "type": "string",
       "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
@@ -83,7 +84,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["jira", "linear", "github-pr", "github-issue", "source", "doc", "runbook", "external"]
+          "enum": ["jira", "linear", "github-pr", "github-issue", "source", "doc", "runbook", "external", "evidence", "cost-model"],
+          "description": "evidence: an experiment, build or evaluation showing the artefact meets its criteria (definition-ladder R5). cost-model: the model of the running cost (R4). runbook: how it is operated (R6)."
         },
         "id":   { "type": "string" },
         "url":  { "type": "string", "format": "uri" },

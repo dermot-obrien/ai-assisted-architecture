@@ -24,6 +24,23 @@ jobs:
       - name: Validate skills against the agentskills.io spec
         run: node scripts/validate-skills.mjs skills
 
+  rung:
+    name: aaa-rung tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Standard library only. Run once as-is, and once forcing the built-in front
+      # matter parser, so the path taken where PyYAML is absent is always exercised.
+      - name: Unit tests
+        run: |
+          python -m unittest discover skills/aaa-rung/tests
+          AAA_RUNG_PURE_YAML=1 python -m unittest discover skills/aaa-rung/tests
+
   install:
     name: Install into a scratch workspace
     runs-on: ubuntu-latest

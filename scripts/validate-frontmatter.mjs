@@ -48,6 +48,7 @@ const KIND_SCHEMA = {
   'decision-record': 'decision-record.schema.json',
   snapshot: 'snapshot.schema.json',
   transition: 'transition.schema.json',
+  consideration: 'consideration.schema.json',
 };
 
 const ajv = new Ajv2020({ allErrors: true, strict: false });

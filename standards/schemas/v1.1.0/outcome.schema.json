@@ -26,6 +26,23 @@
         "business_rationale": { "type": "string", "minLength": 1 },
         "time_horizon":       { "type": "string", "enum": ["short", "medium", "long"] },
 
+        "measures": {
+          "type": "array",
+          "description": "Optional. The outcome's measures, each with an id that planning cites as a criterion (advances_criterion_ids) and that a consideration may list in its criteria. kpi and kpi_target remain the headline measure; measures[] makes each measure addressable.",
+          "uniqueItems": true,
+          "items": {
+            "type": "object",
+            "required": ["id", "measure"],
+            "properties": {
+              "id":      { "type": "string", "pattern": "^OC-\\d{3}-M\\d+$", "description": "<outcome id>-M<n>, e.g. OC-001-M1. Stable once cited; never renumbered." },
+              "measure": { "type": "string", "minLength": 1, "description": "What is measured." },
+              "target":  { "type": ["number", "string"], "description": "The value that counts as achieved." },
+              "unit":    { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+
         "owned_by_platform":      { "$ref": "envelope.schema.json#/$defs/platformId" },
         "requires_capabilities":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true },
         "realised_by_use_cases":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true }

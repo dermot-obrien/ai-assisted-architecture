@@ -32,6 +32,9 @@ All artefacts must be linked according to the following downward and upward trac
 | **Bounded Context**| ABB | Bounded Context *contains* the logical model (ABB). |
 | **ABB** | SBB | SBB *is a concrete realisation* of the ABB. |
 | **SBB** | Service | Service *is the runtime manifestation* of the SBB. |
+| **Consideration** | Capability / ABB / SBB / Pattern | Consideration *affects* the artefacts whose definition waits on its question. |
+| **Consideration** | Decision Record | Consideration *is resolved by* one Decision Record. |
+| **Pattern** | Capability | Pattern *realises* the Capabilities named in its `realises` front matter. |
 
 
 ## 2. Linking Conventions
@@ -48,7 +51,7 @@ Every artefact must include its parent or related IDs in its front matter or met
 
 ## 3. Maintenance Rules
 
-1.  **Orphan Prevention**: No ABB, SBB, or Service should exist without a link to its parent layer.
+1.  **Orphan Prevention**: No ABB, SBB, or Service should exist without a link to its parent layer. No Consideration should exist without at least one artefact it affects.
 2.  **Linguistic Consistency**: If a term is defined in a Bounded Context, it must be used consistently in the child ABBs and Services.
 3.  **Cross-Context Linking**: Links between Bounded Contexts must only happen at the ABB Interface level.
 
