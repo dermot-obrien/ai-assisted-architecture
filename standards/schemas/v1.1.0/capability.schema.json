@@ -42,7 +42,34 @@
         "provided_by_platform":  { "$ref": "envelope.schema.json#/$defs/platformId" },
         "required_by_outcomes":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/outcomeId" }, "uniqueItems": true },
         "realised_by_abbs":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "uniqueItems": true },
-        "gaps":                  { "type": "array", "items": { "type": "string" } }
+        "gaps":                  { "type": "array", "items": { "type": "string" } },
+
+        "demand_assumption": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional. The demand this capability answers, recorded as an explicit assumption where no outcome is linked yet. Satisfies the demand part of definition-ladder rung R1 in place of required_by_outcomes."
+        },
+
+        "open_questions": {
+          "const": "none",
+          "description": "Optional marker. States that the capability has no open question with more than one credible answer, so no consideration is expected to affect it. Satisfies the consideration part of definition-ladder rung R2. Omit it when considerations exist."
+        },
+
+        "flows": {
+          "type": "array",
+          "description": "Optional. Named paths through the capability that someone would recognise as a job being done. Each carries its rung on the definition ladder (standards/capabilities/standard-definition-ladder.md). The capability sits on the rung of its lowest flow. A recorded rung is a claim; a derived rung (aaa-rung) wins where available.",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id":          { "type": "string", "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$", "description": "Kebab-case identifier, unique within the capability." },
+              "name":        { "type": "string", "minLength": 1 },
+              "description": { "type": "string" },
+              "rung":        { "type": "string", "pattern": "^R[0-6]$", "description": "Recorded rung on the definition ladder, R0 to R6." }
+            },
+            "additionalProperties": false
+          }
+        }
       },
       "required": ["level", "components", "maturity"]
     },
