@@ -34,6 +34,7 @@ All artefacts must be linked according to the following downward and upward trac
 | **SBB** | Service | Service *is the runtime manifestation* of the SBB. |
 | **Consideration** | Capability / ABB / SBB / Pattern | Consideration *affects* the artefacts whose definition waits on its question. |
 | **Consideration** | Decision Record | Consideration *is resolved by* one Decision Record. |
+| **Pattern** | Capability | Pattern *realises* the Capabilities named in its `realises` front matter. |
 
 
 ## 2. Linking Conventions

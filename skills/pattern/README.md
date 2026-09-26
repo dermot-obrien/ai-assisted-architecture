@@ -46,6 +46,10 @@ node ../markdown-deck/bin/markdown-deck.mjs build index.md --out dist --pdf
 
 [examples/knowledge-retrieval](./examples/knowledge-retrieval) is a complete worked example with a `run.sh` that produces every output.
 
+## Tying it to capabilities
+
+A pattern may declare `realises: [CAP-NNN]` in its front matter, with optional `flows` and `references` of type `cost-model` and `evidence`. The capabilities it names can then count it toward their rung on the definition ladder. See `SKILL.md`.
+
 ## What makes it hold together
 
 The document owns what exists and what connects to what. The diagram owns where things sit. Neither is a copy of the other, and `sync` is what keeps both true at once.
