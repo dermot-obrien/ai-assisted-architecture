@@ -56,7 +56,7 @@ def deck_theme(folder):
     That path is written relative to the binding file, as every other path in that file
     is, so resolve it here; otherwise it would depend on where publish was run from.
     """
-    r = run([sys.executable, MODEL, "doctor", "--skill", "reference-architecture",
+    r = run([sys.executable, MODEL, "doctor", "--skill", "pattern",
              "--near", folder, "--json"])
     try:
         doc = json.loads(r.stdout)

@@ -2,6 +2,12 @@
 
 # Changelog
 
+## [0.4.0] - 2026-09-26
+
+### Changed
+
+- Renamed from `reference-architecture` to `pattern`. Every architecture model is a pattern, typed by scope (`problem`, `domain`, `capability-area`, `platform`, `hosting-profile`, `epic`, as front matter `pattern_scope`) and by the abstraction `model validate` derives. A reference architecture is a wide-scope pattern and is authored the same way. The binding section is now `[suite.pattern]`, `model doctor --skill pattern` checks it, and the default identifier series is `PAT`. Breaking for a repository still binding `[suite.reference-architecture]`.
+
 ## [0.3.0] - 2026-09-26
 
 ### Changed

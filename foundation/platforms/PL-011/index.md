@@ -52,7 +52,7 @@ The **Infrastructure Platform** provides the fundamental compute, storage, and n
 - **Compute workload portal.** Self-service requests for container runtimes, scheduling policies, and autoscaling profiles with sensible defaults.
 - **Storage provisioning APIs.** On-demand allocation of block, object, and managed data stores with lifecycle and retention policies.
 - **Network and connectivity catalogue.** Self-service segmentation, ingress, egress, and service-mesh routing with policy-gated approval.
-- **Platform documentation and golden paths.** Reference architectures and onboarding guides for secure, resilient infrastructure consumption.
+- **Platform documentation and golden paths.** Patterns and onboarding guides for secure, resilient infrastructure consumption.
 
 ## 6. Consuming Teams
 - **Application and stream-aligned teams.** Provision and run their workloads on managed compute, storage, and networking.

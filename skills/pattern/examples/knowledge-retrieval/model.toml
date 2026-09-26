@@ -1,6 +1,6 @@
 bindingsVersion = "1.0"
 
-# Contract for the reference architecture template. Section headings and column names
+# Contract for the pattern template. Section headings and column names
 # come from assets/template.md; identifier patterns are the ABB and IF series.
 
 [model]

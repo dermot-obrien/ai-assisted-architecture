@@ -290,7 +290,7 @@ The ontology maps entities to TOGAF concepts as follows:
 | Component | Building block (ABB or SBB via `building_block_type`) | Primary building-block entity. ABB = logical; SBB = technology-specific |
 | Interface | Building block aspect (ABB or SBB via `building_block_type`) | TOGAF lists interfaces as part of ABB content |
 | Capability | Phase B concept (not a building block) | What the enterprise needs to do. Realised *by* ABBs |
-| Pattern | Reference architecture (not a building block) | A reusable recipe from the Architecture Continuum. *Informs* ABB design |
+| Pattern | Architecture model at any scope (not a building block) | A reusable arrangement of building blocks from the Architecture Continuum, from one recurring problem up to a whole domain. *Informs* ABB design |
 | Standard | Prescriptive specification (not a building block) | Building blocks *conform to* standards. TOGAF lists standards-conformance as an ABB characteristic |
 | Platform | Enterprise governance unit (not a building block) | Composed of building blocks; has board-level accountability |
 
@@ -755,7 +755,7 @@ erDiagram
   Pattern         ||--|| ContinuumRef     : "Architecture Continuum (reference)"
 ```
 
-Pattern is a reference architecture from the Architecture Continuum — a reusable recipe for assembling building blocks to address a recurring problem. In TOGAF terms, a Pattern is **not** a building block itself; it informs ABB design without being one. Advisory by default (compare to Standard which is binding). Components implement patterns; decisions apply patterns; changes can propose patterns.
+Pattern is an Architecture Continuum artefact — a reusable arrangement of building blocks, at any scope from one recurring problem up to a whole domain, which is what is elsewhere called a reference architecture. In TOGAF terms, a Pattern is **not** a building block itself; it informs ABB design without being one. Advisory by default (compare to Standard which is binding). Components implement patterns; decisions apply patterns; changes can propose patterns.
 
 `status` lifecycle (proposed / current / deprecated) reflects that patterns evolve. Deprecation is significant — *"which components still implement deprecated pattern X?"* is a useful query.
 

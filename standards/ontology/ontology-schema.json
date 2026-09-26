@@ -1791,7 +1791,7 @@
     "Pattern": {
       "type": "object",
       "title": "Pattern",
-      "description": "Reusable architectural prescription — a recipe for assembling building blocks to address a recurring problem. Advisory by default (compare to Standard which is binding). In TOGAF terms, a Pattern is NOT itself a building block — it is a reference architecture or pattern from the Architecture Continuum that *informs* ABB design. Components implement patterns; decisions apply them. Examples: 'API Gateway pattern', 'CQRS pattern', 'Zero Trust authentication pattern'.",
+      "description": "Reusable architectural prescription — a recipe for assembling building blocks to address a recurring problem. Advisory by default (compare to Standard which is binding). In TOGAF terms, a Pattern is NOT itself a building block — it is an Architecture Continuum artefact, at any scope from one recurring problem up to a whole domain, that *informs* ABB design. Components implement patterns; decisions apply them. Examples: 'API Gateway pattern', 'CQRS pattern', 'Zero Trust authentication pattern'.",
       "properties": {
         "id": {
           "type": "string"

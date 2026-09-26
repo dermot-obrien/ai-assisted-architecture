@@ -1,7 +1,7 @@
 ---
-sidebar_label: Reference Architecture Template
+sidebar_label: Pattern Template
 status: Draft
-version: "0.3"
+version: "0.4"
 last_modified: 2026-09-26
 author: "<your name>"
 provenance:
@@ -9,21 +9,22 @@ provenance:
   review_state: ai-raw
 ---
 
-# REF-XXX Reference Architecture Name
+# PAT-NNN Pattern Name
 
 <!--
 HOW TO USE THIS TEMPLATE
-- This file is both the reference-architecture template and its authoring instructions.
+- This file is both the pattern template and its authoring instructions, at any scope.
 - Guidance lives in HTML comments, which Markdown renderers do not display. An MDX-based
   site must treat .md files as CommonMark for HTML comments to be legal (in Docusaurus,
   markdown.format 'detect'). Delete each guidance comment as you complete its section.
 - Copy this file into the directory your repository binds as `outputDir`, as
-  <slug>/index.md, and add your repository's standard front matter.
-- A reference architecture is an architecture model that composes a design for a
-  domain, capability area, platform, hosting profile or epic. A pattern is the same
-  construct answering ONE recurring problem; if that is what you are writing, swap
-  ## Context for ## Intent (the problem, its forces, the invariant enforced). The two are
-  told apart by intent and scope, never by the kind of box.
+  <slug>/index.md, and add your repository's standard front matter, including
+  pattern_scope: problem, domain, capability-area, platform, hosting-profile or epic.
+- Every architecture model is a pattern. Patterns differ by semantic type: the scope you
+  author, and the abstraction model validate derives. A problem-scope pattern answers ONE
+  recurring problem: rename ## Context to ## Intent (the problem, its forces, the
+  invariant enforced) and delete the sections marked WIDER SCOPE. What is often called a
+  pattern is a wide-scope pattern.
 - Boxes may be any mix of local roles (01 Gateway), catalogued logical building blocks,
   catalogued products and external context. model validate derives the abstraction from
   them: all local is conceptual, logical blocks is logical, every box a product is
@@ -42,7 +43,7 @@ HOW TO USE THIS TEMPLATE
   architecturally significant minority. Unmaintained detail is the documented decay mode
   for this artefact type, so omit rather than pad.
 - Deck tags: sections marked with a deck:slide tag are rendered into an HTML deck and PDF
-  by the reference-architecture-deck skill. The tags are HTML comments and are invisible
+  by the pattern skill's publisher. The tags are HTML comments and are invisible
   in the published docs page. See the companion specification for the tag vocabulary.
 -->
 
@@ -51,15 +52,17 @@ HOW TO USE THIS TEMPLATE
 ## Context
 
 <!--
-MANDATORY. The domain/capability scope, the drivers, and the target-state problem space
-this reference architecture addresses. Say what "done" looks like for the domain.
+MANDATORY. For a problem scope, rename to ## Intent: the problem, its forces and the
+invariant enforced. For a wider scope: the domain, capability area, platform, hosting
+profile or epic covered, the drivers, and the target-state problem space this pattern
+addresses. Say what "done" looks like for the domain.
 Name the audience: who is expected to build against this.
 -->
 
 ### Non-Goals
 
 <!--
-RECOMMENDED. What this reference architecture is explicitly NOT for. The dominant
+RECOMMENDED. What this pattern is explicitly NOT for. The dominant
 documented failure mode for this artefact is adoption for legitimacy rather than fit,
 and stating the non-goals is the cheapest mitigation. Three to five bullets.
 -->
@@ -77,14 +80,14 @@ where they exist rather than restating them.
 |---|---|---|
 | Availability | Retrieval service loses its primary index | Degraded answer served within 2s, no error to the caller |
 
-### Principles Upheld
+### Principles Realised
 
 <!--
-OPTIONAL FACET. The principles this reference architecture upholds, one line each on HOW.
+OPTIONAL FACET. The principles this pattern realises, one line each on HOW.
 Use plain PRN-NNN identifiers. Delete this subsection if none apply.
 -->
 
-| Principle | How this reference architecture upholds it |
+| Principle | How this pattern realises it |
 |---|---|
 | PRN-NNN Principle name | One-sentence statement |
 
@@ -93,7 +96,7 @@ Use plain PRN-NNN identifiers. Delete this subsection if none apply.
 ## Diagram
 
 <!--
-MANDATORY. Every reference architecture MUST carry a diagram. One with no diagram is not one.
+MANDATORY. Every pattern MUST carry a diagram. A pattern with no diagram is not a pattern.
 
 Author ONE draw.io source beside this file, holding the component view on the base layer
 and one layer per scenario. Export to SVG (preferred) or PNG.
@@ -145,7 +148,7 @@ tooltip, link, linkTarget, tags, treeRoot.
   boundaries. Overlay the applied patterns as labelled bands so the reader sees which
   pattern owns which region, and which building blocks are the connective tissue.
 - Box label: line 1 bold "COMP-NNN Official Name"; line 2 the short role in THIS
-  reference architecture. Do not invent names; use the catalogue's official name.
+  pattern. Do not invent names; use the catalogue's official name.
 - Every connector is labelled with what flows and carries an iface_id. No unlabeled arrows.
 - Include a KEY on the canvas explaining colours, shapes and line semantics. A diagram
   without a key is a primary comprehension failure.
@@ -166,12 +169,12 @@ base components. This is a UML communication diagram, which C4 calls a dynamic d
 
 Embed the exported views under ## Diagram and in each scenario:
 
-    ![REF-XXX components](./components.svg)
+    ![PAT-NNN components](./components.svg)
 -->
 
 ## Applicability
 
-<!-- MANDATORY. When to adopt this reference architecture. -->
+<!-- MANDATORY. When to use this pattern. -->
 
 ## Not Applicable
 
@@ -180,14 +183,13 @@ Embed the exported views under ## Diagram and in each scenario:
 ## Patterns Applied
 
 <!--
-OPTIONAL FACET, expected wherever a published pattern covers part of the design. The
-patterns this reference architecture applies. Use plain PAT-NNN identifiers; do not
-restate each pattern's body, summarise its role here. A conceptual model drawn before its
-patterns exist may say so in one line. Scope, not this list, is what makes this a
-reference architecture rather than a pattern.
+WIDER SCOPE. OPTIONAL FACET, expected wherever a published pattern covers part of the
+design. The narrower patterns this pattern composes. Use plain PAT-NNN identifiers; do not
+restate each pattern's body, summarise its role here. A conceptual pattern drawn before
+its narrower patterns exist may say so in one line.
 -->
 
-| Pattern | Role in this reference architecture |
+| Pattern | Role in this pattern |
 |---|---|
 | PAT-NNN Pattern Name | What this pattern contributes to the end-to-end design |
 
@@ -209,7 +211,7 @@ Write prose beneath this table ONLY for the architecturally significant componen
 ### subsection each. Most components need nothing beyond the row.
 -->
 
-| Building Block | Role in this reference architecture | Source |
+| Building Block | Role in this pattern | Source |
 |---|---|---|
 | COMP-NNN Official Name | What it does here, one clause | PAT-NNN / loose |
 | 07 Local role name | A role with no catalogue entry yet | loose |
@@ -276,12 +278,12 @@ Use it for the detail a reader needs and an audience does not.
 
 ## Key Concepts
 
-<!-- OPTIONAL FACET. Definitions of the load-bearing terms this reference architecture
+<!-- OPTIONAL FACET. Definitions of the load-bearing terms this pattern
 introduces. Delete if unused. -->
 
 ## Standards Applied
 
-<!-- OPTIONAL FACET. The binding standards this reference architecture mandates
+<!-- OPTIONAL FACET. The binding standards this pattern mandates
 conformance to. Use plain standard_* identifiers. Delete if none apply. -->
 
 | Standard | What it constrains |
@@ -290,7 +292,7 @@ conformance to. Use plain standard_* identifiers. Delete if none apply. -->
 
 ## Controls and Guardrails
 
-<!-- MANDATORY. The enforceable controls this reference architecture establishes across
+<!-- MANDATORY. The enforceable controls this pattern establishes across
 its composed patterns, and where each is enforced. -->
 
 | Control | Source Standard/Policy | Enforcement Point |
@@ -314,7 +316,7 @@ discharged.
 
 <!--
 RECOMMENDED. What is mandatory, what is guidance, and where a team may legitimately
-deviate and how. A reference architecture with no escape hatch for legitimate edge cases
+deviate and how, for a wider scope. A pattern with no escape hatch for legitimate edge cases
 gets abandoned rather than followed.
 -->
 
@@ -324,9 +326,9 @@ gets abandoned rather than followed.
 ## Decisions
 
 <!--
-RECOMMENDED. The decisions this reference architecture rests on, with the alternative
+RECOMMENDED. The decisions this pattern rests on, with the alternative
 rejected in one clause. Link to the ADR rather than restating it; the Decision entity
-already points at this reference architecture from its side, so this list is a
+already points at this pattern from its side, so this list is a
 convenience for the reader, not a second source of truth.
 -->
 
@@ -337,7 +339,7 @@ convenience for the reader, not a second source of truth.
 ## Risks and Trade-offs
 
 <!-- MANDATORY. Residual risks, known gaps and accepted design trade-offs, each with a
-mitigation. State the gaps honestly; a reference architecture that claims no gaps is not
+mitigation. State the gaps honestly; a pattern that claims no gaps is not
 believed. -->
 
 | Risk/Trade-off | Mitigation |
