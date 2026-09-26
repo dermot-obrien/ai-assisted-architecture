@@ -19,7 +19,7 @@ import sys
 
 from . import __version__
 from . import bindings as bindings_mod
-from .derive import Workspace, derive_all
+from .derive import DIR_KEYS, Workspace, derive_all
 
 
 def _args(argv):
@@ -58,6 +58,8 @@ def main(argv=None) -> int:
             print(f"  bindings  {b.path}")
             for k, v in b.paths.items():
                 print(f"  {k:<17} {v}")
+            for k in b.unbound:
+                print(f"  {k:<17} (not bound)")
             print(f"  localPattern      {b.local_pattern}")
         return 0
 
@@ -116,8 +118,11 @@ def render(report: dict, verbose: bool = False) -> str:
         if n == 0:
             lines.append("  ".join("-" * w for w in widths) + "  " + "-" * 22)
     if not report["capabilities"]:
-        lines.append("(no capabilities found under capabilityDir, and none named by a pattern "
-                     "or consideration)")
+        where = ("capabilityDir is not bound" if "capabilityDir" in report.get("unbound", [])
+                 else "no capabilities found under capabilityDir")
+        lines.append(f"({where}, and none named by a pattern or consideration)")
+    for k in report.get("unbound", []):
+        lines.append(f"  unbound  {k}: no {DIR_KEYS[k]}")
     for note in notes:
         lines.append(f"  note  {note}")
     for w in report.get("warnings", []):

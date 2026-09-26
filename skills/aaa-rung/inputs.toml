@@ -5,6 +5,11 @@
 # default would be whichever repository the skill was written in, wrong everywhere else,
 # and a rung derived over the wrong directory looks exactly like a real one.
 #
+# Every directory is optional. Leave one unset when the repository does not keep that kind
+# of artefact: nothing is read for it, and the report names it as unbound so a blocker it
+# causes reads as a gap in the repository rather than in the capability. A directory that
+# is set must exist.
+#
 # Answer in [suite.aaa-rung] of the repository's .agents/skill-bindings.toml.
 # Paths resolve against that file's directory, never the working directory.
 #
@@ -16,32 +21,32 @@ short_description = "Where the artefacts that evidence the definition ladder liv
 
 [inputs.options.capabilityDir]
 type = "dir"
-required = true
+required = false
 description = """Where Capability documents live (kind: capability, CAP-NNN). Searched recursively."""
 
 [inputs.options.abbDir]
 type = "dir"
-required = true
+required = false
 description = """Where Architecture Building Blocks live (kind: abb, ABB-NNN). Read for their requires lists."""
 
 [inputs.options.sbbDir]
 type = "dir"
-required = true
+required = false
 description = """Where Solution Building Blocks live (kind: sbb, SBB-NNN). Read for realises and status."""
 
 [inputs.options.decisionDir]
 type = "dir"
-required = true
+required = false
 description = """Where Decision Records live (kind: decision-record, DR-NNN). Read for status."""
 
 [inputs.options.considerationDir]
 type = "dir"
-required = true
+required = false
 description = """Where Considerations live (kind: consideration, CN-NNN). Read for affects, consideration_status and resolved_by."""
 
 [inputs.options.patternDir]
 type = "dir"
-required = true
+required = false
 description = """Where patterns live. Read for realises, flows, references and the identifiers in their Building Blocks tables."""
 
 [inputs.options.localPattern]
