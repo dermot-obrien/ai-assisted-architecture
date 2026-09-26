@@ -91,7 +91,15 @@ The relations a kind carries depends on its position in the metamodel. The full 
 
 | Field | Type | Description |
 |---|---|---|
-| `references` | array of objects | Each object has `type` (e.g. `jira`, `linear`, `github-pr`, `source`, `doc`, `runbook`) plus type-specific fields (`id`, `url`, `repo`, `path`, `ref`). |
+| `references` | array of objects | Each object has `type` (one of `jira`, `linear`, `github-pr`, `github-issue`, `source`, `doc`, `runbook`, `external`, `evidence`, `cost-model`) plus type-specific fields (`id`, `url`, `repo`, `path`, `ref`). |
+
+Three types carry meaning for the [definition ladder](./capabilities/standard-definition-ladder.md), which reads them from a capability or from the pattern that realises it:
+
+| Type | Points at | Ladder rung |
+|---|---|---|
+| `cost-model` | The model of the running cost | R4 Buildable |
+| `evidence` | An experiment, build or evaluation, and its results against the capability's criteria | R5 Proven |
+| `runbook` | How the capability is operated in service | R6 In service |
 
 Example:
 ```yaml
