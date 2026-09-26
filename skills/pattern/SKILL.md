@@ -2,10 +2,10 @@
 name: pattern
 description: Author an architecture pattern as one Markdown document that is also the model and also the deck, at any scope from one recurring problem to a whole domain, platform, hosting profile or epic. Creates the document from a template, generates the draw.io diagram and scenario overlays from its own tables, validates that the diagram and the document agree, animates the scenarios, and publishes HTML slides and a PDF. Use when asked to create, author, scaffold, review or publish a pattern, a reference architecture, a target-state architecture, or an end-to-end architecture document with a component diagram and scenarios.
 license: Apache-2.0
-compatibility: Python 3.11+ and Node 18+. Requires the `model` and `markdown-deck` skills, which ship with AI-Assisted Work; installing AAW into the same workspace provides both. Rendering diagrams needs draw.io desktop; PDF export needs playwright.
+compatibility: Python 3.11+ and Node 18+. Requires the `model` and `markdown-deck` skills, which ship with AI-Assisted Work; installing AAW into the same workspace provides both. draw.io desktop is optional; without it, views are exported by hand from draw.io desktop or online and stamped. PDF export needs playwright.
 metadata:
-  version: "0.4.1"
-  x-skill-requires: "model@^0.4.1, markdown-deck@^0.1.0"
+  version: "0.5.0"
+  x-skill-requires: "model@^0.5.0, markdown-deck@^0.1.0"
 ---
 
 # Pattern
@@ -111,12 +111,23 @@ python <model>/bin/model.py validate index.md
 
 Report what it finds. The findings that matter are the ones invisible to the eye: an interface wired one way in the table and another on the canvas, an overlay step whose endpoints disagree with its metadata, an identifier drawn twice because a shape was copy-pasted.
 
-### 4. Render the view and animate the scenarios
+### 4. Render or export the view, and animate the scenarios
+
+With draw.io desktop installed:
 
 ```bash
 python <model>/bin/model.py render components.drawio --out components.svg --layer Structure
 python <model>/bin/model.py animate index.md
 ```
+
+Without it, draw.io online does the same job by hand. Open the `.drawio`, show only the Structure layer, export it as SVG to `components.svg` beside the diagram, and record what it shows so it is checked for staleness like a render:
+
+```bash
+python <model>/bin/model.py stamp components.svg --diagram components.drawio --layer Structure
+python <model>/bin/model.py animate index.md
+```
+
+`animate` draws on that committed view and never needs draw.io. `python <model>/bin/model.py drawio` says whether draw.io desktop is installed. Commit the diagram, the view and its `.render.json` together.
 
 The structure is the one static image. The scenarios are shown by the animated walkthrough, `scenarios.html`, a self-contained page that opens from disk and steps through each scenario on the structure: the step's number on the acting box, the arrow to its target, the rest dimmed. Link to `./scenarios.html` at the top of `## Scenarios` and give it one deck slide:
 
@@ -134,7 +145,7 @@ Tag the sections an audience needs, typically six to twelve, then publish the fo
 python <skills>/pattern/scripts/publish.py <folder>
 ```
 
-It runs `model scan`, and for every document that declares a diagram and passes validation it renders `<stem>.svg` beside the document, builds the animated walkthrough when the model has scenarios, then builds `dist/<name>/deck.html` and `deck.pdf` with the bound `deckTheme`. `--scenario-images` also renders one `<stem>-sN.svg` per scenario; `--no-animate` skips the walkthrough. `--no-deck` stops after the views and the walkthrough, for a site build that builds its own decks from them: run it with `--recursive` over the pattern folders before the site's deck build, so a deck never embeds a missing or stale view. `<name>` is the file stem, or the folder name for an `index.md`. Reference the views in the document by those names. A model that fails validation is skipped unless `--force`; `--dry-run` says what would be done, `--no-pdf` stops at HTML, and `--thumbnails` opens each deck's slide index with thumbnails rather than titles. The script works on any declared model, so a folder holding a pattern and two alternative views publishes all three in one run.
+It runs `model scan`, and for every document that declares a diagram and passes validation it renders `<stem>.svg` beside the document, builds the animated walkthrough when the model has scenarios, then builds `dist/<name>/deck.html` and `deck.pdf` with the bound `deckTheme`. `--scenario-images` also renders one `<stem>-sN.svg` per scenario; `--no-animate` skips the walkthrough. `--render auto` (the default) renders a view only when it is missing or older than its diagram and draw.io desktop is installed, and otherwise requires it to be current; `--render never` never calls draw.io, for a build machine without it, and fails naming each view to export and stamp; `--render always` re-renders every view. `--no-deck` stops after the views and the walkthrough, for a site build that builds its own decks from them: run it with `--recursive` over the pattern folders before the site's deck build, so a deck never embeds a missing or stale view. `<name>` is the file stem, or the folder name for an `index.md`. Reference the views in the document by those names. A model that fails validation is skipped unless `--force`; `--dry-run` says what would be done, `--no-pdf` stops at HTML, and `--thumbnails` opens each deck's slide index with thumbnails rather than titles. The script works on any declared model, so a folder holding a pattern and two alternative views publishes all three in one run.
 
 The document keeps its detail; the deck shows a selection of it. Untagged sections stay document-only, and `deck:skip` removes detail from a slide without removing it from the document.
 

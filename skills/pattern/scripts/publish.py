@@ -7,7 +7,8 @@ them and validates each; this script does the rest, so one command turns a folde
 related models into one set of images and one deck per document.
 
     python scripts/publish.py <folder> [--recursive] [--no-pdf] [--thumbnails]
-                              [--scenario-images] [--no-animate] [--no-deck] [--force] [--dry-run]
+                              [--scenario-images] [--no-animate] [--no-deck]
+                              [--render auto|always|never] [--force] [--dry-run]
 
 Per model, written beside the document:
 
@@ -20,6 +21,12 @@ Per model, written beside the document:
     dist/<name>/deck.html   when the document carries deck tags, and deck.pdf with it;
                             --no-deck stops before this, for a site build that makes
                             its own decks from the views written above
+
+Rendering needs draw.io desktop; nothing else here does. --render auto (the default)
+renders a view only when it is missing or older than its diagram and draw.io is
+installed, and otherwise requires it to be current: exported by hand, from draw.io
+desktop or online, and recorded with `model stamp`. --render never never calls draw.io,
+for a build machine without it; --render always re-renders every view.
 
 <name> is the document's file stem, or its folder name for an index.md. A model that
 fails validation is not published unless --force, because a deck built from a document
@@ -77,8 +84,17 @@ def deck_name(doc):
     return os.path.basename(os.path.dirname(os.path.abspath(doc))) if stem == "index" else stem
 
 
+def drawio_available():
+    return run([sys.executable, MODEL, "drawio"]).returncode == 0
+
+
+def current(image):
+    """True when the image's render record matches its diagram."""
+    return run([sys.executable, MODEL, "stamp", "--check", image]).returncode == 0
+
+
 def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False, animate=True,
-            deck=True):
+            deck=True, render="auto", has_drawio=True):
     """Render one model's views, animate its scenarios and build its deck. Returns (ok, notes)."""
     notes, ok = [], True
     docdir = os.path.dirname(entry["doc"])
@@ -88,6 +104,24 @@ def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False,
 
     for v in views:
         out = os.path.join(docdir, v["file"])
+        fresh = os.path.exists(out) and current(out)
+        if render == "never" or (render == "auto" and (fresh or not has_drawio)):
+            if fresh:
+                notes.append(f"current {v['file']}")
+            elif v.get("scenario"):
+                notes.append(f"skipped {v['file']}: a scenario image needs draw.io desktop")
+            else:
+                ok = False
+                state = "is older than its diagram" if os.path.exists(out) else "is missing"
+                why = "rendering is off (--render never)" if render == "never" else                     "draw.io desktop is not installed to render it"
+                notes.append(f"{v['file']} {state} and {why}. Export the {v['layers'][-1]!r} layer by hand, from draw.io "
+                             f"desktop or online, then: model stamp {v['file']} --diagram "
+                             f"{os.path.basename(entry['diagram'])} --layer \"{v['layers'][-1]}\"")
+            continue
+        if not has_drawio:
+            ok = False
+            notes.append(f"cannot render {v['file']}: --render always needs draw.io desktop")
+            continue
         cmd = [sys.executable, MODEL, "render", entry["diagram"], "--out", out]
         for layer in v["layers"]:
             cmd += ["--layer", layer]
@@ -107,7 +141,8 @@ def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False,
         if dry_run:
             notes.append(f"would animate {page}")
         else:
-            r = run([sys.executable, MODEL, "animate", entry["doc"]])
+            mode = "never" if render == "never" or not has_drawio else "auto"
+            r = run([sys.executable, MODEL, "animate", entry["doc"], "--render", mode])
             if r.returncode != 0 or not nonempty(os.path.join(docdir, page)):
                 ok = False
                 notes.append(f"animate failed: {(r.stderr or r.stdout).strip()[:200]}")
@@ -157,6 +192,9 @@ def main():
                     help="also render one static image per scenario; the walkthrough replaces them")
     ap.add_argument("--no-animate", action="store_true",
                     help="do not build the animated scenario walkthrough")
+    ap.add_argument("--render", default="auto", choices=("auto", "always", "never"),
+                    help="auto: render a view only when it is missing or stale and draw.io is "
+                         "installed; never: require committed, stamped views; always: re-render all")
     ap.add_argument("--no-deck", action="store_true",
                     help="render the views and the walkthrough only; build no deck")
     ap.add_argument("--json", action="store_true")
@@ -185,6 +223,9 @@ def main():
         return 2
 
     theme = deck_theme(a.folder)
+    has_drawio = drawio_available()
+    if not a.json:
+        print(f"  draw.io desktop {'found' if has_drawio else 'not found'}; render mode {a.render}")
     results = []
     for e in scanned["models"]:
         name = os.path.relpath(e["doc"], a.folder)
@@ -194,7 +235,8 @@ def main():
                             "notes": ["fails validation; fix it or pass --force"] + errs[:5]})
             continue
         ok, notes = publish(e, theme, not a.no_pdf, a.dry_run, a.thumbnails,
-                            a.scenario_images, not a.no_animate, not a.no_deck)
+                            a.scenario_images, not a.no_animate, not a.no_deck,
+                            a.render, has_drawio)
         results.append({"doc": name, "status": "ok" if ok else "failed", "notes": notes})
 
     if a.json:
