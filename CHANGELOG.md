@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Skills missing from npm installs.** `package.json` `files` did not list `skills/`, so a repository that takes AAA as an npm git dependency got no skills: `aaa install` reported "no skills" and still removed the old `.claude/commands/aaa` shims, leaving nothing in their place. `skills/` is now packaged.
+
 ### Added
 
 - **Definition ladder.** `standards/capabilities/standard-definition-ladder.md` defines how far a capability has been defined as a rung that can be checked: R0 Unrecognised, R1 Named, R2 Bounded, R3 Decided, R4 Buildable, R5 Proven, R6 In service. It gives what each rung requires and the artefact kinds that evidence it, and the rules: a capability sits on the highest rung with every lower rung evidenced; a rung is claimed per flow and the capability sits at its lowest flow; building ahead does not skip rungs but is latent evidence; a rung is lost when its evidence stops being true. It says how the ladder differs from capability maturity (0 to 5), `lifecycle_state` and `status`. Architecture's reach ends at R4, and R5 and R6 are received from implementation. `definition-ladder.csv` (`rung,name,description`) beside it is the form tools read. Linked from the capability document standard, which gains a Definition Rung section and a section on rung versus maturity, and from the metamodel.
