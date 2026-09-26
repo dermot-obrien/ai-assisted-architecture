@@ -170,16 +170,16 @@ All eight skills are standalone [Agent Skills](https://agentskills.io): a direct
 | Create SBB | `/aaa-create-sbb` | Product mapping, realisation, composite structure. |
 | Create Service | `/aaa-create-service` | Runtime unit of execution. |
 | Create Runtime Agent | `/aaa-create-runtime-agent` | An autonomous runtime agent as a catalogued service, with guardrails, capability scope and provenance. |
-| Reference Architecture | `/reference-architecture` | One Markdown document that is also the model and also the deck: generates the draw.io diagram and scenario overlays from its own tables, validates that the two agree, and publishes slides and a PDF. |
+| Pattern | `/pattern` | An architecture pattern at any scope, from one recurring problem to a whole domain, platform, hosting profile or epic, as one Markdown document that is also the model and also the deck: generates the draw.io diagram from its own tables, validates that the two agree, animates the scenarios, and publishes slides and a PDF. What is often called a reference architecture is a wide-scope pattern. |
 
 The eight `create-*` skills follow the same four-phase workflow: Discovery, Load Standards,
 Create Artefacts, Self-Verification.
 
-`reference-architecture` is different in kind: it authors a whole document rather than one
+`pattern` is different in kind: it authors a whole document rather than one
 catalogue artefact, and it needs the `model` and `markdown-deck` skills, which ship with
 [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work). Installing AAW into the
 same workspace provides both, and AAA already depends on AAW for the install engine. It reads
-its repository specifics, including where reference architectures live and which template to
+its repository specifics, including where patterns live and which template to
 use, from `.agents/skill-bindings.toml`. Each carries a `description`, so an assistant can invoke it when a request
 matches rather than only when you type the slash command.
 
