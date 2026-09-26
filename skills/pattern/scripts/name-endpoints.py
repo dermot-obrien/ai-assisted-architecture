@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: Apache-2.0
-"""Name the endpoints in a pattern's Interfaces table.
+"""Name the endpoints in a pattern's Interfaces and scenario steps tables.
 
-A Provider or Consumer cell holding only an identifier ("ABB-017", "04") is rewritten as
+A Provider or Consumer cell in Interfaces, or an Actor or Target cell in a scenario's
+steps table under Scenarios, holding only an identifier ("ABB-017", "04") is rewritten as
 the identifier followed by the name its Building Blocks row gives it ("ABB-017 Context
 Retrieval Service", "04 Identity provider"). The model reads only the leading identifier,
 so the diagram, validation and the walkthrough are unchanged; the document and every deck
@@ -27,7 +28,8 @@ ROW = re.compile(r"^\s*\|(.*)\|\s*$")
 SEP = re.compile(r"^\s*\|[\s:|-]+\|\s*$")
 FENCE = re.compile(r"^\s*(```|~~~)")
 BLOCK_SECTIONS = {"building blocks", "required building blocks"}
-ENDPOINT_COLUMNS = {"provider", "consumer"}
+# Top-level section, then the columns in its tables that name a building block.
+ENDPOINT_COLUMNS = {"interfaces": {"provider", "consumer"}, "scenarios": {"actor", "target"}}
 
 
 def cells(line):
@@ -35,20 +37,24 @@ def cells(line):
 
 
 def tables(lines):
-    """Yield (section, header, [(line index, cells)]) for every table outside code fences."""
-    section, fenced, i = "", False, 0
+    """Yield (section, top, header, [(line index, cells)]) for every table outside code
+    fences: section is the nearest heading, top the nearest level-2 heading above it."""
+    section, top, fenced, i = "", "", False, 0
     while i < len(lines):
         line = lines[i]
         if FENCE.match(line):
             fenced = not fenced
         elif not fenced and HEADING.match(line):
-            section = HEADING.match(line).group(2).strip().lower()
+            h = HEADING.match(line)
+            section = h.group(2).strip().lower()
+            if len(h.group(1)) == 2:
+                top = section
         elif (not fenced and ROW.match(line) and i + 1 < len(lines) and SEP.match(lines[i + 1])):
             header, rows, i = cells(line), [], i + 2
             while i < len(lines) and ROW.match(lines[i]):
                 rows.append((i, cells(lines[i])))
                 i += 1
-            yield section, header, rows
+            yield section, top, header, rows
             continue
         i += 1
 
@@ -56,7 +62,7 @@ def tables(lines):
 def names(lines):
     """Identifier to name, from the first column of every Building Blocks table."""
     out = {}
-    for section, _, rows in tables(lines):
+    for section, _, _, rows in tables(lines):
         if section in BLOCK_SECTIONS:
             for _, row in rows:
                 m = ID_LEAD.match(row[0]) if row else None
@@ -69,10 +75,11 @@ def fix(text):
     """Return (new text, number of cells named, identifiers with no row)."""
     lines = text.split("\n")
     known, named, unknown = names(lines), 0, set()
-    for section, header, rows in tables(lines):
-        if section != "interfaces":
+    for _, top, header, rows in tables(lines):
+        wanted = ENDPOINT_COLUMNS.get(top, set())
+        cols = [k for k, h in enumerate(header) if h.lower() in wanted]
+        if not cols:
             continue
-        cols = [k for k, h in enumerate(header) if h.lower() in ENDPOINT_COLUMNS]
         for idx, row in rows:
             if "\\|" in lines[idx]:
                 continue  # an escaped pipe would not survive the split and rejoin
@@ -115,7 +122,7 @@ def main():
         eol = "\r\n" if "\r\n" in text else "\n"
         new, named, unknown = fix(text.replace("\r\n", "\n"))
         for u in unknown:
-            print(f"  ! {path}: {u} is an interface endpoint with no Building Blocks row", file=sys.stderr)
+            print(f"  ! {path}: {u} is an endpoint with no Building Blocks row", file=sys.stderr)
         if not named:
             continue
         total += named

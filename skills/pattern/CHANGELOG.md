@@ -2,6 +2,12 @@
 
 # Changelog
 
+## [0.7.1] - 2026-09-26
+
+### Changed
+
+- Scenario steps name their building blocks too. Actor and Target in each steps table under Scenarios are written as identifier and name, in the template, the example and the method, and `scripts/name-endpoints.py` fills them in the same way as Interfaces. The model reads only the leading identifier, so overlays, the walkthrough and validation are unchanged.
+
 ## [0.7.0] - 2026-09-26
 
 ### Added
