@@ -4,6 +4,14 @@ status: Draft
 version: "0.4"
 last_modified: 2026-09-26
 author: "<your name>"
+# Optional. The capabilities this pattern realises, so it counts toward their rung on the
+# definition ladder. Add flows to scope it to some of a capability's flows; omit flows to
+# cover all of them. Delete the lines that do not apply.
+realises: [CAP-NNN]
+flows: []
+references:
+  - { type: cost-model, path: "<path to the cost model>" }   # R4, physical patterns
+  - { type: evidence, path: "<path to the evaluation>" }     # R5, received from implementation
 provenance:
   origin: ai-generated
   review_state: ai-raw

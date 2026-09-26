@@ -377,6 +377,21 @@ Recursive via `parent_capability_id`. The original ontology had SubCapability as
 
 `maturity` is a Capability attribute (crawl/walk/run/fly) but maturity *targets* are expressed through milestone criteria. This separation matters: current maturity is a fact about today; target maturity is a commitment about a future date and belongs in the governance layer.
 
+#### Maturity horizons are bands of the definition ladder
+
+Crawl, walk, run and fly are not a scale of their own. They are a coarse reading of the [definition ladder](../capabilities/standard-definition-ladder.md) (R0 to R6), grouped into four bands, and this table is the whole of their definition:
+
+| Horizon | Ladder rungs | Reads as |
+|---|---|---|
+| crawl | R1 Named, R2 Bounded | The capability is recognised and scoped: named, with its building blocks and open questions listed, but nothing yet decided |
+| walk | R3 Decided, R4 Buildable | The capability is designed: its questions are settled and it can be built from a physical pattern |
+| run | R5 Proven | An implementation has exercised it end to end and the evidence is linked |
+| fly | R6 In service | It runs for real, with an owner, a runbook and a reported measure |
+
+A capability at R0 is not in the capability model and so has no horizon. A capability's horizon is the band containing its rung, which is the rung of its lowest flow, and it moves only when the rung does. Where a rung is derived (by `aaa-rung`), the horizon is derived from it and is never set independently.
+
+This is a mapping, not a new scale, and it does not replace AAA capability maturity (0 to 5, None to Optimising). That maturity measures how well an in-service capability performs, so it becomes meaningful at fly and continues beyond it, while the horizons stop at fly. `Milestone.maturity_horizon` uses the same four values with the same meaning: the band a milestone commits the capability to reach.
+
 ### 4.3 Component
 
 ```mermaid
@@ -631,6 +646,8 @@ erDiagram
 ```
 
 The renaming from "Architectural Milestone" to "Milestone" was deliberate: the entity's place in the model carries the architectural meaning; the qualifier added no expressive power and made the name bureaucratic.
+
+`maturity_horizon` is optional and uses the crawl/walk/run/fly bands defined in §4.2: a milestone with `maturity_horizon: walk` commits its capabilities to R3 or R4 on the definition ladder, independent of its dates.
 
 `role` enum (baseline / interim / target) replaces the original ontology's three separate entities (BaselineArchitecture, TransitionalArchitecture, and an implicit target). This collapse is the single largest simplification of the governance layer and clarifies that they are all states of the architecture, distinguished only by role.
 

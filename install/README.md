@@ -17,7 +17,7 @@ The installer prompts for the target workspace and defaults to the current works
 reuse one local AAA clone across multiple workspaces; AAA uses the chosen workspace's
 `.aaw-config.yaml` to resolve the matching AAW install source when it delegates to the shared engine.
 
-This installs the eight Agent Skills, wires the legacy `create-*` command shims for every
+This installs the Agent Skills, wires the legacy `create-*` command shims for every
 detected tool (Claude/Cursor/Copilot/Gemini) and, with `--seed`, copies the selected profile's
 capabilities and building-blocks into your workspace. Re-run any time; existing files are left
 untouched.
@@ -39,6 +39,7 @@ copies skills and shims, it does not merge your instruction files.
 .agents/skills/aaa-create-sbb/
 .agents/skills/aaa-create-service/
 .agents/skills/aaa-create-runtime-agent/
+.agents/skills/aaa-rung/                   ← derives definition-ladder rungs (read-only)
 
 .claude/skills/aaa-*                     ← linked at the above, for Claude Code
 ```
@@ -102,6 +103,10 @@ To maintain the "Golden Thread" of traceability, agents should ideally follow th
 Outside the linear Golden Thread, a builder skill is available:
 
 - **`/aaa-create-runtime-agent`**: Author an autonomous runtime agent as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance.
+
+Beside the thread, a read-only skill reports progress along it:
+
+- **`/aaa-rung`**: Derive each capability's rung on the definition ladder, per flow, from the artefacts above, and name the artefact that blocks the next rung.
 
 Each skill proposes a missing parent rather than inventing one silently, so starting in the
 middle of the thread is safe: `/aaa-create-sbb` will offer to create the ABB and Bounded

@@ -2,6 +2,12 @@
 
 # Changelog
 
+## [0.6.0] - 2026-09-26
+
+### Added
+
+- Optional `realises: [CAP-NNN]` front matter, with optional `flows` and `references` of type `cost-model` and `evidence`, in the template and in the skill's method. A pattern is tied to the capabilities it realises, so their rung on the definition ladder can count it: a logical pattern toward R3, a physical one with a cost model toward R4, and evidence linked from it toward R5. `aaa-rung` reads these fields. A pattern without them is unaffected.
+
 ## [0.5.0] - 2026-09-26
 
 ### Added

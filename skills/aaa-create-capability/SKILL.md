@@ -69,10 +69,27 @@ Add the capability diagram and visual design standards if you will draw a map.
 Create the capability document at `<capabilityDir>/CAP-NNN/index.md`. Link back to the parent
 Outcome and Use Case in the Purpose section. This is mandatory.
 
+Where no Outcome exists yet and the user declines to create one, record the demand as
+`demand_assumption` rather than leaving it unstated. If the capability has distinct jobs that
+will be defined at different speeds, declare them as `flows[]` (`id`, `name`, `description`).
+Leave `rung` unset unless the user states one; `/aaa-rung` derives it.
+
 ### Step 2: Update capability-model.md
 
-Update the master taxonomy with the new capability and its maturity rating. A capability that
-exists as a document but not in the taxonomy is invisible to everything downstream.
+Add one row for the new capability to the Canonical Capability Registry table in
+`<capabilityDir>/capability-model.md`: identifier, name, level, `Parent ID` (`-` for L1),
+providing Platform, current and target maturity. The registry is one flat table ordered by
+level then identifier. Do not add a heading per L1 or L2 group; the hierarchy is the
+`Parent ID` column. For an L3 capability realised by ABBs, add its row to the
+Capability-to-ABB Traceability Matrix as well.
+
+Then bring `capability-hierarchy.csv` and `capability-abb-mapping.csv` beside it into line,
+since both are derived from the registry and the matrix. If the workspace has no generator for
+them, add the rows by hand in the column order the capability document standard gives.
+
+A capability that exists as a document but not in the registry is invisible to everything
+downstream. If `capability-model.md` does not exist, create it in the registry form rather
+than in nested headings.
 
 ### Step 3: Capability map, L1 domains only
 

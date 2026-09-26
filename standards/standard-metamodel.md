@@ -39,7 +39,7 @@ The framework's metamodel is partitioned into groupings — each is a top-level 
 | 6 | Runtime / Code (optional) | `runtime/` | Pending | C4 Container/Component, framework v1.0.0 |
 | 7 | Demand | `demand/` | Pending | Value Stream + Use Case (BIZBOK / TOGAF) |
 | 8 | Guidance (Pattern, at any scope; Profile) | `guidance/` | Pending | TOGAF Architecture Continuum, pattern catalogues |
-| 9 | Governance (Principle, Standard, ADR) | `governance/` | Pending | TOGAF Principles + MADR + framework v1.0.0 ADRs |
+| 9 | Governance (Principle, Standard, Consideration, ADR) | `governance/` | Pending | TOGAF Principles + MADR + framework v1.0.0 ADRs |
 | 10 | Roadmap | `roadmap/` | Pending | TOGAF Implementation & Migration roadmap |
 | 11 | Technology Tracking | `radar/` | Pending | ThoughtWorks Tech Radar |
 | 12 | Inter-platform Contracts | `dependencies/` | Pending | Team Topologies (platform dependencies) |
@@ -231,7 +231,29 @@ Universal envelope shape (`status`, `version`, `last_modified`, `author`, `prove
 
 ## 4. Capability
 
-*Pending.*
+*Pending consolidation.* Two parts are settled ahead of the rest of the grouping.
+
+### 4.1 Definition ladder
+
+A capability's progress through definition is a rung on the [definition ladder](./capabilities/standard-definition-ladder.md): R0 Unrecognised, R1 Named, R2 Bounded, R3 Decided, R4 Buildable, R5 Proven, R6 In service. The rung is derived from the artefacts in other groupings (ABBs, SBBs, considerations, decision records, patterns and linked implementation evidence), so it adds no entity of its own. It is recorded per flow in the capability's optional `flows[]`, and it is a separate axis from maturity (0 to 5), which measures a capability once it operates.
+
+| Field | On | Purpose |
+|---|---|---|
+| `flows[]` | Capability | Named paths through the capability, each with an optional recorded `rung` |
+| `open_questions: none` | Capability | States that the capability has no open question to list as a consideration |
+| `demand_assumption` | Capability | Demand recorded as an explicit assumption where no outcome is linked yet |
+| `realises` | Pattern | The capabilities a pattern realises, so it counts toward their rungs |
+
+### 4.2 Consideration (Governance grouping)
+
+The ladder needs an artefact for an open question, which no existing kind provides. A consideration (`CN-NNN`, `kind: consideration`) records one question with more than one credible answer: its options, the criteria that decide it, the capabilities, ABBs, SBBs or patterns it `affects`, and its `consideration_status` (open, resolved, withdrawn). A resolved consideration names the Decision Record that settled it in `resolved_by`.
+
+```
+Consideration ──affects──► Capability / ABB / SBB / Pattern
+Consideration ──resolved_by──► Decision Record
+```
+
+It belongs to the Governance grouping beside the ADR: a consideration is the question, and the decision record is the answer. Listing considerations is part of rung R2, and resolving each by an accepted decision record is part of R3. Field reference: [Frontmatter Standard §6.16](./standard-frontmatter.md#616-consideration-cn-nnn).
 
 ## 5. Building Blocks (ABB / SBB)
 

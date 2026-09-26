@@ -5,7 +5,7 @@ classification: internal
 version: 1.0
 status: draft
 created: 2026-03-07
-last_modified: 2026-03-07
+last_modified: 2026-09-26
 owner: "Architecture Team"
 triggers:
   - "Defining new business outcomes"
@@ -48,6 +48,27 @@ Every Outcome must be documented with:
 - **Platform Ownership**: Link to the **Platform (`PL-NNN`)** accountable for delivering it.
 - **Traceability**: Link to the **Capabilities** required to deliver it.
 
+### 2.3 Outcome Measures as Criteria
+An outcome's measures are what planning and design are judged against, so each one is given an identifier that other artefacts can cite. List them in the optional `measures[]` front matter, one entry per measure:
+
+```yaml
+kpi: "Share of orders taken without manual rework"
+measures:
+  - { id: OC-001-M1, measure: "Orders taken without manual rework", target: 95, unit: "%" }
+  - { id: OC-001-M2, measure: "Median time from request to confirmed order", target: 2, unit: "minutes" }
+```
+
+| Field | Rule |
+|---|---|
+| `id` | `<outcome id>-M<n>`, numbered from 1 within the outcome. Stable once cited: a retired measure keeps its number and the next one takes a new number. |
+| `measure` | What is measured, stated so a reader knows where the number comes from. |
+| `target` | The value that counts as achieved. |
+| `unit` | The unit of `target`. |
+
+The `kpi` and `kpi_target` fields remain the outcome's headline measure. The headline measure is normally also `M1`.
+
+Planning cites these identifiers as `advances_criterion_ids` on a piece of work, to say which measures it moves. A consideration may list them in its `criteria` where an outcome measure is what decides between the options. A citation of an identifier that no outcome declares is a broken link, not a free-text criterion.
+
 
 ## 3. Use Cases (The "How it's Used")
 
@@ -71,6 +92,7 @@ Every Use Case must include:
 ## AI Agent Self-Verification Checklist
 
 1. [ ] **Measurability**: Does the Outcome include a concrete, quantifiable measure?
-2. [ ] **Traceability**: Does the Use Case link back to a valid Outcome ID?
-3. [ ] **Ownership**: Is the Outcome assigned to a Platform (`PL-NNN`)?
-4. [ ] **Naming**: Does the ID follow the `OC-` or `UC-` prefix rule?
+2. [ ] **Addressable Measures**: Does each measure have an `OC-NNN-M<n>` identifier in `measures[]`, with no identifier reused?
+3. [ ] **Traceability**: Does the Use Case link back to a valid Outcome ID?
+4. [ ] **Ownership**: Is the Outcome assigned to a Platform (`PL-NNN`)?
+5. [ ] **Naming**: Does the ID follow the `OC-` or `UC-` prefix rule?

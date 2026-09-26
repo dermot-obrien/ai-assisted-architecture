@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Where this repository keeps the artefacts this skill reads. The skill derives rungs; it
+# carries the rules, not the layout. It has no default for any directory below, because a
+# default would be whichever repository the skill was written in, wrong everywhere else,
+# and a rung derived over the wrong directory looks exactly like a real one.
+#
+# Answer in [suite.aaa-rung] of the repository's .agents/skill-bindings.toml.
+# Paths resolve against that file's directory, never the working directory.
+#
+# Checked by:  python <skills>/aaa-rung/bin/rung.py --doctor
+#         or:  python <skills>/model/bin/model.py doctor --skill aaa-rung
+
+[inputs]
+short_description = "Where the artefacts that evidence the definition ladder live"
+
+[inputs.options.capabilityDir]
+type = "dir"
+required = true
+description = """Where Capability documents live (kind: capability, CAP-NNN). Searched recursively."""
+
+[inputs.options.abbDir]
+type = "dir"
+required = true
+description = """Where Architecture Building Blocks live (kind: abb, ABB-NNN). Read for their requires lists."""
+
+[inputs.options.sbbDir]
+type = "dir"
+required = true
+description = """Where Solution Building Blocks live (kind: sbb, SBB-NNN). Read for realises and status."""
+
+[inputs.options.decisionDir]
+type = "dir"
+required = true
+description = """Where Decision Records live (kind: decision-record, DR-NNN). Read for status."""
+
+[inputs.options.considerationDir]
+type = "dir"
+required = true
+description = """Where Considerations live (kind: consideration, CN-NNN). Read for affects, consideration_status and resolved_by."""
+
+[inputs.options.patternDir]
+type = "dir"
+required = true
+description = """Where patterns live. Read for realises, flows, references and the identifiers in their Building Blocks tables."""
+
+[inputs.options.localPattern]
+type = "str"
+required = false
+description = """Regex for a model-local box identifier leading a Building Blocks cell, such as 07 in "07 Gateway". Falls back to [model] local_pattern in the same file, then to [0-9]{1,3}."""

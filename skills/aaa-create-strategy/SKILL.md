@@ -43,7 +43,9 @@ declared means the step that needs it is reported as not done, never quietly ski
 Gather from the user:
 
 1. **Outcome**: the measurable business result wanted, for example "Reduce cloud spend by 15%".
-2. **Measure**: how success is quantified. What is the KPI, and what is its current value?
+2. **Measures**: how success is quantified. What is the KPI, and what is its current value?
+   Are there further measures the outcome is judged by? Each becomes an addressable
+   criterion.
 3. **Use case**: a specific scenario supporting the outcome. Who is the primary actor?
 4. **Traceability**: which Capabilities (`CAP-NNN`) are required to deliver it?
 
@@ -60,6 +62,15 @@ Load the strategy, traceability and frontmatter standards.
 
 Create the Outcome folder and `index.md`, format `OC-NNN`, using the next available
 identifier. It must carry a definition and a concrete measure.
+
+Record every measure in `measures[]` in the front matter, each with an identifier formed
+from the outcome's: `OC-NNN-M1`, `OC-NNN-M2` and so on, with `measure`, `target` and `unit`.
+The headline `kpi` is normally `M1`. These identifiers are the criteria that planning cites
+as `advances_criterion_ids` and that considerations may list, so never renumber one once it
+exists: a dropped measure keeps its number and a new one takes the next. When revising an
+outcome, add measures at the end rather than inserting.
+
+Tell the user the identifiers you created, so they can be cited.
 
 ### Step 2: `<useCaseDir>/UC-NNN/index.md`
 

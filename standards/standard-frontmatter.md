@@ -8,7 +8,7 @@ created: 2026-05-08
 last_modified: 2026-05-08
 owner: "Architecture Team"
 triggers:
-  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition)"
+  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition, Consideration)"
   - "Validating workspace artefacts in CI"
   - "Migrating v1.0.0 artefacts to v1.1.0"
   - "Querying the catalog by relations or status"
@@ -33,7 +33,7 @@ This standard is the prose form. The machine-validatable form lives at [`schemas
 Two distinct frontmatter shapes coexist:
 
 - **Standards documents** (the `standards/.../*.md` files themselves) keep their existing shape: `document_type: standards`, `title`, `classification`, `version`, `status`, `created`, `last_modified`, `owner`, `triggers`. **This file follows that convention.**
-- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `runtime/services/`, `deployment-nodes/`) **adopt the envelope defined below**.
+- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`) **adopt the envelope defined below**.
 
 This standard concerns the *artefact* shape. Standards documents are unaffected.
 
@@ -48,7 +48,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
-| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`, `consideration`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
 | `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
@@ -91,7 +91,15 @@ The relations a kind carries depends on its position in the metamodel. The full 
 
 | Field | Type | Description |
 |---|---|---|
-| `references` | array of objects | Each object has `type` (e.g. `jira`, `linear`, `github-pr`, `source`, `doc`, `runbook`) plus type-specific fields (`id`, `url`, `repo`, `path`, `ref`). |
+| `references` | array of objects | Each object has `type` (one of `jira`, `linear`, `github-pr`, `github-issue`, `source`, `doc`, `runbook`, `external`, `evidence`, `cost-model`) plus type-specific fields (`id`, `url`, `repo`, `path`, `ref`). |
+
+Three types carry meaning for the [definition ladder](./capabilities/standard-definition-ladder.md), which reads them from a capability or from the pattern that realises it:
+
+| Type | Points at | Ladder rung |
+|---|---|---|
+| `cost-model` | The model of the running cost | R4 Buildable |
+| `evidence` | An experiment, build or evaluation, and its results against the capability's criteria | R5 Proven |
+| `runbook` | How the capability is operated in service | R6 In service |
 
 Example:
 ```yaml
@@ -257,11 +265,15 @@ kpi_target: { value: 0, unit: "incidents/quarter", measurement: "security-incide
 target_date: 2027-03-31              # recommended; omit rather than fabricate a date for undated/seed outcomes
 business_rationale: "Eliminate standing credentials per zero-trust mandate."
 time_horizon: short | medium | long  # short ≤ 1y; medium 1–3y; long > 3y
+measures:                            # optional; each id is a criterion planning can cite
+  - { id: OC-001-M1, measure: "Credential-related incidents", target: 0, unit: "incidents/quarter" }
 
 owned_by_platform: PL-001            # required
 requires_capabilities: [CAP-004, CAP-005]
 realised_by_use_cases: [UC-001, UC-002]
 ```
+
+`measures[]` is optional. Each entry has `id` (`OC-NNN-M<n>`, required), `measure` (required), `target` and `unit`. The identifiers are what planning cites as `advances_criterion_ids` and what a consideration may list in its `criteria`. See the [Strategy Standard §2.3](./strategy/standard-strategy.md#23-outcome-measures-as-criteria).
 
 **Schema:** [`schemas/v1.1.0/outcome.schema.json`](./schemas/v1.1.0/outcome.schema.json).
 
@@ -333,9 +345,28 @@ provided_by_platform: PL-001         # required for L3 (L1/L2 span platforms, so
 required_by_outcomes: [OC-001, OC-002]
 realised_by_abbs: [ABB-001, ABB-003]   # recommended; an unrealised L3 capability is a gap, not an error
 gaps: ["Continuous Access Evaluation not yet implemented"]
+
+# Definition ladder (all optional; see capabilities/standard-definition-ladder.md)
+demand_assumption: "Operators need self-service credential rotation"   # only where no outcome is linked yet
+open_questions: none                 # only where no consideration affects the capability or its ABBs
+flows:
+  - { id: provision, name: "Provision an identity", description: "Joiner to first sign-in", rung: R3 }
+  - { id: rotate-credentials, name: "Rotate credentials", rung: R2 }
 ```
 
 > **Realisation completeness is a gap, not a validation error.** `realised_by_abbs` is *recommended*, never required — an L3 capability with no realising ABB is a legitimate architecture **gap** surfaced by gap analysis (the foundation catalogue ships such placeholders deliberately, awaiting their ABBs). `provided_by_platform` is required only for L3 capabilities; L1/L2 capabilities are cross-platform groupings and may omit it.
+
+**Definition ladder fields.** These are optional and additive: a capability without them still validates. They are read by the [Definition Ladder Standard](./capabilities/standard-definition-ladder.md) and derived against by `aaa-rung`.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `flows[]` | array of objects | optional | Named paths through the capability that someone would recognise as a job being done. Declare flows when they move at different speeds; the capability sits on the rung of its lowest flow. |
+| `flows[].id` | kebab-case string | * (per entry) | Unique within the capability. Patterns name it in their own `flows` list to scope themselves to it. |
+| `flows[].name` | string | * (per entry) | Human-readable name. |
+| `flows[].description` | string | optional | What the job is, from start to end. |
+| `flows[].rung` | `R0` to `R6` | optional | The recorded rung. A derived rung wins where one is available, and a recorded rung above it is reported as a claim without evidence. |
+| `open_questions` | `none` | optional | A marker stating that no open question with more than one credible answer remains, so no consideration is expected. Omit it when considerations exist. |
+| `demand_assumption` | string | optional | The demand the capability answers, recorded as an explicit assumption until an outcome is linked in `required_by_outcomes`. |
 
 **Schema:** [`schemas/v1.1.0/capability.schema.json`](./schemas/v1.1.0/capability.schema.json).
 
@@ -602,6 +633,41 @@ affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
 
 **Schema:** [`schemas/v1.1.0/transition.schema.json`](./schemas/v1.1.0/transition.schema.json) (full body structure forthcoming as a separate Transition standard).
 
+### 6.16 Consideration (`CN-NNN`)
+
+A consideration is an open architectural question with more than one credible answer. It records the question, the options, the criteria that decide between them, and, once settled, the decision record that resolved it. Considerations are what the [definition ladder](./capabilities/standard-definition-ladder.md) reads at R2 (every open question is listed) and at R3 (every one is resolved by an accepted decision record).
+
+```yaml
+kind: consideration
+id: CN-001
+title: "CN-001 Where document embeddings are stored"
+status: accepted                     # envelope lifecycle of this document
+consideration_status: resolved       # required: open | resolved | withdrawn
+
+question: "Where are document embeddings stored and queried?"
+options:
+  - { name: "Search engine with vector support", summary: "One store for keyword and vector search" }
+  - { name: "Dedicated vector database", summary: "Best recall, one more system to run" }
+criteria:
+  - "p95 query latency under 300 ms at expected volume"
+  - "OC-002-M1"                      # an outcome measure id may stand as a criterion
+resolved_by: DR-007                  # required when consideration_status is resolved
+affects: [CAP-012, ABB-021, PAT-004] # required, >=1: capabilities, ABBs, SBBs or patterns
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `question` | string | * | The open question, phrased so each option is a possible answer. |
+| `options[]` | array of objects | recommended, >=2 | Each has `name` (required) and `summary`. A question with one credible answer is not a consideration. |
+| `criteria[]` | array of strings | recommended | What decides between the options. |
+| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
+| `resolved_by` | `DR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
+| `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs or patterns whose definition waits on the question. A pattern is named by its identifier in the repository's pattern series. |
+
+A `withdrawn` consideration affects nothing. The decision record that resolves a consideration SHOULD list the consideration's `affects` entries in its own `affects_artefacts`.
+
+**Schema:** [`schemas/v1.1.0/consideration.schema.json`](./schemas/v1.1.0/consideration.schema.json).
+
 ---
 
 ## 7. Backward Compatibility with v1.0.0
@@ -636,7 +702,7 @@ The `standards/.../*.md` files keep their existing frontmatter (`document_type: 
 
 ## 8. Schema Diagrams
 
-### 8.1 Composition (envelope + 15 kinds)
+### 8.1 Composition (envelope + 16 kinds)
 
 ```mermaid
 classDiagram
@@ -670,6 +736,7 @@ classDiagram
     class DecisionRecord { DR-NNN }
     class Snapshot { SN-NNN }
     class Transition { TR-NNN }
+    class Consideration { CN-NNN }
     class API { AP-NNN ~placeholder~ }
     class View { VW-NNN ~placeholder~ }
     class Event { EV-NNN ~placeholder~ }
@@ -686,6 +753,7 @@ classDiagram
     Envelope <|-- DecisionRecord
     Envelope <|-- Snapshot
     Envelope <|-- Transition
+    Envelope <|-- Consideration
     Envelope <|-- API
     Envelope <|-- View
     Envelope <|-- Event
@@ -726,6 +794,7 @@ flowchart TB
 
     subgraph CROSSCUT ["Cross-cutting"]
         DR{{Decision Record<br/>DR-NNN}}
+        CN{{Consideration<br/>CN-NNN}}
         SN[(Snapshot<br/>SN-NNN)]
         TR[(Transition<br/>TR-NNN)]
         VW{{View<br/>VW-NNN}}
@@ -752,6 +821,9 @@ flowchart TB
     SV -. provides/consumes .-> AP
     SV -. deployed_to .-> DN
 
+    CN -. affects .-> CAP
+    CN -. affects .-> AB
+    CN -- resolved_by --> DR
     DR -. applies_to .-> OC
     DR -. applies_to .-> AB
     DR -. applies_to .-> SV

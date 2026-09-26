@@ -5,7 +5,7 @@ classification: internal
 version: 1.0
 status: draft
 created: 2026-03-07
-last_modified: 2026-03-07
+last_modified: 2026-09-26
 owner: "Architecture Team"
 triggers:
   - "Creating or modifying capability documents (index.md)"
@@ -48,7 +48,9 @@ Each capability is a folder named by its identifier, placed under `capabilities/
 
 ```
 capabilities/
-  capability-model.md             # Master taxonomy (L1/L2/L3)
+  capability-model.md             # Master taxonomy: one flat registry table (L1/L2/L3)
+  capability-hierarchy.csv        # Derived from the registry
+  capability-abb-mapping.csv      # Derived from the traceability matrix
   CAP-001/
     index.md                      # The capability document (this standard)
   CAP-002/
@@ -75,6 +77,8 @@ sidebar_label: "CAP-NNN <Capability Name>"
 sidebar_position: <integer>
 ---
 ```
+
+A capability catalogued under the [Frontmatter Standard](../standard-frontmatter.md#64-capability-cap-nnn) carries the full envelope instead, including the optional `flows[]`, `open_questions` and `demand_assumption` fields that the [definition ladder](./standard-definition-ladder.md) reads.
 
 ### Heading
 
@@ -197,6 +201,20 @@ Describe the key steps needed to move from the current maturity level to the tar
 
 This section is optional for L1 and L2 capabilities. It is REQUIRED for L3 capabilities.
 
+#### 3.4 Definition Rung
+
+**Heading:** `### 3.4  Definition Rung`
+
+State how far the capability has been defined, as a rung on the [definition ladder](./standard-definition-ladder.md), per flow where the capability has more than one. The table mirrors `flows[]` in the front matter:
+
+| Flow | Name | Rung | Blocking the next rung |
+|------|------|------|------------------------|
+| `take-order` | Take an order | `R2` | CN-004 has no accepted decision record |
+
+A flow is a named path through the capability that someone would recognise as a job being done. The capability as a whole sits on the rung of its lowest flow. Where `aaa-rung` is available, copy the derived rung and blocker rather than asserting them. A capability with no declared flows states one rung for the whole capability.
+
+This section is optional until the capability is being planned as rung movements, and RECOMMENDED from then on.
+
 
 ### Section 4 — ABB Realisation
 
@@ -277,29 +295,76 @@ A table tracking all changes:
 Entries are listed in reverse chronological order (newest first).
 
 
+## Definition Rung and Maturity
+
+A capability carries two measures that are easy to confuse. They are different axes and they are never combined into one score.
+
+| | Definition rung | Maturity |
+|---|---|---|
+| Measures | How completely the capability has been defined and made ready | How well the capability performs once it operates |
+| Scale | R0 Unrecognised to R6 In service | 0 None to 5 Optimising |
+| Evidence | The artefacts that exist: capability, ABBs, considerations, decision records, SBBs, patterns, and linked implementation evidence | An assessment of the running capability by an assessor |
+| Recorded in | `flows[].rung`, and derivable by `aaa-rung` | `maturity.current` and `maturity.target` |
+| Moves | While the capability is defined and built | Once the capability is in service |
+
+The two meet at R6. Maturity only means something for a capability that is in service, and before that the ladder is the measure that moves. Where something already operates for a capability below R6 (built ahead of its definition), its maturity can be assessed, but that does not raise the rung: the running system is latent evidence until the rungs beneath it exist.
+
+Neither is `lifecycle_state`, which says which version of the capability document is meant (baseline, in-flight, target or retired). See the [Definition Ladder Standard](./standard-definition-ladder.md#4-what-the-ladder-is-not).
+
+
 ## Capability Model File (`capability-model.md`)
 
-The workspace MUST contain a `capabilities/capability-model.md` file that provides the complete capability taxonomy. This is the master index of all capabilities.
+The workspace MUST contain a `capability-model.md` file in its capability directory that provides the complete capability taxonomy. This is the master index of all capabilities.
+
+The taxonomy is one flat registry table, not a tree of nested headings. The hierarchy is carried by an explicit `Parent ID` column, so re-parenting a capability edits one cell, the whole model reads and sorts as a single table, and the derived CSVs are a direct projection of it. The foundation seed's `capability-model.md` is the reference example of this form.
 
 ### Structure
 
 ```markdown
 # Capability Model
 
-## <L1 Platform Name>
+## Canonical Capability Registry
 
-### <L2 Group Name>
+| Capability ID | Name | Level | Parent ID | Platform | Current Maturity | Target Maturity |
+|---------------|------|-------|-----------|----------|------------------|-----------------|
+| [CAP-001](./CAP-001/) | Name | L1 | `-` | — | 0–5 | 0–5 |
+| [CAP-002](./CAP-002/) | Name | L2 | `CAP-001` | PL-NNN Name | 0–5 | 0–5 |
+| [CAP-004](./CAP-004/) | Name | L3 | `CAP-002` | PL-NNN Name | 0–5 | 0–5 |
 
-| Capability ID | Name | Level | Current Maturity | Target Maturity |
-|---------------|------|-------|-----------------|-----------------|
-| [CAP-NNN](./CAP-NNN/) | Name | L3 | 0–5 | 0–5 |
+### Hierarchy rules
+
+1. Capability depth is capped at three levels: L1 -> L2 -> L3.
+2. `CAP-NNN` identifiers are stable and non-semantic. They do not encode hierarchy.
+3. Re-parenting a capability updates `Parent ID` and links only; it does not require renumbering.
+4. Only L3 capabilities map directly to ABBs.
+
+## Capability-to-ABB Traceability Matrix
+
+| Capability | ABB-NNN Name | ABB-NNN Name |
+|------------|--------------|--------------|
+| **CAP-004** Name | **Primary** | Cross-cutting |
 ```
+
+Rows are ordered by level, then by identifier. `Parent ID` is `-` for an L1 capability. `Platform` is the providing Platform (`PL-NNN` and its name), `—` where the capability spans platforms. The traceability matrix has one row per L3 capability and one column per ABB, with each cell `Primary`, `Supporting`, `Cross-cutting` or `-`.
+
+### Derived CSVs
+
+Two CSVs sit beside `capability-model.md` for tools. They are derived from it and never edited by hand:
+
+| File | Columns | Derived from |
+|---|---|---|
+| `capability-hierarchy.csv` | `capability_id,capability_name,level,parent_id,domain,path,status,current_maturity,target_maturity` | The registry table, one row per capability |
+| `capability-abb-mapping.csv` | `capability_id,capability_name,abb_id,abb_name,relationship,coverage,scope_relevance,source_capability_path,source_section,last_verified` | The traceability matrix, one row per non-empty cell |
+
+In the mapping CSV, coverage and scope follow the relationship by a fixed rule: `primary` is `full` and `core`, `supporting` is `partial` and `core`, `cross-cutting` is `full` and `context`. The framework's own seed is regenerated with `scripts/gen-capability-csvs.mjs`; a workspace regenerates its copy after every change to the registry or the matrix.
 
 ### Rules
 
-- Every capability folder MUST have a corresponding entry in `capability-model.md`.
-- The taxonomy is the authoritative source for the hierarchy (parent-child relationships).
-- Maturity values in the taxonomy MUST match the values in individual capability documents.
+- Every capability folder MUST have a corresponding row in the registry table of `capability-model.md`.
+- The registry table is the authoritative source for the hierarchy (parent-child relationships). A capability document's `parent` MUST match its `Parent ID`.
+- Maturity values in the registry MUST match the values in individual capability documents.
+- The CSVs MUST match the registry and the matrix. A CSV that disagrees with `capability-model.md` is stale, and the Markdown wins.
+- Do not group the registry under per-L1 or per-L2 headings. A view grouped by hierarchy, such as a capability map, is a diagram generated from the registry (see the [Capability Diagram Standard](./standard-capability-diagram.md)), not a second copy of it.
 
 
 ## Conventions
@@ -324,16 +389,17 @@ Before finalising a capability document, verify:
 6. [ ] **ABB Mapping (L3)**: Does Section 4.2 list all ABBs that realise this capability?
 7. [ ] **Gaps Documented**: Are unmet technology needs listed in Section 4.3?
 8. [ ] **Maturity Assessed**: Does Section 3.2 contain a current maturity assessment?
-9. [ ] **Taxonomy Updated**: Is the capability listed in `capability-model.md`?
+9. [ ] **Taxonomy Updated**: Does the capability have a row in the registry table of `capability-model.md`, and do the derived CSVs match it?
 10. [ ] **British English**: Did you use British English spelling?
 11. [ ] **Sub-Capabilities (L1/L2)**: Does Section 5 list all child capabilities?
+12. [ ] **Rung Not Maturity**: If a definition rung is stated, is it kept separate from the maturity score, and does the capability sit at its lowest flow's rung?
 
 
 ## Quick Reference Sections
 
 1. **Purpose**: Why this capability is needed (business-driven).
 2. **Capability Definition**: Organisation + People + Processes + Technology.
-3. **Maturity**: Current assessment, target, and roadmap.
+3. **Maturity**: Current assessment, target, and roadmap, plus the definition rung per flow.
 4. **ABB Realisation**: Mapping table, relationship types, coverage, and gaps.
 5. **Sub-Capabilities**: Children (L1/L2 only).
 6. **Revision History**: Semantic versioning log.
