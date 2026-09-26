@@ -238,8 +238,9 @@ Every row must have a connector on the base layer carrying the matching iface_id
 every connector must have a row.
 
 Write Provider and Consumer as the building block's identifier followed by its name, as in
-Building Blocks: "COMP-NNN Official Name" or "07 Local role name". A bare identifier makes
-the reader, and every deck slide of this table, look the name up. The model reads only the
+Building Blocks: "COMP-NNN Official Name" or "07 Local role name", and the same for Actor
+and Target in each scenario's steps. A bare identifier makes the reader, and every deck
+slide of the table, look the name up. The model reads only the
 leading identifier, so the name costs nothing. scripts/name-endpoints.py fills it in.
 
 Expand to a ### subsection only for interfaces that are externally contracted or carry
@@ -280,7 +281,7 @@ Step through them in the [animated scenario walkthrough](./scenarios.html): each
 
 | Step | Actor | Target | Action | Interface |
 |---:|---|---|---|---|
-| 1 | COMP-NNN | COMP-NNN | What happens | IF-01 |
+| 1 | COMP-NNN Official Name | 07 Local role name | What happens | IF-01 |
 
 <!-- deck:skip -->
 <!--
