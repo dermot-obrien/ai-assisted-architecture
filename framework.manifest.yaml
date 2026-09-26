@@ -20,7 +20,9 @@ depends: [aaw]
 runtime: node
 
 # Standalone Agent Skills (agentskills.io). Installed to .agents/skills/<name>,
-# with .claude/skills/<name> linked at it for Claude Code.
+# with .claude/skills/<name> linked at it for Claude Code. Every directory under
+# skills/ is a skill, so aaa-rung (Python, standard library only; PyYAML optional)
+# ships the same way as the Markdown-only aaa-create-* skills.
 #
 # There is no `shims` key and no `source_token`. Both existed only for the per-tool
 # command shims, retired alongside AAW 3.0.0. A skill is self-contained and holds no

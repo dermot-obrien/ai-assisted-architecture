@@ -54,7 +54,7 @@ A rung is checked from the artefacts' front matter. The checks below are the one
 |---|---|---|
 | R1 | A capability document exists with `level`; `parent` for L2 and L3; a purpose, as `description` or a Purpose section; and `required_by_outcomes` non-empty or `demand_assumption` set | That the purpose is stated in business terms, and that an assumed demand is plausible |
 | R2 | `realised_by_abbs` is non-empty; each named ABB document exists and declares `requires`, which may be an empty list; and at least one consideration `affects` the capability or one of its ABBs, or the capability declares `open_questions: none` | That the non-goals are written down, and that no credible open question has been left out |
-| R3 | Every consideration affecting the capability or its ABBs is `resolved`, and its `resolved_by` decision record has status `accepted` or `active`. A pattern whose `realises` names the capability is logical, with every box an ABB | That each decision record cites the evidence that settled it |
+| R3 | Every consideration affecting the capability or its ABBs is `resolved`, and its `resolved_by` decision record has status `accepted` or `active`. A pattern whose `realises` names the capability is logical, with every box an ABB, or is already physical | That each decision record cites the evidence that settled it |
 | R4 | Every ABB is realised by an SBB whose status is `accepted` or `active`. A realising pattern is physical, with every box an SBB, and has a reference of type `cost-model` | That interfaces carry contracts, and that a team could build from the pattern without asking |
 | R5 | A physical realising pattern has a reference of type `evidence` | That the evidence exercises the pattern end to end against the capability's criteria |
 | R6 | The capability's `status` is `active`, and the capability or its realising pattern has a reference of type `runbook` | That an owner is named and a measure is reported against the outcome |
@@ -72,7 +72,7 @@ A pattern's abstraction is derived from the identifiers in its Building Blocks o
 | All SBBs | physical |
 | Anything else, including any box whose kind is unknown | mixed |
 
-External context rows, marked `external` or `context` in a Kind column, are outside the pattern's scope and do not count. R3 asks for more than a logical abstraction: every box must be an ABB, because a local role is a building block that has not been named yet, and an unnamed block cannot have its questions settled.
+External context rows, marked `external` or `context` in a Kind column, are outside the pattern's scope and do not count. R3 asks for more than a logical abstraction: every box must be an ABB, because a local role is a building block that has not been named yet, and an unnamed block cannot have its questions settled. A physical pattern also satisfies R3's pattern check, since a pattern that has been refined to products has passed through its logical form; the refinement does not cost the capability its R3.
 
 A pattern is tied to the capabilities it realises by `realises: [CAP-NNN]` in its front matter. A pattern that realises nothing does not count toward any capability's rung.
 

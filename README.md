@@ -157,8 +157,8 @@ Supported tools: Claude Code, Cursor, GitHub Copilot, Gemini, Cline, Windsurf.
 
 ## Agent Skills
 
-All eight skills are standalone [Agent Skills](https://agentskills.io): a directory holding a
-`SKILL.md` plus its `references/`. One definition works in every skills-compatible tool.
+All ten skills are standalone [Agent Skills](https://agentskills.io): a directory holding a
+`SKILL.md` plus its `references/` or its code. One definition works in every skills-compatible tool.
 
 | Skill | Invoke | Description |
 |-------|--------|-------------|
@@ -170,6 +170,7 @@ All eight skills are standalone [Agent Skills](https://agentskills.io): a direct
 | Create SBB | `/aaa-create-sbb` | Product mapping, realisation, composite structure. |
 | Create Service | `/aaa-create-service` | Runtime unit of execution. |
 | Create Runtime Agent | `/aaa-create-runtime-agent` | An autonomous runtime agent as a catalogued service, with guardrails, capability scope and provenance. |
+| Rung | `/aaa-rung` | Read-only. Derives each capability's rung on the definition ladder (R0 Unrecognised to R6 In service), per flow, from the capabilities, ABBs, considerations, decision records, SBBs and patterns that exist, and names the artefact that blocks the next rung. `--json` for planning, `--check` for CI. |
 | Pattern | `/pattern` | An architecture pattern at any scope, from one recurring problem to a whole domain, platform, hosting profile or epic, as one Markdown document that is also the model and also the deck: generates the draw.io diagram from its own tables, validates that the two agree, animates the scenarios, and publishes slides and a PDF. What is often called a reference architecture is a wide-scope pattern. |
 
 The eight `create-*` skills follow the same four-phase workflow: Discovery, Load Standards,
@@ -238,6 +239,14 @@ sbbDir        = "../building-blocks/solution-building-blocks"
 [suite.aaa-create-runtime-agent]
 agentProfileSchema = "../schemas/v1.1.0/agent-profile.schema.json"
 ontologyValidator  = "../scripts/ontology/validate.cjs"
+
+[suite.aaa-rung]
+capabilityDir    = "../capabilities"
+abbDir           = "../building-blocks/architecture-building-blocks"
+sbbDir           = "../building-blocks/solution-building-blocks"
+decisionDir      = "../decisions"
+considerationDir = "../considerations"
+patternDir       = "../patterns"
 ```
 
 That block is a suggestion in documentation, which is where a framework's opinion about
@@ -261,7 +270,7 @@ Gemini CLI read natively. Claude Code reads only `.claude/skills/`, so the insta
 directory junction on Windows, which needs neither elevation nor developer mode. Where the
 filesystem refuses both, it falls back to a copy and says so.
 
-Verify by typing `/` in your assistant: the eight `/aaa-*` skills should appear.
+Verify by typing `/` in your assistant: the nine `/aaa-*` skills should appear.
 
 To install by hand instead:
 
@@ -287,6 +296,8 @@ means both entries are the same content.
     aaa-create-sbb/        # SBB creation
     aaa-create-service/    # Service definition
     aaa-create-runtime-agent/  # Runtime agent authoring
+    aaa-rung/              # Definition-ladder rung derivation (read-only, Python)
+    pattern/               # Pattern authoring: document, diagram and deck
   install/                 # Discovery files to merge once (AGENTS.md, CLAUDE.md, ...)
   scripts/
     validate-skills.mjs    # Agent Skills spec validator
