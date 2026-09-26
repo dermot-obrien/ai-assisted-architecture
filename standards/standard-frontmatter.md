@@ -265,11 +265,15 @@ kpi_target: { value: 0, unit: "incidents/quarter", measurement: "security-incide
 target_date: 2027-03-31              # recommended; omit rather than fabricate a date for undated/seed outcomes
 business_rationale: "Eliminate standing credentials per zero-trust mandate."
 time_horizon: short | medium | long  # short ≤ 1y; medium 1–3y; long > 3y
+measures:                            # optional; each id is a criterion planning can cite
+  - { id: OC-001-M1, measure: "Credential-related incidents", target: 0, unit: "incidents/quarter" }
 
 owned_by_platform: PL-001            # required
 requires_capabilities: [CAP-004, CAP-005]
 realised_by_use_cases: [UC-001, UC-002]
 ```
+
+`measures[]` is optional. Each entry has `id` (`OC-NNN-M<n>`, required), `measure` (required), `target` and `unit`. The identifiers are what planning cites as `advances_criterion_ids` and what a consideration may list in its `criteria`. See the [Strategy Standard §2.3](./strategy/standard-strategy.md#23-outcome-measures-as-criteria).
 
 **Schema:** [`schemas/v1.1.0/outcome.schema.json`](./schemas/v1.1.0/outcome.schema.json).
 
