@@ -2,6 +2,12 @@
 
 # Changelog
 
+## [0.4.1] - 2026-09-26
+
+### Added
+
+- `publish.py --no-deck` renders each model's views and builds its walkthrough without building a deck, so a site that builds its decks another way can regenerate every view first rather than depend on whatever was last rendered. Requires `model` 0.4.1, whose walkthrough is identical from run to run.
+
 ## [0.4.0] - 2026-09-26
 
 ### Changed
