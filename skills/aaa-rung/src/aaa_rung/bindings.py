@@ -5,7 +5,8 @@
 The skill carries no layout of its own. The repository answers the contract in
 `inputs.toml` in `[suite.aaa-rung]` of its `.agents/skill-bindings.toml`, and every
 relative path resolves against that file's directory, never the working directory.
-A required key that is missing, or a path that does not exist, stops the run: a derived
+Every directory is optional: one left unset means the repository does not keep that kind,
+and nothing is read for it. A path that is set but does not exist stops the run: a derived
 rung computed over the wrong directory would look exactly like a real one.
 """
 from __future__ import annotations
@@ -50,18 +51,19 @@ def contract(skill_dir: str = SKILL_DIR) -> dict:
 
 
 class Bindings:
-    def __init__(self, path: str, paths: dict, local_pattern: str):
+    def __init__(self, path: str, paths: dict, local_pattern: str, unbound: list | None = None):
         self.path = path
         self.root = os.path.dirname(os.path.abspath(path))
         self.paths = paths
         self.local_pattern = local_pattern
+        self.unbound = list(unbound or [])
 
     def __getitem__(self, key):
         return self.paths[key]
 
     def to_dict(self):
         return {"bindingFile": self.path, "resolved": dict(self.paths),
-                "localPattern": self.local_pattern}
+                "unbound": list(self.unbound), "localPattern": self.local_pattern}
 
 
 def load(path: str | None = None, start: str | None = None) -> Bindings:
@@ -79,18 +81,19 @@ def load(path: str | None = None, start: str | None = None) -> Bindings:
     except tomllib.TOMLDecodeError as ex:
         raise BindingError(f"{path} is not valid TOML: {ex}")
 
-    section = (raw.get("suite") or {}).get(SUITE)
-    if section is None:
-        raise BindingError(f"{path} has no [suite.{SUITE}] section; this skill has no defaults")
+    # No section is the same as a section binding nothing: every kind is unbound.
+    section = (raw.get("suite") or {}).get(SUITE) or {}
 
     options = contract().get("inputs", {}).get("options", {})
     root = os.path.dirname(os.path.abspath(path))
-    problems, resolved = [], {}
+    problems, resolved, unbound = [], {}, []
     for key, spec in options.items():
         value = section.get(key)
         if value in (None, ""):
             if spec.get("required"):
                 problems.append(f"[suite.{SUITE}] {key} is required: {spec.get('description', '').strip()}")
+            elif spec.get("type") == "dir":
+                unbound.append(key)
             continue
         if spec.get("type") in ("dir", "file", "path"):
             full = os.path.normpath(os.path.join(root, str(value)))
@@ -112,4 +115,4 @@ def load(path: str | None = None, start: str | None = None) -> Bindings:
         re.compile(local)
     except re.error as ex:
         raise BindingError(f"local pattern {local!r} is not a valid regex: {ex}")
-    return Bindings(os.path.abspath(path), resolved, local)
+    return Bindings(os.path.abspath(path), resolved, local, unbound)

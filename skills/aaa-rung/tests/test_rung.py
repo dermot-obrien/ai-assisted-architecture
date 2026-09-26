@@ -190,22 +190,20 @@ class Bindings(unittest.TestCase):
             fh.write(body)
         return p
 
-    def test_missing_section_stops(self):
+    def test_missing_section_binds_nothing(self):
         with tempfile.TemporaryDirectory() as tmp:
             p = self.write(tmp, 'bindingsVersion = "1.0"\n')
-            with self.assertRaises(bindings.BindingError) as cm:
-                bindings.load(p)
-            self.assertIn("[suite.aaa-rung]", str(cm.exception))
+            b = bindings.load(p)
+            self.assertEqual(b.paths, {})
+            self.assertEqual(set(b.unbound), set(derive.DIR_KEYS))
 
-    def test_every_missing_key_is_named(self):
+    def test_every_directory_is_optional(self):
         with tempfile.TemporaryDirectory() as tmp:
             p = self.write(tmp, '[suite.aaa-rung]\ncapabilityDir = "."\n')
-            with self.assertRaises(bindings.BindingError) as cm:
-                bindings.load(p)
-            msg = str(cm.exception)
-            for key in ("abbDir", "sbbDir", "decisionDir", "considerationDir", "patternDir"):
-                self.assertIn(key, msg)
-            self.assertNotIn("capabilityDir is required", msg)
+            b = bindings.load(p)
+            self.assertEqual(set(b.paths), {"capabilityDir"})
+            self.assertEqual(set(b.unbound),
+                             {"abbDir", "sbbDir", "decisionDir", "considerationDir", "patternDir"})
 
     def test_paths_resolve_against_the_bindings_file(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -277,18 +275,63 @@ class Cli(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             p = os.path.join(tmp, "skill-bindings.toml")
             with open(p, "w", encoding="utf-8") as fh:
-                fh.write("[suite.other]\n")
+                fh.write('[suite.aaa-rung]\nabbDir = "missing"\n')
             err = io.StringIO()
             with redirect_stdout(io.StringIO()), redirect_stderr(err):
                 code = cli.main(["--bindings", p])
             self.assertEqual(code, 2)
-            self.assertIn("no [suite.aaa-rung] section", err.getvalue())
+            self.assertIn("which is not a directory", err.getvalue())
+
+    def test_no_section_runs_and_says_so(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = os.path.join(tmp, "skill-bindings.toml")
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write("[suite.other]\n")
+            out = io.StringIO()
+            with redirect_stdout(out), redirect_stderr(io.StringIO()):
+                code = cli.main(["--bindings", p])
+            self.assertEqual(code, 0)
+            self.assertIn("capabilityDir is not bound", out.getvalue())
+            self.assertIn("unbound  patternDir", out.getvalue())
 
     def test_doctor(self):
         code, out, _ = self.run_cli("--doctor", "--json")
         self.assertEqual(code, 0)
         self.assertEqual(set(json.loads(out)["resolved"]),
                          {"capabilityDir", "abbDir", "sbbDir", "decisionDir", "considerationDir", "patternDir"})
+
+
+class PartlyBound(unittest.TestCase):
+    """A repository that keeps only some kinds still gets a derivation, over what it keeps."""
+
+    def test_unbound_kinds_are_read_as_empty(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = os.path.join(tmp, "skill-bindings.toml")
+            rel = FIXTURE.replace(os.sep, "/")  # absolute: tmp may be on another drive
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write("[suite.aaa-rung]\n"
+                         f'capabilityDir = "{rel}/capabilities"\n'
+                         f'abbDir = "{rel}/building-blocks/abbs"\n')
+            caps, ws, report = derived(p)
+            self.assertEqual(set(report["unbound"]),
+                             {"sbbDir", "decisionDir", "considerationDir", "patternDir"})
+            self.assertEqual(ws.patterns, [])
+            self.assertEqual(ws.decisions, {})
+            # Nothing is evidenced above R2 without SBBs, decisions or patterns.
+            self.assertTrue(caps)
+            for c in caps.values():
+                self.assertIn(c["rung"], ("R0", "R1", "R2"), c["id"])
+
+    def test_doctor_names_unbound(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p = os.path.join(tmp, "skill-bindings.toml")
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write("[suite.aaa-rung]\n")
+            out = io.StringIO()
+            with redirect_stdout(out), redirect_stderr(io.StringIO()):
+                code = cli.main(["--bindings", p, "--doctor"])
+            self.assertEqual(code, 0)
+            self.assertIn("capabilityDir     (not bound)", out.getvalue())
 
 
 if __name__ == "__main__":
