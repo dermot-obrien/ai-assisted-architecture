@@ -7,7 +7,7 @@ them and validates each; this script does the rest, so one command turns a folde
 related models into one set of images and one deck per document.
 
     python scripts/publish.py <folder> [--recursive] [--no-pdf] [--thumbnails]
-                              [--scenario-images] [--no-animate] [--force] [--dry-run]
+                              [--scenario-images] [--no-animate] [--no-deck] [--force] [--dry-run]
 
 Per model, written beside the document:
 
@@ -17,7 +17,9 @@ Per model, written beside the document:
                             named index.md); built before the deck, so a deck:html
                             slide that embeds it is current
     <stem>-s1.svg, ...      one static image per scenario, only with --scenario-images
-    dist/<name>/deck.html   when the document carries deck tags, and deck.pdf with it
+    dist/<name>/deck.html   when the document carries deck tags, and deck.pdf with it;
+                            --no-deck stops before this, for a site build that makes
+                            its own decks from the views written above
 
 <name> is the document's file stem, or its folder name for an index.md. A model that
 fails validation is not published unless --force, because a deck built from a document
@@ -75,7 +77,8 @@ def deck_name(doc):
     return os.path.basename(os.path.dirname(os.path.abspath(doc))) if stem == "index" else stem
 
 
-def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False, animate=True):
+def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False, animate=True,
+            deck=True):
     """Render one model's views, animate its scenarios and build its deck. Returns (ok, notes)."""
     notes, ok = [], True
     docdir = os.path.dirname(entry["doc"])
@@ -111,6 +114,8 @@ def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False,
             else:
                 notes.append(f"animated {page}")
 
+    if not deck:
+        return ok, notes
     if not entry["deckTagged"]:
         notes.append("no deck tags; deck skipped")
         return ok, notes
@@ -152,6 +157,8 @@ def main():
                     help="also render one static image per scenario; the walkthrough replaces them")
     ap.add_argument("--no-animate", action="store_true",
                     help="do not build the animated scenario walkthrough")
+    ap.add_argument("--no-deck", action="store_true",
+                    help="render the views and the walkthrough only; build no deck")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
 
@@ -187,7 +194,7 @@ def main():
                             "notes": ["fails validation; fix it or pass --force"] + errs[:5]})
             continue
         ok, notes = publish(e, theme, not a.no_pdf, a.dry_run, a.thumbnails,
-                            a.scenario_images, not a.no_animate)
+                            a.scenario_images, not a.no_animate, not a.no_deck)
         results.append({"doc": name, "status": "ok" if ok else "failed", "notes": notes})
 
     if a.json:

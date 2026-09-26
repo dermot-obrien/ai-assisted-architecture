@@ -4,8 +4,8 @@ description: Author an architecture pattern as one Markdown document that is als
 license: Apache-2.0
 compatibility: Python 3.11+ and Node 18+. Requires the `model` and `markdown-deck` skills, which ship with AI-Assisted Work; installing AAW into the same workspace provides both. Rendering diagrams needs draw.io desktop; PDF export needs playwright.
 metadata:
-  version: "0.4.0"
-  x-skill-requires: "model@^0.4.0, markdown-deck@^0.1.0"
+  version: "0.4.1"
+  x-skill-requires: "model@^0.4.1, markdown-deck@^0.1.0"
 ---
 
 # Pattern
@@ -134,7 +134,7 @@ Tag the sections an audience needs, typically six to twelve, then publish the fo
 python <skills>/pattern/scripts/publish.py <folder>
 ```
 
-It runs `model scan`, and for every document that declares a diagram and passes validation it renders `<stem>.svg` beside the document, builds the animated walkthrough when the model has scenarios, then builds `dist/<name>/deck.html` and `deck.pdf` with the bound `deckTheme`. `--scenario-images` also renders one `<stem>-sN.svg` per scenario; `--no-animate` skips the walkthrough. `<name>` is the file stem, or the folder name for an `index.md`. Reference the views in the document by those names. A model that fails validation is skipped unless `--force`; `--dry-run` says what would be done, `--no-pdf` stops at HTML, and `--thumbnails` opens each deck's slide index with thumbnails rather than titles. The script works on any declared model, so a folder holding a pattern and two alternative views publishes all three in one run.
+It runs `model scan`, and for every document that declares a diagram and passes validation it renders `<stem>.svg` beside the document, builds the animated walkthrough when the model has scenarios, then builds `dist/<name>/deck.html` and `deck.pdf` with the bound `deckTheme`. `--scenario-images` also renders one `<stem>-sN.svg` per scenario; `--no-animate` skips the walkthrough. `--no-deck` stops after the views and the walkthrough, for a site build that builds its own decks from them: run it with `--recursive` over the pattern folders before the site's deck build, so a deck never embeds a missing or stale view. `<name>` is the file stem, or the folder name for an `index.md`. Reference the views in the document by those names. A model that fails validation is skipped unless `--force`; `--dry-run` says what would be done, `--no-pdf` stops at HTML, and `--thumbnails` opens each deck's slide index with thumbnails rather than titles. The script works on any declared model, so a folder holding a pattern and two alternative views publishes all three in one run.
 
 The document keeps its detail; the deck shows a selection of it. Untagged sections stay document-only, and `deck:skip` removes detail from a slide without removing it from the document.
 
