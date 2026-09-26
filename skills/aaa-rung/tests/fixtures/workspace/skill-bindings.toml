@@ -1,0 +1,13 @@
+bindingsVersion = "1.0"
+
+# A small, neutral workspace for the aaa-rung tests: an order-handling business with one
+# capability at each rung, one blocked by an open question, one that lost its rung, one
+# with flows at different rungs, and one named only by a pattern.
+
+[suite.aaa-rung]
+capabilityDir    = "capabilities"
+abbDir           = "building-blocks/abbs"
+sbbDir           = "building-blocks/sbbs"
+decisionDir      = "decisions"
+considerationDir = "considerations"
+patternDir       = "patterns"

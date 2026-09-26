@@ -21,6 +21,7 @@ Installed by `aaa install` into `.agents/skills/`, with `.claude/skills/` linked
 | Create ABB | `/aaa-create-abb` | `/create-abb` | End-to-end ABB creation: logical structure and diagrams. |
 | Create SBB | `/aaa-create-sbb` | `/create-sbb` | End-to-end SBB creation: product mapping, realisation, composite structure. |
 | Create Service | `/aaa-create-service` | `/create-service` | Runtime unit of execution definition. |
+| Derive Rung | `/aaa-rung` | (none) | Read-only. Derives each capability's rung on the definition ladder, per flow, and names the artefact blocking the next rung. See `standards/capabilities/standard-definition-ladder.md`. |
 | Create Runtime Agent | `/aaa-create-runtime-agent` | `/create-runtime-agent` | (Builder skill) Author an autonomous **runtime agent** as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance. See `standards/agent-native/agent-types.md`. |
 
 ## Scripts
