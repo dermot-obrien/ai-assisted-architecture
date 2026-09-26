@@ -434,7 +434,7 @@
             "run",
             "fly"
           ],
-          "description": "Current maturity level. Maturity targets are typically declared via milestone criteria, not on the capability itself."
+          "description": "Current maturity horizon, a band of the definition ladder (standards/capabilities/standard-definition-ladder.md) rather than a scale of its own: crawl = R1-R2 (named, bounded), walk = R3-R4 (decided, buildable), run = R5 (proven), fly = R6 (in service). A capability at R0 is not modelled. Maturity targets are typically declared via milestone criteria, not on the capability itself."
         },
         "description": {
           "type": "string",
@@ -1081,7 +1081,7 @@
             "run",
             "fly"
           ],
-          "description": "Optional maturity level this milestone represents. Independent of time horizon."
+          "description": "Optional maturity horizon this milestone represents, as a band of the definition ladder: crawl = R1-R2, walk = R3-R4, run = R5, fly = R6. Independent of time horizon."
         },
         "description": {
           "type": "string"
