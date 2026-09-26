@@ -231,7 +231,18 @@ Universal envelope shape (`status`, `version`, `last_modified`, `author`, `prove
 
 ## 4. Capability
 
-*Pending.*
+*Pending consolidation.* Two parts are settled ahead of the rest of the grouping.
+
+### 4.1 Definition ladder
+
+A capability's progress through definition is a rung on the [definition ladder](./capabilities/standard-definition-ladder.md): R0 Unrecognised, R1 Named, R2 Bounded, R3 Decided, R4 Buildable, R5 Proven, R6 In service. The rung is derived from the artefacts in other groupings (ABBs, SBBs, considerations, decision records, patterns and linked implementation evidence), so it adds no entity of its own. It is recorded per flow in the capability's optional `flows[]`, and it is a separate axis from maturity (0 to 5), which measures a capability once it operates.
+
+| Field | On | Purpose |
+|---|---|---|
+| `flows[]` | Capability | Named paths through the capability, each with an optional recorded `rung` |
+| `open_questions: none` | Capability | States that the capability has no open question to list as a consideration |
+| `demand_assumption` | Capability | Demand recorded as an explicit assumption where no outcome is linked yet |
+| `realises` | Pattern | The capabilities a pattern realises, so it counts toward their rungs |
 
 ## 5. Building Blocks (ABB / SBB)
 
