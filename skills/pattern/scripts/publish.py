@@ -47,6 +47,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SKILL_DIR = os.path.dirname(HERE)
 SKILLS = os.path.dirname(SKILL_DIR)
 MODEL = os.path.join(SKILLS, "model", "bin", "model.py")
+NAME_ENDPOINTS = os.path.join(HERE, "name-endpoints.py")
 DECK = os.path.join(SKILLS, "markdown-deck", "bin", "markdown-deck.mjs")
 
 
@@ -98,6 +99,13 @@ def publish(entry, theme, pdf, dry_run, thumbnails=False, scenario_images=False,
     """Render one model's views, animate its scenarios and build its deck. Returns (ok, notes)."""
     notes, ok = [], True
     docdir = os.path.dirname(entry["doc"])
+
+    # A bare identifier in an interface's Provider or Consumer reaches the deck as it is.
+    # Noted rather than failed: the model is unaffected, only the reader is.
+    r = run([sys.executable, NAME_ENDPOINTS, entry["doc"], "--check"])
+    if r.returncode == 1:
+        notes.append("interface endpoints carry an identifier without a name: "
+                     f"python {os.path.relpath(NAME_ENDPOINTS)} {entry['doc']}")
 
     views = [v for v in entry["views"] if scenario_images or not v.get("scenario")]
     has_scenarios = any(v.get("scenario") for v in entry["views"])
