@@ -2,6 +2,13 @@
 
 # Changelog
 
+## [0.5.0] - 2026-09-26
+
+### Added
+
+- draw.io desktop is optional. `publish.py --render auto|always|never`: auto (the default) renders a view only when it is missing or older than its diagram and draw.io is installed, and otherwise requires the committed view to be current; never never calls draw.io and names each view to export and stamp; always re-renders every view. A view is current when its render record matches the diagram, as `model render` or `model stamp` writes it. The walkthrough is drawn on the committed view. Requires `model` 0.5.0.
+- The procedure describes exporting the Structure layer by hand from draw.io desktop or online, and stamping it.
+
 ## [0.4.1] - 2026-09-26
 
 ### Added
