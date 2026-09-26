@@ -333,9 +333,28 @@ provided_by_platform: PL-001         # required for L3 (L1/L2 span platforms, so
 required_by_outcomes: [OC-001, OC-002]
 realised_by_abbs: [ABB-001, ABB-003]   # recommended; an unrealised L3 capability is a gap, not an error
 gaps: ["Continuous Access Evaluation not yet implemented"]
+
+# Definition ladder (all optional; see capabilities/standard-definition-ladder.md)
+demand_assumption: "Operators need self-service credential rotation"   # only where no outcome is linked yet
+open_questions: none                 # only where no consideration affects the capability or its ABBs
+flows:
+  - { id: provision, name: "Provision an identity", description: "Joiner to first sign-in", rung: R3 }
+  - { id: rotate-credentials, name: "Rotate credentials", rung: R2 }
 ```
 
 > **Realisation completeness is a gap, not a validation error.** `realised_by_abbs` is *recommended*, never required — an L3 capability with no realising ABB is a legitimate architecture **gap** surfaced by gap analysis (the foundation catalogue ships such placeholders deliberately, awaiting their ABBs). `provided_by_platform` is required only for L3 capabilities; L1/L2 capabilities are cross-platform groupings and may omit it.
+
+**Definition ladder fields.** These are optional and additive: a capability without them still validates. They are read by the [Definition Ladder Standard](./capabilities/standard-definition-ladder.md) and derived against by `aaa-rung`.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `flows[]` | array of objects | optional | Named paths through the capability that someone would recognise as a job being done. Declare flows when they move at different speeds; the capability sits on the rung of its lowest flow. |
+| `flows[].id` | kebab-case string | * (per entry) | Unique within the capability. Patterns name it in their own `flows` list to scope themselves to it. |
+| `flows[].name` | string | * (per entry) | Human-readable name. |
+| `flows[].description` | string | optional | What the job is, from start to end. |
+| `flows[].rung` | `R0` to `R6` | optional | The recorded rung. A derived rung wins where one is available, and a recorded rung above it is reported as a claim without evidence. |
+| `open_questions` | `none` | optional | A marker stating that no open question with more than one credible answer remains, so no consideration is expected. Omit it when considerations exist. |
+| `demand_assumption` | string | optional | The demand the capability answers, recorded as an explicit assumption until an outcome is linked in `required_by_outcomes`. |
 
 **Schema:** [`schemas/v1.1.0/capability.schema.json`](./schemas/v1.1.0/capability.schema.json).
 
