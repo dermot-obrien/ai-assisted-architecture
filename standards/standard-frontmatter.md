@@ -8,7 +8,7 @@ created: 2026-05-08
 last_modified: 2026-05-08
 owner: "Architecture Team"
 triggers:
-  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition)"
+  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition, Consideration)"
   - "Validating workspace artefacts in CI"
   - "Migrating v1.0.0 artefacts to v1.1.0"
   - "Querying the catalog by relations or status"
@@ -33,7 +33,7 @@ This standard is the prose form. The machine-validatable form lives at [`schemas
 Two distinct frontmatter shapes coexist:
 
 - **Standards documents** (the `standards/.../*.md` files themselves) keep their existing shape: `document_type: standards`, `title`, `classification`, `version`, `status`, `created`, `last_modified`, `owner`, `triggers`. **This file follows that convention.**
-- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `runtime/services/`, `deployment-nodes/`) **adopt the envelope defined below**.
+- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`) **adopt the envelope defined below**.
 
 This standard concerns the *artefact* shape. Standards documents are unaffected.
 
@@ -48,7 +48,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
-| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`, `consideration`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
 | `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
@@ -621,6 +621,41 @@ affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
 
 **Schema:** [`schemas/v1.1.0/transition.schema.json`](./schemas/v1.1.0/transition.schema.json) (full body structure forthcoming as a separate Transition standard).
 
+### 6.16 Consideration (`CN-NNN`)
+
+A consideration is an open architectural question with more than one credible answer. It records the question, the options, the criteria that decide between them, and, once settled, the decision record that resolved it. Considerations are what the [definition ladder](./capabilities/standard-definition-ladder.md) reads at R2 (every open question is listed) and at R3 (every one is resolved by an accepted decision record).
+
+```yaml
+kind: consideration
+id: CN-001
+title: "CN-001 Where document embeddings are stored"
+status: accepted                     # envelope lifecycle of this document
+consideration_status: resolved       # required: open | resolved | withdrawn
+
+question: "Where are document embeddings stored and queried?"
+options:
+  - { name: "Search engine with vector support", summary: "One store for keyword and vector search" }
+  - { name: "Dedicated vector database", summary: "Best recall, one more system to run" }
+criteria:
+  - "p95 query latency under 300 ms at expected volume"
+  - "OC-002-M1"                      # an outcome measure id may stand as a criterion
+resolved_by: DR-007                  # required when consideration_status is resolved
+affects: [CAP-012, ABB-021, PAT-004] # required, >=1: capabilities, ABBs, SBBs or patterns
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `question` | string | * | The open question, phrased so each option is a possible answer. |
+| `options[]` | array of objects | recommended, >=2 | Each has `name` (required) and `summary`. A question with one credible answer is not a consideration. |
+| `criteria[]` | array of strings | recommended | What decides between the options. |
+| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
+| `resolved_by` | `DR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
+| `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs or patterns whose definition waits on the question. A pattern is named by its identifier in the repository's pattern series. |
+
+A `withdrawn` consideration affects nothing. The decision record that resolves a consideration SHOULD list the consideration's `affects` entries in its own `affects_artefacts`.
+
+**Schema:** [`schemas/v1.1.0/consideration.schema.json`](./schemas/v1.1.0/consideration.schema.json).
+
 ---
 
 ## 7. Backward Compatibility with v1.0.0
@@ -655,7 +690,7 @@ The `standards/.../*.md` files keep their existing frontmatter (`document_type: 
 
 ## 8. Schema Diagrams
 
-### 8.1 Composition (envelope + 15 kinds)
+### 8.1 Composition (envelope + 16 kinds)
 
 ```mermaid
 classDiagram
@@ -689,6 +724,7 @@ classDiagram
     class DecisionRecord { DR-NNN }
     class Snapshot { SN-NNN }
     class Transition { TR-NNN }
+    class Consideration { CN-NNN }
     class API { AP-NNN ~placeholder~ }
     class View { VW-NNN ~placeholder~ }
     class Event { EV-NNN ~placeholder~ }
@@ -705,6 +741,7 @@ classDiagram
     Envelope <|-- DecisionRecord
     Envelope <|-- Snapshot
     Envelope <|-- Transition
+    Envelope <|-- Consideration
     Envelope <|-- API
     Envelope <|-- View
     Envelope <|-- Event
@@ -745,6 +782,7 @@ flowchart TB
 
     subgraph CROSSCUT ["Cross-cutting"]
         DR{{Decision Record<br/>DR-NNN}}
+        CN{{Consideration<br/>CN-NNN}}
         SN[(Snapshot<br/>SN-NNN)]
         TR[(Transition<br/>TR-NNN)]
         VW{{View<br/>VW-NNN}}
@@ -771,6 +809,9 @@ flowchart TB
     SV -. provides/consumes .-> AP
     SV -. deployed_to .-> DN
 
+    CN -. affects .-> CAP
+    CN -. affects .-> AB
+    CN -- resolved_by --> DR
     DR -. applies_to .-> OC
     DR -. applies_to .-> AB
     DR -. applies_to .-> SV
