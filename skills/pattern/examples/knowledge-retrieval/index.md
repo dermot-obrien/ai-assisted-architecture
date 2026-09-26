@@ -120,12 +120,12 @@ A staff member asks a question and receives an answer grounded in content they a
 
 | Step | Actor | Target | Action | Interface |
 |---|---|---|---|---|
-| 1 | ABB-050 | ABB-017 | forward the question with the caller's token | IF-01 |
-| 2 | ABB-017 | ABB-024 | validate the token and resolve the caller | IF-02 |
-| 3 | ABB-017 | ABB-026 | ask whether this caller may query this corpus | IF-03 |
-| 4 | ABB-017 | ABB-028 | retrieve nearest neighbours, filtered by entitlement | IF-04 |
-| 5 | ABB-017 | ABB-104 | expand with related entities where the graph has them | IF-05 |
-| 6 | ABB-017 | ABB-036 | record the query, the decision and what was returned | IF-07 |
+| 1 | ABB-050 LLM Gateway | ABB-017 Context Retrieval Service | forward the question with the caller's token | IF-01 |
+| 2 | ABB-017 Context Retrieval Service | ABB-024 Identity Provider | validate the token and resolve the caller | IF-02 |
+| 3 | ABB-017 Context Retrieval Service | ABB-026 Policy Enforcement Engine | ask whether this caller may query this corpus | IF-03 |
+| 4 | ABB-017 Context Retrieval Service | ABB-028 Vector Database | retrieve nearest neighbours, filtered by entitlement | IF-04 |
+| 5 | ABB-017 Context Retrieval Service | ABB-104 Knowledge Graph | expand with related entities where the graph has them | IF-05 |
+| 6 | ABB-017 Context Retrieval Service | ABB-036 Audit Logging Service | record the query, the decision and what was returned | IF-07 |
 
 <!-- deck:skip -->
 Step 4 does the filtering inside the retrieval boundary rather than afterwards. Filtering after the fact means the content has already been read into the context window, which is the failure this scenario exists to prevent.
@@ -143,9 +143,9 @@ A new source class is connected and its content becomes retrievable, carrying th
 
 | Step | Actor | Target | Action | Interface |
 |---|---|---|---|---|
-| 1 | ABB-094 | ABB-028 | write vectors with permission labels and the model version | IF-06 |
-| 2 | ABB-028 | ABB-104 | register entities and relationships found in the batch | IF-05 |
-| 3 | ABB-017 | ABB-036 | record the corpus version now serving queries | IF-07 |
+| 1 | ABB-094 Embedding Service | ABB-028 Vector Database | write vectors with permission labels and the model version | IF-06 |
+| 2 | ABB-028 Vector Database | ABB-104 Knowledge Graph | register entities and relationships found in the batch | IF-05 |
+| 3 | ABB-017 Context Retrieval Service | ABB-036 Audit Logging Service | record the corpus version now serving queries | IF-07 |
 
 <!-- deck:slide label="Controls" -->
 
