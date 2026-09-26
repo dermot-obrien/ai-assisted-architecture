@@ -30,6 +30,15 @@ RUNG_NAMES = dict(RUNGS)
 LIVE = ("accepted", "active")
 
 CAP_RE = re.compile(r"^CAP-\d{3}$")
+# The directories a repository may bind, each optional, and what leaving one unbound costs.
+DIR_KEYS = {
+    "capabilityDir": "capability documents, so every capability is R0",
+    "abbDir": "ABBs, so R2 cannot be evidenced",
+    "sbbDir": "SBBs, so R4 cannot be evidenced",
+    "decisionDir": "decision records, so a resolved consideration cannot be confirmed at R3",
+    "considerationDir": "considerations, so R2 needs open_questions: none on the capability",
+    "patternDir": "patterns, so R3 and above cannot be evidenced",
+}
 ABB_RE = re.compile(r"ABB-\d{3}")
 SBB_RE = re.compile(r"SBB-\d{3}(?:\.\d+){0,2}")
 ANY_ID_RE = re.compile(r"\b[A-Z][A-Z0-9]*-\d{3}\b")
@@ -171,20 +180,25 @@ class Workspace:
     def __init__(self, paths: dict, local_pattern: str = "[0-9]{1,3}"):
         self.paths = paths
         self.warnings = []
+        # A directory left unbound means the repository does not keep that kind: it is read
+        # as empty, and the report names it so the blockers it causes are not misread.
+        self.unbound = [k for k in DIR_KEYS if not paths.get(k)]
         self.local_re = re.compile(rf"^\s*({local_pattern})(?=\s|$)")
-        self.capabilities = self._index(paths["capabilityDir"], "capability", r"^CAP-\d{3}$")
-        self.abbs = self._index(paths["abbDir"], "abb", r"^ABB-\d{3}$")
-        self.sbbs = self._index(paths["sbbDir"], "sbb", r"^SBB-\d{3}(\.\d+){0,2}$")
-        self.decisions = self._index(paths["decisionDir"], "decision-record", r"^DR-\d{3}$")
-        self.considerations = self._index(paths["considerationDir"], "consideration", r"^CN-\d{3}$")
-        root = paths["patternDir"]
-        self.patterns = [Pattern(d, root, self) for d in docs.scan(root)
+        self.capabilities = self._index(paths.get("capabilityDir"), "capability", r"^CAP-\d{3}$")
+        self.abbs = self._index(paths.get("abbDir"), "abb", r"^ABB-\d{3}$")
+        self.sbbs = self._index(paths.get("sbbDir"), "sbb", r"^SBB-\d{3}(\.\d+){0,2}$")
+        self.decisions = self._index(paths.get("decisionDir"), "decision-record", r"^DR-\d{3}$")
+        self.considerations = self._index(paths.get("considerationDir"), "consideration", r"^CN-\d{3}$")
+        root = paths.get("patternDir")
+        self.patterns = [Pattern(d, root, self) for d in (docs.scan(root) if root else [])
                          if not d.problems and text(d.get("kind")) in ("", "pattern")
                          and (d.get("realises") is not None or text(d.get("document_type")) == "pattern")]
 
-    def _index(self, root: str, kind: str, id_re: str) -> dict:
+    def _index(self, root: str | None, kind: str, id_re: str) -> dict:
         rx = re.compile(id_re)
         out = {}
+        if not root:
+            return out
         for d in docs.scan(root):
             for p in d.problems:
                 self.warnings.append(f"{d.path}: {p}")
@@ -489,5 +503,6 @@ def derive_all(ws: Workspace, only: list | None = None) -> dict:
     return {
         "ladder": [{"rung": r, "name": n} for r, n in RUNGS],
         "capabilities": caps,
+        "unbound": list(ws.unbound),
         "warnings": warnings,
     }

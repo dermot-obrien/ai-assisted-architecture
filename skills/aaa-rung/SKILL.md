@@ -6,7 +6,7 @@ compatibility: Python 3.11+ (tomllib). PyYAML is used when installed and is not 
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.0"
+  version: "0.4.0"
 ---
 
 # Rung
@@ -23,7 +23,9 @@ Resolve the bindings and use only the paths printed:
 python <skills>/aaa-rung/bin/rung.py --doctor
 ```
 
-`<skills>` is the directory this skill is installed in. It exits 2 when the bindings do not resolve and names each missing or wrong key. Do not proceed on an error, and do not guess a path: a rung derived over the wrong directory looks exactly like a real one.
+`<skills>` is the directory this skill is installed in. It exits 2 when a bound path does not exist or a key is unknown, and names each. Do not proceed on an error, and do not guess a path: a rung derived over the wrong directory looks exactly like a real one.
+
+Every directory is optional. A repository that does not keep a kind of artefact leaves its binding unset, and `--doctor` shows it as not bound. Nothing is read for an unbound kind, and the report lists it with what it costs, such as no SBBs meaning R4 cannot be evidenced. Say so when you report a rung: a blocker caused by an unbound kind is a gap in the repository, not in the capability. With no `[suite.aaa-rung]` section at all, every kind is unbound and the report is empty but the run succeeds.
 
 | Binding | Holds |
 |---|---|
@@ -33,7 +35,7 @@ python <skills>/aaa-rung/bin/rung.py --doctor
 | `decisionDir` | Decision records (`DR-NNN`) |
 | `considerationDir` | Considerations (`CN-NNN`) |
 | `patternDir` | Patterns, with `realises: [CAP-NNN]` in their front matter |
-| `localPattern` | Optional. The regex for a local box id such as `07`. Falls back to `[model] local_pattern`, then `[0-9]{1,3}` |
+| `localPattern` | The regex for a local box id such as `07`. Falls back to `[model] local_pattern`, then `[0-9]{1,3}` |
 
 The contract is in `inputs.toml` beside this file. The repository answers it in `[suite.aaa-rung]` of its `.agents/skill-bindings.toml`, and paths resolve against that file's directory. Every directory is searched recursively for Markdown with front matter.
 
