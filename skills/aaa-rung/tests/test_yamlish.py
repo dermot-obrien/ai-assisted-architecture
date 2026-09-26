@@ -85,7 +85,8 @@ class BuiltIn(unittest.TestCase):
             yamlish.parse("a:\n\t- b\n")
 
     def test_front_matter_after_a_licence_comment(self):
-        meta, body = docs.split("<!-- SPDX-License-Identifier: CC-BY-4.0 -->\n---\nid: CAP-001\n---\n# Body\n")
+        # The tag is split so REUSE does not read this test string as the file's licence.
+        meta, body = docs.split("<!-- SPDX-" "License-Identifier: CC-BY-4.0 -->\n---\nid: CAP-001\n---\n# Body\n")
         self.assertEqual(yamlish.parse(meta), {"id": "CAP-001"})
         self.assertEqual(body.strip(), "# Body")
 
