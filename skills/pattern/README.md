@@ -1,8 +1,8 @@
 <!-- SPDX-License-Identifier: Apache-2.0 -->
 
-# reference-architecture
+# pattern
 
-An agent skill for authoring a reference architecture as one Markdown document that is also the model and also the deck.
+An agent skill for authoring an architecture pattern, at any scope from one recurring problem to a whole domain, as one Markdown document that is also the model and also the deck. What is often called a reference architecture is a wide-scope pattern.
 
 The document's tables generate the draw.io diagram and its numbered scenario overlays. The document's tagged sections generate HTML slides and a PDF. Both are checked back against the document, so a diagram that drifts is caught rather than believed.
 
@@ -20,7 +20,7 @@ No agent tool resolves dependencies between skills except the Claude Code plugin
 ## Install
 
 ```bash
-gh skill install OWNER/reference-architecture reference-architecture --scope user
+gh skill install OWNER/pattern pattern --scope user
 gh skill install OWNER/model model --scope user
 gh skill install OWNER/markdown-deck markdown-deck --scope user
 ```
@@ -28,8 +28,8 @@ gh skill install OWNER/markdown-deck markdown-deck --scope user
 Or, with dependency resolution:
 
 ```
-/plugin marketplace add OWNER/reference-architecture
-/plugin install reference-architecture@OWNER-skills
+/plugin marketplace add OWNER/pattern
+/plugin install pattern@OWNER-skills
 ```
 
 ## Use

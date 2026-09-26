@@ -86,17 +86,17 @@ def main():
     #    dependencies between skills, so it is worth shipping even with none declared.
     pdir = os.path.join(out_root, ".claude-plugin")
     os.makedirs(pdir, exist_ok=True)
-    desc = ("Author a reference architecture: the document, the diagram generated from "
+    desc = ("Author an architecture pattern at any scope: the document, the diagram generated from "
             "its tables, the scenario overlays, and the published deck.")
     write_json(os.path.join(pdir, "plugin.json"), {
         "name": NAME,
-        "displayName": "Reference Architecture",
+        "displayName": "Pattern",
         "version": v,
         "description": desc,
         "author": {"name": a.owner, "url": f"https://github.com/{a.owner}"},
         "repository": repo_url,
         "license": "Apache-2.0",
-        "keywords": ["architecture", "reference-architecture", "togaf", "c4"],
+        "keywords": ["architecture", "pattern", "reference-architecture", "togaf", "c4"],
         "skills": "./skills/",
         "dependencies": ["model", "markdown-deck"],
     })

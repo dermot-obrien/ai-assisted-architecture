@@ -95,7 +95,7 @@ In TOGAF's terms, building blocks (ABB or SBB) are *logical components* — thin
 | **Component** | Yes — can be ABB or SBB via `building_block_type` | The primary building-block entity. ABB Component = logical; SBB Component = technology-specific |
 | **Interface** | Yes — can be ABB or SBB via `building_block_type` | TOGAF explicitly lists interfaces as part of ABB content |
 | **Capability** | No | Capabilities are Phase B concepts describing what the enterprise needs to do; ABBs *realise* capabilities |
-| **Pattern** | No | Patterns are reference architectures from the Architecture Continuum; they *inform* ABB design |
+| **Pattern** | No | Patterns are Architecture Continuum artefacts at any scope, from one recurring problem to a whole domain; they *inform* ABB design |
 | **Standard** | No | Standards are prescriptive specifications that ABBs *conform to*; TOGAF lists conformance to standards as an ABB characteristic |
 | **Platform** | No | A platform is an enterprise governance unit composed *of* building blocks |
 | All governance entities (Milestone, Criterion, Slip, Decision, etc.) | No | These operate on building blocks but are not themselves building blocks |
@@ -158,7 +158,7 @@ The typical solution-architect workflow within an initiative follows the TOGAF A
 5. Record any **architecture Decisions** made during the work — design choices, trade-offs, deviations from patterns or standards (with waiver Decisions where applicable).
 6. The Changes attach to **Criteria** on the relevant Milestones, completing the link from work back to commitment.
 
-Enterprise architects govern the durable layer: the Capability taxonomy (optionally anchored to an industry reference taxonomy where one applies — BIAN, eTOM, ACORD, etc.), the Pattern library, the Standard library, and the catalogue of ABB Components that define logical reference architecture independent of any specific product. They produce Views for various Stakeholders. The View / Viewpoint / Stakeholder triad gives a structured place for architectural representations that would otherwise live in PowerPoint folders.
+Enterprise architects govern the durable layer: the Capability taxonomy (optionally anchored to an industry reference taxonomy where one applies — BIAN, eTOM, ACORD, etc.), the Pattern library, the Standard library, and the catalogue of ABB Components that logical patterns are composed from, independent of any specific product. They produce Views for various Stakeholders. The View / Viewpoint / Stakeholder triad gives a structured place for architectural representations that would otherwise live in PowerPoint folders.
 
 The ABB / SBB separation drives review cadence: ABB design changes (a new logical component, a deprecated pattern, a re-anchored standard) are infrequent and reviewed at architecture-board level. SBB changes (product selection, vendor changes, endpoint introductions) flow with every initiative and are reviewed at delivery gates. Both cadences draw from the same model.
 
