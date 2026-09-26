@@ -54,8 +54,10 @@ intervention, and the architecture artefacts above come into play.
 - **AAA → AAW**: an architecture initiative (e.g. "introduce capability X") is itself an AAW
   **intervention** — it's planned and executed through AAW's work lifecycle, with AAA's
   `architecture-work` type and deliverables.
-- **AAR → AAA**: a *validated* research decision (see AAR's inquiry seam) lands as a
-  Decision Record here before AAW delivers it.
+- **AAR → AAA**: a *validated* research decision (see AAR's inquiry seam,
+  `docs/aaw-inquiry-seam.md` in AI-Assisted Research) lands as a Decision Record here
+  before AAW delivers it. AAR's `/aar-sync-research-result` proposes the record, citing the
+  hypothesis node and its work item, when a finding settles an architectural choice.
 
 ## Planning, deliverables and rungs
 
