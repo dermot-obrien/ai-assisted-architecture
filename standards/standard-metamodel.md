@@ -38,7 +38,7 @@ The framework's metamodel is partitioned into groupings — each is a top-level 
 | 5 | Solution Boundary (Bounded Context, optional) | `contexts/` | Pending | DDD strategic design |
 | 6 | Runtime / Code (optional) | `runtime/` | Pending | C4 Container/Component, framework v1.0.0 |
 | 7 | Demand | `demand/` | Pending | Value Stream + Use Case (BIZBOK / TOGAF) |
-| 8 | Guidance (Pattern, Profile, Reference Architecture) | `guidance/` | Pending | TOGAF Reference Architectures, pattern catalogues |
+| 8 | Guidance (Pattern, at any scope; Profile) | `guidance/` | Pending | TOGAF Architecture Continuum, pattern catalogues |
 | 9 | Governance (Principle, Standard, ADR) | `governance/` | Pending | TOGAF Principles + MADR + framework v1.0.0 ADRs |
 | 10 | Roadmap | `roadmap/` | Pending | TOGAF Implementation & Migration roadmap |
 | 11 | Technology Tracking | `radar/` | Pending | ThoughtWorks Tech Radar |

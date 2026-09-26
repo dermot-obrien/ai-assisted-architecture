@@ -1,26 +1,26 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 # What this skill needs from the repository it is installed into, and nothing about
-# where any of it lives. The consuming repository answers in [suite.reference-architecture]
+# where any of it lives. The consuming repository answers in [suite.pattern]
 # of its .agents/skill-bindings.toml.
 #
-# Checked by:  python <skills>/model/bin/model.py doctor --skill reference-architecture
+# Checked by:  python <skills>/model/bin/model.py doctor --skill pattern
 #
 # This skill ships no runtime of its own. It borrows the model skill's resolver, which is
 # why `model` is a declared dependency rather than a suggestion.
 
 [inputs]
-short_description = "Bindings required to author a reference architecture in this repository"
+short_description = "Bindings required to author a pattern in this repository"
 
 [inputs.options.outputDir]
 type = "dir"
 required = true
-description = "Directory new reference architecture folders are created in"
+description = "Directory new pattern folders are created in"
 
 [inputs.options.template]
 type = "file"
 required = false
-description = """The repository's own reference architecture template, used instead of the
+description = """The repository's own pattern template, used instead of the
 generic one this skill ships. A template carries a house profile: the identifier series,
 the deliverable code, the diagram palette and any conformance statement. That profile
 belongs to the repository, not to a published skill."""
@@ -28,8 +28,8 @@ belongs to the repository, not to a published skill."""
 [inputs.options.idSeries]
 type = "str"
 required = false
-default = "REF"
-description = "Identifier prefix for reference architectures, e.g. REF gives REF-001"
+default = "PAT"
+description = "Identifier prefix for patterns, e.g. PAT gives PAT-001"
 
 [inputs.options.deckTheme]
 type = "str"

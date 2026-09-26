@@ -2,7 +2,8 @@
 title: "REF-002 Knowledge Retrieval"
 sidebar_label: "REF-002 Knowledge Retrieval"
 description: "Grounded, permission-aware answers over enterprise knowledge, through one retrieval contract"
-document_type: reference-architecture
+document_type: pattern
+pattern_scope: domain
 status: Example
 version: "0.1"
 last_modified: 2026-09-25
@@ -15,7 +16,7 @@ provenance:
 
 <!-- deck:cover subtitle="Grounded, permission-aware answers through one retrieval contract" date="25 September 2026" footnote="Worked example. Illustrative only, not an approved architecture." -->
 
-An illustrative reference architecture used to exercise the authoring toolchain end to end. The building block identifiers are real; the composition is an example, not an approved design.
+An illustrative domain-scope pattern used to exercise the authoring toolchain end to end. The building block identifiers are real; the composition is an example, not an approved design.
 
 <!-- deck:slide label="Context" -->
 
@@ -23,7 +24,7 @@ An illustrative reference architecture used to exercise the authoring toolchain 
 
 Every question answered from enterprise information passes through retrieval. Without grounding, a model produces text that is plausible rather than correct, and a reader has no way to check where an answer came from. Grounding is the largest single lever on answer accuracy.
 
-This reference architecture covers the path from a question to a cited answer: how a query is expressed, how the caller's identity reaches the index so retrieval can respect source permissions, what a result carries by way of citation and confidence, and how staleness is signalled. The audience is any team building an agent or an assistant that answers from internal content.
+This pattern covers the path from a question to a cited answer: how a query is expressed, how the caller's identity reaches the index so retrieval can respect source permissions, what a result carries by way of citation and confidence, and how staleness is signalled. The audience is any team building an agent or an assistant that answers from internal content.
 
 Done, for this domain, means a second consumer can integrate against the retrieval contract without knowing what sits behind it.
 
@@ -68,7 +69,7 @@ Do not adopt it for content that is open to everyone in the organisation and nee
 
 ## Patterns Applied
 
-| Pattern | Role in this reference architecture |
+| Pattern | Role in this pattern |
 |---|---|
 | PAT-017 Data source onboarding | How a source class is connected, and what the connector guarantees about permissions and change events |
 | PAT-018 Retrieval and grounding | The query path, the citation contract and the no-answer case |
@@ -78,7 +79,7 @@ Do not adopt it for content that is open to everyone in the organisation and nee
 
 ## Building Blocks
 
-| Building Block | Role in this reference architecture | Source |
+| Building Block | Role in this pattern | Source |
 |---|---|---|
 | ABB-017 Context Retrieval Service | The seam. Accepts a query plus caller identity, returns cited passages or an explicit no-answer | PAT-018 |
 | ABB-094 Embedding Service | Turns chunks into vectors, and holds the embedding model version | PAT-019 |
