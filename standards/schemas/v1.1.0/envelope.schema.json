@@ -84,7 +84,8 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["jira", "linear", "github-pr", "github-issue", "source", "doc", "runbook", "external"]
+          "enum": ["jira", "linear", "github-pr", "github-issue", "source", "doc", "runbook", "external", "evidence", "cost-model"],
+          "description": "evidence: an experiment, build or evaluation showing the artefact meets its criteria (definition-ladder R5). cost-model: the model of the running cost (R4). runbook: how it is operated (R6)."
         },
         "id":   { "type": "string" },
         "url":  { "type": "string", "format": "uri" },
