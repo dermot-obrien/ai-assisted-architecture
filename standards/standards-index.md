@@ -43,6 +43,7 @@ Always load these standards before creating or modifying artefacts.
 - `.ai-assisted-architecture/standards/platforms/platform-standard.md`
 - `.ai-assisted-architecture/standards/capabilities/standard-capability-document.md`
 - `.ai-assisted-architecture/standards/capabilities/standard-capability-diagram.md`
+- `.ai-assisted-architecture/standards/capabilities/standard-definition-ladder.md`
 - `.ai-assisted-architecture/standards/contexts/standard-bounded-context.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-blocks/standard-abb-document.md`
 - `.ai-assisted-architecture/standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md`
@@ -64,6 +65,7 @@ For **agent-native** workspaces (AI-majority engineering), also load:
 - For business platforms, apply `platform-standard.md` via `/aaa-create-platform`.
 - For capability documents, apply `standard-capability-document.md` via `/aaa-create-capability`.
 - For capability diagrams (maps and traceability matrices), apply `standard-capability-diagram.md`.
+- For how far a capability has been defined, apply `standard-definition-ladder.md`, and derive the rung with `/aaa-rung`.
 - For bounded context definitions, apply `standard-bounded-context.md` via `/aaa-create-context`.
 - For ABB narrative/content documents, apply `standard-abb-document.md` via `/aaa-create-abb`.
 - For SBB narrative/content documents, apply `standard-sbb-document.md` via `/aaa-create-sbb`.
