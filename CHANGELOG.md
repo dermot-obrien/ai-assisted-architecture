@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Removed
+
+- **`pattern` moved to its own repository**, https://github.com/dermot-obrien/architecture-pattern, released there from 0.8.0 so it can be installed without this framework. Its `NOTICE` names the commit here it was taken from, pattern 0.7.1 at 5a1c138, and its history before that is the history of `skills/pattern` here. It depends on `model` from https://github.com/dermot-obrien/diagram-model and `markdown-deck` from https://github.com/dermot-obrien/markdown-deck, which also left AI-Assisted Work. `aaa install` no longer installs it; `aaa-rung` still reads the pattern front matter it defined.
+- **`model` is no longer provided by AI-Assisted Work.** Every AAA skill resolves its bindings with `model doctor`, so install `model` from https://github.com/dermot-obrien/diagram-model.
+
 ### Fixed
 
 - **Skills missing from npm installs.** `package.json` `files` did not list `skills/`, so a repository that takes AAA as an npm git dependency got no skills: `aaa install` reported "no skills" and still removed the old `.claude/commands/aaa` shims, leaving nothing in their place. `skills/` is now packaged.
