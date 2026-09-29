@@ -5,7 +5,7 @@ Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical in
 For capability, ABB/SBB documents, diagrams, and related visual outputs, load and follow the standards listed in `.ai-assisted-architecture/standards/standards-index.md`.
 Do not create or apply alternate local rules when `.ai-assisted-architecture/standards/standards-index.md` provides guidance.
 
-### `/create-strategy` - Create Outcome / Use Case
+### `/aaa-create-strategy` - Create Outcome / Use Case
 
 **Full instructions:** Read `the /aaa-create-strategy skill`
 
@@ -13,7 +13,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-platform` - Create Platform
+### `/aaa-create-platform` - Create Platform
 
 **Full instructions:** Read `the /aaa-create-platform skill`
 
@@ -21,7 +21,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-capability` - Create Capability
+### `/aaa-create-capability` - Create Capability
 
 **Full instructions:** Read `the /aaa-create-capability skill`
 
@@ -29,7 +29,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-context` - Create Bounded Context
+### `/aaa-create-context` - Create Bounded Context
 
 **Full instructions:** Read `the /aaa-create-context skill`
 
@@ -37,7 +37,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-abb` - Create Architecture Building Block
+### `/aaa-create-abb` - Create Architecture Building Block
 
 **Full instructions:** Read `the /aaa-create-abb skill`
 
@@ -45,7 +45,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-sbb` - Create Solution Building Block
+### `/aaa-create-sbb` - Create Solution Building Block
 
 **Full instructions:** Read `the /aaa-create-sbb skill`
 
@@ -53,7 +53,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-service` - Create Service
+### `/aaa-create-service` - Create Service
 
 **Full instructions:** Read `the /aaa-create-service skill`
 
@@ -61,7 +61,7 @@ Do not create or apply alternate local rules when `.ai-assisted-architecture/sta
 
 ---
 
-### `/create-runtime-agent` - Create Runtime Agent
+### `/aaa-create-runtime-agent` - Create Runtime Agent
 
 **Full instructions:** Read `the /aaa-create-runtime-agent skill`
 

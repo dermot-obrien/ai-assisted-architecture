@@ -1,8 +1,10 @@
 # Scripts
 
+The full reference for every script, with its options and exit codes, is [docs/commands.md](../docs/commands.md).
+
 ## seed-foundation.ps1
 
-Seeds a workspace with foundation capabilities and building blocks from the framework.
+Seeds a workspace with foundation capabilities and building blocks from the framework. This is the older, Windows-only seeder; `src/seed-foundation.mjs`, which `aaa install --seed` runs, does the same on every platform.
 
 ### Usage
 
@@ -25,7 +27,7 @@ powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture/scripts/seed-
 
 ## generate_sbb_diagrams.py
 
-Regenerates the Draw.io component diagrams for the foundation SBBs (SBB-001/002/003). The component definitions are declared inline in the script; run it from the workspace root after editing those definitions.
+Regenerates the Draw.io component diagrams for the foundation SBBs (SBB-001/002/003). The component definitions are declared inline in the script; run it from the framework root after editing those definitions.
 
 Uses only the Python standard library — no third-party packages required.
 

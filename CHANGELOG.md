@@ -10,9 +10,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **Agent Skills reference validation in CI.** A `skills-ref` job installs the specification's reference validator from the agentskills repository, pinned to a commit, and runs `skills-ref validate` on every skill `bundle.json` lists. It fails when that list and the directories under `skills/` differ. All nine skills passed before this change and still pass. The README gains a Conformance section: the specification, how to validate locally, and where skills install.
+- **Documentation.** A `docs/` set for people using the framework: a quick start from an empty folder to a derived rung, run as written in PowerShell 5.1 and Git Bash on Windows; installation for every agent, at workspace and user level; concepts in the order a user needs them; a page per skill; a configuration reference for every binding key in the skills' `inputs.toml`, `.aaa-config.yaml`, `.aaw-config.yaml`, the front matter `aaa-rung` reads and the environment variables; a command reference checked against each tool's `--help`; troubleshooting keyed to the messages the tools print; the ontology; and the worked examples. The README is shorter and indexes them. CONTRIBUTING gains the checks to run before a pull request.
+- **`--help` on every script.** `src/seed-foundation.mjs`, `scripts/validate-frontmatter.mjs`, `scripts/migrate-frontmatter.mjs`, `scripts/gen-capability-csvs.mjs`, `scripts/sync-cap-abb-frontmatter.mjs` and `scripts/generate_sbb_diagrams.py` print usage and exit 0. Before, all but `validate-frontmatter.mjs` ignored the flag and ran, writing files.
+- **`validate-skills.mjs` checks two more things.** An unquoted front matter value holding `: `, which real YAML parsers reject, is an error; a `SKILL.md` body over about 5,000 tokens, the specification's guidance, is a warning.
 
 ### Fixed
 
+- **`aaa-rung --version` reported 0.3.0** (skill 0.4.2). `__version__` in the package had not moved with the skill; it now matches `metadata.version`. Behaviour is unchanged.
+- **`aaa --help` described the retired command shims.** It now says the installer installs the Agent Skills into `.agents/skills/`, and lists `--no-python` and the pass-through to `aaw install`.
+- **Instruction-file snippets named the old commands.** The headings in `install/AGENTS.md.txt` and its siblings said `/create-abb` and so on; they now say `/aaa-create-abb`, the names the skills answer to.
+- **The ontology's worked example recorded version 1.4.0** against a schema at 1.5.0, so it failed validation on its own. It now records 1.5.0.
+- **`install/README.md` and `scripts/README.md`** no longer say the installer wires command shims, or that the SBB diagram script runs from the workspace root.
 - **`aaa-create-runtime-agent` compatibility note** (skill 0.3.2). It said validation uses `scripts/ontology/validate.cjs`, a path that is not in the skill and that the skill does not call. Validation runs the optional `ontologyValidator` and `agentProfileSchema` bindings, and the note now says so. The skill's behaviour is unchanged.
 - **README skill count.** It said ten skills; there are nine since `pattern` moved to its own repository.
 

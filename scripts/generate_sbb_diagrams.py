@@ -1,7 +1,19 @@
 # SPDX-FileCopyrightText: 2026 Dermot O'Brien
 # SPDX-License-Identifier: Apache-2.0
+"""Regenerate the draw.io component diagrams of the foundation SBBs.
+
+usage: python scripts/generate_sbb_diagrams.py
+
+Writes foundation/building-blocks/solution-building-blocks/SBB-00{1,2,3}/components.drawio
+from the component definitions in this file. Run from the framework root. Takes no options.
+"""
 
 import os
+import sys
+
+if any(a in ("-h", "--help") for a in sys.argv[1:]):
+    print(__doc__.strip())
+    sys.exit(0)
 
 def create_sbb_drawio(sbb_id, sbb_name, platform_name, platform_color, components, interfaces):
     xml = [
