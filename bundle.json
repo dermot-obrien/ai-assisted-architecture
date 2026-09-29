@@ -1,0 +1,128 @@
+{
+  "$schema": "pkg:generic/dermot-obrien/ai-assisted-work/bundle-schema@1.0.0",
+  "name": "ai-assisted-architecture",
+  "owner": "dermot-obrien",
+  "description": "AI-Assisted Architecture: TOGAF-aligned authoring of strategy, capabilities, contexts, platforms, building blocks, services and runtime agents as Agent Skills, the definition ladder, and the architecture layer of the ontology.",
+  "license": "CC-BY-4.0 AND Apache-2.0",
+  "homepage": "https://github.com/dermot-obrien/ai-assisted-architecture",
+  "skills": [
+    {
+      "name": "aaa-create-abb",
+      "path": "skills/aaa-create-abb",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-abb] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-capability",
+      "path": "skills/aaa-create-capability",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-capability] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-context",
+      "path": "skills/aaa-create-context",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-context@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-context] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-platform",
+      "path": "skills/aaa-create-platform",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-platform@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-platform] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-runtime-agent",
+      "path": "skills/aaa-create-runtime-agent",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-runtime-agent@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-runtime-agent] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-sbb",
+      "path": "skills/aaa-create-sbb",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-sbb] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-service",
+      "path": "skills/aaa-create-service",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-service@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-service] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-create-strategy",
+      "path": "skills/aaa-create-strategy",
+      "version": "0.3.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-strategy@0.3.1",
+      "requires": [],
+      "check": {
+        "command": ["node", "bin/check.mjs"],
+        "runtime": "node",
+        "description": ".aaa-config.yaml is present, and [suite.aaa-create-strategy] declares every required binding in inputs.toml and each declared path exists"
+      }
+    },
+    {
+      "name": "aaa-rung",
+      "path": "skills/aaa-rung",
+      "version": "0.4.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-rung@0.4.1",
+      "requires": [],
+      "check": {
+        "command": ["python", "bin/check.py"],
+        "runtime": "python",
+        "description": "[suite.aaa-rung] resolves: the binding file exists and every directory it binds exists"
+      }
+    }
+  ],
+  "ontology": {
+    "id": "pkg:generic/dermot-obrien/ai-assisted-architecture/architecture-ontology@1.0.0",
+    "path": "ontology/architecture.schema.json",
+    "extends": [
+      {
+        "purl": "pkg:generic/dermot-obrien/ai-assisted-work/work-ontology",
+        "range": "^1.0.0"
+      }
+    ]
+  }
+}

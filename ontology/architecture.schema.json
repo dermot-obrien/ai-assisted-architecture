@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pkg:generic/dermot-obrien/ai-assisted-architecture/architecture-ontology@1.0.0",
+  "title": "Architecture ontology",
+  "description": "The architecture layer of the layered ontology in DD-11 of AI-Assisted Work. It builds on the work layer, pkg:generic/dermot-obrien/ai-assisted-work/work-ontology, by $ref and allOf, and names the architecture concepts of this bundle's base ontology (standards/ontology/ontology-schema.json) by $ref, so they have one definition. Additive: the base ontology is unchanged, and a repository that validates against it validates exactly as before. The seam with work management is standards/aaw-work-seam.md: a decision deliverable becomes a Decision Record, a cross-cutting intervention creates or revises capabilities and building blocks, and a deliverable evidences a rung through the kind of artefact it produces.",
+  "$comment": "The base ontology's Initiative, Programme, InitiativePhase, Milestone, Criterion, Commitment, DeliveryGate, ScheduleConstraint, DeliveryStatus, Slip, Stakeholder, ExternalReference and Notes are deliberately not named here: DD-11 places them in the work and delivery layers, and they move there with the base ontology's next major version.",
+  "$defs": {
+    "ArtefactKind": {
+      "description": "The kind of an architecture artefact, as its front matter's kind names it (standards/schemas/v1.1.0/envelope.schema.json), and pattern.",
+      "enum": [
+        "outcome",
+        "use-case",
+        "platform",
+        "capability",
+        "bounded-context",
+        "abb",
+        "sbb",
+        "api",
+        "service",
+        "view",
+        "decision-record",
+        "event",
+        "deployment-node",
+        "snapshot",
+        "transition",
+        "consideration",
+        "pattern"
+      ]
+    },
+    "ArtefactId": {
+      "description": "An architecture artefact's identifier, such as CAP-012 or DR-004, or a service's kebab-case slug.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+    },
+    "CriterionId": {
+      "description": "An outcome measure, OC-NNN-M<n> (standards/strategy/standard-strategy.md).",
+      "type": "string",
+      "pattern": "^OC-[0-9]+-M[0-9]+$"
+    },
+
+    "ArchitectureDeliverable": {
+      "description": "A work item's deliverable that produces or revises architecture artefacts. The kind it produces decides the rung it evidences on the definition ladder.",
+      "allOf": [
+        { "$ref": "pkg:generic/dermot-obrien/ai-assisted-work/work-ontology#/$defs/Deliverable" },
+        {
+          "type": "object",
+          "properties": {
+            "artefact_kind": { "$ref": "#/$defs/ArtefactKind" },
+            "artefact_ids": {
+              "description": "The artefacts it produced or revised, such as the Decision Record a decision deliverable became.",
+              "type": "array",
+              "items": { "$ref": "#/$defs/ArtefactId" }
+            }
+          }
+        }
+      ]
+    },
+    "ArchitectureWork": {
+      "description": "A work item whose products are architecture artefacts: the architecture-work of the seam, planned and executed through the work layer's lifecycle.",
+      "allOf": [
+        { "$ref": "pkg:generic/dermot-obrien/ai-assisted-work/work-ontology#/$defs/WorkItem" },
+        {
+          "type": "object",
+          "properties": {
+            "advances_criterion_ids": {
+              "description": "The outcome measures this work moves.",
+              "type": "array",
+              "items": { "$ref": "#/$defs/CriterionId" }
+            },
+            "deliverables": { "type": "array", "items": { "$ref": "#/$defs/ArchitectureDeliverable" } }
+          }
+        }
+      ]
+    },
+
+    "Platform": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Platform" },
+    "Capability": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Capability" },
+    "IndustryReferenceDomain": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/IndustryReferenceDomain" },
+    "Component": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Component" },
+    "Interface": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Interface" },
+    "Integration": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Integration" },
+    "IntegrationDependencyDomain": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/IntegrationDependencyDomain" },
+    "IntegrationDependencyLink": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/IntegrationDependencyLink" },
+    "Change": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Change" },
+    "Driver": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Driver" },
+    "Theme": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Theme" },
+    "Transition": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Transition" },
+    "UseCase": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/UseCase" },
+    "Decision": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Decision" },
+    "Pattern": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Pattern" },
+    "Standard": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Standard" },
+    "QualityAttribute": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/QualityAttribute" },
+    "Risk": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Risk" },
+    "Control": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Control" },
+    "Viewpoint": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/Viewpoint" },
+    "View": { "$ref": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json#/$defs/View" }
+  }
+}
