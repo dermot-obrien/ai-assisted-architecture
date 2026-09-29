@@ -2,11 +2,11 @@
 name: aaa-create-runtime-agent
 description: Author an autonomous runtime agent as a catalogued artefact with its agent profile, contracts, tiered guardrails, capability scope and output provenance, so it cannot change its own limits. Use when asked to create, define or catalogue a runtime agent, an autonomous agent that acts in the live system, an agent profile or A2A agent card, or to specify agent guardrails and capability scope.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Validation uses scripts/ontology/validate.cjs, which needs Node.js. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Validation runs the repository's optional ontologyValidator and agentProfileSchema bindings (the framework's validator, scripts/ontology/validate.cjs, needs Node.js). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.3.2"
 ---
 
 # Create Runtime Agent
