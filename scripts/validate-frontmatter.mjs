@@ -24,6 +24,21 @@ import yaml from 'js-yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
+if (process.argv.slice(2).some((a) => a === '-h' || a === '--help')) {
+  console.log(`usage: node scripts/validate-frontmatter.mjs [--root <dir>] [--quiet]
+
+Validate the YAML front matter of every index.md under a root against the v1.1.0
+per-kind JSON Schemas in standards/schemas/v1.1.0/, chosen by each file's kind.
+
+  --root <dir>  Root to walk (default: foundation)
+  --quiet       Print only failures and the summary
+  -h, --help    Show this help
+
+Exit 0 when every artefact validates, 1 when any fails. Needs npm install in the
+framework folder (ajv, ajv-formats, js-yaml).`);
+  process.exit(0);
+}
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SCHEMA_DIR = path.resolve(__dirname, '..', 'standards', 'schemas', 'v1.1.0');
 

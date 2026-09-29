@@ -13,7 +13,11 @@
  *   - `compatibility`, if present, <= 500 chars
  *   - only spec fields at the top level (others warn, since clients may add their own)
  *   - relative Markdown links in the body resolve on disk
- *   - body length against the spec's 500-line guidance (warning)
+ *   - no unquoted value holds ": ", which real YAML parsers reject
+ *   - body length against the spec's 500-line and 5,000-token guidance (warnings)
+ *
+ * The reference validator is skills-ref (github.com/agentskills/agentskills), which CI
+ * also runs. This script stays because it has no dependencies and checks links too.
  *
  * Zero dependencies on purpose: this runs in CI for both AAW and AAA, and AAA has
  * no node_modules. The frontmatter parser handles the flat scalars and the single
@@ -37,6 +41,7 @@ const MAX_NAME = 64;
 const MAX_DESCRIPTION = 1024;
 const MAX_COMPATIBILITY = 500;
 const BODY_LINE_GUIDANCE = 500;
+const BODY_TOKEN_GUIDANCE = 5000;
 const NAME_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 /**
@@ -120,6 +125,20 @@ function validateSkill(dir) {
   const fm = parseFrontmatter(split.frontmatter);
   const body = split.body;
 
+  // This reader is lenient, so it would accept a value no real YAML parser does. The
+  // common case is an unquoted value holding ": ", which YAML reads as a second mapping
+  // ("mapping values are not allowed here"), so the skill fails to load in clients and in
+  // skills-ref. Quote the value instead.
+  for (const line of split.frontmatter.split("\n")) {
+    const m = /^\s*([A-Za-z][\w-]*):\s+(.*)$/.exec(line);
+    if (!m) continue;
+    const v = m[2].trim();
+    if (v === "" || v[0] === '"' || v[0] === "'" || v[0] === "|" || v[0] === ">") continue;
+    if (/:\s/.test(v) || v.endsWith(":")) {
+      errors.push(`${skillFile}: '${m[1]}' is an unquoted value containing ': ', which is invalid YAML; quote it`);
+    }
+  }
+
   for (const key of Object.keys(fm)) {
     if (!SPEC_FIELDS.has(key)) {
       warnings.push(`${skillFile}: '${key}' is not a spec field (client-specific; fine if intended)`);
@@ -169,6 +188,15 @@ function validateSkill(dir) {
   if (lines > BODY_LINE_GUIDANCE) {
     warnings.push(
       `${skillFile}: body is ${lines} lines; the spec recommends keeping SKILL.md under ${BODY_LINE_GUIDANCE} and moving detail to references/`,
+    );
+  }
+
+  // The spec recommends under 5,000 tokens of instructions. Four characters a token is
+  // a rough but conservative estimate for English prose and Markdown.
+  const tokens = Math.round(body.length / 4);
+  if (tokens > BODY_TOKEN_GUIDANCE) {
+    warnings.push(
+      `${skillFile}: body is about ${tokens} tokens; the spec recommends under ${BODY_TOKEN_GUIDANCE} and moving detail to references/`,
     );
   }
 

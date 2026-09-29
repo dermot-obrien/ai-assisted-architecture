@@ -8,7 +8,7 @@
 // depends on). This launcher locates the sibling AAW bundle and delegates:
 // `aaw install --framework <this AAA repo>`. No npm install / node_modules here.
 //
-//   aaa install          Wire AAA shims for detected tools (Claude/Cursor/Copilot/Gemini)
+//   aaa install          Install the AAA Agent Skills into the workspace
 //   aaa install --seed    ...and scaffold the foundation (capabilities + building-blocks)
 //   aaa --help
 
@@ -24,10 +24,15 @@ const HELP = `aaa — AI-Assisted Architecture installer
 
 Usage:
   aaa install [--workspace PATH]
-                         Wire AAA command shims for detected AI tools
+                         Install the AAA Agent Skills into .agents/skills/,
+                         linked into .claude/skills/ when .claude exists
   aaa install --seed     ...and scaffold the foundation seed into this workspace
                          (capabilities/ + building-blocks/)
+  aaa install --no-python
+                         Skip the engine's pip install step (AAA declares none)
   aaa --help             Show this help
+
+Other install flags are passed through to 'aaw install --framework'.
 
 AAA depends on AAW: install AAW into the target workspace first. AAA resolves
 AAW from that workspace's .aaw-config.yaml when available, then falls back to

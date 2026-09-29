@@ -44,8 +44,8 @@ function expect(label, value, ref, ok) {
 
 // The base ontology's worked example, whole and entity by entity through the module.
 const example = JSON.parse(readFileSync(path.join(ROOT, "standards", "ontology", "example-identity-platform.json"), "utf8"));
-// The example records an older ontology version than the schema's const; that is the
-// example's to update, and nothing to do with this module, so the test sets it.
+// The test sets the version to the schema's const, so it does not depend on the example
+// keeping pace with the base ontology's version.
 const base = registry.byId.get(BASE);
 expect("the worked example validates against the base ontology", { ...example, version: base.properties.version.const ?? example.version }, BASE, true);
 const entities = {
