@@ -1,0 +1,370 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pkg:generic/dermot-obrien/ai-assisted-work/work-ontology@1.0.0",
+  "title": "Work ontology",
+  "description": "The work layer of the layered ontology in DD-11: WorkItem, Activity, Task, Initiative, Deliverable, Stakeholder and the shared primitives, as they are written on disk (progress.yaml, snake_case). The source of truth for these concepts. Higher layers reference these definitions by $ref, using the module's identifier without its version (pkg:generic/dermot-obrien/ai-assisted-work/work-ontology#/$defs/WorkItem), and extend them with allOf, never copy them. Objects are open, so a layer adds fields without redefining a type. A Deliverable is what a work item produces; a registered product that consumers use and raise feature requests against belongs to the delivery layer, not to this one.",
+  "$comment": "packages/protocol/src/schema.ts is checked against this file by scripts/check-protocol-schema.mjs. The progress.yaml templates are tested against it by scripts/test-work-schema.mjs.",
+  "$defs": {
+    "WorkItemId": {
+      "description": "A work item's identifier, such as WI-001.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+$"
+    },
+    "InitiativeId": {
+      "description": "An initiative's identifier, such as IN-001.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+$"
+    },
+    "ActivityId": {
+      "description": "{work_item_id}-A{N}, such as WI-001-A1.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+-A[0-9]+$"
+    },
+    "TaskId": {
+      "description": "{activity_id}-T{N}, such as WI-001-A1-T1.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+-A[0-9]+-T[0-9]+$"
+    },
+    "DeliverableId": {
+      "description": "{work_item_id}-D{N}, such as WI-001-D1.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+-D[0-9]+$"
+    },
+    "BlockerId": {
+      "description": "{work_item_id}-B{N}, such as WI-001-B1.",
+      "type": "string",
+      "pattern": "^[A-Z][A-Z0-9]*-[0-9]+-B[0-9]+$"
+    },
+    "Timestamp": {
+      "description": "An ISO-8601 timestamp, or null where not yet set.",
+      "type": ["string", "null"]
+    },
+    "Notes": {
+      "description": "Free text, or null.",
+      "type": ["string", "null"]
+    },
+    "NullableString": {
+      "type": ["string", "null"]
+    },
+    "ExternalReference": {
+      "description": "A reference to a record held in another system, such as a tracker key. The system is named, never assumed.",
+      "type": "object",
+      "required": ["system", "external_id"],
+      "properties": {
+        "system": { "type": "string", "minLength": 1 },
+        "external_id": { "type": "string", "minLength": 1 },
+        "url": { "type": ["string", "null"] }
+      }
+    },
+    "Stakeholder": {
+      "description": "A person or agent who does, owns or approves work.",
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "type": "string", "minLength": 1 },
+        "role": { "$ref": "#/$defs/NullableString" },
+        "kind": { "enum": ["human", "agent"] }
+      }
+    },
+
+    "CoreWorkType": {
+      "description": "The work types AAW has always accepted. Kept for compatibility; a new domain value is contributed by the layer it belongs to, as a WorkType extension.",
+      "enum": ["development", "architecture", "consultancy", "mixed"]
+    },
+    "WorkType": {
+      "description": "What kind of work an item is. Open (DD-01, DD-11): a core value, or a value a higher layer or a workspace contributes, namespaced as <prefix>:<value> (such as delivery:enabler) or prefixed x- for a workspace's own.",
+      "anyOf": [
+        { "$ref": "#/$defs/CoreWorkType" },
+        { "type": "string", "pattern": "^[a-z][a-z0-9-]*:[a-z][a-z0-9-]*$" },
+        { "type": "string", "pattern": "^x-[a-z0-9]+(-[a-z0-9]+)*$" }
+      ]
+    },
+    "WorkItemLevel": {
+      "description": "workstream: a durable strand of work inside an Initiative, decomposed into epics. epic: a bounded slice sized to land inside one planning period, decomposed into activities.",
+      "enum": ["workstream", "epic"]
+    },
+    "WorkItemStatus": {
+      "enum": ["scoping", "discovery", "planning", "in_progress", "blocked", "review", "abandoned", "done"]
+    },
+    "ActivityStatus": {
+      "enum": ["pending", "in_progress", "awaiting_human", "completed", "blocked", "skipped", "abandoned"]
+    },
+    "TaskStatus": {
+      "enum": ["pending", "in_progress", "completed", "blocked", "skipped", "awaiting_human", "abandoned"]
+    },
+    "InitiativeStatus": {
+      "enum": ["proposed", "active", "on_hold", "completed", "done", "cancelled"]
+    },
+    "DeliverableState": {
+      "description": "The state of the product itself, distinct from the status of the activities producing it.",
+      "enum": ["planned", "drafted", "in_review", "accepted"]
+    },
+    "DeliverableStatus": {
+      "description": "The status of a schema version 1 or 2 deliverable listed under artifacts.deliverables.",
+      "enum": ["pending", "draft", "complete"]
+    },
+    "Actor": {
+      "enum": ["agent", "human", "any"]
+    },
+    "FileChangeAction": {
+      "enum": ["created", "modified", "deleted"]
+    },
+    "ObjectiveStatus": {
+      "enum": ["active", "achieved", "missed", "dropped"]
+    },
+    "KeyResultType": {
+      "enum": ["leading", "lagging"]
+    },
+
+    "FileChange": {
+      "type": "object",
+      "required": ["path", "action"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "action": { "$ref": "#/$defs/FileChangeAction" }
+      }
+    },
+    "Deliverable": {
+      "description": "A product a work item leaves behind: tangible and verifiable by someone other than its author. Named before the activities, which are derived from it. The delivery layer extends it with a type from a register and a size in points.",
+      "type": "object",
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "$ref": "#/$defs/DeliverableId" },
+        "type": {
+          "description": "Optional type from the workspace's deliverables register, whose purpose, quality criteria and approver it inherits.",
+          "$ref": "#/$defs/NullableString"
+        },
+        "name": { "type": "string", "minLength": 1 },
+        "why_needed": { "$ref": "#/$defs/NullableString" },
+        "depends_on": {
+          "description": "Deliverables on the same work item that must exist first: the product flow.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/DeliverableId" }
+        },
+        "quality_criteria": { "$ref": "#/$defs/NullableString" },
+        "approver": { "$ref": "#/$defs/NullableString" },
+        "state": { "$ref": "#/$defs/DeliverableState" },
+        "owner": { "$ref": "#/$defs/NullableString" },
+        "path": { "$ref": "#/$defs/NullableString" },
+        "files_changed": { "type": "array", "items": { "$ref": "#/$defs/FileChange" } }
+      }
+    },
+    "ArtifactDeliverable": {
+      "description": "A deliverable as schema versions 1 and 2 recorded it, under artifacts.deliverables. Schema version 3 names products in the top-level deliverables list instead.",
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "path": { "$ref": "#/$defs/NullableString" },
+        "activity": { "$ref": "#/$defs/NullableString" },
+        "status": { "$ref": "#/$defs/DeliverableStatus" },
+        "files_changed": { "type": "array", "items": { "$ref": "#/$defs/FileChange" } }
+      }
+    },
+    "Task": {
+      "description": "A step inside an activity, worked in order.",
+      "type": "object",
+      "required": ["id", "title", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/TaskId" },
+        "title": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/TaskStatus" },
+        "actor": { "$ref": "#/$defs/Actor" },
+        "completed_by": { "$ref": "#/$defs/NullableString" },
+        "completed_at": { "$ref": "#/$defs/Timestamp" },
+        "notes": { "$ref": "#/$defs/Notes" },
+        "deliverables": {
+          "description": "Deliverable ids this task contributes to.",
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "Activity": {
+      "description": "A unit of work on a work item, derived from the product it advances. From schema version 3, produces is required: an activity that produces nothing is invalid.",
+      "type": "object",
+      "required": ["id", "title", "status"],
+      "properties": {
+        "id": { "$ref": "#/$defs/ActivityId" },
+        "title": { "type": "string", "minLength": 1 },
+        "produces": {
+          "description": "The deliverable on this work item that this activity contributes to.",
+          "$ref": "#/$defs/DeliverableId"
+        },
+        "status": { "$ref": "#/$defs/ActivityStatus" },
+        "actor": { "$ref": "#/$defs/Actor" },
+        "depends_on": { "type": "array", "items": { "$ref": "#/$defs/ActivityId" } },
+        "completed_by": { "$ref": "#/$defs/NullableString" },
+        "completed_at": { "$ref": "#/$defs/Timestamp" },
+        "tasks": { "type": "array", "items": { "$ref": "#/$defs/Task" } }
+      }
+    },
+    "Blocker": {
+      "type": "object",
+      "required": ["id", "activity_id", "description"],
+      "properties": {
+        "id": { "$ref": "#/$defs/BlockerId" },
+        "activity_id": { "$ref": "#/$defs/ActivityId" },
+        "task_id": { "anyOf": [{ "$ref": "#/$defs/TaskId" }, { "type": "null" }] },
+        "description": { "type": "string" },
+        "raised_at": { "$ref": "#/$defs/Timestamp" },
+        "raised_by": { "$ref": "#/$defs/NullableString" },
+        "resolved_at": { "$ref": "#/$defs/Timestamp" },
+        "resolution": { "$ref": "#/$defs/NullableString" }
+      }
+    },
+    "WorkItemArtifacts": {
+      "description": "The supporting documents around a work item, by path relative to its folder.",
+      "type": "object",
+      "properties": {
+        "scope": { "$ref": "#/$defs/NullableString" },
+        "plan": { "$ref": "#/$defs/NullableString" },
+        "scope_ai": { "$ref": "#/$defs/NullableString" },
+        "changes": { "$ref": "#/$defs/NullableString" },
+        "research": { "$ref": "#/$defs/NullableString" },
+        "decisions": { "$ref": "#/$defs/NullableString" },
+        "notes": { "$ref": "#/$defs/NullableString" },
+        "jira": { "$ref": "#/$defs/NullableString" },
+        "branch": { "$ref": "#/$defs/NullableString" },
+        "pr": { "$ref": "#/$defs/NullableString" },
+        "diagrams": { "type": "array", "items": { "type": "string" } },
+        "deliverables": {
+          "description": "Schema versions 1 and 2 only.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/ArtifactDeliverable" }
+        }
+      }
+    },
+    "WorkItem": {
+      "description": "A piece of work with its own folder and progress.yaml: the products it will leave behind, the activities that produce them, and their state.",
+      "type": "object",
+      "required": ["work_item_id", "title", "status"],
+      "properties": {
+        "schema_version": {
+          "description": "1: no actor. 2: the actor model. 3: work_item_level and product-based deliverables.",
+          "type": "integer",
+          "minimum": 1
+        },
+        "version": {
+          "description": "Optimistic-lock version, incremented on every write.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_modified": { "$ref": "#/$defs/Timestamp" },
+        "last_modified_by": { "$ref": "#/$defs/NullableString" },
+        "work_item_id": { "$ref": "#/$defs/WorkItemId" },
+        "title": { "type": "string", "minLength": 1 },
+        "type": { "$ref": "#/$defs/WorkType" },
+        "status": { "$ref": "#/$defs/WorkItemStatus" },
+        "work_item_level": { "$ref": "#/$defs/WorkItemLevel" },
+        "parent_work_item_id": {
+          "description": "For an epic, the workstream it belongs to. A workstream never sets it.",
+          "anyOf": [{ "$ref": "#/$defs/WorkItemId" }, { "type": "null" }]
+        },
+        "initiative_id": { "anyOf": [{ "$ref": "#/$defs/InitiativeId" }, { "type": "null" }] },
+        "planning_period": {
+          "description": "The period an epic lands in, in the organisation's own calendar.",
+          "$ref": "#/$defs/NullableString"
+        },
+        "advances_kr_ids": {
+          "description": "The key results this work item advances, where the workspace runs objectives.",
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "created": { "$ref": "#/$defs/Timestamp" },
+        "updated": { "$ref": "#/$defs/Timestamp" },
+        "deliverables": {
+          "description": "The products this work item will produce, named before its activities.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/Deliverable" }
+        },
+        "activities": { "type": "array", "items": { "$ref": "#/$defs/Activity" } },
+        "blockers": { "type": "array", "items": { "$ref": "#/$defs/Blocker" } },
+        "artifacts": { "$ref": "#/$defs/WorkItemArtifacts" }
+      },
+      "if": {
+        "required": ["schema_version"],
+        "properties": { "schema_version": { "minimum": 3 } }
+      },
+      "then": {
+        "required": ["work_item_level"],
+        "properties": {
+          "activities": { "items": { "required": ["produces"] } }
+        }
+      }
+    },
+    "WorkItemRef": {
+      "description": "A work item as an initiative lists it. The work item's own progress.yaml is the source of truth.",
+      "type": "object",
+      "required": ["id"],
+      "properties": {
+        "id": { "$ref": "#/$defs/WorkItemId" },
+        "title": { "type": "string" },
+        "status": { "$ref": "#/$defs/WorkItemStatus" },
+        "path": { "type": "string" }
+      }
+    },
+    "InitiativeArtifacts": {
+      "type": "object",
+      "properties": {
+        "scope": { "$ref": "#/$defs/NullableString" },
+        "notes": { "$ref": "#/$defs/NullableString" }
+      }
+    },
+    "Initiative": {
+      "description": "A strategic container grouping related work items toward a shared goal. It has no activities of its own.",
+      "type": "object",
+      "required": ["initiative_id", "title", "status"],
+      "properties": {
+        "initiative_id": { "$ref": "#/$defs/InitiativeId" },
+        "title": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/InitiativeStatus" },
+        "owner": { "$ref": "#/$defs/NullableString" },
+        "created": { "$ref": "#/$defs/Timestamp" },
+        "updated": { "$ref": "#/$defs/Timestamp" },
+        "target_start": { "$ref": "#/$defs/NullableString" },
+        "target_end": { "$ref": "#/$defs/NullableString" },
+        "work_items": {
+          "description": "A convenience cache; each work item's initiative_id is canonical.",
+          "type": ["array", "null"],
+          "items": { "$ref": "#/$defs/WorkItemRef" }
+        },
+        "root_work_item": { "anyOf": [{ "$ref": "#/$defs/WorkItemId" }, { "type": "null" }] },
+        "artifacts": { "$ref": "#/$defs/InitiativeArtifacts" },
+        "status_notes": { "$ref": "#/$defs/Notes" },
+        "on_hold_reason": { "$ref": "#/$defs/NullableString" },
+        "cancelled_reason": { "$ref": "#/$defs/NullableString" }
+      }
+    },
+    "KeyResult": {
+      "type": "object",
+      "required": ["id", "statement"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "statement": { "type": "string" },
+        "type": { "$ref": "#/$defs/KeyResultType" },
+        "baseline": {},
+        "target": {},
+        "current": {},
+        "milestone_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "Objective": {
+      "description": "The optional objectives and key results layer: an objective for a horizon, measured by key results that work items advance.",
+      "type": "object",
+      "required": ["objective_id", "title"],
+      "properties": {
+        "objective_id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string" },
+        "horizon": { "type": "string" },
+        "owner": { "$ref": "#/$defs/NullableString" },
+        "status": { "$ref": "#/$defs/ObjectiveStatus" },
+        "key_results": { "type": "array", "items": { "$ref": "#/$defs/KeyResult" } },
+        "advanced_by_work_item_ids": { "type": "array", "items": { "type": "string" } },
+        "notes": { "$ref": "#/$defs/Notes" }
+      }
+    }
+  }
+}

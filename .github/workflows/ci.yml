@@ -24,6 +24,21 @@ jobs:
       - name: Validate skills against the agentskills.io spec
         run: node scripts/validate-skills.mjs skills
 
+      # The validator and the bundle and work schemas are copies from AAW in
+      # scripts/vendor/; the base ontology the architecture module names is this repo's.
+      - name: Validate bundle.json against the bundle schema and the skills
+        run: node scripts/validate-bundle.mjs --schemas standards/ontology .
+
+      - name: The architecture ontology module builds on the work layer and the base
+        run: node scripts/test-architecture-ontology.mjs
+
+      # Each aaa-create-* skill ships its own copy of the check, so it is complete on its own.
+      - name: The aaa-create-* post-install checks are one file
+        run: |
+          for f in skills/aaa-create-*/bin/check.mjs; do
+            cmp skills/aaa-create-abb/bin/check.mjs "$f" || { echo "::error::$f differs from skills/aaa-create-abb/bin/check.mjs"; exit 1; }
+          done
+
   rung:
     name: aaa-rung tests
     runs-on: ubuntu-latest
@@ -77,6 +92,27 @@ jobs:
           for s in /tmp/ws/.claude/skills/aaa-*; do
             test -f "$s/SKILL.md" || { echo "::error::$s does not resolve"; exit 1; }
           done
+
+      # An installer runs each skill's check after installing it; this runs them the same way.
+      - name: Each skill's post-install check fails unbound and passes bound
+        run: |
+          CHECK="node $GITHUB_WORKSPACE/aaa/scripts/validate-bundle.mjs --schemas $GITHUB_WORKSPACE/aaa/standards/ontology --run-checks /tmp/ws"
+          if $CHECK "$GITHUB_WORKSPACE/aaa"; then
+            echo "::error::the checks passed with nothing bound"; exit 1
+          fi
+          cd /tmp/ws
+          mkdir -p .agents arch/outcomes arch/use-cases arch/platforms arch/capabilities arch/contexts arch/abbs arch/sbbs arch/services
+          {
+            echo '[suite.aaa-create-strategy]';  echo 'outcomeDir = "../arch/outcomes"'; echo 'useCaseDir = "../arch/use-cases"'
+            echo '[suite.aaa-create-platform]';  echo 'platformDir = "../arch/platforms"'
+            echo '[suite.aaa-create-capability]'; echo 'capabilityDir = "../arch/capabilities"'; echo 'platformDir = "../arch/platforms"'
+            echo '[suite.aaa-create-context]';   echo 'contextDir = "../arch/contexts"'; echo 'platformDir = "../arch/platforms"'
+            echo '[suite.aaa-create-abb]';       echo 'abbDir = "../arch/abbs"'
+            echo '[suite.aaa-create-sbb]';       echo 'sbbDir = "../arch/sbbs"'
+            echo '[suite.aaa-create-service]';   echo 'serviceDir = "../arch/services"'
+            echo '[suite.aaa-rung]';             echo 'capabilityDir = "../arch/capabilities"'
+          } > .agents/skill-bindings.toml
+          $CHECK "$GITHUB_WORKSPACE/aaa"
 
   reuse:
     name: REUSE compliance

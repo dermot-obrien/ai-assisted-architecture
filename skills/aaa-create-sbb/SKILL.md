@@ -6,7 +6,7 @@ compatibility: Needs the AI-Assisted Architecture standards present in the works
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.0"
+  version: "0.3.1"
 ---
 
 # Create Solution Building Block (SBB)
