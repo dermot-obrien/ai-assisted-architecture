@@ -26,6 +26,10 @@ if (Number(process.versions.node.split(".")[0]) < 18) {
   console.error(`Node.js ${process.versions.node} is too old: this check needs 18 or newer.`);
   process.exit(2);
 }
+if (["-h", "--help"].includes(process.argv[2]) && process.argv.length === 3) {
+  console.log("usage: check.mjs   (run from the workspace root, with SKILL_DIR set; exit 0 ok, 1 problems, 2 usage or environment)");
+  process.exit(0);
+}
 if (process.argv.length > 2) {
   console.error("usage: check.mjs   (run from the workspace root; takes no arguments)");
   process.exit(2);
