@@ -1,5 +1,8 @@
 # Install
 
+The full installation guide, for every supported agent, is [docs/installation.md](../docs/installation.md).
+This page covers what the installer places and the instruction files you merge by hand.
+
 ## Quick install (recommended)
 
 AAA installs through the shared AAW install engine (see `framework.manifest.yaml`).
@@ -9,7 +12,7 @@ Clone AAW + AAA into your workspace, then run one command:
 git clone https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
 git clone https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
 
-node .ai-assisted-architecture/bin/aaa.js install          # wire command shims for detected tools
+node .ai-assisted-architecture/bin/aaa.js install          # install the Agent Skills
 node .ai-assisted-architecture/bin/aaa.js install --seed    # ...and scaffold the foundation seed
 ```
 
@@ -17,14 +20,13 @@ The installer prompts for the target workspace and defaults to the current works
 reuse one local AAA clone across multiple workspaces; AAA uses the chosen workspace's
 `.aaw-config.yaml` to resolve the matching AAW install source when it delegates to the shared engine.
 
-This installs the Agent Skills, wires the legacy `create-*` command shims for every
-detected tool (Claude/Cursor/Copilot/Gemini) and, with `--seed`, copies the selected profile's
-capabilities and building-blocks into your workspace. Re-run any time; existing files are left
+This installs the Agent Skills, links them into `.claude/skills/` when `.claude` exists, and,
+with `--seed`, copies the `core` profile's capabilities and building blocks into your workspace. Re-run any time; existing files are left
 untouched.
 
 The `AGENTS.md` / `CLAUDE.md` / `GEMINI.md` discovery files still need a one-time
 manual **merge** into your existing root files (see the table below) — the installer
-copies skills and shims, it does not merge your instruction files.
+copies skills, it does not merge your instruction files.
 
 ## What the installer places
 
@@ -85,8 +87,7 @@ your existing file for that tool.
 
 > **Note:** This folder is only for IDE configuration. If you also want to validate or
 > consolidate ontology data, that uses Node.js scripts shipped under
-> `.ai-assisted-architecture/scripts/ontology/` — see the
-> [Modernisation Ontology](../README.md#modernisation-ontology) section of the top-level README.
+> `.ai-assisted-architecture/scripts/ontology/`. See [docs/ontology.md](../docs/ontology.md).
 
 ## Hierarchy & Creation Order
 

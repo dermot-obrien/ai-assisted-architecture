@@ -18,6 +18,25 @@ import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
+const HELP = `usage: node src/seed-foundation.mjs [--workspace <dir>] [--profile <names>] [--force] [--dry-run]
+
+Copy a foundation profile's capabilities and ABBs, and the capability model files,
+into a workspace. Existing files are skipped unless --force is given.
+aaa install --seed runs this with --workspace set and --profile core.
+
+  --workspace <dir>   Workspace root (default: the current directory)
+  --profile <names>   Comma-separated: core, integration, infrastructure, or
+                      all (same as foundation). Default: core
+  --force             Overwrite files that already exist
+  --dry-run           Print what would be copied without writing
+  -h, --help          Show this help`;
+
+if (process.argv.slice(2).some((a) => a === "-h" || a === "--help")) {
+  process.stdout.write(`${HELP}
+`);
+  process.exit(0);
+}
+
 function parseArgs(argv) {
   const out = { workspace: process.cwd(), profiles: ["core"], force: false, dryRun: false };
   for (let i = 0; i < argv.length; i++) {

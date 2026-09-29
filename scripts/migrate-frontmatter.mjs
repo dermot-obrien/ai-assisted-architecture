@@ -68,6 +68,22 @@ import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
 
+if (process.argv.slice(2).some((a) => a === '-h' || a === '--help')) {
+  console.log(`usage: node scripts/migrate-frontmatter.mjs [--root <dir>] [--date YYYY-MM-DD] [--dry-run]
+
+Bring the front matter of every index.md under a root up to the v1.1.0 contract,
+extracting per-kind fields from each document's body. Idempotent: an existing key
+is never overwritten.
+
+  --root <dir>         Root to walk (default: foundation)
+  --date YYYY-MM-DD    Value for created and last_modified (default: today)
+  --dry-run            Report what would change without writing
+  -h, --help           Show this help
+
+Needs npm install in the framework folder (js-yaml).`);
+  process.exit(0);
+}
+
 // ---- args -------------------------------------------------------------------
 const argv = process.argv.slice(2);
 function arg(name, fallback) {

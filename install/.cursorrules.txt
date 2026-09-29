@@ -3,7 +3,7 @@ Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical in
 For any capability, ABB/SBB work, load and follow the standards referenced by `.ai-assisted-architecture/standards/standards-index.md`.
 Do not infer alternate rules from examples when a standard file states a requirement.
 
-### `/create-strategy` - Create Outcome / Use Case
+### `/aaa-create-strategy` - Create Outcome / Use Case
 
 **Full instructions:** Read `the /aaa-create-strategy skill`
 
@@ -11,7 +11,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-platform` - Create Platform
+### `/aaa-create-platform` - Create Platform
 
 **Full instructions:** Read `the /aaa-create-platform skill`
 
@@ -19,7 +19,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-capability` - Create Capability
+### `/aaa-create-capability` - Create Capability
 
 **Full instructions:** Read `the /aaa-create-capability skill`
 
@@ -27,7 +27,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-context` - Create Bounded Context
+### `/aaa-create-context` - Create Bounded Context
 
 **Full instructions:** Read `the /aaa-create-context skill`
 
@@ -35,7 +35,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-abb` - Create Architecture Building Block
+### `/aaa-create-abb` - Create Architecture Building Block
 
 **Full instructions:** Read `the /aaa-create-abb skill`
 
@@ -43,7 +43,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-sbb` - Create Solution Building Block
+### `/aaa-create-sbb` - Create Solution Building Block
 
 **Full instructions:** Read `the /aaa-create-sbb skill`
 
@@ -51,7 +51,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-service` - Create Service
+### `/aaa-create-service` - Create Service
 
 **Full instructions:** Read `the /aaa-create-service skill`
 
@@ -59,7 +59,7 @@ Do not infer alternate rules from examples when a standard file states a require
 
 ---
 
-### `/create-runtime-agent` - Create Runtime Agent
+### `/aaa-create-runtime-agent` - Create Runtime Agent
 
 **Full instructions:** Read `the /aaa-create-runtime-agent skill`
 

@@ -82,6 +82,26 @@ How you tested the changes
 - [ ] Scripts tested locally
 ```
 
+### Checks before a pull request
+
+CI runs these on every pull request. Run them from the repository root first:
+
+```bash
+node scripts/validate-skills.mjs skills
+node scripts/validate-bundle.mjs --schemas standards/ontology .
+node scripts/test-architecture-ontology.mjs
+python -m unittest discover skills/aaa-rung/tests
+```
+
+With `npm install` done, also run `node scripts/validate-frontmatter.mjs --quiet` when you
+change a schema or the foundation. CI also runs the `skills-ref` reference validator, installs
+into a scratch workspace, and checks REUSE compliance; [Commands](docs/commands.md) describes
+each tool.
+
+If you change anything inside a skill folder, bump that skill's patch version in its
+`SKILL.md` `metadata.version` and in `bundle.json` (version and purl), and add a line to
+`CHANGELOG.md`. Changes to `docs/` need no version bump.
+
 ## Content Guidelines
 
 ### Organisation-Agnostic

@@ -105,8 +105,8 @@
     {
       "name": "aaa-rung",
       "path": "skills/aaa-rung",
-      "version": "0.4.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-rung@0.4.1",
+      "version": "0.4.2",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-rung@0.4.2",
       "requires": [],
       "check": {
         "command": ["python", "bin/check.py"],
