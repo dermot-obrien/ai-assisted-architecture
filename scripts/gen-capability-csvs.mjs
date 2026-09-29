@@ -15,6 +15,17 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 
+if (process.argv.slice(2).some((a) => a === '-h' || a === '--help')) {
+  console.log(`usage: node scripts/gen-capability-csvs.mjs
+
+Regenerate foundation/capabilities/capability-hierarchy.csv and
+capability-abb-mapping.csv from foundation/capabilities/capability-model.md.
+Run from the framework root. Takes no options; writes both files.
+
+  -h, --help   Show this help`);
+  process.exit(0);
+}
+
 const ROOT = process.cwd();
 const MODEL = `${ROOT}/foundation/capabilities/capability-model.md`;
 const HIER_OUT = `${ROOT}/foundation/capabilities/capability-hierarchy.csv`;

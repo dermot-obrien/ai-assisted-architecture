@@ -2,7 +2,7 @@ Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical in
 
 For capability, ABB/SBB, or visual-output tasks, load and follow the standards listed in `.ai-assisted-architecture/standards/standards-index.md`.
 
-### `/create-strategy` - Create Outcome / Use Case
+### `/aaa-create-strategy` - Create Outcome / Use Case
 
 **Full instructions:** Read `the /aaa-create-strategy skill`
 
@@ -10,7 +10,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-platform` - Create Platform
+### `/aaa-create-platform` - Create Platform
 
 **Full instructions:** Read `the /aaa-create-platform skill`
 
@@ -18,7 +18,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-capability` - Create Capability
+### `/aaa-create-capability` - Create Capability
 
 **Full instructions:** Read `the /aaa-create-capability skill`
 
@@ -26,7 +26,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-context` - Create Bounded Context
+### `/aaa-create-context` - Create Bounded Context
 
 **Full instructions:** Read `the /aaa-create-context skill`
 
@@ -34,7 +34,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-abb` - Create Architecture Building Block
+### `/aaa-create-abb` - Create Architecture Building Block
 
 **Full instructions:** Read `the /aaa-create-abb skill`
 
@@ -42,7 +42,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-sbb` - Create Solution Building Block
+### `/aaa-create-sbb` - Create Solution Building Block
 
 **Full instructions:** Read `the /aaa-create-sbb skill`
 
@@ -50,7 +50,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-service` - Create Service
+### `/aaa-create-service` - Create Service
 
 **Full instructions:** Read `the /aaa-create-service skill`
 
@@ -58,7 +58,7 @@ For capability, ABB/SBB, or visual-output tasks, load and follow the standards l
 
 ---
 
-### `/create-runtime-agent` - Create Runtime Agent
+### `/aaa-create-runtime-agent` - Create Runtime Agent
 
 **Full instructions:** Read `the /aaa-create-runtime-agent skill`
 

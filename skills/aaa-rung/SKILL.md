@@ -6,7 +6,7 @@ compatibility: Python 3.11+ (tomllib). PyYAML is used when installed and is not 
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.4.1"
+  version: "0.4.2"
 ---
 
 # Rung

@@ -9,6 +9,17 @@
 
 import { readFileSync, writeFileSync } from 'node:fs';
 
+if (process.argv.slice(2).some((a) => a === '-h' || a === '--help')) {
+  console.log(`usage: node scripts/sync-cap-abb-frontmatter.mjs
+
+Align each L3 capability's realised_by_abbs front matter under
+foundation/capabilities/ with the traceability matrix in capability-model.md.
+Run from the framework root. Takes no options; idempotent.
+
+  -h, --help   Show this help`);
+  process.exit(0);
+}
+
 const ROOT = process.cwd();
 const MODEL = `${ROOT}/foundation/capabilities/capability-model.md`;
 const cols = ['ABB-001', 'ABB-002', 'ABB-003', 'ABB-004', 'ABB-005', 'ABB-006', 'ABB-007', 'ABB-008'];
