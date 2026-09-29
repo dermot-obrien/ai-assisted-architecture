@@ -19,8 +19,8 @@
  * The reference validator is skills-ref (github.com/agentskills/agentskills), which CI
  * also runs. This script stays because it has no dependencies and checks links too.
  *
- * Zero dependencies on purpose: this runs in CI for both AAW and AAA, and AAA has
- * no node_modules. The frontmatter parser handles the flat scalars and the single
+ * Zero dependencies on purpose, so CI needs no install step to run it. Taken from
+ * AI-Assisted Work (scripts/validate-skills.mjs); see its licence header. The frontmatter parser handles the flat scalars and the single
  * nested `metadata` map the spec allows, which is all a SKILL.md may contain.
  *
  * Usage: node scripts/validate-skills.mjs [skillsRoot]   (default: ./skills)
@@ -203,7 +203,21 @@ function validateSkill(dir) {
   return { errors, warnings, name: name ?? dirName, description: description ?? "", lines };
 }
 
-const root = path.resolve(process.argv[2] ?? "skills");
+const USAGE = "usage: validate-skills.mjs [skillsRoot]   (default: ./skills; exit 0 ok, 1 errors, 2 usage)";
+const args = process.argv.slice(2);
+if (args.some((x) => x === "-h" || x === "--help")) {
+  console.log(USAGE);
+  process.exit(0);
+}
+// An unknown option is a mistake, not a folder name: say so rather than validating "--foo".
+const unknown = args.find((x) => x.startsWith("-"));
+if (unknown || args.length > 1) {
+  console.error(unknown ? `unknown option: ${unknown}` : `expected at most one skills folder, got ${args.length}`);
+  console.error(USAGE);
+  process.exit(2);
+}
+
+const root = path.resolve(args[0] ?? "skills");
 if (!existsSync(root)) {
   console.error(`No skills directory at ${root}`);
   process.exit(1);
