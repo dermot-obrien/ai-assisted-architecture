@@ -57,8 +57,8 @@
     {
       "name": "aaa-create-runtime-agent",
       "path": "skills/aaa-create-runtime-agent",
-      "version": "0.3.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-runtime-agent@0.3.1",
+      "version": "0.3.2",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-runtime-agent@0.3.2",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],

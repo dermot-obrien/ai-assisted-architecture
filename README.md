@@ -157,8 +157,29 @@ Supported tools: Claude Code, Cursor, GitHub Copilot, Gemini, Cline, Windsurf.
 
 ## Agent Skills
 
-All ten skills are standalone [Agent Skills](https://agentskills.io): a directory holding a
+All nine skills are standalone [Agent Skills](https://agentskills.io): a directory holding a
 `SKILL.md` plus its `references/` or its code. One definition works in every skills-compatible tool.
+
+### Conformance
+
+Every skill follows the [Agent Skills specification](https://agentskills.io/specification).
+Each `name` matches its directory, each `description` says what the skill does and when to use
+it, `metadata` values are strings, and each `SKILL.md` stays well under the 500-line guidance,
+with longer material in `references/` one level down. CI checks this twice on every pull request
+and every push to `main`: with the specification's reference validator, `skills-ref`, over every
+skill `bundle.json` lists (and fails if that list and `skills/` differ), and with this repository's
+own `scripts/validate-skills.mjs`, which also checks that relative links resolve.
+
+To validate locally:
+
+```bash
+pip install "git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref"
+for d in skills/*/; do skills-ref validate "$d"; done
+node scripts/validate-skills.mjs skills
+```
+
+`aaa install` places each skill in `.agents/skills/<name>/`, the specification's cross-tool
+location, and links `.claude/skills/<name>` at it for Claude Code (see [Installing](#installing)).
 
 | Skill | Invoke | Description |
 |-------|--------|-------------|
