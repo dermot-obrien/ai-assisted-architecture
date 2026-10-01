@@ -39,7 +39,7 @@ This repository is the original source of its skills. Its `LICENSE`, `LICENSES/`
 
 How you give back depends on how you took the skills.
 
-### You copied the skills into another repository or an internal skills library
+### You copied the skills into another repository or skills library
 
 A copy does not track this repository: it stays at the version you copied until you copy again.
 
