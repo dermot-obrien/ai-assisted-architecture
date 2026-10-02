@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "use-case.schema.json",
   "title": "Use Case Artefact (v1.1.0)",
-  "description": "An operational scenario describing how actors interact with the system to achieve an Outcome.",
+  "description": "A use case: a set of behaviours a subject performs that gives its actors an observable result of value toward an Outcome. Its scenarios are the paths through it; the scenario field holds the main success scenario in prose.",
   "type": "object",
 
   "allOf": [

@@ -914,6 +914,36 @@ The relationship to Driver stays a soft string reference (`Driver.theme = Theme.
 
 LeanIX mapping. Theme is a Tier 2 entity (see §8.6) — typically modelled in LeanIX as a tag taxonomy "Modernisation Theme" applied to relevant fact sheets. Some tenants may instead model themes as a custom fact sheet type; the ontology accommodates either.
 
+
+### 4.24 Opportunity
+
+```mermaid
+erDiagram
+  Initiative      }o--o{ Opportunity      : "implements_opportunity_ids"
+  UseCase         }o--o{ Opportunity      : "serves_opportunity_ids"
+```
+
+Opportunity is something the organisation pursues for its value, tracked from full potential through target run rate to value delivered, and implemented by one or more initiatives. It is a portfolio concept: the unit a board weighs and funds. The technology it rests on, AI or any other, is its domain, not its type, so it carries no AI in its name.
+
+Before 2.0.0 this entity was called UseCase. It was renamed because what it held was never a use case in the sense every method trained architects use, and the name blocked the one that is (§4.25). See §5.1 for the migration.
+
+### 4.25 UseCase
+
+```mermaid
+erDiagram
+  UseCase         ||--o{ UseCaseScenario  : "scenarios[] (owned)"
+  UseCase         }o--o{ Opportunity      : "serves_opportunity_ids"
+  UseCase         }o--o{ Component        : "realised_by_abb_ids"
+```
+
+UseCase has its UML meaning: a set of behaviours a subject performs that gives one or more actors an observable result of value (OMG UML 2.5.1, clause 18). It is the ontology's form of the use-case artefact in the front matter standard.
+
+**A use case has scenarios.** A scenario is one path through it, an instance of the use case in UML terms. The first is the main success scenario; the others are alternatives, extensions that depart under a condition, or set-up paths (Cockburn, *Writing Effective Use Cases*, 2001). Scenarios are owned, not first-class: each is identified by its use case's id and its key, `UC-007 S2`, and has no identifier, register or lifecycle of its own. That is how UML treats them, as behaviour described within the use case, and how Use-Case 2.0 (Jacobson, Spence and Bittner, 2011) addresses its stories and slices, relative to the use case. Promote scenarios to a first-class entity only if one acquires its own approval or lifecycle, or one scenario comes to be shared by several owners. A scenario is never a smaller use case, and an informal use case is not a scenario: it is a use case written with less formality, Cockburn's brief or casual.
+
+**Local and endorsed.** A use case starts local to the container that needs it, such as an epic or a project, with an identifier scoped to that container (`EP-12-UC1`), for the container's own scoping or proving. It takes a registered `UC-NNN` only when the organisation endorses it, and keeps its local identifier in `former_ids`. Formality and endorsement are independent: a fully dressed use case can still be local.
+
+A use case serves opportunities, supports outcomes, and is realised by building blocks. The patterns that design how it is built may name the use-case scenario each of their own scenarios realises, which is the use-case realisation of the Unified Process.
+
 ## 5. Migration mapping from the original ontology
 
 This ontology was developed via critique and refactor of an earlier ontology that had 17 entities serving similar purposes. The following mapping describes how each original entity translates to the new model.
@@ -939,6 +969,20 @@ This ontology was developed via critique and refactor of an earlier ontology tha
 | DataMastery | Absorbed into Component.data_mastery | Same semantics, attached to the right entity |
 
 The original's 17 entities → 22 entities in the new model. The count increased but each entity is now sharply scoped. The expansion is concentrated in the architecture-practice and risk-and-control layers, which the original under-served.
+
+### 5.1 Version 2.0.0: Opportunity and UseCase
+
+| Before 2.0.0 | From 2.0.0 |
+|---|---|
+| `UseCase` (portfolio item with value tracking) | `Opportunity` |
+| top-level `use_case` | `opportunity` |
+| `UseCase.use_case_type`, `use_case_subtype` | `Opportunity.opportunity_type`, `opportunity_subtype` |
+| `Initiative.implements_use_case_ids` | `implements_opportunity_ids` |
+| `IntegrationDependencyDomain.applies_to_use_case_ids` | `applies_to_opportunity_ids` |
+| `IntegrationDependencyLink.depended_on_by_use_case_ids` | `depended_on_by_opportunity_ids` |
+| (none) | `UseCase`, in its UML sense (§4.25) |
+
+Migration is a rename of the collection, the fields and the references, and of record identifiers if they carry a use-case prefix. No values change. A repository that extends this ontology renames the same names in its extension, because an extension may add to the base but not drop from it.
 
 ## 6. Component subtype migration
 

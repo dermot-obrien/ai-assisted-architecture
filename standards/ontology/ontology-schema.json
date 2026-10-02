@@ -4,7 +4,7 @@
   "$id": "https://github.com/dermot-obrien/ai-assisted-architecture/standards/ontology/ontology-schema.json",
   "title": "Modernisation Ontology",
   "description": "Platform-centric enterprise architecture ontology supporting board reporting, regulator reporting, and ongoing architecture practice. Built around a minimal capability-centric core (Platform, Capability, Component, Change) with governance, risk, and view layers added in disciplined extensions. Standards-aligned to ArchiMate and TOGAF (views and viewpoints) and ISO/IEC/IEEE 42010 (architecture description); capabilities optionally anchor to whichever industry reference taxonomy applies (eTOM for telecom, ACORD for insurance, NRF ARTS for retail, HL7/FHIR for healthcare, etc.). See accompanying README.md for usage guidance and SPECIFICATION.md for design rationale.",
-  "version": "1.5.0",
+  "version": "2.0.0",
   "type": "object",
   "properties": {
     "$comment": {
@@ -13,7 +13,7 @@
     },
     "version": {
       "type": "string",
-      "const": "1.5.0",
+      "const": "2.0.0",
       "description": "Ontology schema version. Bump on breaking changes."
     },
     "ontology_id": {
@@ -210,12 +210,12 @@
       },
       "description": "Time-based constraints (e.g., change freezes) that affect initiative scheduling."
     },
-    "use_case": {
+    "opportunity": {
       "type": "array",
       "items": {
-        "$ref": "#/$defs/UseCase"
+        "$ref": "#/$defs/Opportunity"
       },
-      "description": "AI use cases implemented by initiatives, with value tracking."
+      "description": "Opportunities implemented by initiatives, with value tracking. Called use_case before 2.0.0; use case now has its UML meaning (see UseCase)."
     },
     "delivery_status": {
       "type": "array",
@@ -1445,12 +1445,12 @@
           "type": "string",
           "description": "Optional narrative. The implication or cost of inaction if this initiative is not done, for board and roadmap detail and initiative cards. Optional/additive; non-breaking."
         },
-        "implements_use_case_ids": {
+        "implements_opportunity_ids": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "description": "Use cases this initiative implements."
+          "description": "Opportunities this initiative implements."
         },
         "advances_criterion_ids": {
           "type": "array",
@@ -2711,10 +2711,10 @@
       ],
       "additionalProperties": false
     },
-    "UseCase": {
+    "Opportunity": {
       "type": "object",
-      "title": "UseCase",
-      "description": "An AI use case with value tracking, implemented by one or more initiatives.",
+      "title": "Opportunity",
+      "description": "A business opportunity the organisation pursues, with value tracking, implemented by one or more initiatives and served by use cases. The technology it rests on, AI or any other, is its domain, not its type. Called UseCase before 2.0.0.",
       "properties": {
         "id": {
           "type": "string"
@@ -2725,10 +2725,10 @@
         "description": {
           "type": "string"
         },
-        "use_case_type": {
+        "opportunity_type": {
           "type": "string"
         },
-        "use_case_subtype": {
+        "opportunity_subtype": {
           "type": "string"
         },
         "target_area": {
@@ -2794,6 +2794,110 @@
       ],
       "additionalProperties": false
     },
+    "UseCase": {
+      "type": "object",
+      "title": "UseCase",
+      "description": "A use case in its UML sense: a set of behaviours a subject performs that gives one or more actors an observable result of value, described by its scenarios. A use case has scenarios; a scenario is one path through it, never a smaller use case. It starts local to a container such as an epic or a project, with an identifier scoped to it, and takes a registered UC-NNN when endorsed. The document form is the use-case artefact of the front matter standard. Sources: OMG UML 2.5.1, clause 18; Cockburn, Writing Effective Use Cases (2001); Jacobson, Spence and Bittner, Use-Case 2.0 (2011). Before 2.0.0 this name was the portfolio entity now called Opportunity.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^(UC-[0-9]{3}|[A-Z]{2,5}-[1-9][0-9]*-UC[0-9]+)$",
+          "description": "UC-NNN when endorsed; <container id>-UC<n> while local to its container."
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "endorsement": {
+          "type": "string",
+          "enum": ["local", "endorsed"],
+          "description": "Local to its container, for that container's own scoping or proving; or endorsed by the organisation, with a registered identifier."
+        },
+        "container_id": {
+          "type": "string",
+          "description": "The container a local use case belongs to. Kept after endorsement as provenance."
+        },
+        "former_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Identifiers the use case had before endorsement."
+        },
+        "primary_actor": {
+          "type": "string"
+        },
+        "secondary_actors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "success_criteria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The observable result of value, stated so it can be checked."
+        },
+        "scenarios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "name": {
+                "type": "string"
+              },
+              "role": {
+                "type": "string",
+                "enum": ["main_success", "alternative", "extension", "setup"]
+              },
+              "narrative": {
+                "type": "string"
+              }
+            },
+            "required": ["key", "name"]
+          },
+          "description": "Owned by the use case and cited as its id and key (UC-007 S2). S1 is the main success scenario; the rest are alternatives, extensions or set-up paths."
+        },
+        "supports_outcome_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "serves_opportunity_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "The opportunities this use case serves."
+        },
+        "realised_by_abb_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false
+    },
     "IntegrationDependencyDomain": {
       "type": "object",
       "title": "IntegrationDependencyDomain",
@@ -2806,7 +2910,7 @@
         "name": {
           "type": "string"
         },
-        "applies_to_use_case_ids": {
+        "applies_to_opportunity_ids": {
           "type": "array",
           "items": {
             "type": "string"
@@ -2904,7 +3008,7 @@
         "integration_id": {
           "type": "string"
         },
-        "depended_on_by_use_case_ids": {
+        "depended_on_by_opportunity_ids": {
           "type": "array",
           "items": {
             "type": "string"

@@ -21,7 +21,7 @@ It holds:
   produces decides the rung it evidences.
 - The architecture concepts of the base ontology, `standards/ontology/ontology-schema.json`,
   each by `$ref`: Platform, Capability, Component, Interface, Integration, Change, Driver,
-  Theme, Transition, UseCase, Decision, Pattern, Standard, QualityAttribute, Risk, Control,
+  Theme, Transition, Opportunity, UseCase, Decision, Pattern, Standard, QualityAttribute, Risk, Control,
   Viewpoint, View and the reference and dependency domains. One definition, two names.
 
 It is additive. The base ontology is unchanged, and a repository validating against it
