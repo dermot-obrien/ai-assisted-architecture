@@ -61,8 +61,9 @@ stops if one cannot be found. It looks in this order:
 1. A path you give, or one recorded in `.aaw-config.yaml`.
 2. A search of the workspace by file name, such as `standard-abb-document.md`. An organisation
    that keeps its standards in its own tree, say `governance/standards/`, is found this way.
-3. The framework's copy under `standards/`, found through `modules.aaa.source_root` in
-   `.aaw-config.yaml`.
+3. The skill's own copy in its `references/standards/`, written from the framework's
+   `standards/` and versioned with the skill, so a skill installed on its own needs no
+   framework clone.
 
 The one standard you are expected to override is the visual design standard: copy
 `standards/visual-design/visual-design-standard.md` anywhere in your workspace and change the

@@ -32,6 +32,11 @@ jobs:
       - name: The architecture ontology module builds on the work layer and the base
         run: node scripts/test-architecture-ontology.mjs
 
+      # Each skill carries its own copy of the standards it reads, so it works installed on its
+      # own. The copies are written from standards/ by the script; this fails when one differs.
+      - name: Each skill's copy of the standards matches standards/
+        run: node scripts/sync-skill-standards.mjs --check
+
       # Each aaa-create-* skill ships its own copy of the check, so it is complete on its own.
       - name: The aaa-create-* post-install checks are one file
         run: |

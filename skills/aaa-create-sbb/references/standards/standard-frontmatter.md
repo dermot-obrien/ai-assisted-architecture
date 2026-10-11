@@ -1,0 +1,958 @@
+---
+document_type: standards
+title: "Frontmatter Standard"
+classification: internal
+version: 1.1.0
+status: draft
+created: 2026-05-08
+last_modified: 2026-05-08
+owner: "Architecture Team"
+triggers:
+  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition, Consideration)"
+  - "Validating workspace artefacts in CI"
+  - "Migrating v1.0.0 artefacts to v1.1.0"
+  - "Querying the catalog by relations or status"
+---
+
+# Frontmatter Standard
+
+This standard defines the **YAML frontmatter** every catalog artefact carries. It introduces a universal envelope, per-kind extensions, a unified relationship vocabulary, and lifecycle / change / transition fields. Together these turn the framework's documentation into a queryable, machine-validatable catalog.
+
+This standard is the prose form. The machine-validatable form lives at [`schemas/v1.1.0/`](https://github.com/dermot-obrien/ai-assisted-architecture/tree/main/standards/schemas/v1.1.0/).
+
+> **Cross-references:**
+> - [Traceability & Hierarchy Standard](./standard-traceability.md) — the relationship semantics this standard implements.
+> - [Architectural Framework](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/docs/architectural-framework.md) — the conceptual hierarchy this standard formalises.
+> - [`schemas/v1.1.0/`](https://github.com/dermot-obrien/ai-assisted-architecture/tree/main/standards/schemas/v1.1.0/) — JSON Schemas (machine validators).
+> - [`standards/standards-index.md`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/standards-index.md) — discovery and precedence.
+
+---
+
+## 1. Position in the Framework
+
+Two distinct frontmatter shapes coexist:
+
+- **Standards documents** (the `standards/.../*.md` files themselves) keep their existing shape: `document_type: standards`, `title`, `classification`, `version`, `status`, `created`, `last_modified`, `owner`, `triggers`. **This file follows that convention.**
+- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`) **adopt the envelope defined below**.
+
+This standard concerns the *artefact* shape. Standards documents are unaffected.
+
+---
+
+## 2. The Universal Envelope
+
+Every catalog artefact's `index.md` begins with a YAML frontmatter block carrying the following fields. The `*` marker indicates a field required for new artefacts in v1.1.0+; existing v1.0.0 artefacts are migrated additively (see §7).
+
+### 2.1 Identity
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`, `consideration`. |
+| `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
+| `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
+| `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
+
+### 2.2 Versioning and lifecycle
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `version` | semver | * | Semantic version of *this* artefact. Initial: `0.1.0` for drafts; `1.0.0` on first acceptance. |
+| `status` | enum | * | One of: `draft`, `proposed`, `accepted`, `active`, `deprecated`, `superseded`, `retired`. See §3 for the lifecycle. |
+| `created` | ISO-8601 date | * | `YYYY-MM-DD`. Date the artefact was first created. Immutable. |
+| `last_modified` | ISO-8601 date | * | `YYYY-MM-DD`. Updated on every meaningful change. |
+| `last_modified_by` | string | recommended | Worker or person ID. |
+
+### 2.3 Change and transition fields
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `lifecycle_state` | enum | recommended (default `baseline`) | One of: `baseline`, `in-flight`, `target`, `retired`. Allows multiple coexistent versions of the same `id` to live in the workspace, each declaring its standing. See §4. |
+| `architecture_snapshot` | `SN-NNN` \| null | optional | The Snapshot this artefact-version belongs to, if any. |
+| `valid_from` | ISO-8601 date | optional | Date this state took effect. |
+| `valid_until` | ISO-8601 date \| null | optional | Date this state ceased to be current. `null` means "still current". |
+| `supersedes` | array of IDs | optional | IDs of artefacts this one replaces. |
+| `superseded_by` | array of IDs | conditional | Required when `status: superseded`. |
+
+### 2.4 Ownership and governance
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `owner` | string | * | Team or person responsible. For Platforms, the **Owner Team**. |
+| `strategic_owner` | string \| null | * for Platforms | Executive role accountable (e.g. CISO). Required only for `kind: platform`. |
+| `classification` | enum | recommended (default `internal`) | One of: `public`, `internal`, `confidential`, `restricted`. |
+| `governance_zone` | enum | recommended (default `application`) | One of: `foundation`, `core`, `extension`, `application`. Distinguishes framework-shipped seed (`foundation`) from workspace-specific artefacts (`application`). |
+
+### 2.5 Relations
+
+The relations a kind carries depends on its position in the metamodel. The full vocabulary is in §5. Per-kind extensions in §6 specify which relations are required, recommended, or optional for each kind.
+
+### 2.6 References to external systems
+
+| Field | Type | Description |
+|---|---|---|
+| `references` | array of objects | Each object has `type` (one of `jira`, `linear`, `github-pr`, `github-issue`, `source`, `doc`, `runbook`, `external`, `evidence`, `cost-model`) plus type-specific fields (`id`, `url`, `repo`, `path`, `ref`). |
+
+Three types carry meaning for the [definition ladder](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md), which reads them from a capability or from the pattern that realises it:
+
+| Type | Points at | Ladder rung |
+|---|---|---|
+| `cost-model` | The model of the running cost | R4 Buildable |
+| `evidence` | An experiment, build or evaluation, and its results against the capability's criteria | R5 Proven |
+| `runbook` | How the capability is operated in service | R6 In service |
+
+Example:
+```yaml
+references:
+  - { type: jira, id: "PAT-1234" }
+  - { type: source, repo: "patternode-platform", path: "bounded-contexts/trading-signals/", ref: "main" }
+  - { type: doc, url: "https://docs.example.com/runbook" }
+```
+
+### 2.7 Indexing
+
+| Field | Type | Description |
+|---|---|---|
+| `tags` | array of strings | Free-form tags. |
+| `sidebar_label` | string | Docusaurus rendering hint. |
+| `sidebar_position` | integer | Docusaurus rendering hint. |
+
+### 2.8 Schema declaration
+
+| Field | Type | Description |
+|---|---|---|
+| `$schema` | URI | Path or URI to the JSON Schema this artefact conforms to. Recommended: `"../../standards/schemas/v1.1.0/<kind>.schema.json"` (workspace-relative) or the framework's published schema URL. |
+
+---
+
+## 3. Status Lifecycle
+
+```
+                    ┌─────────────┐
+                    │    draft    │
+                    └──────┬──────┘
+                           │ ready for review
+                           v
+                    ┌─────────────┐
+                    │  proposed   │
+                    └──────┬──────┘
+                           │ approved
+                           v
+                    ┌─────────────┐
+            ┌─────► │  accepted   │ ◄────┐
+            │       └──────┬──────┘      │
+            │              │ in service  │ ratification
+            │              v             │
+            │       ┌─────────────┐      │
+            │       │   active    │      │
+            │       └──────┬──────┘      │
+            │              │             │
+   amended  │              │ replaced    │
+            │              v             │
+            │       ┌─────────────┐      │
+            │       │ deprecated  │      │
+            │       └──────┬──────┘      │
+            │              │ replacement │
+            │              v             │
+            │       ┌─────────────┐      │
+            └────── │ superseded  │ ─────┘
+                    └──────┬──────┘
+                           │ no longer relevant
+                           v
+                    ┌─────────────┐
+                    │   retired   │
+                    └─────────────┘
+```
+
+- `draft` — author still working on it; not yet for review.
+- `proposed` — review-ready; under consideration.
+- `accepted` — reviewed and approved; not yet in production.
+- `active` — in production / in use.
+- `deprecated` — discouraged for new use; still works.
+- `superseded` — explicitly replaced by another artefact (`superseded_by` required).
+- `retired` — no longer in use; kept for historical reference.
+
+`accepted` and `active` are the two "live" states. The distinction matters for governance: an `accepted` Decision Record is approved but the change may not yet be deployed; `active` means the change is reflected in running systems.
+
+---
+
+## 4. Lifecycle State Semantics
+
+`status` describes *the artefact's lifecycle*. `lifecycle_state` describes *which architecture state the artefact belongs to*. The two are orthogonal.
+
+| `lifecycle_state` | Meaning | Typical use |
+|---|---|---|
+| `baseline` | Part of the current as-is architecture | Default for live artefacts |
+| `in-flight` | Part of an active transition; neither pure baseline nor target | Temporary states during migration |
+| `target` | Part of a future / aspirational architecture; not yet realised | Documents the Target Architecture per TOGAF Phase B |
+| `retired` | Was once in the baseline; no longer is | Historical artefacts kept for audit |
+
+**Multiple coexistent artefact-versions for the same `id`** are permitted when they have different `lifecycle_state` values. For example, the workspace may simultaneously hold:
+
+- `ABB-007/index.md` with `version: 2.0.0`, `lifecycle_state: baseline`
+- `ABB-007-target/index.md` with `version: 3.0.0`, `lifecycle_state: target`
+
+The directory layout convention for coexistent versions is:
+
+```
+building-blocks/architecture-building-blocks/
+  ABB-007/                        # default (baseline)
+    index.md
+  ABB-007-target/                 # explicit target
+    index.md
+  ABB-007-v2.0.0/                 # historical retired
+    index.md
+```
+
+Folder name pattern: `<ID>` for the canonical (baseline) version; `<ID>-target` for the target version; `<ID>-v<semver>` for explicit historical versions. The `id` frontmatter remains `ABB-007` for all of them; the validator checks that exactly one folder per `id` carries `lifecycle_state: baseline` (or omits the field, defaulting to baseline).
+
+See [Snapshot](#) and [Transition](#) artefact types (forthcoming as separate standards) for how named architecture states are assembled and how multi-step migrations are described.
+
+---
+
+## 5. Relationship Vocabulary
+
+The framework's "Golden Thread" is expressed via frontmatter relations. Universal relations apply to many kinds; per-kind specialisations are defined in §6.
+
+**Inverse-consistency rule:** every directional relation has an inverse. The validator and the audit skill enforce inverse consistency: if A `realises` B, then B's frontmatter must include A under `realised_by`. CI fails on inconsistency in `strict` profile; warns in `lenient` profile.
+
+### 5.1 Universal relations
+
+| Relation | Inverse | Cardinality | Description |
+|---|---|---|---|
+| `part_of` | `contains` | single | DDD-style strict containment: a BC `part_of` a Platform; an ABB `part_of` a BC. |
+| `contains` | `part_of` | multi | Inverse of `part_of`. |
+| `realises` | `realised_by` | multi | Concretises an abstract concept. SBB `realises` ABB; BC `realises` Capability. |
+| `realised_by` | `realises` | multi | Inverse. |
+| `depends_on` | `depended_on_by` | multi | Runtime or contract dependency. |
+| `depended_on_by` | `depends_on` | multi | Inverse. |
+| `applies_to` | `governed_by` | multi | Used by Decision Records and cross-cutting artefacts. |
+| `governed_by` | `applies_to` | multi | Inverse. |
+| `references` | (none) | multi | External-system references (see §2.6). Not bidirectional. |
+
+### 5.2 Strategic-DDD relationship vocabulary (Bounded Context ↔ Bounded Context)
+
+A Bounded Context may declare named relationships with peer BCs:
+
+```yaml
+relationships:
+  - { with: BC-005, pattern: anti-corruption-layer, role: downstream }
+  - { with: BC-007, pattern: customer-supplier, role: customer }
+```
+
+**Patterns:** `anti-corruption-layer`, `open-host-service`, `published-language`, `conformist`, `customer-supplier`, `partnership`, `shared-kernel`, `separate-ways`.
+
+**Roles:** `upstream`, `downstream`, `peer`, `customer`, `supplier`.
+
+### 5.3 Per-kind specialised relations
+
+Defined within each per-kind section in §6.
+
+---
+
+## 6. Per-Kind Extensions
+
+For each `kind`, this section specifies additional required and optional frontmatter fields that supplement the universal envelope. Existing v1.0.0 fields from the corresponding standard are *promoted* from body tables to frontmatter.
+
+### 6.1 Outcome (`OC-NNN`)
+
+```yaml
+kind: outcome
+id: OC-001
+title: "OC-001 Zero Trust Workload Posture"
+kpi: "Reduce credential-related incidents to zero"
+kpi_target: { value: 0, unit: "incidents/quarter", measurement: "security-incident-tracker" }
+target_date: 2027-03-31              # recommended; omit rather than fabricate a date for undated/seed outcomes
+business_rationale: "Eliminate standing credentials per zero-trust mandate."
+time_horizon: short | medium | long  # short ≤ 1y; medium 1–3y; long > 3y
+measures:                            # optional; each id is a criterion planning can cite
+  - { id: OC-001-M1, measure: "Credential-related incidents", target: 0, unit: "incidents/quarter" }
+
+owned_by_platform: PL-001            # required
+requires_capabilities: [CAP-004, CAP-005]
+realised_by_use_cases: [UC-001, UC-002]
+```
+
+`measures[]` is optional. Each entry has `id` (`OC-NNN-M<n>`, required), `measure` (required), `target` and `unit`. The identifiers are what planning cites as `advances_criterion_ids` and what a consideration may list in its `criteria`. See the [Strategy Standard §2.3](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/strategy/standard-strategy.md#23-outcome-measures-as-criteria).
+
+**Schema:** [`schemas/v1.1.0/outcome.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/outcome.schema.json).
+
+### 6.2 Use Case (`UC-NNN`)
+
+```yaml
+kind: use-case
+id: UC-001
+title: "UC-001 Real-Time Policy Enforcement"
+primary_actor: "Authenticated workload"
+secondary_actors: ["Policy Decision Point", "Audit Sink"]
+scenario: "..."
+preconditions: ["Workload has valid SPIFFE identity"]
+success_criteria: ["Policy decision returned in < 50ms p99"]
+frequency: low | medium | high
+volume: "≥ 10k decisions/sec"
+
+supports_outcome: OC-001             # required
+realised_by_abbs: [ABB-001, ABB-003]   # required, ≥1
+```
+
+**Schema:** [`schemas/v1.1.0/use-case.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/use-case.schema.json).
+
+### 6.3 Platform (`PL-NNN`)
+
+```yaml
+kind: platform
+id: PL-001
+title: "Identity & Access Platform"
+strategic_owner: "CISO"              # required for Platform
+owner: "Identity Platform Team"
+
+owns_outcomes: [OC-001, OC-002]
+provides_capabilities: [CAP-004, CAP-005]   # required, ≥1
+contains_bounded_contexts: [BC-001]          # required, ≥1
+
+slos:
+  - { name: "Token issuance latency p99", target: "< 100ms" }
+  - { name: "Availability", target: "99.95%" }
+self_service_interfaces: ["REST API at /v1/identity", "CLI: idp-cli"]
+consuming_teams: ["Trading Platform Team", "Market Data Team"]
+tier: solo | growth | scale | null   # optional cost-tier classifier
+```
+
+**Schema:** [`schemas/v1.1.0/platform.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/platform.schema.json).
+
+### 6.4 Capability (`CAP-NNN`)
+
+```yaml
+kind: capability
+id: CAP-004
+title: "CAP-004 Identity Lifecycle Management"
+level: L1 | L2 | L3                  # required
+parent: CAP-003 | null               # required for L2/L3; null for L1
+
+components:                          # TOGAF G189 four-component definition
+  organisation: "Identity Governance Steering Committee"
+  people: ["IAM engineers", "Compliance analysts"]
+  processes: ["Provisioning workflow", "Credential rotation policy"]
+  technology: "Identity directory, token issuance, policy evaluation"
+maturity:
+  current: 3                         # 0-5: None / Initial / Developing / Defined / Managed / Optimising
+  target: 5
+  assessment_date: 2026-04-15
+  assessor: "Identity Platform Team"
+subdomain_kind: core | supporting | generic   # optional DDD classifier
+
+provided_by_platform: PL-001         # required for L3 (L1/L2 span platforms, so optional)
+required_by_outcomes: [OC-001, OC-002]
+realised_by_abbs: [ABB-001, ABB-003]   # recommended; an unrealised L3 capability is a gap, not an error
+gaps: ["Continuous Access Evaluation not yet implemented"]
+
+# Definition ladder (all optional; see capabilities/standard-definition-ladder.md)
+demand_assumption: "Operators need self-service credential rotation"   # only where no outcome is linked yet
+open_questions: none                 # only where no consideration affects the capability or its ABBs
+flows:
+  - { id: provision, name: "Provision an identity", description: "Joiner to first sign-in", rung: R3 }
+  - { id: rotate-credentials, name: "Rotate credentials", rung: R2 }
+```
+
+> **Realisation completeness is a gap, not a validation error.** `realised_by_abbs` is *recommended*, never required — an L3 capability with no realising ABB is a legitimate architecture **gap** surfaced by gap analysis (the foundation catalogue ships such placeholders deliberately, awaiting their ABBs). `provided_by_platform` is required only for L3 capabilities; L1/L2 capabilities are cross-platform groupings and may omit it.
+
+**Definition ladder fields.** These are optional and additive: a capability without them still validates. They are read by the [Definition Ladder Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md) and derived against by `aaa-rung`.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `flows[]` | array of objects | optional | Named paths through the capability that someone would recognise as a job being done. Declare flows when they move at different speeds; the capability sits on the rung of its lowest flow. |
+| `flows[].id` | kebab-case string | * (per entry) | Unique within the capability. Patterns name it in their own `flows` list to scope themselves to it. |
+| `flows[].name` | string | * (per entry) | Human-readable name. |
+| `flows[].description` | string | optional | What the job is, from start to end. |
+| `flows[].rung` | `R0` to `R6` | optional | The recorded rung. A derived rung wins where one is available, and a recorded rung above it is reported as a claim without evidence. |
+| `open_questions` | `none` | optional | A marker stating that no open question with more than one credible answer remains, so no consideration is expected. Omit it when considerations exist. |
+| `demand_assumption` | string | optional | The demand the capability answers, recorded as an explicit assumption until an outcome is linked in `required_by_outcomes`. |
+
+**Schema:** [`schemas/v1.1.0/capability.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/capability.schema.json).
+
+### 6.5 Bounded Context (`BC-NNN`)
+
+```yaml
+kind: bounded-context
+id: BC-001
+title: "BC-001 Identity & Access"
+owner: "Identity Platform Team"
+
+part_of: PL-001                      # required: parent Platform
+contains: [ABB-001]                   # recommended; an empty (placeholder) context is a gap, not an error
+realises_capabilities: [CAP-004]     # required, ≥1
+
+ubiquitous_language:                 # required, 3-50 entries
+  - { term: "Principal", definition: "Any actor authenticated by the system" }
+  - { term: "Claim", definition: "A statement issued by an IdP about a Principal" }
+
+relationships:                       # strategic-DDD; see §5.2
+  - { with: BC-005, pattern: anti-corruption-layer, role: downstream }
+
+subdomain_kind: core | supporting | generic
+c4_levels: [container] | [component] | [container, component]
+```
+
+**Schema:** [`schemas/v1.1.0/bounded-context.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/bounded-context.schema.json).
+
+### 6.6 Architecture Building Block (`ABB-NNN`)
+
+```yaml
+kind: abb
+id: ABB-001
+title: "ABB-001 Identity & Access Management"
+short_name: "IAM"
+category: "Security"
+
+part_of: BC-001                      # required: parent BC
+realises_capabilities: [CAP-004]     # required, ≥1
+realised_by: [SBB-001]                # multi: SBBs
+
+requires:                            # optional: capability-level dependencies on other ABBs
+  - { abb: ABB-005, cardinality: "1", rationale: "Sign-in and lifecycle events are published to the event backbone" }
+
+domains: [business, application]     # required, ≥1; multi-valued TOGAF metamodel domains
+interfaces:                          # required, ≥1
+  - { id: "I1", direction: "in", type: "request", description: "Token request (OIDC)" }
+  - { id: "I2", direction: "out", type: "event", description: "Sign-in event" }
+mandatory_subabbs: [iam, observability, governance]   # required; exactly these three
+cross_cutting: false                 # true for ABBs that are themselves cross-cutting (IAM, Obs, Gov)
+```
+
+**The `requires` field (ABB capability dependencies).** `requires` declares the other ABBs this ABB depends on at the **logical / capability level** — *which* building blocks must be present for this one to do its job. It is an **abstract** dependency between logical components, deliberately distinct from two neighbouring concepts:
+
+- It is **not** `mandatory_subabbs` (the three cross-cutting concerns every ABB embeds — IAM, Observability, Governance). `requires` captures *domain* dependencies particular to this ABB.
+- It is **not** the part/connector wiring of a [composite SBB](#671-composite-sbbs-uml-composite-structure). `requires` says "an Agent Memory ABB must exist"; a composite SBB's `parts`/`connectors` say "*this concrete* memory product is wired to *that* port." Logical need vs concrete realisation.
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `requires[]` | array of objects | optional | Capability-level ABB→ABB dependencies. Omit when the ABB has no logical dependencies beyond the mandatory cross-cutting trio. |
+| `requires[].abb` | `ABB-NNN` | * (per entry) | ID of the required ABB. |
+| `requires[].cardinality` | enum | optional (default `1`) | `1` = exactly one (hard dependency); `0..1` = optional single; `1..n` = one or more; `0..n` = zero or more. |
+| `requires[].rationale` | string | recommended | Why the dependency exists — read by reviewers and by gap analysis. |
+
+**When to use:** declare a `requires` entry when this ABB cannot deliver its capability without another *logical* ABB being present (e.g. an AI Agent Platform requires a Reasoning Engine and Safety & Guardrails). Do **not** use it for internal composition of the ABB itself, nor for runtime product wiring — that belongs in the realising SBB. The inverse is not auto-materialised as a relation; `requires` is a forward-only declaration consumed by gap analysis (a required ABB absent from the catalogue is a gap — see the [ABB Document Standard §3.4](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/architecture-building-blocks/standard-abb-document.md#34-capability-dependencies-requires)).
+
+**Schema:** [`schemas/v1.1.0/abb.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/abb.schema.json).
+
+### 6.7 Solution Building Block (`SBB-NNN`)
+
+```yaml
+kind: sbb
+id: SBB-001
+title: "SBB-001 Identity Lifecycle Service (Entra)"
+
+realises: [ABB-001]                   # required, ≥1
+realised_by_services: [identity-lifecycle-svc]
+
+products:                            # required, ≥1
+  - { name: "Microsoft Entra ID", vendor: "Microsoft", licensing: "P2" }
+product_mapping:                     # required, ≥1; ABB component → SBB product
+  - { abb_component: "Identity Provisioning", sbb_product: "Entra ID Provisioning" }
+  - { abb_component: "Token Issuance", sbb_product: "Entra STS (v2.0)" }
+cloud_provider: azure | aws | gcp | onprem | multi | none
+variants: ["Entra-only", "Entra+Okta hybrid"]
+deployment_model: managed | self-hosted | hybrid
+```
+
+**Schema:** [`schemas/v1.1.0/sbb.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/sbb.schema.json).
+
+#### 6.7.1 Composite SBBs (UML composite structure)
+
+An SBB may be **composite** — an assembly of sub-SBBs wired together — rather than a flat product mapping. A composite SBB models its internals as a UML composite structure: typed **parts** (roles played by sub-SBBs), **ports** (interaction points on the boundary), and **connectors** (links between ports and parts). This lets a large realisation (e.g. a trading "Strategy Engine") be decomposed into independently-ownable sub-SBBs while keeping one catalogued boundary contract.
+
+```yaml
+composite: true                      # optional; default false. When true, parts + connectors are required.
+
+ports:                               # interaction points on the SBB boundary
+  - name: order-api                  # kebab-case, unique within the SBB
+    direction: provided              # provided (ball/lollipop) | required (socket)
+    protocol: REST/HTTP
+    contract: openapi/v3             # contract id or media type; may be an AP-NNN api id
+    abb_interface: I1                # the parent ABB Interface this port realises (traceability)
+  - name: market-data-feed
+    direction: required
+    protocol: pub-sub
+    contract: cloudevents/v1
+    abb_interface: I4
+
+parts:                               # typed roles inside the composite
+  - name: bar-builder                # kebab-case role name, unique within the SBB
+    sbb: SBB-310                       # the sub-SBB that plays this role (composite-of-composites)
+    role: "Aggregates ticks into OHLCV bars"
+    multiplicity: "1"                # UML multiplicity: 1 | 0..1 | 1..* | *  (default 1)
+    ports:                           # optional: the part's own ports, referenced by connectors
+      - { name: ticks-in,  direction: required }
+      - { name: bars-out,  direction: provided }
+  - name: signal-generator
+    sbb: SBB-311
+    role: "Produces trade signals from bars"
+
+connectors:                          # links wiring ports and parts
+  - from: order-api                  # boundary port ...
+    to: order-router.command-in      # ... delegated to a part's port (dotted form)
+    type: delegation                 # delegation: boundary port <-> part port
+  - from: bar-builder.bars-out       # part-to-part
+    to: signal-generator.bars-in
+    type: assembly                   # assembly: required socket meets provided ball
+```
+
+**Field rules:**
+
+| Field | Type | Required | Notes |
+|---|---|---|---|
+| `composite` | boolean | optional (default `false`) | Set `true` to declare an assembled SBB. |
+| `ports[]` | array | recommended for composite | Boundary interaction points. `name` + `direction` required per port. |
+| `ports[].direction` | enum | * (per port) | `provided` \| `required`. |
+| `parts[]` | array | * when `composite: true` (≥1) | Each has `name` + `role`; `sbb` references the sub-SBB playing the role. |
+| `connectors[]` | array | * when `composite: true` (≥1) | Each has `from`, `to`, `type`. |
+| `connectors[].type` | enum | * (per connector) | `delegation` (boundary↔part) \| `assembly` (part↔part). |
+| `connectors[].from` / `.to` | endpoint | * (per connector) | A boundary port name (`order-api`) or a part-scoped point in dotted form (`part-name.port-name`). |
+
+**Validation rules** (the JSON Schema enforces the first three; the validator script enforces reference resolution):
+
+1. When `composite: true`, both `parts` (≥1) and `connectors` (≥1) MUST be present.
+2. Port and part `name`s are kebab-case and unique within the SBB.
+3. A `delegation` connector MUST have exactly one endpoint that is a boundary port and one that is a part port; an `assembly` connector MUST wire two part ports.
+4. Every `connectors[].from` / `.to` endpoint MUST resolve to a declared boundary port or a declared part (and, in dotted form, a declared part port).
+5. A `delegation` connector crosses the boundary (one boundary-port end, one part-port end) and is drawn in data-flow direction: inward for a request/stream arriving on the port, outward for a result an inner part surfaces on a `provided` port. An `assembly` connector joins two part ports, drawn provided → required (producer → consumer).
+6. Each `parts[].sbb` SHOULD exist as a catalogued SBB and SHOULD carry the inverse `part_of` (or be listed under this SBB's `contains`) so the composition is bidirectionally traceable.
+
+A **simple** (non-composite) SBB omits all four fields and keeps the flat `product_mapping`. See [§ When to use composite vs simple SBBs](./building-blocks/solution-building-blocks/standard-sbb-document.md#composite-vs-simple-sbbs) in the SBB document standard.
+
+### 6.8 API (`AP-NNN`)
+
+Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/api.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/_placeholders/api.schema.json).
+
+### 6.9 Service (kebab-case slug, optional `numeric_id: SV-NNN`)
+
+```yaml
+kind: service
+id: identity-lifecycle-svc           # kebab-case slug (preserves v1.0.0 convention)
+numeric_id: SV-001                   # optional secondary ID for cross-kind queries
+title: "Identity Lifecycle Service"
+
+realises: [SBB-001]                   # required, ≥1
+part_of: BC-001                      # required: parent BC
+runtime_type: container | serverless | jvm | native | managed-service   # required
+
+provides_apis: [AP-001]              # multi
+consumes_apis: [AP-005]
+
+# Source-code linkage (forthcoming)
+repo: { url: "https://github.com/example/repo", path: "patternode-platform" }
+module_path: "bounded-contexts/identity/identity-service"
+packages: ["com.patternode.identity.service"]
+key_classes: ["IdentityServiceApplication", "TokenEndpoint"]
+
+deployed_to: [DN-001, DN-002]
+```
+
+Service is the **one kind that uses kebab-case slugs as the canonical `id`** to preserve v1.0.0 backward compatibility. New services may optionally declare a `numeric_id: SV-NNN` for governance queries that prefer numeric IDs across kinds.
+
+**Schema:** [`schemas/v1.1.0/service.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/service.schema.json).
+
+### 6.10 View (`VW-NNN`)
+
+Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/view.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/_placeholders/view.schema.json).
+
+### 6.11 Decision Record (`DR-NNN`)
+
+```yaml
+kind: decision-record
+id: DR-001
+title: "DR-001 Adopt Platform-replaces-Domain"
+status: accepted
+
+y_statement: "In the context of EA-IT alignment, facing the gap between DDD/TOGAF/Platform Engineering vocabularies, we decided for unifying Domain + BC + Platform into a single Platform concept and against keeping them distinct, to achieve audience clarity and industry alignment, accepting some loss of strict DDD orthogonality."
+
+decision_drivers: ["Industry alignment", "Audience clarity", "Completeness"]
+considered_options:
+  - "Keep TOGAF Domain + BC + Platform separate"
+  - "Unify under Platform"
+  - "Unify under DDD Domain"
+decision_outcome: "Option 2 (unify under Platform)"
+consequences:
+  positive: ["Single vocabulary for execs and engineers", "Aligns with Team Topologies"]
+  negative: ["Loss of strict DDD problem/solution-space distinction at top level"]
+
+change_type: introduce | modify | retire | replace | principle   # required
+affects_artefacts: [PL-NNN, BC-NNN]    # required unless change_type=principle
+contributes_to_transition: TR-NNN | null
+
+applies_to: []                       # universal relation
+supersedes: []
+superseded_by: []
+```
+
+**Schema:** [`schemas/v1.1.0/decision-record.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/decision-record.schema.json) (full body-section structure forthcoming as a separate Decision Record standard).
+
+### 6.12 Event (`EV-NNN`)
+
+Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/event.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/_placeholders/event.schema.json).
+
+### 6.13 Deployment Node (`DN-NNN`)
+
+Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/deployment-node.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/_placeholders/deployment-node.schema.json).
+
+### 6.14 Snapshot (`SN-NNN`)
+
+```yaml
+kind: snapshot
+id: SN-001
+title: "Patternode Baseline 2026-Q2"
+snapshot_kind: baseline | target | transition   # required
+effective_date: 2026-06-30                       # required for baseline
+target_date: null                                # required for target
+supersedes_snapshot: null                        # for transition snapshots
+
+artefacts:                                       # required, ≥1; the manifest
+  - { id: PL-001, version: 1.0.0 }
+  - { id: PL-002, version: 1.0.0 }
+  - { id: ABB-001, version: 1.5.0 }
+```
+
+**Schema:** [`schemas/v1.1.0/snapshot.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/snapshot.schema.json) (full body structure forthcoming as a separate Snapshot standard).
+
+### 6.15 Transition (`TR-NNN`)
+
+```yaml
+kind: transition
+id: TR-001
+title: "Migrate to Multi-Region Deployment"
+from_snapshot: SN-001                # required
+to_snapshot: SN-002                  # required
+transition_status: planned | in-progress | completed | abandoned   # transition lifecycle; the envelope `status` (draft/active/…) still applies separately
+
+sequenced_decisions: [DR-014, DR-015, DR-016]    # required, ≥1
+sequenced_steps:                                  # required, ≥1
+  - { step: 1, summary: "Provision multi-region infra", target_date: 2027-Q1, owner: "Platform Team" }
+  - { step: 2, summary: "Dual-write data layer", target_date: 2027-Q2, owner: "Data Team" }
+affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
+```
+
+**Schema:** [`schemas/v1.1.0/transition.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/transition.schema.json) (full body structure forthcoming as a separate Transition standard).
+
+### 6.16 Consideration (`CN-NNN`)
+
+A consideration is an open architectural question with more than one credible answer. It records the question, the options, the criteria that decide between them, and, once settled, the decision record that resolved it. Considerations are what the [definition ladder](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md) reads at R2 (every open question is listed) and at R3 (every one is resolved by an accepted decision record).
+
+```yaml
+kind: consideration
+id: CN-001
+title: "CN-001 Where document embeddings are stored"
+status: accepted                     # envelope lifecycle of this document
+consideration_status: resolved       # required: open | resolved | withdrawn
+
+question: "Where are document embeddings stored and queried?"
+options:
+  - { name: "Search engine with vector support", summary: "One store for keyword and vector search" }
+  - { name: "Dedicated vector database", summary: "Best recall, one more system to run" }
+criteria:
+  - "p95 query latency under 300 ms at expected volume"
+  - "OC-002-M1"                      # an outcome measure id may stand as a criterion
+resolved_by: DR-007                  # required when consideration_status is resolved
+affects: [CAP-012, ABB-021, PAT-004] # required, >=1: capabilities, ABBs, SBBs or patterns
+```
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `question` | string | * | The open question, phrased so each option is a possible answer. |
+| `options[]` | array of objects | recommended, >=2 | Each has `name` (required) and `summary`. A question with one credible answer is not a consideration. |
+| `criteria[]` | array of strings | recommended | What decides between the options. |
+| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
+| `resolved_by` | `DR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
+| `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs or patterns whose definition waits on the question. A pattern is named by its identifier in the repository's pattern series. |
+
+A `withdrawn` consideration affects nothing. The decision record that resolves a consideration SHOULD list the consideration's `affects` entries in its own `affects_artefacts`.
+
+**Schema:** [`schemas/v1.1.0/consideration.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/consideration.schema.json).
+
+---
+
+## 7. Backward Compatibility with v1.0.0
+
+### 7.1 Required vs migrated
+
+For v1.1.0:
+
+- **New artefacts** (created after v1.1.0 ships) MUST have all required envelope fields (§2.1, §2.2, §2.4) and the per-kind required fields (§6).
+- **Existing v1.0.0 artefacts** are brought up to the v1.1.0 contract by a **one-way migration** rather than tolerated indefinitely by a relaxed validator. There is a single schema set — the strict v1.1.0 schemas in [`schemas/v1.1.0/`](https://github.com/dermot-obrien/ai-assisted-architecture/tree/main/standards/schemas/v1.1.0/) — and the goal is that every artefact validates against it.
+
+> **No two-profile mechanism.** Earlier drafts of this standard described a `strict-v1.1.0` / `lenient-v1.0.0-compat` pair selected via a `governance.yaml` `schema_profile` key. That mechanism was never built, and the framework now **migrates rather than tolerates**: run the migration script (below) to bring a workspace to v1.1.0, then validate against the single strict schema set. (If a future frontmatter-validator CLI needs a gradual-adoption mode, a lenient profile can be reintroduced then, designed against a real validator rather than ahead of one.)
+
+### 7.2 Migration script behaviour
+
+The migration is performed by [`scripts/migrate-frontmatter.mjs`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/scripts/migrate-frontmatter.mjs) (Node, zero runtime dependencies beyond `js-yaml`). For each artefact `index.md` under the target root it:
+
+1. Infers `kind` from the directory path and `id` from the folder name.
+2. Parses the existing frontmatter (preserved verbatim — no existing key is ever overwritten, so the migration is idempotent).
+3. Adds the universal envelope fields (`id`, `kind`, `version` `0.1.0`, `status` `draft`, `created`/`last_modified`, `owner`, `governance_zone: foundation`).
+4. **Extracts the per-kind required fields from the document body** — the Document Control table and the numbered prose sections — e.g. ABB `interfaces` from the §3 interface table, SBB `product_mapping` from the §2.2 table, capability `components`/`maturity` from §2/§3, BC `ubiquitous_language` and `contains` from their sections, plus relations recovered by reverse index (an ABB's parent BC, an Outcome's owning Platform).
+5. Leaves the body in place (humans still read it).
+6. Reports, per file, exactly which fields were added and any heuristic/defaulted values for review.
+
+After migrating, validate the result with [`scripts/validate-frontmatter.mjs`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/scripts/validate-frontmatter.mjs), which checks every artefact's frontmatter against its per-kind schema (the universal envelope composed in via `$ref`). The foundation seed shipped with the framework validates clean.
+
+### 7.3 Standards documents are unchanged
+
+The `standards/.../*.md` files keep their existing frontmatter (`document_type: standards`, `triggers`, etc.). They are *definitions*, not catalog artefacts. This standard formalises that distinction: a file with `document_type: standards` is governed by the v1.0.0 standards-document convention, not the v1.1.0 artefact envelope.
+
+---
+
+## 8. Schema Diagrams
+
+### 8.1 Composition (envelope + 16 kinds)
+
+```mermaid
+classDiagram
+    direction TB
+
+    class Envelope {
+        <<universal>>
+        +id : anyId *
+        +kind : enum *
+        +title : string *
+        +version : semver *
+        +status : enum *
+        +created : date *
+        +last_modified : date *
+        +owner : string *
+        +lifecycle_state : enum
+        +architecture_snapshot : SN-NNN?
+        +supersedes / superseded_by
+        +classification, governance_zone
+        +references
+    }
+
+    class Outcome { OC-NNN }
+    class UseCase { UC-NNN }
+    class Platform { PL-NNN }
+    class Capability { CAP-NNN }
+    class BoundedContext { BC-NNN }
+    class ABB { ABB-NNN }
+    class SBB { SBB-NNN }
+    class Service { kebab or SV-NNN }
+    class DecisionRecord { DR-NNN }
+    class Snapshot { SN-NNN }
+    class Transition { TR-NNN }
+    class Consideration { CN-NNN }
+    class API { AP-NNN ~placeholder~ }
+    class View { VW-NNN ~placeholder~ }
+    class Event { EV-NNN ~placeholder~ }
+    class DeploymentNode { DN-NNN ~placeholder~ }
+
+    Envelope <|-- Outcome
+    Envelope <|-- UseCase
+    Envelope <|-- Platform
+    Envelope <|-- Capability
+    Envelope <|-- BoundedContext
+    Envelope <|-- ABB
+    Envelope <|-- SBB
+    Envelope <|-- Service
+    Envelope <|-- DecisionRecord
+    Envelope <|-- Snapshot
+    Envelope <|-- Transition
+    Envelope <|-- Consideration
+    Envelope <|-- API
+    Envelope <|-- View
+    Envelope <|-- Event
+    Envelope <|-- DeploymentNode
+```
+
+### 8.2 Relations and Golden Thread
+
+```mermaid
+flowchart TB
+    subgraph STRATEGY ["1 — Strategy"]
+        OC[(Outcome<br/>OC-NNN)]
+        UC[(Use Case<br/>UC-NNN)]
+    end
+
+    subgraph ORG ["2 — Organisation / Problem space"]
+        PL[Platform<br/>PL-NNN]
+        CAP[Capability<br/>CAP-NNN]
+    end
+
+    subgraph CTX ["3 — Solution boundary"]
+        BC[Bounded Context<br/>BC-NNN]
+    end
+
+    subgraph LOGICAL ["4 — Logical"]
+        AB[ABB<br/>ABB-NNN]
+    end
+
+    subgraph PHYSICAL ["5 — Physical"]
+        SB[SBB<br/>SBB-NNN]
+    end
+
+    subgraph RUNTIME ["6 — Runtime / Code"]
+        SV[Service<br/>kebab / SV-NNN]
+        AP{{API<br/>AP-NNN}}
+        DN[/Deployment Node<br/>DN-NNN/]
+    end
+
+    subgraph CROSSCUT ["Cross-cutting"]
+        DR{{Decision Record<br/>DR-NNN}}
+        CN{{Consideration<br/>CN-NNN}}
+        SN[(Snapshot<br/>SN-NNN)]
+        TR[(Transition<br/>TR-NNN)]
+        VW{{View<br/>VW-NNN}}
+        EV{{Event<br/>EV-NNN}}
+    end
+
+    UC -- supports --> OC
+    OC -- owned_by --> PL
+    PL -- provides --> CAP
+    PL -- contains --> BC
+    BC -- realises --> CAP
+    BC -- contains --> AB
+    BC -- part_of --> PL
+    CAP -- provided_by --> PL
+    UC -- realised_by --> AB
+    AB -- realises --> CAP
+    AB -- part_of --> BC
+    AB -- realised_by --> SB
+    SB -- realises --> AB
+    SB -- runtime --> SV
+    SV -- realises --> SB
+    SV -- part_of --> BC
+
+    SV -. provides/consumes .-> AP
+    SV -. deployed_to .-> DN
+
+    CN -. affects .-> CAP
+    CN -. affects .-> AB
+    CN -- resolved_by --> DR
+    DR -. applies_to .-> OC
+    DR -. applies_to .-> AB
+    DR -. applies_to .-> SV
+    SN -. contains @version .-> OC
+    SN -. contains @version .-> SV
+    TR -- from/to --> SN
+    TR -- sequenced --> DR
+    VW -. shows .-> AB
+    VW -. shows .-> BC
+    EV -. produced/consumed .-> SV
+```
+
+### 8.3 Lifecycle, Snapshots, and Transitions
+
+```mermaid
+flowchart LR
+    subgraph BASELINE ["Snapshot SN-001<br/>baseline · 2026-Q2"]
+        AB1[ABB-007 v2.0.0<br/>baseline]
+        SB1[SBB-007 v1.0.0<br/>baseline]
+    end
+
+    subgraph TARGET ["Snapshot SN-002<br/>target · 2027-Q4"]
+        AB2[ABB-007 v3.0.0<br/>target]
+        SB2[SBB-007 v2.0.0<br/>target]
+    end
+
+    DR1{{DR-014<br/>change_type: replace<br/>affects ABB-007, SBB-007}}
+    DR2{{DR-015<br/>change_type: modify<br/>affects SBB-007}}
+
+    TR1[(Transition TR-001<br/>SN-001 → SN-002<br/>sequenced: DR-014, DR-015)]
+
+    BASELINE --> TR1
+    TR1 --> TARGET
+    DR1 -. drives .-> TR1
+    DR2 -. drives .-> TR1
+    DR1 -. applies_to .-> AB1
+    DR1 -. applies_to .-> AB2
+    DR2 -. applies_to .-> SB1
+    DR2 -. applies_to .-> SB2
+```
+
+The same artefact `id` (e.g. `ABB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, sequenced by Decision Records.
+
+---
+
+## 9. Worked Example
+
+A complete Capability frontmatter under v1.1.0:
+
+```yaml
+---
+$schema: ../../standards/schemas/v1.1.0/capability.schema.json
+id: CAP-004
+kind: capability
+title: "CAP-004 Identity Lifecycle Management"
+short_name: "ILM"
+description: "Manage the lifecycle of identities — provisioning, credential management, deprovisioning — across human and workload principals."
+
+version: 1.0.0
+status: active
+created: 2026-03-07
+last_modified: 2026-05-08
+last_modified_by: claude-opus-4-7
+
+lifecycle_state: baseline
+architecture_snapshot: SN-001
+
+owner: "Identity Platform Team"
+classification: internal
+governance_zone: foundation
+
+# Per-kind
+level: L3
+parent: CAP-003
+components:
+  organisation: "Identity Governance Steering Committee"
+  people: ["IAM engineers", "Compliance analysts"]
+  processes: ["Provisioning workflow", "Credential rotation"]
+  technology: "Identity directory, token issuance, policy evaluation"
+maturity:
+  current: 3
+  target: 5
+  assessment_date: 2026-04-15
+  assessor: "Identity Platform Team"
+subdomain_kind: generic
+
+# Relations
+provided_by_platform: PL-001
+required_by_outcomes: [OC-001, OC-002]
+realised_by_abbs: [ABB-001, ABB-003]
+applies_to: []
+references:
+  - { type: doc, url: "https://www.opengroup.org/togaf-series-guide-business-capabilities" }
+
+# Indexing
+sidebar_label: "CAP-004 Identity Lifecycle Management"
+sidebar_position: 4
+tags: [identity, security, foundation]
+---
+```
+
+---
+
+## 10. AI Agent Self-Verification Checklist
+
+Before finalising any catalog artefact, verify:
+
+1. [ ] **Frontmatter complete**: All required envelope fields present (`id`, `kind`, `title`, `version`, `status`, `created`, `last_modified`, `owner`).
+2. [ ] **Per-kind required fields**: All required fields for the artefact's `kind` (per §6) are populated.
+3. [ ] **ID matches folder**: `id` frontmatter field matches the folder name exactly.
+4. [ ] **`kind` matches schema**: `kind` matches the schema referenced in `$schema`.
+5. [ ] **Inverse relations**: For every relation declared (`realises`, `part_of`, `applies_to`, etc.), the inverse relation exists on the target artefact's frontmatter.
+6. [ ] **Status lifecycle**: If `status: superseded`, then `superseded_by` is populated and points at a valid artefact.
+7. [ ] **Lifecycle-state coexistence**: If multiple folders carry the same `id`, exactly one has `lifecycle_state: baseline` (or omits the field).
+8. [ ] **Date validity**: `last_modified ≥ created`; `valid_until ≥ valid_from` when both set.
+9. [ ] **Schema validation**: The artefact validates against `schemas/v1.1.0/<kind>.schema.json` (run the validator).
+10. [ ] **Docusaurus hints**: `sidebar_label` and `sidebar_position` set if the workspace renders to Docusaurus.
+
+---
+
+## 11. References
+
+- TOGAF Standard, 10th Edition — Architecture Building Blocks, Solution Building Blocks.
+- TOGAF Series Guide G189 — Business Capabilities (the four-component model: organisation, people, processes, technology).
+- BIZBOK Guide v10 — capability mapping foundations.
+- Domain-Driven Design (Eric Evans) — Bounded Contexts, ubiquitous language, strategic design patterns.
+- *Implementing Domain-Driven Design* (Vaughn Vernon) — context mapping vocabulary.
+- C4 Model (Simon Brown) — zoom-level grammar for architecture views.
+- MADR (Markdown Any Decision Records) — Decision Record body template.
+- Y-statements (Olaf Zimmermann) — one-sentence decision summary form.
+- llms.txt specification — agent retrieval index conventions.
+- Keep a Changelog — versioning convention for the framework itself.

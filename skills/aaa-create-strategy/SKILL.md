@@ -2,11 +2,11 @@
 name: aaa-create-strategy
 description: Create a Business Outcome and the Use Case that supports it, as the top of the architecture golden thread, with a concrete measure on the outcome and a named primary actor on the use case. Use when asked to create or define a business outcome, a strategic outcome, a use case, a KPI-backed goal, or an OC-NNN or UC-NNN artefact.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Create Strategy (Outcome and Use Case)
@@ -15,7 +15,8 @@ You are an enterprise architecture agent creating Business Outcomes and Use Case
 the top of the golden thread: everything below them traces up to here.
 
 Resolve and load the canonical standards before Phase 3, per
-[references/standards-discovery.md](references/standards-discovery.md).
+[references/standards-discovery.md](references/standards-discovery.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
 
 ## Step 0, before anything else
 

@@ -24,7 +24,7 @@ The `aaa-create-*` skills share one shape, so learning one teaches you the rest.
 2. Phase 1, discovery. It asks what it needs and checks that the parents exist. A missing
    parent is proposed, with a plausible name, and created only if you agree.
 3. Phase 2, load standards. It finds each standard it needs in the workspace, falling back to
-   the framework, and stops if one is missing. Each skill's
+   the copy it ships in `references/standards/`, and stops if one is missing. Each skill's
    `references/standards-discovery.md` lists them.
 4. Phase 3, create. It writes the artefacts in a fixed order, at the next free identifier.
 5. Phase 4, self-verify. It runs the checklist from the standard and the traceability checks,

@@ -412,7 +412,7 @@ ontology:
   schema: change/enterprise-modernisation/board-updates/may-2026-update/working/pipeline-ontology-extension.json
 ```
 
-When `ontology.schema` is not set, scripts default to the framework's base schema at `.ai-assisted-architecture/standards/ontology/ontology-schema.json`.
+When `ontology.schema` is not set, scripts default to the base schema that ships with them, at `../../standards/ontology/ontology-schema.json` relative to the script: `standards/ontology/ontology-schema.json` in the framework, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill, which carries its own copy of the validator.
 
 ### Extension schema template
 
@@ -422,7 +422,7 @@ When `ontology.schema` is not set, scripts default to the framework's base schem
   "$id": "my-extension.json",
   "title": "My Ontology Extension",
   "allOf": [
-    { "$ref": "../../.ai-assisted-architecture/standards/ontology/ontology-schema.json" }
+    { "$ref": "../../standards/ontology/ontology-schema.json" }
   ],
   "type": "object",
   "properties": {
@@ -444,6 +444,8 @@ When `ontology.schema` is not set, scripts default to the framework's base schem
 }
 ```
 
+Point the `$ref` at whichever copy of the base schema the workspace uses: one it keeps itself, the framework's, or the one an installed skill ships.
+
 ### Rules for extensions
 
 1. **Never modify the base schema** in the framework clone for organisation-specific needs.
@@ -459,7 +461,7 @@ All ontology scripts (`validate.cjs`, `consolidate.cjs`, `namespace-divergent.cj
 1. Explicit `--schema <path>` argument (highest priority)
 2. `ontology.schema` from `.aaa-config.yaml` in the workspace root (if present)
 3. `ontology.schema` from `.aaw-config.yaml` (legacy compatibility; also supports `modules.aaa.ontology_schema`)
-4. Framework default: `.ai-assisted-architecture/standards/ontology/ontology-schema.json`
+4. Default: the base schema shipped with the script, `../../standards/ontology/ontology-schema.json` relative to it
 
 ## Versioning
 

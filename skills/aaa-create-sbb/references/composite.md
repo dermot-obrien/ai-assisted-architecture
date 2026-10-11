@@ -58,6 +58,6 @@ Then reconcile the two. The context view's `[External System]` nodes must agree 
 composite's `required` boundary ports. A mismatch between the two zoom levels is a modelling
 error to resolve, not a difference to leave standing.
 
-A worked pair ships with the standards at
-`standards/building-blocks/solution-building-blocks/example-composite/`: `c4-context.md` is the
-outside view, `index.md` the inside.
+A worked pair ships with the standards, and this skill carries a copy at
+[standards/building-blocks/solution-building-blocks/example-composite/](standards/building-blocks/solution-building-blocks/example-composite/):
+`c4-context.md` is the outside view, `index.md` the inside.

@@ -54,8 +54,9 @@ links `.claude/skills/` at the same directory: a symlink, or a directory junctio
 which needs no elevation. Where the filesystem refuses both it falls back to a copy and says so.
 
 Skills resolve the canonical standards by searching the workspace before falling back to the
-framework copy, so they keep working when an organisation governs its standards in its own
-tree. See any skill's `references/standards-discovery.md`.
+copy each skill ships in its `references/standards/`, so they keep working when an
+organisation governs its standards in its own tree, and when no framework clone is present.
+See any skill's `references/standards-discovery.md`.
 
 Do not commit the installed skills into a consuming repository. They are generated from this
 clone; gitignore `.agents/skills/aaa-*` and re-run the installer instead.

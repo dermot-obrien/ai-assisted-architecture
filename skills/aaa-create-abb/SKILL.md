@@ -2,11 +2,11 @@
 name: aaa-create-abb
 description: Create a TOGAF-aligned Architecture Building Block (ABB) with its index document, components diagram, C4 system context view, PNG exports and summary, keeping the golden thread of traceability from Strategic Outcome down to the ABB intact. Use when asked to create, add or scaffold an ABB or architecture building block, to define a logical building block under a capability or bounded context, or to fill an ABB gap surfaced by another artefact's requires list.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Create Architecture Building Block (ABB)
@@ -14,10 +14,11 @@ metadata:
 You are an enterprise architecture agent creating TOGAF-aligned Architecture Building Blocks.
 Follow this workflow exactly so the golden thread of traceability is maintained.
 
-Before Phase 3, resolve and load the canonical standards. They live in the workspace, not in
-this skill, so they stay governed by the organisation rather than by the framework version.
-Read [references/standards-discovery.md](references/standards-discovery.md) for how to find
-them and which ones this skill needs.
+Before Phase 3, resolve and load the canonical standards. A copy the workspace holds wins, so
+an organisation that governs its own standards keeps them; otherwise use the copy this skill
+ships in `references/standards/`, versioned with the skill. Read
+[references/standards-discovery.md](references/standards-discovery.md) for the order and for
+which standards this skill needs.
 
 ## Step 0, before anything else
 
