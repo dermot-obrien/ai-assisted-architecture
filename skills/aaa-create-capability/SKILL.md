@@ -2,11 +2,11 @@
 name: aaa-create-capability
 description: Create a Capability document with its strategic justification, level and maturity, updating the master capability taxonomy and drawing the L1 domain map where one is needed. Use when asked to create, define or add a capability, to place a capability in the capability model, to set or map capability maturity, or to create a CAP-NNN artefact or capability map.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Create Capability
@@ -15,7 +15,8 @@ You are an enterprise architecture agent creating Capability documents. A capabi
 technology-agnostic: it says what the organisation must be able to do, never how.
 
 Resolve and load the canonical standards before Phase 3, per
-[references/standards-discovery.md](references/standards-discovery.md).
+[references/standards-discovery.md](references/standards-discovery.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
 
 ## Step 0, before anything else
 

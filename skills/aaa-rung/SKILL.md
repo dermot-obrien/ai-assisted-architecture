@@ -2,11 +2,11 @@
 name: aaa-rung
 description: Derive each capability's rung on the definition ladder (R0 Unrecognised to R6 In service), per flow, from the architecture artefacts that exist, and name the specific missing artefact that blocks the next rung. Read-only. Use when asked what rung a capability is on, how far a capability has been defined, what is blocking a capability from moving up, whether a recorded or planned rung is backed by evidence, or for the starting and finishing rungs of an epic or a planning period.
 license: Apache-2.0
-compatibility: Python 3.11+ (tomllib). PyYAML is used when installed and is not required. Artefact locations come from [suite.aaa-rung] of the repository's .agents/skill-bindings.toml; this skill ships no directory layout of its own.
+compatibility: Python 3.11+ (tomllib). PyYAML is used when installed and is not required. Carries its own copy of the definition ladder and AAW work seam standards in references/standards/. Artefact locations come from [suite.aaa-rung] of the repository's .agents/skill-bindings.toml; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.4.2"
+  version: "0.5.0"
 ---
 
 # Rung
@@ -52,7 +52,7 @@ The table shows, for each capability and each declared flow, the rung held, the 
 
 ## The rules it applies
 
-These are the checks from the Definition Ladder Standard (`standards/capabilities/standard-definition-ladder.md`, section 2). A rung holds only when its own check passes and every rung below it holds.
+These are the checks from the Definition Ladder Standard (section 2; this skill's copy is [references/standards/capabilities/standard-definition-ladder.md](references/standards/capabilities/standard-definition-ladder.md)). A rung holds only when its own check passes and every rung below it holds.
 
 | Rung | Passes when |
 |---|---|
@@ -73,7 +73,7 @@ Latent evidence. A rung whose own check passes above the rung held is reported a
 
 Give the rung for each capability asked about, per flow where it has flows, and quote the blocker for the next rung exactly as the tool printed it, because it names the artefact to create or fix. Say which `aaa-create-*` skill authors that artefact where one does (`/aaa-create-capability`, `/aaa-create-abb`, `/aaa-create-sbb`, `/pattern`). Report any recorded rung marked `claimed` as a claim without evidence, not as the capability's rung. Report latent evidence as work that will count once the rungs below it exist. Never state a rung the tool did not derive.
 
-When the output feeds planning, pass `--json`. An epic's starting rung is the derived rung now, and the rung reached at the end of a period is the derived rung then. The seam is described in `standards/aaw-work-seam.md`.
+When the output feeds planning, pass `--json`. An epic's starting rung is the derived rung now, and the rung reached at the end of a period is the derived rung then. The seam is described in the AAW work seam standard; this skill's copy is [references/standards/aaw-work-seam.md](references/standards/aaw-work-seam.md).
 
 ## Related skills
 

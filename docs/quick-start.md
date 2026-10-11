@@ -393,7 +393,7 @@ under capability CAP-100.
 The skill runs the `doctor` you ran in step 6, finds that no bounded context exists yet,
 proposes one rather than inventing it, and asks before creating anything. Once you agree it
 writes `building-blocks/architecture-building-blocks/ABB-NNN/index.md` and its diagrams,
-following the standards it loads from `.ai-assisted-architecture/standards/`. Run
+following the standards it loads from its own `references/standards/`. Run
 `rung.py` again afterwards to see what changed.
 
 ## Where next

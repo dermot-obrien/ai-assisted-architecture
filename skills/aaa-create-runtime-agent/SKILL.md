@@ -2,11 +2,11 @@
 name: aaa-create-runtime-agent
 description: Author an autonomous runtime agent as a catalogued artefact with its agent profile, contracts, tiered guardrails, capability scope and output provenance, so it cannot change its own limits. Use when asked to create, define or catalogue a runtime agent, an autonomous agent that acts in the live system, an agent profile or A2A agent card, or to specify agent guardrails and capability scope.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Validation runs the repository's optional ontologyValidator and agentProfileSchema bindings (the framework's validator, scripts/ontology/validate.cjs, needs Node.js). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Its copy of the ontology validator, references/scripts/ontology/validate.cjs, needs Node.js with js-yaml, ajv and ajv-formats. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.2"
+  version: "0.4.0"
 ---
 
 # Create Runtime Agent
@@ -19,7 +19,8 @@ Read the agent types standard first. You are on the builder plane; what you prod
 the runtime plane. You build it, it acts. It must never be able to change its own guardrails.
 
 Resolve and load the canonical standards before Phase 3, per
-[references/standards-discovery.md](references/standards-discovery.md).
+[references/standards-discovery.md](references/standards-discovery.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
 
 ## Step 0, before anything else
 
@@ -37,6 +38,10 @@ proceed on an error and do not guess a path.
 |---|---|
 | `agentProfileSchema` (optional) | Validates the authored agent profile |
 | `ontologyValidator` (optional) | Validates each record this skill writes |
+
+Either can be bound to what this skill ships: the agent profile schema at
+`references/standards/schemas/v1.1.0/agent-profile.schema.json`, and the ontology validator at
+`references/scripts/ontology/validate.cjs`.
 
 The contract is declared in `inputs.toml` beside this file. The repository answers it in
 `[suite.aaa-create-runtime-agent]` of its `.agents/skill-bindings.toml`. An optional binding that is not

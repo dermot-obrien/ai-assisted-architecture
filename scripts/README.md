@@ -45,6 +45,15 @@ Regenerates the two derived capability CSVs (`foundation/capabilities/capability
 node scripts/gen-capability-csvs.mjs
 ```
 
+## sync-skill-standards.mjs
+
+Writes each skill's own copy of the standards it reads, `skills/<skill>/references/standards/`, from `standards/` as `skill-standards.json` at the repository root lists them, so a skill installed on its own needs no framework clone. Paths under `standards/` keep their layout, so links between copied standards resolve; images a copied standard embeds are copied too; any other relative link is rewritten to the file on GitHub. Links in code are left alone. `--check` writes nothing and exits 1 when a copy differs, is missing or is no longer listed; CI runs it. Zero-dependency Node.
+
+```bash
+node scripts/sync-skill-standards.mjs
+node scripts/sync-skill-standards.mjs --check
+```
+
 ## sync-cap-abb-frontmatter.mjs
 
 Aligns each L3 capability's `realised_by_abbs` frontmatter with the traceability matrix in `capability-model.md`, so the model, the per-capability frontmatter, and the mapping CSV stay in lock-step. Idempotent, zero-dependency Node.

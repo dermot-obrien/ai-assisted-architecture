@@ -2,11 +2,11 @@
 name: aaa-create-sbb
 description: Create a TOGAF-aligned Solution Building Block realising a parent ABB, deciding simple versus composite, mapping every ABB component to a real product, and authoring the composite structure diagram with its ports, parts and connectors. Use when asked to create, add or scaffold an SBB or solution building block, to map a product or vendor technology onto an ABB, or to model a composite assembly of sub-SBBs.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Create Solution Building Block (SBB)
@@ -16,7 +16,8 @@ SBB is the physical realisation of a logical ABB: this is where products and ven
 allowed to appear.
 
 Resolve and load the canonical standards before Phase 3, per
-[references/standards-discovery.md](references/standards-discovery.md).
+[references/standards-discovery.md](references/standards-discovery.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
 
 ## Step 0, before anything else
 

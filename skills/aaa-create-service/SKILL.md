@@ -2,11 +2,11 @@
 name: aaa-create-service
 description: Create a runtime Service, the deployable unit of execution that implements an SBB, linking it to its parent SBB and bounded context and validating that it implements the interfaces its parent ABB and SBB declare. Use when asked to create or define a service, a deployable runtime unit, a microservice entry in the catalogue, or a runtime artefact under an SBB.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Create Service (Runtime)
@@ -15,7 +15,8 @@ You are an enterprise architecture agent defining deployable units of execution.
 the runtime end of the golden thread.
 
 Resolve and load the canonical standards before Phase 3, per
-[references/standards-discovery.md](references/standards-discovery.md).
+[references/standards-discovery.md](references/standards-discovery.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
 
 ## Step 0, before anything else
 

@@ -257,10 +257,10 @@ See [Installation](installation.md#the-model-skill).
 
 #### The skill stops and names a standard it cannot find
 
-The standards come from the workspace, then from the framework. Check that
-`.ai-assisted-architecture/standards/` exists, or that `modules.aaa.source_root` in
-`.aaw-config.yaml` points at the framework. A workspace that moved its standards must keep
-the file names, such as `standard-abb-document.md`, so the search finds them.
+The standards come from the workspace, then from the copy each skill ships in its
+`references/standards/`. Check that the installed skill has that folder; reinstall the skill
+if it does not. A workspace that moved its standards must keep the file names, such as
+`standard-abb-document.md`, so the search finds them.
 
 #### The skill writes files, but PNG export fails
 

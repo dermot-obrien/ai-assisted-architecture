@@ -2,11 +2,11 @@
 name: aaa-create-platform
 description: Create a Business Platform, the problem-space grouping that owns strategic outcomes and the capabilities beneath them, with its executive owner, owning team and business mission. Use when asked to create or define a business platform, a platform domain, an executive-owned area of the business, or a PL-NNN artefact.
 license: CC-BY-4.0
-compatibility: Needs the AI-Assisted Architecture standards present in the workspace (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
   framework: aaa
-  version: "0.3.1"
+  version: "0.4.0"
 ---
 
 # Create Platform
@@ -16,7 +16,8 @@ problem space rather than solution space. A platform names an area of the busine
 of technology.
 
 Resolve and load the canonical standards before Phase 3, per
-[references/standards-discovery.md](references/standards-discovery.md).
+[references/standards-discovery.md](references/standards-discovery.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
 
 ## Step 0, before anything else
 
