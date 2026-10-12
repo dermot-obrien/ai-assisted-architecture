@@ -1,9 +1,9 @@
 {
   "name": "ai-assisted-architecture",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
-  "description": "AI-Assisted Architecture — TOGAF-aligned strategy/capability/ABB/SBB authoring (installs via the shared AAW engine), plus CLI tools to validate and operate on the modernisation ontology schema.",
+  "description": "AI-Assisted Architecture: a bundle of standalone Agent Skills for TOGAF-aligned architecture authoring, with the standards and ontology they are built from. This file holds the dependencies of the repository's own tools (the ontology validators and checks).",
   "license": "Apache-2.0",
   "author": "Dermot O'Brien",
   "homepage": "https://github.com/dermot-obrien/ai-assisted-architecture",
@@ -11,31 +11,13 @@
     "type": "git",
     "url": "https://github.com/dermot-obrien/ai-assisted-architecture.git"
   },
-  "bin": {
-    "aaa": "./bin/aaa.js",
-    "validate-ontology": "./scripts/ontology/validate.cjs",
-    "consolidate-ontology": "./scripts/ontology/consolidate.cjs",
-    "namespace-divergent-ontology": "./scripts/ontology/namespace-divergent.cjs"
-  },
   "scripts": {
     "validate": "node scripts/ontology/validate.cjs",
     "consolidate": "node scripts/ontology/consolidate.cjs",
-    "namespace-divergent": "node scripts/ontology/namespace-divergent.cjs"
+    "namespace-divergent": "node scripts/ontology/namespace-divergent.cjs",
+    "seed-foundation": "node scripts/seed-foundation.mjs"
   },
-  "files": [
-    "bin/",
-    "src/",
-    "scripts/",
-    "install/",
-    "skills/",
-    "agents/",
-    "standards/",
-    "foundation/",
-    "docs/",
-    "framework.manifest.yaml"
-  ],
   "dependencies": {
-    "ai-assisted-work": "github:dermot-obrien/ai-assisted-work",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
     "js-yaml": "^4.1.0"

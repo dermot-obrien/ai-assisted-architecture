@@ -37,10 +37,10 @@ jobs:
       - name: Each skill's copy of the standards matches standards/
         run: node scripts/sync-skill-standards.mjs --check
 
-      # Each aaa-create-* skill ships its own copy of the check, so it is complete on its own.
-      - name: The aaa-create-* post-install checks are one file
+      # Each skill ships its own copy of the check, so it is complete on its own.
+      - name: The skills' post-install checks are one file
         run: |
-          for f in skills/aaa-create-*/bin/check.mjs; do
+          for f in skills/*/bin/check.mjs; do
             cmp skills/aaa-create-abb/bin/check.mjs "$f" || { echo "::error::$f differs from skills/aaa-create-abb/bin/check.mjs"; exit 1; }
           done
 
@@ -103,7 +103,7 @@ jobs:
         with:
           path: aaa
 
-      # AAA installs through the shared AAW engine, so CI needs both clones.
+      # bin/skills.mjs, the installer for standalone skills, ships with AI-Assisted Work.
       - uses: actions/checkout@v4
         with:
           repository: dermot-obrien/ai-assisted-work
@@ -113,17 +113,10 @@ jobs:
         with:
           node-version: 20
 
-      # AAA declares `depends: [aaw]`, so AAW must be installed into the target
-      # workspace first. Otherwise the dependency check warns, and a warning is a
-      # non-zero exit even though the install itself succeeded. This is also the
-      # order a real user installs them in.
-      - name: Install AAW, then AAA
+      - name: Install the skills
         run: |
           mkdir -p /tmp/ws/.claude && cd /tmp/ws && git init -q .
-          node "$GITHUB_WORKSPACE/aaw/bin/aaw.js" install \
-            --framework "$GITHUB_WORKSPACE/aaw" --no-python
-          node "$GITHUB_WORKSPACE/aaw/bin/aaw.js" install \
-            --framework "$GITHUB_WORKSPACE/aaa" --no-python
+          node "$GITHUB_WORKSPACE/aaw/bin/skills.mjs" install --bundle "$GITHUB_WORKSPACE/aaa"
 
       - name: Check the installed skills resolve
         run: |
@@ -131,6 +124,7 @@ jobs:
           for s in /tmp/ws/.claude/skills/aaa-*; do
             test -f "$s/SKILL.md" || { echo "::error::$s does not resolve"; exit 1; }
           done
+          node "$GITHUB_WORKSPACE/aaw/bin/skills.mjs" check --workspace /tmp/ws
 
       # An installer runs each skill's check after installing it; this runs them the same way.
       - name: Each skill's post-install check fails unbound and passes bound
@@ -152,6 +146,8 @@ jobs:
             echo '[suite.aaa-rung]';             echo 'capabilityDir = "../arch/capabilities"'
           } > .agents/skill-bindings.toml
           $CHECK "$GITHUB_WORKSPACE/aaa"
+          # Each skill resolves its own bindings, with no other skill installed.
+          node .agents/skills/aaa-create-abb/bin/check.mjs --json | node -e 'const r = JSON.parse(require("fs").readFileSync(0, "utf8")); if (r.status !== "ok" || !r.bindings.abbDir.endsWith("/arch/abbs")) { console.error(r); process.exit(1); }'
 
   reuse:
     name: REUSE compliance

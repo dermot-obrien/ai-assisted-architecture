@@ -5,8 +5,7 @@ license: Apache-2.0
 compatibility: Python 3.11+ (tomllib). PyYAML is used when installed and is not required. Carries its own copy of the definition ladder and AAW work seam standards in references/standards/. Artefact locations come from [suite.aaa-rung] of the repository's .agents/skill-bindings.toml; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  framework: aaa
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Rung

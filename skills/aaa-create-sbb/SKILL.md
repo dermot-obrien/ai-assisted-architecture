@@ -2,11 +2,10 @@
 name: aaa-create-sbb
 description: Create a TOGAF-aligned Solution Building Block realising a parent ABB, deciding simple versus composite, mapping every ABB component to a real product, and authoring the composite structure diagram with its ports, parts and connectors. Use when asked to create, add or scaffold an SBB or solution building block, to map a product or vendor technology onto an ABB, or to model a composite assembly of sub-SBBs.
 license: CC-BY-4.0
-compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  framework: aaa
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Create Solution Building Block (SBB)
@@ -25,11 +24,12 @@ Run the resolver and use only the paths it prints. This skill carries the method
 artefacts live is the repository's to declare, and there is no default to fall back on:
 
 ```bash
-python <skills>/model/bin/model.py doctor --skill aaa-create-sbb --json
+node <skills>/aaa-create-sbb/bin/check.mjs --json
 ```
 
-`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
-proceed on an error and do not guess a path.
+Run it from the workspace root. `<skills>` is the directory the skills are installed in. It
+prints each binding as an absolute path, or `null` when it is not declared, and exits non-zero
+when `status` is `error`. Do not proceed on an error and do not guess a path.
 
 | Binding | Used for |
 |---|---|

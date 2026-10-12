@@ -19,8 +19,7 @@ follows; these pages are for the person using it.
 
 The `aaa-create-*` skills share one shape, so learning one teaches you the rest.
 
-1. Step 0, resolve. The skill runs `model doctor --skill <name>` and uses only the paths it
-   prints. A missing required binding stops it.
+1. Step 0, resolve. The skill runs its own `bin/check.mjs --json` from the workspace root and uses only the paths it prints. A missing required binding stops it.
 2. Phase 1, discovery. It asks what it needs and checks that the parents exist. A missing
    parent is proposed, with a plausible name, and created only if you agree.
 3. Phase 2, load standards. It finds each standard it needs in the workspace, falling back to

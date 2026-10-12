@@ -2,11 +2,10 @@
 name: aaa-create-capability
 description: Create a Capability document with its strategic justification, level and maturity, updating the master capability taxonomy and drawing the L1 domain map where one is needed. Use when asked to create, define or add a capability, to place a capability in the capability model, to set or map capability maturity, or to create a CAP-NNN artefact or capability map.
 license: CC-BY-4.0
-compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  framework: aaa
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Create Capability
@@ -24,11 +23,12 @@ Run the resolver and use only the paths it prints. This skill carries the method
 artefacts live is the repository's to declare, and there is no default to fall back on:
 
 ```bash
-python <skills>/model/bin/model.py doctor --skill aaa-create-capability --json
+node <skills>/aaa-create-capability/bin/check.mjs --json
 ```
 
-`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
-proceed on an error and do not guess a path.
+Run it from the workspace root. `<skills>` is the directory the skills are installed in. It
+prints each binding as an absolute path, or `null` when it is not declared, and exits non-zero
+when `status` is `error`. Do not proceed on an error and do not guess a path.
 
 | Binding | Used for |
 |---|---|

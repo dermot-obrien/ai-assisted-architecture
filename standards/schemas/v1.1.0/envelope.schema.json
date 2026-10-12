@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "envelope.schema.json",
   "title": "Universal Artefact Envelope (v1.1.0)",
-  "description": "Common frontmatter fields carried by every catalog artefact in .ai-assisted-architecture v1.1.0. Per-kind schemas import this via $ref and add their own constraints.",
+  "description": "Common frontmatter fields carried by every catalog artefact in AI-Assisted Architecture v1.1.0. Per-kind schemas import this via $ref and add their own constraints.",
   "type": "object",
 
   "$defs": {

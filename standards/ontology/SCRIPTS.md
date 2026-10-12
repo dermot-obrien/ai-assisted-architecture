@@ -25,31 +25,33 @@ The scripts live at `scripts/ontology/`. The schema and this document live at `s
 
 ## Installation
 
-The framework uses a single Node install at its root. Requires Node.js 18 or later.
+The scripts need Node.js 18 or later and `ajv`, `ajv-formats` and `js-yaml`.
 
-```powershell
-# If you are in the framework directory
+In a clone of this repository, one `npm install` at its root fetches all three into `node_modules/`, and the three scripts under `scripts/ontology/` then work without further setup:
+
+```bash
 npm install
-
-# If the framework is installed in your workspace at .ai-assisted-architecture/
-cd .ai-assisted-architecture; npm install; cd ..
 ```
 
-That fetches `ajv`, `ajv-formats`, and `js-yaml` into `node_modules/` inside the framework directory. The three CLI scripts under `scripts/ontology/` then work without further setup.
+A workspace that has installed the `aaa-create-runtime-agent` skill already has a copy of `validate.cjs`, with the schema beside it, and needs only the three packages in its own `node_modules/`:
+
+```bash
+npm install js-yaml ajv ajv-formats
+```
 
 ### Invocation paths
 
-Examples below use forms that work when you are running from the framework directory itself. When the framework is installed in your workspace at `.ai-assisted-architecture/`, prefix the script paths with `.ai-assisted-architecture/`:
+Examples below use the paths in a clone of this repository. In a workspace, call the skill's copy of the validator instead:
 
-```powershell
-# From inside the framework
+```bash
+# From the root of a clone of this repository
 node scripts/ontology/validate.cjs <root>
 
-# From a workspace that consumes the framework via a local clone
-node .ai-assisted-architecture/scripts/ontology/validate.cjs <root>
+# From a workspace with the aaa-create-runtime-agent skill installed
+node .agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs <root>
 ```
 
-The `<root>` argument is your own ontology data folder; it does not need to be inside the framework directory.
+`consolidate.cjs` and `namespace-divergent.cjs` are not carried by any skill; run them from a clone. The `<root>` argument is your own ontology data folder; it does not need to be inside the repository.
 
 ## Inventory
 
@@ -59,11 +61,10 @@ The `<root>` argument is your own ontology data folder; it does not need to be i
 | `consolidate.cjs` | Merge all ontology documents under a root folder into one aggregate document. |
 | `namespace-divergent.cjs` | For cross-platform entity types (Driver, Stakeholder, Viewpoint, etc.), rename IDs that occur in more than one file so each platform owns a distinct entity. Idempotent. |
 
-Each script is invokable in three ways:
+In a clone of this repository each script is invokable in two ways:
 
 - Direct: `node scripts/ontology/<script>.cjs <args>`
 - Via npm script: `npm run validate -- <args>` (and similarly `consolidate`, `namespace-divergent`)
-- Via the bin shortcut after install: `npx validate-ontology <args>` (and similarly `consolidate-ontology`, `namespace-divergent-ontology`)
 
 All examples below use the direct form for clarity.
 
@@ -112,7 +113,7 @@ All scripts resolve the schema in this priority:
 1. **Explicit `--schema` argument** — highest priority, used as-is.
 2. **`ontology.schema` from `.aaa-config.yaml`** — the script walks up from `cwd` to find `.aaa-config.yaml`. If found and `ontology.schema` is set to a valid path, that schema is used.
 3. **Legacy compatibility: `.aaw-config.yaml`** — if `.aaa-config.yaml` is absent or has no schema path, scripts also check `.aaw-config.yaml` for `ontology.schema` (or `modules.aaa.ontology_schema`).
-4. **Framework default** — `standards/ontology/ontology-schema.json` in this package.
+4. **Default.** The base schema beside the script, `../../standards/ontology/ontology-schema.json` relative to it: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill's copy.
 
 Example `.aaa-config.yaml`:
 

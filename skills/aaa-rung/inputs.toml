@@ -14,7 +14,6 @@
 # Paths resolve against that file's directory, never the working directory.
 #
 # Checked by:  python <skills>/aaa-rung/bin/rung.py --doctor
-#         or:  python <skills>/model/bin/model.py doctor --skill aaa-rung
 
 [inputs]
 short_description = "Where the artefacts that evidence the definition ladder live"

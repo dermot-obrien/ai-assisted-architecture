@@ -123,10 +123,7 @@ Each skill carries its own copy of the standards it reads in `references/standar
 changing a file under `standards/`, or the list in `skill-standards.json`, run
 `node scripts/sync-skill-standards.mjs` to rewrite the copies, and commit them with the change.
 
-With `npm install` done, also run `node scripts/validate-frontmatter.mjs --quiet` when you
-change a schema or the foundation. CI also runs the `skills-ref` reference validator, installs
-into a scratch workspace, and checks REUSE compliance; [Commands](docs/commands.md) describes
-each tool.
+With `npm install` done, also run `node scripts/validate-frontmatter.mjs --quiet` when you change a schema or the foundation. CI also runs the `skills-ref` reference validator, installs the bundle into a scratch workspace with AI-Assisted Work's `bin/skills.mjs` and runs each skill's check there, and checks REUSE compliance; [Commands](docs/commands.md) describes each tool.
 
 If you change anything inside a skill folder, bump that skill's patch version in its
 `SKILL.md` `metadata.version` and in `bundle.json` (version and purl), and add a line to

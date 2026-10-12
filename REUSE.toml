@@ -3,7 +3,7 @@ version = 1
 # AI-Assisted Architecture is dual-licensed:
 #   - Documentation, standards, Agent Skills, foundation seeds,
 #     diagrams, and templates are licensed under CC BY 4.0.
-#   - Executable code (Python, PowerShell, and Node.js scripts) is
+#   - Executable code (Python and Node.js scripts) is
 #     licensed under Apache-2.0.
 #
 # This file follows the REUSE Specification 3.3 (https://reuse.software/).
@@ -26,7 +26,6 @@ path = [
   "**.pptx",
   "**.txt",
   "skills/**",
-  "install/**",
   "docs/**",
   "foundation/**",
   "standards/**",
@@ -39,14 +38,9 @@ SPDX-License-Identifier = "CC-BY-4.0"
 [[annotations]]
 path = [
   "scripts/**.py",
-  "scripts/**.ps1",
   "scripts/**.cjs",
   "scripts/**.mjs",
   "scripts/**.js",
-  "bin/**.js",
-  "bin/**.mjs",
-  "src/**.js",
-  "src/**.mjs",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"
@@ -69,7 +63,6 @@ SPDX-License-Identifier = "CC-BY-4.0"
 path = [
   "package.json",
   "package-lock.json",
-  "framework.manifest.yaml",
 ]
 precedence = "override"
 SPDX-FileCopyrightText = "2026 Dermot O'Brien"

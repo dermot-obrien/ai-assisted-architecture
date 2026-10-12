@@ -2,11 +2,10 @@
 name: aaa-create-service
 description: Create a runtime Service, the deployable unit of execution that implements an SBB, linking it to its parent SBB and bounded context and validating that it implements the interfaces its parent ABB and SBB declare. Use when asked to create or define a service, a deployable runtime unit, a microservice entry in the catalogue, or a runtime artefact under an SBB.
 license: CC-BY-4.0
-compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor; this skill ships no directory layout of its own.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  framework: aaa
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Create Service (Runtime)
@@ -24,11 +23,12 @@ Run the resolver and use only the paths it prints. This skill carries the method
 artefacts live is the repository's to declare, and there is no default to fall back on:
 
 ```bash
-python <skills>/model/bin/model.py doctor --skill aaa-create-service --json
+node <skills>/aaa-create-service/bin/check.mjs --json
 ```
 
-`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
-proceed on an error and do not guess a path.
+Run it from the workspace root. `<skills>` is the directory the skills are installed in. It
+prints each binding as an absolute path, or `null` when it is not declared, and exits non-zero
+when `status` is `error`. Do not proceed on an error and do not guess a path.
 
 | Binding | Used for |
 |---|---|

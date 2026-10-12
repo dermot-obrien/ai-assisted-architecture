@@ -2,11 +2,10 @@
 name: aaa-create-runtime-agent
 description: Author an autonomous runtime agent as a catalogued artefact with its agent profile, contracts, tiered guardrails, capability scope and output provenance, so it cannot change its own limits. Use when asked to create, define or catalogue a runtime agent, an autonomous agent that acts in the live system, an agent profile or A2A agent card, or to specify agent guardrails and capability scope.
 license: CC-BY-4.0
-compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Its copy of the ontology validator, references/scripts/ontology/validate.cjs, needs Node.js with js-yaml, ajv and ajv-formats. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved with the model skill's doctor.
+compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Its copy of the ontology validator, references/scripts/ontology/validate.cjs, needs Node.js with js-yaml, ajv and ajv-formats. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json.
 metadata:
   author: dermot-obrien
-  framework: aaa
-  version: "0.4.0"
+  version: "0.5.0"
 ---
 
 # Create Runtime Agent
@@ -28,11 +27,12 @@ Run the resolver and use only the paths it prints. This skill carries the method
 artefacts live is the repository's to declare, and there is no default to fall back on:
 
 ```bash
-python <skills>/model/bin/model.py doctor --skill aaa-create-runtime-agent --json
+node <skills>/aaa-create-runtime-agent/bin/check.mjs --json
 ```
 
-`<skills>` is the directory this skill is installed in. It exits non-zero on `error`. Do not
-proceed on an error and do not guess a path.
+Run it from the workspace root. `<skills>` is the directory the skills are installed in. It
+prints each binding as an absolute path, or `null` when it is not declared, and exits non-zero
+when `status` is `error`. Do not proceed on an error and do not guess a path.
 
 | Binding | Used for |
 |---|---|

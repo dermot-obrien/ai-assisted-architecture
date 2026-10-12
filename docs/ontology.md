@@ -1,11 +1,6 @@
 # Ontology
 
-The framework ships an optional modernisation ontology: a JSON Schema that gives shape to
-enterprise reporting. It captures platforms, capabilities, components (ABBs and SBBs),
-interfaces, changes, milestones, commitments, transitions, initiatives, slips, decisions,
-drivers, risks, controls, standards, patterns, views and stakeholders, with an optional anchor
-to an industry reference taxonomy. It is industry-neutral and tool-neutral: author the data in
-YAML or JSON, validate it, and aggregate it across platforms.
+AI-Assisted Architecture ships an optional modernisation ontology: a JSON Schema that gives shape to enterprise reporting. It captures platforms, capabilities, components (ABBs and SBBs), interfaces, changes, milestones, commitments, transitions, initiatives, slips, decisions, drivers, risks, controls, standards, patterns, views and stakeholders, with an optional anchor to an industry reference taxonomy. It is industry-neutral and tool-neutral: author the data in YAML or JSON, validate it, and aggregate it across platforms.
 
 It runs beside the Markdown artefacts, not instead of them. Use it when you want a queryable
 model for governance reporting; ignore it when documents and diagrams are enough. The
@@ -31,29 +26,35 @@ ontology/
 ## Setup
 
 The scripts are CommonJS for Node.js 18 or later and need `ajv`, `ajv-formats` and `js-yaml`.
-Install them once in the framework folder:
+
+In a workspace, use the validator `aaa-create-runtime-agent` carries, with the schema beside it, and install its dependencies in the workspace:
 
 ```bash
-cd .ai-assisted-architecture
-npm install
-cd ..
+npm install js-yaml ajv ajv-formats
+node .agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs ontology-data
 ```
+
+It uses `references/standards/ontology/ontology-schema.json` in the skill unless `--schema` or `ontology.schema` in `.aaa-config.yaml` names another. `consolidate.cjs` and `namespace-divergent.cjs` are not carried by any skill; run them from a clone of this repository, after `npm install` there.
 
 ## Use
 
+From the root of a clone of this repository (in a workspace, replace `scripts/ontology/validate.cjs` with the skill's copy above):
+
 ```bash
 # Validate the worked example
-node .ai-assisted-architecture/scripts/ontology/validate.cjs .ai-assisted-architecture/standards/ontology/example-identity-platform.json
+node scripts/ontology/validate.cjs standards/ontology/example-identity-platform.json
 
 # Validate every ontology document under a folder
-node .ai-assisted-architecture/scripts/ontology/validate.cjs ontology-data
+node scripts/ontology/validate.cjs path/to/ontology-data
 
 # Merge per-platform documents into one, validating the result
-node .ai-assisted-architecture/scripts/ontology/consolidate.cjs ontology-data --output aggregate.yaml --on-collision first-wins --validate
+node scripts/ontology/consolidate.cjs path/to/ontology-data --output aggregate.yaml --on-collision first-wins --validate
 
 # Preview renames of ids shared across platforms
-node .ai-assisted-architecture/scripts/ontology/namespace-divergent.cjs ontology-data --dry-run
+node scripts/ontology/namespace-divergent.cjs path/to/ontology-data --dry-run
 ```
+
+The same three are `npm run validate`, `npm run consolidate` and `npm run namespace-divergent`.
 
 A file counts as an ontology document only when its top level has
 `ontology_id: "modernisation-ontology"`. Other YAML and JSON under the same folder is skipped,
@@ -73,7 +74,7 @@ pre-commit hook. For example, in a workspace `package.json`:
 ```json
 {
   "scripts": {
-    "validate:ontology": "node .ai-assisted-architecture/scripts/ontology/validate.cjs ontology-data"
+    "validate:ontology": "node .agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs ontology-data"
   }
 }
 ```
