@@ -37,7 +37,7 @@ Thumbs.db
 *.zip
 *.tar.gz
 
-# IDE auto-discovery files (users install from install/ folder)
+# IDE auto-discovery files
 .claude/
 .cursor/
 .gemini/

@@ -1,7 +1,6 @@
 # Examples
 
-Worked examples that ship with the framework, and what each one shows. Paths are relative to
-the repository root; in a workspace they sit under `.ai-assisted-architecture/`.
+Worked examples that ship with this repository, and what each one shows. Paths are relative to the repository root. The standards' examples a skill compares against are also in that skill's `references/standards/`.
 
 ## Artefacts written to the standards
 
@@ -30,11 +29,10 @@ kind:
 | `foundation/building-blocks/` | 8 ABBs and 3 SBBs with full diagram sets |
 | `foundation/profiles/` | The `core`, `integration` and `infrastructure` profiles the seeder copies |
 
-To see what the profiles would copy into your workspace without writing anything, run this
-from the workspace root:
+To see what the profiles would copy into your workspace without writing anything, run this from the workspace root, with `<aaa>` a clone of this repository:
 
 ```bash
-node .ai-assisted-architecture/src/seed-foundation.mjs --profile all --dry-run
+node <aaa>/scripts/seed-foundation.mjs --profile all --dry-run
 ```
 
 ## A workspace at every rung

@@ -5,7 +5,25 @@ All notable changes to AI-Assisted Architecture will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## 0.4.0
+
+AI-Assisted Architecture is now a bundle of standalone Agent Skills rather than a framework installed through AI-Assisted Work's engine. The last commit with the framework layout is tagged `v0.3.0`; pin it to keep running `aaa install` with AAW 4.0.0.
+
+### Breaking
+
+- **No `aaa install`.** `bin/aaa.js`, `framework.manifest.yaml` (with its `depends: [aaw]`, `seed:` block and config template entry) and the npm dependency on `ai-assisted-work` are removed. Install the skills with AI-Assisted Work's standalone installer, `bin/skills.mjs`: `node <aaw>/bin/skills.mjs install --bundle <clone of this repository> [names]`, or declare the bundle in a workspace's committed `.agents/skills.json` (`{ "sources": [ { "bundle": "https://github.com/dermot-obrien/ai-assisted-architecture.git", "ref": "main" } ] }`) and run `skills.mjs sync`, then `sync --locked --copy`, with the lock in `.agents/skills.lock.json`. See `docs/installation.md`.
+- **No npm binaries.** `package.json` no longer declares `aaa`, `validate-ontology`, `consolidate-ontology` or `namespace-divergent-ontology`, and a workspace no longer takes this repository as an npm git dependency. In this repository the ontology tools stay under `scripts/ontology/` (`npm run validate`, `consolidate`, `namespace-divergent`). A workspace runs the validator `aaa-create-runtime-agent` carries, `.agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs <root>`, with `js-yaml`, `ajv` and `ajv-formats` in its own `node_modules`; its schema defaults to the copy beside it, or `ontology.schema` in `.aaa-config.yaml`.
+- **No workspace instruction templates.** `install/` is removed: `AGENTS.md.txt`, `CLAUDE.md.txt`, `GEMINI.md.txt`, `.clinerules.txt`, `.cursorrules.txt`, `.windsurfrules.txt`, the `cursor/`, `gemini/` and `github/` templates and `install/README.md`. Workspaces write their own `AGENTS.md` or `CLAUDE.md`.
+
+### Changed
+
+- **The skills no longer need the `model` skill.** Step 0 of each `aaa-create-*` skill runs its own `node <skills>/<skill>/bin/check.mjs --json` from the workspace root, which prints each binding from `[suite.<skill>]` of `.agents/skill-bindings.toml` as an absolute path (`null` when not declared), with `status`, `problems` and `warnings`. `aaa-rung` still resolves its own bindings with `rung.py --doctor`.
+- **`.aaa-config.yaml` is optional.** A skill's check warns and carries on without it. The template moved from `install/templates/aaa-config.yaml` to `standards/workspace/aaa-config.yaml`, and every `aaa-create-*` skill carries it at `references/standards/workspace/aaa-config.yaml`; copy it to the workspace root to set a workspace ontology schema.
+- **Foundation seeding is a script.** `src/seed-foundation.mjs` moved to `scripts/seed-foundation.mjs`; run it from a clone with `node scripts/seed-foundation.mjs --workspace <ws> [--profile core]`. The foundation catalogue is optional content that no skill needs. The PowerShell `scripts/seed-foundation.ps1` is removed.
+- **Skill metadata.** `metadata.framework: aaa` is removed from every `SKILL.md`. Skill versions: `aaa-create-*` 0.5.0, `aaa-rung` 0.5.1.
+- **Documentation.** The README, `docs/`, `CONTRIBUTING.md`, the foundation, ontology and scripts READMEs and `standards/standards-index.md` describe the new installation; `REUSE.toml`, `.gitattributes` and `.gitignore` drop the removed paths.
+
+## 0.3.0
 
 ### Added
 

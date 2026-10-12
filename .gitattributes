@@ -6,10 +6,6 @@
 # that is perfectly valid. Agents tolerate CRLF; tooling does not always.
 * text=auto eol=lf
 
-# The committed CLI bundle is generated. Keeping it LF means the bundle-freshness
-# check in CI compares like with like, wherever it was built.
-bin/aaa.js text eol=lf
-
 # Binary: never touch these.
 *.png binary
 *.jpg binary

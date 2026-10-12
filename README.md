@@ -1,42 +1,36 @@
 # AI-Assisted Architecture
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](CHANGELOG.md)
 [![Licence: CC BY 4.0](https://img.shields.io/badge/content-CC%20BY%204.0-blue.svg)](LICENSES/CC-BY-4.0.txt)
 [![Licence: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSES/Apache-2.0.txt)
 [![REUSE 3.3](https://img.shields.io/badge/REUSE-3.3-lightgrey.svg)](https://reuse.software/spec-3.3/)
 
-A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks
-(ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. It ships nine
-[Agent Skills](https://agentskills.io): eight write outcomes, platforms, capabilities, bounded
-contexts, ABBs, SBBs, services and runtime agents to its standards, keeping the golden thread
-of traceability intact, and the ninth, `aaa-rung`, is read-only and reports how far each
-capability has been defined and what blocks the next step. It works with any agent that reads
-Agent Skills.
+A reusable framework for creating TOGAF-aligned Capabilities, Architecture Building Blocks (ABBs), and Solution Building Blocks (SBBs) with AI agent assistance. It ships as a bundle of nine standalone [Agent Skills](https://agentskills.io): eight write outcomes, platforms, capabilities, bounded contexts, ABBs, SBBs, services and runtime agents to its standards, keeping the golden thread of traceability intact, and the ninth, `aaa-rung`, is read-only and reports how far each capability has been defined and what blocks the next step. It works with any agent that reads Agent Skills.
 
 ## Install
 
-You need git, Node.js 18 or later and Python 3.11 or later. draw.io desktop is optional, for
-PNG export of diagrams.
+You need git, Node.js 18 or later and Python 3.11 or later. draw.io desktop is optional, for PNG export of diagrams. No package registry is needed.
 
-The framework's installer runs on the engine in
-[AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) (AAW), so install AAW
-first. Every skill resolves its folders with the `model` skill from
-[diagram-model](https://github.com/dermot-obrien/diagram-model), so install that beside them.
-No package registry is needed.
+Each skill is complete on its own: it carries the standards it reads, the `.aaa-config.yaml` template and its own binding resolver, so you can install all nine or only the ones you use, and no other skill is needed. Install them with `bin/skills.mjs`, the standalone skills installer in [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) (AAW), from the workspace root:
 
 ```bash
-git clone https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
-git clone https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
-git clone https://github.com/dermot-obrien/diagram-model .diagram-model
-node .ai-assisted-work/bin/aaw.js install --yes --work-items-path work-items
-node .ai-assisted-architecture/bin/aaa.js install --workspace .
-cp -r .diagram-model/skills/model .agents/skills/model
+git clone https://github.com/dermot-obrien/ai-assisted-work ../ai-assisted-work
+git clone https://github.com/dermot-obrien/ai-assisted-architecture ../ai-assisted-architecture
+node ../ai-assisted-work/bin/skills.mjs install --bundle ../ai-assisted-architecture
 ```
 
-In PowerShell the last line is `Copy-Item -Recurse .diagram-model/skills/model .agents/skills/model`.
+Name skills after the command to install only those. For a team workspace, commit an `.agents/skills.json` that declares the bundle and let the installer fetch it and lock the commit:
 
-The installer puts the skills in the workspace's `.agents/skills/`, and links
-`.claude/skills/` at them when a `.claude` folder exists. Which agent reads which folder:
+```json
+{ "sources": [ { "bundle": "https://github.com/dermot-obrien/ai-assisted-architecture.git", "ref": "main" } ] }
+```
+
+```bash
+node scripts/skills.mjs sync --copy            # writes .agents/skills.lock.json; commit it
+node scripts/skills.mjs sync --locked --copy   # after a clone: exactly the locked commits
+```
+
+Here `scripts/skills.mjs` is a copy of AAW's `bin/skills.mjs` kept in the workspace. The installer puts the skills in the workspace's `.agents/skills/`, and links `.claude/skills/` at them when a `.claude` folder exists (`--copy` copies instead). Which agent reads which folder:
 
 | Agent | Workspace level | User level |
 |---|---|---|
@@ -46,35 +40,27 @@ The installer puts the skills in the workspace's `.agents/skills/`, and links
 | Codex | `.agents/skills/` | `~/.agents/skills/` |
 | Gemini CLI | `.agents/skills/` | `~/.agents/skills/` |
 
-Folders change between agent versions, so check your agent's documentation if a skill does not
-appear. To install without the installer, or for every workspace at user level, copy the
-`skills/aaa-*` folders into one of those folders; [Installation](docs/installation.md) covers
-that, the npm git dependency route, updating and removing.
+Folders change between agent versions, so check your agent's documentation if a skill does not appear. To install without the installer, or for every workspace at user level, copy the `skills/aaa-*` folders into one of those folders; [Installation](docs/installation.md) covers that, updating and removing.
+
+Version 0.3.0 and earlier installed through AAW's framework engine with `aaa install`. That installer and its npm commands were removed in 0.4.0; pin the `v0.3.0` tag if you still need them.
 
 ## Quick start
 
-After installing, seed a starter model, bind `aaa-rung` to it, and ask where each capability
-stands:
+After installing, seed a starter model from the clone, bind `aaa-rung` to it, and ask where each capability stands:
 
 ```bash
-node .ai-assisted-architecture/bin/aaa.js install --workspace . --seed
-printf '[suite.aaa-rung]
-capabilityDir = "../capabilities"
-abbDir = "../building-blocks/architecture-building-blocks"
-' > .agents/skill-bindings.toml
+node ../ai-assisted-architecture/scripts/seed-foundation.mjs --workspace .
+printf '[suite.aaa-rung]\ncapabilityDir = "../capabilities"\nabbDir = "../building-blocks/architecture-building-blocks"\n' > .agents/skill-bindings.toml
 python .agents/skills/aaa-rung/bin/rung.py
 ```
 
 ```powershell
-node .ai-assisted-architecture/bin/aaa.js install --workspace . --seed
+node ../ai-assisted-architecture/scripts/seed-foundation.mjs --workspace .
 '[suite.aaa-rung]', 'capabilityDir = "../capabilities"', 'abbDir = "../building-blocks/architecture-building-blocks"' | Set-Content -Encoding ascii .agents/skill-bindings.toml
 python .agents/skills/aaa-rung/bin/rung.py
 ```
 
-You should see a table of seven capabilities, each with its rung and the artefact blocking the
-next one. Then bind the other skills and type `/aaa-create-abb` (or any `/aaa-*` skill) in your
-agent. The [quick start](docs/quick-start.md) does all of this from an empty folder, in
-PowerShell and bash, in about ten minutes.
+You should see a table of seven capabilities, each with its rung and the artefact blocking the next one. Then bind the other skills and type `/aaa-create-abb` (or any `/aaa-*` skill) in your agent. The [quick start](docs/quick-start.md) does all of this from an empty folder, in PowerShell and bash, in about ten minutes.
 
 ## Skills
 
@@ -115,22 +101,20 @@ reads a pattern's front matter.
 | [Examples](docs/examples.md) | The worked examples in this repository |
 | [Ontology](docs/ontology.md) | The optional modernisation ontology and its scripts |
 | [Architectural Framework](docs/architectural-framework.md) | The reasoning behind the hierarchy, with sources |
-| [install/README.md](install/README.md) | What the installer places, and the instruction files you merge by hand |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributing, and the checks to run before a pull request |
 | [CHANGELOG.md](CHANGELOG.md) | What changed, release by release |
 
 ## Repository structure
 
 ```
-skills/          The nine Agent Skills: SKILL.md, inputs.toml, references/, bin/
-standards/       The standards the skills follow, with worked examples, the schemas and the ontology
-foundation/      A generic starter model, seeded into a workspace with --seed
-install/         Instruction-file snippets to merge once, and the config template
+skills/          The nine Agent Skills: SKILL.md, inputs.toml, references/ (with their copy of the standards), bin/
+standards/       The standards the skills follow, with worked examples, the schemas, the ontology and the config template
+foundation/      A generic starter model, optional, seeded into a workspace by scripts/seed-foundation.mjs
 ontology/        The architecture ontology module (bundle.json names it)
-bin/ src/        The aaa installer launcher and the foundation seeder
-scripts/         Validators, ontology tools and maintainer scripts
+scripts/         The foundation seeder, validators, ontology tools and maintainer scripts
 docs/            This documentation
 bundle.json      Each skill's version, purl and post-install check
+skill-standards.json   Which standards each skill carries a copy of
 ```
 
 ## Licence
@@ -141,7 +125,7 @@ public, academic, and commercial. Attribution is the primary expectation.
 - Documentation, standards, agent specifications, foundation seeds, diagrams
   ([`CC BY 4.0`](LICENSES/CC-BY-4.0.txt)): use, share, modify, and redistribute, including
   commercially, with attribution.
-- Executable code (`scripts/`, `bin/`, `src/`) ([`Apache-2.0`](LICENSES/Apache-2.0.txt)):
+- Executable code (`scripts/`) ([`Apache-2.0`](LICENSES/Apache-2.0.txt)):
   same permissions, with an explicit patent grant.
 
 Per-file licensing is declared via SPDX identifiers and the [`REUSE.toml`](REUSE.toml)

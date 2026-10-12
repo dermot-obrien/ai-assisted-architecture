@@ -3,18 +3,23 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /**
- * Post-install check for an aaa-create-* skill (DD-11 of AI-Assisted Work).
+ * Post-install check and binding resolver for an AI-Assisted Architecture skill.
  *
- * Run from the workspace root, with SKILL_DIR set to the installed skill's directory.
- * Checks that .aaa-config.yaml is there, that the ontology schema it names exists, and
- * that [suite.<skill>] of .agents/skill-bindings.toml answers the skill's inputs.toml:
- * every required binding declared, and every declared directory or file present. Paths
- * resolve against the binding file's directory, as the skills resolve them.
+ * Run from the workspace root. SKILL_DIR names the installed skill's directory, and
+ * defaults to the folder this file is in. Checks that the ontology schema
+ * .aaa-config.yaml names exists (the file is optional), and that [suite.<skill>] of
+ * .agents/skill-bindings.toml answers the skill's inputs.toml: every required binding
+ * declared, and every declared directory or file present. Paths resolve against the
+ * binding file's directory.
+ *
+ * With --json it prints what the skill needs before it starts: each binding resolved to
+ * an absolute path (null when not declared), the bindings file, and the problems and
+ * warnings, as one JSON object.
  *
  * Exit 0: correct (warnings may be printed). Exit 1: problems, one line each.
  * Exit 2: usage or environment error. Offline and read-only.
  *
- * The same file ships in every aaa-create-* skill, so each skill is complete on its own;
+ * The same file ships in every AI-Assisted Architecture skill, so each skill is complete on its own;
  * CI checks the copies are identical.
  */
 
@@ -26,12 +31,14 @@ if (Number(process.versions.node.split(".")[0]) < 18) {
   console.error(`Node.js ${process.versions.node} is too old: this check needs 18 or newer.`);
   process.exit(2);
 }
+const USAGE = "usage: check.mjs [--json]   (run from the workspace root; exit 0 ok, 1 problems, 2 usage or environment)";
 if (["-h", "--help"].includes(process.argv[2]) && process.argv.length === 3) {
-  console.log("usage: check.mjs   (run from the workspace root, with SKILL_DIR set; exit 0 ok, 1 problems, 2 usage or environment)");
+  console.log(USAGE);
   process.exit(0);
 }
-if (process.argv.length > 2) {
-  console.error("usage: check.mjs   (run from the workspace root; takes no arguments)");
+const json = process.argv[2] === "--json" && process.argv.length === 3;
+if (process.argv.length > 2 && !json) {
+  console.error(USAGE);
   process.exit(2);
 }
 
@@ -76,11 +83,11 @@ function toml(text) {
   return out;
 }
 
-// .aaa-config.yaml, and the ontology schema it names.
+// .aaa-config.yaml, optional, and the ontology schema it names.
 const config = path.join(root, ".aaa-config.yaml");
 if (!existsSync(config)) {
-  problems.push(
-    `.aaa-config.yaml: not found in ${root}. Run the AI-Assisted Architecture installer in the workspace root, or copy install/templates/aaa-config.yaml from it.`,
+  warnings.push(
+    `.aaa-config.yaml: not found in ${root}, so no workspace ontology schema is set. To set one, copy references/standards/workspace/aaa-config.yaml from this skill to the workspace root.`,
   );
 } else {
   const text = readFileSync(config, "utf8").replace(/\r\n/g, "\n");
@@ -102,6 +109,7 @@ if (existsSync(inputsFile)) {
     if (m) options[m[1]] = table;
   }
 }
+const resolved = Object.fromEntries(Object.keys(options).map((k) => [k, null]));
 let bindingsFile = null;
 for (let d = root; ; d = path.dirname(d)) {
   for (const n of [path.join(".agents", "skill-bindings.toml"), "skill-bindings.toml"]) {
@@ -130,6 +138,7 @@ if (!bindingsFile) {
     const cut = v.indexOf("{");
     const p = path.resolve(base, cut >= 0 ? v.slice(0, cut) : v);
     const target = cut >= 0 ? path.dirname(p + "x") : p;
+    if (k in resolved) resolved[k] = cut >= 0 ? path.resolve(base, v) : p;
     if (!existsSync(target)) {
       problems.push(`${bindingsFile}: [suite.${skill}] ${k} = "${v}" resolves to ${target}, which does not exist. Create it, or correct ${k}.`);
     } else if (type === "dir" && cut < 0 && !statSync(target).isDirectory()) {
@@ -138,6 +147,10 @@ if (!bindingsFile) {
   }
 }
 
+if (json) {
+  console.log(JSON.stringify({ skill, status: problems.length ? "error" : "ok", bindingsFile, bindings: resolved, problems, warnings }, null, 2));
+  process.exit(problems.length ? 1 : 0);
+}
 for (const w of warnings) console.log(`warning: ${w}`);
 for (const p of problems) console.log(p);
 if (problems.length === 0) console.log(`${skill}: ok`);

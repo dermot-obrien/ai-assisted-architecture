@@ -2,32 +2,34 @@
 
 The full reference for every script, with its options and exit codes, is [docs/commands.md](../docs/commands.md).
 
-## seed-foundation.ps1
+## seed-foundation.mjs
 
-Seeds a workspace with foundation capabilities and building blocks from the framework. This is the older, Windows-only seeder; `src/seed-foundation.mjs`, which `aaa install --seed` runs, does the same on every platform.
+Seeds a workspace with foundation capabilities and building blocks from this repository's `foundation/`. The foundation is optional content that no skill needs. Zero-dependency Node, so it runs on every platform without `npm install`.
 
 ### Usage
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture/scripts/seed-foundation.ps1 -Profile foundation
+Run it from the workspace root, or pass `--workspace`:
+
+```bash
+node path/to/ai-assisted-architecture/scripts/seed-foundation.mjs --workspace . --profile foundation
 ```
 
-### Parameters
+### Options
 
-- `-Profile core|integration|infrastructure|all|foundation` (default: `core`)
-- `-WorkspaceRoot <path>` (default: current directory)
-- `-Force` overwrite existing workspace files/folders
-- `-DryRun` preview copy actions without writing
+- `--profile core|integration|infrastructure|all|foundation` (default: `core`; comma-separate several)
+- `--workspace <dir>` (default: current directory)
+- `--force` overwrite existing workspace files and folders
+- `--dry-run` preview copy actions without writing
 
 ### Notes
 
-- Run this from the workspace root (not from `.ai-assisted-architecture`).
+- The workspace must not be this repository's own folder.
 - Workspace files are canonical after seeding.
-- Framework foundation remains read-only fallback/reference.
+- The foundation in this repository remains read-only reference.
 
 ## generate_sbb_diagrams.py
 
-Regenerates the Draw.io component diagrams for the foundation SBBs (SBB-001/002/003). The component definitions are declared inline in the script; run it from the framework root after editing those definitions.
+Regenerates the Draw.io component diagrams for the foundation SBBs (SBB-001/002/003). The component definitions are declared inline in the script; run it from the repository root after editing those definitions.
 
 Uses only the Python standard library — no third-party packages required.
 
@@ -47,7 +49,7 @@ node scripts/gen-capability-csvs.mjs
 
 ## sync-skill-standards.mjs
 
-Writes each skill's own copy of the standards it reads, `skills/<skill>/references/standards/`, from `standards/` as `skill-standards.json` at the repository root lists them, so a skill installed on its own needs no framework clone. Paths under `standards/` keep their layout, so links between copied standards resolve; images a copied standard embeds are copied too; any other relative link is rewritten to the file on GitHub. Links in code are left alone. `--check` writes nothing and exits 1 when a copy differs, is missing or is no longer listed; CI runs it. Zero-dependency Node.
+Writes each skill's own copy of the standards it reads, `skills/<skill>/references/standards/`, from `standards/` as `skill-standards.json` at the repository root lists them, so a skill installed on its own needs no clone of this repository. Paths under `standards/` keep their layout, so links between copied standards resolve; images a copied standard embeds are copied too; any other relative link is rewritten to the file on GitHub. Links in code are left alone. `--check` writes nothing and exits 1 when a copy differs, is missing or is no longer listed; CI runs it. Zero-dependency Node.
 
 ```bash
 node scripts/sync-skill-standards.mjs

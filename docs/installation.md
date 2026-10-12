@@ -1,20 +1,19 @@
 # Installation
 
-AI-Assisted Architecture works with any agent that reads [Agent Skills](https://agentskills.io):
-VS Code with GitHub Copilot, Cursor, Claude Code, Codex, Gemini CLI and others. Pick one of
-the routes below. The [quick start](quick-start.md) walks through the first one end to end.
+AI-Assisted Architecture is a bundle of nine standalone [Agent Skills](https://agentskills.io), listed in [`bundle.json`](../bundle.json). It works with any agent that reads Agent Skills: VS Code with GitHub Copilot, Cursor, Claude Code, Codex, Gemini CLI and others. Each skill is complete on its own: it carries the standards it reads, the configuration template and its own binding resolver, so you can install all nine or only the ones you use. The [quick start](quick-start.md) walks through the first route below end to end.
 
 Whichever route you take, you need:
 
 | Requirement | Why |
 |---|---|
-| The nine `aaa-*` skill folders where your agent reads skills | The skills themselves |
-| The `model` skill beside them, from [diagram-model](https://github.com/dermot-obrien/diagram-model) | Every `aaa-create-*` skill resolves its bindings with `model doctor` |
-| The framework's `standards/` somewhere in the workspace | The skills load the standards before writing; see [Concepts](concepts.md#standards-how-artefacts-are-written) |
+| The `aaa-*` skill folders where your agent reads skills | The skills themselves |
 | `.agents/skill-bindings.toml` | Where each skill writes; see [Configuration](configuration.md#skill-bindings) |
-| Python 3.11 or later | `model doctor` and `aaa-rung` |
-| Node.js 18 or later | The installer, the post-install checks and the ontology scripts |
+| Node.js 18 or later | The installer, each `aaa-create-*` skill's `bin/check.mjs`, and the ontology validator |
+| Python 3.11 or later | `aaa-rung` |
+| git | Fetching the bundle |
 | draw.io desktop, optional | PNG export of diagrams |
+
+No package registry is needed.
 
 ## Where agents read skills
 
@@ -26,58 +25,40 @@ Whichever route you take, you need:
 | `.cursor/skills/` in the workspace | Cursor |
 | `~/.agents/skills/`, `~/.claude/skills/`, `~/.copilot/skills/`, `~/.cursor/skills/` | The same tools, for every workspace |
 
-The installer uses the workspace-level `.agents/skills/` and links `.claude/skills/` at it.
-Check your agent's own documentation for the folders its current version reads.
+The installer writes to the workspace-level `.agents/skills/` and links `.claude/skills/<name>` at each skill when a `.claude` folder exists (pass `--copy` to copy instead of linking). Check your agent's own documentation for the folders its current version reads.
 
-## Route 1: local clones and the installer (recommended)
+## Route 1: the skills installer from a clone
 
-AAA installs through the engine in [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work)
-(AAW). Clone both into the workspace and install AAW first, then AAA. Only git is needed; no
-package registry.
+The installer is `bin/skills.mjs` in [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) (AAW), a single Node script with no dependencies. Clone both repositories anywhere, then install the bundle into the workspace:
 
 ```bash
-git clone https://github.com/dermot-obrien/ai-assisted-work .ai-assisted-work
-git clone https://github.com/dermot-obrien/ai-assisted-architecture .ai-assisted-architecture
-node .ai-assisted-work/bin/aaw.js install --yes --work-items-path work-items
-node .ai-assisted-architecture/bin/aaa.js install --workspace .
+git clone https://github.com/dermot-obrien/ai-assisted-work path/to/ai-assisted-work
+git clone https://github.com/dermot-obrien/ai-assisted-architecture path/to/ai-assisted-architecture
+node path/to/ai-assisted-work/bin/skills.mjs install --bundle path/to/ai-assisted-architecture
 ```
 
-Add `--seed` to the last command to copy the starter capability model into the workspace. For
-Claude Code, create `.claude` in the workspace first so the installer links the skills there.
+Run it from the workspace root, or pass `--workspace <dir>`. Name skills after the command to install only those, for example `... install --bundle path/to/ai-assisted-architecture aaa-create-abb aaa-rung`. `skills.mjs list --bundle <clone>` shows what the bundle holds. The installer records where each skill came from in `.agents/skills.lock.json`.
 
-`aaa install` can install into another workspace with `--workspace <path>`, so one clone can
-serve several workspaces. It records where the framework is in that workspace's
-`.aaw-config.yaml`, and the skills find the standards from there. Every option is in
-[Commands](commands.md#aaa-install).
+## Route 2: a declared, locked set of skills
 
-Do not commit the installed skills or the clones into your repository. Add them to
-`.gitignore` and re-run the installer after pulling a new version:
+For a team workspace, declare the skills in a committed `.agents/skills.json` and let the installer fetch them from GitHub:
 
-```gitignore
-.ai-assisted-work/
-.ai-assisted-architecture/
-.agents/skills/aaa-*
-.claude/skills/aaa-*
+```json
+{ "sources": [ { "bundle": "https://github.com/dermot-obrien/ai-assisted-architecture.git", "ref": "main" } ] }
 ```
 
-## Route 2: npm git dependency
-
-Installing AAA as a dependency pulls AAW with it. Still no registry needed: npm fetches both
-from GitHub.
+Add `"skills": ["aaa-create-abb", "aaa-rung"]` to the source to take only some of them, and use a tag such as `v0.4.0` as the `ref` to pin a release. Keep a copy of `skills.mjs` in the workspace (for example `scripts/skills.mjs`, copied from AAW's `bin/skills.mjs`), then:
 
 ```bash
-npm i github:dermot-obrien/ai-assisted-architecture
-npx aaw install --yes --work-items-path work-items
-npx aaa install --workspace .
+node scripts/skills.mjs sync --copy            # the first time, and to take newer commits: writes .agents/skills.lock.json
+node scripts/skills.mjs sync --locked --copy   # after a clone or at session start: exactly the locked commits
 ```
 
-The framework then lives in `node_modules/ai-assisted-architecture/`, and the skills find the
-standards through `.aaw-config.yaml`.
+Commit `.agents/skills.json` and `.agents/skills.lock.json`. `sync` clones the bundle into `.agents/.skill-sources/`, which you should ignore. `--locked` refuses to run until a plain `sync` has written the lock. Without access to GitHub, set `SKILLS_BASE_URL` to a mirror, or pass `--from <folder>` with clones already on the machine.
 
 ## Route 3: copy the skill folders
 
-For an agent-only setup with no installer, copy the folders yourself, at workspace or user
-level. Clone the repository somewhere first.
+With no installer at all, copy the folders yourself, at workspace or user level, from a clone:
 
 ```powershell
 New-Item -ItemType Directory -Force .agents/skills | Out-Null
@@ -89,61 +70,68 @@ mkdir -p .agents/skills
 cp -r path/to/ai-assisted-architecture/skills/aaa-* .agents/skills/
 ```
 
-For every workspace, copy into a user-level folder from the table above instead, such as
-`~/.agents/skills/`. A copied skill still needs the framework's standards to be findable: keep
-a clone at `.ai-assisted-architecture/` in the workspace, or copy the standards you use into
-the workspace under their own file names. Run the [post-install checks](commands.md#post-install-checks)
-afterwards; with no installer, create `.aaa-config.yaml` from `install/templates/aaa-config.yaml`.
+For every workspace, copy into a user-level folder from the table above instead, such as `~/.agents/skills/`. Run the [post-install checks](commands.md#post-install-checks) afterwards.
 
-## The model skill
+## What to keep out of git
 
-Put `skills/model/` from [diagram-model](https://github.com/dermot-obrien/diagram-model) in the
-same skills folder as the AAA skills:
+Installed skills are installer output. Ignore them, and re-run the installer after a pull:
 
-```bash
-git clone https://github.com/dermot-obrien/diagram-model .diagram-model
-cp -r .diagram-model/skills/model .agents/skills/model
+```gitignore
+.agents/skills/aaa-*
+.claude/skills/aaa-*
+.agents/.skill-sources/
 ```
 
-In PowerShell, `Copy-Item -Recurse .diagram-model/skills/model .agents/skills/model`.
-diagram-model's README lists other ways to install it, including user-level folders.
+## Optional: .aaa-config.yaml
 
-## Agent instruction files
+The `aaa-create-*` skills work without a `.aaa-config.yaml`; their check prints a warning and carries on. Add one only to set a workspace ontology schema. Each `aaa-create-*` skill carries the template at `references/standards/workspace/aaa-config.yaml`:
 
-The skills are enough on their own. If your team also keeps always-on instruction files, the
-`install/` folder has snippets to merge once into `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`,
-`.github/copilot-instructions.md`, `.cursor/rules/`, `.clinerules` and `.windsurfrules`. The
-table in [install/README.md](../install/README.md) says which goes where. The installer does not
-merge these for you.
+```bash
+cp .agents/skills/aaa-create-abb/references/standards/workspace/aaa-config.yaml .aaa-config.yaml
+```
+
+Then set `ontology.schema` to a path that exists; see [Configuration](configuration.md#aaa-configyaml).
+
+## Optional: the foundation seed
+
+`foundation/` is a generic starter model that no skill needs. To copy a profile of it into a workspace, run the seeder from a clone:
+
+```bash
+node path/to/ai-assisted-architecture/scripts/seed-foundation.mjs --workspace . --profile core
+```
+
+See [Commands](commands.md#seed-foundationmjs) for its options.
 
 ## Your visual design standard
 
-Diagrams take their colours from the visual design standard. Until you provide your own, the
-framework's example palette is used. To make your own, copy it anywhere in the workspace inside
-a folder named `visual-design`:
+Diagrams take their colours from the visual design standard. Until you provide your own, the example palette each skill carries is used. To make your own, copy it anywhere in the workspace inside a folder named `visual-design`:
 
 ```bash
 mkdir -p standards/visual-design
-cp .ai-assisted-architecture/standards/visual-design/visual-design-standard.md standards/visual-design/
+cp .agents/skills/aaa-create-abb/references/standards/visual-design/visual-design-standard.md standards/visual-design/
 ```
 
-Edit the hex values and keep the token numbering (`1.1`, `2.6` and so on), which the diagram
-standards refer to.
+Edit the hex values and keep the token numbering (`1.1`, `2.6` and so on), which the diagram standards refer to.
+
+## Agent instruction files
+
+The skills are enough on their own. If your team keeps always-on instruction files such as `AGENTS.md` or `CLAUDE.md`, write your own; this repository no longer ships snippets for them. A line naming the `/aaa-*` skills and where `.agents/skill-bindings.toml` is kept is usually all they need.
 
 ## Verify
 
 ```bash
-node .ai-assisted-architecture/scripts/validate-bundle.mjs --run-checks . .ai-assisted-architecture
+node path/to/ai-assisted-architecture/scripts/validate-bundle.mjs --run-checks . path/to/ai-assisted-architecture
+node path/to/ai-assisted-work/bin/skills.mjs check
 ```
 
-Nine `ok` lines mean every skill is installed and bound. Then type `/` in your agent: the nine
-`/aaa-*` skills should be listed.
+The first prints one `ok` line per installed skill once each is bound; the second confirms every installed copy matches what was installed. Then type `/` in your agent: the `/aaa-*` skills should be listed.
 
 ## Update and remove
 
-To update, pull the clones (or `npm update`) and run `aaa install` again. It replaces the skill
-folders and leaves your artefacts, bindings and config alone.
+To update, pull the clone and run `skills.mjs install --bundle <clone>` again, or `skills.mjs update`; with a declared set, run `skills.mjs sync --copy` and commit the new lock. Installing replaces the skill folders and leaves your artefacts, bindings and config alone.
 
-To remove, delete `.agents/skills/aaa-*`, `.claude/skills/aaa-*`, `.aaa-config.yaml`, the
-`aaa` entry under `modules` in `.aaw-config.yaml`, and the clone. Your artefacts are yours and
-stay.
+To remove, run `skills.mjs remove <name>...`, or delete `.agents/skills/aaa-*` and `.claude/skills/aaa-*` (and the source from `.agents/skills.json`). Delete `.aaa-config.yaml` if you made one. Your artefacts are yours and stay.
+
+## The old installer
+
+Version 0.3.0 and earlier installed through AAW's framework engine with `aaa install`. That installer, its npm commands and the instruction-file templates were removed in 0.4.0. If you still need it, check out the `v0.3.0` tag and use it with AAW 4.0.0; see the [changelog](../CHANGELOG.md).

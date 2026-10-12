@@ -1,12 +1,12 @@
 # Foundation Seed
 
-This folder provides reusable baseline capabilities and building blocks that can seed a workspace.
+This folder provides reusable baseline capabilities and building blocks that can seed a workspace. It is optional content: no skill needs it.
 
 ## Recommended Operating Model
 
 1. Copy the foundation into your workspace.
 2. Treat the workspace copy as canonical.
-3. Keep `.ai-assisted-architecture/foundation/` read-only reference.
+3. Keep this folder, in a clone of AI-Assisted Architecture, as read-only reference.
 
 ## Seed Scope
 
@@ -23,14 +23,16 @@ This folder provides reusable baseline capabilities and building blocks that can
 - `integration`: API mediation and event streaming extensions (includes core dependencies).
 - `infrastructure`: Compute runtime and storage extensions (includes core dependencies).
 
-## Copy Commands (PowerShell)
+## Copy Commands
 
-```powershell
-powershell -ExecutionPolicy Bypass -File .ai-assisted-architecture\scripts\seed-foundation.ps1 -Profile foundation
+Run the seeder from a clone of this repository, in PowerShell or bash:
+
+```bash
+node path/to/ai-assisted-architecture/scripts/seed-foundation.mjs --workspace . --profile foundation
 ```
 
-See `../scripts/README.md` for script options (`-Profile all` / `-Profile foundation`, `-Force`, `-DryRun`, `-WorkspaceRoot`).
+It has no dependencies. See `../scripts/README.md` and [Commands](../docs/commands.md#seed-foundationmjs) for its options (`--profile core|integration|infrastructure|all|foundation`, `--force`, `--dry-run`, `--workspace`).
 
 ## Fallback Rule
 
-If a workspace has not been seeded yet, agents may read from `.ai-assisted-architecture/foundation/` as a temporary baseline, but should create and edit workspace copies before making changes.
+If a workspace has not been seeded yet, agents may read from this folder in a clone of AI-Assisted Architecture as a temporary baseline, but should create and edit workspace copies before making changes.

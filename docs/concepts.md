@@ -19,13 +19,9 @@ your workspace. The next three sections explain how it finds them.
 
 ## The workspace
 
-The workspace is the folder your agent opens, normally a git repository. The installer puts
-the skills in `.agents/skills/` there, and links `.claude/skills/` at them when `.claude`
-exists. Everything a skill writes goes somewhere inside the workspace that you choose.
+The workspace is the folder your agent opens, normally a git repository. The installer, AI-Assisted Work's `skills.mjs`, puts the skills in `.agents/skills/` there, and links `.claude/skills/` at them when `.claude` exists. Everything a skill writes goes somewhere inside the workspace that you choose.
 
-The framework itself also lives in the workspace, by convention as a clone at
-`.ai-assisted-architecture/`, or under `node_modules/` when installed with npm. Its
-`standards/` folder is the fallback copy of every standard.
+Each skill is complete on its own. It carries the standards it reads in its `references/standards/`, the `.aaa-config.yaml` template, and its own binding resolver, so a workspace needs no clone of this repository and no other skill. A clone is needed only for the optional tools: seeding the foundation catalogue and the maintainer scripts.
 
 ## Bindings: where artefacts are written
 
@@ -44,11 +40,7 @@ capabilityDir = "../capabilities"
 Paths resolve against the folder holding the bindings file, never the working directory. That
 is why they start with `../` when the file is in `.agents/`.
 
-Before doing anything, every `aaa-create-*` skill runs the `model` skill's resolver,
-`model.py doctor --skill <name>`, and uses only the paths it prints. A required binding that is
-missing stops the skill with a message naming the key. An optional binding that is missing
-means the step that needs it is reported as not done, never quietly skipped. `aaa-rung` has its
-own resolver, `rung.py --doctor`, which follows the same rules.
+Before doing anything, every `aaa-create-*` skill runs its own resolver from the workspace root, `node <skills>/<name>/bin/check.mjs --json`, and uses only the paths it prints. A required binding that is missing stops the skill with a message naming the key. An optional binding that is missing means the step that needs it is reported as not done, never quietly skipped. `aaa-rung` has its own resolver, `rung.py --doctor`, which follows the same rules.
 
 Every key is listed in [Configuration](configuration.md#skill-bindings).
 
@@ -58,12 +50,10 @@ The standards are Markdown documents that fix the structure, front matter, diagr
 colours of each artefact kind. A skill loads the ones it needs before it writes anything, and
 stops if one cannot be found. It looks in this order:
 
-1. A path you give, or one recorded in `.aaw-config.yaml`.
+1. A path you give explicitly.
 2. A search of the workspace by file name, such as `standard-abb-document.md`. An organisation
    that keeps its standards in its own tree, say `governance/standards/`, is found this way.
-3. The skill's own copy in its `references/standards/`, written from the framework's
-   `standards/` and versioned with the skill, so a skill installed on its own needs no
-   framework clone.
+3. The skill's own copy in its `references/standards/`, written from this repository's `standards/` and versioned with the skill, so a skill installed on its own needs nothing else.
 
 The one standard you are expected to override is the visual design standard: copy
 `standards/visual-design/visual-design-standard.md` anywhere in your workspace and change the
@@ -142,9 +132,7 @@ reads their `realises`, `flows` and `references` front matter.
 
 ## The foundation seed
 
-The framework ships a starter model under `foundation/`: 12 platforms, 44 capabilities, 12
-bounded contexts, 8 ABBs, 3 SBBs, 13 outcomes and 5 use cases. `aaa install --seed` copies a
-profile of it into your workspace, and from then on the workspace copy is yours to change.
+This repository ships a starter model under `foundation/`: 12 platforms, 44 capabilities, 12 bounded contexts, 8 ABBs, 3 SBBs, 13 outcomes and 5 use cases. No skill needs it. `node scripts/seed-foundation.mjs --workspace <dir>`, run from a clone, copies a profile of it into your workspace, and from then on the workspace copy is yours to change.
 
 | Profile | Seeds |
 |---|---|
@@ -167,7 +155,4 @@ architecture artefacts to the work items that produce them; see [ontology/README
 
 ## Where AI-Assisted Work fits
 
-AAA installs through the engine in [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work)
-(AAW), which also provides work-management skills. The seam between them, how a piece of work
-produces architecture artefacts and so moves a capability up the ladder, is described in
-[standards/aaw-work-seam.md](../standards/aaw-work-seam.md).
+The skills are installed with `skills.mjs` from [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) (AAW), which also provides work-management skills. The seam between them, how a piece of work produces architecture artefacts and so moves a capability up the ladder, is described in [standards/aaw-work-seam.md](../standards/aaw-work-seam.md).

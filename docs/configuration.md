@@ -5,13 +5,14 @@ different things.
 
 | File | Written by | Read by |
 |---|---|---|
-| [`.agents/skill-bindings.toml`](#skill-bindings) | You | Every skill, through `model doctor` or `rung.py --doctor`, and the post-install checks |
-| [`.aaa-config.yaml`](#aaa-configyaml) | The installer, once, from `install/templates/aaa-config.yaml` | The post-install checks and the ontology scripts |
-| [`.aaw-config.yaml`](#aaw-configyaml) | The AAW installer | `aaa install`, and the skills when they look for the standards |
-| [`foundation-workspace.yaml`](#foundation-workspaceyaml) | `aaa install --seed` | Nothing yet; a record of what was seeded |
+| [`.agents/skill-bindings.toml`](#skill-bindings) | You | Every skill, through its own `bin/check.mjs --json` or `rung.py --doctor`, and the post-install checks |
+| [`.aaa-config.yaml`](#aaa-configyaml), optional | You, from the template each `aaa-create-*` skill carries | The post-install checks and the ontology validator |
+| [`foundation-workspace.yaml`](#foundation-workspaceyaml) | `scripts/seed-foundation.mjs` | Nothing yet; a record of what was seeded |
 | [Front matter](#front-matter-read-by-aaa-rung) | The skills, or you | `aaa-rung`, `validate-frontmatter.mjs` |
-| [Environment variables](#environment-variables) | You | The checks, `aaa-rung`, `model` |
-| [Foundation profiles](#foundation-profiles) | Framework maintainers | The seeder |
+| [Environment variables](#environment-variables) | You | The checks and `aaa-rung` |
+| [Foundation profiles](#foundation-profiles) | Maintainers of this repository | The seeder |
+
+The installer's own files, `.agents/skills.json` and `.agents/skills.lock.json`, belong to AI-Assisted Work's `skills.mjs`; see [Installation](installation.md#route-2-a-declared-locked-set-of-skills).
 
 ## Skill bindings
 
@@ -139,11 +140,11 @@ sbbDir     = "../building-blocks/solution-building-blocks"
 
 ```toml
 [suite.aaa-create-runtime-agent]
-agentProfileSchema = "../.ai-assisted-architecture/standards/schemas/v1.1.0/agent-profile.schema.json"
-ontologyValidator  = "../.ai-assisted-architecture/scripts/ontology/validate.cjs"
+agentProfileSchema = "skills/aaa-create-runtime-agent/references/standards/schemas/v1.1.0/agent-profile.schema.json"
+ontologyValidator  = "skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs"
 ```
 
-The validator needs the framework's Node dependencies; see [Ontology](ontology.md#setup).
+Both point at copies the skill itself carries (paths resolve against `.agents/`, so `skills/...` is `.agents/skills/...`). Bind a workspace's own schema or validator instead if it governs one. The validator needs `js-yaml`, `ajv` and `ajv-formats` in the workspace's `node_modules`; see [Ontology](ontology.md#setup).
 
 ### aaa-rung
 
@@ -186,7 +187,13 @@ fallback for `aaa-rung`.
 
 ## .aaa-config.yaml
 
-Written at the workspace root by the first `aaa install`, and never overwritten after that.
+Optional. Without it, every `aaa-create-*` check prints a warning and carries on, and the ontology validator uses the schema beside it. Create it only to set a workspace ontology schema, by copying the template each `aaa-create-*` skill carries to the workspace root:
+
+```bash
+cp .agents/skills/aaa-create-abb/references/standards/workspace/aaa-config.yaml .aaa-config.yaml
+```
+
+The template's source is `standards/workspace/aaa-config.yaml` in this repository.
 
 | Key | Type | Default in the template | Meaning |
 |---|---|---|---|
@@ -195,40 +202,18 @@ Written at the workspace root by the first `aaa install`, and never overwritten 
 | `ontology.schema` | path | `governance/metamodel/ontology-schema.json` | The ontology schema, relative to the workspace root |
 | `ontology.specification` | path | `governance/metamodel/ontology-specification.md` | Its companion specification, for people and agents to read |
 
-The template's schema path is a suggestion for workspaces that govern their own copy. Until the
-file exists, every `aaa-create-*` check warns. Point it at the framework's copy to start with:
+The template's schema path is a suggestion for workspaces that govern their own copy; the check warns when the path does not exist. To use the copy `aaa-create-runtime-agent` carries:
 
 ```yaml
 ontology:
-  schema: .ai-assisted-architecture/standards/ontology/ontology-schema.json
+  schema: .agents/skills/aaa-create-runtime-agent/references/standards/ontology/ontology-schema.json
 ```
 
-Precedence for the ontology scripts' schema: `--schema` on the command line, then
-`ontology.schema` in the nearest `.aaa-config.yaml` found upward from the working directory,
-then `ontology.schema` (or `modules.aaa.ontology_schema`) in `.aaw-config.yaml`, then
-`standards/ontology/ontology-schema.json` in the framework. A configured path that does not
-exist is skipped.
-
-## .aaw-config.yaml
-
-Written and maintained by the AAW installer. AAA reads two entries and writes one:
-
-| Key | Meaning |
-|---|---|
-| `modules.aaw.source_root` | Where the AAW clone is, relative to the workspace. `aaa install` uses it to find the install engine |
-| `modules.aaa.source_root` | Where the AAA framework is. Recorded by `aaa install`; the skills use it to find the framework copy of the standards |
-| `modules.aaa.version`, `name`, `runtime` | Recorded by the installer |
-
-How `aaa install` finds the AAW engine, first match wins: the `ai-assisted-work` npm package,
-`modules.aaw.source_root`, `node_modules/ai-assisted-work`, then `.ai-assisted-work/` in the
-workspace.
+Precedence for the ontology validator's schema: `--schema` on the command line, then `ontology.schema` in the nearest `.aaa-config.yaml` found upward from the working directory, then `ontology.schema` (or `modules.aaa.ontology_schema`) in a `.aaw-config.yaml` (kept for workspaces set up by the old installer), then the `ontology-schema.json` beside the validator: `references/standards/ontology/` in the skill's copy, `standards/ontology/` in this repository. A configured path that does not exist is skipped.
 
 ## foundation-workspace.yaml
 
-Copied from `foundation/workspace-manifest.example.yaml` by `aaa install --seed`, if it does
-not exist. It records `foundation_source`, `imported_profiles` and a `policy` block
-(`workspace_is_canonical`, `allow_framework_fallback_readonly`, `require_copy_before_edit`). No
-tool reads it yet. Treat it as a note of what was seeded and on what terms.
+Copied from `foundation/workspace-manifest.example.yaml` by `scripts/seed-foundation.mjs`, if it does not exist. It records `foundation_source`, `imported_profiles` and a `policy` block (`workspace_is_canonical`, `allow_framework_fallback_readonly`, `require_copy_before_edit`). No tool reads it yet. Treat it as a note of what was seeded and on what terms.
 
 ## Front matter read by aaa-rung
 
@@ -263,7 +248,6 @@ either no `kind` or the right one.
 |---|---|---|
 | `SKILL_DIR` | Each skill's `bin/check.mjs` or `bin/check.py` | The installed skill's folder. Defaults to the folder above `bin/`. Installers set it |
 | `AAA_RUNG_PURE_YAML` | `aaa-rung` | Any non-empty value forces the built-in front matter parser even when PyYAML is installed |
-| `AGENT_SKILLS_PATH` | The `model` skill's `doctor` | Extra folders to search for sibling skills, separated as `PATH` is |
 
 ## Foundation profiles
 
@@ -275,10 +259,10 @@ registered in `foundation/foundation-manifest.yaml`.
 
 ## Maintainer files
 
-These configure the framework, not a workspace.
+These configure this repository, not a workspace.
 
 | File | What it sets |
 |---|---|
-| `framework.manifest.yaml` | The install contract AAW reads: `id`, `version`, `depends`, `skills.src`, the `config` files to seed, and the `seed` command |
 | `bundle.json` | Each skill's `version`, `purl` and post-install `check`, and the ontology module with the work layer range it extends. Validated by `scripts/validate-bundle.mjs` |
+| `skill-standards.json` | Which standards each skill carries a copy of under `references/standards/`, written by `scripts/sync-skill-standards.mjs` |
 | `skills/<name>/inputs.toml` | A skill's binding contract: `[inputs.options.<key>]` with `type`, `required` and `description` |

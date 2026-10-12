@@ -8,7 +8,7 @@
 # Answer in [suite.aaa-create-abb] of the repository's .agents/skill-bindings.toml.
 # Paths resolve against that file's directory, never the working directory.
 #
-# Checked by:  python <skills>/model/bin/model.py doctor --skill aaa-create-abb
+# Checked by:  node <skills>/aaa-create-abb/bin/check.mjs   (--json prints the resolved paths)
 
 [inputs]
 short_description = "Where Architecture Building Blocks are authored"

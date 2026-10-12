@@ -2,27 +2,25 @@
 // SPDX-FileCopyrightText: 2026 Dermot O'Brien
 // SPDX-License-Identifier: Apache-2.0
 //
-// Cross-platform Node port of scripts/seed-foundation.ps1 (which was Windows-only
-// PowerShell). Seeds the AAA foundation into a host workspace: reads the selected
-// profile(s), copies the canonical capability registry + selected capability / ABB
-// / SBB folders + the workspace manifest. Invoked by the shared install engine via
-// the framework manifest's `seed:` block, but also runnable directly:
+// Seeds the AAA foundation catalogue into a workspace, for a workspace that wants it:
+// reads the selected profile(s), copies the canonical capability registry, the selected
+// capability, ABB and SBB folders, and the workspace manifest. No skill needs it. Run it
+// from a clone of this repository:
 //
-//   node .ai-assisted-architecture/src/seed-foundation.mjs --workspace . [--profile core] [--force] [--dry-run]
+//   node <clone>/scripts/seed-foundation.mjs --workspace . [--profile core] [--force] [--dry-run]
 //
 // Zero dependencies (no npm install needed): the profile `includes:` lists are
-// parsed with the same line-based reader the PowerShell version used.
+// parsed with a line-based reader.
 
 import { cpSync, existsSync, mkdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 
-const HELP = `usage: node src/seed-foundation.mjs [--workspace <dir>] [--profile <names>] [--force] [--dry-run]
+const HELP = `usage: node scripts/seed-foundation.mjs [--workspace <dir>] [--profile <names>] [--force] [--dry-run]
 
 Copy a foundation profile's capabilities and ABBs, and the capability model files,
 into a workspace. Existing files are skipped unless --force is given.
-aaa install --seed runs this with --workspace set and --profile core.
 
   --workspace <dir>   Workspace root (default: the current directory)
   --profile <names>   Comma-separated: core, integration, infrastructure, or
@@ -52,7 +50,7 @@ function parseArgs(argv) {
   return out;
 }
 
-/** Mirror of the PowerShell Get-ProfileIncludes: pull `- ID` items under a section of `includes:`. */
+/** Pull `- ID` items under a section of `includes:`. */
 function getProfileIncludes(profileText, section) {
   const values = [];
   let inIncludes = false;
@@ -103,7 +101,7 @@ function main() {
   if (!existsSync(foundationRoot)) throw new Error(`Foundation folder not found at: ${foundationRoot}`);
   if (!existsSync(workspaceRoot)) throw new Error(`Workspace root not found: ${workspaceRoot}`);
   if (workspaceRoot === frameworkRoot) {
-    throw new Error("Workspace root points to the framework root — run from a workspace, not .ai-assisted-architecture.");
+    throw new Error("Workspace root points to the framework root: run it from the workspace you are seeding, not from this repository.");
   }
 
   process.stdout.write(`  framework: ${frameworkRoot}\n  workspace: ${workspaceRoot}\n  profiles: ${opts.profiles.join(", ")}\n`);

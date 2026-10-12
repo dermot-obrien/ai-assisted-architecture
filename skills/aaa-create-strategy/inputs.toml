@@ -8,7 +8,7 @@
 # Answer in [suite.aaa-create-strategy] of the repository's .agents/skill-bindings.toml.
 # Paths resolve against that file's directory, never the working directory.
 #
-# Checked by:  python <skills>/model/bin/model.py doctor --skill aaa-create-strategy
+# Checked by:  node <skills>/aaa-create-strategy/bin/check.mjs   (--json prints the resolved paths)
 
 [inputs]
 short_description = "Where Strategic Outcomes and Use Cases are authored"

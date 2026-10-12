@@ -13,8 +13,7 @@ in `standards/capabilities/standard-definition-ladder.md`.
 
 ## Before you start
 
-It needs Python 3.11 or later. PyYAML is used when installed and is not required. It does not
-need the `model` skill: it resolves its own bindings.
+It needs Python 3.11 or later. PyYAML is used when installed and is not required. Like every AAA skill it needs no other skill: it resolves its own bindings.
 
 | Binding | Holds | If unbound |
 |---|---|---|

@@ -12,40 +12,29 @@ tools print them; `<...>` stands for a path, key or value that varies.
 
 ## Installing
 
-#### ``AAA requires AAW (it provides the shared install engine). Install AAW into this target workspace first, or ensure .aaw-config.yaml records modules.aaw.source_root, then re-run `aaa install`.``
+#### `skills: no bundle at <path>/bundle.json. Pass --bundle <bundle.json or its folder>, or --repo <url> for one skill.`
 
-`aaa install` could not find the AAW engine. Clone AAW to `.ai-assisted-work/` and run
-`node .ai-assisted-work/bin/aaw.js install --yes --work-items-path work-items`, or install
-`ai-assisted-work` as an npm dependency. Exit code 1.
+`skills.mjs install` was not given this repository. Pass `--bundle` with the path of a clone; `--bundle` takes a folder or file, not a URL. To install from GitHub without a clone, declare the bundle in `.agents/skills.json` and run `skills.mjs sync` ([Installation](installation.md#route-2-a-declared-locked-set-of-skills)).
 
-#### `Unknown command: <word>`
+#### `skills: --locked: the lock has no commit for bundle <url>; run skills sync first`
 
-`aaa` has one command, `install`. Exit code 2.
+`sync --locked` installs only what `.agents/skills.lock.json` records, and there is no lock yet. Run `skills.mjs sync` once, commit the lock it writes, then use `--locked`.
 
-#### `--workspace requires a path argument`
+#### There is no `.claude/skills/`
 
-Give a folder after `--workspace`.
+The installer links `.claude/skills/` only when `.claude` exists. Skills are still in `.agents/skills/`, which most agents read. For Claude Code, create `.claude` and install again.
 
-#### `▸ Detected tools: none`, and there is no `.claude/skills/`
+#### `aaa: command not found`, or `bin/aaa.js` does not exist
 
-The installer links `.claude/skills/` only when `.claude` exists. Skills are still in
-`.agents/skills/`, which most agents read. For Claude Code, create `.claude` and re-run
-`aaa install`.
-
-#### `▸ Non-interactive: tenant=local, mode=local-fs, work_items_path=<home>\aaw\local\<name>\work-items`
-
-AAW defaulted its work items to your home folder. Pass `--work-items-path work-items` to keep
-them in the workspace, or edit `work_items_path` in `.aaw-config.yaml`.
+`aaa install` and the npm commands were removed in 0.4.0. Install with AI-Assisted Work's `skills.mjs` ([Installation](installation.md)), or check out the `v0.3.0` tag to keep the old installer.
 
 #### Each skill appears twice in Cursor or GitHub Copilot
 
-Those tools read both `.agents/skills/` and `.claude/skills/`. The second entry is a link to
-the same folder, so either works.
+Those tools read both `.agents/skills/` and `.claude/skills/`. The second entry is a link to the same folder, so either works.
 
 #### `/create-abb` (or any `/create-*`) does nothing
 
-The unprefixed command shims were removed. Use `/aaa-create-abb` and so on. `aaa install`
-deletes shims an older version wrote.
+The unprefixed command shims were removed. Use `/aaa-create-abb` and so on, and delete any `create-*` shims an older installer left behind.
 
 #### `= skip existing: <name>`
 
@@ -59,8 +48,7 @@ The seeder found the file or folder already in the workspace and left it alone. 
 
 #### `Workspace root points to the framework root`
 
-The seeder was pointed at the framework's own folder. Run it from the workspace root, or
-pass `--workspace`.
+The seeder was pointed at this repository's own folder. Run it from the workspace root, or pass `--workspace`.
 
 #### `Error: Workspace root not found: <path>`
 
@@ -69,16 +57,13 @@ folder first, or correct the path.
 
 ## Bindings and post-install checks
 
-#### `.aaa-config.yaml: not found in <root>. Run the AI-Assisted Architecture installer in the workspace root, or copy install/templates/aaa-config.yaml from it.`
+#### `warning: .aaa-config.yaml: not found in <root>, so no workspace ontology schema is set. To set one, copy references/standards/workspace/aaa-config.yaml from this skill to the workspace root.`
 
-The check runs from the workspace root and found no config. Run `aaa install` there, or
-run the check from the right folder.
+Harmless: the file is optional and the skill carries on. Copy the template only if you want to set a workspace ontology schema; see [Configuration](configuration.md#aaa-configyaml). If you do have a `.aaa-config.yaml`, the check is running from the wrong folder: run it from the workspace root.
 
 #### `warning: .aaa-config.yaml: ontology.schema <path> does not exist, so nothing can be validated against the ontology. Put the schema there, or correct the path.`
 
-The template's default path is not in your workspace. Set `ontology.schema` to
-`.ai-assisted-architecture/standards/ontology/ontology-schema.json`, or copy the schema to
-the path named. See [Configuration](configuration.md#aaa-configyaml).
+The template's default path is not in your workspace. Set `ontology.schema` to `.agents/skills/aaa-create-runtime-agent/references/standards/ontology/ontology-schema.json`, or copy the schema to the path named. See [Configuration](configuration.md#aaa-configyaml).
 
 #### `.agents/skill-bindings.toml: not found at or above <root>. Create it with [suite.<skill>] declaring <keys>.`
 
@@ -98,16 +83,6 @@ in `.agents/`, a folder at the workspace root is `"../name"`.
 #### `<file>: [suite.<skill>] <key> = "<value>" is a file; it should name a folder.`
 
 A `dir` binding points at a file.
-
-#### `error  suite.<skill>: '<key>' is required and not set. <description>`
-
-The same as the missing binding above, as `model doctor` reports it. Often preceded by
-`warn  bindings: no binding file found; built-in defaults are in use.`, which means the file
-itself was not found.
-
-#### `error  suite.<skill>: '<key>' points at <path>, which does not exist`
-
-The same as the missing path above, from `model doctor`.
 
 #### `<file> is not valid TOML: Invalid statement (at line 1, column 1)`
 
@@ -133,10 +108,9 @@ Harmless. `pip install pyyaml` silences it.
 
 `[suite.aaa-rung]` is empty or missing. Bind at least `capabilityDir`.
 
-#### `usage: check.mjs   (run from the workspace root; takes no arguments)`
+#### `usage: check.mjs [--json]   (run from the workspace root; exit 0 ok, 1 problems, 2 usage or environment)`
 
-The checks take no arguments. Set `SKILL_DIR` instead; see
-[Commands](commands.md#post-install-checks).
+`check.mjs` takes only `--json`. Set `SKILL_DIR` to point it at another installed skill; see [Commands](commands.md#post-install-checks).
 
 ## aaa-rung
 
@@ -245,15 +219,9 @@ skill, installed separately.
 
 ## In your agent
 
-#### The skill says `doctor` failed and stops
+#### The skill says its check failed and stops
 
-That is deliberate: a skill never guesses a path. Run the same command yourself,
-`python .agents/skills/model/bin/model.py doctor --skill <name>`, and fix what it reports.
-
-#### The skill cannot find the `model` skill
-
-Install it beside the others, from [diagram-model](https://github.com/dermot-obrien/diagram-model).
-See [Installation](installation.md#the-model-skill).
+That is deliberate: a skill never guesses a path. Run the same command yourself from the workspace root, `node .agents/skills/<name>/bin/check.mjs --json`, and fix the `problems` it reports.
 
 #### The skill stops and names a standard it cannot find
 
@@ -269,8 +237,7 @@ draw.io desktop is not on `PATH`. Install it and add its folder to `PATH`, or ex
 
 #### Diagrams use colours you did not expect
 
-No workspace `visual-design-standard.md` was found, so the framework's example palette was
-used. Copy it into your workspace and edit it; see [Concepts](concepts.md#standards-how-artefacts-are-written).
+No workspace `visual-design-standard.md` was found, so the example palette the skill carries was used. Copy it into your workspace and edit it; see [Concepts](concepts.md#standards-how-artefacts-are-written).
 
 #### The runtime agent is reported as "authored but not validated"
 
@@ -281,8 +248,7 @@ Bind them; see [Configuration](configuration.md#aaa-create-runtime-agent).
 
 #### `Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'js-yaml'` or `Error: Cannot find module 'js-yaml'`
 
-`validate-frontmatter.mjs`, `migrate-frontmatter.mjs` and the ontology scripts need the
-framework's Node dependencies. Run `npm install` once in the framework folder.
+`validate-frontmatter.mjs`, `migrate-frontmatter.mjs` and the ontology scripts need `js-yaml`, `ajv` and `ajv-formats`. In a clone of this repository, run `npm install` once. For the validator `aaa-create-runtime-agent` carries, install them in the workspace: `npm install js-yaml ajv ajv-formats`.
 
 #### `validate-frontmatter: ... fail=<n>`, with lines such as `/ must have required property 'components'`
 

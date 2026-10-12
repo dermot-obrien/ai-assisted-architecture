@@ -17,10 +17,7 @@ level of it.
 | `agentProfileSchema` | no | The JSON Schema the agent profile is validated against |
 | `ontologyValidator` | no | The validator run over each record written |
 
-Both are optional. Unbound, the skill writes the records and reports them as authored but not
-validated, and says why. The framework ships both:
-`standards/schemas/v1.1.0/agent-profile.schema.json` and `scripts/ontology/validate.cjs`, which
-needs `npm install` in the framework folder. See [Configuration](../configuration.md#aaa-create-runtime-agent).
+Both are optional. Unbound, the skill writes the records and reports them as authored but not validated, and says why. The skill carries a copy of both: `references/standards/schemas/v1.1.0/agent-profile.schema.json` and `references/scripts/ontology/validate.cjs`, which needs `js-yaml`, `ajv` and `ajv-formats` in the workspace's `node_modules`. See [Configuration](../configuration.md#aaa-create-runtime-agent).
 
 Standards it loads: the agent-native standards (`agent-types.md`, `operating-model.md`,
 `provenance.md`, `agent-specification.md`), the ontology README and schema, and the service

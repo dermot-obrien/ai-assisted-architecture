@@ -13,7 +13,7 @@ GitHub.
 
 For each standard below, take the first hit:
 
-1. A path given explicitly by the user or by `.aaw-config.yaml`.
+1. A path the user gives explicitly.
 2. A workspace search for the file by name, for example `standard-capability-document.md`. A workspace that has
    relocated the standards, such as into `governance/standards/`, is found this way. Leave
    installed skills out of the search (`.agents/skills/`, `.claude/skills/` and any other

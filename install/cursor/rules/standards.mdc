@@ -1,8 +1,0 @@
----
-description: AI-Assisted Architecture standards discovery
-alwaysApply: true
----
-
-Use `.ai-assisted-architecture/standards/standards-index.md` as the canonical source for ABB/SBB and visual standards.
-
-For ABB/SBB tasks, load the standards listed in `.ai-assisted-architecture/standards/standards-index.md` before producing output.

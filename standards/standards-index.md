@@ -1,64 +1,55 @@
 # Agent Configuration
 
-> **Superseded for the skills.** Each workflow is now a standalone Agent Skill under
-> `skills/<name>/`, self-contained and carrying its own standards-resolution rules in
-> `references/standards-discovery.md`. This file remains the discovery and precedence
-> reference for the **legacy command shims** under `install/`, which are retained for installs
-> that have not yet moved.
-
-This file defines top-level discovery and precedence rules for AI agents working with this framework. All paths are relative to the framework root (`.ai-assisted-architecture/`).
+This file defines top-level discovery and precedence rules for AI agents working with this framework. Paths are relative to the root of this repository. Each skill under `skills/<name>/` carries its own copy of the standards it reads in `references/standards/`, and its own resolution rules in `references/standards-discovery.md`; this file is the overview across them.
 
 ## Agent Skills
 
-Installed by `aaa install` into `.agents/skills/`, with `.claude/skills/` linked at them.
+Installed one by one, or all together from `bundle.json`, with AI-Assisted Work's `bin/skills.mjs` into `.agents/skills/`, with `.claude/skills/` linked at them when `.claude` exists.
 
-| Skill | Invoke | Legacy shim | Description |
-|-------|--------|-------------|-------------|
-| Create Outcome/UC | `/aaa-create-strategy` | `/create-strategy` | Strategic and operational layer creation. |
-| Create Platform | `/aaa-create-platform` | `/create-platform` | Defining business platforms and strategic ownership. |
-| Create Capability | `/aaa-create-capability` | `/create-capability` | End-to-end capability creation and maturity mapping. |
-| Create Context | `/aaa-create-context` | `/create-context` | Defining Bounded Contexts and linguistic boundaries. |
-| Create ABB | `/aaa-create-abb` | `/create-abb` | End-to-end ABB creation: logical structure and diagrams. |
-| Create SBB | `/aaa-create-sbb` | `/create-sbb` | End-to-end SBB creation: product mapping, realisation, composite structure. |
-| Create Service | `/aaa-create-service` | `/create-service` | Runtime unit of execution definition. |
-| Derive Rung | `/aaa-rung` | (none) | Read-only. Derives each capability's rung on the definition ladder, per flow, and names the artefact blocking the next rung. See `standards/capabilities/standard-definition-ladder.md`. |
-| Create Runtime Agent | `/aaa-create-runtime-agent` | `/create-runtime-agent` | (Builder skill) Author an autonomous **runtime agent** as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance. See `standards/agent-native/agent-types.md`. |
+| Skill | Invoke | Description |
+|-------|--------|-------------|
+| Create Outcome/UC | `/aaa-create-strategy` | Strategic and operational layer creation. |
+| Create Platform | `/aaa-create-platform` | Defining business platforms and strategic ownership. |
+| Create Capability | `/aaa-create-capability` | End-to-end capability creation and maturity mapping. |
+| Create Context | `/aaa-create-context` | Defining Bounded Contexts and linguistic boundaries. |
+| Create ABB | `/aaa-create-abb` | End-to-end ABB creation: logical structure and diagrams. |
+| Create SBB | `/aaa-create-sbb` | End-to-end SBB creation: product mapping, realisation, composite structure. |
+| Create Service | `/aaa-create-service` | Runtime unit of execution definition. |
+| Derive Rung | `/aaa-rung` | Read-only. Derives each capability's rung on the definition ladder, per flow, and names the artefact blocking the next rung. See `standards/capabilities/standard-definition-ladder.md`. |
+| Create Runtime Agent | `/aaa-create-runtime-agent` | (Builder skill) Author an autonomous **runtime agent** as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance. See `standards/agent-native/agent-types.md`. |
 
 ## Scripts
 
 | Script | Path | Prerequisites | Description |
 |--------|------|---------------|-------------|
-| Seed Foundation | `.ai-assisted-architecture/src/seed-foundation.mjs` | Node.js 18+ | Seeds workspace `capabilities/` and `building-blocks/` from foundation profiles (`core`, `integration`, `infrastructure`). Run via `aaa install --seed`. Cross-platform; replaces the retired `scripts/seed-foundation.ps1`. |
+| Seed Foundation | `scripts/seed-foundation.mjs` | Node.js 18+ | Optional. Seeds workspace `capabilities/` and `building-blocks/` from foundation profiles (`core`, `integration`, `infrastructure`). Run from a clone with `--workspace <dir>`. No skill needs the seed. |
 
 ## Canonical Standards
 
 Always load these standards before creating or modifying artefacts.
 
-> The skills resolve these by **searching the workspace first** and falling back to the
-> framework copy, so they keep working when an organisation governs its standards in its own
-> tree (for example under `governance/standards/`). See any skill's
-> `references/standards-discovery.md`. The fixed paths below apply to the legacy shims only.
+> The skills resolve these by searching the workspace first and falling back to their own copy in `references/standards/`, so they keep working when an organisation governs its standards in its own tree (for example under `governance/standards/`). See any skill's `references/standards-discovery.md`.
 
-- **Visual design standard** - search the workspace for a folder named `visual-design` containing `visual-design-standard.md`. If found, load it. If not found, fall back to `.ai-assisted-architecture/standards/visual-design/visual-design-standard.md`.
-- `.ai-assisted-architecture/standards/strategy/standard-strategy.md`
-- `.ai-assisted-architecture/standards/platforms/platform-standard.md`
-- `.ai-assisted-architecture/standards/capabilities/standard-capability-document.md`
-- `.ai-assisted-architecture/standards/capabilities/standard-capability-diagram.md`
-- `.ai-assisted-architecture/standards/capabilities/standard-definition-ladder.md`
-- `.ai-assisted-architecture/standards/contexts/standard-bounded-context.md`
-- `.ai-assisted-architecture/standards/building-blocks/architecture-building-blocks/standard-abb-document.md`
-- `.ai-assisted-architecture/standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md`
-- `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-document.md`
-- `.ai-assisted-architecture/standards/building-blocks/solution-building-blocks/standard-sbb-diagram.md`
-- `.ai-assisted-architecture/standards/runtime/standard-service.md`
-- `.ai-assisted-architecture/standards/standard-traceability.md`
-- `.ai-assisted-architecture/standards/standard-frontmatter.md` *(v1.1.0)*
+- **Visual design standard** - search the workspace for a folder named `visual-design` containing `visual-design-standard.md`. If found, load it. If not found, fall back to `standards/visual-design/visual-design-standard.md` (in a skill, `references/standards/visual-design/visual-design-standard.md`).
+- `standards/strategy/standard-strategy.md`
+- `standards/platforms/platform-standard.md`
+- `standards/capabilities/standard-capability-document.md`
+- `standards/capabilities/standard-capability-diagram.md`
+- `standards/capabilities/standard-definition-ladder.md`
+- `standards/contexts/standard-bounded-context.md`
+- `standards/building-blocks/architecture-building-blocks/standard-abb-document.md`
+- `standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md`
+- `standards/building-blocks/solution-building-blocks/standard-sbb-document.md`
+- `standards/building-blocks/solution-building-blocks/standard-sbb-diagram.md`
+- `standards/runtime/standard-service.md`
+- `standards/standard-traceability.md`
+- `standards/standard-frontmatter.md` *(v1.1.0)*
 
 For **agent-native** workspaces (AI-majority engineering), also load:
-- `.ai-assisted-architecture/standards/agent-native/agent-types.md` *(builders vs runtime agents)*
-- `.ai-assisted-architecture/standards/agent-native/principles.md`
-- `.ai-assisted-architecture/standards/agent-native/operating-model.md`
-- `.ai-assisted-architecture/standards/agent-native/provenance.md`
+- `standards/agent-native/agent-types.md` *(builders vs runtime agents)*
+- `standards/agent-native/principles.md`
+- `standards/agent-native/operating-model.md`
+- `standards/agent-native/provenance.md`
 
 ## Scope Routing
 

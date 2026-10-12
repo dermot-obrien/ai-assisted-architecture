@@ -412,7 +412,7 @@ ontology:
   schema: change/enterprise-modernisation/board-updates/may-2026-update/working/pipeline-ontology-extension.json
 ```
 
-When `ontology.schema` is not set, scripts default to the base schema that ships with them, at `../../standards/ontology/ontology-schema.json` relative to the script: `standards/ontology/ontology-schema.json` in the framework, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill, which carries its own copy of the validator.
+When `ontology.schema` is not set, scripts default to the base schema that ships with them, at `../../standards/ontology/ontology-schema.json` relative to the script: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill, which carries its own copy of the validator.
 
 ### Extension schema template
 
@@ -444,11 +444,11 @@ When `ontology.schema` is not set, scripts default to the base schema that ships
 }
 ```
 
-Point the `$ref` at whichever copy of the base schema the workspace uses: one it keeps itself, the framework's, or the one an installed skill ships.
+Point the `$ref` at whichever copy of the base schema the workspace uses: one it keeps itself, the one in a clone of this repository, or the one an installed skill ships.
 
 ### Rules for extensions
 
-1. **Never modify the base schema** in the framework clone for organisation-specific needs.
+1. **Never modify the base schema** for organisation-specific needs, neither in a clone of this repository nor in a skill's copy.
 2. **Extension entities** should use a distinct naming convention (e.g., `delivery_gate`, `value_stage`) that won't collide with future base entities.
 3. **Extended fields on base entities** are documented in a companion `$defs` entry (e.g., `InitiativeExtension`) and merged at validation time.
 4. **Version the extension** — bump the `version` const when the extension shape changes.
