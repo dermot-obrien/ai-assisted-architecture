@@ -5,6 +5,12 @@ All notable changes to AI-Assisted Architecture will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.1
+
+### Changed
+- The ontology tools (`scripts/ontology/validate.cjs`, `consolidate.cjs`) no longer read `.aaw-config.yaml`. The schema comes from `--schema`, else the nearest `.aaa-config.yaml` above the working directory, else the default beside the script. Nothing writes the old key since AI-Assisted Work 5.0.0.
+- `aaa-create-runtime-agent` 0.5.1 carries the changed validator and the updated ontology README.
+
 ## 0.4.0
 
 AI-Assisted Architecture is now a bundle of standalone Agent Skills rather than a framework installed through AI-Assisted Work's engine. The last commit with the framework layout is tagged `v0.3.0`; pin it to keep running `aaa install` with AAW 4.0.0.
