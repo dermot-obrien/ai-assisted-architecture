@@ -16,6 +16,8 @@ The intention is a single continuum that an architect, an engineer and an agent 
 
 The picture is `continuum.svg`; `continuum.drawio` beside it is the same diagram as an editable, uncompressed draw.io source, to redraw from when a level or a relationship changes, and the SVG is exported from it.
 
+[Views of the continuum](continuum-views.md) shows the same continuum in the words of C4, TOGAF, domain-driven design, ArchiMate, platform engineering and the Well-Architected frameworks, one diagram each.
+
 Three bands run across the picture. The problem space (landscape, platform, capability) says who owns what and what must be possible. The solution space (bounded context, architecture building block, solution building block) says how it is structured and built. The runtime (service, deployment node) says what runs where. Patterns sit beside the solution space because they compose building blocks at any scope; products sit beside the whole thing because they are what a consumer is offered and what a team runs.
 
 ## The levels

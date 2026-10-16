@@ -18,6 +18,7 @@ Each level takes its definition from the practice that owns it, and the handover
 | Read | For |
 |---|---|
 | [The continuum](docs/continuum.md) | Every level defined, the relationships in one table, what is standard, practice or this bundle's choice, each contemporary framework placed on the continuum, the open decisions, and the references |
+| [Views of the continuum](docs/continuum-views.md) | The same continuum in six traditions' words: C4, TOGAF, domain-driven design, ArchiMate, platform engineering and the Well-Architected frameworks, each with what it defines, what it nearly defines and what it lacks, with references |
 | [`docs/continuum.svg`](docs/continuum.svg) | The diagram as published |
 | [`docs/continuum.drawio`](docs/continuum.drawio) | The same diagram as an editable draw.io source, uncompressed |
 | [Architectural Framework](docs/architectural-framework.md) | The reasoning behind the hierarchy, with the sources that informed it |
@@ -115,6 +116,7 @@ You should see a table of seven capabilities, each with its rung and the artefac
 | Page | Read it for |
 |---|---|
 | [The continuum](docs/continuum.md) | The definitions the bundle is built on, from the platform landscape to a deployable unit, each anchored in current practice, with the relationships in one picture and every reference |
+| [Views of the continuum](docs/continuum-views.md) | The continuum in the words of C4, TOGAF, domain-driven design, ArchiMate, platform engineering and the Well-Architected frameworks |
 | [Quick start](docs/quick-start.md) | A first real result in about ten minutes |
 | [Installation](docs/installation.md) | Every install route, for every agent, and updating and removing |
 | [Concepts](docs/concepts.md) | Skills, bindings, standards, the golden thread and the definition ladder, in the order you need them |
@@ -131,7 +133,7 @@ You should see a table of seven capabilities, each with its rung and the artefac
 ## Repository structure
 
 ```
-docs/            This documentation, with the continuum (continuum.md, continuum.svg, continuum.drawio)
+docs/            This documentation, with the continuum (continuum.md, continuum.svg, continuum.drawio) and its views (continuum-views.md, views/)
 skills/          The nine Agent Skills: SKILL.md, inputs.toml, references/ (with their copy of the standards), bin/
 standards/       The standards the skills follow, with worked examples, the schemas, the ontology and the config template
 foundation/      A generic starter model, optional, seeded into a workspace by scripts/seed-foundation.mjs

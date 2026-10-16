@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="700" viewBox="0 0 1240 700" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+<title>TOGAF view: the continuum in this tradition's vocabulary</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3A4A66"/></marker></defs>
+<rect width="1240" height="700" fill="#FFFFFF"/>
+<text x="24" y="30" font-size="18" font-weight="600" fill="#1B2A4A">TOGAF view: the continuum in this tradition's words</text>
+<text x="24" y="50" font-size="12" fill="#5A6A86">The TOGAF Standard, 10th edition: the Enterprise Continuum, building blocks and the content metamodel, with the Business Capabilities guide and O-AA</text>
+<text x="24" y="62" font-size="11" fill="#5A6A86" letter-spacing="1">THE CONTINUUM</text>
+<text x="440" y="62" font-size="11" fill="#5A6A86" letter-spacing="1">TOGAF</text>
+<rect x="16" y="66" width="316" height="170" fill="#EEF2FB" rx="6"/>
+<rect x="16" y="236" width="316" height="136" fill="#EDF7F4" rx="6"/>
+<rect x="16" y="372" width="316" height="170" fill="#FFF4E8" rx="6"/>
+<rect x="16" y="542" width="316" height="68" fill="#F3F4F7" rx="6"/>
+<rect x="24" y="70" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="87" font-size="12" font-weight="600" fill="#1B2A4A">Platform landscape</text>
+<line x1="324" y1="83" x2="438" y2="83" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="70" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="87" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Enterprise Continuum; Architecture Landscape</tspan><tspan fill="#3A4A66" font-size="11">  foundation to organisation-specific; strategic, segment and capability architectures</tspan></text>
+<rect x="24" y="104" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="121" font-size="12" font-weight="600" fill="#1B2A4A">Platform</text>
+<line x1="324" y1="117" x2="438" y2="117" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="104" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4" stroke-dasharray="5 3"/>
+<text x="448" y="121" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Organization Unit providing Business Services</tspan><tspan fill="#3A4A66" font-size="11">  no platform element; the Digital Business Reference Model guide comes closest</tspan></text>
+<rect x="24" y="138" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="155" font-size="12" font-weight="600" fill="#1B2A4A">Product</text>
+<line x1="324" y1="151" x2="438" y2="151" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="138" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="155" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Product</tspan><tspan fill="#3A4A66" font-size="11">  a core metamodel element since 9.2: an output offered to customers</tspan></text>
+<rect x="24" y="172" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="189" font-size="12" font-weight="600" fill="#1B2A4A">Domain and subdomain</text>
+<line x1="324" y1="185" x2="434" y2="185" stroke="#C9CED8" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="448" y="189" font-size="11" fill="#8A94A6" font-style="italic">not a concept here: TOGAF's domains are Business, Data, Application and Technology: a different sense of the word</text>
+<rect x="24" y="206" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="223" font-size="12" font-weight="600" fill="#1B2A4A">Capability</text>
+<line x1="324" y1="219" x2="438" y2="219" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="206" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="223" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Business Capability</tspan><tspan fill="#3A4A66" font-size="11">  Series Guide: Business Capabilities, version 2: the map, its levels and maturity</tspan></text>
+<rect x="24" y="240" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="257" font-size="12" font-weight="600" fill="#1B2A4A">Bounded context</text>
+<line x1="324" y1="253" x2="434" y2="253" stroke="#C9CED8" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="448" y="257" font-size="11" fill="#8A94A6" font-style="italic">not a concept here: not in TOGAF; the Open Group's O-AA (2020) brings it in</text>
+<rect x="24" y="274" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="291" font-size="12" font-weight="600" fill="#1B2A4A">Architecture building block</text>
+<line x1="324" y1="287" x2="438" y2="287" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="274" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="291" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Architecture Building Block</tspan><tspan fill="#3A4A66" font-size="11">  a package of functionality at the logical level with published interfaces</tspan></text>
+<rect x="24" y="308" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="325" font-size="12" font-weight="600" fill="#1B2A4A">Solution building block</text>
+<line x1="324" y1="321" x2="438" y2="321" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="308" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="325" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Solution Building Block</tspan><tspan fill="#3A4A66" font-size="11">  real products or custom developments, in the Solutions Continuum</tspan></text>
+<rect x="24" y="342" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="359" font-size="12" font-weight="600" fill="#1B2A4A">Pattern</text>
+<line x1="324" y1="355" x2="438" y2="355" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="342" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="359" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Architecture pattern; reference architecture</tspan><tspan fill="#3A4A66" font-size="11">  assets of the Architecture Continuum at each generality</tspan></text>
+<rect x="24" y="376" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="393" font-size="12" font-weight="600" fill="#1B2A4A">Service, the deployable unit</text>
+<line x1="324" y1="389" x2="438" y2="389" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="376" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4" stroke-dasharray="5 3"/>
+<text x="448" y="393" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Physical Application Component</tspan><tspan fill="#3A4A66" font-size="11">  the implementation-level application component</tspan></text>
+<rect x="24" y="410" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="427" font-size="12" font-weight="600" fill="#1B2A4A">Module and component</text>
+<line x1="324" y1="423" x2="438" y2="423" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="410" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4" stroke-dasharray="5 3"/>
+<text x="448" y="427" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Logical Application Component</tspan></text>
+<rect x="24" y="444" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="461" font-size="12" font-weight="600" fill="#1B2A4A">Deployment node</text>
+<line x1="324" y1="457" x2="438" y2="457" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="444" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="461" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Physical Technology Component; Location</tspan></text>
+<rect x="24" y="478" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="495" font-size="12" font-weight="600" fill="#1B2A4A">Store</text>
+<line x1="324" y1="491" x2="438" y2="491" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="478" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="495" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Physical Data Component</tspan></text>
+<rect x="24" y="512" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="529" font-size="12" font-weight="600" fill="#1B2A4A">Contracts</text>
+<line x1="324" y1="525" x2="438" y2="525" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="512" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4"/>
+<text x="448" y="529" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Contract; Interface</tspan><tspan fill="#3A4A66" font-size="11">  contracts on business and application services</tspan></text>
+<rect x="24" y="546" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="563" font-size="12" font-weight="600" fill="#1B2A4A">Outcome and use case</text>
+<line x1="324" y1="559" x2="438" y2="559" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="546" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4" stroke-dasharray="5 3"/>
+<text x="448" y="563" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Driver, Goal, Objective; Business Process</tspan><tspan fill="#3A4A66" font-size="11">  Architecture Vision; use case is not a TOGAF element</tspan></text>
+<rect x="24" y="580" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
+<text x="32" y="597" font-size="12" font-weight="600" fill="#1B2A4A">Consideration and decision</text>
+<line x1="324" y1="593" x2="438" y2="593" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
+<rect x="440" y="580" width="776" height="26" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="4" stroke-dasharray="5 3"/>
+<text x="448" y="597" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Architecture Requirement; the governance log</tspan><tspan fill="#3A4A66" font-size="11">  the Architecture Repository's decision log</tspan></text>
+<rect x="24" y="624" width="1192" height="60" fill="#FFFFFF" stroke="#D6DAE3" rx="6"/>
+<rect x="40" y="638" width="56" height="16" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="3"/><text x="104" y="650" font-size="11" fill="#3A4A66">the tradition defines this level</text>
+<rect x="330" y="638" width="56" height="16" fill="#FFFFFF" stroke="#8B5E3C" stroke-width="1.4" rx="3" stroke-dasharray="5 3"/><text x="394" y="650" font-size="11" fill="#3A4A66">the tradition has a near concept, mapped with a loss stated in the note</text>
+<text x="860" y="650" font-size="11" fill="#8A94A6" font-style="italic">not a concept here: the tradition does not cover this level</text>
+<text x="40" y="676" font-size="11" fill="#3A4A66">Left, the continuum's levels, grouped as problem space, solution space, runtime and the kinds beside the thread. Right, what this tradition calls each one. The full mapping, with references, is in docs/continuum-views.md.</text>
+</svg>
