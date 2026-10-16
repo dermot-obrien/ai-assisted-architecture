@@ -125,7 +125,7 @@
   <g>
     <rect x="70" y="512" width="340" height="52" class="box-side"/>
     <text x="82" y="532" class="name">Product <tspan class="id">PRD-NNN</tspan></text>
-    <text x="82" y="552" class="q">Offered by a platform; requires capabilities. One owner</text>
+    <text x="82" y="552" class="q">Offered by a platform; requires capabilities. Runs a workload</text>
   </g>
   <path d="M 410 538 L 478 538" class="line"/>
   <rect x="426" y="524" width="34" height="14" class="rel-bg"/><text x="429" y="535" class="rel">runs</text>
@@ -178,7 +178,7 @@
   <g>
     <rect x="950" y="584" width="420" height="52" class="box-side"/>
     <text x="962" y="604" class="name">Store</text>
-    <text x="962" y="624" class="q">A named database, bucket or table, owned by one context. Decision D1</text>
+    <text x="962" y="624" class="q">A named database, bucket or table, owned by one context. Backstage's resource</text>
   </g>
   <path d="M 880 546 L 950 598" class="line"/>
   <rect x="898" y="552" width="40" height="14" class="rel-bg"/><text x="901" y="563" class="rel">owns</text>
@@ -194,7 +194,7 @@
     <text x="36" y="766" class="q">An ABB lives inside one bounded context: this bundle's rule, where TOGAF leaves a block enterprise-wide. Reuse is through a pattern that names it, or a cross-cutting platform.</text>
     <text x="36" y="786" class="q">Architecture pattern and reference architecture are two types of one construct (Kruchten, Bass). A pattern's abstraction is read from its boxes; the ladder reads it: R3 logical, R4 physical.</text>
     <text x="36" y="806" class="q">A service is the C4 container that executes code: separately built, versioned, released and deployed, inside one bounded context, run by a product, deployed to nodes.</text>
-    <text x="36" y="826" class="q">This bundle's own conventions, not industry standards: the rung, the consideration, product runs service, store as a resource (D1). The rest is TOGAF, DDD, Team Topologies, C4 and ArchiMate.</text>
+    <text x="36" y="826" class="q">This bundle's own conventions: the rung, the consideration, product runs service, store as a resource (with Backstage). The rest is TOGAF 10, O-AA, DDD, Team Topologies, CNCF, C4, Backstage, ArchiMate 3.2 and the AWS, Azure and Google Well-Architected frameworks.</text>
     <line x1="1040" y1="846" x2="1100" y2="846" class="line"/><text x="1108" y="850" class="rel">relationship recorded in front matter</text>
     <line x1="840" y1="846" x2="900" y2="846" class="line-dashed"/><text x="908" y="850" class="rel">may point at any level</text>
   </g>
