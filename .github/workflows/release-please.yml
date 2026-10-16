@@ -56,7 +56,7 @@ jobs:
             echo "v$version is tagged"
             exit 0
           fi
-          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {p=1; next} /^## \[/ {p=0} p' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {p=1; next} /^## / {p=0} p' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
           if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"; then
             echo "::error::CHANGELOG.md has no section for $version, so v$version cannot be published"
             exit 1
