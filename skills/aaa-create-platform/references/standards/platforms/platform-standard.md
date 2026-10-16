@@ -35,7 +35,7 @@ A Platform replaces the need for separate "Domain" and "Bounded Context" concept
 
 ### 1.1 Why Platform?
 
-Traditional enterprise architecture separates **Domain** (problem space ownership), **Bounded Context** (solution space model boundary), and **Platform** (consumption model) into three distinct concepts. In practice, these three boundaries converge on the same thing — a coherent unit of capability owned by one team, with an explicit boundary. Maintaining them as separate entities creates unnecessary indirection.
+Traditional enterprise architecture separates **Domain** (demand space ownership, DDD's demand space), **Bounded Context** (solution space model boundary), and **Platform** (consumption model) into three distinct concepts. In practice, these three boundaries converge on the same thing — a coherent unit of capability owned by one team, with an explicit boundary. Maintaining them as separate entities creates unnecessary indirection.
 
 This framework uses **Platform** as the unifying concept because:
 

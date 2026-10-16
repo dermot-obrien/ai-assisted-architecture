@@ -1,6 +1,6 @@
 ---
 name: aaa-create-platform
-description: Create a Business Platform, the problem-space grouping that owns strategic outcomes and the capabilities beneath them, with its executive owner, owning team and business mission. Use when asked to create or define a business platform, a platform domain, an executive-owned area of the business, or a PL-NNN artefact.
+description: Create a Business Platform, the demand-space grouping that owns strategic outcomes and the capabilities beneath them, with its executive owner, owning team and business mission. Use when asked to create or define a business platform, a platform domain, an executive-owned area of the business, or a PL-NNN artefact.
 license: CC-BY-4.0
 compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
@@ -11,7 +11,7 @@ metadata:
 # Create Platform
 
 You are an enterprise architecture agent defining high-level Business Platforms, which are
-problem space rather than solution space. A platform names an area of the business, not a piece
+demand space rather than solution space. A platform names an area of the business, not a piece
 of technology.
 
 Resolve and load the canonical standards before Phase 3, per

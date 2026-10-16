@@ -41,7 +41,7 @@ A Platform carries everything needed to deliver and consume capability: strategi
 
 #### 2.2.1 Why Platform Replaces Domain
 
-Traditional enterprise architecture separates **Domain** (problem space ownership), **Bounded Context** (solution space model boundary), and **Platform** (consumption model) into three distinct concepts. In practice, these three boundaries converge on the same thing — a coherent unit of capability owned by one team, with an explicit boundary. Maintaining them as separate entities creates unnecessary indirection.
+Traditional enterprise architecture separates **Domain** (demand space ownership, DDD's demand space), **Bounded Context** (solution space model boundary), and **Platform** (consumption model) into three distinct concepts. In practice, these three boundaries converge on the same thing — a coherent unit of capability owned by one team, with an explicit boundary. Maintaining them as separate entities creates unnecessary indirection.
 
 This framework uses **Platform** as the unifying concept because:
 
@@ -87,8 +87,8 @@ The consuming teams (e.g., a fraud detection product team) don't need to underst
 
 This is what "platform as product" means: the platform team treats its consumers as customers, provides paved roads for common use cases, and owns the quality of the experience end to end.
 
-### 2.3 Capabilities (The "What" — Problem Space)
-A **Capability** is an enduring business ability (e.g., "Predictive Analytics"). Capabilities live in the **Problem Space**; they define *what* the organisation needs to be able to do to achieve its outcomes.
+### 2.3 Capabilities (The "What" — Demand space)
+A **Capability** is an enduring business ability (e.g., "Predictive Analytics"). Capabilities live in the **Demand space**; they define *what* the organisation needs to be able to do to achieve its outcomes.
 *   **Stability:** While the technology to achieve them changes, the business capability rarely does.
 *   **Ownership:** Capabilities are provided by Platforms. A Platform groups the capabilities it is accountable for delivering.
 *   **Source:** TOGAF 10 Business Architecture.
@@ -102,7 +102,7 @@ A **Bounded Context** is a linguistic and structural boundary where a specific d
 *   **Independence:** A Bounded Context should be deployable and testable independently.
 
 #### 2.4.1 The Mapping Rule
-*   **Realisation:** A **Bounded Context** (Solution Space) **realises** one or more **Capabilities** (Problem Space).
+*   **Realisation:** A **Bounded Context** (Solution Space) **realises** one or more **Capabilities** (Demand space).
 *   **Ownership:**
     *   **Strategic Owners** (executives) own the business outcomes and the platform's strategic direction.
     *   **Platform Teams** own the Bounded Context(s) within their platform.

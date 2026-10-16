@@ -84,7 +84,7 @@ A single paragraph immediately after Document Control that defines the building 
 
 **Heading:** `## 1  Purpose`
 
-Explain *why* this building block exists. Describe the architectural need it addresses, the problem space, and the value it provides. Keep this technology-agnostic — no product names.
+Explain *why* this building block exists. Describe the architectural need it addresses, the demand it serves, and the value it provides. Keep this technology-agnostic — no product names.
 
 
 ### Section 2 — Building Block

@@ -771,7 +771,7 @@ flowchart TB
         UC[(Use Case<br/>UC-NNN)]
     end
 
-    subgraph ORG ["2 — Organisation / Problem space"]
+    subgraph ORG ["2 — Organisation / Demand space"]
         PL[Platform<br/>PL-NNN]
         CAP[Capability<br/>CAP-NNN]
     end
