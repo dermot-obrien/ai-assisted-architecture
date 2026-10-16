@@ -5,7 +5,7 @@
 [![Licence: Apache-2.0](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSES/Apache-2.0.txt)
 [![REUSE 3.3](https://img.shields.io/badge/REUSE-3.3-lightgrey.svg)](https://reuse.software/spec-3.3/)
 
-One vocabulary for describing a platform from the landscape it sits in down to the deployable units that run it, and the [Agent Skills](https://agentskills.io) that write each level to its standard. The continuum is the method; the skills are how an agent applies it. It works with any agent that reads Agent Skills, and it was called AI-Assisted Architecture until October 2026 ([lineage](#lineage)).
+One vocabulary for describing a platform from the landscape it sits in down to the deployable units that run it, and the [Agent Skills](https://agentskills.io) that write each level to its standard. The continuum is the method; the skills are how an agent applies it. It works with any agent that reads Agent Skills.
 
 ## The continuum
 
