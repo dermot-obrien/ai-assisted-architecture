@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="architecture-continuum" compressed="false">
   <diagram id="continuum" name="The continuum">
-    <mxGraphModel dx="1704" dy="1795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" background="#FFFFFF" math="0" shadow="0">
+    <mxGraphModel dx="817" dy="1329" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" background="#FFFFFF" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -38,7 +38,7 @@
           <mxGeometry height="52" width="400" x="480" y="586" as="geometry" />
         </mxCell>
         <mxCell id="13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=1.4;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Deployment node&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;DN-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;Account, region, runtime, scaling, run-as identity. Where it runs&lt;/font&gt;" vertex="1">
-          <mxGeometry height="52" width="400" x="480" y="658" as="geometry" />
+          <mxGeometry height="40" width="400" x="480" y="669" as="geometry" />
         </mxCell>
         <mxCell id="14" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="7" value="holds, in layers">
           <mxGeometry relative="1" as="geometry" />
@@ -62,10 +62,10 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Outcome&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;OC-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;A measurable business result. Why&lt;/font&gt;" vertex="1">
-          <mxGeometry height="52" width="340" x="70" y="145" as="geometry" />
+          <mxGeometry height="48" width="340" x="70" y="149" as="geometry" />
         </mxCell>
         <mxCell id="22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Use case&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;UC-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;Behaviour giving an actor a result of value&lt;/font&gt;" vertex="1">
-          <mxGeometry height="52" width="340" x="70" y="224" as="geometry" />
+          <mxGeometry height="48" width="340" x="70" y="228" as="geometry" />
         </mxCell>
         <mxCell id="23" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Domain and subdomain&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;Problem space. A subdomain maps to one bounded context&lt;/font&gt;" vertex="1">
           <mxGeometry height="52" width="340" x="70" y="330" as="geometry" />
@@ -76,11 +76,18 @@
         <mxCell id="25" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Module and component&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;Code inside a service: domain, ports, adapters&lt;/font&gt;" vertex="1">
           <mxGeometry height="52" width="340" x="70" y="658" as="geometry" />
         </mxCell>
-        <mxCell id="26" edge="1" parent="1" source="21" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.3;entryX=0;entryY=0.3;" target="7" value="owned by">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="26" edge="1" parent="1" source="21" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.3;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="7" value="owned by">
+          <mxGeometry relative="1" x="-0.1493" y="11" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="27" edge="1" parent="1" source="21" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.85;entryX=0;entryY=0.4;" target="8" value="requires">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="440" y="189.2" />
+              <mxPoint x="440" y="244.8" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="28" edge="1" parent="1" source="22" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="21" value="supports">
           <mxGeometry relative="1" as="geometry" />
@@ -91,8 +98,13 @@
         <mxCell id="30" edge="1" parent="1" source="24" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="12" value="runs">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="31" edge="1" parent="1" source="12" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.9;entryX=1;entryY=0.25;" target="25" value="contains">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="31" edge="1" parent="1" source="12" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.9;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="25" value="contains">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="632.8" />
+              <mxPoint x="450" y="684" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="32" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Consideration and decision record&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;CN-NNN, DR-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;An open question with more than one credible answer, and its settlement&lt;/font&gt;" vertex="1">
           <mxGeometry height="52" width="420" x="950" y="80" as="geometry" />
@@ -107,19 +119,39 @@
           <mxGeometry height="48" width="384" x="970" y="397" as="geometry" />
         </mxCell>
         <mxCell id="36" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Reference architecture&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;SBBs and technologies. Physical. Applies architecture patterns&lt;/font&gt;" vertex="1">
-          <mxGeometry height="48" width="384" x="970" y="480" as="geometry" />
+          <mxGeometry height="48" width="384" x="970" y="476" as="geometry" />
         </mxCell>
         <mxCell id="37" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Store&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;A database, bucket or table owned by one context. A Backstage resource&lt;/font&gt;" vertex="1">
           <mxGeometry height="52" width="384" x="986" y="658" as="geometry" />
         </mxCell>
-        <mxCell id="38" edge="1" parent="1" source="32" style="edgeStyle=none;rounded=1;html=1;strokeColor=#8A94A6;strokeWidth=1.2;dashed=1;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.9;entryX=1;entryY=0.25;" target="8" value="affects">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="38" edge="1" parent="1" source="32" style="edgeStyle=none;rounded=1;html=1;strokeColor=#8A94A6;strokeWidth=1.2;dashed=1;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.5;entryX=1;entryY=0.25;exitDx=0;exitDy=0;" target="8" value="affects">
+          <mxGeometry relative="1" x="0.1016" as="geometry">
+            <Array as="points">
+              <mxPoint x="910" y="106" />
+              <mxPoint x="910" y="237" />
+            </Array>
+          </mxGeometry>
         </mxCell>
-        <mxCell id="39" edge="1" parent="1" source="33" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.9;entryX=1;entryY=0.35;" target="9" value="between contexts">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="39" edge="1" parent="1" source="33" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.071;exitY=0.983;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitDx=0;exitDy=0;exitPerimeter=0;jumpStyle=arc;" target="9" value="between contexts">
+          <mxGeometry relative="1" x="-0.7874" y="30" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="980" y="230" />
+              <mxPoint x="930" y="230" />
+              <mxPoint x="930" y="356" />
+            </Array>
+            <mxPoint x="960" y="210.00000000000017" as="sourcePoint" />
+            <mxPoint x="890" y="359.3999999999998" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="40" edge="1" parent="1" source="34" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.04;entryX=1;entryY=0.55;" target="8" value="realises">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="40" edge="1" parent="1" source="34" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.04;entryX=1;entryY=0.55;jumpStyle=arc;" target="8" value="realises">
+          <mxGeometry relative="1" x="-0.122" y="30" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="910" y="338.4" />
+              <mxPoint x="910" y="252.6" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="41" edge="1" parent="1" source="35" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.6;entryX=1;entryY=0.45;" target="10" value="composes">
           <mxGeometry relative="1" as="geometry" />
@@ -130,8 +162,13 @@
         <mxCell id="43" edge="1" parent="1" source="36" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" target="35" value="applies">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="44" edge="1" parent="1" source="12" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.65;entryX=0;entryY=0.3;" target="37" value="owns">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="44" edge="1" parent="1" source="12" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.3;exitDx=0;exitDy=0;" target="37" value="owns">
+          <mxGeometry relative="1" x="0.0288" as="geometry">
+            <Array as="points">
+              <mxPoint x="924.4" y="612" />
+              <mxPoint x="924.4" y="673.6" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="45" edge="1" parent="1" source="37" style="edgeStyle=none;rounded=1;html=1;strokeColor=#3A4A66;strokeWidth=1.3;fontColor=#3A4A66;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.75;entryX=1;entryY=0.75;" target="13" value="hosted on">
           <mxGeometry relative="1" as="geometry" />
