@@ -5,7 +5,11 @@ All notable changes to AI-Assisted Architecture will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.4.0
+From 0.4.0 on, releases are made by Release Please from the pull requests merged to `main`: a pull request's title is its line here, and the release pull request adds the next section, bumps the version and, when merged, tags `vX.Y.Z` and publishes the GitHub Release. The rules are in [CONTRIBUTING.md](CONTRIBUTING.md#releases). Do not add lines here by hand. The skills' own versions, in each `SKILL.md` and in `bundle.json`, stay separate and are bumped in the pull request that changes the skill.
+
+## [0.4.0] - 2026-10-12
+
+Cut by hand, before Release Please took over. Earlier releases were tagged by skill, `<skill>--v<version>`; from this one the tag is the bundle's, `vX.Y.Z`.
 
 AI-Assisted Architecture is now a bundle of standalone Agent Skills rather than a framework installed through AI-Assisted Work's engine. The last commit with the framework layout is tagged `v0.3.0`; pin it to keep running `aaa install` with AAW 4.0.0.
 

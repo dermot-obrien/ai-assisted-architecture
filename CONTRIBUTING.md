@@ -44,7 +44,7 @@ How you give back depends on how you took the skills.
 A copy does not track this repository: it stays at the version you copied until you copy again.
 
 1. Keep `LICENSE` and `LICENSES/` with every copy, including a single skill folder, and keep the copyright and licence headers in the files. Add your own attribution beside them rather than replacing them.
-2. Record where the copy came from: this repository, and the tag or commit you took (for example `pattern--v0.10.1`). Release tags are named after the skill, `<skill>--v<version>`.
+2. Record where the copy came from: this repository, and the release you took (a tag `vX.Y.Z`, see Releases below) or the commit. Before 0.4.0 release tags were named after the skill, `<skill>--v<version>`; those tags remain.
 3. To update, copy a newer release over it, then re-apply any local changes you still need. Keep local changes small and separate, so they are easy to carry forward.
 4. To give a change back, raise an issue here, or apply the change to a fork of this repository and open a pull request. A change made only in the copy is lost at the next update.
 
@@ -69,43 +69,12 @@ A copy does not track this repository: it stays at the version you copied until 
 3. **Fork and develop**
 4. **Submit PR** referencing the issue
 
-## Pull Request Guidelines
+## Pull requests
 
-### PR Title Format
-
-```
-[TYPE] Brief description
-
-Types:
-- [STANDARD] Standards changes
-- [AGENT] Agent improvements
-- [SCRIPT] Script/tooling changes
-- [DOCS] Documentation
-- [FIX] Bug fixes
-```
-
-### PR Description
-
-```markdown
-## Summary
-What this PR does
-
-## Type
-- [ ] Standards improvement
-- [ ] Agent improvement
-- [ ] Script/tooling change
-- [ ] Documentation
-- [ ] Bug fix
-
-## Testing
-How you tested the changes
-
-## Checklist
-- [ ] Organisation-agnostic (no company-specific references)
-- [ ] Follows existing patterns
-- [ ] Documentation updated
-- [ ] Scripts tested locally
-```
+- One change per pull request, into `main`, with the template filled in: what, why (with the issue, thread, improvement or decision it serves, or `No reference:` and the reason), how it was verified, and what changes for the skills and the workspaces that install them.
+- The title is a Conventional Commits subject (`feat(scope): what changed`), and so is every commit subject. The title becomes the squash subject, which is the change's line in the release notes and decides the next version (see Releases below). The PR check fails a title, a commit subject or a description that does not follow this.
+- CI must pass: the checks below.
+- Contributions are licensed as the file they change is (see Licensing of Contributions below).
 
 ### Checks before a pull request
 
@@ -125,9 +94,23 @@ changing a file under `standards/`, or the list in `skill-standards.json`, run
 
 With `npm install` done, also run `node scripts/validate-frontmatter.mjs --quiet` when you change a schema or the foundation. CI also runs the `skills-ref` reference validator, installs the bundle into a scratch workspace with AI-Assisted Work's `bin/skills.mjs` and runs each skill's check there, and checks REUSE compliance; [Commands](docs/commands.md) describes each tool.
 
-If you change anything inside a skill folder, bump that skill's patch version in its
-`SKILL.md` `metadata.version` and in `bundle.json` (version and purl), and add a line to
-`CHANGELOG.md`. Changes to `docs/` need no version bump.
+If you change anything inside a skill folder, bump that skill's version in its `SKILL.md` `metadata.version` and in `bundle.json` (version and purl): the patch for a fix, the minor for a change in what the skill does or reads, the major when a workspace must change to keep using it. Do not add a line to `CHANGELOG.md`: the pull request's title becomes that line at the next release. Changes to `docs/` need no skill version bump.
+
+## Releases
+
+Releases are made from the pull requests merged to `main`, by [Release Please](https://github.com/googleapis/release-please) in the `Release Please` workflow. Versions follow [semantic versioning](https://semver.org/) and tags are `vX.Y.Z`. The version is the bundle's, the one `package.json` names and the one a workspace pins; each skill also carries its own version, bumped by hand as above, which is what the installer records in a workspace's lock.
+
+| What | Rule |
+|---|---|
+| The next version | From the squash subjects merged since the last tag: `feat` bumps the minor version, `fix` the patch, and a `!` after the type or a `BREAKING CHANGE:` footer marks a breaking change, which bumps the minor version until 1.0.0 and the major after. `docs`, `build`, `ci`, `chore`, `refactor`, `test`, `style` and `perf` never bump on their own |
+| The changelog | One section per release in `CHANGELOG.md`, written by Release Please: `feat` lines under Added, `fix` under Fixed, `perf` under Changed, `docs` under Documentation, and breaking changes first. The other types are kept out. A pull request's title is its line, so write the title for a reader of the notes |
+| The release pull request | Release Please keeps one open against `main`, `chore(main): release X.Y.Z`, and updates it on every merge. It bumps `version` in `package.json` and `package-lock.json`, `.release-please-manifest.json` and `CHANGELOG.md`. Merging it is the release: the workflow creates the tag and the GitHub Release with that section as its notes. Nothing else tags, and nobody edits those four files by hand |
+| Pins | A workspace pins a tag, `"ref": "vX.Y.Z"` on the bundle's source in `.agents/skills.json`, never `main` and never a commit. To upgrade, move the tag, read the release's notes, run `skills.mjs sync` and commit the new lock |
+| 1.0.0 | A deliberate decision, made by adding `"release-as": "1.0.0"` to `release-please-config.json` for one release, not a consequence of a breaking change |
+
+Before Release Please, versions were tagged by skill and `CHANGELOG.md` was written by hand. 0.4.0 was the last of those. The workflow publishes a version the manifest names but no tag carries, from its `CHANGELOG.md` section, so a hand-cut version is possible but should not be needed again.
+
+Settings the maintainer keeps (nothing in the repository can set them): the repository secret `RELEASE_PLEASE_TOKEN`, a fine-grained token scoped to this repository with contents and pull requests write, which the workflow uses to open the release pull request so that it gets CI runs (a pull request opened with the workflow's own token starts no other workflow); and, under Pull Requests, the default squash message set to the pull request title. Without the secret the workflow falls back to its own token, which needs "Allow GitHub Actions to create and approve pull requests" on under Actions, and the release pull request then has no CI run until it is closed and reopened.
 
 ## Content Guidelines
 
@@ -206,7 +189,7 @@ Please read and follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 Contributors are recognised in:
 
-- Release notes
+- Release notes, where each pull request's title is a line
 - Documentation credits
 
 ## Questions?
