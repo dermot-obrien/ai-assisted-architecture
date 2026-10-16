@@ -16,7 +16,7 @@ The intention is a single continuum that an architect, an engineer and an agent 
 
 The picture is `continuum.svg`; `continuum.drawio` beside it is the same diagram as an editable, uncompressed draw.io source, to redraw from when a level or a relationship changes, and the SVG is exported from it.
 
-[Views of the continuum](continuum-views.md) shows the same continuum in the words of C4, TOGAF, domain-driven design, ArchiMate, platform engineering and the Well-Architected frameworks, one diagram each.
+[Views of the continuum](continuum-views.md) shows the same continuum in the words of C4, TOGAF, domain-driven design, ArchiMate, platform engineering, Team Topologies and the Well-Architected frameworks, one diagram each.
 
 Three bands run across the picture. The problem space (landscape, platform, capability) says who owns what and what must be possible. The solution space (bounded context, architecture building block, solution building block) says how it is structured and built. The runtime (service, deployment node) says what runs where. Patterns sit beside the solution space because they compose building blocks at any scope; products sit beside the whole thing because they are what a consumer is offered and what a team runs.
 
@@ -137,7 +137,7 @@ The source is ArchiMate's node and C4's deployment diagram, and TOGAF's technolo
 
 ### Beside the continuum
 
-Four kinds sit beside the thread rather than on it. An outcome (`OC-NNN`) is a measurable business result a platform owns and a capability serves. A use case (`UC-NNN`) is a set of behaviours that gives an actor an observable result of value, in the UML sense, with owned scenarios. A consideration (`CN-NNN`) is an open question with more than one credible answer, affecting any artefact on the thread, and a decision record (`DR-NNN`, or `ADR-NNN` where a repository keeps that series) settles it. Interfaces, APIs and events are the contracts between contexts, declared on the building blocks and published as versioned artefacts from the owning context's contract module.
+Four kinds sit beside the thread rather than on it. An outcome (`OC-NNN`) is a measurable business result a platform owns and a capability serves. A use case (`UC-NNN`) is a set of behaviours that gives an actor an observable result of value, in the UML sense, with owned scenarios. It is not isolated. It supports an outcome, it requires the capabilities that make it possible (which is how demand justifies a capability), it is fulfilled by the features of a product, and it is realised by a pattern, whose scenarios walk the use case's scenarios across the building blocks the use case named as participants. A feature (`FE-NNN`) is something a product does that its users value, stated in the product's own terms and small enough that one story can deliver it; it is the product's unit of behaviour, the thing a use case needs and the thing a change (an improvement) adds or alters, and it is implemented by services in bounded contexts. [From a use case to a solution](#from-a-use-case-to-a-solution) says why the feature is the hinge. The `use-case` skill in architecture-pattern writes it before any design, with participants and interactions in the same model form a pattern uses, so the two can be checked against each other. A consideration (`CN-NNN`) is an open question with more than one credible answer, affecting any artefact on the thread, and a decision record (`DR-NNN`, or `ADR-NNN` where a repository keeps that series) settles it. Interfaces, APIs and events are the contracts between contexts, declared on the building blocks and published as versioned artefacts from the owning context's contract module.
 
 ## The relationships
 
@@ -156,6 +156,12 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Subdomain | maps to, ideally one to one | Bounded context | Context `subdomain_kind` |
 | Outcome | requires | Capability | Outcome `requires_capabilities` |
 | Use case | supports | Outcome | Use case |
+| Use case | requires | Capability | Use case; the capability's demand |
+| Use case | is fulfilled by | Feature, of one or more products | Feature `fulfils` (to be added) |
+| Use case | is realised by | Pattern, through its scenarios | Pattern scenarios; use case participants and interactions |
+| Product | has | Feature | Feature `part_of` (to be added) |
+| Feature | is implemented by | Service, in one or more bounded contexts | Feature `implemented_by` (to be added) |
+| Team | owns | Product, Platform, Bounded context | Platform `owner`, context `owner`; product owner (to be added) |
 | Product | requires | Capability, optionally some flows | Product `requires`, `requires_flows` (to be added) |
 | Product | runs | Service | Product (to be added); service `run_by` (to be added) |
 | Capability | is realised by | Bounded context | Context `realises_capabilities` |
@@ -173,6 +179,30 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Service | is deployed to | Deployment node | Service `deployed_to` |
 | Consideration | affects | Capability, ABB, SBB, pattern | Consideration `affects` |
 | Consideration | is resolved by | Decision record | Consideration `resolved_by` |
+
+## From a use case to a solution
+
+A business team writes a use case: what someone needs to be able to do, in their words, before anyone designs how. The question is what joins that use case to the solution that ends up running. The bundle answers: through the product, and the joint is the feature.
+
+The chain is this. A stream-aligned team owns a product. A product has features, each something the product does that its users value, in the product's own terms. A use case is fulfilled by one or more features, usually of one product and sometimes of several when the use case is a journey across them. A feature is implemented by services inside bounded contexts, under the patterns that realise the capabilities the use case requires. So from a use case there are two paths down, and both are needed: the design path, use case to capability to pattern to building blocks, which says what must exist; and the delivery path, use case to feature to service, which says what runs and who runs it. The product is where the two meet, because the product is what the team owns and what the consumer gets.
+
+| Step | Who | Writes | Links to |
+|---|---|---|---|
+| A need | The business team, stream-aligned to the product | A use case: actor, result, scenarios, participants | The outcome it supports; the capabilities it requires |
+| An offer | The product owner | A feature of the product, or an improvement that adds or changes one | The use cases it fulfils |
+| A design | The architect, with the team | A pattern realising the capability, naming the building blocks | The use case's scenarios, walked across the blocks |
+| A build | The team that owns the bounded context | Services and their stores, under the pattern | The feature they implement; the SBB they realise |
+| In service | The product's team | The runbook and the measure | The product, now available |
+
+Three alternatives were considered and set aside.
+
+| Alternative | Why not |
+|---|---|
+| Link the use case straight to a bounded context or a service | A use case spans contexts more often than not (a journey touches several), and it is written before the contexts are designed. The link would be wrong at first and brittle after |
+| Link it only through capabilities | Right for design, silent on delivery: a capability says what must be possible, not which product offers it or who runs it. The team and the runbook would have no place |
+| Introduce a solution entity between use case and services | TOGAF's solution is the set of solution building blocks that realise a design, which the continuum already has as the SBBs and the services; a product's implementation is that set. A second word for it adds a level with nothing of its own to say |
+
+The feature is the right joint because three traditions already put something there. Team Topologies defines the stream a team is aligned to as the flow of change through a product, service, journey or persona, and features are what flows. Patternode's product model defines a feature as what a product does and an improvement as a change to one, with the pull requests that cite the improvement as its delivery record. Tune's product taxonomy places products over subdomains and features over products. None of them names a solution; all of them name the product and what it does. The consequence for the bundle is a `feature` kind beside `product`, with `fulfils` to use cases and `implemented_by` to services, which the service register in a repository like Patternode's can then answer in both directions: which features a service implements, and which services a feature needs.
 
 ## What is industry practice and what is this bundle's choice
 
@@ -199,6 +229,8 @@ The diagram is meant to be read as current practice, so each element is marked h
 | Consideration as an artefact | Choice | This bundle. Industry records the decision (Nygard's ADR, MADR, the AWS Prescriptive Guidance ADR process) and leaves the open question informal |
 | Product requires capability; product runs service | Choice | This bundle, from Patternode's product and capability model. Service ownership by a product team is practice; the recorded relationship is not |
 | Service as the deployable unit | Standard, under another name | C4's container; ArchiMate's artifact assigned to a node; Newman's independently deployable service; Richards and Ford's architecture quantum (2025); Backstage's component of type service |
+| Use case requires capability | Practice | TOGAF capability-based planning and BIZBOK: demand justifies a capability |
+| The feature as the hinge between a use case and the services that fulfil it | Choice, with support | Patternode's product model (a feature is what a product does, an improvement changes one); Team Topologies' stream of change; Tune's product taxonomy |
 | Store as a resource of a service, not a service | Choice, with support | This bundle, decision D1. C4 counts a database as a container; Backstage counts it as a resource, which is the side this bundle takes |
 | Module and component inside a deployable | Standard | C4 component; ArchiMate application component; the Azure Architecture Center's aggregate as the lower bound of a service |
 | Deployment node | Standard | ArchiMate 3.2 node and device; C4 deployment node; the Well-Architected frameworks' account, region and runtime guidance |
