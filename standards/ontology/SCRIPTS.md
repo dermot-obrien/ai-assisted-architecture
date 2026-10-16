@@ -112,8 +112,7 @@ All scripts resolve the schema in this priority:
 
 1. **Explicit `--schema` argument** — highest priority, used as-is.
 2. **`ontology.schema` from `.aaa-config.yaml`** — the script walks up from `cwd` to find `.aaa-config.yaml`. If found and `ontology.schema` is set to a valid path, that schema is used.
-3. **Legacy compatibility: `.aaw-config.yaml`** — if `.aaa-config.yaml` is absent or has no schema path, scripts also check `.aaw-config.yaml` for `ontology.schema` (or `modules.aaa.ontology_schema`).
-4. **Default.** The base schema beside the script, `../../standards/ontology/ontology-schema.json` relative to it: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill's copy.
+3. **Default.** The base schema beside the script, `../../standards/ontology/ontology-schema.json` relative to it: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill's copy.
 
 Example `.aaa-config.yaml`:
 

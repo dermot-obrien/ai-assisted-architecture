@@ -459,9 +459,8 @@ Point the `$ref` at whichever copy of the base schema the workspace uses: one it
 All ontology scripts (`validate.cjs`, `consolidate.cjs`, `namespace-divergent.cjs`) resolve the schema in this order:
 
 1. Explicit `--schema <path>` argument (highest priority)
-2. `ontology.schema` from `.aaa-config.yaml` in the workspace root (if present)
-3. `ontology.schema` from `.aaw-config.yaml` (legacy compatibility; also supports `modules.aaa.ontology_schema`)
-4. Default: the base schema shipped with the script, `../../standards/ontology/ontology-schema.json` relative to it
+2. `ontology.schema` from the nearest `.aaa-config.yaml` above the working directory (if present)
+3. Default: the base schema shipped with the script, `../../standards/ontology/ontology-schema.json` relative to it
 
 ## Versioning
 
