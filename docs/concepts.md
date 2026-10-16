@@ -1,7 +1,9 @@
 # Concepts
 
 The ideas you need to use AI-Assisted Architecture, in the order you meet them. For the
-reasoning behind the hierarchy, with sources, read [Architectural Framework](architectural-framework.md).
+definition of each kind of artefact, from the enterprise landscape to a deployable unit, read
+[The continuum](continuum.md); for the reasoning behind the hierarchy, with sources, read
+[Architectural Framework](architectural-framework.md).
 
 ## Skills, not prompts
 

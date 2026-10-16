@@ -1,0 +1,201 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <title>The continuum from enterprise architecture to deployable units</title>
+  <desc>Enterprise landscape, platform, capability, bounded context, architecture building block, solution building block, service and deployment node run down the middle. Outcome, use case, domain, product and module sit on the left; consideration, contracts, pattern and store on the right. Arrows carry the relationship names.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A4A66"/>
+    </marker>
+    <marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8A94A6"/>
+    </marker>
+    <style>
+      .band-label { font-size: 12px; fill: #5A6A86; letter-spacing: 1px; text-transform: uppercase; }
+      .box { fill: #FFFFFF; stroke: #1B2A4A; stroke-width: 1.4; rx: 6; }
+      .box-side { fill: #FFFFFF; stroke: #5A6A86; stroke-width: 1.2; rx: 6; }
+      .box-group { fill: #F6F7FA; stroke: #5A6A86; stroke-width: 1.2; stroke-dasharray: 5 3; rx: 8; }
+      .name { font-size: 14px; font-weight: 600; fill: #1B2A4A; }
+      .id { font-size: 11px; fill: #2A4CDB; font-family: Consolas, Menlo, monospace; }
+      .q { font-size: 11px; fill: #3A4A66; }
+      .rel { font-size: 11px; fill: #3A4A66; }
+      .rel-bg { fill: #FFFFFF; }
+      .line { stroke: #3A4A66; stroke-width: 1.3; fill: none; marker-end: url(#arrow); }
+      .line-dashed { stroke: #8A94A6; stroke-width: 1.2; fill: none; stroke-dasharray: 5 3; marker-end: url(#arrow-dashed); }
+      .title { font-size: 18px; font-weight: 600; fill: #1B2A4A; }
+      .subtitle { font-size: 12px; fill: #5A6A86; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1400" height="880" fill="#FFFFFF"/>
+  <text x="24" y="32" class="title">The continuum: from the enterprise landscape to a deployable unit</text>
+  <text x="24" y="52" class="subtitle">Problem space says who owns what and what must be possible. Solution space says how it is structured and built. Runtime says what runs where.</text>
+
+  <!-- Bands -->
+  <rect x="20" y="66" width="1360" height="222" fill="#EEF2FB" rx="8"/>
+  <rect x="20" y="292" width="1360" height="214" fill="#EDF7F4" rx="8"/>
+  <rect x="20" y="510" width="1360" height="150" fill="#FFF4E8" rx="8"/>
+  <text transform="translate(38,236) rotate(-90)" class="band-label">Problem space</text>
+  <text transform="translate(38,452) rotate(-90)" class="band-label">Solution space</text>
+  <text transform="translate(38,628) rotate(-90)" class="band-label">Runtime</text>
+
+  <!-- Spine boxes: x 480 to 880 -->
+  <g>
+    <rect x="480" y="80" width="400" height="52" class="box"/>
+    <text x="492" y="100" class="name">Enterprise landscape</text>
+    <text x="492" y="120" class="q">Layers of platforms: which exist, and which depends on which</text>
+  </g>
+  <g>
+    <rect x="480" y="152" width="400" height="52" class="box"/>
+    <text x="492" y="172" class="name">Platform <tspan class="id">PL-NNN</tspan></text>
+    <text x="492" y="192" class="q">Team-owned, self-service unit of capability. Who owns and provides it</text>
+  </g>
+  <g>
+    <rect x="480" y="224" width="400" height="52" class="box"/>
+    <text x="492" y="244" class="name">Capability <tspan class="id">CAP-NNN</tspan></text>
+    <text x="492" y="264" class="q">What must be possible, independent of how. Maturity and rung</text>
+  </g>
+  <g>
+    <rect x="480" y="296" width="400" height="52" class="box"/>
+    <text x="492" y="316" class="name">Bounded context <tspan class="id">BC-NNN</tspan></text>
+    <text x="492" y="336" class="q">Where one model and one language hold. Not a deployment</text>
+  </g>
+  <g>
+    <rect x="480" y="368" width="400" height="52" class="box"/>
+    <text x="492" y="388" class="name">Architecture building block <tspan class="id">ABB-NNN</tspan></text>
+    <text x="492" y="408" class="q">Logical, technology-agnostic, published interfaces. What must exist</text>
+  </g>
+  <g>
+    <rect x="480" y="440" width="400" height="52" class="box"/>
+    <text x="492" y="460" class="name">Solution building block <tspan class="id">SBB-NNN</tspan></text>
+    <text x="492" y="480" class="q">Named technologies realising an ABB. What we chose to build or buy</text>
+  </g>
+  <g>
+    <rect x="480" y="512" width="400" height="52" class="box"/>
+    <text x="492" y="532" class="name">Service, the deployable unit <tspan class="id">SV-NNN</tspan></text>
+    <text x="492" y="552" class="q">A runtime boundary around code, released and deployed on its own</text>
+  </g>
+  <g>
+    <rect x="480" y="584" width="400" height="52" class="box"/>
+    <text x="492" y="604" class="name">Deployment node <tspan class="id">DN-NNN</tspan></text>
+    <text x="492" y="624" class="q">Account, region, runtime, scaling, run-as identity. Where it runs</text>
+  </g>
+
+  <!-- Spine arrows at x 680 -->
+  <path d="M 680 132 L 680 150" class="line"/>
+  <rect x="688" y="134" width="98" height="14" class="rel-bg"/><text x="691" y="145" class="rel">holds, in layers</text>
+  <path d="M 680 204 L 680 222" class="line"/>
+  <rect x="688" y="206" width="56" height="14" class="rel-bg"/><text x="691" y="217" class="rel">provides</text>
+  <path d="M 680 276 L 680 294" class="line"/>
+  <rect x="688" y="278" width="72" height="14" class="rel-bg"/><text x="691" y="289" class="rel">realised by</text>
+  <path d="M 680 348 L 680 366" class="line"/>
+  <rect x="688" y="350" width="56" height="14" class="rel-bg"/><text x="691" y="361" class="rel">contains</text>
+  <path d="M 680 420 L 680 438" class="line"/>
+  <rect x="688" y="422" width="72" height="14" class="rel-bg"/><text x="691" y="433" class="rel">realised by</text>
+  <path d="M 680 492 L 680 510" class="line"/>
+  <rect x="688" y="494" width="72" height="14" class="rel-bg"/><text x="691" y="505" class="rel">realised by</text>
+  <path d="M 680 564 L 680 582" class="line"/>
+  <rect x="688" y="566" width="76" height="14" class="rel-bg"/><text x="691" y="577" class="rel">deployed to</text>
+
+  <!-- Left column: x 70 to 410 -->
+  <g>
+    <rect x="70" y="152" width="340" height="52" class="box-side"/>
+    <text x="82" y="172" class="name">Outcome <tspan class="id">OC-NNN</tspan></text>
+    <text x="82" y="192" class="q">A measurable business result. Why</text>
+  </g>
+  <path d="M 410 168 L 478 168" class="line"/>
+  <rect x="416" y="154" width="60" height="14" class="rel-bg"/><text x="419" y="165" class="rel">owned by</text>
+  <path d="M 410 196 L 478 244" class="line"/>
+  <rect x="420" y="226" width="54" height="14" class="rel-bg"/><text x="423" y="237" class="rel">requires</text>
+
+  <g>
+    <rect x="70" y="224" width="340" height="52" class="box-side"/>
+    <text x="82" y="244" class="name">Use case <tspan class="id">UC-NNN</tspan></text>
+    <text x="82" y="264" class="q">Behaviour giving an actor a result of value</text>
+  </g>
+  <path d="M 240 224 L 240 206" class="line"/>
+  <rect x="246" y="208" width="58" height="14" class="rel-bg"/><text x="249" y="219" class="rel">supports</text>
+
+  <g>
+    <rect x="70" y="296" width="340" height="52" class="box-side"/>
+    <text x="82" y="316" class="name">Domain and subdomain</text>
+    <text x="82" y="336" class="q">Problem space. Core, supporting or generic subdomain</text>
+  </g>
+  <path d="M 410 322 L 478 322" class="line"/>
+  <rect x="416" y="308" width="62" height="14" class="rel-bg"/><text x="419" y="319" class="rel">classifies</text>
+
+  <g>
+    <rect x="70" y="512" width="340" height="52" class="box-side"/>
+    <text x="82" y="532" class="name">Product <tspan class="id">PRD-NNN</tspan></text>
+    <text x="82" y="552" class="q">Offered by a platform; requires capabilities. One owner</text>
+  </g>
+  <path d="M 410 538 L 478 538" class="line"/>
+  <rect x="426" y="524" width="34" height="14" class="rel-bg"/><text x="429" y="535" class="rel">runs</text>
+
+  <g>
+    <rect x="70" y="584" width="340" height="52" class="box-side"/>
+    <text x="82" y="604" class="name">Module and component</text>
+    <text x="82" y="624" class="q">Code inside a service: domain, ports, adapters</text>
+  </g>
+  <path d="M 480 560 L 412 596" class="line"/>
+  <rect x="418" y="566" width="56" height="14" class="rel-bg"/><text x="421" y="577" class="rel">contains</text>
+
+  <!-- Right column: x 950 to 1370 -->
+  <g>
+    <rect x="950" y="80" width="420" height="52" class="box-side"/>
+    <text x="962" y="100" class="name">Consideration <tspan class="id">CN-NNN</tspan> and decision record <tspan class="id">DR-NNN</tspan></text>
+    <text x="962" y="120" class="q">An open question with more than one credible answer, and its settlement</text>
+  </g>
+  <path d="M 950 126 L 882 236" class="line-dashed"/>
+  <rect x="894" y="150" width="46" height="14" class="rel-bg"/><text x="897" y="161" class="rel">affects</text>
+
+  <g>
+    <rect x="950" y="152" width="420" height="52" class="box-side"/>
+    <text x="962" y="172" class="name">Contracts</text>
+    <text x="962" y="192" class="q">Interfaces, APIs and events, published from the owning context</text>
+  </g>
+  <path d="M 950 200 L 882 314" class="line"/>
+  <rect x="918" y="268" width="104" height="14" class="rel-bg"/><text x="921" y="279" class="rel">between contexts</text>
+
+  <g>
+    <rect x="950" y="296" width="420" height="210" class="box-group"/>
+    <text x="962" y="316" class="name">Pattern <tspan class="id">PAT-NNN</tspan></text>
+    <text x="962" y="334" class="q">Blocks, interfaces, scenarios. Scope is declared; abstraction is derived</text>
+    <rect x="970" y="350" width="384" height="48" class="box-side"/>
+    <text x="982" y="369" class="name">Architecture pattern</text>
+    <text x="982" y="387" class="q">ABBs and local roles. Logical. Technology-agnostic</text>
+    <rect x="970" y="446" width="384" height="48" class="box-side"/>
+    <text x="982" y="465" class="name">Reference architecture</text>
+    <text x="982" y="483" class="q">SBBs and technologies. Physical. Implements an architecture pattern</text>
+    <path d="M 1162 446 L 1162 400" class="line"/>
+    <rect x="1168" y="416" width="74" height="14" class="rel-bg"/><text x="1171" y="427" class="rel">implements</text>
+  </g>
+  <path d="M 950 304 L 882 254" class="line"/>
+  <rect x="896" y="288" width="52" height="14" class="rel-bg"/><text x="899" y="299" class="rel">realises</text>
+  <path d="M 970 378 L 882 392" class="line"/>
+  <rect x="896" y="370" width="64" height="14" class="rel-bg"/><text x="899" y="381" class="rel">composes</text>
+  <path d="M 970 470 L 882 466" class="line"/>
+  <rect x="896" y="450" width="64" height="14" class="rel-bg"/><text x="899" y="461" class="rel">composes</text>
+
+  <g>
+    <rect x="950" y="584" width="420" height="52" class="box-side"/>
+    <text x="962" y="604" class="name">Store</text>
+    <text x="962" y="624" class="q">A named database, bucket or table, owned by one context. Decision D1</text>
+  </g>
+  <path d="M 880 546 L 950 598" class="line"/>
+  <rect x="898" y="552" width="40" height="14" class="rel-bg"/><text x="901" y="563" class="rel">owns</text>
+  <path d="M 950 622 L 882 622" class="line"/>
+  <rect x="890" y="626" width="66" height="14" class="rel-bg"/><text x="893" y="637" class="rel">hosted on</text>
+
+  <!-- Legend and notes -->
+  <g>
+    <rect x="20" y="680" width="1360" height="180" fill="#FFFFFF" stroke="#D6DAE3" rx="8"/>
+    <text x="36" y="704" class="name">Reading the picture</text>
+    <text x="36" y="726" class="q">The spine is the golden thread: Outcome, Platform, Capability, Bounded context, ABB, SBB, Service, extended here with the landscape above it and the node below it.</text>
+    <text x="36" y="746" class="q">Platform is the unit of ownership and consumption; domain is the problem space it serves. The two usually coincide and are never the same thing.</text>
+    <text x="36" y="766" class="q">An ABB lives inside one bounded context. Reuse across contexts is through a pattern that names it, or a cross-cutting platform consumed through an adapter.</text>
+    <text x="36" y="786" class="q">Architecture pattern and reference architecture are two types of one construct. A pattern's abstraction is read from its boxes, and the ladder reads it: R3 logical, R4 physical.</text>
+    <text x="36" y="806" class="q">A service is the C4 container that executes code: separately built, versioned, released and deployed, inside one bounded context, run by a product, deployed to nodes.</text>
+    <text x="36" y="826" class="q">A module organises code inside a service and is never deployed alone. A store is a resource owned by one context, recorded on its service and its node.</text>
+    <line x1="1040" y1="846" x2="1100" y2="846" class="line"/><text x="1108" y="850" class="rel">relationship recorded in front matter</text>
+    <line x1="840" y1="846" x2="900" y2="846" class="line-dashed"/><text x="908" y="850" class="rel">may point at any level</text>
+  </g>
+</svg>

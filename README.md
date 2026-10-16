@@ -100,6 +100,7 @@ reads a pattern's front matter.
 | [Troubleshooting](docs/troubleshooting.md) | The messages the tools print, and what to do |
 | [Examples](docs/examples.md) | The worked examples in this repository |
 | [Ontology](docs/ontology.md) | The optional modernisation ontology and its scripts |
+| [The continuum](docs/continuum.md) | The definitions the bundle is built on, from the enterprise landscape to a deployable unit, each anchored in current practice, with the relationships in one picture |
 | [Architectural Framework](docs/architectural-framework.md) | The reasoning behind the hierarchy, with sources |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contributing, and the checks to run before a pull request |
 | [CHANGELOG.md](CHANGELOG.md) | What changed, release by release |
