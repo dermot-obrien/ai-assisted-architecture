@@ -62,7 +62,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="21" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Outcome&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;OC-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;A measurable business result. Why&lt;/font&gt;" vertex="1">
-          <mxGeometry height="52" width="340" x="70" y="152" as="geometry" />
+          <mxGeometry height="52" width="340" x="70" y="145" as="geometry" />
         </mxCell>
         <mxCell id="22" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5A6A86;strokeWidth=1.2;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Use case&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;UC-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;Behaviour giving an actor a result of value&lt;/font&gt;" vertex="1">
           <mxGeometry height="52" width="340" x="70" y="224" as="geometry" />
