@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" font-family="Segoe UI, Helvetica, Arial, sans-serif">
-  <title>The continuum from enterprise architecture to deployable units</title>
-  <desc>Enterprise landscape, platform, capability, bounded context, architecture building block, solution building block, service and deployment node run down the middle. Outcome, use case, domain, product and module sit on the left; consideration, contracts, pattern and store on the right. Arrows carry the relationship names.</desc>
+  <title>The continuum from the platform landscape to deployable units</title>
+  <desc>Platform landscape, platform, capability, bounded context, architecture building block, solution building block, service and deployment node run down the middle. Outcome, use case, domain, product and module sit on the left; consideration, contracts, pattern and store on the right. Arrows carry the relationship names.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#3A4A66"/>
@@ -26,7 +26,7 @@
   </defs>
 
   <rect x="0" y="0" width="1400" height="880" fill="#FFFFFF"/>
-  <text x="24" y="32" class="title">The continuum: from the enterprise landscape to a deployable unit</text>
+  <text x="24" y="32" class="title">The continuum: from the platform landscape to a deployable unit</text>
   <text x="24" y="52" class="subtitle">Problem space says who owns what and what must be possible. Solution space says how it is structured and built. Runtime says what runs where.</text>
 
   <!-- Bands -->
@@ -40,7 +40,7 @@
   <!-- Spine boxes: x 480 to 880 -->
   <g>
     <rect x="480" y="80" width="400" height="52" class="box"/>
-    <text x="492" y="100" class="name">Enterprise landscape</text>
+    <text x="492" y="100" class="name">Platform landscape</text>
     <text x="492" y="120" class="q">Layers of platforms: which exist, and which depends on which</text>
   </g>
   <g>
@@ -71,7 +71,7 @@
   <g>
     <rect x="480" y="512" width="400" height="52" class="box"/>
     <text x="492" y="532" class="name">Service, the deployable unit <tspan class="id">SV-NNN</tspan></text>
-    <text x="492" y="552" class="q">A runtime boundary around code, released and deployed on its own</text>
+    <text x="492" y="552" class="q">The C4 container that runs code: released and deployed on its own</text>
   </g>
   <g>
     <rect x="480" y="584" width="400" height="52" class="box"/>
@@ -117,10 +117,10 @@
   <g>
     <rect x="70" y="296" width="340" height="52" class="box-side"/>
     <text x="82" y="316" class="name">Domain and subdomain</text>
-    <text x="82" y="336" class="q">Problem space. Core, supporting or generic subdomain</text>
+    <text x="82" y="336" class="q">Problem space. A subdomain maps to one bounded context</text>
   </g>
   <path d="M 410 322 L 478 322" class="line"/>
-  <rect x="416" y="308" width="62" height="14" class="rel-bg"/><text x="419" y="319" class="rel">classifies</text>
+  <rect x="416" y="308" width="62" height="14" class="rel-bg"/><text x="419" y="319" class="rel">maps to</text>
 
   <g>
     <rect x="70" y="512" width="340" height="52" class="box-side"/>
@@ -164,9 +164,9 @@
     <text x="982" y="387" class="q">ABBs and local roles. Logical. Technology-agnostic</text>
     <rect x="970" y="446" width="384" height="48" class="box-side"/>
     <text x="982" y="465" class="name">Reference architecture</text>
-    <text x="982" y="483" class="q">SBBs and technologies. Physical. Implements an architecture pattern</text>
+    <text x="982" y="483" class="q">SBBs and technologies. Physical. Applies architecture patterns</text>
     <path d="M 1162 446 L 1162 400" class="line"/>
-    <rect x="1168" y="416" width="74" height="14" class="rel-bg"/><text x="1171" y="427" class="rel">implements</text>
+    <rect x="1168" y="416" width="74" height="14" class="rel-bg"/><text x="1171" y="427" class="rel">applies</text>
   </g>
   <path d="M 950 304 L 882 254" class="line"/>
   <rect x="896" y="288" width="52" height="14" class="rel-bg"/><text x="899" y="299" class="rel">realises</text>
@@ -191,10 +191,10 @@
     <text x="36" y="704" class="name">Reading the picture</text>
     <text x="36" y="726" class="q">The spine is the golden thread: Outcome, Platform, Capability, Bounded context, ABB, SBB, Service, extended here with the landscape above it and the node below it.</text>
     <text x="36" y="746" class="q">Platform is the unit of ownership and consumption; domain is the problem space it serves. The two usually coincide and are never the same thing.</text>
-    <text x="36" y="766" class="q">An ABB lives inside one bounded context. Reuse across contexts is through a pattern that names it, or a cross-cutting platform consumed through an adapter.</text>
-    <text x="36" y="786" class="q">Architecture pattern and reference architecture are two types of one construct. A pattern's abstraction is read from its boxes, and the ladder reads it: R3 logical, R4 physical.</text>
+    <text x="36" y="766" class="q">An ABB lives inside one bounded context: this bundle's rule, where TOGAF leaves a block enterprise-wide. Reuse is through a pattern that names it, or a cross-cutting platform.</text>
+    <text x="36" y="786" class="q">Architecture pattern and reference architecture are two types of one construct (Kruchten, Bass). A pattern's abstraction is read from its boxes; the ladder reads it: R3 logical, R4 physical.</text>
     <text x="36" y="806" class="q">A service is the C4 container that executes code: separately built, versioned, released and deployed, inside one bounded context, run by a product, deployed to nodes.</text>
-    <text x="36" y="826" class="q">A module organises code inside a service and is never deployed alone. A store is a resource owned by one context, recorded on its service and its node.</text>
+    <text x="36" y="826" class="q">This bundle's own conventions, not industry standards: the rung, the consideration, product runs service, store as a resource (D1). The rest is TOGAF, DDD, Team Topologies, C4 and ArchiMate.</text>
     <line x1="1040" y1="846" x2="1100" y2="846" class="line"/><text x="1108" y="850" class="rel">relationship recorded in front matter</text>
     <line x1="840" y1="846" x2="900" y2="846" class="line-dashed"/><text x="908" y="850" class="rel">may point at any level</text>
   </g>

@@ -1,4 +1,4 @@
-# The continuum: from enterprise architecture to deployable units
+# The continuum: from the platform landscape to deployable units
 
 The definitions this bundle is built on, in one place, each anchored in current practice and each stated with the intention behind it. The skills, the standards, the schemas and the metamodel conform to this page. Where one of them says something different, this page is the authority and the other is the thing to fix. [Architectural Framework](architectural-framework.md) gives the longer reasoning behind the hierarchy; this page fixes the words.
 
@@ -12,7 +12,7 @@ The intention is a single continuum that an architect, an engineer and an agent 
 
 ## The continuum in one picture
 
-![The continuum from the enterprise landscape through platform, capability, bounded context, architecture building block, solution building block and service to deployment node, with outcomes, use cases, domains and products on the left, and patterns, considerations and contracts on the right](continuum.svg)
+![The continuum from the platform landscape through platform, capability, bounded context, architecture building block, solution building block and service to deployment node, with outcomes, use cases, domains and products on the left, and patterns, considerations and contracts on the right](continuum.svg)
 
 Three bands run across the picture. The problem space (landscape, platform, capability) says who owns what and what must be possible. The solution space (bounded context, architecture building block, solution building block) says how it is structured and built. The runtime (service, deployment node) says what runs where. Patterns sit beside the solution space because they compose building blocks at any scope; products sit beside the whole thing because they are what a consumer is offered and what a team runs.
 
@@ -20,11 +20,13 @@ Three bands run across the picture. The problem space (landscape, platform, capa
 
 Each level below gives the definition the bundle adopts, the practice it is taken from, the question it answers, and how it appears in the bundle. The relationships are summarised in [one table](#the-relationships) after the levels.
 
-### Enterprise landscape
+### Platform landscape
 
 The landscape is the whole set of platforms an enterprise runs, arranged in layers so that a platform consumes only the platforms in the layers below it, and only through their contracts. It answers: what platforms exist, and which depends on which.
 
 In practice this is TOGAF's Enterprise Continuum applied to an organisation's own estate, and the platform-of-platforms shape that platform engineering describes: higher platforms are customers of lower ones, consumption is self-service and contract-mediated, and a platform with no consumers is retired rather than maintained. The layering the author uses puts foundation and infrastructure at the bottom, shared services above it, data and domain platforms above those, and products and experiences at the top. The same shape, with a layer holding platforms and a platform holding building blocks, connections and waves, is what the author's enterprise landscape model records for enterprise-scale work.
+
+The word is chosen to avoid a clash. TOGAF's Architecture Landscape means the architectures held in the repository at strategic, segment and capability level, and the industry's application landscape means the inventory of applications; this level is the map of platforms, so it is called the platform landscape.
 
 In the bundle the landscape has no entity yet. The metamodel's Organisation and Platform grouping is pending, and the ontology's platform entity carries no layer. The resolution below adds Layer to that grouping. In patternode-platform the landscape is `docs/architecture/platform-of-platforms.md`, with five layers L0 to L4; in LifeGuide it is `docs/2-architecture/platform-architecture.md`, with platforms PL-01 to PL-08 in layers L0 to L4.
 
@@ -40,7 +42,7 @@ In the bundle a platform is `PL-NNN`, authored by `aaa-create-platform` to the [
 
 A domain is the sphere of knowledge and activity a system is about: the problem space, before any decision about how it is solved. A subdomain is a part of a domain, classified as core (where the business differentiates), supporting (needed, not differentiating) or generic (bought or borrowed). A domain answers: what problem are we in.
 
-This is Eric Evans's definition in Domain-Driven Design, with Vaughn Vernon's subdomain classification from Implementing Domain-Driven Design. The bundle's framework document argued that platform replaces domain as the grouping unit, and that holds for ownership. It does not hold for meaning: a platform is an ownership and consumption boundary, a domain is a boundary of subject matter, and the two usually coincide without being the same thing. Patternode's target state groups its contexts into trading, data, knowledge and platform; LifeGuide divides its contexts into core and supporting. Both are domain language, and both are useful beside the platform language.
+This is Eric Evans's definition in Domain-Driven Design, with Vaughn Vernon's subdomain classification from Implementing Domain-Driven Design. Vernon also gives the rule that joins the two spaces: a subdomain in the problem space maps to a bounded context in the solution space, ideally one to one, and a context that spans subdomains, or a subdomain split across contexts, is a sign that a boundary is in the wrong place. The bundle's framework document argued that platform replaces domain as the grouping unit, and that holds for ownership. It does not hold for meaning: a platform is an ownership and consumption boundary, a domain is a boundary of subject matter, and the two usually coincide without being the same thing. Patternode's target state groups its contexts into trading, data, knowledge and platform; LifeGuide divides its contexts into core and supporting. Both are domain language, and both are useful beside the platform language.
 
 In the bundle a domain is not a folder or an identifier. It is recorded in two places: the subdomain classification of each bounded context, `subdomain_kind: core | supporting | generic`, and the domain a platform serves, named in the platform's purpose. A domain is realised by one or more platforms and is never owned by more than one.
 
@@ -99,17 +101,19 @@ A pattern names the capabilities it realises, and the definition ladder reads it
 
 ### Architecture pattern and reference architecture
 
-These are two types of pattern, not two constructs. An architecture pattern is technology-agnostic: its boxes are architecture building blocks and local roles, and it is expected to be logical. A reference architecture is technology-specific: its boxes are mainly solution building blocks and technologies, it is expected to be physical, and it names the architecture pattern it makes concrete, as a solution building block realises an architecture building block.
+These are two types of pattern, not two constructs. An architecture pattern is technology-agnostic: its boxes are architecture building blocks and local roles, and it is expected to be logical. A reference architecture is technology-specific: its boxes are mainly solution building blocks and technologies, it is expected to be physical, and it names the architecture patterns it applies, one or more, as a solution building block realises an architecture building block.
 
 The practice literature does not agree on the words, and the bundle does not pretend otherwise. Philippe Kruchten defines a reference architecture as a predefined architectural pattern, or set of patterns, possibly partially or completely instantiated, designed and proven for use in particular business and technical contexts. Bass defines it as a reference model mapped onto software elements. Angelov, Grefen and Greefhorst list what one contains: domain rules, standards, software and hardware elements, styles and patterns, and best practice. What the definitions share is that a reference architecture is a pattern instantiated towards technology, which is exactly the abstraction axis above. TOGAF's Architecture Continuum adds a second axis, generality: foundation, common systems, industry and organisation-specific architectures. The bundle keeps generality separate from abstraction: generality is a property of the catalogue a pattern is published in, abstraction is derived from its boxes.
 
-In the bundle a repository names its pattern types in `[suite.pattern.types.*]` of its binding file, each with a label, an identifier series and how physical it must be, and `model validate` warns when a pattern's boxes do not fit its type. With no types bound, every pattern is just a pattern. Patternode chose that: every model is `PAT-NNN` at any scope, with `REF-NNN` kept for the ones first published as reference architectures. Both choices are valid; the two names are a type distinction a repository turns on when its readers need it.
+In the bundle a reference architecture records the patterns it applies in `implements`, a list, and a repository names its pattern types in `[suite.pattern.types.*]` of its binding file, each with a label, an identifier series and how physical it must be, and `model validate` warns when a pattern's boxes do not fit its type. With no types bound, every pattern is just a pattern. Patternode chose that: every model is `PAT-NNN` at any scope, with `REF-NNN` kept for the ones first published as reference architectures. Both choices are valid; the two names are a type distinction a repository turns on when its readers need it.
 
 ### Service, the deployable unit
 
 A service is the unit of execution: a runtime boundary around code that runs as its own process, separately built, versioned, released and deployed, that realises one or more solution building blocks and lives inside one bounded context. It is run by a product and deployed to one or more deployment nodes. It answers: how does it run.
 
 The definition is the C4 model's container, which Simon Brown describes as "a runtime boundary around some code that is being executed or some data that is being stored", with the examples he lists: a server-side web application, a serverless function, a console application, a mobile app, a database. He is explicit that JAR files, assemblies and modules organise code inside a container and are not containers, and that deployment is a separate concern from the container itself. Sam Newman's test for a microservice, that it is independently deployable, is the same test. ArchiMate calls the logical thing an application component and the deployed thing an artifact on a node.
+
+The word service is overloaded, and the bundle says so rather than pretending otherwise. In ArchiMate and in TOGAF a service is behaviour exposed to a consumer, not a deployable, and C4 chose container precisely to avoid the words service, process and application. The bundle keeps service because its skills, schemas and the microservices literature use it for the deployable, and uses deployable as the plain-language word where the ArchiMate sense could be read.
 
 The bundle narrows C4's container in one way. A service executes code. A data store (a named database, a bucket, a table) is a resource owned by one bounded context and recorded on the service that owns it and on the node that hosts it, not as a service of its own. Whether to keep that narrowing is one of the [decisions](#decisions-for-the-owner) below.
 
@@ -145,6 +149,7 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Platform | contains | Bounded context | Platform `contains_bounded_contexts`, context `part_of` |
 | Platform | offers | Product | Product (to be added) |
 | Domain | is realised by | Platform | Platform purpose; context `subdomain_kind` |
+| Subdomain | maps to, ideally one to one | Bounded context | Context `subdomain_kind` |
 | Outcome | requires | Capability | Outcome `requires_capabilities` |
 | Use case | supports | Outcome | Use case |
 | Product | requires | Capability, optionally some flows | Product `requires`, `requires_flows` (to be added) |
@@ -157,13 +162,43 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Architecture building block | requires | Architecture building block | ABB `requires` |
 | Architecture building block | is realised by | Solution building block | SBB `realises`, ABB `realised_by` |
 | Pattern | composes | Architecture building block, solution building block, technology, local role | The pattern's Building Blocks table |
-| Reference architecture | implements | Architecture pattern | Pattern `implements` |
+| Reference architecture | applies, one or more | Architecture pattern | Pattern `implements`, a list |
 | Solution building block | is realised by | Service | Service `realises`, SBB `realised_by_services` |
 | Service | is part of | Bounded context | Service `part_of` |
 | Service | owns | Store | Service `stores` (to be added) |
 | Service | is deployed to | Deployment node | Service `deployed_to` |
 | Consideration | affects | Capability, ABB, SBB, pattern | Consideration `affects` |
 | Consideration | is resolved by | Decision record | Consideration `resolved_by` |
+
+## What is industry practice and what is this bundle's choice
+
+The diagram is meant to be read as current practice, so each element is marked here by where it comes from. Standard means a published specification defines it. Practice means the mainstream literature agrees on it without a specification. Choice means this bundle decided it, and a reader from another practice should expect to find it done differently elsewhere.
+
+| Element | Status | Source |
+|---|---|---|
+| Platform landscape in layers, dependencies down and through contracts | Practice | TOGAF Enterprise Continuum; Team Topologies platform teams; the CNCF Platforms White Paper; the platform-of-platforms shape used across platform engineering |
+| Platform as the owning, self-service unit of capability | Practice | Bottcher; Team Topologies; CNCF |
+| Platform offers products | Practice | Team Topologies "platform as a product", restated with Patternode's words |
+| Outcome, driver, goal | Standard | ArchiMate 3.2 motivation elements; TOGAF Architecture Vision |
+| Use case with owned scenarios | Standard | UML |
+| Capability, four dimensions, levels L1 to L3, maturity 0 to 5 | Standard | TOGAF Business Capabilities guide; BIZBOK |
+| The rung on the definition ladder | Choice | This bundle. Industry has capability maturity, not a definition ladder |
+| Domain, subdomain, core, supporting, generic | Standard | Evans; Vernon |
+| Subdomain maps to bounded context, ideally one to one | Practice | Vernon; Fowler; the microservices literature on capability-aligned boundaries |
+| Bounded context, ubiquitous language, context map relationships | Standard | Evans; the context map patterns are Evans's |
+| Hexagonal layout inside a context | Practice | Cockburn; widely adopted, no specification |
+| ABB and SBB, the building block properties, ABB before SBB | Standard | TOGAF building blocks and the Solutions Continuum |
+| An ABB lives inside one bounded context | Choice | This bundle, at the DDD and TOGAF intersection. TOGAF leaves a building block enterprise-wide |
+| Pattern as building blocks, interfaces and scenarios | Practice | arc42 building block and runtime views; C4 component and dynamic diagrams; Kruchten's 4+1 |
+| Scope and abstraction as two axes | Choice | This bundle, mapping TOGAF's generality axis and the conceptual, logical, physical levels |
+| Architecture pattern and reference architecture as abstract and instantiated | Practice | Bass; Kruchten; Angelov, Grefen and Greefhorst. The literature agrees on the direction and not on the words |
+| Consideration as an artefact | Choice | This bundle. Industry records the decision (Nygard's ADR, MADR) and leaves the open question informal |
+| Product requires capability; product runs service | Choice | This bundle, from Patternode's product and capability model. Service ownership by a product team is practice; the recorded relationship is not |
+| Service as the deployable unit | Standard, under another name | C4's container; ArchiMate's artifact assigned to a node; Newman's independently deployable service |
+| Store as a resource of a service, not a service | Choice | This bundle, decision D1. C4 counts a database as a container |
+| Module and component inside a deployable | Standard | C4 component; ArchiMate application component |
+| Deployment node | Standard | ArchiMate node and device; C4 deployment node |
+| Contracts between contexts | Practice | Evans's published language and open host service; consumer-driven contracts |
 
 ## What the repositories say today
 
