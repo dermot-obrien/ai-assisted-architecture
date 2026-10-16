@@ -22,15 +22,12 @@ const FRAMEWORK_SCHEMA = path.resolve(
  * Resolve the effective schema path. Priority:
  *   1. Explicit --schema argument (handled by caller)
  *   2. ontology.schema from .aaa-config.yaml in the workspace root
- *   3. ontology.schema from .aaw-config.yaml (legacy compatibility)
- *   4. Framework default (ontology-schema.json in this package)
+ *   3. The default: the ontology-schema.json in this repository's standards
  */
 function schemaFromConfig(configPath, baseDir) {
   try {
     const config = yaml.load(fs.readFileSync(configPath, 'utf8'), { schema: yaml.JSON_SCHEMA });
-    const configured =
-      (config && config.ontology && config.ontology.schema) ||
-      (config && config.modules && config.modules.aaa && config.modules.aaa.ontology_schema);
+    const configured = config && config.ontology && config.ontology.schema;
     if (!configured) return null;
     const resolved = path.resolve(baseDir, configured);
     return fs.existsSync(resolved) ? resolved : null;
@@ -45,18 +42,8 @@ function resolveDefaultSchema() {
   while (dir !== root) {
     const aaaConfigPath = path.join(dir, '.aaa-config.yaml');
     if (fs.existsSync(aaaConfigPath)) {
-      const resolved = schemaFromConfig(aaaConfigPath, dir);
-      if (resolved) return resolved;
-    }
-
-    const aawConfigPath = path.join(dir, '.aaw-config.yaml');
-    if (fs.existsSync(aawConfigPath)) {
-      const resolved = schemaFromConfig(aawConfigPath, dir);
-      if (resolved) return resolved;
-      if (fs.existsSync(aaaConfigPath)) {
-        // A workspace config exists, but without a schema path; use bundled default.
-        break;
-      }
+      // The nearest workspace config decides: its schema, or the default when it names none.
+      return schemaFromConfig(aaaConfigPath, dir) || FRAMEWORK_SCHEMA;
     }
     dir = path.dirname(dir);
   }

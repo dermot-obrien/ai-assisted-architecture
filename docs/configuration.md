@@ -209,7 +209,7 @@ ontology:
   schema: .agents/skills/aaa-create-runtime-agent/references/standards/ontology/ontology-schema.json
 ```
 
-Precedence for the ontology validator's schema: `--schema` on the command line, then `ontology.schema` in the nearest `.aaa-config.yaml` found upward from the working directory, then `ontology.schema` (or `modules.aaa.ontology_schema`) in a `.aaw-config.yaml` (kept for workspaces set up by the old installer), then the `ontology-schema.json` beside the validator: `references/standards/ontology/` in the skill's copy, `standards/ontology/` in this repository. A configured path that does not exist is skipped.
+Precedence for the ontology validator's schema: `--schema` on the command line, then `ontology.schema` in the nearest `.aaa-config.yaml` found upward from the working directory, then the `ontology-schema.json` beside the validator: `references/standards/ontology/` in the skill's copy, `standards/ontology/` in this repository. A configured path that does not exist is skipped.
 
 ## foundation-workspace.yaml
 

@@ -5,7 +5,7 @@ license: CC-BY-4.0
 compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Its copy of the ontology validator, references/scripts/ontology/validate.cjs, needs Node.js with js-yaml, ajv and ajv-formats. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json.
 metadata:
   author: dermot-obrien
-  version: "0.5.0"
+  version: "0.5.1"
 ---
 
 # Create Runtime Agent

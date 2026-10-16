@@ -43,7 +43,7 @@ jobs:
           fetch-tags: true
 
       # The manifest names the version main is at. When that version has no tag it was cut by
-      # hand (the 0.4.0 baseline, or a release-as), so publish it from its CHANGELOG.md section,
+      # hand (the 0.4.1 baseline, or a release-as), so publish it from its CHANGELOG.md section,
       # at this commit, and let Release Please start from it. Once the tag exists this does nothing.
       - name: Publish a version cut by hand
         id: baseline

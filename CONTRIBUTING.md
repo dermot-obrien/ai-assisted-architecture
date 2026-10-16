@@ -108,7 +108,7 @@ Releases are made from the pull requests merged to `main`, by [Release Please](h
 | Pins | A workspace pins a tag, `"ref": "vX.Y.Z"` on the bundle's source in `.agents/skills.json`, never `main` and never a commit. To upgrade, move the tag, read the release's notes, run `skills.mjs sync` and commit the new lock |
 | 1.0.0 | A deliberate decision, made by adding `"release-as": "1.0.0"` to `release-please-config.json` for one release, not a consequence of a breaking change |
 
-Before Release Please, versions were tagged by skill and `CHANGELOG.md` was written by hand. 0.4.0 was the last of those. The workflow publishes a version the manifest names but no tag carries, from its `CHANGELOG.md` section, so a hand-cut version is possible but should not be needed again.
+Before Release Please, versions were tagged by skill and `CHANGELOG.md` was written by hand. 0.4.1 was the last of those. The workflow publishes a version the manifest names but no tag carries, from its `CHANGELOG.md` section, so a hand-cut version is possible but should not be needed again.
 
 Settings the maintainer keeps (nothing in the repository can set them): the repository secret `RELEASE_PLEASE_TOKEN`, a fine-grained token scoped to this repository with contents and pull requests write, which the workflow uses to open the release pull request so that it gets CI runs (a pull request opened with the workflow's own token starts no other workflow); and, under Pull Requests, the default squash message set to the pull request title. Without the secret the workflow falls back to its own token, which needs "Allow GitHub Actions to create and approve pull requests" on under Actions, and the release pull request then has no CI run until it is closed and reopened.
 
