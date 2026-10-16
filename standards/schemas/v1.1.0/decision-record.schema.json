@@ -10,7 +10,7 @@
     {
       "properties": {
         "kind": { "const": "decision-record" },
-        "id":   { "type": "string", "pattern": "^DR-\\d{3}$" },
+        "id":   { "type": "string", "pattern": "^A?DR-\\d{3}$" },
 
         "y_statement": {
           "type": "string",
