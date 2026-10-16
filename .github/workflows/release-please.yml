@@ -1,0 +1,74 @@
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
+#
+# Versions, tags, releases and CHANGELOG.md, from the pull requests merged to main. The rules
+# are in CONTRIBUTING.md under "Releases".
+#
+# Release Please keeps one release pull request open against main, "chore(main): release X.Y.Z",
+# and updates it on every merge: its body is the next CHANGELOG.md section, built from the squash
+# subjects since the last tag, and its diff bumps package.json, package-lock.json and
+# CHANGELOG.md. Merging that pull request is the release: this workflow then creates the tag
+# vX.Y.Z and the GitHub Release. The bump follows the subjects: feat is minor, fix is patch, a !
+# after the type or a BREAKING CHANGE footer is a breaking change (minor until 1.0.0, then
+# major). Other types never bump on their own. The skills' own versions, in each SKILL.md and in
+# bundle.json, are bumped by hand in the pull request that changes the skill.
+#
+# A pull request opened with GITHUB_TOKEN starts no other workflow, so the release pull request
+# has no CI run until someone closes and reopens it, or the repository secret
+# RELEASE_PLEASE_TOKEN (a fine-grained token with contents and pull requests write) is set.
+name: Release Please
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: release-please
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      # The manifest names the version main is at. When that version has no tag it was cut by
+      # hand (the 0.4.1 baseline, or a release-as), so publish it from its CHANGELOG.md section,
+      # at this commit, and let Release Please start from it. Once the tag exists this does nothing.
+      - name: Publish a version cut by hand
+        id: baseline
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          version=$(node -p 'require("./.release-please-manifest.json")["."]')
+          if git ls-remote --exit-code --tags origin "refs/tags/v$version" >/dev/null; then
+            echo "v$version is tagged"
+            exit 0
+          fi
+          awk -v v="$version" '$0 ~ "^## \\[" v "\\]" {p=1; next} /^## / {p=0} p' CHANGELOG.md > "$RUNNER_TEMP/notes.md"
+          if ! grep -q '[^[:space:]]' "$RUNNER_TEMP/notes.md"; then
+            echo "::error::CHANGELOG.md has no section for $version, so v$version cannot be published"
+            exit 1
+          fi
+          gh release create "v$version" --target "$GITHUB_SHA" --title "Architecture Continuum $version" --notes-file "$RUNNER_TEMP/notes.md"
+          echo "v$version published at $GITHUB_SHA"
+          echo "created=true" >> "$GITHUB_OUTPUT"
+
+      - name: Release Please
+        if: steps.baseline.outputs.created != 'true'
+        uses: googleapis/release-please-action@5c625bfb5d1ff62eadeeb3772007f7f66fdcf071 # v4.4.1
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

@@ -1,0 +1,15 @@
+# Keeps the SHA-pinned actions and the npm dependencies of the repository's own tools current.
+# Each update is a pull request for CI to check, titled build(deps), which the release notes
+# leave out. The cooldown waits a few days after a release, so a hijacked version is usually
+# pulled before it is proposed.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule: { interval: weekly }
+    cooldown: { default-days: 3 }
+    groups: { actions: { patterns: ["*"] } }
+  - package-ecosystem: npm
+    directory: "/"
+    schedule: { interval: weekly }
+    cooldown: { default-days: 3 }

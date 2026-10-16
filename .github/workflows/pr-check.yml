@@ -1,0 +1,139 @@
+# SPDX-FileCopyrightText: 2026 Dermot O'Brien
+# SPDX-License-Identifier: Apache-2.0
+#
+# Pull request gates beside CI: the title and the commit subjects are Conventional Commits
+# (the squash subject is the change's line in CHANGELOG.md and decides the next version, see
+# CONTRIBUTING.md under "Releases"), and the description cites the reason for the change.
+name: PR check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: pr-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  title:
+    # The title becomes the squash subject, so it must be a Conventional Commits subject:
+    # type(scope)!: what changed, for someone reading the release notes.
+    name: Title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const re = /^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9 ._/-]+\))?!?: .+/;
+            const marker = '<!-- pr-title -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              ...context.repo, issue_number: pr.number, per_page: 100,
+            });
+            const mine = comments.find(c => c.body && c.body.includes(marker));
+            if (re.test(pr.title)) {
+              if (mine) await github.rest.issues.deleteComment({ ...context.repo, comment_id: mine.id });
+              core.info(`ok: ${pr.title}`);
+              return;
+            }
+            const body = [
+              marker,
+              `The title \`${pr.title}\` is not a Conventional Commits subject. It becomes the squash commit's subject, which is this change's line in CHANGELOG.md and the GitHub Release, and its type decides the next version (CONTRIBUTING.md, "Releases"): \`feat(scope): what changed\` bumps the minor version, \`fix(scope): what changed\` the patch, and a \`!\` after the type marks a breaking change. \`docs\`, \`build\`, \`ci\`, \`chore\`, \`refactor\`, \`test\` and \`style\` never bump. Editing the title re-runs this check.`,
+            ].join('\n\n');
+            if (mine) await github.rest.issues.updateComment({ ...context.repo, comment_id: mine.id, body });
+            else await github.rest.issues.createComment({ ...context.repo, issue_number: pr.number, body });
+            core.setFailed('The pull request title is not a Conventional Commits subject.');
+
+  commits:
+    # A single-commit pull request is squashed under its commit's subject unless the repository's
+    # default squash message is the title, so that one subject must pass. With more commits the
+    # title is the squash subject, so a subject in another form (a draw.io save from the web
+    # editor, say) is a warning, not a failure. Merge commits are exempt.
+    name: Commit subjects
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Lint commit subjects
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          re='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9 ._/-]+\))?!?: .+'
+          count=$(git log --no-merges --format=%s "${BASE}..${HEAD}" | grep -c . || true)
+          level=warning
+          [ "$count" -le 1 ] && level=error
+          bad=0
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            if printf '%s' "$line" | grep -Eq "$re"; then
+              echo "ok: $line"
+            else
+              echo "::${level}::Not a Conventional Commits subject: '$line'"
+              bad=1
+            fi
+          done < <(git log --no-merges --format=%s "${BASE}..${HEAD}")
+          if [ "$bad" -ne 0 ] && [ "$level" = warning ]; then
+            echo "The pull request has $count commits, so the title is the squash subject; the subjects above are not in Conventional Commits form, which only matters for a single-commit pull request."
+            exit 0
+          fi
+          if [ "$bad" -ne 0 ]; then
+            echo ""
+            echo "Commit subjects follow Conventional Commits (CONTRIBUTING.md, \"Releases\"), for example:"
+            echo "  feat(aaa-rung): read the flows a pattern declares"
+            echo "  fix(continuum): the service row names the C4 container, fixes #12"
+            exit 1
+          fi
+
+  reference:
+    # The description cites the reason for the change: an issue or pull request (#n, fixes #n,
+    # refs #n, owner/repo#n), a thread (t-xxx), an improvement (IMP-NNN) or an ADR (ADR-NNN), or
+    # a line "No reference:" followed by the reason. Into main this fails until one is added; into
+    # any other base it warns. Dependabot's and Release Please's pull requests are exempt: the
+    # first cites its advisory or changelog, the second is the release itself.
+    name: Change reference
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const blocking = pr.base.ref === 'main';
+            const text = `${pr.title}\n${pr.body || ''}`.replace(/<!--[\s\S]*?-->/g, '');
+            const refs = [
+              /\b(?:IMP|ADR)-\d{3}\b/,
+              /(?:^|[\s(])(?:[\w.-]+\/[\w.-]+)?#\d+\b/m,
+              /\bt-[a-z0-9]{3}\b/,
+              /^[ \t]*No reference:[ \t]*\S/mi,
+            ];
+            const login = pr.user && pr.user.login;
+            const exempt = login === 'dependabot[bot]' || login === 'github-actions[bot]'
+              || (pr.head && pr.head.ref.startsWith('release-please--'));
+            const found = exempt || refs.some(r => r.test(text));
+            const marker = '<!-- change-reference -->';
+            const { data: comments } = await github.rest.issues.listComments({
+              ...context.repo, issue_number: pr.number, per_page: 100,
+            });
+            const mine = comments.find(c => c.body && c.body.includes(marker));
+            if (found) {
+              if (mine) await github.rest.issues.deleteComment({ ...context.repo, comment_id: mine.id });
+              core.info(exempt ? 'Exempt from the change-reference rule.' : 'Change reference found.');
+              return;
+            }
+            const body = [
+              marker,
+              'This description cites no issue (`#n`, `fixes #n`, `refs #n`), thread (`t-xxx`), improvement (`IMP-NNN`) or ADR (`ADR-NNN`), so a search for the reason behind the change will not find this pull request. Add one under Why, or write a line `No reference:` followed by the reason.',
+              blocking
+                ? 'Into `main` this check is required: it fails until a reference is added. Editing the description re-runs it.'
+                : 'The base branch is not `main`, so this check only warns.',
+            ].join('\n\n');
+            if (mine) await github.rest.issues.updateComment({ ...context.repo, comment_id: mine.id, body });
+            else await github.rest.issues.createComment({ ...context.repo, issue_number: pr.number, body });
+            if (blocking) core.setFailed('No change reference in the pull request title or description.');
+            else core.warning('No change reference in the pull request title or description.');
