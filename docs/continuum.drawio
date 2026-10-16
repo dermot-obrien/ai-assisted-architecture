@@ -20,7 +20,7 @@
           <mxGeometry height="52" width="400" x="480" y="63" as="geometry" />
         </mxCell>
         <mxCell id="7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=1.4;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Platform&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;PL-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;Team-owned, self-service unit of capability. Who owns and provides it&lt;/font&gt;" vertex="1">
-          <mxGeometry height="52" width="400" x="480" y="152" as="geometry" />
+          <mxGeometry height="52" width="400" x="480" y="149" as="geometry" />
         </mxCell>
         <mxCell id="8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1B2A4A;strokeWidth=1.4;fontColor=#1B2A4A;fontSize=14;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;" value="&lt;b&gt;Capability&lt;/b&gt; &lt;font color=&quot;#2a4cdb&quot; face=&quot;Consolas&quot; style=&quot;font-size:11px&quot;&gt;CAP-NNN&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot; color=&quot;#3a4a66&quot;&gt;What must be possible, independent of how. Maturity and rung&lt;/font&gt;" vertex="1">
           <mxGeometry height="52" width="400" x="480" y="224" as="geometry" />
