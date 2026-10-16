@@ -50,7 +50,9 @@ jobs:
 
   commits:
     # A single-commit pull request is squashed under its commit's subject unless the repository's
-    # default squash message is the title, so every subject must pass too. Merge commits are exempt.
+    # default squash message is the title, so that one subject must pass. With more commits the
+    # title is the squash subject, so a subject in another form (a draw.io save from the web
+    # editor, say) is a warning, not a failure. Merge commits are exempt.
     name: Commit subjects
     runs-on: ubuntu-latest
     steps:
@@ -64,16 +66,23 @@ jobs:
         run: |
           set -euo pipefail
           re='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9 ._/-]+\))?!?: .+'
+          count=$(git log --no-merges --format=%s "${BASE}..${HEAD}" | grep -c . || true)
+          level=warning
+          [ "$count" -le 1 ] && level=error
           bad=0
           while IFS= read -r line; do
             [ -z "$line" ] && continue
             if printf '%s' "$line" | grep -Eq "$re"; then
               echo "ok: $line"
             else
-              echo "::error::Not a Conventional Commits subject: '$line'"
+              echo "::${level}::Not a Conventional Commits subject: '$line'"
               bad=1
             fi
           done < <(git log --no-merges --format=%s "${BASE}..${HEAD}")
+          if [ "$bad" -ne 0 ] && [ "$level" = warning ]; then
+            echo "The pull request has $count commits, so the title is the squash subject; the subjects above are not in Conventional Commits form, which only matters for a single-commit pull request."
+            exit 0
+          fi
           if [ "$bad" -ne 0 ]; then
             echo ""
             echo "Commit subjects follow Conventional Commits (CONTRIBUTING.md, \"Releases\"), for example:"

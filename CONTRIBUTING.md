@@ -72,7 +72,7 @@ A copy does not track this repository: it stays at the version you copied until 
 ## Pull requests
 
 - One change per pull request, into `main`, with the template filled in: what, why (with the issue, thread, improvement or decision it serves, or `No reference:` and the reason), how it was verified, and what changes for the skills and the workspaces that install them.
-- The title is a Conventional Commits subject (`feat(scope): what changed`), and so is every commit subject. The title becomes the squash subject, which is the change's line in the release notes and decides the next version (see Releases below). The PR check fails a title, a commit subject or a description that does not follow this.
+- The title is a Conventional Commits subject (`feat(scope): what changed`), and so are the commit subjects. The title becomes the squash subject, which is the change's line in the release notes and decides the next version (see Releases below). The PR check fails a title or a description that does not follow this; a commit subject in another form is a warning, and fails only when it is the pull request's only commit, since that subject can become the squash subject.
 - CI must pass: the checks below.
 - Contributions are licensed as the file they change is (see Licensing of Contributions below).
 
