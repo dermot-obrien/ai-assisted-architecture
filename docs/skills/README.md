@@ -1,6 +1,6 @@
 # Skills
 
-Ten Agent Skills, one page each. Every skill's own `SKILL.md` is the definition the agent
+Eleven Agent Skills, one page each. Every skill's own `SKILL.md` is the definition the agent
 follows; these pages are for the person using it.
 
 | Skill | Does | Writes |
@@ -15,6 +15,7 @@ follows; these pages are for the person using it.
 | [aaa-create-runtime-agent](aaa-create-runtime-agent.md) | Specifies an autonomous runtime agent with guardrails, scope and provenance | Ontology records and an agent profile |
 | [aaa-rung](aaa-rung.md) | Derives each capability's rung on the definition ladder and what blocks the next | Nothing: read-only |
 | [aaa-continuum](aaa-continuum.md) | Checks every page and register of an architecture against the continuum's standards, and scaffolds the layout for a new repository | Nothing, or the empty layout |
+| [aaa-workspace](aaa-workspace.md) | Clears out what retired tooling left in a repository, installs the declared skills, wires a build that runs without them, and builds the site | `scripts/architecture.mjs`, the installer, npm scripts and `.gitignore` lines |
 
 ## How the eight create skills work
 

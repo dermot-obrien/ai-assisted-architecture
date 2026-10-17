@@ -155,6 +155,21 @@
         "runtime": "node",
         "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-continuum] declares root and each declared path exists"
       }
+    },
+    {
+      "name": "aaa-workspace",
+      "path": "skills/aaa-workspace",
+      "version": "0.1.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-workspace@0.1.0",
+      "requires": [],
+      "check": {
+        "command": [
+          "node",
+          "bin/check.mjs"
+        ],
+        "runtime": "node",
+        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and each path [suite.aaa-workspace] declares exists; every binding is optional"
+      }
     }
   ],
   "ontology": {

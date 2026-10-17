@@ -92,6 +92,30 @@ node .agents/skills/aaa-continuum/bin/continuum.mjs scaffold --root <dir> --name
 
 Exit codes: 0 no errors (warnings may print), 1 errors, or warnings with `--strict`, 2 usage or environment (Node older than 18, no bound root, the npm packages missing, an unknown command or argument).
 
+### workspace.mjs
+
+`aaa-workspace`'s tool. `--repo` names the repository, and defaults to the working directory, so it runs from a clone of this repository against a repository that has no skills yet:
+
+```bash
+node <skills>/aaa-workspace/bin/workspace.mjs doctor
+node <skills>/aaa-workspace/bin/workspace.mjs init [--dry-run] [--force] [--declare vX.Y.Z] [--from <folder>] [--no-build]
+node <skills>/aaa-workspace/bin/workspace.mjs clean [--apply]
+node <skills>/aaa-workspace/bin/workspace.mjs install [--dry-run] [--force] [--declare vX.Y.Z] [--from <folder>]
+node <skills>/aaa-workspace/bin/workspace.mjs regenerate | check | build [--fresh]
+```
+
+`doctor` changes nothing and says what is declared, locked and installed, what install would write and clean would remove, and what is for a person to decide. `init` runs clean with `--apply`, install, and build with a fresh `npm ci`; `--dry-run` prints that plan and stops. Install writes `scripts/architecture.mjs` (the repository's door to the skill) and the installer, adds the npm scripts `skills`, `skills:check`, `check:architecture`, `regenerate`, `prebuild` and `reinit` where they are missing, and runs the installer. Once a repository has the door, the same commands run from it:
+
+```bash
+npm run reinit              # node scripts/architecture.mjs reinit: install the skills if missing, then init
+npm run check:architecture  # the continuum and cross-reference checks
+npm run build               # prebuild regenerates the diagrams and decks first
+```
+
+Without the skill installed, every command of the door but `reinit` prints one line and exits 0. `REGENERATE=0` builds without regenerating, and `DECK_PDF=0` publishes decks without PDFs.
+
+Exit codes: 0 done, 1 a step failed (the installer, npm, or a regeneration or check that ran), 2 usage, no git repository for clean, or no `.agents/skills.json` for install.
+
 ### Post-install checks
 
 Each skill carries a check an installer runs after installing it. Run all of them from the workspace root with:
@@ -110,7 +134,7 @@ python .agents/skills/aaa-rung/bin/check.py
 
 `SKILL_DIR` names the installed skill's folder and defaults to the folder above `bin/`, so it is needed only when the check runs from somewhere else.
 
-`bin/check.mjs`, the same file in every `aaa-create-*` skill and in `aaa-continuum`, checks that `[suite.<skill>]` of `.agents/skill-bindings.toml` declares every required binding in the skill's `inputs.toml` and that each declared path exists. `.aaa-config.yaml` is optional: without it the check warns and carries on, and with it the check warns when its `ontology.schema` does not exist. `bin/check.py` resolves `[suite.aaa-rung]` as `rung.py --doctor` does, and warns when PyYAML is absent or nothing is bound.
+`bin/check.mjs`, the same file in every `aaa-create-*` skill, `aaa-continuum` and `aaa-workspace`, checks that `[suite.<skill>]` of `.agents/skill-bindings.toml` declares every required binding in the skill's `inputs.toml` and that each declared path exists. `.aaa-config.yaml` is optional: without it the check warns and carries on, and with it the check warns when its `ontology.schema` does not exist. `bin/check.py` resolves `[suite.aaa-rung]` as `rung.py --doctor` does, and warns when PyYAML is absent or nothing is bound.
 
 Exit codes: 0 correct (warnings may print), 1 problems, one per line, 2 usage or environment error (Node older than 18, Python older than 3.11, or an unknown argument).
 

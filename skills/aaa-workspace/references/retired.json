@@ -1,0 +1,25 @@
+{
+  "$comment": "What the clean command treats as left over from tooling a workspace no longer uses. Every entry is evidence of a retired installer or framework layout, not a guess: the AI-Assisted Work, Architecture and Research frameworks were once cloned into a workspace as submodules and installed by their own commands, which wrote the modules block of .aaw-config.yaml and the aaw-*, aar-* and research-dag skills that the work, research and literature-discovery skills replaced. Add an entry here, with the release that retired it, rather than widening a rule in code.",
+  "submodules": [
+    { "path": ".ai-assisted-work", "why": "the AI-Assisted Work framework clone, retired when AAW 4.0.0 shipped standalone skills" },
+    { "path": ".ai-assisted-architecture", "why": "the AI-Assisted Architecture framework clone, retired for the skills.mjs installer" },
+    { "path": ".ai-assisted-research", "why": "the AI-Assisted Research framework clone, retired when AAR 2.0.0 shipped standalone skills" }
+  ],
+  "skills": [
+    { "pattern": "aaw-*", "why": "an AI-Assisted Work skill from before 4.0.0, replaced by the work skill" },
+    { "pattern": "aar-*", "why": "an AI-Assisted Research skill from before 2.0.0, replaced by the research skill" },
+    { "pattern": "research-dag", "why": "replaced by the research skill in AI-Assisted Research 2.0.0" }
+  ],
+  "skillDirs": [".agents/skills", ".claude/skills"],
+  "configBlocks": [
+    { "file": ".aaw-config.yaml", "key": "modules", "why": "the module table the framework installers wrote; nothing reads it since the standalone skills, and the rest of the file (the thread store) stays" }
+  ],
+  "generated": [
+    { "path": ".docusaurus", "why": "Docusaurus's cache, rebuilt by the next build" },
+    { "path": "build", "why": "the last site build, rebuilt by the next build" }
+  ],
+  "hookPatterns": [
+    { "pattern": "\\baa[wr] (install|setup)\\b", "why": "runs a framework installer that no longer exists" },
+    { "pattern": "\\.ai-assisted-(work|architecture|research)\\b", "why": "reads a framework clone that clean removes" }
+  ]
+}

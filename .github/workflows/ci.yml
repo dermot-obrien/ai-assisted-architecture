@@ -177,6 +177,9 @@ jobs:
       - name: The aaa-continuum skill's tests
         run: node --test skills/aaa-continuum/tests/*.test.mjs
 
+      - name: The aaa-workspace skill's tests
+        run: node --test skills/aaa-workspace/tests/*.test.mjs
+
       - name: The skill's check passes on its own scaffold
         run: |
           mkdir -p /tmp/cont/.agents && cd /tmp/cont
