@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 From 0.4.1 on, releases are made by Release Please from the pull requests merged to `main`: a pull request's title is its line here, and the release pull request adds the next section, bumps the version and, when merged, tags `vX.Y.Z` and publishes the GitHub Release. The rules are in [CONTRIBUTING.md](CONTRIBUTING.md#releases). Do not add lines here by hand. The skills' own versions, in each `SKILL.md` and in `bundle.json`, stay separate and are bumped in the pull request that changes the skill.
 
+## [0.5.0](https://github.com/dermot-obrien/architecture-continuum/compare/v0.4.1...v0.5.0) (2026-10-17)
+
+
+### Added
+
+* **aaa-continuum:** a skill that checks a repository against the continuum, with schemas for the pattern and product kinds ([602ab4c](https://github.com/dermot-obrien/architecture-continuum/commit/602ab4ca787f6cd572c003f23dcf89eef1a75a82))
+* **aaa-continuum:** a skill that checks an architecture repository against the continuum, and scaffolds one ([d6fdaa6](https://github.com/dermot-obrien/architecture-continuum/commit/d6fdaa6d6b7093e84bdb25456241eab0b546b5d4))
+* **continuum:** AP and RA as the identifier series of the two kinds of pattern document ([cbfc4f4](https://github.com/dermot-obrien/architecture-continuum/commit/cbfc4f43d7b11bb4d9575309d86778864568e497))
+* **continuum:** architecture patterns and reference architectures, never a bare pattern ([1293cce](https://github.com/dermot-obrien/architecture-continuum/commit/1293ccec2c4268d46ba73be93be0e5238a6dac7a))
+* **continuum:** architecture patterns and reference architectures, with AP and RA as their series ([b03e7dc](https://github.com/dermot-obrien/architecture-continuum/commit/b03e7dcac7024bdbc47bcb23e29c186a1da2cb22))
+* **continuum:** the demand space, and ADR-NNN as a decision record identifier ([db1f59a](https://github.com/dermot-obrien/architecture-continuum/commit/db1f59add0e1572aa08334602111bdde4efc6ca3))
+* **continuum:** the demand space, not the problem space ([ee7620a](https://github.com/dermot-obrien/architecture-continuum/commit/ee7620ae1fe77fe746243024563dad13e6811a94))
+* **schemas:** an unlisted field on every artefact's front matter ([12ab509](https://github.com/dermot-obrien/architecture-continuum/commit/12ab509bf418bf826aeb1d2cc39b9a515eced3e7))
+* **schemas:** an unlisted field on every artefact's front matter ([045ec8d](https://github.com/dermot-obrien/architecture-continuum/commit/045ec8dddc6fdd969d466c6fbdee95c32dbcecab))
+* **schemas:** the pattern and product kinds, with their schemas ([fb36a66](https://github.com/dermot-obrien/architecture-continuum/commit/fb36a665798fe59e27d899e3136488ddba7d7200))
+* **standards:** add the building block calibration standard ([f32f99b](https://github.com/dermot-obrien/architecture-continuum/commit/f32f99bde7c5681e46642de229699ea25b6c6818))
+* **standards:** add the building block calibration standard ([54869e5](https://github.com/dermot-obrien/architecture-continuum/commit/54869e540d8f6a115f52949eaba473ff27a987ae))
+
+
+### Fixed
+
+* **schemas:** accept ADR-NNN as a decision record identifier ([f565c43](https://github.com/dermot-obrien/architecture-continuum/commit/f565c43e4861c210439d2aa76cb0a8432fdb5431))
+* **scripts:** load js-yaml 5 as a namespace, which has no default export ([547980b](https://github.com/dermot-obrien/architecture-continuum/commit/547980baf6d271b61e2da5bd6861e6c7d4ee689b))
+
+
+### Documentation
+
+* **continuum:** drop the stale duplicate export of the continuum diagram ([47a9f26](https://github.com/dermot-obrien/architecture-continuum/commit/47a9f26c7abcbdc022bf7556b40c376aa2e98edb))
+* **continuum:** the PAT and REF series are retired, not kept as history ([7b49d21](https://github.com/dermot-obrien/architecture-continuum/commit/7b49d216a9dab9797c1c56d9167741d5b756f10c))
+* **continuum:** the PAT and REF series are retired, not kept as history ([159b682](https://github.com/dermot-obrien/architecture-continuum/commit/159b6827cc738aa90a93990f9f8ff9478f96102e))
+* **continuum:** the two kinds in the diagrams' alt text ([2d0db7d](https://github.com/dermot-obrien/architecture-continuum/commit/2d0db7d2bc3b5fb4f9247c33f6822829e1fefc82))
+
 ## [0.4.1] - 2026-10-12
 
 Cut by hand, before Release Please took over. Earlier releases were tagged by skill, `<skill>--v<version>`; from this one the tag is the bundle's, `vX.Y.Z`.
