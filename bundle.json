@@ -9,8 +9,8 @@
     {
       "name": "aaa-create-abb",
       "path": "skills/aaa-create-abb",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.5.0",
+      "version": "0.6.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.6.0",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -21,8 +21,8 @@
     {
       "name": "aaa-create-capability",
       "path": "skills/aaa-create-capability",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.5.0",
+      "version": "0.6.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.6.0",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -69,8 +69,8 @@
     {
       "name": "aaa-create-sbb",
       "path": "skills/aaa-create-sbb",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.5.0",
+      "version": "0.6.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.6.0",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],

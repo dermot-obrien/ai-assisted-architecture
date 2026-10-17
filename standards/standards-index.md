@@ -37,6 +37,7 @@ Always load these standards before creating or modifying artefacts.
 - `standards/capabilities/standard-capability-diagram.md`
 - `standards/capabilities/standard-definition-ladder.md`
 - `standards/contexts/standard-bounded-context.md`
+- `standards/building-blocks/standard-building-block-calibration.md`
 - `standards/building-blocks/architecture-building-blocks/standard-abb-document.md`
 - `standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md`
 - `standards/building-blocks/solution-building-blocks/standard-sbb-document.md`
@@ -59,6 +60,7 @@ For **agent-native** workspaces (AI-majority engineering), also load:
 - For capability diagrams (maps and traceability matrices), apply `standard-capability-diagram.md`.
 - For how far a capability has been defined, apply `standard-definition-ladder.md`, and derive the rung with `/aaa-rung`.
 - For bounded context definitions, apply `standard-bounded-context.md` via `/aaa-create-context`.
+- For whether something is an ABB, an SBB, a component inside one, or a whole system, apply `standard-building-block-calibration.md` before `/aaa-create-abb`, `/aaa-create-sbb`, or a pattern's building-block table.
 - For ABB narrative/content documents, apply `standard-abb-document.md` via `/aaa-create-abb`.
 - For SBB narrative/content documents, apply `standard-sbb-document.md` via `/aaa-create-sbb`.
 - For runtime services, apply `standard-service.md` via `/aaa-create-service`.
@@ -69,6 +71,7 @@ For **agent-native** workspaces (AI-majority engineering), also load:
 ## Enforcement Rules
 
 - Traceability requirements (**Outcome → Use Case → Platform → Capability → Context → ABB → SBB → Service**) must be applied to every new artefact.
+- A building block is one C4 container (`standard-building-block-calibration.md`): no ABB or SBB is created for a component or for code, and none stands for a whole system, which is a Capability.
 - Colour references must use identifiers (e.g., `1.1`) from the visual design standard.
 - Cross-references must use folder-relative paths and must not append `/index.md`.
 

@@ -46,9 +46,10 @@ the frontmatter is the model and the diagram is wrong.
 
 ## The zoom pair
 
-The composite diagram is the inside view of this SBB, C4 levels 2 and 3. Its complement is the
-outside view, C4 level 1: the C4 System Context diagram of the parent Capability or top-level
-ABB, where this SBB appears as one `[Software System]` node inside the boundary.
+The composite diagram is the inside view of this SBB, one container opened up. Its complement
+is the outside view, C4 level 1: the C4 System Context diagram of the parent Capability, where
+this SBB appears as one `[Software System]` node inside the boundary. An ABB never carries
+that diagram (`standard-building-block-calibration.md`).
 
 After authoring a composite SBB, offer to create or refresh that Context diagram, as a
 `c4-context.md` alongside the system's `index.md`. Follow the C4 context diagram standard:

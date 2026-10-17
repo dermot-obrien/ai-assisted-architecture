@@ -30,12 +30,13 @@ Do not proceed on an assumed contract.
 
 | Standard | File name to search for | Copy in `references/standards/` | When |
 |----------|-------------------------|-------------------------------|------|
+| Building block calibration | `standard-building-block-calibration.md` | `building-blocks/standard-building-block-calibration.md` | Always, before an identifier is assigned |
 | ABB document | `standard-abb-document.md` | `building-blocks/architecture-building-blocks/standard-abb-document.md` | Always |
 | ABB diagram | `standard-abb-diagram.md` | `building-blocks/architecture-building-blocks/standard-abb-diagram.md` | Always |
 | Traceability | `standard-traceability.md` | `standard-traceability.md` | Always |
 | Frontmatter | `standard-frontmatter.md` | `standard-frontmatter.md` | Always, v1.1.0 or later |
 | Visual design | `visual-design-standard.md` | `visual-design/visual-design-standard.md` | Always |
-| C4 context diagram | `standard-c4-context-diagram.md` | `building-blocks/standard-c4-context-diagram.md` | Top-level ABBs only |
+| C4 context diagram | `standard-c4-context-diagram.md` | `building-blocks/standard-c4-context-diagram.md` | Only when a context view is produced for the parent capability |
 
 For an agent-native workspace, meaning AI-majority engineering, also load
 `agent-types.md`, `principles.md`, `operating-model.md` and `provenance.md` from the

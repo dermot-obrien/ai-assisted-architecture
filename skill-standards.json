@@ -2,6 +2,7 @@
   "$comment": "The standards each skill carries a copy of. A path under standards/ is copied to skills/<skill>/references/standards/<the rest of the path>; a path ending in / copies that folder; {from, to} copies a file outside standards/ to a path inside the skill. Images a copied Markdown file embeds are copied too. Written by node scripts/sync-skill-standards.mjs, checked in CI with --check.",
   "skills": {
     "aaa-create-abb": [
+      "standards/building-blocks/standard-building-block-calibration.md",
       "standards/building-blocks/architecture-building-blocks/standard-abb-document.md",
       "standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md",
       "standards/standard-traceability.md",
@@ -16,6 +17,7 @@
     ],
     "aaa-create-capability": [
       "standards/capabilities/standard-capability-document.md",
+      "standards/building-blocks/standard-building-block-calibration.md",
       "standards/capabilities/standard-capability-diagram.md",
       "standards/standard-traceability.md",
       "standards/standard-frontmatter.md",
@@ -63,6 +65,7 @@
       "standards/workspace/aaa-config.yaml"
     ],
     "aaa-create-sbb": [
+      "standards/building-blocks/standard-building-block-calibration.md",
       "standards/building-blocks/solution-building-blocks/standard-sbb-document.md",
       "standards/building-blocks/solution-building-blocks/standard-sbb-diagram.md",
       "standards/building-blocks/standard-c4-context-diagram.md",

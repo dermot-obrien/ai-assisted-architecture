@@ -30,6 +30,7 @@ Do not proceed on an assumed contract.
 
 | Standard | File name to search for | Copy in `references/standards/` | When |
 |----------|-------------------------|-------------------------------|------|
+| Building block calibration | `standard-building-block-calibration.md` | `building-blocks/standard-building-block-calibration.md` | Always, before an identifier is assigned |
 | SBB document | `standard-sbb-document.md` | `building-blocks/solution-building-blocks/standard-sbb-document.md` | Always |
 | SBB diagram | `standard-sbb-diagram.md` | `building-blocks/solution-building-blocks/standard-sbb-diagram.md` | Always |
 | C4 context diagram | `standard-c4-context-diagram.md` | `building-blocks/standard-c4-context-diagram.md` | Composite SBBs, for the zoom-out companion |

@@ -65,7 +65,8 @@ hex values, keeping the token numbering the diagram standards refer to. Each ski
 [standards/standards-index.md](../standards/standards-index.md) lists every standard and the
 precedence rules. Apart from visual design, the standards are part of the method and are not
 meant to be overridden: traceability, strategy, platform, capability, bounded context, ABB,
-SBB, C4 context diagram, service, front matter and the definition ladder.
+SBB, building block calibration, C4 context diagram, service, front matter and the definition
+ladder.
 
 ## The golden thread
 

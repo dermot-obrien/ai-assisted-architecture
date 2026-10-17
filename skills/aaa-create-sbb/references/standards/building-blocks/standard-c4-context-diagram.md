@@ -12,7 +12,7 @@ created: 2026-06-06
 last_modified: 2026-06-06
 owner: "Architecture Team"
 triggers:
-  - "Producing a stakeholder-facing context view for a Capability or top-level ABB"
+  - "Producing a stakeholder-facing context view for a Capability"
   - "Showing a system's actors and external-system integrations"
   - "Documenting the outside of a system before drilling into its internals"
 ---
@@ -26,10 +26,10 @@ C4 Context complements, and does not replace, the ABB component diagram and the 
 
 ## When to use
 
-- Every **system-level Capability** or **top-level ABB** SHOULD have a C4 Context diagram. "Top-level" means an ABB that represents a whole system a stakeholder would name (e.g. a trading platform, a payments system), not a fine-grained internal building block.
+- Every **system-level Capability** SHOULD have a C4 Context diagram. The system is the capability. An ABB is one container inside it and never carries a context diagram of its own ([Building Block Calibration Standard](./standard-building-block-calibration.md)).
 - Use it as the **first** diagram a non-technical stakeholder sees — before the ABB component diagram or any SBB diagram.
 - Use it to make the system's **integration surface** explicit: every external system it depends on, and every persona that interacts with it.
-- Do **not** produce one for every ABB. Fine-grained ABBs that are only ever seen *inside* a larger system are covered by their component diagram; a context diagram at that altitude adds noise, not clarity.
+- Do **not** produce one for an ABB. An ABB's component diagram covers its inside, and the context view it appears in is its capability's.
 
 
 ## Why Mermaid `flowchart`, not `C4Context`
@@ -110,16 +110,18 @@ C4 is an external modelling notation; AAA is the framework. The mapping is expli
 
 | C4 Context element | AAA construct | Notes |
 |---|---|---|
-| The system (the boundary) | A **Capability** or a **top-level ABB** | The boundary names the thing the framework already catalogues; the diagram does not introduce a new artefact. |
-| Internal software system (node inside the boundary) | An **ABB** within the capability, or a **realising SBB / Service** | At capability altitude these are usually ABBs; at platform altitude they may be the SBBs/Services that realise them. State which in the surrounding prose. |
+| The system (the boundary) | A **Capability** | The boundary names the thing the framework already catalogues; the diagram does not introduce a new artefact. An ABB is never the boundary ([Building Block Calibration Standard](./standard-building-block-calibration.md)). |
+| Internal software system (node inside the boundary) | An **ABB** within the capability, or a **realising SBB / Service** | Each node is one container. At capability altitude these are usually ABBs; at platform altitude they may be the SBBs/Services that realise them. State which in the surrounding prose. |
 | External software system | Often an ABB **`requires`** dependency, or an out-of-scope third party | Where an external system corresponds to a logical dependency the ABB declares, cite the `requires` entry so the context view and the gap-analysis data agree. Pure third-party SaaS with no AAA artefact is just an external node. |
 | Person / persona / actor | **No AAA equivalent** | This is C4's unique addition. AAA's golden thread runs Outcome → Platform → Bounded Context → ABB → SBB → Service and has no first-class "person" entity. Persons appear *only* on the context diagram; do not invent an artefact for them. |
 | Relationship (edge) | An interaction, not an `Interface` | Context edges are coarse ("places orders"); they are not the `I<N>` interfaces of the ABB document. An interface may underlie an edge, but the edge is the stakeholder-level summary. |
 
-The single most important mapping rule: **the "system" in a context diagram is always an existing AAA Capability or top-level ABB.** If you find yourself drawing a context diagram for something with no catalogued home, create the Capability or ABB first.
+The single most important mapping rule: **the "system" in a context diagram is always an existing AAA Capability.** If you find yourself drawing a context diagram for something with no catalogued home, create the Capability first.
 
 
 ## Relationship to composite SBBs (zoom-in)
+
+Under the [Building Block Calibration Standard](./standard-building-block-calibration.md) the zoom-in on a capability is the pattern that realises it, whose boxes are its containers. A composite SBB diagram is kept for one deployable unit with internal seams, and where one exists the pairing below still holds.
 
 A C4 Context diagram and a [composite SBB diagram](solution-building-blocks/standard-sbb-diagram.md#composite-structure-diagrams-mermaid) are **two views of the same system at adjacent zoom levels**:
 
@@ -144,11 +146,11 @@ When both exist for the same system, the **external systems** on the context dia
 
 Before finalising a C4 Context diagram, verify:
 
-1. [ ] **Right altitude**: Is the system a Capability or a *top-level* ABB (something a stakeholder would name), not a fine-grained internal ABB?
+1. [ ] **Right altitude**: Is the system a Capability (something a stakeholder would name), and not an ABB?
 2. [ ] **`flowchart`, not `C4Context`**: Did you render with a plain `flowchart` and the mandated `classDef` palette (not the experimental `C4Context` type)?
 3. [ ] **Three node types**: Does every node carry a `[Person]` / `[Software System]` / `[External System]` tag and the matching `:::person` / `:::system` / `:::external` class?
 4. [ ] **Node content**: Does every node have Name + `[Type]` + a 2–4 word description?
 5. [ ] **Boundary**: Are internal systems inside one dashed boundary subgraph, with persons (left) and external systems (right) outside it?
 6. [ ] **Edges**: Are edges directed initiator → recipient, with verb labels where they help?
-7. [ ] **AAA mapping documented**: Does the surrounding prose state which AAA construct the boundary is (Capability or ABB), and reconcile external systems with `requires` dependencies where applicable?
+7. [ ] **AAA mapping documented**: Does the surrounding prose name the Capability the boundary is, and reconcile external systems with `requires` dependencies where applicable?
 8. [ ] **Zoom-in link**: If the system has a composite SBB, is the context diagram cross-linked to it as the zoom-in view (and do the external systems reconcile with the composite's required ports)?

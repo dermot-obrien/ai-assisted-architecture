@@ -18,6 +18,8 @@ triggers:
 
 This standard defines the structure, sections, and conventions for a Solution Building Block document. An SBB realises an Architecture Building Block (ABB) using specific products, services, and deployment patterns.
 
+An SBB has the grain of its ABB: one C4 container, with its products chosen. The [Building Block Calibration Standard](../standard-building-block-calibration.md) applies before this one. No SBB is created for a component or for code, and an assembly of separately deployed parts is a system, written as a physical pattern.
+
 
 ## File Structure
 
@@ -342,6 +344,8 @@ The entire panel is a **single Draw.io text cell** containing all sections as on
 
 Most SBBs are **simple**: one boundary, a flat product mapping from ABB components to products. A **composite** SBB is instead an *assembly of sub-SBBs* — it has internal structure worth modelling explicitly. The framework models that structure with the UML 2 composite-structure grammar: **parts**, **ports**, and **connectors**.
 
+The [Building Block Calibration Standard, section 5](../standard-building-block-calibration.md#5-above-the-container-systems-and-patterns) bounds this form. An SBB is one C4 container, so a composite SBB models the seams inside one deployable unit. Where the parts would each pass the container test, with their own deployment and lifecycle, the assembly is a system, and a system is a physical pattern realising the capability, not an SBB. The worked example at [`example-composite/`](./example-composite/) predates that rule and shows the notation; its parts, each with its own runtime service, would today be the boxes of a physical pattern.
+
 | UML concept | Meaning in an SBB | Frontmatter field |
 |---|---|---|
 | **Part** | A typed role inside the composite, normally played by a sub-SBB (composite-of-composites). | `parts[]` |
@@ -355,7 +359,7 @@ The composite structure is declared in frontmatter (see [Frontmatter Standard §
 
 Use a **composite SBB** when **two or more** of the following hold:
 
-- The realisation decomposes into **sub-SBBs that are independently versioned, deployed, or owned** (each is a candidate for its own folder and its own runtime Service).
+- The realisation has **internal seams worth naming**, such as modules of one product family that are configured or owned separately, while the whole still ships as **one deployable unit**. Parts that would each be deployed on their own make a system, which is a physical pattern, not a composite SBB.
 - The internal wiring is itself an architectural decision — the **assembly** of parts, not just the parts, carries meaning (e.g. an order-execution part must sit behind a risk-check part).
 - The SBB exposes a **small, stable boundary contract** (a handful of ports) over a **larger, churning interior** — the classic Thinnest-Viable-Platform / blast-radius-containment shape ([Agent-Native principle P8](../../agent-native/principles.md)).
 - You want the parts to be **substitutable**: a part typed by a sub-SBB can be swapped for a sibling sub-SBB that provides the same port contracts.
@@ -433,6 +437,7 @@ Before finalising an SBB document, verify:
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
 10. [ ] **Composite (if applicable)**: If `composite: true`, are `parts` (≥1) and `connectors` (≥1) declared, is there a §2.10 Composite Structure section, and does §2.1 use the Mermaid composite-structure diagram?
 11. [ ] **Composite traceability (if applicable)**: Does every `parts[].sbb` appear in `contains`, with the inverse `part_of` on the sub-SBB, and does every boundary `provided` port link to a parent ABB interface via `abb_interface`?
+12. [ ] **Grain**: Is the SBB one C4 container, the same container as its ABB, per the [Building Block Calibration Standard](../standard-building-block-calibration.md)? Is nothing in the product mapping an SBB in its own right, and would the parts of a composite not each be deployed on their own?
 
 
 ## Quick Reference Sections
