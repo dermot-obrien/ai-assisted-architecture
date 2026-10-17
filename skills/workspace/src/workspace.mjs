@@ -234,7 +234,7 @@ export function planClean(repo, { self = SKILL_DIR } = {}) {
         actions.push({
           op: "rm",
           path: rel,
-          why: !lock[name] ? "an installed copy of a skill .agents/skills.json no longer declares"
+          why: !lock[name] ? "an installed copy the lock does not name; install puts it back if .agents/skills.json declares it"
             : retiredName ? "an installed copy of a retired skill; install puts it back only if the declared release still has it"
             : "an installed copy; install puts it back from the lock",
         });
