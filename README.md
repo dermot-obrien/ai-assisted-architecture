@@ -37,7 +37,7 @@ Each level takes its definition from the practice that owns it, and the handover
 
 ## Skills
 
-Eight skills write one kind of artefact each, keeping the thread from outcome to service intact, and one reads the model and reports how far each capability has been defined.
+Eight skills write one kind of artefact each, keeping the thread from outcome to service intact, one reads the model and reports how far each capability has been defined, and one checks a whole repository against the continuum.
 
 | Skill | Writes |
 |---|---|
@@ -50,8 +50,9 @@ Eight skills write one kind of artefact each, keeping the thread from outcome to
 | [`aaa-create-service`](docs/skills/aaa-create-service.md) | Services, the deployable units, each realising an SBB inside one context |
 | [`aaa-create-runtime-agent`](docs/skills/aaa-create-runtime-agent.md) | Autonomous runtime agents with guardrails, capability scope and provenance |
 | [`aaa-rung`](docs/skills/aaa-rung.md) | Read-only. Each capability's rung on the definition ladder, per flow, and what blocks the next |
+| [`aaa-continuum`](docs/skills/aaa-continuum.md) | Read-only. Every page and register of an architecture against the continuum's standards, with each disagreement named; scaffolds the layout for a new repository |
 
-The `aaa-` prefix was a namespace, not a meaning. The next major version folds the nine into one skill named `architecture` with a flow per level (`/architecture platform`, `/architecture abb`, `/architecture service`, `/architecture rung`), as `work` and `research` did in their bundles, and keeps the `aaa-*` names as aliases for a release. Until then the nine install and run as they are.
+The `aaa-` prefix was a namespace, not a meaning. The next major version folds the ten into one skill named `architecture` with a flow per level (`/architecture platform`, `/architecture abb`, `/architecture service`, `/architecture rung`, `/architecture check`), as `work` and `research` did in their bundles, and keeps the `aaa-*` names as aliases for a release. Until then the ten install and run as they are.
 
 Every skill follows the [Agent Skills specification](https://agentskills.io/specification). CI validates them on every pull request with the specification's reference validator, `skills-ref`, and with `scripts/validate-skills.mjs`, which also checks that relative links resolve and warns when a `SKILL.md` body passes the specification's 500-line or 5,000-token guidance.
 

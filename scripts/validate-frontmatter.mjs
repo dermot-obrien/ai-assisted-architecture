@@ -20,7 +20,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 
@@ -55,10 +55,12 @@ const KIND_SCHEMA = {
   outcome: 'outcome.schema.json',
   'use-case': 'use-case.schema.json',
   platform: 'platform.schema.json',
+  product: 'product.schema.json',
   capability: 'capability.schema.json',
   'bounded-context': 'bounded-context.schema.json',
   abb: 'abb.schema.json',
   sbb: 'sbb.schema.json',
+  pattern: 'pattern.schema.json',
   service: 'service.schema.json',
   'decision-record': 'decision-record.schema.json',
   snapshot: 'snapshot.schema.json',

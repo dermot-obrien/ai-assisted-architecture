@@ -5,7 +5,7 @@ license: CC-BY-4.0
 compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  version: "0.5.3"
+  version: "0.5.4"
 ---
 
 # Create Strategy (Outcome and Use Case)
