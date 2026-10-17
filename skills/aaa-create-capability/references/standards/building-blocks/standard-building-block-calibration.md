@@ -11,8 +11,8 @@ triggers:
   - "Deciding whether something is an ABB, an SBB, a component inside one, or a whole system"
   - "Creating or reviewing an ABB or SBB, before its identifier is assigned"
   - "Drawing a C4 context, container or component view of a capability"
-  - "Promoting a pattern's local roles to ABBs or SBBs"
-  - "Reviewing a catalogue or a pattern for building blocks that are too fine or too coarse"
+  - "Promoting an architecture pattern's local roles to ABBs, or its ABBs to the SBBs of a reference architecture"
+  - "Reviewing a catalogue, an architecture pattern or a reference architecture for building blocks that are too fine or too coarse"
 ---
 
 # Building Block Calibration Standard
@@ -25,7 +25,7 @@ The rule in one line: no ABB or SBB exists below the container level. There is n
 > - [ABB Document Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/architecture-building-blocks/standard-abb-document.md): what an ABB document holds, once the grain is right.
 > - [SBB Document Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/solution-building-blocks/standard-sbb-document.md): what an SBB document holds, including the composite form.
 > - [C4 System Context Diagram Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/standard-c4-context-diagram.md): the context view, which belongs to a capability.
-> - [Definition Ladder Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md): how patterns, ABBs and SBBs evidence a capability's rung.
+> - [Definition Ladder Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md): how architecture patterns, reference architectures, ABBs and SBBs evidence a capability's rung.
 > - [Traceability & Hierarchy Standard](../standard-traceability.md): the golden thread the grain sits in.
 
 ## 1. The C4 levels
@@ -56,10 +56,10 @@ C4 also has three supplementary views: the system landscape (many systems), the 
 | Deployment node | Infrastructure, recorded on a deployment view or as a Deployment Node (`DN-NNN`) where the workspace keeps them | Infrastructure that containers run on is not a container and is not drawn as a box in a container-grain pattern. |
 | Relationship at context level | A capability-to-capability or actor-to-capability interaction | A verb label, no protocol. Not an `I<N>` interface. |
 | Relationship at container level | An ABB interface (`I<N>`), realised by an SBB port or connector with its protocol | The ABB owns the contract; the SBB owns the protocol and product wiring. |
-| Container diagram | A pattern | A pattern is the container diagram of a capability at one of three abstractions: conceptual (local roles), logical (ABBs), physical (SBBs). The abstraction is derived from its boxes ([Definition Ladder Standard, section 2.1](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md#21-a-patterns-abstraction)). |
+| Container diagram | An architecture pattern or a reference architecture | The container diagram of a capability at one of three abstractions: an architecture pattern at conceptual (local roles) or logical (ABBs), a reference architecture at physical (SBBs). The abstraction is derived from the boxes ([Definition Ladder Standard, section 2.1](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/capabilities/standard-definition-ladder.md#21-a-patterns-abstraction)). |
 | Component diagram | The ABB's component diagram (section 2.1 of its document) | One container opened up. The boxes inside are components, never ABBs. |
 | System landscape | A Platform (`PL-NNN`) and the capabilities it provides | The platform diagram standard covers it. |
-| Dynamic view | A pattern's scenarios, stepping between its boxes over its interfaces | Unchanged. |
+| Dynamic view | The scenarios of an architecture pattern or a reference architecture, stepping between its boxes over its interfaces | Unchanged. |
 | Deployment view | Services placed on deployment nodes | The runtime grouping covers it. |
 
 ## 3. The container test
@@ -75,7 +75,7 @@ Apply the test before assigning an identifier. Ask of the candidate:
 |---|---|---|
 | Yes to the first or second question, and usually the third | A container | An ABB, realised by an SBB, deployed as a Service |
 | No to all four, and it lives inside something that passed | A component | A row in its container's ABB document (section 2.2) and SBB product mapping |
-| It is made of several things that passed, and a stakeholder would name the whole | A system | A Capability with a Bounded Context, and a pattern over its ABBs |
+| It is made of several things that passed, and a stakeholder would name the whole | A system | A Capability with a Bounded Context, and an architecture pattern over its ABBs |
 | Containers run on it | A deployment node | A deployment view, not a building block |
 | A class, a function, a module, a table, a prefix in a store | Code, or a detail of a container | The repository, or a sentence in the container's document |
 
@@ -105,17 +105,17 @@ A component is promoted to an ABB only when it comes to pass the container test:
 
 An existing ABB or SBB that fails the container test is folded into the container it belongs to. Its content becomes a component entry in that container's document, its identifier is retired and never reused, and its revision history records the fold with a link to the container. Interfaces it declared become internal to the container and are removed from the interface table, unless they cross the container's boundary, in which case they move to the container's own table.
 
-## 5. Above the container: systems and patterns
+## 5. Above the container: systems, architecture patterns and reference architectures
 
-A system is not an ABB. The ABB document standard and the C4 context standard once allowed a top-level ABB to stand for a whole system and carry its context diagram. Under this standard the context diagram belongs to the capability, the system's containers are the capability's ABBs, and the pattern that realises the capability is the container diagram.
+A system is not an ABB. The ABB document standard and the C4 context standard once allowed a top-level ABB to stand for a whole system and carry its context diagram. Under this standard the context diagram belongs to the capability, the system's containers are the capability's ABBs, and the architecture pattern that realises the capability is its container diagram, made concrete by a reference architecture.
 
-The three abstractions of a pattern are the same container diagram three times: local roles before the catalogue knows the containers, ABBs once it does, and SBBs once products are chosen. A box in a pattern must therefore pass the container test whatever its abstraction. A local role that would not pass it is a component of another box and is folded into that box's row, so that promoting the roles later produces ABBs at the right grain.
+The three abstractions are the same container diagram three times: an architecture pattern with local roles before the catalogue knows the containers, an architecture pattern with ABBs once it does, and a reference architecture with SBBs once products are chosen. A box in either kind must therefore pass the container test whatever the abstraction. A local role that would not pass it is a component of another box and is folded into that box's row, so that promoting the roles later produces ABBs at the right grain.
 
-A composite SBB is read with this rule. An SBB whose parts are themselves SBBs with their own deployment is a system at container grain, and that is a physical pattern realising the capability, not an SBB. The composite form in the [SBB Document Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/solution-building-blocks/standard-sbb-document.md#composite-sbbs) is kept for one deployable unit with internal seams worth naming, such as a product family that ships as one deployment. Where the parts would each pass the container test, write a pattern.
+A composite SBB is read with this rule. An SBB whose parts are themselves SBBs with their own deployment is a system at container grain, and that is a reference architecture realising the capability, not an SBB. The composite form in the [SBB Document Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/solution-building-blocks/standard-sbb-document.md#composite-sbbs) is kept for one deployable unit with internal seams worth naming, such as a product family that ships as one deployment. Where the parts would each pass the container test, write a reference architecture.
 
 ## 6. Infrastructure and cross-cutting blocks
 
-Infrastructure that containers run on is a deployment node. Catalogued infrastructure blocks such as a compute orchestration platform or a network connectivity block are kept for the deployment view and for the capabilities they realise. They are not drawn as boxes in a container-grain pattern, because every box in such a pattern must be a container that runs on them.
+Infrastructure that containers run on is a deployment node. Catalogued infrastructure blocks such as a compute orchestration platform or a network connectivity block are kept for the deployment view and for the capabilities they realise. They are not drawn as boxes in an architecture pattern or a reference architecture, because every box in either must be a container that runs on them.
 
 The three cross-cutting concerns every ABB and SBB addresses (identity and access, observability, governance and policy) are containers in their own right, catalogued once as ABBs and realised once as SBBs. A block's cross-cutting sections (2.5 to 2.7 of its document) say how it uses those containers. Drawing the three as groups inside a component diagram is a presentation convention of the diagram standards and creates no building block.
 
@@ -123,7 +123,7 @@ The three cross-cutting concerns every ABB and SBB addresses (identity and acces
 
 A person has no artefact. An external system a container depends on is either an ABB the workspace declares in `requires` or an external node with no artefact, exactly as the [C4 Context Standard](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/standard-c4-context-diagram.md#how-c4-context-maps-onto-aaa-constructs) says. An external system is never given an ABB or SBB merely so that it can be drawn.
 
-## 8. Calibrating a catalogue or a pattern
+## 8. Calibrating a catalogue, an architecture pattern or a reference architecture
 
 A calibration review walks every block and applies the container test. The outcome for each block is one of:
 
@@ -131,8 +131,8 @@ A calibration review walks every block and applies the container test. The outco
 |---|---|
 | Passes | Nothing |
 | Fails, and belongs inside a container | Fold it into that container (section 4) |
-| Is a system | Replace it with a capability and a pattern; its former components become the pattern's boxes if they pass the test |
-| Is a deployment node | Keep it for the deployment view; remove it from container-grain patterns |
+| Is a system | Replace it with a capability and an architecture pattern; its former components become the boxes if they pass the test |
+| Is a deployment node | Keep it for the deployment view; remove it from architecture patterns and reference architectures |
 
 A fold or a replacement changes nothing on the definition ladder by itself. R2 asks that the building blocks a capability needs are named, and naming them at the right grain is what the review does. A rung is lost only where the evidence a rung requires was attached to a retired block and has not been carried to its container.
 
@@ -142,8 +142,8 @@ A fold or a replacement changes nothing on the definition ladder by itself. R2 a
 |---|---|---|
 | ABB Document Standard, section 2.1.1 | A top-level ABB carries the context diagram | The capability carries it; an ABB is never a system |
 | C4 Context Standard, mapping table | The boundary is a Capability or a top-level ABB | The boundary is a Capability |
-| SBB Document Standard, composite SBBs | Parts independently deployed make an SBB composite | Parts independently deployed make a system, written as a physical pattern |
-| Definition Ladder Standard, section 2.1 | A pattern's abstraction is derived from its boxes | Unchanged, with the added requirement that every box is a container |
+| SBB Document Standard, composite SBBs | Parts independently deployed make an SBB composite | Parts independently deployed make a system, written as a reference architecture |
+| Definition Ladder Standard, section 2.1 | The abstraction of an architecture pattern or a reference architecture is derived from its boxes | Unchanged, with the added requirement that every box is a container |
 
 ## AI Agent Self-Verification Checklist
 
@@ -152,7 +152,7 @@ Before assigning or keeping an ABB or SBB identifier, verify:
 1. [ ] **Container test.** Does the block pass the test in section 3: its own process or deployment, or its own data, and replaceable on its own?
 2. [ ] **Nothing below.** Is there no ABB or SBB for anything that is a component or code? Do components appear only as rows and bullets inside their container's document?
 3. [ ] **Nothing above.** Is there no ABB that stands for a whole system? Does the system have a Capability, and does the context diagram sit on the capability?
-4. [ ] **Pattern boxes.** Does every box in a pattern pass the container test, whatever the pattern's abstraction?
-5. [ ] **Composite.** Where an SBB is composite, do its parts fail the container test on their own? If they would pass, is it written as a physical pattern instead?
-6. [ ] **Infrastructure.** Are deployment nodes kept off container-grain patterns?
+4. [ ] **Boxes.** Does every box in an architecture pattern or a reference architecture pass the container test, whatever its abstraction?
+5. [ ] **Composite.** Where an SBB is composite, do its parts fail the container test on their own? If they would pass, is it written as a reference architecture instead?
+6. [ ] **Infrastructure.** Are deployment nodes kept off architecture patterns and reference architectures?
 7. [ ] **Folds recorded.** Where a block was folded or replaced, does its revision history say so and link to its container or capability, and is its identifier retired?

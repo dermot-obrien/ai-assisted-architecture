@@ -54,7 +54,7 @@
 <rect x="440" y="342" width="776" height="26" fill="#FFFFFF" stroke="#2A6F4E" stroke-width="1.4" rx="4" stroke-dasharray="5 3"/>
 <text x="448" y="359" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Complicated-subsystem team's component</tspan><tspan fill="#3A4A66" font-size="11">  where deep expertise is isolated behind an interface</tspan></text>
 <rect x="24" y="376" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
-<text x="32" y="393" font-size="12" font-weight="600" fill="#1B2A4A">Pattern</text>
+<text x="32" y="393" font-size="12" font-weight="600" fill="#1B2A4A">Architecture pattern and reference architecture</text>
 <line x1="324" y1="389" x2="434" y2="389" stroke="#C9CED8" stroke-width="1" stroke-dasharray="3 3"/>
 <text x="448" y="393" font-size="11" fill="#8A94A6" font-style="italic">not a concept here</text>
 <rect x="24" y="410" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>

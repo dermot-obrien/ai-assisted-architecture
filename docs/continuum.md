@@ -12,13 +12,13 @@ The intention is a single continuum that an architect, an engineer and an agent 
 
 ## The continuum in one picture
 
-![The continuum from the platform landscape through platform, capability, bounded context, architecture building block, solution building block and service to deployment node, with outcomes, use cases, domains and products on the left, and patterns, considerations and contracts on the right](continuum.svg)
+![The continuum from the platform landscape through platform, capability, bounded context, architecture building block, solution building block and service to deployment node, with outcomes, use cases, domains and products on the left, and architecture patterns, reference architectures, considerations and contracts on the right](continuum.svg)
 
 The picture is `continuum.svg`; `continuum.drawio` beside it is the same diagram as an editable, uncompressed draw.io source, to redraw from when a level or a relationship changes, and the SVG is exported from it.
 
 [Views of the continuum](continuum-views.md) shows the same continuum in the words of C4, TOGAF, domain-driven design, ArchiMate, platform engineering, Team Topologies and the Well-Architected frameworks, one diagram each.
 
-Three bands run across the picture. The demand space (landscape, platform, capability) says who owns what and what must be possible; it is demand rather than problem because what asks for architecture is as often an opportunity as a problem. The solution space (bounded context, architecture building block, solution building block) says how it is structured and built. The runtime (service, deployment node) says what runs where. Patterns sit beside the solution space because they compose building blocks at any scope; products sit beside the whole thing because they are what a consumer is offered and what a team runs.
+Three bands run across the picture. The demand space (landscape, platform, capability) says who owns what and what must be possible; it is demand rather than problem because what asks for architecture is as often an opportunity as a problem. The solution space (bounded context, architecture building block, solution building block) says how it is structured and built. The runtime (service, deployment node) says what runs where. Architecture patterns and reference architectures sit beside the solution space because they compose building blocks at any scope; products sit beside the whole thing because they are what a consumer is offered and what a team runs.
 
 ## The levels
 
@@ -90,26 +90,22 @@ The source is again TOGAF: the solution building block sits in the Solutions Con
 
 In the bundle a solution building block is `SBB-NNN`, authored by `aaa-create-sbb`, with `realises` ABBs, `products` (to be renamed `technologies`, see below), `product_mapping`, `cloud_provider`, `deployment_model` and `realised_by_services`. Patternode's `building-blocks/sbbs/` is a placeholder. Patternode's word for a vendor's offering is technology, and the bundle adopts it.
 
-### Pattern
+### Architecture pattern and reference architecture
 
-A pattern is a reusable architecture model: building blocks, the interfaces between them, and the scenarios that walk across them, at any scope from one recurring problem to a whole platform. A solution design instantiates a pattern for one consumer. It answers: how is this kind of problem solved, in a form others can build from.
+The continuum has two kinds of pattern document, and never a pattern on its own. An architecture pattern is technology-agnostic: a reusable arrangement of building blocks, the interfaces between them and the scenarios that walk across them, at any scope from one recurring problem to a whole platform, with every box a local role (conceptual) or an architecture building block (logical). A reference architecture is technology-specific: the same arrangement with products chosen, every box a solution building block or a named technology (physical), and it names the architecture patterns it applies, one or more, as a solution building block realises an architecture building block. A solution design instantiates a reference architecture for one consumer. Between them they answer: how is this kind of problem solved, in a form others can build from, and how is it built here.
 
-The word comes from Alexander through the design patterns literature: a solution to a recurring problem in a context, with the forces it balances. Len Bass and colleagues add the distinction that matters here: an architectural pattern is a set of constraints on element types and their interactions, not itself an architecture. The bundle's pattern construct, authored by the `pattern` skill in [architecture-pattern](https://github.com/dermot-obrien/architecture-pattern), has two independent axes:
+The word comes from Alexander through the design patterns literature: a solution to a recurring problem in a context, with the forces it balances. Len Bass and colleagues add the distinction that matters here: an architectural pattern is a set of constraints on element types and their interactions, not itself an architecture. Both kinds are authored by the `pattern` skill in [architecture-pattern](https://github.com/dermot-obrien/architecture-pattern), whose construct has two independent axes:
 
 | Axis | Values | Set how |
 |---|---|---|
 | Scope | `problem`; `domain`, `capability-area`, `platform`, `hosting-profile`, `epic` | Declared in front matter as `pattern_scope` |
 | Abstraction | `conceptual`, `logical`, `physical`, `mixed` | Derived by `model validate` from the kinds of box, never declared |
 
-A pattern names the capabilities it realises, and the definition ladder reads its abstraction: a logical pattern, every box an architecture building block, is what R3 Decided needs; a physical pattern with a cost model, every box a solution building block or technology, is what R4 Buildable needs.
+On the continuum the type decides the abstraction a document may have: an architecture pattern is conceptual or logical, a reference architecture is physical, and a mixed document is one still being written. Every document declares its type as `pattern_type` (`architecture-pattern` or `reference-architecture`), takes its identifier from that type's series (`AP-NNN` for an architecture pattern, `RA-NNN` for a reference architecture), so that the kind is read from the identifier alone, and a reference architecture records the architecture patterns it applies in `implements`, a list. A repository binds the two types in `[suite.pattern.types.*]` of its binding file, each with its label, series and how physical it must be, and `model validate` warns when a document's boxes do not fit its type. Each names the capabilities it realises, and the definition ladder reads them: an architecture pattern at logical abstraction, every box an architecture building block, is what R3 Decided needs; a reference architecture with a cost model, every box a solution building block or technology, is what R4 Buildable needs.
 
-### Architecture pattern and reference architecture
+The practice literature does not agree on the words, and the bundle does not pretend otherwise. Philippe Kruchten defines a reference architecture as a predefined architectural pattern, or set of patterns, possibly partially or completely instantiated, designed and proven for use in particular business and technical contexts. Bass defines it as a reference model mapped onto software elements. Angelov, Grefen and Greefhorst list what one contains: domain rules, standards, software and hardware elements, styles and patterns, and best practice. What the definitions share is that a reference architecture is an architecture pattern instantiated towards technology, which is exactly the abstraction axis above. The clearest contemporary evidence is the cloud vendors' own catalogues: the AWS Architecture Center and the Azure Architecture Center publish reference architectures that are physical by construction, every box a named service, each applying architecture patterns the same centres publish separately, and the Well-Architected lenses and perspectives (serverless, SaaS, machine learning, generative AI) are the same idea at the hosting-profile scope. TOGAF's Architecture Continuum adds a second axis, generality: foundation, common systems, industry and organisation-specific architectures. The bundle keeps generality separate from abstraction: generality is a property of the catalogue a document is published in, abstraction is derived from its boxes.
 
-These are two types of pattern, not two constructs. An architecture pattern is technology-agnostic: its boxes are architecture building blocks and local roles, and it is expected to be logical. A reference architecture is technology-specific: its boxes are mainly solution building blocks and technologies, it is expected to be physical, and it names the architecture patterns it applies, one or more, as a solution building block realises an architecture building block.
-
-The practice literature does not agree on the words, and the bundle does not pretend otherwise. Philippe Kruchten defines a reference architecture as a predefined architectural pattern, or set of patterns, possibly partially or completely instantiated, designed and proven for use in particular business and technical contexts. Bass defines it as a reference model mapped onto software elements. Angelov, Grefen and Greefhorst list what one contains: domain rules, standards, software and hardware elements, styles and patterns, and best practice. What the definitions share is that a reference architecture is a pattern instantiated towards technology, which is exactly the abstraction axis above. The clearest contemporary evidence is the cloud vendors' own catalogues: the AWS Architecture Center and the Azure Architecture Center publish reference architectures that are physical by construction, every box a named service, each applying patterns the same centres publish separately, and the Well-Architected lenses and perspectives (serverless, SaaS, machine learning, generative AI) are the same idea at the hosting-profile scope. TOGAF's Architecture Continuum adds a second axis, generality: foundation, common systems, industry and organisation-specific architectures. The bundle keeps generality separate from abstraction: generality is a property of the catalogue a pattern is published in, abstraction is derived from its boxes.
-
-In the bundle a reference architecture records the patterns it applies in `implements`, a list, and a repository names its pattern types in `[suite.pattern.types.*]` of its binding file, each with a label, an identifier series and how physical it must be, and `model validate` warns when a pattern's boxes do not fit its type. With no types bound, every pattern is just a pattern. Patternode chose that: every model is `PAT-NNN` at any scope, with `REF-NNN` kept for the ones first published as reference architectures. Both choices are valid; the two names are a type distinction a repository turns on when its readers need it.
+The `pattern` skill itself leaves its documents untyped unless a repository binds types, and Patternode once chose that: every model `PAT-NNN` at any scope, with `REF-NNN` kept for the ones first published as reference architectures, and Knowledge Store's first catalogue used the same two series. The continuum does not: a document with no type is not yet on it, because its readers cannot tell whether it is a design to reason from or a build to follow.
 
 ### Service, the deployable unit
 
@@ -137,7 +133,7 @@ The source is ArchiMate's node and C4's deployment diagram, and TOGAF's technolo
 
 ### Beside the continuum
 
-Four kinds sit beside the thread rather than on it. An outcome (`OC-NNN`) is a measurable business result a platform owns and a capability serves. A use case (`UC-NNN`) is a set of behaviours that gives an actor an observable result of value, in the UML sense, with owned scenarios. It is not isolated. It supports an outcome, it requires the capabilities that make it possible (which is how demand justifies a capability), it is fulfilled by the features of a product, and it is realised by a pattern, whose scenarios walk the use case's scenarios across the building blocks the use case named as participants. A feature (`FE-NNN`) is something a product does that its users value, stated in the product's own terms and small enough that one story can deliver it; it is the product's unit of behaviour, the thing a use case needs and the thing a change (an improvement) adds or alters, and it is implemented by services in bounded contexts. [From a use case to a solution](#from-a-use-case-to-a-solution) says why the feature is the hinge. The `use-case` skill in architecture-pattern writes it before any design, with participants and interactions in the same model form a pattern uses, so the two can be checked against each other. A consideration (`CN-NNN`) is an open question with more than one credible answer, affecting any artefact on the thread, and a decision record (`DR-NNN`, or `ADR-NNN` where a repository keeps that series) settles it. Interfaces, APIs and events are the contracts between contexts, declared on the building blocks and published as versioned artefacts from the owning context's contract module.
+Four kinds sit beside the thread rather than on it. An outcome (`OC-NNN`) is a measurable business result a platform owns and a capability serves. A use case (`UC-NNN`) is a set of behaviours that gives an actor an observable result of value, in the UML sense, with owned scenarios. It is not isolated. It supports an outcome, it requires the capabilities that make it possible (which is how demand justifies a capability), it is fulfilled by the features of a product, and it is realised by an architecture pattern, whose scenarios walk the use case's scenarios across the building blocks the use case named as participants, and made concrete by the reference architecture that applies it. A feature (`FE-NNN`) is something a product does that its users value, stated in the product's own terms and small enough that one story can deliver it; it is the product's unit of behaviour, the thing a use case needs and the thing a change (an improvement) adds or alters, and it is implemented by services in bounded contexts. [From a use case to a solution](#from-a-use-case-to-a-solution) says why the feature is the hinge. The `use-case` skill in architecture-pattern writes it before any design, with participants and interactions in the same model form a pattern uses, so the two can be checked against each other. A consideration (`CN-NNN`) is an open question with more than one credible answer, affecting any artefact on the thread, and a decision record (`DR-NNN`, or `ADR-NNN` where a repository keeps that series) settles it. Interfaces, APIs and events are the contracts between contexts, declared on the building blocks and published as versioned artefacts from the owning context's contract module.
 
 ## The relationships
 
@@ -158,7 +154,7 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Use case | supports | Outcome | Use case |
 | Use case | requires | Capability | Use case; the capability's demand |
 | Use case | is fulfilled by | Feature, of one or more products | Feature `fulfils` (to be added) |
-| Use case | is realised by | Pattern, through its scenarios | Pattern scenarios; use case participants and interactions |
+| Use case | is realised by | Architecture pattern, through its scenarios | The architecture pattern's scenarios; use case participants and interactions |
 | Product | has | Feature | Feature `part_of` (to be added) |
 | Feature | is implemented by | Service, in one or more bounded contexts | Feature `implemented_by` (to be added) |
 | Team | owns | Product, Platform, Bounded context | Platform `owner`, context `owner`; product owner (to be added) |
@@ -166,32 +162,33 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Product | runs | Service | Product (to be added); service `run_by` (to be added) |
 | Capability | is realised by | Bounded context | Context `realises_capabilities` |
 | Capability | is realised by | Architecture building block | ABB `realises_capabilities`, capability `realised_by_abbs` |
-| Capability | is realised by | Pattern | Pattern `realises`, read by `aaa-rung` |
+| Capability | is realised by | Architecture pattern, reference architecture | `realises` on either, read by `aaa-rung` |
 | Bounded context | contains | Architecture building block | Context `contains`, ABB `part_of` |
 | Bounded context | relates to | Bounded context | Context `relationships`, with the context map pattern |
 | Architecture building block | requires | Architecture building block | ABB `requires` |
 | Architecture building block | is realised by | Solution building block | SBB `realises`, ABB `realised_by` |
-| Pattern | composes | Architecture building block, solution building block, technology, local role | The pattern's Building Blocks table |
-| Reference architecture | applies, one or more | Architecture pattern | Pattern `implements`, a list |
+| Architecture pattern | composes | Architecture building block, local role | Its Building Blocks table |
+| Reference architecture | composes | Solution building block, technology | Its Building Blocks table |
+| Reference architecture | applies, one or more | Architecture pattern | Reference architecture `implements`, a list |
 | Solution building block | is realised by | Service | Service `realises`, SBB `realised_by_services` |
 | Service | is part of | Bounded context | Service `part_of` |
 | Service | owns | Store | Service `stores` (to be added) |
 | Service | is deployed to | Deployment node | Service `deployed_to` |
-| Consideration | affects | Capability, ABB, SBB, pattern | Consideration `affects` |
+| Consideration | affects | Capability, ABB, SBB, architecture pattern, reference architecture | Consideration `affects` |
 | Consideration | is resolved by | Decision record | Consideration `resolved_by` |
 
 ## From a use case to a solution
 
 A business team writes a use case: what someone needs to be able to do, in their words, before anyone designs how. The question is what joins that use case to the solution that ends up running. The bundle answers: through the product, and the joint is the feature.
 
-The chain is this. A stream-aligned team owns a product. A product has features, each something the product does that its users value, in the product's own terms. A use case is fulfilled by one or more features, usually of one product and sometimes of several when the use case is a journey across them. A feature is implemented by services inside bounded contexts, under the patterns that realise the capabilities the use case requires. So from a use case there are two paths down, and both are needed: the design path, use case to capability to pattern to building blocks, which says what must exist; and the delivery path, use case to feature to service, which says what runs and who runs it. The product is where the two meet, because the product is what the team owns and what the consumer gets.
+The chain is this. A stream-aligned team owns a product. A product has features, each something the product does that its users value, in the product's own terms. A use case is fulfilled by one or more features, usually of one product and sometimes of several when the use case is a journey across them. A feature is implemented by services inside bounded contexts, under the reference architectures that realise the capabilities the use case requires. So from a use case there are two paths down, and both are needed: the design path, use case to capability to architecture pattern to building blocks, which says what must exist; and the delivery path, use case to feature to service, which says what runs and who runs it. The product is where the two meet, because the product is what the team owns and what the consumer gets.
 
 | Step | Who | Writes | Links to |
 |---|---|---|---|
 | A need | The business team, stream-aligned to the product | A use case: actor, result, scenarios, participants | The outcome it supports; the capabilities it requires |
 | An offer | The product owner | A feature of the product, or an improvement that adds or changes one | The use cases it fulfils |
-| A design | The architect, with the team | A pattern realising the capability, naming the building blocks | The use case's scenarios, walked across the blocks |
-| A build | The team that owns the bounded context | Services and their stores, under the pattern | The feature they implement; the SBB they realise |
+| A design | The architect, with the team | An architecture pattern realising the capability, naming the building blocks; the reference architecture that applies it, naming the products | The use case's scenarios, walked across the blocks |
+| A build | The team that owns the bounded context | Services and their stores, under the reference architecture | The feature they implement; the SBB they realise |
 | In service | The product's team | The runbook and the measure | The product, now available |
 
 Three alternatives were considered and set aside.
@@ -223,20 +220,20 @@ The diagram is meant to be read as current practice, so each element is marked h
 | Hexagonal layout inside a context | Practice | Cockburn; AWS Prescriptive Guidance, Building hexagonal architectures on AWS; the Azure Architecture Center's tactical DDD |
 | ABB and SBB, the building block properties, ABB before SBB | Standard | TOGAF 10 (2022) building blocks and the Solutions Continuum |
 | An ABB lives inside one bounded context | Choice | This bundle, at the DDD and TOGAF intersection. TOGAF leaves a building block enterprise-wide |
-| Pattern as building blocks, interfaces and scenarios | Practice | arc42 building block and runtime views; C4 component and dynamic diagrams; Kruchten's 4+1; ISO/IEC/IEEE 42010:2022 on views, decisions and rationale |
+| Architecture pattern and reference architecture as building blocks, interfaces and scenarios | Practice | arc42 building block and runtime views; C4 component and dynamic diagrams; Kruchten's 4+1; ISO/IEC/IEEE 42010:2022 on views, decisions and rationale |
 | Scope and abstraction as two axes | Choice | This bundle, mapping TOGAF's generality axis and the conceptual, logical, physical levels |
 | Architecture pattern and reference architecture as abstract and instantiated | Practice | Bass; Kruchten; Angelov, Grefen and Greefhorst; the AWS and Azure Architecture Centers' reference architectures and the Well-Architected lenses, which are physical by construction. The literature agrees on the direction and not on the words |
 | Consideration as an artefact | Choice | This bundle. Industry records the decision (Nygard's ADR, MADR, the AWS Prescriptive Guidance ADR process) and leaves the open question informal |
 | Product requires capability; product runs service | Choice | This bundle, from Patternode's product and capability model. Service ownership by a product team is practice; the recorded relationship is not |
 | Service as the deployable unit | Standard, under another name | C4's container; ArchiMate's artifact assigned to a node; Newman's independently deployable service; Richards and Ford's architecture quantum (2025); Backstage's component of type service |
 | Use case requires capability | Practice | TOGAF capability-based planning and BIZBOK: demand justifies a capability |
-| Use case realised by a pattern | Standard | UML 2.5.1: a use case may be realised by a collaboration (18.1.3), and a pattern is a parameterised collaboration applied through a collaboration use (11.7); the Unified Process calls that collaboration a use-case realization. The bundle collapses the realization and the pattern it applies into one document: the pattern's participants and interactions are the collaboration, its scenarios are the realization's interaction diagrams |
+| Use case realised by an architecture pattern | Standard | UML 2.5.1: a use case may be realised by a collaboration (18.1.3), and a pattern is a parameterised collaboration applied through a collaboration use (11.7); the Unified Process calls that collaboration a use-case realization. The bundle collapses the realization and the pattern it applies into one document: the pattern's participants and interactions are the collaboration, its scenarios are the realization's interaction diagrams |
 | The feature as the hinge between a use case and the services that fulfil it | Choice, with support | Patternode's product model (a feature is what a product does, an improvement changes one); Team Topologies' stream of change; Tune's product taxonomy |
 | Store as a resource of a service, not a service | Choice, with support | This bundle, decision D1. C4 counts a database as a container; Backstage counts it as a resource, which is the side this bundle takes |
 | Module and component inside a deployable | Standard | C4 component; ArchiMate application component; the Azure Architecture Center's aggregate as the lower bound of a service |
 | Deployment node | Standard | ArchiMate 3.2 node and device; C4 deployment node; the Well-Architected frameworks' account, region and runtime guidance |
 | Contracts between contexts | Practice | Evans's published language and open host service; consumer-driven contracts; Backstage's API kind |
-| Quality attributes judged at product and pattern | Standard | The AWS, Azure and Google Cloud Well-Architected pillars; ISO/IEC 25010 |
+| Quality attributes judged at product, architecture pattern and reference architecture | Standard | The AWS, Azure and Google Cloud Well-Architected pillars; ISO/IEC 25010 |
 
 ## Contemporary practice, by source
 
@@ -252,7 +249,7 @@ The frameworks a working architect is measured against today, and where each lan
 | TOGAF Standard, 10th edition (2022) | Modular: the fundamental content plus Series Guides, including Business Capabilities version 2 (2022) | Building blocks, the Enterprise Continuum, capabilities and the capability map | Capability, ABB, SBB, the generality axis of patterns |
 | Open Agile Architecture, O-AA (2020) | The Open Group's standard for agile and digital transformation | Product-centric architecture that adopts domain-driven design, bounded contexts and EventStorming into Open Group practice | Product, domain, bounded context: the Open Group's own endorsement of the DDD and TOGAF intersection this bundle sits on |
 | ArchiMate 3.2 (2022) | Current | Motivation elements; application component and service; artifact, node and device | Outcome; the logical and deployed halves of a service; deployment node |
-| ISO/IEC/IEEE 42010:2022 | Second edition | Architecture descriptions of an entity of interest, with views, decisions and rationale | Why every pattern carries decisions and risks |
+| ISO/IEC/IEEE 42010:2022 | Second edition | Architecture descriptions of an entity of interest, with views, decisions and rationale | Why every architecture pattern and reference architecture carries decisions and risks |
 | The C4 model | Living site | Container, component, deployment node; dynamic diagrams | Service, module, node; scenarios |
 | Backstage system model | Living | Domain, System, Component (service, website, library), Resource, API, with ownership relations in `catalog-info.yaml` | The runtime level as a catalogue: service, store as resource, contracts as API, domain as grouping |
 | CNCF Platforms White Paper (2023) and Platform Engineering Maturity Model | Living | A platform as an integrated collection of capabilities presented for its users; maturity on five aspects at four levels | Platform; the measure of a platform |
@@ -267,7 +264,7 @@ Two things in this table shaped the bundle's choices rather than merely confirmi
 
 ### Workloads and the Well-Architected frameworks
 
-The cloud frameworks do not define platforms, capabilities or building blocks, and they do not need to. They define the workload: the set of services, stores and nodes that together serve a business goal, judged against pillars. On the continuum a workload is what a product runs, so the pillars attach at two points. On a product, as the measures its state is judged by and the review a workload gets. On a pattern, as its Quality Attributes section, where each pillar becomes a scenario with a response measure, and where a hosting-profile pattern is the bundle's equivalent of a lens.
+The cloud frameworks do not define platforms, capabilities or building blocks, and they do not need to. They define the workload: the set of services, stores and nodes that together serve a business goal, judged against pillars. On the continuum a workload is what a product runs, so the pillars attach at two points. On a product, as the measures its state is judged by and the review a workload gets. On an architecture pattern or a reference architecture, as its Quality Attributes section, where each pillar becomes a scenario with a response measure, and where a hosting-profile pattern is the bundle's equivalent of a lens.
 
 ## What the repositories say today
 
@@ -278,13 +275,13 @@ The same words, as each repository uses them on 16 October 2026.
 | Landscape, layer | Not an entity | Not in scope | Platform of platforms, L0 to L4, still in patternode-platform | Platform architecture, L0 to L4, PL-01 to PL-08 |
 | Platform | `PL-NNN`, replaces domain as the grouping | Not in scope; `platform` is a pattern scope | No platform page yet; products name a platform "not yet in the topology" | PL-01 to PL-08 in layers, each holding contexts |
 | Domain | Replaced by platform | `domain` is a pattern scope | Four groups of contexts: trading, data, knowledge, platform | Core and supporting contexts |
-| Capability | `CAP-NNN`, L1 to L3, maturity and rung | `realises: [CAP-NNN]` on a pattern | One area, thirteen L2 at R1, L3 inline | Not used |
+| Capability | `CAP-NNN`, L1 to L3, maturity and rung | `realises: [CAP-NNN]` on an architecture pattern or a reference architecture | One area, thirteen L2 at R1, L3 inline | Not used |
 | Product | Vendor offering on an SBB; "platform as a product" | Product is a kind of box | `PRD-NNN`, the consumable offering; technology; deliverable | Three products over one core platform |
 | Bounded context | `BC-NNN`, one platform, contains ABBs | Not in scope | Ten target contexts; eight as built; no `BC-NNN` pages | Sixteen contexts, the authoritative master document |
 | ABB | `ABB-NNN` inside a BC, with `requires` | A kind of box, catalogue level logical | Placeholder; every box local | Six, for persistence technology only |
 | SBB | `SBB-NNN`, products, mapping, composite form | A kind of box, catalogue level physical | Placeholder | Six, for persistence technology only |
-| Pattern | Realises capabilities; grouping 8 pending | One construct, scope and derived abstraction, optional types | `PAT-NNN` at any scope, `REF-NNN` kept, no types bound | Not used |
-| Reference architecture | Mentioned, not defined | A pattern type expected to be physical | A pattern first published under `REF-NNN` | Not used |
+| Architecture pattern | `AP-NNN`, conceptual or logical, realises capabilities | The `architecture-pattern` type, bound by the repository, series `AP` | `PAT-NNN` at any scope, to move to `AP-NNN` with the calibration | Not used |
+| Reference architecture | `RA-NNN`, physical, applies architecture patterns | The `reference-architecture` type, bound by the repository, series `RA` | `REF-NNN`, to move to `RA-NNN` with the calibration | Not used |
 | Service | `service` kind, one SBB, one BC, kebab id | Not in scope | "Deployable", in prose tables as built and target | Cloud Run services, Cloud Functions, MCP servers, no registry |
 | Deployment node | `DN-NNN` reserved, undefined | Not in scope | Prose: GCE VM, Cloud Run, AWS accounts | Prose and Terraform |
 
@@ -294,7 +291,7 @@ Each disagreement below is real, and each has a resolution this page adopts. The
 
 1. Domain against platform. The framework document says platform replaces domain. Patternode and LifeGuide both still need a word for subject matter. Resolution: both words stay, with different jobs. Platform is the unit of ownership and consumption. Domain is the demand space, recorded as the subdomain kind on each context and in a platform's purpose, never as a folder.
 2. Reusable blocks against blocks inside a context. TOGAF's building blocks are reusable across the enterprise; the bundle puts each architecture building block inside one bounded context. Resolution: the context rule stays, because a block shared across languages is the coupling DDD exists to prevent. Reuse is through patterns, which name blocks from several contexts, and through cross-cutting platforms consumed through an adapter.
-3. Pattern against reference architecture. The bundle's metamodel has no pattern entity; architecture-pattern makes every model a pattern with optional types; Patternode binds no types. Resolution: pattern is one construct with two axes, scope and abstraction. Architecture pattern and reference architecture are pattern types a repository may bind, with expectations on abstraction. The metamodel's Guidance grouping records this.
+3. Architecture pattern against reference architecture. The bundle's metamodel had no entity for either; architecture-pattern makes every model a pattern with optional types; Patternode bound no types. Resolution: the continuum names two kinds of document and no bare pattern. An architecture pattern is conceptual or logical and technology-agnostic; a reference architecture is physical and technology-specific and applies one or more architecture patterns. Every document declares its type and takes that type's identifier series. The `pattern` skill remains the one tool that authors both, and its construct's two axes, scope and abstraction, are unchanged. The metamodel's Guidance grouping records this.
 4. Product with three meanings. The bundle's SBB front matter says `products` for vendor offerings and the platform standard says "platform as a product". Patternode has settled the words. Resolution: adopt Patternode's. Product is the consumable offering, a new kind. Technology is the vendor's offering, and the SBB field is renamed `technologies` in the next schema version with `products` kept as an alias. A platform offers products.
 5. Service against deployable. The bundle says service; Patternode says deployable; LifeGuide's services include functions and MCP servers. Resolution: service is the catalogue kind, deployable is its plain-language synonym, and the definition is C4's container narrowed to units that execute code. A unit that composes several contexts is recorded with that finding against it.
 6. Which capability level maps to blocks. The capability standard says only L3 maps to building blocks; Patternode maps L2 and lists L3 inline. Resolution: blocks attach at the lowest level a capability is defined to, and L3 is optional.
@@ -311,13 +308,13 @@ Each disagreement below is real, and each has a resolution this page adopts. The
 | D2 | The SBB field for vendor offerings | Keep `products`; rename to `technologies` with an alias | Rename, in the next schema version |
 | D3 | Service identifiers | Kebab-case slug only; slug with `numeric_id: SV-NNN`; `SV-NNN` as the primary id | Slug with `numeric_id`, so a repository whose prose links identifiers can link `SV-NNN` while code keeps the slug |
 | D4 | Where blocks attach | L3 only; the lowest defined level | The lowest defined level |
-| D5 | Pattern types in the bundle's own guidance | Define architecture pattern and reference architecture as named types; leave every pattern untyped | Define the two types as optional, with the abstraction each expects, and let each repository bind or not |
+| D5 | Pattern types in the bundle's own guidance | Define architecture pattern and reference architecture as named types; leave every document untyped | Define the two types as required on the continuum, with the abstraction each expects, and let a repository that is not yet on it leave documents untyped |
 
 ## What changes in the bundle
 
 In the order the work should be done.
 
-1. The metamodel. Consolidate groupings 2 (Organisation and Platform, with Layer and Product), 5 (Solution Boundary), 6 (Runtime, with Service, Store and Deployment Node) and 8 (Guidance, with Pattern and its types) against this page.
+1. The metamodel. Consolidate groupings 2 (Organisation and Platform, with Layer and Product), 5 (Solution Boundary), 6 (Runtime, with Service, Store and Deployment Node) and 8 (Guidance, with Architecture pattern and Reference architecture) against this page.
 2. The frontmatter standard and schemas. Define `DN-NNN`, add the `product` kind, add `layer` to the platform, `run_by` and `stores` to the service, and `technologies` to the SBB.
 3. The skills. `aaa-create-service` writes a folder per service as every other skill does, and links the product that runs it; a new `aaa-create-product` writes a product with its state and required capabilities and checks the state against the rungs; `aaa-create-platform` records the layer.
 4. The documents. The concepts page and the framework document point here for definitions; the traceability standard carries the relationships table above.

@@ -2,7 +2,7 @@
 # Generates docs/views/continuum-*.svg, one view of the continuum per tradition, from one table.
 # Run from the repository root: python scripts/generate-continuum-views.py
 from xml.sax.saxutils import escape
-ROWS=["Platform landscape","Platform","Product","Product feature","Domain and subdomain","Capability","Bounded context","Architecture building block","Solution building block","Pattern","Service, the deployable unit","Module and component","Deployment node","Store","Contracts","Outcome and use case","Consideration and decision"]
+ROWS=["Platform landscape","Platform","Product","Product feature","Domain and subdomain","Capability","Bounded context","Architecture building block","Solution building block","Architecture pattern and reference architecture","Service, the deployable unit","Module and component","Deployment node","Store","Contracts","Outcome and use case","Consideration and decision"]
 VIEWS={
  "c4":("C4 view","The C4 model (Simon Brown): software system, container, component, code, with landscape, dynamic and deployment diagrams","#1168BD",[
   ("System landscape diagram","every software system and person, one level up from a system context",'full'),

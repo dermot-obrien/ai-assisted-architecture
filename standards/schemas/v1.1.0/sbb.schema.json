@@ -73,7 +73,7 @@
               "name":      { "type": "string", "pattern": "^[a-z][a-z0-9-]*$", "description": "Kebab-case port name, unique within the SBB." },
               "direction": { "type": "string", "enum": ["provided", "required"], "description": "'provided' = ball (lollipop) interface offered; 'required' = socket interface consumed." },
               "protocol":  { "type": "string", "description": "Concrete wire protocol, e.g. 'REST/HTTP', 'pub-sub', 'gRPC'." },
-              "contract":  { "type": "string", "description": "Contract identifier or media type, e.g. 'openapi/v3', 'cloudevents/v1', or an AP-NNN api id." },
+              "contract":  { "type": "string", "description": "Contract identifier or media type, e.g. 'openapi/v3', 'cloudevents/v1', or an API-NNN api id." },
               "abb_interface": { "type": "string", "description": "ID of the parent ABB Interface this port realises, e.g. 'I1'. Establishes port -> ABB service-contract traceability." },
               "description": { "type": "string" }
             }
