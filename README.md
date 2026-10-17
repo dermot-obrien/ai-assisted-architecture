@@ -18,6 +18,7 @@ Each level takes its definition from the practice that owns it, and the handover
 | Read | For |
 |---|---|
 | [The continuum](docs/continuum.md) | Every level defined, the relationships in one table, what is standard, practice or this bundle's choice, each contemporary framework placed on the continuum, the open decisions, and the references |
+| [The schema on the continuum](docs/schema.md) | The front matter schemas drawn in the continuum's layout, generated from the schemas and checked against the continuum picture, with every relationship field listed |
 | [Views of the continuum](docs/continuum-views.md) | The same continuum in seven traditions' words: C4, TOGAF, domain-driven design, ArchiMate, platform engineering, Team Topologies and the Well-Architected frameworks, each with what it defines, what it nearly defines and what it lacks, with references |
 | [The skill bundles](docs/landscape.md) | The landscape of the author's skill bundles, this one among them: five layers from the installer to the solutions, what exists and what is needed, the dependency rule, and the two styles of keeping a solution's architecture |
 | [`docs/continuum.svg`](docs/continuum.svg) | The diagram as published |
@@ -118,6 +119,7 @@ You should see a table of seven capabilities, each with its rung and the artefac
 | Page | Read it for |
 |---|---|
 | [The continuum](docs/continuum.md) | The definitions the bundle is built on, from the platform landscape to a deployable unit, each anchored in current practice, with the relationships in one picture and every reference |
+| [The schema on the continuum](docs/schema.md) | The front matter schemas as one picture, in the continuum's layout, generated and checked |
 | [Views of the continuum](docs/continuum-views.md) | The continuum in the words of C4, TOGAF, domain-driven design, ArchiMate, platform engineering, Team Topologies and the Well-Architected frameworks |
 | [The skill bundles](docs/landscape.md) | The landscape of skill bundles and where a solution's architecture lives |
 | [Quick start](docs/quick-start.md) | A first real result in about ten minutes |
@@ -136,7 +138,7 @@ You should see a table of seven capabilities, each with its rung and the artefac
 ## Repository structure
 
 ```
-docs/            This documentation, with the continuum (continuum.md, continuum.svg, continuum.drawio), its views (continuum-views.md, views/) and the bundles landscape (landscape.md, landscape.svg, landscape.drawio)
+docs/            This documentation, with the continuum (continuum.md, continuum.svg, continuum.drawio), the schema picture (schema.md, schema.svg), its views (continuum-views.md, views/) and the bundles landscape (landscape.md, landscape.svg, landscape.drawio)
 skills/          The nine Agent Skills: SKILL.md, inputs.toml, references/ (with their copy of the standards), bin/
 standards/       The standards the skills follow, with worked examples, the schemas, the ontology and the config template
 foundation/      A generic starter model, optional, seeded into a workspace by scripts/seed-foundation.mjs

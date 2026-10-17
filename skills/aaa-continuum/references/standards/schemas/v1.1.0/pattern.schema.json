@@ -53,6 +53,21 @@
           "uniqueItems": true,
           "description": "The reference architectures that apply this architecture pattern."
         },
+        "composes": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "envelope.schema.json#/$defs/abbId"
+              },
+              {
+                "$ref": "envelope.schema.json#/$defs/sbbId"
+              }
+            ]
+          },
+          "uniqueItems": true,
+          "description": "The catalogued building blocks among the document's boxes, mirroring its Building Blocks table: ABBs in an architecture pattern, SBBs in a reference architecture. Local roles and technologies are not catalogued and are not listed. The inverse of composed_by on the block."
+        },
         "realises": {
           "type": "array",
           "items": {
@@ -100,7 +115,7 @@
       ]
     },
     {
-      "$comment": "The series says the type: an architecture pattern is AP-NNN.",
+      "$comment": "The series says the type: an architecture pattern is AP-NNN, composes ABBs only, and applies no other pattern.",
       "if": {
         "properties": {
           "pattern_type": {
@@ -116,12 +131,23 @@
           "id": {
             "type": "string",
             "pattern": "^AP-\\d{3}$"
+          },
+          "composes": {
+            "type": "array",
+            "items": {
+              "$ref": "envelope.schema.json#/$defs/abbId"
+            }
           }
+        },
+        "not": {
+          "required": [
+            "implements"
+          ]
         }
       }
     },
     {
-      "$comment": "A reference architecture is RA-NNN and applies at least one architecture pattern.",
+      "$comment": "A reference architecture is RA-NNN, applies at least one architecture pattern, composes SBBs only, and is applied by no other document.",
       "if": {
         "properties": {
           "pattern_type": {
@@ -141,11 +167,22 @@
           "implements": {
             "type": "array",
             "minItems": 1
+          },
+          "composes": {
+            "type": "array",
+            "items": {
+              "$ref": "envelope.schema.json#/$defs/sbbId"
+            }
           }
         },
         "required": [
           "implements"
-        ]
+        ],
+        "not": {
+          "required": [
+            "implemented_by"
+          ]
+        }
       }
     }
   ]

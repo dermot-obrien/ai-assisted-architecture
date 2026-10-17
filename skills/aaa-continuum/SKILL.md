@@ -5,7 +5,7 @@ license: Apache-2.0
 compatibility: Node.js 18 or newer. Validating front matter needs ajv, ajv-formats and js-yaml, installed once with npm install in the skill directory or present in the workspace's node_modules. Carries the continuum page, the frontmatter standard, the v1.1.0 schemas and the calibration standard in references/. The architecture root comes from [suite.aaa-continuum] of the repository's .agents/skill-bindings.toml; the skill ships no layout of its own.
 metadata:
   author: dermot-obrien
-  version: "0.1.0"
+  version: "0.2.0"
 ---
 
 # Continuum

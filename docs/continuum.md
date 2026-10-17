@@ -32,7 +32,7 @@ In practice this is TOGAF's Enterprise Continuum applied to an organisation's ow
 
 The word is chosen to avoid a clash. TOGAF's Architecture Landscape means the architectures held in the repository at strategic, segment and capability level, and the industry's application landscape means the inventory of applications; this level is the map of platforms, so it is called the platform landscape.
 
-In the bundle the landscape has no entity yet. The metamodel's Organisation and Platform grouping is pending, and the ontology's platform entity carries no layer. The resolution below adds Layer to that grouping. In patternode-platform the landscape is `docs/architecture/platform-of-platforms.md`, with five layers L0 to L4; in LifeGuide it is `docs/2-architecture/platform-architecture.md`, with platforms PL-01 to PL-08 in layers L0 to L4.
+In the bundle a landscape is `LS-NNN`, kind `landscape`, with its `layers` (`L0` at the bottom, each listing the platforms it holds) and its `dependencies` (which platform consumes which, and through which contracts); each platform names its `landscape` and `layer`. A layer is declared on the landscape and is not a kind of its own. The metamodel's Organisation and Platform grouping and the ontology's platform entity have yet to follow. In patternode-platform the landscape is `docs/architecture/platform-of-platforms.md`, with five layers L0 to L4; in LifeGuide it is `docs/2-architecture/platform-architecture.md`, with platforms PL-01 to PL-08 in layers L0 to L4.
 
 ### Platform
 
@@ -80,7 +80,7 @@ An architecture building block is a package of functionality defined at the logi
 
 The source is TOGAF's building blocks: a building block is a package of functionality defined to meet business needs, with a defined boundary recognisable as a thing by domain experts, interfaces that are published and stable, and the properties of being reusable, replaceable and well specified. TOGAF describes the early, functional-level block as an architecture building block and the later, product-level block as a solution building block. TOGAF 10 (2022) keeps the definition, and its Business Capabilities guide (version 2, 2022) is where capabilities and the blocks that realise them are joined. The bundle makes one deliberate addition from DDD: an architecture building block lives inside one bounded context, so that its logical model is governed by that context's language. Reuse across contexts happens through a pattern that names it, or through a cross-cutting platform whose block is consumed through an adapter, never by sharing the block's model.
 
-In the bundle an architecture building block is `ABB-NNN`, authored by `aaa-create-abb` to the [ABB document](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/architecture-building-blocks/standard-abb-document.md) and [diagram](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md) standards, with `part_of` the context, `realises_capabilities`, `realised_by` SBBs, `requires` other ABBs and `interfaces`. Patternode's `building-blocks/abbs/` is a placeholder, so every box in its patterns is a local role today. LifeGuide uses ABB-001 to ABB-006 only for persistence technology.
+In the bundle an architecture building block is `ABB-NNN`, authored by `aaa-create-abb` to the [ABB document](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/architecture-building-blocks/standard-abb-document.md) and [diagram](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/building-blocks/architecture-building-blocks/standard-abb-diagram.md) standards, with `part_of` the context, `realises_capabilities`, `realised_by` SBBs, `requires` other ABBs, `interfaces` and `composed_by`, the architecture patterns that name it. Patternode's `building-blocks/abbs/` is a placeholder, so every box in its patterns is a local role today. LifeGuide uses ABB-001 to ABB-006 only for persistence technology.
 
 ### Solution building block
 
@@ -88,7 +88,7 @@ A solution building block is a concrete realisation of one or more architecture 
 
 The source is again TOGAF: the solution building block sits in the Solutions Continuum, specifies the products and components that implement the functionality, and maps to the architecture building blocks it satisfies. The bundle's composite form draws on UML composite structure, and its outside view on the C4 system context diagram.
 
-In the bundle a solution building block is `SBB-NNN`, authored by `aaa-create-sbb`, with `realises` ABBs, `products` (to be renamed `technologies`, see below), `product_mapping`, `cloud_provider`, `deployment_model` and `realised_by_services`. Patternode's `building-blocks/sbbs/` is a placeholder. Patternode's word for a vendor's offering is technology, and the bundle adopts it.
+In the bundle a solution building block is `SBB-NNN`, authored by `aaa-create-sbb`, with `realises` ABBs, `technologies` (formerly `products`, kept as an alias), `product_mapping`, `cloud_provider`, `deployment_model`, `realised_by_services` and `composed_by`, the reference architectures that name it. Patternode's `building-blocks/sbbs/` is a placeholder. Patternode's word for a vendor's offering is technology, and the bundle adopts it.
 
 ### Architecture pattern and reference architecture
 
@@ -129,7 +129,7 @@ The source is Alistair Cockburn's ports and adapters, with the C4 component as t
 
 A deployment node is where a service runs: a cloud account and region, a runtime such as Cloud Run or Lambda, a virtual machine, a hosting service, a device. It carries the properties that matter to operating the service: the account, the region, the scaling model, the identity the service runs as. It answers: where does it run, and under whose account.
 
-The source is ArchiMate's node and C4's deployment diagram, and TOGAF's technology architecture behind both. The bundle has reserved the kind as `DN-NNN` since frontmatter v1.1.0 without defining it. The resolution below defines it, because the deployable register Patternode needs cannot be written without it: the same service has run on a GCE VM and is proposed as four containers on one node, and that difference is a node property, not a service property.
+The source is ArchiMate's node and C4's deployment diagram, and TOGAF's technology architecture behind both. In the bundle a deployment node is `DN-NNN`, kind `deployment-node`, with `node_type`, `runtime`, `cloud_provider`, `account`, `region`, `scaling_model`, `run_as`, the services it `hosts` and the stores it hosts in `hosts_stores`. It is defined because the deployable register Patternode needs cannot be written without it: the same service has run on a GCE VM and is proposed as four containers on one node, and that difference is a node property, not a service property.
 
 ### Beside the continuum
 
@@ -137,29 +137,29 @@ Four kinds sit beside the thread rather than on it. An outcome (`OC-NNN`) is a m
 
 ## The relationships
 
-The golden thread the bundle has always drawn, Outcome to Service, extended with the kinds this page adds. Read each row as subject, relationship, object.
+The golden thread the bundle has always drawn, Outcome to Service, extended with the kinds this page adds. Read each row as subject, relationship, object. [The schema on the continuum](schema.md) draws the same relationships from the front matter schemas, in this page's layout, with each field named.
 
 | From | Relationship | To | Where it is recorded |
 |---|---|---|---|
-| Landscape | has | Layer | Landscape (to be added) |
-| Layer | holds | Platform | Platform `layer` (to be added) |
-| Platform | consumes, down and through contracts only | Platform | Landscape dependencies (to be added) |
+| Landscape | has | Layer | Landscape `layers` |
+| Layer | holds | Platform | Landscape `layers[].platforms`; platform `landscape` and `layer` |
+| Platform | consumes, down and through contracts only | Platform | Landscape `dependencies` |
 | Platform | owns | Outcome | Platform `owns_outcomes` |
 | Platform | provides | Capability | Platform `provides_capabilities` |
 | Platform | contains | Bounded context | Platform `contains_bounded_contexts`, context `part_of` |
 | Platform | offers | Product | Product `platform` |
 | Domain | is realised by | Platform | Platform purpose; context `subdomain_kind` |
 | Subdomain | maps to, ideally one to one | Bounded context | Context `subdomain_kind` |
-| Outcome | requires | Capability | Outcome `requires_capabilities` |
-| Use case | supports | Outcome | Use case |
-| Use case | requires | Capability | Use case; the capability's demand |
-| Use case | is fulfilled by | Feature, of one or more products | Feature `fulfils` (to be added) |
-| Use case | is realised by | Architecture pattern, through its scenarios | The architecture pattern's scenarios; use case participants and interactions |
-| Product | has | Feature | Feature `part_of` (to be added) |
-| Feature | is implemented by | Service, in one or more bounded contexts | Feature `implemented_by` (to be added) |
+| Outcome | requires | Capability | Outcome `requires_capabilities`, capability `required_by_outcomes` |
+| Use case | supports | Outcome | Use case `supports_outcome`, outcome `supported_by_use_cases` |
+| Use case | requires | Capability | Use case `requires_capabilities`; the capability's demand |
+| Use case | is fulfilled by | Feature, of one or more products | Feature `fulfils`, use case `fulfilled_by_features` |
+| Use case | is realised by | Architecture pattern, through its scenarios | Use case `realised_by`, pattern `serves`; the pattern's scenarios walk the use case's |
+| Product | has | Feature | Feature `part_of`, product `features` |
+| Feature | is implemented by | Service, in one or more bounded contexts | Feature `implemented_by` |
 | Team | owns | Product, Platform, Bounded context | Platform `owner`, context `owner`, product `team` |
 | Product | requires | Capability, optionally some flows | Product `requires`, `requires_flows` |
-| Product | runs | Service | Product `runs`; service `run_by` (to be added) |
+| Product | runs | Service | Product `runs`; service `run_by` |
 | Capability | is realised by | Bounded context | Context `realises_capabilities` |
 | Capability | is realised by | Architecture building block | ABB `realises_capabilities`, capability `realised_by_abbs` |
 | Capability | is realised by | Architecture pattern, reference architecture | `realises` on either, read by `aaa-rung` |
@@ -167,13 +167,14 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Bounded context | relates to | Bounded context | Context `relationships`, with the context map pattern |
 | Architecture building block | requires | Architecture building block | ABB `requires` |
 | Architecture building block | is realised by | Solution building block | SBB `realises`, ABB `realised_by` |
-| Architecture pattern | composes | Architecture building block, local role | Its Building Blocks table |
-| Reference architecture | composes | Solution building block, technology | Its Building Blocks table |
-| Reference architecture | applies, one or more | Architecture pattern | Reference architecture `implements`, a list |
+| Architecture pattern | composes | Architecture building block, local role | Its Building Blocks table; pattern `composes` and ABB `composed_by` for catalogued blocks |
+| Reference architecture | composes | Solution building block, technology | Its Building Blocks table; pattern `composes` and SBB `composed_by` for catalogued blocks |
+| Reference architecture | applies, one or more | Architecture pattern | Reference architecture `implements`, a list; architecture pattern `implemented_by` |
 | Solution building block | is realised by | Service | Service `realises`, SBB `realised_by_services` |
 | Service | is part of | Bounded context | Service `part_of` |
-| Service | owns | Store | Service `stores` (to be added) |
-| Service | is deployed to | Deployment node | Service `deployed_to` |
+| Service | owns | Store | Service `stores`, store `owned_by` |
+| Service | is deployed to | Deployment node | Service `deployed_to`, node `hosts` |
+| Store | is part of, and hosted on | Bounded context, deployment node | Store `part_of` and `hosted_on`, node `hosts_stores` |
 | Consideration | affects | Capability, ABB, SBB, architecture pattern, reference architecture | Consideration `affects` |
 | Consideration | is resolved by | Decision record | Consideration `resolved_by` |
 
@@ -292,7 +293,7 @@ Each disagreement below is real, and each has a resolution this page adopts. The
 1. Domain against platform. The framework document says platform replaces domain. Patternode and LifeGuide both still need a word for subject matter. Resolution: both words stay, with different jobs. Platform is the unit of ownership and consumption. Domain is the demand space, recorded as the subdomain kind on each context and in a platform's purpose, never as a folder.
 2. Reusable blocks against blocks inside a context. TOGAF's building blocks are reusable across the enterprise; the bundle puts each architecture building block inside one bounded context. Resolution: the context rule stays, because a block shared across languages is the coupling DDD exists to prevent. Reuse is through patterns, which name blocks from several contexts, and through cross-cutting platforms consumed through an adapter.
 3. Architecture pattern against reference architecture. The bundle's metamodel had no entity for either; architecture-pattern makes every model a pattern with optional types; Patternode bound no types. Resolution: the continuum names two kinds of document and no bare pattern. An architecture pattern is conceptual or logical and technology-agnostic; a reference architecture is physical and technology-specific and applies one or more architecture patterns. Every document declares its type and takes that type's identifier series. The `pattern` skill remains the one tool that authors both, and its construct's two axes, scope and abstraction, are unchanged. The metamodel's Guidance grouping records this.
-4. Product with three meanings. The bundle's SBB front matter says `products` for vendor offerings and the platform standard says "platform as a product". Patternode has settled the words. Resolution: adopt Patternode's. Product is the consumable offering, a new kind. Technology is the vendor's offering, and the SBB field is renamed `technologies` in the next schema version with `products` kept as an alias. A platform offers products.
+4. Product with three meanings. The bundle's SBB front matter said `products` for vendor offerings and the platform standard says "platform as a product". Patternode has settled the words. Resolution: adopt Patternode's. Product is the consumable offering, a new kind. Technology is the vendor's offering, and the SBB field is now `technologies`, with `products` kept as an alias so documents written before validate. A platform offers products.
 5. Service against deployable. The bundle says service; Patternode says deployable; LifeGuide's services include functions and MCP servers. Resolution: service is the catalogue kind, deployable is its plain-language synonym, and the definition is C4's container narrowed to units that execute code. A unit that composes several contexts is recorded with that finding against it.
 6. Which capability level maps to blocks. The capability standard says only L3 maps to building blocks; Patternode maps L2 and lists L3 inline. Resolution: blocks attach at the lowest level a capability is defined to, and L3 is optional.
 7. Deployment node undefined. Resolution: define `DN-NNN` with account, region, runtime, scaling model and run-as identity, and make `deployed_to` on a service resolve to it.
@@ -305,7 +306,7 @@ Each disagreement below is real, and each has a resolution this page adopts. The
 | # | Decision | Options | Recommended |
 |---|---|---|---|
 | D1 | A data store is a service, or a resource of one | A service in its own right, as C4 does; a resource recorded on the owning service and its node | A resource. A store has no code to release, and the ownership rule (one context, one store) is what matters |
-| D2 | The SBB field for vendor offerings | Keep `products`; rename to `technologies` with an alias | Rename, in the next schema version |
+| D2 | The SBB field for vendor offerings | Keep `products`; rename to `technologies` with an alias | Rename. Done: `technologies`, with `products` as an alias |
 | D3 | Service identifiers | Kebab-case slug only; slug with `numeric_id: SV-NNN`; `SV-NNN` as the primary id | Slug with `numeric_id`, so a repository whose prose links identifiers can link `SV-NNN` while code keeps the slug |
 | D4 | Where blocks attach | L3 only; the lowest defined level | The lowest defined level |
 | D5 | Pattern types in the bundle's own guidance | Define architecture pattern and reference architecture as named types; leave every document untyped | Define the two types as required on the continuum, with the abstraction each expects, and let a repository that is not yet on it leave documents untyped |
@@ -315,7 +316,7 @@ Each disagreement below is real, and each has a resolution this page adopts. The
 In the order the work should be done.
 
 1. The metamodel. Consolidate groupings 2 (Organisation and Platform, with Layer and Product), 5 (Solution Boundary), 6 (Runtime, with Service, Store and Deployment Node) and 8 (Guidance, with Architecture pattern and Reference architecture) against this page.
-2. The frontmatter standard and schemas. Define `DN-NNN`, add the `product` kind, add `layer` to the platform, `run_by` and `stores` to the service, and `technologies` to the SBB.
+2. The frontmatter standard and schemas. Done: `DN-NNN` is defined; the `product`, `feature`, `store` and `landscape` kinds exist; the platform has `landscape` and `layer`, the service `run_by` and `stores`, the SBB `technologies`; the use case links its capabilities, features and realising pattern; and patterns list the blocks they compose. [The schema on the continuum](schema.md) draws the schemas in this page's layout and is checked against its picture.
 3. The skills. `aaa-create-service` writes a folder per service as every other skill does, and links the product that runs it; a new `aaa-create-product` writes a product with its state and required capabilities and checks the state against the rungs; `aaa-create-platform` records the layer.
 4. The documents. The concepts page and the framework document point here for definitions; the traceability standard carries the relationships table above.
 5. The exemplar. Patternode's architecture repository applies the runtime level first: a register of its services and nodes as built and as targeted, each service carrying its context, its code path and its findings against the target, and one service traced back through solution building block, architecture building block, bounded context and capability to the platform that owns it.

@@ -34,7 +34,7 @@ const SLUG = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
 /** A citation of another catalogue's identifier: the namespace, a colon, the identifier. */
 const CITATION = /^([a-z][a-z0-9-]*):([A-Za-z][A-Za-z0-9-]*)$/;
 /** Kinds the standard reserves with a placeholder schema only. */
-const PLACEHOLDER_KINDS = new Set(["api", "view", "event", "deployment-node"]);
+const PLACEHOLDER_KINDS = new Set(["api", "view", "event"]);
 
 /** The scheme names the schemes register may use, and the front matter kind each one is. */
 export const SCHEME_KIND = {
@@ -42,7 +42,9 @@ export const SCHEME_KIND = {
   outcome: "outcome",
   "use-case": "use-case",
   capability: "capability",
+  landscape: "landscape",
   product: "product",
+  feature: "feature",
   "bounded-context": "bounded-context",
   context: "bounded-context",
   abb: "abb",
@@ -60,6 +62,7 @@ export const SCHEME_KIND = {
   view: "view",
   event: "event",
   "deployment-node": "deployment-node",
+  store: "store",
 };
 
 /**
@@ -77,14 +80,17 @@ export const RELATION_FIELDS = new Set([
   "deployed_to", "provides_apis", "consumes_apis", "supports_outcome", "fulfilled_by_features",
   "composes_contexts", "supersedes", "superseded_by", "architecture_snapshot",
   "contributes_to_transition", "from_snapshot", "to_snapshot", "sequenced_decisions",
-  "affected_artefacts", "artefacts", "supersedes_snapshot",
+  "affected_artefacts", "artefacts", "supersedes_snapshot", "supported_by_use_cases", "fulfils",
+  "implemented_by", "composes", "composed_by", "run_by", "stores", "owned_by", "hosted_on", "hosts",
+  "hosts_stores", "read_by", "written_by", "landscape", "dependencies",
 ]);
 /** Fields whose values name services, which are listed by slug rather than by identifier. */
-const SERVICE_FIELDS = new Set(["realised_by_services", "runs"]);
+const SERVICE_FIELDS = new Set(["realised_by_services", "runs", "implemented_by", "hosts", "owned_by", "read_by", "written_by"]);
 
 /**
  * Relations with an inverse. When A's field lists B and B's page exists, B's inverse field
  * should list A; the check warns when it does not. Services are listed by slug on the other side.
+ * A field written "a|b" accepts either name, for a field kept under a deprecated alias.
  */
 export const INVERSES = [
   ["abb", "realised_by", "sbb", "realises"],
@@ -105,8 +111,27 @@ export const INVERSES = [
   ["pattern", "implemented_by", "pattern", "implements"],
   ["service", "realises", "sbb", "realised_by_services"],
   ["sbb", "realised_by_services", "service", "realises"],
-  ["use-case", "supports_outcome", "outcome", "realised_by_use_cases"],
+  ["use-case", "supports_outcome", "outcome", "supported_by_use_cases|realised_by_use_cases"],
+  ["outcome", "supported_by_use_cases", "use-case", "supports_outcome"],
   ["outcome", "realised_by_use_cases", "use-case", "supports_outcome"],
+  ["use-case", "realised_by", "pattern", "serves"],
+  ["pattern", "serves", "use-case", "realised_by"],
+  ["use-case", "fulfilled_by_features", "feature", "fulfils"],
+  ["feature", "fulfils", "use-case", "fulfilled_by_features"],
+  ["product", "features", "feature", "part_of"],
+  ["feature", "part_of", "product", "features"],
+  ["product", "runs", "service", "run_by"],
+  ["service", "run_by", "product", "runs"],
+  ["pattern", "composes", "abb", "composed_by"],
+  ["pattern", "composes", "sbb", "composed_by"],
+  ["abb", "composed_by", "pattern", "composes"],
+  ["sbb", "composed_by", "pattern", "composes"],
+  ["service", "stores", "store", "owned_by"],
+  ["store", "owned_by", "service", "stores"],
+  ["service", "deployed_to", "deployment-node", "hosts"],
+  ["deployment-node", "hosts", "service", "deployed_to"],
+  ["store", "hosted_on", "deployment-node", "hosts_stores"],
+  ["deployment-node", "hosts_stores", "store", "hosted_on"],
 ];
 
 // ------------------------------------------------------------------------------ small parsers
@@ -472,7 +497,7 @@ export function check(config, modules) {
     const out = [];
     for (const v of list(fm[field])) {
       if (typeof v === "string") out.push(v.trim());
-      else if (v && typeof v === "object") for (const k of ["id", "with", "sbb", "abb", "artefact", "ref", "service"]) if (typeof v[k] === "string") out.push(v[k].trim());
+      else if (v && typeof v === "object") for (const k of ["id", "with", "sbb", "abb", "artefact", "ref", "service", "consumer", "provider"]) if (typeof v[k] === "string") out.push(v[k].trim());
     }
     return out;
   };
@@ -501,8 +526,8 @@ export function check(config, modules) {
       for (const token of targetsOf(a.fm, fieldA)) {
         const b = byId.get(token);
         if (!b || b.kind !== kindB) continue;
-        const back = targetsOf(b.fm, fieldB);
-        if (!back.some((t) => aNames.has(t))) R.warn("REL-002", b.file, `${a.id} ${fieldA} ${token}, but ${fieldB} here does not list ${a.id}: the two sides of a relation agree`);
+        const back = fieldB.split("|").flatMap((f) => targetsOf(b.fm, f));
+        if (!back.some((t) => aNames.has(t))) R.warn("REL-002", b.file, `${a.id} ${fieldA} ${token}, but ${fieldB.split("|")[0]} here does not list ${a.id}: the two sides of a relation agree`);
       }
     }
   }

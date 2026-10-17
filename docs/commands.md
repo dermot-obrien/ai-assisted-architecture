@@ -203,6 +203,7 @@ For working on this repository. Run from its root.
 | `node scripts/sync-cap-abb-frontmatter.mjs` | Aligns each foundation L3 capability's `realised_by_abbs` with the traceability matrix |
 | `python scripts/generate_sbb_diagrams.py` | Regenerates the foundation SBBs' `components.drawio` |
 | `node scripts/sync-skill-standards.mjs [--check]` | Writes each skill's copy of the standards under `references/standards/` from `standards/`, as `skill-standards.json` lists them; `--check` fails when a copy differs. CI runs `--check` |
+| `node scripts/generate-schema-diagram.mjs [--check]` | Draws the front matter schemas as `docs/schema.svg` in the layout of `docs/continuum.drawio`, and writes the tables of [docs/schema.md](schema.md); `--check` writes nothing and fails when either is stale, when a schema field has no line, or when the two pictures differ in a way the script does not explain. CI runs `--check` |
 
 Each accepts `--help`. `gen-capability-csvs.mjs`, `sync-cap-abb-frontmatter.mjs` and `generate_sbb_diagrams.py` take no other options and write files.
 [CONTRIBUTING.md](../CONTRIBUTING.md#checks-before-a-pull-request) lists what to run before a

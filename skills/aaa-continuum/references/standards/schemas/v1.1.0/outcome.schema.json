@@ -45,9 +45,14 @@
 
         "owned_by_platform":      { "$ref": "envelope.schema.json#/$defs/platformId" },
         "requires_capabilities":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true },
-        "realised_by_use_cases":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true }
+        "supported_by_use_cases": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true, "description": "The use cases that support the outcome. The inverse of supports_outcome on the use case." },
+        "realised_by_use_cases":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true, "description": "Deprecated alias of supported_by_use_cases, kept so documents written before validate. Use one or the other." }
       },
       "required": ["kpi", "business_rationale", "owned_by_platform"]
+    },
+    {
+      "$comment": "supported_by_use_cases replaces realised_by_use_cases; a document carries one of them, not both.",
+      "not": { "required": ["supported_by_use_cases", "realised_by_use_cases"] }
     }
   ]
 }

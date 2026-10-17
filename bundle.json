@@ -9,8 +9,8 @@
     {
       "name": "aaa-create-abb",
       "path": "skills/aaa-create-abb",
-      "version": "0.6.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.6.4",
+      "version": "0.6.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.6.5",
       "requires": [],
       "check": {
         "command": [
@@ -24,8 +24,8 @@
     {
       "name": "aaa-create-capability",
       "path": "skills/aaa-create-capability",
-      "version": "0.6.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.6.4",
+      "version": "0.6.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.6.5",
       "requires": [],
       "check": {
         "command": [
@@ -39,8 +39,8 @@
     {
       "name": "aaa-create-context",
       "path": "skills/aaa-create-context",
-      "version": "0.5.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-context@0.5.4",
+      "version": "0.5.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-context@0.5.5",
       "requires": [],
       "check": {
         "command": [
@@ -54,8 +54,8 @@
     {
       "name": "aaa-create-platform",
       "path": "skills/aaa-create-platform",
-      "version": "0.5.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-platform@0.5.4",
+      "version": "0.5.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-platform@0.5.5",
       "requires": [],
       "check": {
         "command": [
@@ -84,8 +84,8 @@
     {
       "name": "aaa-create-sbb",
       "path": "skills/aaa-create-sbb",
-      "version": "0.6.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.6.4",
+      "version": "0.6.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.6.5",
       "requires": [],
       "check": {
         "command": [
@@ -99,8 +99,8 @@
     {
       "name": "aaa-create-service",
       "path": "skills/aaa-create-service",
-      "version": "0.5.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-service@0.5.4",
+      "version": "0.5.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-service@0.5.5",
       "requires": [],
       "check": {
         "command": [
@@ -114,8 +114,8 @@
     {
       "name": "aaa-create-strategy",
       "path": "skills/aaa-create-strategy",
-      "version": "0.5.4",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-strategy@0.5.4",
+      "version": "0.5.5",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-strategy@0.5.5",
       "requires": [],
       "check": {
         "command": [
@@ -144,8 +144,8 @@
     {
       "name": "aaa-continuum",
       "path": "skills/aaa-continuum",
-      "version": "0.1.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-continuum@0.1.0",
+      "version": "0.2.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-continuum@0.2.0",
       "requires": [],
       "check": {
         "command": [

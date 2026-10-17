@@ -52,7 +52,7 @@ function workspace() {
   row("solution/abbs.csv", "ABB-001,Agent,AGT,active,Application,BC-001,CAP-001,SBB-001,,,abbs/ABB-001-agent/index.md");
   page("solution/sbbs/SBB-001-agent-on-lambda/index.md", `kind: sbb\nid: SBB-001\ntitle: "SBB-001 Agent on Lambda"\n${common()}realises: [ABB-001]\nrealised_by_services: [api]\nproducts:\n  - { name: "AWS Lambda", vendor: "AWS" }\nproduct_mapping:\n  - { abb_component: "Agent", sbb_product: "Lambda" }\ncloud_provider: aws\ndeployment_model: managed\n`);
   row("solution/sbbs.csv", "SBB-001,Agent on Lambda,active,ABB-001,api,AWS Lambda,aws,managed,sbbs/SBB-001-agent-on-lambda/index.md");
-  page("runtime/services/SV-001-api/index.md", `kind: service\nid: api\nnumeric_id: SV-001\ntitle: "SV-001 API"\n${common()}realises: [SBB-001]\npart_of: BC-001\nruntime_type: serverless\n`);
+  page("runtime/services/SV-001-api/index.md", `kind: service\nid: api\nnumeric_id: SV-001\ntitle: "SV-001 API"\n${common()}realises: [SBB-001]\npart_of: BC-001\nruntime_type: serverless\nrun_by: [PRD-001]\n`);
   row("runtime/services.csv", "SV-001,api,API,service,function,BC-001,,SBB-001,,,PRD-001,active,services/SV-001-api/index.md");
   const drawio = "<mxfile><diagram name=\"Structure\"/></mxfile>";
   for (const [id, type, extra] of [["AP-001", "architecture-pattern", "implemented_by: [RA-001]\n"], ["RA-001", "reference-architecture", "implements: [AP-001]\n"]]) {
@@ -162,5 +162,23 @@ test("inverse relations and open considerations warn", () => {
     assert.equal(r.summary.errors, 0, codes(r).join());
     assert.ok(r.findings.some((f) => f.code === "REL-002" && f.file.endsWith("SBB-001-agent-on-lambda/index.md")), codes(r).join());
     assert.ok(codes(r).includes("DEC-002"), codes(r).join());
+  } finally { rmSync(ws, { recursive: true, force: true }); }
+});
+
+test("the continuum's newer relations are checked from both sides, and a deprecated alias still counts", () => {
+  const { ws, root } = workspace();
+  try {
+    const outcome = path.join(root, "demand/outcomes/OC-001-answers/index.md");
+    writeFileSync(outcome, readFileSync(outcome, "utf8").replace("realised_by_use_cases:", "supported_by_use_cases:"));
+    const ap = path.join(root, "solution/patterns/AP-001-example/index.md");
+    writeFileSync(ap, readFileSync(ap, "utf8").replace("pattern_type:", "composes: [ABB-001]\npattern_type:"));
+    const service = path.join(root, "runtime/services/SV-001-api/index.md");
+    writeFileSync(service, readFileSync(service, "utf8").replace("run_by: [PRD-001]\n", ""));
+    const r = run(ws);
+    assert.equal(r.summary.errors, 0, codes(r).join());
+    const rel = r.findings.filter((f) => f.code === "REL-002").map((f) => f.file);
+    assert.ok(rel.some((f) => f.endsWith("ABB-001-agent/index.md")), rel.join());
+    assert.ok(rel.some((f) => f.endsWith("SV-001-api/index.md")), rel.join());
+    assert.ok(!rel.some((f) => f.endsWith("OC-001-answers/index.md")), rel.join());
   } finally { rmSync(ws, { recursive: true, force: true }); }
 });

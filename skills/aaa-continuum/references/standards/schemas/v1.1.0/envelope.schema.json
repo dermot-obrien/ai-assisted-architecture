@@ -77,13 +77,16 @@
         "deployment-node",
         "snapshot",
         "transition",
-        "consideration"
+        "consideration",
+        "landscape",
+        "feature",
+        "store"
       ]
     },
     "anyId": {
-      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|SN|TR|CN followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|ST|SN|TR|CN followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
       "type": "string",
-      "pattern": "^(OC|UC|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|SN|TR|CN)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      "pattern": "^(OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|ST|SN|TR|CN)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
     },
     "platformId": {
       "type": "string",
@@ -101,6 +104,16 @@
       "type": "string",
       "pattern": "^UC-\\d{3}$"
     },
+    "landscapeId": {
+      "type": "string",
+      "pattern": "^LS-\\d{3}$",
+      "description": "A platform landscape: LS-NNN, the layers of platforms an enterprise runs and the dependencies between them."
+    },
+    "layerId": {
+      "type": "string",
+      "pattern": "^L\\d+$",
+      "description": "A layer of a platform landscape: L0 at the bottom, numbered upwards. Declared on the landscape, not a kind of its own."
+    },
     "productId": {
       "type": "string",
       "pattern": "^PRD-\\d{3}$",
@@ -109,7 +122,7 @@
     "featureId": {
       "type": "string",
       "pattern": "^FE-\\d{3}$",
-      "description": "A feature of a product: FE-NNN. Features are rows of a product's register and have no page of their own."
+      "description": "A feature of a product: FE-NNN. Usually a row of the product's register; a feature may also have a page of its own, with kind feature."
     },
     "bcId": {
       "type": "string",
@@ -154,6 +167,11 @@
     "dnId": {
       "type": "string",
       "pattern": "^DN-\\d{3}$"
+    },
+    "storeId": {
+      "type": "string",
+      "pattern": "^ST-\\d{3}$",
+      "description": "A store: ST-NNN, a database, bucket, table, index or secret owned by one bounded context. A resource of a service, not a service."
     },
     "snapshotId": {
       "type": "string",
