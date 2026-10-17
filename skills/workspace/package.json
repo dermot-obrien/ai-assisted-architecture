@@ -1,0 +1,24 @@
+{
+  "name": "workspace",
+  "version": "0.1.0",
+  "description": "Initialise or reinitialise a repository that uses the architecture skills: clear out what retired tooling left, install the declared skills, wire the build so it runs without them. An Agent Skill from AI-Assisted Architecture.",
+  "author": "Dermot O'Brien",
+  "homepage": "https://github.com/dermot-obrien/architecture-continuum",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dermot-obrien/architecture-continuum.git",
+    "directory": "skills/workspace"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "workspace": "bin/workspace.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

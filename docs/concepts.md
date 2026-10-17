@@ -10,13 +10,12 @@ definition of each kind of artefact, from the enterprise landscape to a deployab
 Each workflow is an [Agent Skill](https://agentskills.io/specification): a folder holding a
 `SKILL.md` with a name and a description, plus the references and code it needs. Any agent
 that reads Agent Skills can use them, and the description lets the agent pick a skill when a
-request matches, not only when you type `/aaa-create-abb`.
+request matches, not only when you type `/architecture abb`.
 
-There are nine skills. Eight author one kind of artefact each (`aaa-create-*`). One,
-`aaa-rung`, is read-only and reports how far each capability has been defined. See
+There is one skill, `architecture`, with a flow per level. Eight flows author one kind of artefact each. The rung flow is read-only and reports how far each capability has been defined, and the check flow checks a whole repository against the continuum. See
 [Skills](skills/README.md).
 
-A skill carries the method. The standards it follows and the folders it writes to belong to
+The skill carries the method. The standards it follows and the folders it writes to belong to
 your workspace. The next three sections explain how it finds them.
 
 ## The workspace
@@ -33,7 +32,7 @@ its own `inputs.toml`, naming the folders it needs, and the workspace answers in
 `[suite.<skill-name>]` of `.agents/skill-bindings.toml`:
 
 ```toml
-[suite.aaa-create-abb]
+[suite.architecture]
 abbDir        = "../building-blocks/architecture-building-blocks"
 contextDir    = "../contexts"
 capabilityDir = "../capabilities"
@@ -42,7 +41,7 @@ capabilityDir = "../capabilities"
 Paths resolve against the folder holding the bindings file, never the working directory. That
 is why they start with `../` when the file is in `.agents/`.
 
-Before doing anything, every `aaa-create-*` skill runs its own resolver from the workspace root, `node <skills>/<name>/bin/check.mjs --json`, and uses only the paths it prints. A required binding that is missing stops the skill with a message naming the key. An optional binding that is missing means the step that needs it is reported as not done, never quietly skipped. `aaa-rung` has its own resolver, `rung.py --doctor`, which follows the same rules.
+Before doing anything, every create flow runs the skill's resolver from the workspace root, `node <skills>/architecture/bin/check.mjs --json --flow <flow>`, and uses only the paths it prints. A binding the flow needs that is missing stops it with a message naming the key. An optional binding that is missing means the step that needs it is reported as not done, never quietly skipped. The rung has its own resolver, `rung.py --doctor`, which follows the same rules.
 
 Every key is listed in [Configuration](configuration.md#skill-bindings).
 
@@ -80,21 +79,21 @@ Outcome (OC) -> Use Case (UC) -> Platform (PL) -> Capability (CAP) -> Bounded Co
 
 | Artefact | Question it answers | Skill |
 |---|---|---|
-| Outcome, `OC-NNN` | Why? A measurable business result | `aaa-create-strategy` |
-| Use Case, `UC-NNN` | How is it used? A scenario with a named actor | `aaa-create-strategy` |
-| Platform, `PL-NNN` | Who owns and provides it? | `aaa-create-platform` |
-| Capability, `CAP-NNN` | What must the organisation be able to do? | `aaa-create-capability` |
-| Bounded Context, `BC-NNN` | Where does one domain model and its language hold? | `aaa-create-context` |
-| ABB, `ABB-NNN` | How is it structured, independent of product? | `aaa-create-abb` |
-| SBB, `SBB-NNN` | Which products realise it? | `aaa-create-sbb` |
-| Service | How does it run? | `aaa-create-service` |
+| Outcome, `OC-NNN` | Why? A measurable business result | `/architecture strategy` |
+| Use Case, `UC-NNN` | How is it used? A scenario with a named actor | `/architecture strategy` |
+| Platform, `PL-NNN` | Who owns and provides it? | `/architecture platform` |
+| Capability, `CAP-NNN` | What must the organisation be able to do? | `/architecture capability` |
+| Bounded Context, `BC-NNN` | Where does one domain model and its language hold? | `/architecture context` |
+| ABB, `ABB-NNN` | How is it structured, independent of product? | `/architecture abb` |
+| SBB, `SBB-NNN` | Which products realise it? | `/architecture sbb` |
+| Service | How does it run? | `/architecture service` |
 
 You can start anywhere. A skill that finds a parent missing proposes it and asks before
 creating it, so asking for an SBB first will get you an offer to create its ABB and context.
 The rules are in `standards/standard-traceability.md`, and the kinds and their relationships in
 `standards/standard-metamodel.md`.
 
-Two more kinds sit beside the thread. A runtime agent (`aaa-create-runtime-agent`) is an
+Two more kinds sit beside the thread. A runtime agent (`/architecture runtime-agent`) is an
 autonomous agent catalogued with its guardrails and capability scope. A consideration
 (`CN-NNN`) is an open question with more than one credible answer, settled by a decision
 record (`DR-NNN`).
@@ -130,7 +129,7 @@ received from implementation. The full rules are in
 `standards/capabilities/standard-definition-ladder.md`.
 
 Patterns, which R3 and above need, are authored with the
-[architecture-pattern](https://github.com/dermot-obrien/architecture-pattern) skill. `aaa-rung`
+[architecture-pattern](https://github.com/dermot-obrien/architecture-pattern) skill. `/architecture rung`
 reads their `realises`, `flows` and `references` front matter.
 
 ## The foundation seed

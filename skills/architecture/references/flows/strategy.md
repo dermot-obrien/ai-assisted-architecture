@@ -1,0 +1,79 @@
+# Create Strategy (Outcome and Use Case)
+
+You are an enterprise architecture agent creating Business Outcomes and Use Cases. These sit at
+the top of the golden thread: everything below them traces up to here.
+
+Resolve and load the canonical standards before Phase 3, per
+[references/discovery/strategy.md](../discovery/strategy.md): a copy the workspace
+holds wins, and otherwise the copy this skill ships in `references/standards/`.
+
+## Step 0, before anything else
+
+Run the resolver and use only the paths it prints. This skill carries the method; where the
+artefacts live is the repository's to declare, and there is no default to fall back on:
+
+```bash
+node <skills>/architecture/bin/check.mjs --json --flow strategy
+```
+
+Run it from the workspace root. `<skills>` is the directory the skills are installed in. It
+prints each binding as an absolute path, or `null` when it is not declared, and exits non-zero
+when `status` is `error`. Do not proceed on an error and do not guess a path.
+
+| Binding | Used for |
+|---|---|
+| `outcomeDir` | Where a new Strategic Outcome folder is created |
+| `useCaseDir` | Where a new Use Case folder is created |
+
+The contract is declared in the skill's `inputs.toml`. The repository answers it in
+`[suite.architecture]` of its `.agents/skill-bindings.toml`. An optional binding that is not
+declared means the step that needs it is reported as not done, never quietly skipped.
+
+## Phase 1: Discovery
+
+Gather from the user:
+
+1. **Outcome**: the measurable business result wanted, for example "Reduce cloud spend by 15%".
+2. **Measures**: how success is quantified. What is the KPI, and what is its current value?
+   Are there further measures the outcome is judged by? Each becomes an addressable
+   criterion.
+3. **Use case**: a specific scenario supporting the outcome. Who is the primary actor?
+4. **Traceability**: which Capabilities (`CAP-NNN`) are required to deliver it?
+
+An outcome without a measure is a slogan. If the user cannot say how it would be quantified,
+say so and work on the measure before creating anything.
+
+## Phase 2: Load standards
+
+Load the strategy, traceability and frontmatter standards.
+
+## Phase 3: Create artefacts
+
+### Step 1: `<outcomeDir>/OC-NNN/index.md`
+
+Create the Outcome folder and `index.md`, format `OC-NNN`, using the next available
+identifier. It must carry a definition and a concrete measure.
+
+Record every measure in `measures[]` in the front matter, each with an identifier formed
+from the outcome's: `OC-NNN-M1`, `OC-NNN-M2` and so on, with `measure`, `target` and `unit`.
+The headline `kpi` is normally `M1`. These identifiers are the criteria that planning cites
+as `advances_criterion_ids` and that considerations may list, so never renumber one once it
+exists: a dropped measure keeps its number and a new one takes the next. When revising an
+outcome, add measures at the end rather than inserting.
+
+Tell the user the identifiers you created, so they can be cited.
+
+### Step 2: `<useCaseDir>/UC-NNN/index.md`
+
+Create the Use Case folder and `index.md`, format `UC-NNN`. Link it to the parent Outcome
+folder using a folder-relative path with no `/index.md` suffix.
+
+## Phase 4: Self-verification
+
+Execute the AI Agent Self-Verification Checklist from the standards listed above, then confirm
+the framework-level checks in [references/traceability.md](../traceability.md).
+
+## Related flows
+
+- `/architecture platform` creates the platform that owns this outcome.
+- `/architecture capability` creates the capabilities this use case requires.

@@ -8,10 +8,10 @@ Each standard carries a worked example the skills compare their output against.
 
 | Example | Shows | Used by |
 |---|---|---|
-| `standards/building-blocks/architecture-building-blocks/example/` | A complete ABB: `index.md`, `summary.md`, the components and summary draw.io diagrams and their PNG exports | [aaa-create-abb](skills/aaa-create-abb.md) |
-| `standards/building-blocks/architecture-building-blocks/example-requires/` | Five ABBs (`ABB-010` to `ABB-014`) whose `requires` lists form a dependency graph, for gap analysis | [aaa-create-abb](skills/aaa-create-abb.md), [aaa-rung](skills/aaa-rung.md) |
-| `standards/building-blocks/solution-building-blocks/example/` | A simple SBB mapping each ABB component to a product, with its diagrams | [aaa-create-sbb](skills/aaa-create-sbb.md) |
-| `standards/building-blocks/solution-building-blocks/example-composite/` | A composite SBB with parts, ports and connectors (`index.md`), and the C4 System Context view of the same system from outside (`c4-context.md`) | [aaa-create-sbb](skills/aaa-create-sbb.md) |
+| `standards/building-blocks/architecture-building-blocks/example/` | A complete ABB: `index.md`, `summary.md`, the components and summary draw.io diagrams and their PNG exports | [/architecture abb](skills/architecture/abb.md) |
+| `standards/building-blocks/architecture-building-blocks/example-requires/` | Five ABBs (`ABB-010` to `ABB-014`) whose `requires` lists form a dependency graph, for gap analysis | [/architecture abb](skills/architecture/abb.md), [/architecture rung](skills/architecture/rung.md) |
+| `standards/building-blocks/solution-building-blocks/example/` | A simple SBB mapping each ABB component to a product, with its diagrams | [/architecture sbb](skills/architecture/sbb.md) |
+| `standards/building-blocks/solution-building-blocks/example-composite/` | A composite SBB with parts, ports and connectors (`index.md`), and the C4 System Context view of the same system from outside (`c4-context.md`) | [/architecture sbb](skills/architecture/sbb.md) |
 | `standards/ontology/example-identity-platform.json` | One platform described in the modernisation ontology: capabilities, components, changes and milestones | [Ontology](ontology.md) |
 
 ## The foundation seed
@@ -37,14 +37,14 @@ node <aaa>/scripts/seed-foundation.mjs --profile all --dry-run
 
 ## A workspace at every rung
 
-`skills/aaa-rung/tests/fixtures/workspace/` is a small order-handling workspace built for the
-`aaa-rung` tests. It has one capability at each rung from R1 to R6, one held back by an open
+`skills/architecture/tests/fixtures/workspace/` is a small order-handling workspace built for the
+`/architecture rung` tests. It has one capability at each rung from R1 to R6, one held back by an open
 consideration, one whose decision was superseded, one with two flows at different rungs, and
 one named only by a pattern. It carries its own `skill-bindings.toml`, so you can run the
 skill against it directly from a clone of this repository:
 
 ```bash
-python skills/aaa-rung/bin/rung.py --bindings skills/aaa-rung/tests/fixtures/workspace/skill-bindings.toml
+python skills/architecture/bin/rung.py --bindings skills/architecture/tests/fixtures/workspace/skill-bindings.toml
 ```
 
 ```text

@@ -47,7 +47,7 @@ jobs:
       - name: The skills' post-install checks are one file
         run: |
           for f in skills/*/bin/check.mjs; do
-            cmp skills/aaa-create-abb/bin/check.mjs "$f" || { echo "::error::$f differs from skills/aaa-create-abb/bin/check.mjs"; exit 1; }
+            cmp skills/architecture/bin/check.mjs "$f" || { echo "::error::$f differs from skills/architecture/bin/check.mjs"; exit 1; }
           done
 
   skills-ref:
@@ -85,7 +85,7 @@ jobs:
           exit $status
 
   rung:
-    name: aaa-rung tests
+    name: Rung tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -98,8 +98,8 @@ jobs:
       # matter parser, so the path taken where PyYAML is absent is always exercised.
       - name: Unit tests
         run: |
-          python -m unittest discover skills/aaa-rung/tests
-          AAA_RUNG_PURE_YAML=1 python -m unittest discover skills/aaa-rung/tests
+          python -m unittest discover -s skills/architecture/tests
+          RUNG_PURE_YAML=1 python -m unittest discover -s skills/architecture/tests
 
   install:
     name: Install into a scratch workspace
@@ -127,7 +127,7 @@ jobs:
       - name: Check the installed skills resolve
         run: |
           node "$GITHUB_WORKSPACE/aaa/scripts/validate-skills.mjs" /tmp/ws/.agents/skills
-          for s in /tmp/ws/.claude/skills/aaa-*; do
+          for s in /tmp/ws/.claude/skills/architecture /tmp/ws/.claude/skills/workspace; do
             test -f "$s/SKILL.md" || { echo "::error::$s does not resolve"; exit 1; }
           done
           node "$GITHUB_WORKSPACE/aaw/bin/skills.mjs" check --workspace /tmp/ws
@@ -141,24 +141,23 @@ jobs:
           fi
           cd /tmp/ws
           mkdir -p .agents arch/outcomes arch/use-cases arch/platforms arch/capabilities arch/contexts arch/abbs arch/sbbs arch/services
-          node .agents/skills/aaa-continuum/bin/continuum.mjs scaffold --root arch/continuum --namespace ws --name "Scratch" > /dev/null
+          node .agents/skills/architecture/bin/continuum.mjs scaffold --root arch/continuum --namespace ws --name "Scratch" > /dev/null
           {
-            echo '[suite.aaa-create-strategy]';  echo 'outcomeDir = "../arch/outcomes"'; echo 'useCaseDir = "../arch/use-cases"'
-            echo '[suite.aaa-create-platform]';  echo 'platformDir = "../arch/platforms"'
-            echo '[suite.aaa-create-capability]'; echo 'capabilityDir = "../arch/capabilities"'; echo 'platformDir = "../arch/platforms"'
-            echo '[suite.aaa-create-context]';   echo 'contextDir = "../arch/contexts"'; echo 'platformDir = "../arch/platforms"'
-            echo '[suite.aaa-create-abb]';       echo 'abbDir = "../arch/abbs"'
-            echo '[suite.aaa-create-sbb]';       echo 'sbbDir = "../arch/sbbs"'
-            echo '[suite.aaa-create-service]';   echo 'serviceDir = "../arch/services"'
-            echo '[suite.aaa-rung]';             echo 'capabilityDir = "../arch/capabilities"'
-            echo '[suite.aaa-continuum]';        echo 'root = "../arch/continuum"'
+            echo '[suite.architecture]'
+            echo 'root = "../arch/continuum"'
+            echo 'outcomeDir = "../arch/outcomes"'; echo 'useCaseDir = "../arch/use-cases"'
+            echo 'platformDir = "../arch/platforms"'; echo 'capabilityDir = "../arch/capabilities"'
+            echo 'contextDir = "../arch/contexts"'; echo 'abbDir = "../arch/abbs"'
+            echo 'sbbDir = "../arch/sbbs"'; echo 'serviceDir = "../arch/services"'
           } > .agents/skill-bindings.toml
           $CHECK "$GITHUB_WORKSPACE/aaa"
           # Each skill resolves its own bindings, with no other skill installed.
-          node .agents/skills/aaa-create-abb/bin/check.mjs --json | node -e 'const r = JSON.parse(require("fs").readFileSync(0, "utf8")); if (r.status !== "ok" || !r.bindings.abbDir.endsWith("/arch/abbs")) { console.error(r); process.exit(1); }'
+          node .agents/skills/architecture/bin/check.mjs --json --flow abb | node -e 'const r = JSON.parse(require("fs").readFileSync(0, "utf8")); if (r.status !== "ok" || !r.bindings.abbDir.endsWith("/arch/abbs")) { console.error(r); process.exit(1); }'
+          # Every flow's check passes with the one table bound.
+          for f in platform strategy capability context abb sbb service runtime-agent rung check; do node .agents/skills/architecture/bin/check.mjs --flow "$f" > /dev/null || { echo "::error::the $f flow's check fails"; exit 1; }; done
 
   continuum:
-    name: Front matter schemas and the aaa-continuum skill
+    name: Front matter schemas and the continuum check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -174,14 +173,17 @@ jobs:
       - name: The foundation validates against the schemas
         run: node scripts/validate-frontmatter.mjs --quiet
 
-      - name: The aaa-continuum skill's tests
-        run: node --test skills/aaa-continuum/tests/*.test.mjs
+      - name: The architecture skill's continuum tests
+        run: node --test skills/architecture/tests/*.test.mjs
+
+      - name: The workspace skill's tests
+        run: node --test skills/workspace/tests/*.test.mjs
 
       - name: The skill's check passes on its own scaffold
         run: |
           mkdir -p /tmp/cont/.agents && cd /tmp/cont
-          node "$GITHUB_WORKSPACE/skills/aaa-continuum/bin/continuum.mjs" scaffold --root arch --namespace ws --name "Scratch" --bind
-          cd "$GITHUB_WORKSPACE" && node skills/aaa-continuum/bin/continuum.mjs check --root /tmp/cont/arch --bindings /tmp/cont/.agents/skill-bindings.toml --strict
+          node "$GITHUB_WORKSPACE/skills/architecture/bin/continuum.mjs" scaffold --root arch --namespace ws --name "Scratch" --bind
+          cd "$GITHUB_WORKSPACE" && node skills/architecture/bin/continuum.mjs check --root /tmp/cont/arch --bindings /tmp/cont/.agents/skill-bindings.toml --strict
 
   reuse:
     name: REUSE compliance

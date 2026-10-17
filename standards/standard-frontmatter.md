@@ -365,7 +365,7 @@ Blocks attach at the lowest level a capability is defined to (the continuum's de
 
 > **Realisation completeness is a gap, not a validation error.** `realised_by_abbs` is *recommended*, never required — an L3 capability with no realising ABB is a legitimate architecture **gap** surfaced by gap analysis (the foundation catalogue ships such placeholders deliberately, awaiting their ABBs). `provided_by_platform` is required only for L3 capabilities; L1/L2 capabilities are cross-platform groupings and may omit it.
 
-**Definition ladder fields.** These are optional and additive: a capability without them still validates. They are read by the [Definition Ladder Standard](./capabilities/standard-definition-ladder.md) and derived against by `aaa-rung`.
+**Definition ladder fields.** These are optional and additive: a capability without them still validates. They are read by the [Definition Ladder Standard](./capabilities/standard-definition-ladder.md) and derived against by `/architecture rung`.
 
 | Field | Type | Required | Description |
 |---|---|---|---|
@@ -684,7 +684,7 @@ pattern_type: reference-architecture      # required; agrees with the series
 pattern_scope: platform                   # required
 implements: [AP-001]                      # required on a reference architecture, at least one
 composes: [SBB-004, SBB-007]              # the catalogued blocks among its boxes: SBBs here, ABBs in an architecture pattern
-realises: [CAP-002, CAP-003]              # optional; read by aaa-rung
+realises: [CAP-002, CAP-003]              # optional; read by /architecture rung
 serves: [UC-001, UC-002]                  # optional; the use cases its scenarios walk
 model:
   diagram: components.drawio              # the diagram the model skill keeps in step
@@ -783,7 +783,7 @@ repaid_by: null                      # required when debt_status is repaid
 affects: [SBB-001, DN-002]           # required, >=1: the artefacts that carry it
 ```
 
-The decision record lists the same items in `consequences.technical_debt`, and the repaying decision in `repays_debt`. A repository usually keeps debt as rows of a register (`decisions/technical-debt.csv` in the `aaa-continuum` layout), with a page for an item that needs more than a row.
+The decision record lists the same items in `consequences.technical_debt`, and the repaying decision in `repays_debt`. A repository usually keeps debt as rows of a register (`decisions/technical-debt.csv` in the `/architecture check` layout), with a page for an item that needs more than a row.
 
 **Schema:** [`schemas/v1.1.0/technical-debt.schema.json`](./schemas/v1.1.0/technical-debt.schema.json).
 

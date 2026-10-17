@@ -412,7 +412,7 @@ ontology:
   schema: change/enterprise-modernisation/board-updates/may-2026-update/working/pipeline-ontology-extension.json
 ```
 
-When `ontology.schema` is not set, scripts default to the base schema that ships with them, at `../../standards/ontology/ontology-schema.json` relative to the script: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill, which carries its own copy of the validator.
+When `ontology.schema` is not set, scripts default to the base schema that ships with them, at `../../standards/ontology/ontology-schema.json` relative to the script: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `/architecture runtime-agent` skill, which carries its own copy of the validator.
 
 ### Extension schema template
 

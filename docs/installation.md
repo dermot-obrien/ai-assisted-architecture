@@ -1,16 +1,16 @@
 # Installation
 
-AI-Assisted Architecture is a bundle of nine standalone [Agent Skills](https://agentskills.io), listed in [`bundle.json`](../bundle.json). It works with any agent that reads Agent Skills: VS Code with GitHub Copilot, Cursor, Claude Code, Codex, Gemini CLI and others. Each skill is complete on its own: it carries the standards it reads, the configuration template and its own binding resolver, so you can install all nine or only the ones you use. The [quick start](quick-start.md) walks through the first route below end to end.
+Architecture Continuum is a bundle of two standalone [Agent Skills](https://agentskills.io), listed in [`bundle.json`](../bundle.json): `architecture`, with a flow per level of the continuum, and `workspace`, which sets a repository up for it. They work with any agent that reads Agent Skills: VS Code with GitHub Copilot, Cursor, Claude Code, Codex, Gemini CLI and others. The architecture skill is complete on its own: it carries the standards it reads, the configuration template and its own binding resolver. The [quick start](quick-start.md) walks through the first route below end to end.
 
 Whichever route you take, you need:
 
 | Requirement | Why |
 |---|---|
-| The `aaa-*` skill folders where your agent reads skills | The skills themselves |
-| `.agents/skill-bindings.toml` | Where each skill writes; see [Configuration](configuration.md#skill-bindings) |
-| Node.js 18 or later | The installer, each `aaa-create-*` skill's `bin/check.mjs`, and the ontology validator |
-| Python 3.11 or later | `aaa-rung` |
-| ajv, ajv-formats and js-yaml (`npm install` in the skill folder, or in the workspace) | `aaa-continuum` |
+| The `architecture` skill folder (and `workspace`, if you use it) where your agent reads skills | The skills themselves |
+| `.agents/skill-bindings.toml` | Where each flow writes, in one `[suite.architecture]` table; see [Configuration](configuration.md#skill-bindings) |
+| Node.js 18 or later | The installer, the architecture skill's `bin/check.mjs`, and the ontology validator |
+| Python 3.11 or later | The rung flow |
+| ajv, ajv-formats and js-yaml (`npm install` in the skill folder, or in the workspace) | `/architecture check` |
 | git | Fetching the bundle |
 | draw.io desktop, optional | PNG export of diagrams |
 
@@ -38,7 +38,7 @@ git clone https://github.com/dermot-obrien/ai-assisted-architecture path/to/ai-a
 node path/to/ai-assisted-work/bin/skills.mjs install --bundle path/to/ai-assisted-architecture
 ```
 
-Run it from the workspace root, or pass `--workspace <dir>`. Name skills after the command to install only those, for example `... install --bundle path/to/ai-assisted-architecture aaa-create-abb aaa-rung`. `skills.mjs list --bundle <clone>` shows what the bundle holds. The installer records where each skill came from in `.agents/skills.lock.json`.
+Run it from the workspace root, or pass `--workspace <dir>`. Name a skill after the command to install only that one, for example `... install --bundle path/to/ai-assisted-architecture architecture`. `skills.mjs list --bundle <clone>` shows what the bundle holds. The installer records where each skill came from in `.agents/skills.lock.json`.
 
 ## Route 2: a declared, locked set of skills
 
@@ -48,7 +48,7 @@ For a team workspace, declare the skills in a committed `.agents/skills.json` an
 { "sources": [ { "bundle": "https://github.com/dermot-obrien/ai-assisted-architecture.git", "ref": "main" } ] }
 ```
 
-Add `"skills": ["aaa-create-abb", "aaa-rung"]` to the source to take only some of them, and use a tag such as `v0.4.0` as the `ref` to pin a release. Keep a copy of `skills.mjs` in the workspace (for example `scripts/skills.mjs`, copied from AAW's `bin/skills.mjs`), then:
+Add `"skills": ["architecture"]` to the source to take only that skill, and use a tag such as `v0.4.0` as the `ref` to pin a release. Keep a copy of `skills.mjs` in the workspace (for example `scripts/skills.mjs`, copied from AAW's `bin/skills.mjs`), then:
 
 ```bash
 node scripts/skills.mjs sync --copy            # the first time, and to take newer commits: writes .agents/skills.lock.json
@@ -63,12 +63,12 @@ With no installer at all, copy the folders yourself, at workspace or user level,
 
 ```powershell
 New-Item -ItemType Directory -Force .agents/skills | Out-Null
-Copy-Item -Recurse path/to/ai-assisted-architecture/skills/aaa-* .agents/skills/
+Copy-Item -Recurse path/to/ai-assisted-architecture/skills/architecture, path/to/ai-assisted-architecture/skills/workspace .agents/skills/
 ```
 
 ```bash
 mkdir -p .agents/skills
-cp -r path/to/ai-assisted-architecture/skills/aaa-* .agents/skills/
+cp -r path/to/ai-assisted-architecture/skills/architecture path/to/ai-assisted-architecture/skills/workspace .agents/skills/
 ```
 
 For every workspace, copy into a user-level folder from the table above instead, such as `~/.agents/skills/`. Run the [post-install checks](commands.md#post-install-checks) afterwards.
@@ -78,17 +78,17 @@ For every workspace, copy into a user-level folder from the table above instead,
 Installed skills are installer output. Ignore them, and re-run the installer after a pull:
 
 ```gitignore
-.agents/skills/aaa-*
-.claude/skills/aaa-*
+.agents/skills/
+.claude/skills/
 .agents/.skill-sources/
 ```
 
 ## Optional: .aaa-config.yaml
 
-The `aaa-create-*` skills work without a `.aaa-config.yaml`; their check prints a warning and carries on. Add one only to set a workspace ontology schema. Each `aaa-create-*` skill carries the template at `references/standards/workspace/aaa-config.yaml`:
+The create flows work without a `.aaa-config.yaml`; their check prints a warning and carries on. Add one only to set a workspace ontology schema. The architecture skill carries the template at `references/standards/workspace/aaa-config.yaml`:
 
 ```bash
-cp .agents/skills/aaa-create-abb/references/standards/workspace/aaa-config.yaml .aaa-config.yaml
+cp .agents/skills/architecture/references/standards/workspace/aaa-config.yaml .aaa-config.yaml
 ```
 
 Then set `ontology.schema` to a path that exists; see [Configuration](configuration.md#aaa-configyaml).
@@ -109,14 +109,14 @@ Diagrams take their colours from the visual design standard. Until you provide y
 
 ```bash
 mkdir -p standards/visual-design
-cp .agents/skills/aaa-create-abb/references/standards/visual-design/visual-design-standard.md standards/visual-design/
+cp .agents/skills/architecture/references/standards/visual-design/visual-design-standard.md standards/visual-design/
 ```
 
 Edit the hex values and keep the token numbering (`1.1`, `2.6` and so on), which the diagram standards refer to.
 
 ## Agent instruction files
 
-The skills are enough on their own. If your team keeps always-on instruction files such as `AGENTS.md` or `CLAUDE.md`, write your own; this repository no longer ships snippets for them. A line naming the `/aaa-*` skills and where `.agents/skill-bindings.toml` is kept is usually all they need.
+The skills are enough on their own. If your team keeps always-on instruction files such as `AGENTS.md` or `CLAUDE.md`, write your own; this repository no longer ships snippets for them. A line naming the `/architecture` flows and where `.agents/skill-bindings.toml` is kept is usually all they need.
 
 ## Verify
 

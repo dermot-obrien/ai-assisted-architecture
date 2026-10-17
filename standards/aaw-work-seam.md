@@ -101,15 +101,15 @@ both frameworks name the same rungs.
 
 ### Derived rungs feed the framing
 
-`aaa-rung` derives each capability's rung, per flow, from the artefacts that exist, and names
+`/architecture rung` derives each capability's rung, per flow, from the artefacts that exist, and names
 the artefact that blocks the next rung. Its `--json` output is what planning consumes:
 
 - **Starting rung.** An epic's "from" rung is the derived rung at the start of the period, not
   a claim. A framing whose "from" is above the derived rung is claiming evidence that does not
   exist yet.
-- **Products.** The blocker `aaa-rung` names is the first product the epic needs. Each target
+- **Products.** The blocker `/architecture rung` names is the first product the epic needs. Each target
   rung should have at least one named product whose deliverable type evidences it.
-- **Close.** At the end of the period the rung reached is read again from `aaa-rung`, not
+- **Close.** At the end of the period the rung reached is read again from `/architecture rung`, not
   asserted, and any unfinished movement carries into the next period's grid as its start.
 
 Criteria follow the same rule. An outcome measure has an identifier of the form `OC-NNN-M<n>`
@@ -124,7 +124,7 @@ identifiers as `advances_criterion_ids` to say which measures a piece of work mo
 | cross-cutting change | class `intervention` | Capability / ABB / SBB revision |
 | architecture project | `architecture-work` work item | the work that produces AAA artefacts |
 | baseline vs target | release / version | `lifecycle_state` on each artefact |
-| progress of architecture work | an epic's rung movement per flow | a rung on the definition ladder, derived by `aaa-rung` |
+| progress of architecture work | an epic's rung movement per flow | a rung on the definition ladder, derived by `/architecture rung` |
 | what a product evidences | deliverable type and its `rung` | artefact kind |
 | a criterion work advances | `advances_criterion_ids` | an outcome measure id (`OC-NNN-M<n>`) |
 
