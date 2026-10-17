@@ -35,6 +35,7 @@ Do not proceed on an assumed contract.
 | Traceability | `standard-traceability.md` | `standard-traceability.md` | Always |
 | Frontmatter | `standard-frontmatter.md` | `standard-frontmatter.md` | Always, v1.1.0 or later |
 | Visual design | `visual-design-standard.md` | `visual-design/visual-design-standard.md` | When drawing a map |
+| Building block calibration | `standard-building-block-calibration.md` | `building-blocks/standard-building-block-calibration.md` | When naming the building blocks that realise the capability |
 
 For an agent-native workspace, meaning AI-majority engineering, also load `agent-types.md`,
 `principles.md`, `operating-model.md` and `provenance.md` from the agent-native

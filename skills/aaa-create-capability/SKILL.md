@@ -5,7 +5,7 @@ license: CC-BY-4.0
 compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  version: "0.5.1"
+  version: "0.6.0"
 ---
 
 # Create Capability
@@ -61,7 +61,10 @@ ability and record the product against the SBB that realises it.
 ## Phase 2: Load standards
 
 Load the capability document standard, the traceability standard and the frontmatter standard.
-Add the capability diagram and visual design standards if you will draw a map.
+Add the capability diagram and visual design standards if you will draw a map. Load the
+building block calibration standard when the capability names the building blocks that realise
+it: a capability is the C4 system, each building block it names is one container, and the C4
+context diagram of that system belongs to the capability, never to an ABB.
 
 ## Phase 3: Create artefacts
 

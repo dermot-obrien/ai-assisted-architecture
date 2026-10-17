@@ -18,6 +18,8 @@ triggers:
 
 This standard defines the structure, sections, and conventions for an Architecture Building Block document aligned to TOGAF. Every ABB document MUST follow this structure. Refer to the `example/` folder for a concrete implementation (ABB-008 Human-in-the-Loop).
 
+Before this standard applies, the [Building Block Calibration Standard](../standard-building-block-calibration.md) decides whether the candidate is an ABB at all: an ABB is one C4 container, never a component inside one and never a whole system.
+
 
 ## File Structure
 
@@ -107,13 +109,11 @@ Embed the exported PNG of the component diagram immediately after the paragraph:
 ![<ABB-ID> <Diagram Title> Component Diagram](components.png)
 ```
 
-#### 2.1.1 C4 System Context (top-level ABBs)
+#### 2.1.1 Grain, and the C4 System Context view
 
-A **top-level ABB** — one that represents a whole system a stakeholder would name (a trading platform, a payments system), rather than a fine-grained internal building block — SHOULD additionally carry a **C4 System Context diagram**. Where the component diagram (§2.1) shows the ABB's *internal* logical structure, the context diagram shows its *external* surface: who uses it (persons / personas) and which external systems it integrates with. It is the most stakeholder-friendly view in the framework and is normally the first diagram a non-technical reader sees.
+An ABB is one C4 container: a separately runnable or deployable unit that executes code or stores data. The [Building Block Calibration Standard](../standard-building-block-calibration.md) fixes this grain and MUST be applied before an identifier is assigned. Every box inside the component diagram (section 2.1) is a component of this one container, never an ABB of its own, and no ABB is ever created for a component or for code.
 
-Render it in Mermaid `flowchart` form per the [C4 System Context standard](../standard-c4-context-diagram.md) (not the experimental `C4Context` type). Document the AAA mapping the standard requires: the boundary is *this ABB*, internal nodes are its components or realising SBBs, external nodes often correspond to this ABB's [`requires`](#34-capability-dependencies-requires) dependencies, and persons have no AAA artefact. Fine-grained ABBs only ever seen *inside* a larger system do not need a context view — their component diagram is sufficient.
-
-The context view is the **zoom-out** companion to the realising composite SBB's [composite-structure diagram](../solution-building-blocks/standard-sbb-diagram.md#composite-structure-diagrams-mermaid) (the **zoom-in**): the same boundary drawn opaque (context) then transparent (composite). See the worked pair at [`solution-building-blocks/example-composite/`](../solution-building-blocks/example-composite/).
+There is no top-level ABB. A whole system that a stakeholder would name, such as a trading platform or a payments system, is a Capability, and the C4 System Context diagram belongs to that capability, rendered per the [C4 System Context standard](../standard-c4-context-diagram.md). An ABB document carries no context diagram. Where a reader needs the outside of the system this ABB belongs to, link to the capability's context view, in which this ABB is one node inside the boundary.
 
 #### 2.2 Fundamental Functionality
 
@@ -412,6 +412,7 @@ Before finalising an ABB document, verify:
 8. [ ] **Cross-Cutting Diagram**: Does the component diagram show IAM, Observability, and Governance & Policy as sub-ABB groups?
 9. [ ] **Summary Panel**: Do `summary.drawio` and `summary.png` exist and are they in sync with `index.md`?
 10. [ ] **Capability Dependencies**: If the ABB depends on other logical ABBs, are they declared in the `requires` frontmatter (with cardinality and rationale) and reflected in §3.4? Are the referenced ABB IDs valid (`ABB-NNN`)?
+11. [ ] **Grain**: Does the ABB pass the container test in the [Building Block Calibration Standard](../standard-building-block-calibration.md)? Is nothing in §2.2 an ABB in its own right, and is the ABB not a whole system that should be a Capability?
 
 
 ## Quick Reference Sections

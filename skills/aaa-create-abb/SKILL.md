@@ -1,11 +1,11 @@
 ---
 name: aaa-create-abb
-description: Create a TOGAF-aligned Architecture Building Block (ABB) with its index document, components diagram, C4 system context view, PNG exports and summary, keeping the golden thread of traceability from Strategic Outcome down to the ABB intact. Use when asked to create, add or scaffold an ABB or architecture building block, to define a logical building block under a capability or bounded context, or to fill an ABB gap surfaced by another artefact's requires list.
+description: Create a TOGAF-aligned Architecture Building Block (ABB) at container grain, with its index document, components diagram, PNG exports and summary, keeping the golden thread of traceability from Strategic Outcome down to the ABB intact. Use when asked to create, add or scaffold an ABB or architecture building block, to define a logical building block under a capability or bounded context, or to fill an ABB gap surfaced by another artefact's requires list.
 license: CC-BY-4.0
 compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  version: "0.5.1"
+  version: "0.6.0"
 ---
 
 # Create Architecture Building Block (ABB)
@@ -44,6 +44,13 @@ declared means the step that needs it is reported as not done, never quietly ski
 
 ## Phase 1: Discovery and proactive upward traceability
 
+Before anything else, apply the container test in the building block calibration standard. An
+ABB is one C4 container: a separately runnable or deployable unit that executes code or stores
+data. If the candidate is a component inside such a unit, or code, it gets no ABB: it belongs
+in section 2.2 of its container's ABB document, and you say so and stop. If the candidate is a
+whole system a stakeholder would name, it is a Capability realised by several ABBs, and you
+propose that capability and a pattern instead. Only a candidate that passes the test continues.
+
 Verify the ABB's parentage before creating it. Where a parent is missing, propose it rather
 than inventing it silently.
 
@@ -73,9 +80,10 @@ than inventing it silently.
 
 ## Phase 2: Load standards
 
-Load and internalise the ABB document standard, the ABB diagram standard, the traceability
-standard, the frontmatter standard and the visual design standard. If this ABB is top-level,
-also load the C4 context diagram standard. Resolve each by the procedure in
+Load and internalise the building block calibration standard, the ABB document standard, the
+ABB diagram standard, the traceability standard, the frontmatter standard and the visual
+design standard. Load the C4 context diagram standard only when the request includes a
+context view, which belongs to the parent capability. Resolve each by the procedure in
 [references/standards-discovery.md](references/standards-discovery.md).
 
 Do not produce any artefact before these are loaded.
@@ -99,16 +107,13 @@ from any composite-SBB part wiring.
 Create the diagram at 960x1080. Include the mandatory cross-cutting sub-ABBs (IAM,
 Observability, Governance) and a legend.
 
-### Step 2b: C4 System Context diagram, top-level ABBs only
+### Step 2b: C4 System Context diagram, on the capability only
 
-Decide whether this ABB is top-level, meaning it represents a whole system a stakeholder
-would name such as a trading platform or a payments system, rather than a fine-grained
-internal building block. If it is, add a C4 System Context diagram to `index.md` as section
-2.1.1. The full rendering contract is in
-[references/c4-context-diagram.md](references/c4-context-diagram.md).
-
-Skip this step for fine-grained ABBs only ever seen inside a larger system. Their component
-diagram is sufficient.
+An ABB is one container and carries no context diagram; there is no top-level ABB. The
+context view belongs to the capability this ABB realises, with this ABB as one node inside
+the boundary. If the request includes a context view, produce it for that capability per
+[references/c4-context-diagram.md](references/c4-context-diagram.md) and link to it from the
+ABB's section 2.1.1 rather than embedding it.
 
 ### Step 3: PNG and summary
 
