@@ -39,11 +39,11 @@ The framework's metamodel is partitioned into groupings — each is a top-level 
 | 6 | Runtime / Code (optional) | `runtime/` | Pending | C4 Container/Component, framework v1.0.0 |
 | 7 | Demand | `demand/` | Pending | Value Stream + Use Case (BIZBOK / TOGAF) |
 | 8 | Guidance (Architecture pattern and Reference architecture, at any scope; Profile) | `guidance/` | Pending | TOGAF Architecture Continuum, pattern catalogues |
-| 9 | Governance (Principle, Standard, Consideration, ADR) | `governance/` | Pending | TOGAF Principles + MADR + framework v1.0.0 ADRs |
+| 9 | Governance (Principle, Standard, Consideration, ADR, Technical debt) | `governance/` | Pending | TOGAF Principles + MADR + framework v1.0.0 ADRs |
 | 10 | Roadmap | `roadmap/` | Pending | TOGAF Implementation & Migration roadmap |
 | 11 | Technology Tracking | `radar/` | Pending | ThoughtWorks Tech Radar |
 | 12 | Inter-platform Contracts | `dependencies/` | Pending | Team Topologies (platform dependencies) |
-| 13 | Lifecycle / Change | (cross-cutting) | Pending | Framework Snapshot/Transition (state-triple lifecycle) |
+| 13 | Lifecycle / Change | (cross-cutting) | Pending | Framework `lifecycle_state` on each artefact (baseline, in-flight, target, retired); no snapshot or transition kinds |
 
 Each grouping has: (a) external sources, (b) candidate entity inventory drawn from those sources, (c) a recommended subset, (d) entity field shapes, (e) relations to other groupings.
 

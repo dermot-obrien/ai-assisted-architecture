@@ -67,8 +67,6 @@ const KIND_SCHEMA = {
   feature: 'feature.schema.json',
   landscape: 'landscape.schema.json',
   'decision-record': 'decision-record.schema.json',
-  snapshot: 'snapshot.schema.json',
-  transition: 'transition.schema.json',
   consideration: 'consideration.schema.json',
   'technical-debt': 'technical-debt.schema.json',
 };

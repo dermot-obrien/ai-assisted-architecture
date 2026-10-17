@@ -10,7 +10,7 @@ Each box with a series (`PL-NNN`, `CAP-NNN` and so on) is a kind of the schemas.
 
 Two boxes are dashed because they are on the continuum but are not kinds: domain and subdomain is recorded as `subdomain_kind` on the bounded context, and module and component as `module_path` and `packages` on the service. Their dotted lines are not fields. The API box is dashed because the kind is still a placeholder. A field that relates a kind to itself, such as an ABB that requires another ABB, is marked with ↻ in the box rather than drawn as a loop.
 
-Compared with [the continuum picture](continuum.svg), every box keeps its place but three. The continuum's Contracts box is the API placeholder here, moved down beside the service that provides and consumes it, because that is where the schemas record contracts. Consideration and decision record, one box there, are two kinds here. Transition and snapshot, which record change over time and are not on the continuum, are added at the top right.
+Compared with [the continuum picture](continuum.svg), every box keeps its place but three. The continuum's Contracts box is the API placeholder here, moved down beside the service that provides and consumes it, because that is where the schemas record contracts. Consideration and decision record, one box there, are two kinds here, and technical debt, a consequence of a decision, is added below the decision record.
 
 ## How it is kept true
 
@@ -43,14 +43,12 @@ The layout (where each box sits and how each line is routed) is declared in the 
 | Consideration | `CN-NNN` | [`consideration.schema.json`](../standards/schemas/v1.1.0/consideration.schema.json) |  |
 | Decision record | `DR-NNN` | [`decision-record.schema.json`](../standards/schemas/v1.1.0/decision-record.schema.json) |  |
 | Technical debt | `TD-NNN` | [`technical-debt.schema.json`](../standards/schemas/v1.1.0/technical-debt.schema.json) |  |
-| Transition | `TR-NNN` | [`transition.schema.json`](../standards/schemas/v1.1.0/transition.schema.json) |  |
-| Snapshot | `SN-NNN` | [`snapshot.schema.json`](../standards/schemas/v1.1.0/snapshot.schema.json) | ↻ supersedes |
 | Architecture pattern | `AP-NNN` | [`pattern.schema.json`](../standards/schemas/v1.1.0/pattern.schema.json) |  |
 | Reference architecture | `RA-NNN` | [`pattern.schema.json`](../standards/schemas/v1.1.0/pattern.schema.json) |  |
 | API | `API-NNN, placeholder` | [`_placeholders/api.schema.json`](../standards/schemas/v1.1.0/_placeholders/api.schema.json) |  |
 | Store | `ST-NNN` | [`store.schema.json`](../standards/schemas/v1.1.0/store.schema.json) |  |
 
-Not drawn: `view` and `event`, placeholders with no relationship fields yet. Two fields name artefacts of any kind and are not drawn as lines: `decision-record.affects_artefacts` and `transition.affected_artefacts` and `technical-debt.affects`.
+Not drawn: `view` and `event`, placeholders with no relationship fields yet. Two fields name artefacts of any kind and are not drawn as lines: `decision-record.affects_artefacts` and `technical-debt.affects`.
 
 ## The lines
 
@@ -84,7 +82,6 @@ Each line, read from subject to object as the continuum reads it, with every fie
 | Consideration | affects | Capability | `consideration.affects` | Yes |
 | Consideration | resolved by | Decision record | `consideration.resolved_by` | No: one box in the continuum |
 | Decision record | consequence, repays | Technical debt | `decision-record.consequences.technical_debt`, `technical-debt.consequence_of`, `decision-record.repays_debt`, `technical-debt.repaid_by` | No: beside the continuum, in its text and relationship table; the picture keeps decisions to one box |
-| Transition | from, to | Snapshot | `transition.from_snapshot`, `transition.to_snapshot` | No: change over time is outside the continuum |
 | Pattern document | realises | Capability | `pattern.realises` | Yes |
 | Architecture pattern | composes | Architecture building block | `pattern.composes`, `abb.composed_by` | Yes |
 | Reference architecture | composes | Solution building block | `sbb.composed_by` | Yes |

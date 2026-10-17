@@ -8,7 +8,7 @@ created: 2026-05-08
 last_modified: 2026-05-08
 owner: "Architecture Team"
 triggers:
-  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition, Consideration)"
+  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Consideration, Technical Debt)"
   - "Validating workspace artefacts in CI"
   - "Migrating v1.0.0 artefacts to v1.1.0"
   - "Querying the catalog by relations or status"
@@ -16,7 +16,7 @@ triggers:
 
 # Frontmatter Standard
 
-This standard defines the **YAML frontmatter** every catalog artefact carries. It introduces a universal envelope, per-kind extensions, a unified relationship vocabulary, and lifecycle / change / transition fields. Together these turn the framework's documentation into a queryable, machine-validatable catalog.
+This standard defines the **YAML frontmatter** every catalog artefact carries. It introduces a universal envelope, per-kind extensions, a unified relationship vocabulary, and lifecycle and change fields. Together these turn the framework's documentation into a queryable, machine-validatable catalog.
 
 This standard is the prose form. The machine-validatable form lives at [`schemas/v1.1.0/`](https://github.com/dermot-obrien/ai-assisted-architecture/tree/main/standards/schemas/v1.1.0/).
 
@@ -33,7 +33,7 @@ This standard is the prose form. The machine-validatable form lives at [`schemas
 Two distinct frontmatter shapes coexist:
 
 - **Standards documents** (the `standards/.../*.md` files themselves) keep their existing shape: `document_type: standards`, `title`, `classification`, `version`, `status`, `created`, `last_modified`, `owner`, `triggers`. **This file follows that convention.**
-- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`, and the pages of landscapes, products, features, stores and technical debt where a repository keeps them) **adopt the envelope defined below**.
+- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`, and the pages of landscapes, products, features, stores and technical debt where a repository keeps them) **adopt the envelope defined below**.
 
 This standard concerns the *artefact* shape. Standards documents are unaffected.
 
@@ -48,7 +48,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
-| `kind` | enum | * | One of: `outcome`, `use-case`, `landscape`, `platform`, `product`, `feature`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `store`, `snapshot`, `transition`, `consideration`, `technical-debt`. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `landscape`, `platform`, `product`, `feature`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `store`, `consideration`, `technical-debt`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
 | `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
@@ -63,12 +63,11 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | `last_modified` | ISO-8601 date | * | `YYYY-MM-DD`. Updated on every meaningful change. |
 | `last_modified_by` | string | recommended | Worker or person ID. |
 
-### 2.3 Change and transition fields
+### 2.3 Change fields
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `lifecycle_state` | enum | recommended (default `baseline`) | One of: `baseline`, `in-flight`, `target`, `retired`. Allows multiple coexistent versions of the same `id` to live in the workspace, each declaring its standing. See §4. |
-| `architecture_snapshot` | `SN-NNN` \| null | optional | The Snapshot this artefact-version belongs to, if any. |
 | `valid_from` | ISO-8601 date | optional | Date this state took effect. |
 | `valid_until` | ISO-8601 date \| null | optional | Date this state ceased to be current. `null` means "still current". |
 | `supersedes` | array of IDs | optional | IDs of artefacts this one replaces. |
@@ -184,7 +183,7 @@ references:
 | `lifecycle_state` | Meaning | Typical use |
 |---|---|---|
 | `baseline` | Part of the current as-is architecture | Default for live artefacts |
-| `in-flight` | Part of an active transition; neither pure baseline nor target | Temporary states during migration |
+| `in-flight` | Part of a change under way; neither pure baseline nor target | Temporary states during migration |
 | `target` | Part of a future / aspirational architecture; not yet realised | Documents the Target Architecture per TOGAF Phase B |
 | `retired` | Was once in the baseline; no longer is | Historical artefacts kept for audit |
 
@@ -207,7 +206,7 @@ building-blocks/architecture-building-blocks/
 
 Folder name pattern: `<ID>` for the canonical (baseline) version; `<ID>-target` for the target version; `<ID>-v<semver>` for explicit historical versions. The `id` frontmatter remains `ABB-007` for all of them; the validator checks that exactly one folder per `id` carries `lifecycle_state: baseline` (or omits the field, defaulting to baseline).
 
-See [Snapshot](#) and [Transition](#) artefact types (forthcoming as separate standards) for how named architecture states are assembled and how multi-step migrations are described.
+The model has no snapshot or transition kinds: an artefact's standing is its own `lifecycle_state`, and a change is recorded by the decision record that makes it (`affects_artefacts`).
 
 ---
 
@@ -632,42 +631,9 @@ hosts_stores: [ST-001]               # stores; the inverse of hosted_on
 
 **Schema:** [`schemas/v1.1.0/deployment-node.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/deployment-node.schema.json).
 
-### 6.14 Snapshot (`SN-NNN`)
+### 6.14 and 6.15
 
-```yaml
-kind: snapshot
-id: SN-001
-title: "Patternode Baseline 2026-Q2"
-snapshot_kind: baseline | target | transition   # required
-effective_date: 2026-06-30                       # required for baseline
-target_date: null                                # required for target
-supersedes_snapshot: null                        # for transition snapshots
-
-artefacts:                                       # required, ≥1; the manifest
-  - { id: PL-001, version: 1.0.0 }
-  - { id: PL-002, version: 1.0.0 }
-  - { id: ABB-001, version: 1.5.0 }
-```
-
-**Schema:** [`schemas/v1.1.0/snapshot.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/snapshot.schema.json) (full body structure forthcoming as a separate Snapshot standard).
-
-### 6.15 Transition (`TR-NNN`)
-
-```yaml
-kind: transition
-id: TR-001
-title: "Migrate to Multi-Region Deployment"
-from_snapshot: SN-001                # required
-to_snapshot: SN-002                  # required
-transition_status: planned | in-progress | completed | abandoned   # transition lifecycle; the envelope `status` (draft/active/…) still applies separately
-
-sequenced_steps:                                  # required, ≥1
-  - { step: 1, summary: "Provision multi-region infra", target_date: 2027-Q1, owner: "Platform Team" }
-  - { step: 2, summary: "Dual-write data layer", target_date: 2027-Q2, owner: "Data Team" }
-affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
-```
-
-**Schema:** [`schemas/v1.1.0/transition.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/transition.schema.json) (full body structure forthcoming as a separate Transition standard).
+Removed. The model has no snapshot or transition kinds (§4); the numbers are kept so the sections after them keep theirs.
 
 ### 6.16 Consideration (`CN-NNN`)
 
@@ -696,7 +662,7 @@ affects: [CAP-012, ABB-021, AP-004]  # required, >=1: capabilities, ABBs, SBBs, 
 | `question` | string | * | The open question, phrased so each option is a possible answer. |
 | `options[]` | array of objects | recommended, >=2 | Each has `name` (required) and `summary`. A question with one credible answer is not a consideration. |
 | `criteria[]` | array of strings | recommended | What decides between the options. |
-| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
+| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, because one property cannot satisfy two enums. |
 | `resolved_by` | `DR-NNN` or `ADR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
 | `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs, architecture patterns or reference architectures whose definition waits on the question. An architecture pattern is named by its identifier (`AP-NNN`) and a reference architecture by its (`RA-NNN`), which is how the ladder finds them. |
 
@@ -810,7 +776,7 @@ debt_status: open                    # required: open | scheduled | repaid | wri
 quadrant: deliberate-prudent         # Fowler's quadrant: deliberate or inadvertent, prudent or reckless
 interest: "A regional outage stops sign-in for every workload"   # required: what carrying it costs
 principal: "A second region and replication, about six weeks"
-repayment: "Planned with the multi-region transition"
+repayment: "Planned with the move to two regions"
 target_date: 2027-06-30
 consequence_of: DR-014               # required: the decision it is a consequence of
 repaid_by: null                      # required when debt_status is repaid
@@ -855,7 +821,7 @@ The `standards/.../*.md` files keep their existing frontmatter (`document_type: 
 
 ## 8. Schema Diagrams
 
-### 8.1 Composition (envelope + 22 kinds)
+### 8.1 Composition (envelope + 20 kinds)
 
 ```mermaid
 classDiagram
@@ -872,7 +838,6 @@ classDiagram
         +last_modified : date *
         +owner : string *
         +lifecycle_state : enum
-        +architecture_snapshot : SN-NNN?
         +supersedes / superseded_by
         +classification, governance_zone
         +references
@@ -892,8 +857,6 @@ classDiagram
     class Pattern { AP-NNN or RA-NNN }
     class Service { kebab or SV-NNN }
     class DecisionRecord { DR-NNN }
-    class Snapshot { SN-NNN }
-    class Transition { TR-NNN }
     class Consideration { CN-NNN }
     class TechnicalDebt { TD-NNN }
     class API { API-NNN ~placeholder~ }
@@ -915,8 +878,6 @@ classDiagram
     Envelope <|-- Pattern
     Envelope <|-- Service
     Envelope <|-- DecisionRecord
-    Envelope <|-- Snapshot
-    Envelope <|-- Transition
     Envelope <|-- Consideration
     Envelope <|-- TechnicalDebt
     Envelope <|-- API
@@ -931,34 +892,9 @@ classDiagram
 
 The picture is generated from the schemas by `scripts/generate-schema-diagram.mjs`, which fails in CI when a schema field has no line or the picture and the continuum's own diagram differ in a way it does not explain. [The schema page](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/docs/schema.md) lists every line with its fields and every difference from the continuum picture.
 
-### 8.3 Lifecycle, Snapshots, and Transitions
+### 8.3 Lifecycle
 
-```mermaid
-flowchart LR
-    subgraph BASELINE ["Snapshot SN-001<br/>baseline · 2026-Q2"]
-        AB1[ABB-007 v2.0.0<br/>baseline]
-        SB1[SBB-007 v1.0.0<br/>baseline]
-    end
-
-    subgraph TARGET ["Snapshot SN-002<br/>target · 2027-Q4"]
-        AB2[ABB-007 v3.0.0<br/>target]
-        SB2[SBB-007 v2.0.0<br/>target]
-    end
-
-    DR1{{DR-014<br/>change_type: replace<br/>affects ABB-007, SBB-007}}
-    DR2{{DR-015<br/>change_type: modify<br/>affects SBB-007}}
-
-    TR1[(Transition TR-001<br/>SN-001 → SN-002)]
-
-    BASELINE --> TR1
-    TR1 --> TARGET
-    DR1 -. applies_to .-> AB1
-    DR1 -. applies_to .-> AB2
-    DR2 -. applies_to .-> SB1
-    DR2 -. applies_to .-> SB2
-```
-
-The same artefact `id` (e.g. `ABB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, in sequenced steps. Decision records are not attached to a transition; each names the artefacts it changes in `affects_artefacts`.
+The same artefact `id` (e.g. `ABB-007`) can coexist in two states, `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0, under different folder names (§4). The decision record that moves it from one to the other names it in `affects_artefacts`. There is no snapshot or transition kind: the baseline is the set of artefacts in `baseline`, and the target the set in `target`.
 
 ---
 
@@ -982,7 +918,6 @@ last_modified: 2026-05-08
 last_modified_by: claude-opus-4-7
 
 lifecycle_state: baseline
-architecture_snapshot: SN-001
 
 owner: "Identity Platform Team"
 classification: internal

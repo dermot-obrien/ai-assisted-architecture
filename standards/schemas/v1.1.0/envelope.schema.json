@@ -75,8 +75,6 @@
         "decision-record",
         "event",
         "deployment-node",
-        "snapshot",
-        "transition",
         "consideration",
         "technical-debt",
         "landscape",
@@ -85,9 +83,9 @@
       ]
     },
     "anyId": {
-      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|ST|SN|TR|CN|TD followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|ST|CN|TD followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
       "type": "string",
-      "pattern": "^(OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|ST|SN|TR|CN|TD)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      "pattern": "^(OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|ST|CN|TD)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
     },
     "platformId": {
       "type": "string",
@@ -173,14 +171,6 @@
       "type": "string",
       "pattern": "^ST-\\d{3}$",
       "description": "A store: ST-NNN, a database, bucket, table, index or secret owned by one bounded context. A resource of a service, not a service."
-    },
-    "snapshotId": {
-      "type": "string",
-      "pattern": "^SN-\\d{3}$"
-    },
-    "transitionId": {
-      "type": "string",
-      "pattern": "^TR-\\d{3}$"
     },
     "considerationId": {
       "type": "string",
@@ -414,16 +404,6 @@
     },
     "lifecycle_state": {
       "$ref": "#/$defs/lifecycleState"
-    },
-    "architecture_snapshot": {
-      "anyOf": [
-        {
-          "$ref": "#/$defs/snapshotId"
-        },
-        {
-          "type": "null"
-        }
-      ]
     },
     "valid_from": {
       "$ref": "#/$defs/isoDate"

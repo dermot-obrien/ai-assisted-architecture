@@ -41,7 +41,8 @@ AAA's building blocks — created or revised via the `create-*` agents:
 | a reusable architecture pattern | **Architecture Building Block** (`ABB-NNN`) | `create-abb` |
 | a concrete technology realisation | **Solution Building Block** (`SBB-NNN`) | `create-sbb` |
 | a bounded context / platform / service | Context · Platform · Service | `create-context` / `create-platform` / `create-service` |
-| a baseline → target migration | **Snapshot** (`SN-NNN`) + **Transition** (`TR-NNN`) | (sequenced by Decision Records) |
+| a baseline → target migration | the artefacts' `lifecycle_state` (`baseline`, `target`), moved by **Decision Records** (`DR-NNN`) | `create-*` for the artefact |
+| a shortfall knowingly taken on | **Technical debt** (`TD-NNN`), a consequence of a Decision Record | (recorded with the decision) |
 
 A `chore` or `change` rarely reaches here — by definition they're not cross-cutting. When
 they unexpectedly are, AAW's *promotion* rule applies: the work is re-triaged up to an
@@ -122,7 +123,7 @@ identifiers as `advances_criterion_ids` to say which measures a piece of work mo
 | an architectural choice | a `decision` deliverable | Decision Record (`DR-NNN`) |
 | cross-cutting change | class `intervention` | Capability / ABB / SBB revision |
 | architecture project | `architecture-work` work item | the work that produces AAA artefacts |
-| baseline vs target | release / version | Snapshot + Transition |
+| baseline vs target | release / version | `lifecycle_state` on each artefact |
 | progress of architecture work | an epic's rung movement per flow | a rung on the definition ladder, derived by `aaa-rung` |
 | what a product evidences | deliverable type and its `rung` | artefact kind |
 | a criterion work advances | `advances_criterion_ids` | an outcome measure id (`OC-NNN-M<n>`) |

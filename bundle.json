@@ -158,7 +158,7 @@
     }
   ],
   "ontology": {
-    "id": "pkg:generic/dermot-obrien/ai-assisted-architecture/architecture-ontology@1.0.0",
+    "id": "pkg:generic/dermot-obrien/ai-assisted-architecture/architecture-ontology@2.0.0",
     "path": "ontology/architecture.schema.json",
     "extends": [
       {

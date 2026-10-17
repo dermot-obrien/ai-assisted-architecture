@@ -109,8 +109,6 @@ const BOXES = {
   consideration: { kind: 'consideration', title: 'Consideration', series: 'CN-NNN', text: 'question, options, criteria', x: 950, y: 80, w: 165, h: 52, continuum: '32' },
   'decision-record': { kind: 'decision-record', title: 'Decision record', series: 'DR-NNN', text: 'y_statement, change_type', x: 1190, y: 80, w: 180, h: 52, continuum: '32' },
   'technical-debt': { kind: 'technical-debt', title: 'Technical debt', series: 'TD-NNN', text: 'debt_status, quadrant, interest', x: 1190, y: 158, w: 180, h: 48 },
-  transition: { kind: 'transition', title: 'Transition', series: 'TR-NNN', text: 'sequenced_steps', x: 950, y: 230, w: 165, h: 48 },
-  snapshot: { kind: 'snapshot', title: 'Snapshot', series: 'SN-NNN', text: 'artefacts', self: 'supersedes', selfBelow: true, x: 1190, y: 230, w: 180, h: 48 },
   patterns: { group: true, kind: 'pattern', title: 'Pattern document', series: 'kind pattern', text: 'pattern_type, pattern_scope; abstraction is derived', x: 950, y: 336, w: 420, h: 210, continuum: '34' },
   'architecture-pattern': { kind: 'pattern', title: 'Architecture pattern', series: 'AP-NNN', text: 'ABBs and local roles; logical', x: 1030, y: 403, w: 324, h: 48, continuum: '35' },
   'reference-architecture': { kind: 'pattern', title: 'Reference architecture', series: 'RA-NNN', text: 'SBBs and technologies; physical', x: 1030, y: 482, w: 324, h: 48, continuum: '36' },
@@ -149,7 +147,6 @@ const LINES = [
   { from: 'consideration', to: 'capability', label: 'affects', dashed: true, fields: ['consideration.affects'], route: [[950, 106], [902, 106], [902, 236], [880, 236]], at: [902, 170], rotate: true, continuum: ['32->8'] },
   { from: 'consideration', to: 'decision-record', label: 'resolved by', fields: ['consideration.resolved_by'], route: [[1115, 106], [1190, 106]], at: [1152, 106] },
   { from: 'decision-record', to: 'technical-debt', label: 'consequence, repays', fields: ['decision-record.consequences.technical_debt', 'technical-debt.consequence_of', 'decision-record.repays_debt', 'technical-debt.repaid_by'], route: [[1280, 132], [1280, 158]], at: [1280, 145] },
-  { from: 'transition', to: 'snapshot', label: 'from, to', fields: ['transition.from_snapshot', 'transition.to_snapshot'], route: [[1115, 254], [1190, 254]], at: [1152, 254] },
   { from: 'patterns', to: 'capability', label: 'realises', fields: ['pattern.realises'], route: [[950, 352], [930, 352], [930, 252], [880, 252]], at: [930, 300], rotate: true, continuum: ['34->8'] },
   { from: 'architecture-pattern', to: 'abb', label: 'composes', fields: ['pattern.composes', 'abb.composed_by'], route: [[1030, 427], [880, 427]], at: [990, 427], continuum: ['35->10'] },
   { from: 'reference-architecture', to: 'sbb', label: 'composes', fields: ['sbb.composed_by'], route: [[1030, 506], [880, 506]], at: [990, 506], continuum: ['36->11'] },
@@ -163,8 +160,8 @@ const LINES = [
 // Fields drawn in a box rather than by a line: a relation of a kind to itself, or to any kind.
 const IN_A_BOX = {
   'capability.parent': 'capability', 'bounded-context.relationships.with': 'bounded-context', 'abb.requires.abb': 'abb',
-  'sbb.parts.sbb': 'sbb', 'deployment-node.parent': 'deployment-node', 'snapshot.supersedes_snapshot': 'snapshot',
-  'decision-record.affects_artefacts': 'any kind', 'transition.affected_artefacts': 'any kind', 'technical-debt.affects': 'any kind',
+  'sbb.parts.sbb': 'sbb', 'deployment-node.parent': 'deployment-node',
+  'decision-record.affects_artefacts': 'any kind', 'technical-debt.affects': 'any kind',
 };
 
 // Lines of the continuum's picture that the schemas draw differently, and why.
@@ -181,7 +178,6 @@ const SCHEMA_ONLY = {
   'product->capability': 'stated in the continuum\'s text and relationship table',
   'consideration->decision-record': 'one box in the continuum',
   'decision-record->technical-debt': 'beside the continuum, in its text and relationship table; the picture keeps decisions to one box',
-  'transition->snapshot': 'change over time is outside the continuum',
   'service->api': 'the continuum draws contracts between contexts; see the continuum-only difference',
 };
 
@@ -253,8 +249,8 @@ const W = 1400;
 const H = 900;
 const legend = [
   'Every box with a series is a kind of the front matter schemas in standards/schemas/v1.1.0; every line is one or more of their identifier fields, forward and inverse (hover a line for its fields).',
-  'A dashed box is on the continuum but is recorded as a field, not a kind. ↻ marks a field that relates a kind to itself. Decision records, technical debt and transitions also name affected artefacts of any kind.',
-  'Solid arrow: a relationship recorded in front matter. Dashed arrow: may point at more than one level. Boxes sit where the continuum puts them; its Contracts is the API placeholder here; technical debt, transitions and snapshots are added.',
+  'A dashed box is on the continuum but is recorded as a field, not a kind. ↻ marks a field that relates a kind to itself. Decision records and technical debt also name affected artefacts of any kind.',
+  'Solid arrow: a relationship recorded in front matter. Dashed arrow: may point at more than one level. Boxes sit where the continuum puts them; its Contracts is the API placeholder here, and technical debt is added.',
   'Generated by scripts/generate-schema-diagram.mjs from the schemas, which also checks the picture against continuum.drawio. Do not edit by hand.',
 ];
 
