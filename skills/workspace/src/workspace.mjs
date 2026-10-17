@@ -510,14 +510,20 @@ export function check(repo, { extra = [] } = {}) {
   return status;
 }
 
+/** A clean install of the site's packages: npm ci where there is a lock, else npm install. */
+export function installSitePackages(repo, { log = console.log } = {}) {
+  if (!exists(path.join(repo, "package.json"))) return 0;
+  const ci = exists(path.join(repo, "package-lock.json")) ? ["ci", "--no-audit", "--no-fund"] : ["install", "--no-audit", "--no-fund"];
+  log(`  running npm ${ci[0]}`);
+  return npm(repo, ci).status ?? 1;
+}
+
 /** The site's build: a clean install of its packages when asked or missing, then npm run build. */
 export function build(repo, { fresh = false, log = console.log } = {}) {
   if (!exists(path.join(repo, "package.json"))) return log("  build skipped: no package.json"), 0;
   if (fresh || !exists(path.join(repo, "node_modules"))) {
-    const ci = exists(path.join(repo, "package-lock.json")) ? ["ci", "--no-audit", "--no-fund"] : ["install", "--no-audit", "--no-fund"];
-    log(`  running npm ${ci[0]}`);
-    const r = npm(repo, ci);
-    if (r.status !== 0) return r.status ?? 1;
+    const s = installSitePackages(repo, { log });
+    if (s) return s;
   }
   log("  running npm run build");
   return npm(repo, ["run", "build"]).status ?? 1;

@@ -7,7 +7,7 @@
  */
 import path from "node:path";
 import {
-  applyClean, applyInstall, build, check, doctor, installSkillDependencies, isGitRepo, planClean, planInstall, regenerate, runInstaller,
+  applyClean, applyInstall, build, check, doctor, installSitePackages, installSkillDependencies, isGitRepo, planClean, planInstall, regenerate, runInstaller,
 } from "../src/workspace.mjs";
 
 const USAGE = `workspace: initialise or reinitialise a repository that uses the architecture skills
@@ -64,7 +64,7 @@ function cleanStep(apply) {
   if (!apply && actions.length) console.log("  (a dry run: --apply removes them)");
 }
 
-function installStep() {
+function installStep({ deps = true } = {}) {
   const plan = planInstall(repo, { force: flags.force, declare: flags.declare });
   for (const p of plan.problems) console.error(`install: ${p}`);
   if (plan.problems.length) process.exit(2);
@@ -77,7 +77,7 @@ function installStep() {
   for (const n of plan.notes) console.log(`  note    ${n.path}: ${n.why}`);
   if (dryRun) return console.log("  would install the declared skills, then their packages"), 0;
   const s = runInstaller(repo, { from: flags.from });
-  if (s) return s;
+  if (s || !deps) return s;
   return installSkillDependencies(repo);
 }
 
@@ -103,10 +103,12 @@ switch (cmd) {
     break;
   case "init":
     cleanStep(!dryRun);
-    status = installStep();
+    // The site's own packages go in first, so a skill's npm dependency the site already has
+    // (the architecture skill's ajv, for one) is found there and not installed into the skill.
+    status = installStep({ deps: dryRun || Boolean(flags["no-build"]) });
     if (!status && !dryRun && !flags["no-build"]) {
       console.log("build:");
-      status = build(repo, { fresh: true });
+      status = installSitePackages(repo) || installSkillDependencies(repo) || build(repo);
     }
     if (!status) console.log(dryRun ? "init: a dry run; run it without --dry-run to make these changes" : "init: done; review git status, then commit what changed");
     break;

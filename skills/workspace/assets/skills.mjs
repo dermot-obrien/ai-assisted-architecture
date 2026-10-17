@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // SPDX-FileCopyrightText: 2026 Dermot O'Brien
 // SPDX-License-Identifier: Apache-2.0
-// Copied from dermot-obrien/ai-assisted-work bin/skills.mjs (commit cc72fd5) by the workspace skill. Re-run its install to update it; do not edit here.
+// Copied from dermot-obrien/ai-assisted-work bin/skills.mjs (6.0.1, dermot-obrien/ai-assisted-work#82) by the workspace skill. Re-run its install to update it; do not edit here.
 
 /**
  * skills — install standalone Agent Skills into a workspace, from a bundle or one at a time.
@@ -199,12 +199,19 @@ function bundleOf(src, ws, flags, commit) {
 
 // ---------------------------------------------------------------- installing
 
+/**
+ * Folders running a skill creates inside its copy: its npm packages, Python's bytecode caches and
+ * virtual environments. They are not the skill, so they are left out of its hash, and a skill that
+ * has been used still checks as unchanged.
+ */
+const NOT_THE_SKILL = new Set([".git", "node_modules", "__pycache__", ".venv", "venv", ".pytest_cache", ".mypy_cache"]);
+
 /** A hash of a folder's files, by path and content, so a changed copy is noticed. */
 function hashDir(dir) {
   const h = createHash("sha256");
   const walk = (d, rel) => {
     for (const e of readdirSync(d, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : 1))) {
-      if (e.name === ".git") continue;
+      if (NOT_THE_SKILL.has(e.name) && (e.isDirectory() || e.name === ".git")) continue;
       const p = path.join(d, e.name);
       const r = rel ? `${rel}/${e.name}` : e.name;
       if (e.isDirectory()) walk(p, r);
