@@ -9,7 +9,7 @@ One vocabulary for describing a platform from the landscape it sits in down to t
 
 ## The continuum
 
-![The continuum: the platform landscape, platform, capability, bounded context, architecture building block, solution building block, service and deployment node down the middle; outcome, use case, domain, product and module on the left; consideration, contracts, pattern and store on the right](docs/continuum.svg)
+![The continuum: the platform landscape, platform, capability, bounded context, architecture building block, solution building block, service and deployment node down the middle; outcome, use case, domain, product and module on the left; consideration, contracts, architecture pattern, reference architecture and store on the right](docs/continuum.svg)
 
 Three bands. The demand space (landscape, platform, capability) says who owns what and what must be possible. The solution space (bounded context, architecture building block, solution building block) says how it is structured and built. The runtime (service, deployment node) says what runs where. Patterns sit beside the solution space because they compose building blocks at any scope; products sit beside the whole thing because they are what a consumer is offered and what a team runs.
 

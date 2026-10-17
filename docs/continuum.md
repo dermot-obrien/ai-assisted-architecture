@@ -12,7 +12,7 @@ The intention is a single continuum that an architect, an engineer and an agent 
 
 ## The continuum in one picture
 
-![The continuum from the platform landscape through platform, capability, bounded context, architecture building block, solution building block and service to deployment node, with outcomes, use cases, domains and products on the left, and patterns, considerations and contracts on the right](continuum.svg)
+![The continuum from the platform landscape through platform, capability, bounded context, architecture building block, solution building block and service to deployment node, with outcomes, use cases, domains and products on the left, and architecture patterns, reference architectures, considerations and contracts on the right](continuum.svg)
 
 The picture is `continuum.svg`; `continuum.drawio` beside it is the same diagram as an editable, uncompressed draw.io source, to redraw from when a level or a relationship changes, and the SVG is exported from it.
 
