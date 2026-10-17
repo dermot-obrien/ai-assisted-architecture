@@ -178,6 +178,17 @@ patternDir       = "../patterns"
 localPattern     = '[0-9]{2}'
 ```
 
+### aaa-continuum
+
+`root` is required and is the folder the architecture lives in; the check reads every Markdown page and CSV register under it. The other three are optional. `schemes` and `namespaces` default to `registers/identifier-schemes.csv` and `registers/identifier-namespaces.csv` under the root when those files exist, and `schemas` defaults to the copy of the v1.1.0 front matter schemas the skill carries.
+
+```toml
+[suite.aaa-continuum]
+root = "../docs/architecture"
+```
+
+The schemes register's columns are `scheme`, `prefix`, `pattern`, `entity`, `home`, `register`, `deliverable_type`, `auto_link` and `notes`. `home` is where each page of the series lives, with `{id}` for the identifier, or a single file for a singleton, or empty for a series that has register rows and no pages; `register` is the CSV that lists the series, relative to the root. `scaffold` writes a register with the continuum's series.
+
 ### Keys owned by other skills
 
 The same file may hold tables for other skills, such as `[model]`, `[markdown.*]` and

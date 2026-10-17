@@ -10,6 +10,7 @@ Whichever route you take, you need:
 | `.agents/skill-bindings.toml` | Where each skill writes; see [Configuration](configuration.md#skill-bindings) |
 | Node.js 18 or later | The installer, each `aaa-create-*` skill's `bin/check.mjs`, and the ontology validator |
 | Python 3.11 or later | `aaa-rung` |
+| ajv, ajv-formats and js-yaml (`npm install` in the skill folder, or in the workspace) | `aaa-continuum` |
 | git | Fetching the bundle |
 | draw.io desktop, optional | PNG export of diagrams |
 

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "platform.schema.json",
+  "title": "Platform Artefact (v1.1.0)",
+  "description": "A team-owned, boundary-defined, self-service unit of capability. The unifying organisational concept (replaces DDD Domain). Contains Bounded Contexts; provides Capabilities; owns Outcomes.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "platform" },
+        "id":   { "type": "string", "pattern": "^PL-\\d{3}$" },
+
+        "strategic_owner": { "type": "string", "minLength": 1 },
+
+        "owns_outcomes":              { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/outcomeId" }, "uniqueItems": true },
+        "provides_capabilities":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true, "minItems": 1 },
+        "contains_bounded_contexts":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/bcId" }, "uniqueItems": true, "minItems": 1 },
+
+        "slos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "target"],
+            "properties": {
+              "name":   { "type": "string" },
+              "target": { "type": "string" }
+            }
+          }
+        },
+        "self_service_interfaces": { "type": "array", "items": { "type": "string" } },
+        "consuming_teams":         { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "tier": { "type": ["string", "null"], "enum": ["solo", "growth", "scale", null] }
+      },
+      "required": ["strategic_owner", "provides_capabilities", "contains_bounded_contexts"]
+    }
+  ]
+}

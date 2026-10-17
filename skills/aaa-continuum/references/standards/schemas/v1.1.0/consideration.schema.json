@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "consideration.schema.json",
+  "title": "Consideration Artefact (v1.1.0)",
+  "description": "An open architectural question with more than one credible answer: the question, the options, the criteria that decide between them, and the decision record that resolves it. Listing considerations is part of definition-ladder rung R2; resolving every one by an accepted decision record is part of R3. The consideration's own lifecycle is `consideration_status`, kept separate from the envelope `status` so the two enums never apply to one property.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "consideration" },
+        "id":   { "type": "string", "pattern": "^CN-\\d{3}$" },
+
+        "question": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The open question, phrased so that each option is a possible answer to it."
+        },
+
+        "options": {
+          "type": "array",
+          "description": "The credible answers. A question with only one credible answer is not a consideration.",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name":    { "type": "string", "minLength": 1 },
+              "summary": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+
+        "criteria": {
+          "type": "array",
+          "description": "What decides between the options. Planning may cite outcome measure ids here.",
+          "items": { "type": "string", "minLength": 1 }
+        },
+
+        "consideration_status": {
+          "type": "string",
+          "enum": ["open", "resolved", "withdrawn"],
+          "description": "open: still to be decided. resolved: settled by the decision record in resolved_by. withdrawn: no longer a question, and it affects nothing."
+        },
+
+        "resolved_by": {
+          "$ref": "envelope.schema.json#/$defs/drId",
+          "description": "The decision record that settles the question. Required when consideration_status is resolved."
+        },
+
+        "affects": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "The capabilities, ABBs, SBBs or patterns whose definition waits on this question. Pattern ids follow the repository's pattern series.",
+          "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9]*-\\d{3}$" }
+        }
+      },
+      "required": ["question", "consideration_status", "affects"]
+    },
+    {
+      "$comment": "A resolved consideration names the decision record that resolved it.",
+      "if":   { "properties": { "consideration_status": { "const": "resolved" } }, "required": ["consideration_status"] },
+      "then": { "required": ["resolved_by"] }
+    }
+  ]
+}

@@ -135,6 +135,7 @@ jobs:
           fi
           cd /tmp/ws
           mkdir -p .agents arch/outcomes arch/use-cases arch/platforms arch/capabilities arch/contexts arch/abbs arch/sbbs arch/services
+          node .agents/skills/aaa-continuum/bin/continuum.mjs scaffold --root arch/continuum --namespace ws --name "Scratch" > /dev/null
           {
             echo '[suite.aaa-create-strategy]';  echo 'outcomeDir = "../arch/outcomes"'; echo 'useCaseDir = "../arch/use-cases"'
             echo '[suite.aaa-create-platform]';  echo 'platformDir = "../arch/platforms"'
@@ -144,10 +145,37 @@ jobs:
             echo '[suite.aaa-create-sbb]';       echo 'sbbDir = "../arch/sbbs"'
             echo '[suite.aaa-create-service]';   echo 'serviceDir = "../arch/services"'
             echo '[suite.aaa-rung]';             echo 'capabilityDir = "../arch/capabilities"'
+            echo '[suite.aaa-continuum]';        echo 'root = "../arch/continuum"'
           } > .agents/skill-bindings.toml
           $CHECK "$GITHUB_WORKSPACE/aaa"
           # Each skill resolves its own bindings, with no other skill installed.
           node .agents/skills/aaa-create-abb/bin/check.mjs --json | node -e 'const r = JSON.parse(require("fs").readFileSync(0, "utf8")); if (r.status !== "ok" || !r.bindings.abbDir.endsWith("/arch/abbs")) { console.error(r); process.exit(1); }'
+
+  continuum:
+    name: Front matter schemas and the aaa-continuum skill
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+          cache: npm
+
+      # ajv, ajv-formats and js-yaml, which the validator and the skill's check both resolve from here.
+      - run: npm ci
+
+      - name: The foundation validates against the schemas
+        run: node scripts/validate-frontmatter.mjs --quiet
+
+      - name: The aaa-continuum skill's tests
+        run: node --test skills/aaa-continuum/tests/*.test.mjs
+
+      - name: The skill's check passes on its own scaffold
+        run: |
+          mkdir -p /tmp/cont/.agents && cd /tmp/cont
+          node "$GITHUB_WORKSPACE/skills/aaa-continuum/bin/continuum.mjs" scaffold --root arch --namespace ws --name "Scratch" --bind
+          cd "$GITHUB_WORKSPACE" && node skills/aaa-continuum/bin/continuum.mjs check --root /tmp/cont/arch --bindings /tmp/cont/.agents/skill-bindings.toml --strict
 
   reuse:
     name: REUSE compliance

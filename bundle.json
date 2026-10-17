@@ -140,6 +140,21 @@
         "runtime": "python",
         "description": "[suite.aaa-rung] resolves: the binding file exists and every directory it binds exists"
       }
+    },
+    {
+      "name": "aaa-continuum",
+      "path": "skills/aaa-continuum",
+      "version": "0.1.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-continuum@0.1.0",
+      "requires": [],
+      "check": {
+        "command": [
+          "node",
+          "bin/check.mjs"
+        ],
+        "runtime": "node",
+        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-continuum] declares root and each declared path exists"
+      }
     }
   ],
   "ontology": {

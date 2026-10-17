@@ -102,6 +102,15 @@
     "aaa-rung": [
       "standards/capabilities/standard-definition-ladder.md",
       "standards/aaw-work-seam.md"
+    ],
+    "aaa-continuum": [
+      "standards/standard-frontmatter.md",
+      "standards/schemas/v1.1.0/",
+      "standards/building-blocks/standard-building-block-calibration.md",
+      {
+        "from": "docs/continuum.md",
+        "to": "references/continuum.md"
+      }
     ]
   }
 }

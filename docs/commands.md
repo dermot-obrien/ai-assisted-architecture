@@ -78,6 +78,20 @@ no folder bound), `note` (latent evidence, or a capability named elsewhere with 
 Exit codes: 0 done, 1 `--check` found a claim above the evidence, 2 the bindings did not
 resolve.
 
+### continuum.mjs
+
+`aaa-continuum`'s tool, run from the workspace root:
+
+```bash
+node .agents/skills/aaa-continuum/bin/continuum.mjs doctor
+node .agents/skills/aaa-continuum/bin/continuum.mjs check [--json] [--quiet] [--strict] [--root <dir>] [--bindings <file>] [--schemas <dir>]
+node .agents/skills/aaa-continuum/bin/continuum.mjs scaffold --root <dir> --namespace <code> --name "<Name>" [--url <base>] [--bind]
+```
+
+`doctor` prints the resolved bindings (`root`, `schemes`, `namespaces`, `schemas`), where the three npm packages were found, and any problem, then stops. `check` reads every Markdown page and CSV register under the root and prints one line per finding (`level code file: message`) and a summary; `--quiet` prints errors only, `--strict` makes warnings fail, `--json` prints `{ status, summary, findings }`, and `--root` overrides the bound root for one run. `scaffold` writes the layout for a new root, never overwriting, and prints the bindings it answers; `--bind` appends them to `.agents/skill-bindings.toml`.
+
+Exit codes: 0 no errors (warnings may print), 1 errors, or warnings with `--strict`, 2 usage or environment (Node older than 18, no bound root, the npm packages missing, an unknown command or argument).
+
 ### Post-install checks
 
 Each skill carries a check an installer runs after installing it. Run all of them from the workspace root with:
@@ -90,12 +104,13 @@ Or one at a time, from the workspace root:
 
 ```bash
 node .agents/skills/aaa-create-abb/bin/check.mjs
+node .agents/skills/aaa-continuum/bin/check.mjs
 python .agents/skills/aaa-rung/bin/check.py
 ```
 
 `SKILL_DIR` names the installed skill's folder and defaults to the folder above `bin/`, so it is needed only when the check runs from somewhere else.
 
-`bin/check.mjs`, the same file in every `aaa-create-*` skill, checks that `[suite.<skill>]` of `.agents/skill-bindings.toml` declares every required binding in the skill's `inputs.toml` and that each declared path exists. `.aaa-config.yaml` is optional: without it the check warns and carries on, and with it the check warns when its `ontology.schema` does not exist. `bin/check.py` resolves `[suite.aaa-rung]` as `rung.py --doctor` does, and warns when PyYAML is absent or nothing is bound.
+`bin/check.mjs`, the same file in every `aaa-create-*` skill and in `aaa-continuum`, checks that `[suite.<skill>]` of `.agents/skill-bindings.toml` declares every required binding in the skill's `inputs.toml` and that each declared path exists. `.aaa-config.yaml` is optional: without it the check warns and carries on, and with it the check warns when its `ontology.schema` does not exist. `bin/check.py` resolves `[suite.aaa-rung]` as `rung.py --doctor` does, and warns when PyYAML is absent or nothing is bound.
 
 Exit codes: 0 correct (warnings may print), 1 problems, one per line, 2 usage or environment error (Node older than 18, Python older than 3.11, or an unknown argument).
 

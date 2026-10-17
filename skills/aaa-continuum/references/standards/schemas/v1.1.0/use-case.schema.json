@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "use-case.schema.json",
+  "title": "Use Case Artefact (v1.1.0)",
+  "description": "A use case: a set of behaviours a subject performs that gives its actors an observable result of value toward an Outcome. Its scenarios are the paths through it; the scenario field holds the main success scenario in prose.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "use-case" },
+        "id":   { "type": "string", "pattern": "^UC-\\d{3}$" },
+
+        "primary_actor":    { "type": "string", "minLength": 1 },
+        "secondary_actors": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "scenario":         { "type": "string", "minLength": 1 },
+        "preconditions":    { "type": "array", "items": { "type": "string" } },
+        "success_criteria": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "frequency":        { "type": "string", "enum": ["low", "medium", "high"] },
+        "volume":           { "type": "string" },
+
+        "supports_outcome":   { "$ref": "envelope.schema.json#/$defs/outcomeId" },
+        "realised_by_abbs":   { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "minItems": 1, "uniqueItems": true }
+      },
+      "required": ["primary_actor", "supports_outcome", "realised_by_abbs", "success_criteria"]
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Skills
 
-Nine Agent Skills, one page each. Every skill's own `SKILL.md` is the definition the agent
+Ten Agent Skills, one page each. Every skill's own `SKILL.md` is the definition the agent
 follows; these pages are for the person using it.
 
 | Skill | Does | Writes |
@@ -14,6 +14,7 @@ follows; these pages are for the person using it.
 | [aaa-create-service](aaa-create-service.md) | Creates a runtime service that implements an SBB | `<name>.md` |
 | [aaa-create-runtime-agent](aaa-create-runtime-agent.md) | Specifies an autonomous runtime agent with guardrails, scope and provenance | Ontology records and an agent profile |
 | [aaa-rung](aaa-rung.md) | Derives each capability's rung on the definition ladder and what blocks the next | Nothing: read-only |
+| [aaa-continuum](aaa-continuum.md) | Checks every page and register of an architecture against the continuum's standards, and scaffolds the layout for a new repository | Nothing, or the empty layout |
 
 ## How the eight create skills work
 
@@ -37,4 +38,6 @@ description lets the agent pick it when a request matches.
 Follow the golden thread from the top when you are modelling something new: strategy,
 platform, capability, context, ABB, SBB, service. When you already know the building block you
 need, start there; the skill will offer to create what is missing above it. Use `aaa-rung` at
-any point to see where each capability stands.
+any point to see where each capability stands, and `aaa-continuum` before publishing or merging
+to see what disagrees with the standards. A repository new to the continuum starts with
+`aaa-continuum`'s scaffold.

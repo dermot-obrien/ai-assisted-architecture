@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "view.schema.json",
+  "title": "View Artefact (placeholder — finalised by WI-002)",
+  "description": "Diagram-as-catalog-node. Final shape designed by WI-002 (E3). This stub reserves the kind, id pattern, and minimal universal envelope so other schemas can $ref VW-NNN safely.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "../envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "view" },
+        "id":   { "type": "string", "pattern": "^VW-\\d{3}$" }
+      }
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "aaa-continuum",
+  "version": "0.1.0",
+  "description": "Check an architecture repository against the architecture continuum, or scaffold one. An Agent Skill from AI-Assisted Architecture.",
+  "author": "Dermot O'Brien",
+  "homepage": "https://github.com/dermot-obrien/architecture-continuum",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dermot-obrien/architecture-continuum.git",
+    "directory": "skills/aaa-continuum"
+  },
+  "license": "Apache-2.0",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "continuum": "bin/continuum.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "js-yaml": "^4.1.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
