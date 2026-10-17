@@ -23,8 +23,7 @@
         "supports_outcome":      { "$ref": "envelope.schema.json#/$defs/outcomeId" },
         "requires_capabilities": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true, "description": "The capabilities that make the use case possible: the demand that justifies them." },
         "realised_by":           { "type": "array", "items": { "anyOf": [{ "$ref": "envelope.schema.json#/$defs/architecturePatternId" }, { "$ref": "envelope.schema.json#/$defs/referenceArchitectureId" }] }, "uniqueItems": true, "description": "The architecture patterns whose scenarios walk this use case's scenarios across building blocks, and the reference architectures that make them concrete. The inverse of serves on the pattern." },
-        "fulfilled_by_features": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/featureId" }, "uniqueItems": true, "description": "The product features that fulfil the use case. The inverse of fulfils on the feature." },
-        "realised_by_abbs":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "uniqueItems": true, "description": "Deprecated. The building blocks the use case names as participants. The continuum links a use case to its building blocks through the architecture pattern that realises it (realised_by); kept so documents written before validate." }
+        "fulfilled_by_features": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/featureId" }, "uniqueItems": true, "description": "The product features that fulfil the use case. The inverse of fulfils on the feature." }
       },
       "required": ["primary_actor", "supports_outcome", "success_criteria"]
     }

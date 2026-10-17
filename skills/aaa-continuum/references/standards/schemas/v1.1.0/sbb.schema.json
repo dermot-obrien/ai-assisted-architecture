@@ -27,22 +27,7 @@
         "technologies": {
           "type": "array",
           "minItems": 1,
-          "description": "The vendors' offerings that realise the SBB: products bought, services subscribed to, components built. Replaces products, which the continuum keeps for the consumable offering of a platform (kind product).",
-          "items": {
-            "type": "object",
-            "required": ["name"],
-            "properties": {
-              "name":      { "type": "string", "minLength": 1 },
-              "vendor":    { "type": "string" },
-              "licensing": { "type": "string" }
-            }
-          }
-        },
-
-        "products": {
-          "type": "array",
-          "minItems": 1,
-          "description": "Deprecated alias of technologies, kept so documents written before validate. Use one or the other.",
+          "description": "The vendors' offerings that realise the SBB: products bought, services subscribed to, components built. The word product is kept for the consumable offering of a platform (kind product).",
           "items": {
             "type": "object",
             "required": ["name"],
@@ -59,12 +44,10 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["abb_component"],
-            "anyOf": [{ "required": ["technology"] }, { "required": ["sbb_product"] }],
+            "required": ["abb_component", "technology"],
             "properties": {
               "abb_component": { "type": "string", "minLength": 1 },
               "technology":    { "type": "string", "minLength": 1, "description": "The technology that realises the ABB component." },
-              "sbb_product":   { "type": "string", "minLength": 1, "description": "Deprecated alias of technology." },
               "notes":         { "type": "string" }
             }
           }
@@ -147,15 +130,7 @@
           }
         }
       },
-      "required": ["realises", "product_mapping"]
-    },
-
-    {
-      "$comment": "An SBB names its technologies in technologies, or in products as written before the rename; one of the two, not both.",
-      "oneOf": [
-        { "required": ["technologies"] },
-        { "required": ["products"] }
-      ]
+      "required": ["realises", "technologies", "product_mapping"]
     },
 
     {

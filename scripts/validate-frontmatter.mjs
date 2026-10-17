@@ -70,6 +70,7 @@ const KIND_SCHEMA = {
   snapshot: 'snapshot.schema.json',
   transition: 'transition.schema.json',
   consideration: 'consideration.schema.json',
+  'technical-debt': 'technical-debt.schema.json',
 };
 
 const ajv = new Ajv2020({ allErrors: true, strict: false });

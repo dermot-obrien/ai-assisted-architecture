@@ -42,6 +42,7 @@ The layout (where each box sits and how each line is routed) is declared in the 
 | Product | `PRD-NNN` | [`product.schema.json`](../standards/schemas/v1.1.0/product.schema.json) |  |
 | Consideration | `CN-NNN` | [`consideration.schema.json`](../standards/schemas/v1.1.0/consideration.schema.json) |  |
 | Decision record | `DR-NNN` | [`decision-record.schema.json`](../standards/schemas/v1.1.0/decision-record.schema.json) |  |
+| Technical debt | `TD-NNN` | [`technical-debt.schema.json`](../standards/schemas/v1.1.0/technical-debt.schema.json) |  |
 | Transition | `TR-NNN` | [`transition.schema.json`](../standards/schemas/v1.1.0/transition.schema.json) |  |
 | Snapshot | `SN-NNN` | [`snapshot.schema.json`](../standards/schemas/v1.1.0/snapshot.schema.json) | ↻ supersedes |
 | Architecture pattern | `AP-NNN` | [`pattern.schema.json`](../standards/schemas/v1.1.0/pattern.schema.json) |  |
@@ -49,7 +50,7 @@ The layout (where each box sits and how each line is routed) is declared in the 
 | API | `API-NNN, placeholder` | [`_placeholders/api.schema.json`](../standards/schemas/v1.1.0/_placeholders/api.schema.json) |  |
 | Store | `ST-NNN` | [`store.schema.json`](../standards/schemas/v1.1.0/store.schema.json) |  |
 
-Not drawn: `view` and `event`, placeholders with no relationship fields yet. Two fields name artefacts of any kind and are not drawn as lines: `decision-record.affects_artefacts` and `transition.affected_artefacts`.
+Not drawn: `view` and `event`, placeholders with no relationship fields yet. Two fields name artefacts of any kind and are not drawn as lines: `decision-record.affects_artefacts` and `transition.affected_artefacts` and `technical-debt.affects`.
 
 ## The lines
 
@@ -69,10 +70,9 @@ Each line, read from subject to object as the continuum reads it, with every fie
 | Service | deployed to | Deployment node | `service.deployed_to`, `deployment-node.hosts` | Yes |
 | Outcome | owned by | Platform | `outcome.owned_by_platform`, `platform.owns_outcomes` | Yes |
 | Outcome | requires | Capability | `outcome.requires_capabilities`, `capability.required_by_outcomes` | Yes |
-| Use case | supports | Outcome | `use-case.supports_outcome`, `outcome.supported_by_use_cases`, `outcome.realised_by_use_cases` | Yes |
+| Use case | supports | Outcome | `use-case.supports_outcome`, `outcome.supported_by_use_cases` | Yes |
 | Use case | requires | Capability | `use-case.requires_capabilities` | Yes |
 | Use case | realised by a pattern (serves) | Pattern document | `use-case.realised_by`, `pattern.serves` | Yes |
-| Use case | realised_by_abbs, deprecated | Architecture building block | `use-case.realised_by_abbs` | No: deprecated field, kept so documents written before validate |
 | Feature | fulfils | Use case | `feature.fulfils`, `use-case.fulfilled_by_features` | Yes |
 | Feature | implemented by | Service | `feature.implemented_by` | Yes |
 | Product | has | Feature | `product.features`, `feature.part_of` | Yes |
@@ -83,7 +83,7 @@ Each line, read from subject to object as the continuum reads it, with every fie
 | Service | contains | Module and component | not a relationship: `module_path` and `packages` on the service | Yes |
 | Consideration | affects | Capability | `consideration.affects` | Yes |
 | Consideration | resolved by | Decision record | `consideration.resolved_by` | No: one box in the continuum |
-| Decision record | sequenced in | Transition | `decision-record.contributes_to_transition`, `transition.sequenced_decisions` | No: change over time is outside the continuum |
+| Decision record | consequence, repays | Technical debt | `decision-record.consequences.technical_debt`, `technical-debt.consequence_of`, `decision-record.repays_debt`, `technical-debt.repaid_by` | No: beside the continuum, in its text and relationship table; the picture keeps decisions to one box |
 | Transition | from, to | Snapshot | `transition.from_snapshot`, `transition.to_snapshot` | No: change over time is outside the continuum |
 | Pattern document | realises | Capability | `pattern.realises` | Yes |
 | Architecture pattern | composes | Architecture building block | `pattern.composes`, `abb.composed_by` | Yes |

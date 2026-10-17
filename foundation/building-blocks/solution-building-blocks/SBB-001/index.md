@@ -15,48 +15,48 @@ realises:
 short_name: Entra IAM
 product_mapping:
   - abb_component: Identity Provisioning
-    sbb_product: Entra ID Provisioning
+    technology: Entra ID Provisioning
     notes: SCIM-based provisioning and Graph API.
   - abb_component: Credential Management
-    sbb_product: Entra Workload ID
+    technology: Entra Workload ID
     notes: Managed identities and federated credentials.
   - abb_component: Identity Decommissioning
-    sbb_product: Entra ID Governance
+    technology: Entra ID Governance
     notes: Automated lifecycle workflows and access reviews.
   - abb_component: Token Issuance
-    sbb_product: Entra STS (v2.0)
+    technology: Entra STS (v2.0)
     notes: OIDC and OAuth 2.0 endpoints.
   - abb_component: Token Validation
-    sbb_product: Entra Token Validation
+    technology: Entra Token Validation
     notes: Middleware-based validation of JWTs.
   - abb_component: Multi-Factor Authentication
-    sbb_product: Entra MFA
+    technology: Entra MFA
     notes: Authenticator app, FIDO2, and SMS.
   - abb_component: Policy Evaluation Engine
-    sbb_product: Entra Conditional Access
+    technology: Entra Conditional Access
     notes: Signal-based access policy engine.
   - abb_component: Role & Permission Management
-    sbb_product: Entra RBAC / App Roles
+    technology: Entra RBAC / App Roles
     notes: Scoped application and directory roles.
   - abb_component: Conditional Access
-    sbb_product: Entra CA Policies
+    technology: Entra CA Policies
     notes: Real-time evaluation of risk and context.
   - abb_component: Identity Federation
-    sbb_product: Entra B2B / Federation
+    technology: Entra B2B / Federation
     notes: SAML/OIDC federation with external IdPs.
   - abb_component: Workload Identity Federation
-    sbb_product: Entra Workload ID FIC
+    technology: Entra Workload ID FIC
     notes: Federation with K8s and other compute platforms.
   - abb_component: Directory Services
-    sbb_product: Entra ID Tenant
+    technology: Entra ID Tenant
     notes: Cloud directory for all principals.
   - abb_component: Observability (cross-cutting)
-    sbb_product: Entra Sign-in Logs
+    technology: Entra Sign-in Logs
     notes: Exported to Azure Monitor/Log Analytics.
   - abb_component: Governance (cross-cutting)
-    sbb_product: Entra ID Governance
+    technology: Entra ID Governance
     notes: Privileged Identity Management (PIM).
-products:
+technologies:
   - name: Entra ID Provisioning
   - name: Entra Workload ID
   - name: Entra ID Governance

@@ -78,15 +78,16 @@
         "snapshot",
         "transition",
         "consideration",
+        "technical-debt",
         "landscape",
         "feature",
         "store"
       ]
     },
     "anyId": {
-      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|ST|SN|TR|CN followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|ST|SN|TR|CN|TD followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
       "type": "string",
-      "pattern": "^(OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|ST|SN|TR|CN)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      "pattern": "^(OC|UC|LS|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|ST|SN|TR|CN|TD)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
     },
     "platformId": {
       "type": "string",
@@ -184,6 +185,11 @@
     "considerationId": {
       "type": "string",
       "pattern": "^CN-\\d{3}$"
+    },
+    "technicalDebtId": {
+      "type": "string",
+      "pattern": "^TD-\\d{3}$",
+      "description": "A technical debt item: TD-NNN, a shortfall knowingly or unknowingly taken on, a consequence of a decision."
     },
     "serviceId": {
       "type": "string",

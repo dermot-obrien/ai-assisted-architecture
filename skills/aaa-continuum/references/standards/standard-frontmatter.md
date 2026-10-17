@@ -33,7 +33,7 @@ This standard is the prose form. The machine-validatable form lives at [`schemas
 Two distinct frontmatter shapes coexist:
 
 - **Standards documents** (the `standards/.../*.md` files themselves) keep their existing shape: `document_type: standards`, `title`, `classification`, `version`, `status`, `created`, `last_modified`, `owner`, `triggers`. **This file follows that convention.**
-- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`, and the pages of landscapes, products, features and stores where a repository keeps them) **adopt the envelope defined below**.
+- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`, and the pages of landscapes, products, features, stores and technical debt where a repository keeps them) **adopt the envelope defined below**.
 
 This standard concerns the *artefact* shape. Standards documents are unaffected.
 
@@ -48,7 +48,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
-| `kind` | enum | * | One of: `outcome`, `use-case`, `landscape`, `platform`, `product`, `feature`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `store`, `snapshot`, `transition`, `consideration`. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `landscape`, `platform`, `product`, `feature`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `store`, `snapshot`, `transition`, `consideration`, `technical-debt`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
 | `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
@@ -274,7 +274,7 @@ requires_capabilities: [CAP-004, CAP-005]
 supported_by_use_cases: [UC-001, UC-002]   # the inverse of supports_outcome on the use case
 ```
 
-`supported_by_use_cases` replaces `realised_by_use_cases`, which is kept as a deprecated alias so documents written before validate; a document carries one or the other, not both. The continuum's verb is supports: a use case supports an outcome, it does not realise it.
+`supported_by_use_cases` replaces `realised_by_use_cases`, which is removed: the continuum's verb is supports, since a use case supports an outcome and does not realise it.
 
 `measures[]` is optional. Each entry has `id` (`OC-NNN-M<n>`, required), `measure` (required), `target` and `unit`. The identifiers are what planning cites as `advances_criterion_ids` and what a consideration may list in its `criteria`. See the [Strategy Standard §2.3](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/strategy/standard-strategy.md#23-outcome-measures-as-criteria).
 
@@ -300,7 +300,7 @@ realised_by: [AP-001]                # the architecture patterns that realise it
 fulfilled_by_features: [FE-003]      # the product features that fulfil it
 ```
 
-On the continuum a use case supports an outcome, requires capabilities, is fulfilled by the features of a product and is realised by an architecture pattern, whose scenarios walk the use case's scenarios across the building blocks. `realised_by` is the inverse of `serves` on the pattern, and `fulfilled_by_features` the inverse of `fulfils` on the feature. `realised_by_abbs` is deprecated and no longer required: the use case reaches its building blocks through the pattern that realises it. It is kept so documents written before validate.
+On the continuum a use case supports an outcome, requires capabilities, is fulfilled by the features of a product and is realised by an architecture pattern, whose scenarios walk the use case's scenarios across the building blocks. `realised_by` is the inverse of `serves` on the pattern, and `fulfilled_by_features` the inverse of `fulfils` on the feature. `realised_by_abbs` is removed: a use case reaches its building blocks through the pattern that realises it, and the capabilities it requires are named in `requires_capabilities`.
 
 **Schema:** [`schemas/v1.1.0/use-case.schema.json`](./schemas/v1.1.0/use-case.schema.json).
 
@@ -348,7 +348,6 @@ maturity:
   target: 5
   assessment_date: 2026-04-15
   assessor: "Identity Platform Team"
-subdomain_kind: core | supporting | generic   # deprecated here: recorded on the bounded context
 
 provided_by_platform: PL-001         # required for L3 (L1/L2 span platforms, so optional)
 required_by_outcomes: [OC-001, OC-002]
@@ -458,7 +457,7 @@ realises: [ABB-001]                   # required, ≥1
 realised_by_services: [identity-lifecycle-svc]
 composed_by: [RA-001]                 # the reference architectures that name it among their boxes
 
-technologies:                        # required, ≥1 (or products, the deprecated alias)
+technologies:                        # required, ≥1
   - { name: "Microsoft Entra ID", vendor: "Microsoft", licensing: "P2" }
 product_mapping:                     # required, ≥1; ABB component → the technology that realises it
   - { abb_component: "Identity Provisioning", technology: "Entra ID Provisioning" }
@@ -468,7 +467,7 @@ variants: ["Entra-only", "Entra+Okta hybrid"]
 deployment_model: managed | self-hosted | hybrid
 ```
 
-The vendor's offering is a technology: the word product belongs to the consumable offering of a platform (§6.18). `technologies` replaces `products`, and `technology` replaces `sbb_product` in a mapping row (the continuum's decision D2). The old names are kept as deprecated aliases so documents written before validate; an SBB carries `technologies` or `products`, not both.
+The vendor's offering is a technology: the word product belongs to the consumable offering of a platform (§6.18). `technologies` replaces `products`, and `technology` replaces `sbb_product` in a mapping row (the continuum's decision D2); the old names are removed.
 
 **Schema:** [`schemas/v1.1.0/sbb.schema.json`](./schemas/v1.1.0/sbb.schema.json).
 
@@ -575,7 +574,7 @@ Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`
 
 ### 6.11 Decision Record (`DR-NNN` or `ADR-NNN`)
 
-The identifier series is `DR-NNN`. A repository that already keeps its decisions as architecture decision records may use `ADR-NNN` instead; the schemas accept either, in `id` and wherever a decision record is referenced (`resolved_by`, `sequenced_decisions`). One series per repository.
+The identifier series is `DR-NNN`. A repository that already keeps its decisions as architecture decision records may use `ADR-NNN` instead; the schemas accept either, in `id` and wherever a decision record is referenced (`resolved_by`, `consequence_of`, `repaid_by`). One series per repository.
 
 ```yaml
 kind: decision-record
@@ -594,10 +593,11 @@ decision_outcome: "Option 2 (unify under Platform)"
 consequences:
   positive: ["Single vocabulary for execs and engineers", "Aligns with Team Topologies"]
   negative: ["Loss of strict DDD problem/solution-space distinction at top level"]
+  technical_debt: [TD-003]           # the technical debt that is a consequence of the decision
 
 change_type: introduce | modify | retire | replace | principle   # required
 affects_artefacts: [PL-NNN, BC-NNN]    # required unless change_type=principle
-contributes_to_transition: TR-NNN | null
+repays_debt: []                      # technical debt the decision repays; the inverse of repaid_by
 
 applies_to: []                       # universal relation
 supersedes: []
@@ -661,7 +661,6 @@ from_snapshot: SN-001                # required
 to_snapshot: SN-002                  # required
 transition_status: planned | in-progress | completed | abandoned   # transition lifecycle; the envelope `status` (draft/active/…) still applies separately
 
-sequenced_decisions: [DR-014, DR-015, DR-016]    # required, ≥1
 sequenced_steps:                                  # required, ≥1
   - { step: 1, summary: "Provision multi-region infra", target_date: 2027-Q1, owner: "Platform Team" }
   - { step: 2, summary: "Dual-write data layer", target_date: 2027-Q2, owner: "Data Team" }
@@ -799,6 +798,29 @@ dependencies:                        # the provider is in a lower layer than the
 
 **Schema:** [`schemas/v1.1.0/landscape.schema.json`](./schemas/v1.1.0/landscape.schema.json).
 
+### 6.22 Technical debt (`TD-NNN`)
+
+A shortfall in the architecture or its build, taken on deliberately or found later, that costs something to carry (the interest) and something to put right (the principal). Technical debt is a consequence of a decision: the decision records it among its `consequences`, beside the positive, negative and neutral ones, and the debt item names the decision in `consequence_of`, so the debt is never separated from the reasoning that made it acceptable. Once settled, it names the decision that repaid it. Where the debt was found rather than chosen, `consequence_of` names the decision that accepted it.
+
+```yaml
+kind: technical-debt
+id: TD-003
+title: "TD-003 Single-region deployment of the identity directory"
+debt_status: open                    # required: open | scheduled | repaid | written-off
+quadrant: deliberate-prudent         # Fowler's quadrant: deliberate or inadvertent, prudent or reckless
+interest: "A regional outage stops sign-in for every workload"   # required: what carrying it costs
+principal: "A second region and replication, about six weeks"
+repayment: "Planned with the multi-region transition"
+target_date: 2027-06-30
+consequence_of: DR-014               # required: the decision it is a consequence of
+repaid_by: null                      # required when debt_status is repaid
+affects: [SBB-001, DN-002]           # required, >=1: the artefacts that carry it
+```
+
+The decision record lists the same items in `consequences.technical_debt`, and the repaying decision in `repays_debt`. A repository usually keeps debt as rows of a register (`decisions/technical-debt.csv` in the `aaa-continuum` layout), with a page for an item that needs more than a row.
+
+**Schema:** [`schemas/v1.1.0/technical-debt.schema.json`](./schemas/v1.1.0/technical-debt.schema.json).
+
 The kinds and their relationships are drawn, generated from these schemas, in [the schema picture](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/docs/schema.md).
 
 ## 7. Backward Compatibility with v1.0.0
@@ -833,7 +855,7 @@ The `standards/.../*.md` files keep their existing frontmatter (`document_type: 
 
 ## 8. Schema Diagrams
 
-### 8.1 Composition (envelope + 21 kinds)
+### 8.1 Composition (envelope + 22 kinds)
 
 ```mermaid
 classDiagram
@@ -873,6 +895,7 @@ classDiagram
     class Snapshot { SN-NNN }
     class Transition { TR-NNN }
     class Consideration { CN-NNN }
+    class TechnicalDebt { TD-NNN }
     class API { API-NNN ~placeholder~ }
     class View { VW-NNN ~placeholder~ }
     class Event { EV-NNN ~placeholder~ }
@@ -895,6 +918,7 @@ classDiagram
     Envelope <|-- Snapshot
     Envelope <|-- Transition
     Envelope <|-- Consideration
+    Envelope <|-- TechnicalDebt
     Envelope <|-- API
     Envelope <|-- View
     Envelope <|-- Event
@@ -924,19 +948,17 @@ flowchart LR
     DR1{{DR-014<br/>change_type: replace<br/>affects ABB-007, SBB-007}}
     DR2{{DR-015<br/>change_type: modify<br/>affects SBB-007}}
 
-    TR1[(Transition TR-001<br/>SN-001 → SN-002<br/>sequenced: DR-014, DR-015)]
+    TR1[(Transition TR-001<br/>SN-001 → SN-002)]
 
     BASELINE --> TR1
     TR1 --> TARGET
-    DR1 -. drives .-> TR1
-    DR2 -. drives .-> TR1
     DR1 -. applies_to .-> AB1
     DR1 -. applies_to .-> AB2
     DR2 -. applies_to .-> SB1
     DR2 -. applies_to .-> SB2
 ```
 
-The same artefact `id` (e.g. `ABB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, sequenced by Decision Records.
+The same artefact `id` (e.g. `ABB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, in sequenced steps. Decision records are not attached to a transition; each names the artefacts it changes in `affects_artefacts`.
 
 ---
 
@@ -979,7 +1001,6 @@ maturity:
   target: 5
   assessment_date: 2026-04-15
   assessor: "Identity Platform Team"
-subdomain_kind: generic
 
 # Relations
 provided_by_platform: PL-001

@@ -37,8 +37,6 @@
           }
         },
 
-        "subdomain_kind": { "type": "string", "enum": ["core", "supporting", "generic"], "description": "Deprecated here. The continuum records the subdomain kind on the bounded context that realises the capability; kept so documents written before validate." },
-
         "provided_by_platform":  { "$ref": "envelope.schema.json#/$defs/platformId" },
         "required_by_outcomes":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/outcomeId" }, "uniqueItems": true },
         "realised_by_abbs":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "uniqueItems": true, "description": "The ABBs that realise the capability, at whatever level the capability is defined to: blocks attach at the lowest level defined, so an L1 or L2 capability with no children may carry them." },

@@ -8,10 +8,10 @@ last_modified: 2026-09-01
 owner: Order Team
 status: accepted
 realises: [ABB-003]
-products:
+technologies:
   - { name: "Inventory Ledger on a relational store", vendor: "In house" }
 product_mapping:
-  - { abb_component: "Core", sbb_product: "Inventory Ledger on a relational store" }
+  - { abb_component: "Core", technology: "Inventory Ledger on a relational store" }
 ---
 
 # SBB-001 Inventory Ledger on a relational store

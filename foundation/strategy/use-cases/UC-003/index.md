@@ -17,8 +17,8 @@ preconditions:
 success_criteria:
   - Evaluation result returned in < 10ms.
   - Decision log captured in Observability context.
-realised_by_abbs:
-  - ABB-003
+requires_capabilities:
+  - CAP-005
 ---
 
 # UC-003 Real-time Policy Decision Evaluation

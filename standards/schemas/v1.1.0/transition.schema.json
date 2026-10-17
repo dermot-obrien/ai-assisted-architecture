@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "transition.schema.json",
   "title": "Architecture Transition Artefact (v1.1.0)",
-  "description": "A multi-step migration between two named architecture Snapshots. Sequenced Decision Records drive the change. Full design specified in WI-001-D01 §5.",
+  "description": "A multi-step migration between two named architecture Snapshots, as sequenced steps over the affected artefacts. Full design specified in WI-001-D01 §5.",
   "type": "object",
 
   "allOf": [
@@ -19,13 +19,6 @@
           "$comment": "Transition-specific lifecycle, distinct from the envelope 'status' field. Named separately so it does not collide with the envelope status enum under allOf composition (a transition still carries the universal envelope 'status', e.g. 'draft'/'active').",
           "type": "string",
           "enum": ["planned", "in-progress", "completed", "abandoned"]
-        },
-
-        "sequenced_decisions": {
-          "type": "array",
-          "items": { "$ref": "envelope.schema.json#/$defs/drId" },
-          "minItems": 1,
-          "uniqueItems": true
         },
 
         "sequenced_steps": {
@@ -51,7 +44,7 @@
           "uniqueItems": true
         }
       },
-      "required": ["from_snapshot", "to_snapshot", "sequenced_decisions", "sequenced_steps", "affected_artefacts"]
+      "required": ["from_snapshot", "to_snapshot", "sequenced_steps", "affected_artefacts"]
     }
   ]
 }

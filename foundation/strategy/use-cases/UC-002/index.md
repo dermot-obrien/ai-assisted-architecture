@@ -17,8 +17,8 @@ preconditions:
 success_criteria:
   - Trace ID persists across all Bounded Context boundaries.
   - Visualisation shows latency per span.
-realised_by_abbs:
-  - ABB-002
+requires_capabilities:
+  - CAP-006
 ---
 
 # UC-002 Cross-Context Request Tracing
