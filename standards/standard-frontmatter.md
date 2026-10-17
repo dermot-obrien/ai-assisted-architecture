@@ -556,7 +556,9 @@ Service is the **one kind that uses kebab-case slugs as the canonical `id`** to 
 
 Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/view.schema.json`](./schemas/v1.1.0/_placeholders/view.schema.json).
 
-### 6.11 Decision Record (`DR-NNN`)
+### 6.11 Decision Record (`DR-NNN` or `ADR-NNN`)
+
+The identifier series is `DR-NNN`. A repository that already keeps its decisions as architecture decision records may use `ADR-NNN` instead; the schemas accept either, in `id` and wherever a decision record is referenced (`resolved_by`, `sequenced_decisions`). One series per repository.
 
 ```yaml
 kind: decision-record
@@ -661,7 +663,7 @@ affects: [CAP-012, ABB-021, PAT-004] # required, >=1: capabilities, ABBs, SBBs o
 | `options[]` | array of objects | recommended, >=2 | Each has `name` (required) and `summary`. A question with one credible answer is not a consideration. |
 | `criteria[]` | array of strings | recommended | What decides between the options. |
 | `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
-| `resolved_by` | `DR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
+| `resolved_by` | `DR-NNN` or `ADR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
 | `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs or patterns whose definition waits on the question. A pattern is named by its identifier in the repository's pattern series. |
 
 A `withdrawn` consideration affects nothing. The decision record that resolves a consideration SHOULD list the consideration's `affects` entries in its own `affects_artefacts`.
@@ -769,7 +771,7 @@ flowchart TB
         UC[(Use Case<br/>UC-NNN)]
     end
 
-    subgraph ORG ["2 — Organisation / Problem space"]
+    subgraph ORG ["2 — Organisation / Demand space"]
         PL[Platform<br/>PL-NNN]
         CAP[Capability<br/>CAP-NNN]
     end

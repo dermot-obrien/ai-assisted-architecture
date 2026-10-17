@@ -45,7 +45,7 @@ VIEWS={
   ("","a team owns a context (Conway); the platform is Team Topologies' word",'none'),
   ("Product taxonomy","Tune (2024); not in Evans",'partial'),
   ("","a feature usually spans contexts; DDD reasons inside them",'none'),
-  ("Domain; Subdomain: core, supporting, generic","the problem space",'full'),
+  ("Domain; Subdomain: core, supporting, generic","the demand space",'full'),
   ("","DDD reasons in subdomains, not capabilities",'none'),
   ("Bounded Context; Ubiquitous Language; Context Map","the solution-space boundary and the relationships between contexts",'full'),
   ("","no logical building block; the model inside a context is tactical",'none'),
@@ -162,7 +162,7 @@ for key,(title,subtitle,accent,rows) in VIEWS.items():
     out.append(f'<rect x="40" y="{ly+14}" width="56" height="16" fill="#FFFFFF" stroke="{accent}" stroke-width="1.4" rx="3"/><text x="104" y="{ly+26}" font-size="11" fill="#3A4A66">the tradition defines this level</text>')
     out.append(f'<rect x="330" y="{ly+14}" width="56" height="16" fill="#FFFFFF" stroke="{accent}" stroke-width="1.4" rx="3" stroke-dasharray="5 3"/><text x="394" y="{ly+26}" font-size="11" fill="#3A4A66">the tradition has a near concept, mapped with a loss stated in the note</text>')
     out.append(f'<text x="860" y="{ly+26}" font-size="11" fill="#8A94A6" font-style="italic">not a concept here: the tradition does not cover this level</text>')
-    out.append(f'<text x="40" y="{ly+52}" font-size="11" fill="#3A4A66">Left, the continuum\'s levels, grouped as problem space, solution space, runtime and the kinds beside the thread. Right, what this tradition calls each one. The full mapping, with references, is in docs/continuum-views.md.</text>')
+    out.append(f'<text x="40" y="{ly+52}" font-size="11" fill="#3A4A66">Left, the continuum\'s levels, grouped as demand space, solution space, runtime and the kinds beside the thread. Right, what this tradition calls each one. The full mapping, with references, is in docs/continuum-views.md.</text>')
     out.append('</svg>')
     open(f'docs/views/continuum-{key}.svg','w',encoding='utf-8').write('\n'.join(out)+'\n')
     print('wrote',key)

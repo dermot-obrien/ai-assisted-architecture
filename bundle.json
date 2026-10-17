@@ -33,8 +33,8 @@
     {
       "name": "aaa-create-context",
       "path": "skills/aaa-create-context",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-context@0.5.0",
+      "version": "0.5.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-context@0.5.1",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -45,8 +45,8 @@
     {
       "name": "aaa-create-platform",
       "path": "skills/aaa-create-platform",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-platform@0.5.0",
+      "version": "0.5.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-platform@0.5.1",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -81,8 +81,8 @@
     {
       "name": "aaa-create-service",
       "path": "skills/aaa-create-service",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-service@0.5.0",
+      "version": "0.5.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-service@0.5.1",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -93,8 +93,8 @@
     {
       "name": "aaa-create-strategy",
       "path": "skills/aaa-create-strategy",
-      "version": "0.5.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-strategy@0.5.0",
+      "version": "0.5.1",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-strategy@0.5.1",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],

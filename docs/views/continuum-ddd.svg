@@ -31,7 +31,7 @@
 <text x="32" y="223" font-size="12" font-weight="600" fill="#1B2A4A">Domain and subdomain</text>
 <line x1="324" y1="219" x2="438" y2="219" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
 <rect x="440" y="206" width="776" height="26" fill="#FFFFFF" stroke="#0F8C7E" stroke-width="1.4" rx="4"/>
-<text x="448" y="223" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Domain; Subdomain: core, supporting, generic</tspan><tspan fill="#3A4A66" font-size="11">  the problem space</tspan></text>
+<text x="448" y="223" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Domain; Subdomain: core, supporting, generic</tspan><tspan fill="#3A4A66" font-size="11">  the demand space</tspan></text>
 <rect x="24" y="240" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
 <text x="32" y="257" font-size="12" font-weight="600" fill="#1B2A4A">Capability</text>
 <line x1="324" y1="253" x2="434" y2="253" stroke="#C9CED8" stroke-width="1" stroke-dasharray="3 3"/>
@@ -91,5 +91,5 @@
 <rect x="40" y="672" width="56" height="16" fill="#FFFFFF" stroke="#0F8C7E" stroke-width="1.4" rx="3"/><text x="104" y="684" font-size="11" fill="#3A4A66">the tradition defines this level</text>
 <rect x="330" y="672" width="56" height="16" fill="#FFFFFF" stroke="#0F8C7E" stroke-width="1.4" rx="3" stroke-dasharray="5 3"/><text x="394" y="684" font-size="11" fill="#3A4A66">the tradition has a near concept, mapped with a loss stated in the note</text>
 <text x="860" y="684" font-size="11" fill="#8A94A6" font-style="italic">not a concept here: the tradition does not cover this level</text>
-<text x="40" y="710" font-size="11" fill="#3A4A66">Left, the continuum's levels, grouped as problem space, solution space, runtime and the kinds beside the thread. Right, what this tradition calls each one. The full mapping, with references, is in docs/continuum-views.md.</text>
+<text x="40" y="710" font-size="11" fill="#3A4A66">Left, the continuum's levels, grouped as demand space, solution space, runtime and the kinds beside the thread. Right, what this tradition calls each one. The full mapping, with references, is in docs/continuum-views.md.</text>
 </svg>

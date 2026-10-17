@@ -65,7 +65,7 @@
     "sbbId":        { "type": "string", "pattern": "^SBB-\\d{3}$" },
     "apiId":        { "type": "string", "pattern": "^AP-\\d{3}$" },
     "viewId":       { "type": "string", "pattern": "^VW-\\d{3}$" },
-    "drId":         { "type": "string", "pattern": "^DR-\\d{3}$" },
+    "drId":         { "type": "string", "pattern": "^A?DR-\\d{3}$", "description": "A decision record: DR-NNN, or ADR-NNN where a repository keeps the ADR series." },
     "eventId":      { "type": "string", "pattern": "^EV-\\d{3}$" },
     "dnId":         { "type": "string", "pattern": "^DN-\\d{3}$" },
     "snapshotId":   { "type": "string", "pattern": "^SN-\\d{3}$" },
