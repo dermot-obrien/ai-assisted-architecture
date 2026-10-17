@@ -116,6 +116,7 @@ references:
 | `tags` | array of strings | Free-form tags. |
 | `sidebar_label` | string | Docusaurus rendering hint. |
 | `sidebar_position` | integer | Docusaurus rendering hint. |
+| `unlisted` | boolean | Docusaurus rendering hint: when true the page is built but kept out of the sidebar, the search index and the sitemap. For a page kept for the record rather than for reading, such as a superseded or retired artefact a repository chooses to keep. |
 
 ### 2.8 Schema declaration
 

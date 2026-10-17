@@ -174,7 +174,8 @@
 
     "tags":             { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "sidebar_label":    { "type": "string" },
-    "sidebar_position": { "type": "integer" }
+    "sidebar_position": { "type": "integer" },
+    "unlisted":         { "type": "boolean", "description": "Site presentation: when true, the page is built but kept out of the sidebar, the search index and the sitemap (Docusaurus unlisted). For pages kept for the record rather than for reading." }
   },
 
   "required": ["id", "kind", "title", "version", "status", "created", "last_modified", "owner"],
