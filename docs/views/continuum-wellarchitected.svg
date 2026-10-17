@@ -53,7 +53,7 @@
 <rect x="440" y="342" width="776" height="26" fill="#FFFFFF" stroke="#D97706" stroke-width="1.4" rx="4"/>
 <text x="448" y="359" font-size="12" fill="#1B2A4A"><tspan font-weight="600">The cloud services chosen</tspan></text>
 <rect x="24" y="376" width="300" height="26" fill="#FFFFFF" stroke="#1B2A4A" stroke-width="1.2" rx="4"/>
-<text x="32" y="393" font-size="12" font-weight="600" fill="#1B2A4A">Pattern</text>
+<text x="32" y="393" font-size="12" font-weight="600" fill="#1B2A4A">Architecture pattern and reference architecture</text>
 <line x1="324" y1="389" x2="438" y2="389" stroke="#3A4A66" stroke-width="1.2" marker-end="url(#a)"/>
 <rect x="440" y="376" width="776" height="26" fill="#FFFFFF" stroke="#D97706" stroke-width="1.4" rx="4"/>
 <text x="448" y="393" font-size="12" fill="#1B2A4A"><tspan font-weight="600">Reference architecture; Lens; Perspective</tspan><tspan fill="#3A4A66" font-size="11">  the AWS and Azure Architecture Centers; sixteen AWS lenses</tspan></text>

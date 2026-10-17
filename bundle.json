@@ -9,8 +9,8 @@
     {
       "name": "aaa-create-abb",
       "path": "skills/aaa-create-abb",
-      "version": "0.6.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.6.1",
+      "version": "0.6.2",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.6.2",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -21,8 +21,8 @@
     {
       "name": "aaa-create-capability",
       "path": "skills/aaa-create-capability",
-      "version": "0.6.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.6.1",
+      "version": "0.6.2",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.6.2",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -69,8 +69,8 @@
     {
       "name": "aaa-create-sbb",
       "path": "skills/aaa-create-sbb",
-      "version": "0.6.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.6.1",
+      "version": "0.6.2",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.6.2",
       "requires": [],
       "check": {
         "command": ["node", "bin/check.mjs"],
@@ -105,8 +105,8 @@
     {
       "name": "aaa-rung",
       "path": "skills/aaa-rung",
-      "version": "0.5.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-rung@0.5.1",
+      "version": "0.5.2",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-rung@0.5.2",
       "requires": [],
       "check": {
         "command": ["python", "bin/check.py"],
