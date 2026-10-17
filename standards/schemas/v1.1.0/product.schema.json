@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "product.schema.json",
   "title": "Product Artefact (v1.1.0)",
-  "description": "A consumable offering of one platform: what a consumer asks for, in the consumer's terms, and what a named team runs. It requires capabilities, optionally narrowed to flows, and runs services. Its features are rows of a register (FE-NNN) with no page of their own.",
+  "description": "A consumable offering of one platform: what a consumer asks for, in the consumer's terms, and what a named team runs. It requires capabilities, optionally narrowed to flows, and runs services. Its features (FE-NNN) are usually rows of a register beside it, and may have pages of their own (kind feature).",
   "type": "object",
   "allOf": [
     {
@@ -56,7 +56,7 @@
             "$ref": "envelope.schema.json#/$defs/anyId"
           },
           "uniqueItems": true,
-          "description": "The services the product runs, by slug or SV-NNN."
+          "description": "The services the product runs, by slug or SV-NNN. The inverse of run_by on the service."
         },
         "features": {
           "type": "array",
@@ -64,7 +64,7 @@
             "$ref": "envelope.schema.json#/$defs/featureId"
           },
           "uniqueItems": true,
-          "description": "The product's features, where they are listed in the document rather than only in the register."
+          "description": "The product's features, where they are listed in the document rather than only in the register. The inverse of part_of on the feature."
         },
         "consumers": {
           "type": "array",

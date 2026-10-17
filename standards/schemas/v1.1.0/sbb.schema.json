@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "sbb.schema.json",
   "title": "Solution Building Block (v1.1.0)",
-  "description": "A concrete realisation of one or more ABBs using specific products/services (TOGAF). Realised at runtime by one or more Services. May be a composite assembled from sub-SBBs (UML composite structure: parts + ports + connectors).",
+  "description": "A concrete realisation of one or more ABBs using named technologies: products bought, services subscribed to or components built (TOGAF). Realised at runtime by one or more Services. May be a composite assembled from sub-SBBs (UML composite structure: parts + ports + connectors).",
   "type": "object",
 
   "$defs": {
@@ -22,10 +22,12 @@
 
         "realises":              { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "minItems": 1, "uniqueItems": true },
         "realised_by_services":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/serviceId" }, "uniqueItems": true },
+        "composed_by":           { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/referenceArchitectureId" }, "uniqueItems": true, "description": "The reference architectures that name this SBB among their boxes. The inverse of composes on the pattern." },
 
-        "products": {
+        "technologies": {
           "type": "array",
           "minItems": 1,
+          "description": "The vendors' offerings that realise the SBB: products bought, services subscribed to, components built. The word product is kept for the consumable offering of a platform (kind product).",
           "items": {
             "type": "object",
             "required": ["name"],
@@ -42,10 +44,10 @@
           "minItems": 1,
           "items": {
             "type": "object",
-            "required": ["abb_component", "sbb_product"],
+            "required": ["abb_component", "technology"],
             "properties": {
               "abb_component": { "type": "string", "minLength": 1 },
-              "sbb_product":   { "type": "string", "minLength": 1 },
+              "technology":    { "type": "string", "minLength": 1, "description": "The technology that realises the ABB component." },
               "notes":         { "type": "string" }
             }
           }
@@ -128,7 +130,7 @@
           }
         }
       },
-      "required": ["realises", "products", "product_mapping"]
+      "required": ["realises", "technologies", "product_mapping"]
     },
 
     {

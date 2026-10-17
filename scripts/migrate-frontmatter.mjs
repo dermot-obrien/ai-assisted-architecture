@@ -23,7 +23,7 @@
 //               domains, mandatory_subabbs                    <- defaults (see below)
 //   sbb         realises, short_name                          <- Document Control
 //               product_mapping                               <- §2.2 product table
-//               products                                      <- derived from product_mapping
+//               technologies                                  <- derived from product_mapping
 //   capability  level, parent, provided_by_platform,         <- Document Control
 //               required_by_outcomes
 //               components.{organisation,people,processes,technology} <- §2.1–2.4
@@ -394,7 +394,7 @@ function buildSbb(dcMap, body, ctx, id, flags) {
       const ac = stripFmt(r[comp] || '');
       const sp = stripFmt(r[prod] || '');
       if (!ac || !sp) continue;
-      const row = { abb_component: ac, sbb_product: sp };
+      const row = { abb_component: ac, technology: sp };
       if (note >= 0 && stripFmt(r[note] || '')) row.notes = stripFmt(r[note]);
       mapping.push(row);
     }
@@ -402,16 +402,16 @@ function buildSbb(dcMap, body, ctx, id, flags) {
   }
   if (mapping.length) {
     f.product_mapping = mapping;
-    // products derived from the distinct SBB products in the mapping.
+    // technologies derived from the distinct technologies in the mapping.
     const seen = new Set();
-    const products = [];
+    const technologies = [];
     for (const m of mapping) {
-      if (seen.has(m.sbb_product)) continue;
-      seen.add(m.sbb_product);
-      products.push({ name: m.sbb_product });
+      if (seen.has(m.technology)) continue;
+      seen.add(m.technology);
+      technologies.push({ name: m.technology });
     }
-    f.products = products;
-    flags.push('products derived from product_mapping');
+    f.technologies = technologies;
+    flags.push('technologies derived from product_mapping');
   }
   return f;
 }
@@ -544,8 +544,6 @@ function buildUseCase(dcMap, body, ctx, id, flags) {
   if (out) f.supports_outcome = out;
   const crit = bullets(section(body, 'success criteria') || '').map((b) => b.text).filter(Boolean);
   if (crit.length) f.success_criteria = crit;
-  const abbs = idsIn(section(body, 'realisation') || section(body, 'realization') || '', 'ABB');
-  if (abbs.length) f.realised_by_abbs = abbs;
   return f;
 }
 

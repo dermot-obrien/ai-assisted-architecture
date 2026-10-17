@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "deployment-node.schema.json",
+  "title": "Deployment Node Artefact (v1.1.0)",
+  "description": "Where a service runs: a cloud account and region, a runtime such as Cloud Run or Lambda, a virtual machine, a hosting service, a device (ArchiMate node, C4 deployment node). It carries the properties that matter to operating what it hosts: the account, the region, the runtime, the scaling model and the identity the services run as. The same service on two nodes differs by node properties, not service properties.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "deployment-node" },
+        "id":   { "$ref": "envelope.schema.json#/$defs/dnId" },
+
+        "node_type":      { "type": "string", "enum": ["serverless", "container-runtime", "kubernetes", "virtual-machine", "managed-service", "hosting-service", "device", "other"], "description": "The kind of node." },
+        "cloud_provider": { "type": "string", "enum": ["azure", "aws", "gcp", "onprem", "multi", "none"] },
+        "account":        { "type": "string", "minLength": 1, "description": "The cloud account, subscription or project the node lives in." },
+        "region":         { "type": "string", "minLength": 1, "description": "The region, or location for a device or an on-premises node." },
+        "runtime":        { "type": "string", "minLength": 1, "description": "The runtime the node provides, in the provider's words, e.g. Cloud Run, AWS Lambda, GKE, Compute Engine e2-standard-4." },
+        "scaling_model":  { "type": "string", "enum": ["fixed", "manual", "autoscaled", "scale-to-zero", "none"], "description": "How the node's capacity follows load." },
+        "run_as":         { "type": "string", "minLength": 1, "description": "The identity the hosted services run as: a service account, an IAM role, a managed identity." },
+        "parent":         { "$ref": "envelope.schema.json#/$defs/dnId", "description": "The node this one is nested in, e.g. a container runtime inside a virtual machine." },
+
+        "hosts":        { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/serviceId" }, "uniqueItems": true, "description": "The services deployed to the node, by slug. The inverse of deployed_to on the service." },
+        "hosts_stores": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/storeId" }, "uniqueItems": true, "description": "The stores hosted on the node. The inverse of hosted_on on the store." }
+      },
+      "required": ["node_type", "runtime"]
+    }
+  ]
+}

@@ -8,10 +8,10 @@ last_modified: 2026-09-01
 owner: Order Team
 status: accepted
 realises: [ABB-006]
-products:
+technologies:
   - { name: "Returns Desk service", vendor: "In house" }
 product_mapping:
-  - { abb_component: "Core", sbb_product: "Returns Desk service" }
+  - { abb_component: "Core", technology: "Returns Desk service" }
 ---
 
 # SBB-004 Returns Desk service

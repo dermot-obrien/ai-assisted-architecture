@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "landscape.schema.json",
+  "title": "Platform Landscape Artefact (v1.1.0)",
+  "description": "The whole set of platforms an enterprise runs, arranged in layers so that a platform consumes only the platforms in the layers below it, and only through their contracts. Records the layers, the platforms each holds and the dependencies between platforms.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "landscape" },
+        "id":   { "$ref": "envelope.schema.json#/$defs/landscapeId" },
+
+        "layers": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The layers, from L0 at the bottom upwards.",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "additionalProperties": false,
+            "properties": {
+              "id":          { "$ref": "envelope.schema.json#/$defs/layerId" },
+              "name":        { "type": "string", "minLength": 1 },
+              "description": { "type": "string" },
+              "platforms":   { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/platformId" }, "uniqueItems": true, "description": "The platforms the layer holds. The inverse of layer on the platform." }
+            }
+          }
+        },
+
+        "dependencies": {
+          "type": "array",
+          "description": "Which platform consumes which. The provider is in a lower layer than the consumer, and consumption is through the provider's contracts.",
+          "items": {
+            "type": "object",
+            "required": ["consumer", "provider"],
+            "additionalProperties": false,
+            "properties": {
+              "consumer": { "$ref": "envelope.schema.json#/$defs/platformId" },
+              "provider": { "$ref": "envelope.schema.json#/$defs/platformId" },
+              "through":  { "type": "array", "items": { "type": "string" }, "description": "The contracts consumed: API-NNN, EV-NNN or a named interface." },
+              "notes":    { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["layers"]
+    }
+  ]
+}

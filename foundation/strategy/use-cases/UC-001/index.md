@@ -17,8 +17,8 @@ preconditions:
 success_criteria:
   - Pod receives a valid OIDC token upon startup.
   - No static client secrets exist in the pod configuration.
-realised_by_abbs:
-  - ABB-001
+requires_capabilities:
+  - CAP-004
 ---
 
 # UC-001 Automated Workload Identity Provisioning

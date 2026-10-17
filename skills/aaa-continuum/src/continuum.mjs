@@ -34,7 +34,7 @@ const SLUG = /^[a-z][a-z0-9]*(-[a-z0-9]+)*$/;
 /** A citation of another catalogue's identifier: the namespace, a colon, the identifier. */
 const CITATION = /^([a-z][a-z0-9-]*):([A-Za-z][A-Za-z0-9-]*)$/;
 /** Kinds the standard reserves with a placeholder schema only. */
-const PLACEHOLDER_KINDS = new Set(["api", "view", "event", "deployment-node"]);
+const PLACEHOLDER_KINDS = new Set(["api", "view", "event"]);
 
 /** The scheme names the schemes register may use, and the front matter kind each one is. */
 export const SCHEME_KIND = {
@@ -42,7 +42,9 @@ export const SCHEME_KIND = {
   outcome: "outcome",
   "use-case": "use-case",
   capability: "capability",
+  landscape: "landscape",
   product: "product",
+  feature: "feature",
   "bounded-context": "bounded-context",
   context: "bounded-context",
   abb: "abb",
@@ -54,12 +56,12 @@ export const SCHEME_KIND = {
   "decision-record": "decision-record",
   adr: "decision-record",
   consideration: "consideration",
-  snapshot: "snapshot",
-  transition: "transition",
+  "technical-debt": "technical-debt",
   api: "api",
   view: "view",
   event: "event",
   "deployment-node": "deployment-node",
+  store: "store",
 };
 
 /**
@@ -75,12 +77,13 @@ export const RELATION_FIELDS = new Set([
   "implements", "implemented_by", "serves", "owns_outcomes", "provides_capabilities",
   "contains_bounded_contexts", "platform", "runs", "features", "realised_by_services", "parts",
   "deployed_to", "provides_apis", "consumes_apis", "supports_outcome", "fulfilled_by_features",
-  "composes_contexts", "supersedes", "superseded_by", "architecture_snapshot",
-  "contributes_to_transition", "from_snapshot", "to_snapshot", "sequenced_decisions",
-  "affected_artefacts", "artefacts", "supersedes_snapshot",
+  "composes_contexts", "supersedes", "superseded_by", "supported_by_use_cases", "fulfils",
+  "consequences.technical_debt", "repays_debt", "consequence_of", "repaid_by",
+  "implemented_by", "composes", "composed_by", "run_by", "stores", "owned_by", "hosted_on", "hosts",
+  "hosts_stores", "read_by", "written_by", "landscape", "dependencies",
 ]);
 /** Fields whose values name services, which are listed by slug rather than by identifier. */
-const SERVICE_FIELDS = new Set(["realised_by_services", "runs"]);
+const SERVICE_FIELDS = new Set(["realised_by_services", "runs", "implemented_by", "hosts", "owned_by", "read_by", "written_by"]);
 
 /**
  * Relations with an inverse. When A's field lists B and B's page exists, B's inverse field
@@ -105,8 +108,30 @@ export const INVERSES = [
   ["pattern", "implemented_by", "pattern", "implements"],
   ["service", "realises", "sbb", "realised_by_services"],
   ["sbb", "realised_by_services", "service", "realises"],
-  ["use-case", "supports_outcome", "outcome", "realised_by_use_cases"],
-  ["outcome", "realised_by_use_cases", "use-case", "supports_outcome"],
+  ["use-case", "supports_outcome", "outcome", "supported_by_use_cases"],
+  ["outcome", "supported_by_use_cases", "use-case", "supports_outcome"],
+  ["decision-record", "consequences.technical_debt", "technical-debt", "consequence_of"],
+  ["technical-debt", "consequence_of", "decision-record", "consequences.technical_debt"],
+  ["decision-record", "repays_debt", "technical-debt", "repaid_by"],
+  ["technical-debt", "repaid_by", "decision-record", "repays_debt"],
+  ["use-case", "realised_by", "pattern", "serves"],
+  ["pattern", "serves", "use-case", "realised_by"],
+  ["use-case", "fulfilled_by_features", "feature", "fulfils"],
+  ["feature", "fulfils", "use-case", "fulfilled_by_features"],
+  ["product", "features", "feature", "part_of"],
+  ["feature", "part_of", "product", "features"],
+  ["product", "runs", "service", "run_by"],
+  ["service", "run_by", "product", "runs"],
+  ["pattern", "composes", "abb", "composed_by"],
+  ["pattern", "composes", "sbb", "composed_by"],
+  ["abb", "composed_by", "pattern", "composes"],
+  ["sbb", "composed_by", "pattern", "composes"],
+  ["service", "stores", "store", "owned_by"],
+  ["store", "owned_by", "service", "stores"],
+  ["service", "deployed_to", "deployment-node", "hosts"],
+  ["deployment-node", "hosts", "service", "deployed_to"],
+  ["store", "hosted_on", "deployment-node", "hosts_stores"],
+  ["deployment-node", "hosts_stores", "store", "hosted_on"],
 ];
 
 // ------------------------------------------------------------------------------ small parsers
@@ -468,17 +493,19 @@ export function check(config, modules) {
 
   // --- relations resolve, and their inverses agree
   const known = (token) => byId.has(token) || registerIds.has(token);
+  // A field may be a path into the front matter, as consequences.technical_debt is.
+  const at = (fm, field) => field.split(".").reduce((o, k) => (o && typeof o === "object" ? o[k] : undefined), fm);
   const targetsOf = (fm, field) => {
     const out = [];
-    for (const v of list(fm[field])) {
+    for (const v of list(at(fm, field))) {
       if (typeof v === "string") out.push(v.trim());
-      else if (v && typeof v === "object") for (const k of ["id", "with", "sbb", "abb", "artefact", "ref", "service"]) if (typeof v[k] === "string") out.push(v[k].trim());
+      else if (v && typeof v === "object") for (const k of ["id", "with", "sbb", "abb", "artefact", "ref", "service", "consumer", "provider"]) if (typeof v[k] === "string") out.push(v[k].trim());
     }
     return out;
   };
   for (const p of pages) {
-    for (const field of Object.keys(p.fm)) {
-      if (!RELATION_FIELDS.has(field)) continue;
+    for (const field of RELATION_FIELDS) {
+      if (at(p.fm, field) === undefined) continue;
       for (const token of targetsOf(p.fm, field)) {
         const c = CITATION.exec(token);
         if (c) {
@@ -496,7 +523,7 @@ export function check(config, modules) {
     }
   }
   for (const [kindA, fieldA, kindB, fieldB] of INVERSES) {
-    for (const a of pages.filter((p) => p.kind === kindA && p.fm[fieldA] !== undefined)) {
+    for (const a of pages.filter((p) => p.kind === kindA && at(p.fm, fieldA) !== undefined)) {
       const aNames = new Set(a.ids);
       for (const token of targetsOf(a.fm, fieldA)) {
         const b = byId.get(token);
@@ -586,21 +613,23 @@ const SCHEMES_ROWS = [
   ["store", "ST", "ST-[0-9]{3}", "Store", "", "runtime/stores.csv", "", "off", "A row of runtime/stores.csv: a database, bucket, table, index or secret owned by one context"],
   ["consideration", "CN", "CN-[0-9]{3}", "Consideration", "decisions/{id}-*/index.md", "decisions/considerations.csv", "", "linked", "An open question with more than one credible answer"],
   ["adr", "ADR", "ADR-[0-9]{3}", "Architecture decision record", "decisions/{id}-*.md", "decisions/decisions.csv", "adr", "linked", ""],
+  ["technical-debt", "TD", "TD-[0-9]{3}", "Technical debt item", "decisions/{id}-*/index.md", "decisions/technical-debt.csv", "", "linked", "A consequence of a decision, attached to it and to the decision that repays it"],
 ];
 const REGISTERS = {
   "demand/outcomes.csv": "id,name,kpi,target,owned_by,required_capabilities,status",
-  "demand/use-cases.csv": "id,name,actor,outcome,realised_by,realised_by_abbs,fulfilled_by_features,frequency,status,path",
-  "demand/capabilities.csv": "id,name,level,parent,subdomain_kind,realised_by_abbs,maturity,status,path",
+  "demand/use-cases.csv": "id,name,actor,outcome,requires_capabilities,realised_by,fulfilled_by_features,frequency,status,path",
+  "demand/capabilities.csv": "id,name,level,parent,realised_by_abbs,maturity,status,path",
   "demand/features.csv": "id,name,what,fulfils,implemented_by,product",
   "solution/contexts.csv": "id,name,subdomain_kind,realises_capabilities,contains,owner,stores_owned,status,path",
   "solution/abbs.csv": "id,name,short_name,status,category,part_of,realises_capabilities,realised_by,requires,folded_into,path",
-  "solution/sbbs.csv": "id,name,status,realises,realised_by_services,products,cloud_provider,deployment_model,path",
+  "solution/sbbs.csv": "id,name,status,realises,realised_by_services,technologies,cloud_provider,deployment_model,path",
   "solution/contracts.csv": "id,name,kind,provider,consumers,definition,versioning,notes",
   "runtime/services.csv": "id,slug,name,kind,runtime_type,context,composes,realises,nodes,code,run_by,status,path",
   "runtime/nodes.csv": "id,name,cloud,module,hosts,sizing,optional,identity,notes",
   "runtime/stores.csv": "id,name,technology,node,owned_by,written_by,read_by,layout,retention,notes",
   "decisions/decisions.csv": "id,title,status,affects,resolves,path",
   "decisions/considerations.csv": "id,title,consideration_status,resolved_by,affects,path",
+  "decisions/technical-debt.csv": "id,title,debt_status,quadrant,consequence_of,repaid_by,affects,interest,principal,path",
 };
 const FOLDERS = ["demand/outcomes", "demand/use-cases", "demand/capabilities", "solution/contexts", "solution/abbs", "solution/sbbs", "solution/patterns", "runtime/services", "decisions", "registers"];
 

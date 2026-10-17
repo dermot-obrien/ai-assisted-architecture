@@ -17,8 +17,8 @@ preconditions:
 success_criteria:
   - Workload is placed on optimal hardware within < 30 seconds.
   - High availability is maintained through automated multi-zone distribution.
-realised_by_abbs:
-  - ABB-006
+requires_capabilities:
+  - CAP-012
 ---
 
 # UC-005 Automated Workload Scheduling

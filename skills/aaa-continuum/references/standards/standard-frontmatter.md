@@ -8,7 +8,7 @@ created: 2026-05-08
 last_modified: 2026-05-08
 owner: "Architecture Team"
 triggers:
-  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Snapshot, Transition, Consideration)"
+  - "Creating any catalog artefact (Outcome, Use Case, Platform, Capability, Bounded Context, ABB, SBB, API, Service, View, Decision Record, Event, Deployment Node, Consideration, Technical Debt)"
   - "Validating workspace artefacts in CI"
   - "Migrating v1.0.0 artefacts to v1.1.0"
   - "Querying the catalog by relations or status"
@@ -16,7 +16,7 @@ triggers:
 
 # Frontmatter Standard
 
-This standard defines the **YAML frontmatter** every catalog artefact carries. It introduces a universal envelope, per-kind extensions, a unified relationship vocabulary, and lifecycle / change / transition fields. Together these turn the framework's documentation into a queryable, machine-validatable catalog.
+This standard defines the **YAML frontmatter** every catalog artefact carries. It introduces a universal envelope, per-kind extensions, a unified relationship vocabulary, and lifecycle and change fields. Together these turn the framework's documentation into a queryable, machine-validatable catalog.
 
 This standard is the prose form. The machine-validatable form lives at [`schemas/v1.1.0/`](./schemas/v1.1.0/).
 
@@ -33,7 +33,7 @@ This standard is the prose form. The machine-validatable form lives at [`schemas
 Two distinct frontmatter shapes coexist:
 
 - **Standards documents** (the `standards/.../*.md` files themselves) keep their existing shape: `document_type: standards`, `title`, `classification`, `version`, `status`, `created`, `last_modified`, `owner`, `triggers`. **This file follows that convention.**
-- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `snapshots/`, `transitions/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`) **adopt the envelope defined below**.
+- **Catalog artefacts** (every `index.md` under `outcomes/`, `use-cases/`, `platforms/`, `capabilities/`, `contexts/`, `building-blocks/architecture-building-blocks/`, `building-blocks/solution-building-blocks/`, `apis/`, `events/`, `views/`, `decisions/`, `considerations/`, `runtime/services/`, `deployment-nodes/`, and the pages of landscapes, products, features, stores and technical debt where a repository keeps them) **adopt the envelope defined below**.
 
 This standard concerns the *artefact* shape. Standards documents are unaffected.
 
@@ -48,7 +48,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
-| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `product`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`, `consideration`. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `landscape`, `platform`, `product`, `feature`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `store`, `consideration`, `technical-debt`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
 | `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
@@ -63,12 +63,11 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | `last_modified` | ISO-8601 date | * | `YYYY-MM-DD`. Updated on every meaningful change. |
 | `last_modified_by` | string | recommended | Worker or person ID. |
 
-### 2.3 Change and transition fields
+### 2.3 Change fields
 
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `lifecycle_state` | enum | recommended (default `baseline`) | One of: `baseline`, `in-flight`, `target`, `retired`. Allows multiple coexistent versions of the same `id` to live in the workspace, each declaring its standing. See §4. |
-| `architecture_snapshot` | `SN-NNN` \| null | optional | The Snapshot this artefact-version belongs to, if any. |
 | `valid_from` | ISO-8601 date | optional | Date this state took effect. |
 | `valid_until` | ISO-8601 date \| null | optional | Date this state ceased to be current. `null` means "still current". |
 | `supersedes` | array of IDs | optional | IDs of artefacts this one replaces. |
@@ -184,7 +183,7 @@ references:
 | `lifecycle_state` | Meaning | Typical use |
 |---|---|---|
 | `baseline` | Part of the current as-is architecture | Default for live artefacts |
-| `in-flight` | Part of an active transition; neither pure baseline nor target | Temporary states during migration |
+| `in-flight` | Part of a change under way; neither pure baseline nor target | Temporary states during migration |
 | `target` | Part of a future / aspirational architecture; not yet realised | Documents the Target Architecture per TOGAF Phase B |
 | `retired` | Was once in the baseline; no longer is | Historical artefacts kept for audit |
 
@@ -207,7 +206,7 @@ building-blocks/architecture-building-blocks/
 
 Folder name pattern: `<ID>` for the canonical (baseline) version; `<ID>-target` for the target version; `<ID>-v<semver>` for explicit historical versions. The `id` frontmatter remains `ABB-007` for all of them; the validator checks that exactly one folder per `id` carries `lifecycle_state: baseline` (or omits the field, defaulting to baseline).
 
-See [Snapshot](#) and [Transition](#) artefact types (forthcoming as separate standards) for how named architecture states are assembled and how multi-step migrations are described.
+The model has no snapshot or transition kinds: an artefact's standing is its own `lifecycle_state`, and a change is recorded by the decision record that makes it (`affects_artefacts`).
 
 ---
 
@@ -271,8 +270,10 @@ measures:                            # optional; each id is a criterion planning
 
 owned_by_platform: PL-001            # required
 requires_capabilities: [CAP-004, CAP-005]
-realised_by_use_cases: [UC-001, UC-002]
+supported_by_use_cases: [UC-001, UC-002]   # the inverse of supports_outcome on the use case
 ```
+
+`supported_by_use_cases` replaces `realised_by_use_cases`, which is removed: the continuum's verb is supports, since a use case supports an outcome and does not realise it.
 
 `measures[]` is optional. Each entry has `id` (`OC-NNN-M<n>`, required), `measure` (required), `target` and `unit`. The identifiers are what planning cites as `advances_criterion_ids` and what a consideration may list in its `criteria`. See the [Strategy Standard §2.3](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/strategy/standard-strategy.md#23-outcome-measures-as-criteria).
 
@@ -293,8 +294,12 @@ frequency: low | medium | high
 volume: "≥ 10k decisions/sec"
 
 supports_outcome: OC-001             # required
-realised_by_abbs: [ABB-001, ABB-003]   # required, ≥1
+requires_capabilities: [CAP-004]     # the capabilities that make it possible
+realised_by: [AP-001]                # the architecture patterns that realise it (and reference architectures that make them concrete)
+fulfilled_by_features: [FE-003]      # the product features that fulfil it
 ```
+
+On the continuum a use case supports an outcome, requires capabilities, is fulfilled by the features of a product and is realised by an architecture pattern, whose scenarios walk the use case's scenarios across the building blocks. `realised_by` is the inverse of `serves` on the pattern, and `fulfilled_by_features` the inverse of `fulfils` on the feature. `realised_by_abbs` is removed: a use case reaches its building blocks through the pattern that realises it, and the capabilities it requires are named in `requires_capabilities`.
 
 **Schema:** [`schemas/v1.1.0/use-case.schema.json`](./schemas/v1.1.0/use-case.schema.json).
 
@@ -306,6 +311,8 @@ id: PL-001
 title: "Identity & Access Platform"
 strategic_owner: "CISO"              # required for Platform
 owner: "Identity Platform Team"
+landscape: LS-001                    # the platform landscape it belongs to
+layer: L1                            # the landscape layer that holds it
 
 owns_outcomes: [OC-001, OC-002]
 provides_capabilities: [CAP-004, CAP-005]   # required, ≥1
@@ -340,7 +347,6 @@ maturity:
   target: 5
   assessment_date: 2026-04-15
   assessor: "Identity Platform Team"
-subdomain_kind: core | supporting | generic   # optional DDD classifier
 
 provided_by_platform: PL-001         # required for L3 (L1/L2 span platforms, so optional)
 required_by_outcomes: [OC-001, OC-002]
@@ -354,6 +360,8 @@ flows:
   - { id: provision, name: "Provision an identity", description: "Joiner to first sign-in", rung: R3 }
   - { id: rotate-credentials, name: "Rotate credentials", rung: R2 }
 ```
+
+Blocks attach at the lowest level a capability is defined to (the continuum's decision D4): an L1 or L2 capability with no children may carry `realised_by_abbs`, and nothing restricts it to L3.
 
 > **Realisation completeness is a gap, not a validation error.** `realised_by_abbs` is *recommended*, never required — an L3 capability with no realising ABB is a legitimate architecture **gap** surfaced by gap analysis (the foundation catalogue ships such placeholders deliberately, awaiting their ABBs). `provided_by_platform` is required only for L3 capabilities; L1/L2 capabilities are cross-platform groupings and may omit it.
 
@@ -408,6 +416,7 @@ category: "Security"
 part_of: BC-001                      # required: parent BC
 realises_capabilities: [CAP-004]     # required, ≥1
 realised_by: [SBB-001]                # multi: SBBs
+composed_by: [AP-001]                 # the architecture patterns that name it among their boxes
 
 requires:                            # optional: capability-level dependencies on other ABBs
   - { abb: ABB-005, cardinality: "1", rationale: "Sign-in and lifecycle events are published to the event backbone" }
@@ -445,16 +454,19 @@ title: "SBB-001 Identity Lifecycle Service (Entra)"
 
 realises: [ABB-001]                   # required, ≥1
 realised_by_services: [identity-lifecycle-svc]
+composed_by: [RA-001]                 # the reference architectures that name it among their boxes
 
-products:                            # required, ≥1
+technologies:                        # required, ≥1
   - { name: "Microsoft Entra ID", vendor: "Microsoft", licensing: "P2" }
-product_mapping:                     # required, ≥1; ABB component → SBB product
-  - { abb_component: "Identity Provisioning", sbb_product: "Entra ID Provisioning" }
-  - { abb_component: "Token Issuance", sbb_product: "Entra STS (v2.0)" }
+product_mapping:                     # required, ≥1; ABB component → the technology that realises it
+  - { abb_component: "Identity Provisioning", technology: "Entra ID Provisioning" }
+  - { abb_component: "Token Issuance", technology: "Entra STS (v2.0)" }
 cloud_provider: azure | aws | gcp | onprem | multi | none
 variants: ["Entra-only", "Entra+Okta hybrid"]
 deployment_model: managed | self-hosted | hybrid
 ```
+
+The vendor's offering is a technology: the word product belongs to the consumable offering of a platform (§6.18). `technologies` replaces `products`, and `technology` replaces `sbb_product` in a mapping row (the continuum's decision D2); the old names are removed.
 
 **Schema:** [`schemas/v1.1.0/sbb.schema.json`](./schemas/v1.1.0/sbb.schema.json).
 
@@ -547,6 +559,8 @@ packages: ["com.patternode.identity.service"]
 key_classes: ["IdentityServiceApplication", "TokenEndpoint"]
 
 deployed_to: [DN-001, DN-002]
+run_by: [PRD-001]                    # the products that run it; the inverse of runs on the product
+stores: [ST-001]                     # the stores it owns; the inverse of owned_by on the store
 ```
 
 Service is the **one kind that uses kebab-case slugs as the canonical `id`** to preserve v1.0.0 backward compatibility. New services may optionally declare a `numeric_id: SV-NNN` for governance queries that prefer numeric IDs across kinds.
@@ -559,7 +573,7 @@ Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`
 
 ### 6.11 Decision Record (`DR-NNN` or `ADR-NNN`)
 
-The identifier series is `DR-NNN`. A repository that already keeps its decisions as architecture decision records may use `ADR-NNN` instead; the schemas accept either, in `id` and wherever a decision record is referenced (`resolved_by`, `sequenced_decisions`). One series per repository.
+The identifier series is `DR-NNN`. A repository that already keeps its decisions as architecture decision records may use `ADR-NNN` instead; the schemas accept either, in `id` and wherever a decision record is referenced (`resolved_by`, `consequence_of`, `repaid_by`). One series per repository.
 
 ```yaml
 kind: decision-record
@@ -578,10 +592,11 @@ decision_outcome: "Option 2 (unify under Platform)"
 consequences:
   positive: ["Single vocabulary for execs and engineers", "Aligns with Team Topologies"]
   negative: ["Loss of strict DDD problem/solution-space distinction at top level"]
+  technical_debt: [TD-003]           # the technical debt that is a consequence of the decision
 
 change_type: introduce | modify | retire | replace | principle   # required
 affects_artefacts: [PL-NNN, BC-NNN]    # required unless change_type=principle
-contributes_to_transition: TR-NNN | null
+repays_debt: []                      # technical debt the decision repays; the inverse of repaid_by
 
 applies_to: []                       # universal relation
 supersedes: []
@@ -596,45 +611,29 @@ Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`
 
 ### 6.13 Deployment Node (`DN-NNN`)
 
-Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/deployment-node.schema.json`](./schemas/v1.1.0/_placeholders/deployment-node.schema.json).
-
-### 6.14 Snapshot (`SN-NNN`)
+Where a service runs: a cloud account and region, a runtime such as Cloud Run or Lambda, a virtual machine, a hosting service, a device. The same service on two nodes differs by node properties, not service properties.
 
 ```yaml
-kind: snapshot
-id: SN-001
-title: "Patternode Baseline 2026-Q2"
-snapshot_kind: baseline | target | transition   # required
-effective_date: 2026-06-30                       # required for baseline
-target_date: null                                # required for target
-supersedes_snapshot: null                        # for transition snapshots
-
-artefacts:                                       # required, ≥1; the manifest
-  - { id: PL-001, version: 1.0.0 }
-  - { id: PL-002, version: 1.0.0 }
-  - { id: ABB-001, version: 1.5.0 }
+kind: deployment-node
+id: DN-001
+title: "DN-001 Cloud Run, production, europe-west2"
+node_type: serverless                # required: serverless | container-runtime | kubernetes | virtual-machine | managed-service | hosting-service | device | other
+runtime: "Cloud Run"                 # required, in the provider's words
+cloud_provider: gcp
+account: "acme-prod"                 # account, subscription or project
+region: europe-west2
+scaling_model: scale-to-zero         # fixed | manual | autoscaled | scale-to-zero | none
+run_as: "svc-runtime@acme-prod.iam.gserviceaccount.com"
+parent: null                         # a node this one is nested in
+hosts: [identity-lifecycle-svc]      # services; the inverse of deployed_to
+hosts_stores: [ST-001]               # stores; the inverse of hosted_on
 ```
 
-**Schema:** [`schemas/v1.1.0/snapshot.schema.json`](./schemas/v1.1.0/snapshot.schema.json) (full body structure forthcoming as a separate Snapshot standard).
+**Schema:** [`schemas/v1.1.0/deployment-node.schema.json`](./schemas/v1.1.0/deployment-node.schema.json).
 
-### 6.15 Transition (`TR-NNN`)
+### 6.14 and 6.15
 
-```yaml
-kind: transition
-id: TR-001
-title: "Migrate to Multi-Region Deployment"
-from_snapshot: SN-001                # required
-to_snapshot: SN-002                  # required
-transition_status: planned | in-progress | completed | abandoned   # transition lifecycle; the envelope `status` (draft/active/…) still applies separately
-
-sequenced_decisions: [DR-014, DR-015, DR-016]    # required, ≥1
-sequenced_steps:                                  # required, ≥1
-  - { step: 1, summary: "Provision multi-region infra", target_date: 2027-Q1, owner: "Platform Team" }
-  - { step: 2, summary: "Dual-write data layer", target_date: 2027-Q2, owner: "Data Team" }
-affected_artefacts: [PL-100, BC-105, ABB-110]      # required, ≥1
-```
-
-**Schema:** [`schemas/v1.1.0/transition.schema.json`](./schemas/v1.1.0/transition.schema.json) (full body structure forthcoming as a separate Transition standard).
+Removed. The model has no snapshot or transition kinds (§4); the numbers are kept so the sections after them keep theirs.
 
 ### 6.16 Consideration (`CN-NNN`)
 
@@ -663,7 +662,7 @@ affects: [CAP-012, ABB-021, AP-004]  # required, >=1: capabilities, ABBs, SBBs, 
 | `question` | string | * | The open question, phrased so each option is a possible answer. |
 | `options[]` | array of objects | recommended, >=2 | Each has `name` (required) and `summary`. A question with one credible answer is not a consideration. |
 | `criteria[]` | array of strings | recommended | What decides between the options. |
-| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
+| `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, because one property cannot satisfy two enums. |
 | `resolved_by` | `DR-NNN` or `ADR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
 | `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs, architecture patterns or reference architectures whose definition waits on the question. An architecture pattern is named by its identifier (`AP-NNN`) and a reference architecture by its (`RA-NNN`), which is how the ladder finds them. |
 
@@ -684,17 +683,20 @@ title: "RA-001 Knowledge Store on AWS"
 pattern_type: reference-architecture      # required; agrees with the series
 pattern_scope: platform                   # required
 implements: [AP-001]                      # required on a reference architecture, at least one
+composes: [SBB-004, SBB-007]              # the catalogued blocks among its boxes: SBBs here, ABBs in an architecture pattern
 realises: [CAP-002, CAP-003]              # optional; read by aaa-rung
 serves: [UC-001, UC-002]                  # optional; the use cases its scenarios walk
 model:
   diagram: components.drawio              # the diagram the model skill keeps in step
 ```
 
+`composes` mirrors the document's Building Blocks table for the boxes that are catalogued: ABBs in an architecture pattern, SBBs in a reference architecture, which the schema enforces. Local roles and technologies are not catalogued and are not listed. The inverse is `composed_by` on the ABB or SBB. An architecture pattern carries no `implements`, and a reference architecture no `implemented_by`.
+
 **Schema:** [`schemas/v1.1.0/pattern.schema.json`](./schemas/v1.1.0/pattern.schema.json).
 
 ### 6.18 Product (`PRD-NNN`)
 
-A product is a consumable offering of one platform: what a consumer asks for, in the consumer's terms, and what a named team runs. It requires capabilities, optionally narrowed to flows, and runs services. Its features (`FE-NNN`) are rows of a register beside it and have no page of their own.
+A product is a consumable offering of one platform: what a consumer asks for, in the consumer's terms, and what a named team runs. It requires capabilities, optionally narrowed to flows, and runs services. Its features (`FE-NNN`) are usually rows of a register beside it, and may have pages of their own (§6.19).
 
 ```yaml
 kind: product
@@ -709,6 +711,83 @@ runs: [pipeline, portal-api]              # services, by slug or SV-NNN
 ```
 
 **Schema:** [`schemas/v1.1.0/product.schema.json`](./schemas/v1.1.0/product.schema.json).
+
+### 6.19 Feature (`FE-NNN`)
+
+Something a product does that its users value, in the product's own terms and small enough that one story can deliver it: the hinge between a use case and the services that fulfil it. A feature is usually a row of the product's feature register; where it has a page, the page carries this front matter.
+
+```yaml
+kind: feature
+id: FE-003
+title: "FE-003 Ask a question of the library"
+what: "Answers a question in plain language, citing the documents it used"
+part_of: PRD-001                     # required: the product that has it
+fulfils: [UC-002]                    # the use cases it fulfils
+implemented_by: [query-api, ranker]  # services, by slug
+```
+
+**Schema:** [`schemas/v1.1.0/feature.schema.json`](./schemas/v1.1.0/feature.schema.json).
+
+### 6.20 Store (`ST-NNN`)
+
+A database, bucket, table, index, queue or secret: a resource owned by one bounded context, recorded on the service that owns it and on the node that hosts it, not a service of its own (the continuum's decision D1). Usually a row of a stores register.
+
+```yaml
+kind: store
+id: ST-001
+title: "ST-001 Identity directory"
+store_type: database                 # required: database | table | bucket | index | queue | cache | secret | other
+technology: "PostgreSQL 16"
+part_of: BC-001                      # required: the one context that owns it
+owned_by: identity-lifecycle-svc     # required: the owning service; the inverse of stores
+hosted_on: DN-002                    # the inverse of hosts_stores
+read_by: [audit-export]
+written_by: []                       # another writer is a finding against the one-owner rule
+```
+
+**Schema:** [`schemas/v1.1.0/store.schema.json`](./schemas/v1.1.0/store.schema.json).
+
+### 6.21 Platform landscape (`LS-NNN`)
+
+The whole set of platforms an enterprise runs, in layers, so that a platform consumes only the platforms in the layers below it, and only through their contracts. A layer is declared on the landscape (`L0` at the bottom) and named by `layer` on each platform; it is not a kind of its own.
+
+```yaml
+kind: landscape
+id: LS-001
+title: "LS-001 Platform of platforms"
+layers:                              # required, ≥1
+  - { id: L0, name: "Foundation and infrastructure", platforms: [PL-001] }
+  - { id: L1, name: "Shared services", platforms: [PL-002, PL-003] }
+dependencies:                        # the provider is in a lower layer than the consumer
+  - { consumer: PL-002, provider: PL-001, through: [API-004] }
+```
+
+**Schema:** [`schemas/v1.1.0/landscape.schema.json`](./schemas/v1.1.0/landscape.schema.json).
+
+### 6.22 Technical debt (`TD-NNN`)
+
+A shortfall in the architecture or its build, taken on deliberately or found later, that costs something to carry (the interest) and something to put right (the principal). Technical debt is a consequence of a decision: the decision records it among its `consequences`, beside the positive, negative and neutral ones, and the debt item names the decision in `consequence_of`, so the debt is never separated from the reasoning that made it acceptable. Once settled, it names the decision that repaid it. Where the debt was found rather than chosen, `consequence_of` names the decision that accepted it.
+
+```yaml
+kind: technical-debt
+id: TD-003
+title: "TD-003 Single-region deployment of the identity directory"
+debt_status: open                    # required: open | scheduled | repaid | written-off
+quadrant: deliberate-prudent         # Fowler's quadrant: deliberate or inadvertent, prudent or reckless
+interest: "A regional outage stops sign-in for every workload"   # required: what carrying it costs
+principal: "A second region and replication, about six weeks"
+repayment: "Planned with the move to two regions"
+target_date: 2027-06-30
+consequence_of: DR-014               # required: the decision it is a consequence of
+repaid_by: null                      # required when debt_status is repaid
+affects: [SBB-001, DN-002]           # required, >=1: the artefacts that carry it
+```
+
+The decision record lists the same items in `consequences.technical_debt`, and the repaying decision in `repays_debt`. A repository usually keeps debt as rows of a register (`decisions/technical-debt.csv` in the `aaa-continuum` layout), with a page for an item that needs more than a row.
+
+**Schema:** [`schemas/v1.1.0/technical-debt.schema.json`](./schemas/v1.1.0/technical-debt.schema.json).
+
+The kinds and their relationships are drawn, generated from these schemas, in [the schema picture](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/docs/schema.md).
 
 ## 7. Backward Compatibility with v1.0.0
 
@@ -742,7 +821,7 @@ The `standards/.../*.md` files keep their existing frontmatter (`document_type: 
 
 ## 8. Schema Diagrams
 
-### 8.1 Composition (envelope + 18 kinds)
+### 8.1 Composition (envelope + 20 kinds)
 
 ```mermaid
 classDiagram
@@ -759,7 +838,6 @@ classDiagram
         +last_modified : date *
         +owner : string *
         +lifecycle_state : enum
-        +architecture_snapshot : SN-NNN?
         +supersedes / superseded_by
         +classification, governance_zone
         +references
@@ -768,7 +846,10 @@ classDiagram
     class Outcome { OC-NNN }
     class UseCase { UC-NNN }
     class Platform { PL-NNN }
+    class Landscape { LS-NNN }
     class Product { PRD-NNN }
+    class Feature { FE-NNN }
+    class Store { ST-NNN }
     class Capability { CAP-NNN }
     class BoundedContext { BC-NNN }
     class ABB { ABB-NNN }
@@ -776,18 +857,20 @@ classDiagram
     class Pattern { AP-NNN or RA-NNN }
     class Service { kebab or SV-NNN }
     class DecisionRecord { DR-NNN }
-    class Snapshot { SN-NNN }
-    class Transition { TR-NNN }
     class Consideration { CN-NNN }
+    class TechnicalDebt { TD-NNN }
     class API { API-NNN ~placeholder~ }
     class View { VW-NNN ~placeholder~ }
     class Event { EV-NNN ~placeholder~ }
-    class DeploymentNode { DN-NNN ~placeholder~ }
+    class DeploymentNode { DN-NNN }
 
     Envelope <|-- Outcome
     Envelope <|-- UseCase
     Envelope <|-- Platform
+    Envelope <|-- Landscape
     Envelope <|-- Product
+    Envelope <|-- Feature
+    Envelope <|-- Store
     Envelope <|-- Capability
     Envelope <|-- BoundedContext
     Envelope <|-- ABB
@@ -795,9 +878,8 @@ classDiagram
     Envelope <|-- Pattern
     Envelope <|-- Service
     Envelope <|-- DecisionRecord
-    Envelope <|-- Snapshot
-    Envelope <|-- Transition
     Envelope <|-- Consideration
+    Envelope <|-- TechnicalDebt
     Envelope <|-- API
     Envelope <|-- View
     Envelope <|-- Event
@@ -806,110 +888,13 @@ classDiagram
 
 ### 8.2 Relations and Golden Thread
 
-```mermaid
-flowchart TB
-    subgraph STRATEGY ["1 — Strategy"]
-        OC[(Outcome<br/>OC-NNN)]
-        UC[(Use Case<br/>UC-NNN)]
-    end
+![The kinds of the schemas and the identifier fields between them, laid out where the continuum puts them: demand space, solution space and runtime](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/docs/schema.svg)
 
-    subgraph ORG ["2 — Organisation / Demand space"]
-        PL[Platform<br/>PL-NNN]
-        CAP[Capability<br/>CAP-NNN]
-    end
+The picture is generated from the schemas by `scripts/generate-schema-diagram.mjs`, which fails in CI when a schema field has no line or the picture and the continuum's own diagram differ in a way it does not explain. [The schema page](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/docs/schema.md) lists every line with its fields and every difference from the continuum picture.
 
-    subgraph CTX ["3 — Solution boundary"]
-        BC[Bounded Context<br/>BC-NNN]
-    end
+### 8.3 Lifecycle
 
-    subgraph LOGICAL ["4 — Logical"]
-        AB[ABB<br/>ABB-NNN]
-    end
-
-    subgraph PHYSICAL ["5 — Physical"]
-        SB[SBB<br/>SBB-NNN]
-    end
-
-    subgraph RUNTIME ["6 — Runtime / Code"]
-        SV[Service<br/>kebab / SV-NNN]
-        AP{{API<br/>API-NNN}}
-        DN[/Deployment Node<br/>DN-NNN/]
-    end
-
-    subgraph CROSSCUT ["Cross-cutting"]
-        DR{{Decision Record<br/>DR-NNN}}
-        CN{{Consideration<br/>CN-NNN}}
-        SN[(Snapshot<br/>SN-NNN)]
-        TR[(Transition<br/>TR-NNN)]
-        VW{{View<br/>VW-NNN}}
-        EV{{Event<br/>EV-NNN}}
-    end
-
-    UC -- supports --> OC
-    OC -- owned_by --> PL
-    PL -- provides --> CAP
-    PL -- contains --> BC
-    BC -- realises --> CAP
-    BC -- contains --> AB
-    BC -- part_of --> PL
-    CAP -- provided_by --> PL
-    UC -- realised_by --> AB
-    AB -- realises --> CAP
-    AB -- part_of --> BC
-    AB -- realised_by --> SB
-    SB -- realises --> AB
-    SB -- runtime --> SV
-    SV -- realises --> SB
-    SV -- part_of --> BC
-
-    SV -. provides/consumes .-> AP
-    SV -. deployed_to .-> DN
-
-    CN -. affects .-> CAP
-    CN -. affects .-> AB
-    CN -- resolved_by --> DR
-    DR -. applies_to .-> OC
-    DR -. applies_to .-> AB
-    DR -. applies_to .-> SV
-    SN -. contains @version .-> OC
-    SN -. contains @version .-> SV
-    TR -- from/to --> SN
-    TR -- sequenced --> DR
-    VW -. shows .-> AB
-    VW -. shows .-> BC
-    EV -. produced/consumed .-> SV
-```
-
-### 8.3 Lifecycle, Snapshots, and Transitions
-
-```mermaid
-flowchart LR
-    subgraph BASELINE ["Snapshot SN-001<br/>baseline · 2026-Q2"]
-        AB1[ABB-007 v2.0.0<br/>baseline]
-        SB1[SBB-007 v1.0.0<br/>baseline]
-    end
-
-    subgraph TARGET ["Snapshot SN-002<br/>target · 2027-Q4"]
-        AB2[ABB-007 v3.0.0<br/>target]
-        SB2[SBB-007 v2.0.0<br/>target]
-    end
-
-    DR1{{DR-014<br/>change_type: replace<br/>affects ABB-007, SBB-007}}
-    DR2{{DR-015<br/>change_type: modify<br/>affects SBB-007}}
-
-    TR1[(Transition TR-001<br/>SN-001 → SN-002<br/>sequenced: DR-014, DR-015)]
-
-    BASELINE --> TR1
-    TR1 --> TARGET
-    DR1 -. drives .-> TR1
-    DR2 -. drives .-> TR1
-    DR1 -. applies_to .-> AB1
-    DR1 -. applies_to .-> AB2
-    DR2 -. applies_to .-> SB1
-    DR2 -. applies_to .-> SB2
-```
-
-The same artefact `id` (e.g. `ABB-007`) coexists in two states — `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0 — under different folder names. A Snapshot is a manifest pointing at specific `id@version` pairs. A Transition is the journey from one Snapshot to another, sequenced by Decision Records.
+The same artefact `id` (e.g. `ABB-007`) can coexist in two states, `lifecycle_state: baseline` at v2.0.0 and `lifecycle_state: target` at v3.0.0, under different folder names (§4). The decision record that moves it from one to the other names it in `affects_artefacts`. There is no snapshot or transition kind: the baseline is the set of artefacts in `baseline`, and the target the set in `target`.
 
 ---
 
@@ -933,7 +918,6 @@ last_modified: 2026-05-08
 last_modified_by: claude-opus-4-7
 
 lifecycle_state: baseline
-architecture_snapshot: SN-001
 
 owner: "Identity Platform Team"
 classification: internal
@@ -952,7 +936,6 @@ maturity:
   target: 5
   assessment_date: 2026-04-15
   assessor: "Identity Platform Team"
-subdomain_kind: generic
 
 # Relations
 provided_by_platform: PL-001

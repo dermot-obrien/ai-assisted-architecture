@@ -85,12 +85,15 @@ node scripts/validate-skills.mjs skills
 node scripts/validate-bundle.mjs --schemas standards/ontology .
 node scripts/test-architecture-ontology.mjs
 node scripts/sync-skill-standards.mjs --check
+node scripts/generate-schema-diagram.mjs --check
 python -m unittest discover skills/aaa-rung/tests
 ```
 
 Each skill carries its own copy of the standards it reads in `references/standards/`. After
 changing a file under `standards/`, or the list in `skill-standards.json`, run
 `node scripts/sync-skill-standards.mjs` to rewrite the copies, and commit them with the change.
+After changing a schema or `docs/continuum.drawio`, run `node scripts/generate-schema-diagram.mjs`
+to redraw `docs/schema.svg` and its page, and commit them with the change.
 
 With `npm install` done, also run `node scripts/validate-frontmatter.mjs --quiet` when you change a schema or the foundation. CI also runs the `skills-ref` reference validator, installs the bundle into a scratch workspace with AI-Assisted Work's `bin/skills.mjs` and runs each skill's check there, and checks REUSE compliance; [Commands](docs/commands.md) describes each tool.
 

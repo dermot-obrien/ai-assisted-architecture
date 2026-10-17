@@ -27,7 +27,8 @@
           "properties": {
             "positive": { "type": "array", "items": { "type": "string" } },
             "negative": { "type": "array", "items": { "type": "string" } },
-            "neutral":  { "type": "array", "items": { "type": "string" } }
+            "neutral":  { "type": "array", "items": { "type": "string" } },
+            "technical_debt": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/technicalDebtId" }, "uniqueItems": true, "description": "The technical debt that is a consequence of the decision. The inverse of consequence_of on the debt item." }
           }
         },
 
@@ -43,7 +44,7 @@
           "description": "Artefacts whose state is changed by this DR. Empty allowed only when change_type=principle."
         },
 
-        "contributes_to_transition": { "anyOf": [{ "$ref": "envelope.schema.json#/$defs/transitionId" }, { "type": "null" }] }
+        "repays_debt": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/technicalDebtId" }, "uniqueItems": true, "description": "The technical debt the decision repays. The inverse of repaid_by on the debt item." }
       },
       "required": ["y_statement", "decision_drivers", "considered_options", "decision_outcome", "change_type"]
     },

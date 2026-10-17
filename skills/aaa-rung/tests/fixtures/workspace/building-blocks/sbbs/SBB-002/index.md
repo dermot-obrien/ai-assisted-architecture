@@ -8,10 +8,10 @@ last_modified: 2026-09-01
 owner: Order Team
 status: active
 realises: [ABB-004]
-products:
+technologies:
   - { name: "Delivery Planner service", vendor: "In house" }
 product_mapping:
-  - { abb_component: "Core", sbb_product: "Delivery Planner service" }
+  - { abb_component: "Core", technology: "Delivery Planner service" }
 ---
 
 # SBB-002 Delivery Planner service

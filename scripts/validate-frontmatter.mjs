@@ -62,10 +62,13 @@ const KIND_SCHEMA = {
   sbb: 'sbb.schema.json',
   pattern: 'pattern.schema.json',
   service: 'service.schema.json',
+  'deployment-node': 'deployment-node.schema.json',
+  store: 'store.schema.json',
+  feature: 'feature.schema.json',
+  landscape: 'landscape.schema.json',
   'decision-record': 'decision-record.schema.json',
-  snapshot: 'snapshot.schema.json',
-  transition: 'transition.schema.json',
   consideration: 'consideration.schema.json',
+  'technical-debt': 'technical-debt.schema.json',
 };
 
 const ajv = new Ajv2020({ allErrors: true, strict: false });

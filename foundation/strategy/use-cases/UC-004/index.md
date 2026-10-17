@@ -17,8 +17,8 @@ preconditions:
 success_criteria:
   - Policy enforcement is automated without manual gateway configuration.
   - Breaking changes are detected via contract validation at the gateway.
-realised_by_abbs:
-  - ABB-004
+requires_capabilities:
+  - CAP-010
 ---
 
 # UC-004 Standardised API Governance

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "store.schema.json",
+  "title": "Store Artefact (v1.1.0)",
+  "description": "A data store: a named database, bucket, table, index, queue or secret. A resource owned by one bounded context and recorded on the service that owns it and on the node that hosts it, not a service of its own (Backstage's resource; the continuum's decision D1). Usually a row of a stores register; a store may also have a page of its own.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "store" },
+        "id":   { "$ref": "envelope.schema.json#/$defs/storeId" },
+
+        "store_type": { "type": "string", "enum": ["database", "table", "bucket", "index", "queue", "cache", "secret", "other"] },
+        "technology": { "type": "string", "minLength": 1, "description": "The technology the store is kept in, e.g. PostgreSQL 16, Cloud Storage, BigQuery." },
+
+        "part_of":    { "$ref": "envelope.schema.json#/$defs/bcId", "description": "The one bounded context that owns the store." },
+        "owned_by":   { "$ref": "envelope.schema.json#/$defs/serviceId", "description": "The service that owns the store, by slug. The inverse of stores on the service." },
+        "hosted_on":  { "$ref": "envelope.schema.json#/$defs/dnId", "description": "The node that hosts the store. The inverse of hosts_stores on the node." },
+        "written_by": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/serviceId" }, "uniqueItems": true, "description": "Services other than the owner that write to it; each is a finding against the one-owner rule unless it goes through the owner's contract." },
+        "read_by":    { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/serviceId" }, "uniqueItems": true },
+        "retention":  { "type": "string" }
+      },
+      "required": ["store_type", "part_of", "owned_by"]
+    }
+  ]
+}

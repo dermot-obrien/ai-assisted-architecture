@@ -40,19 +40,19 @@ function workspace() {
 
   page("platform.md", `kind: platform\nid: PL-001\ntitle: "PL-001 Example"\nstrategic_owner: "CTO"\n${common()}provides_capabilities: [CAP-001]\ncontains_bounded_contexts: [BC-001]\nowns_outcomes: [OC-001]\n`);
   page("demand/product.md", `kind: product\nid: PRD-001\ntitle: "PRD-001 Example"\n${common()}platform: PL-001\nteam: "Team"\nruns: [api]\n`);
-  page("demand/outcomes/OC-001-answers/index.md", `kind: outcome\nid: OC-001\ntitle: "OC-001 Answers"\n${common()}kpi: "Share of answers"\nkpi_target: { value: 100, unit: "percent" }\nbusiness_rationale: "Why"\ntime_horizon: short\nowned_by_platform: PL-001\nrequires_capabilities: [CAP-001]\nrealised_by_use_cases: [UC-001]\n`);
+  page("demand/outcomes/OC-001-answers/index.md", `kind: outcome\nid: OC-001\ntitle: "OC-001 Answers"\n${common()}kpi: "Share of answers"\nkpi_target: { value: 100, unit: "percent" }\nbusiness_rationale: "Why"\ntime_horizon: short\nowned_by_platform: PL-001\nrequires_capabilities: [CAP-001]\nsupported_by_use_cases: [UC-001]\n`);
   row("demand/outcomes.csv", "OC-001,Answers,Share,100,PL-001,CAP-001,active");
-  page("demand/use-cases/UC-001-ask/index.md", `kind: use-case\nid: UC-001\ntitle: "UC-001 Ask"\n${common()}primary_actor: "Reader"\nsuccess_criteria: ["Answered"]\nsupports_outcome: OC-001\nrealised_by_abbs: [ABB-001]\nrealised_by: [AP-001, RA-001]\n`);
-  row("demand/use-cases.csv", "UC-001,Ask,Reader,OC-001,AP-001 RA-001,ABB-001,,high,active,use-cases/UC-001-ask/index.md");
+  page("demand/use-cases/UC-001-ask/index.md", `kind: use-case\nid: UC-001\ntitle: "UC-001 Ask"\n${common()}primary_actor: "Reader"\nsuccess_criteria: ["Answered"]\nsupports_outcome: OC-001\nrequires_capabilities: [CAP-001]\nrealised_by: [AP-001, RA-001]\n`);
+  row("demand/use-cases.csv", "UC-001,Ask,Reader,OC-001,CAP-001,AP-001 RA-001,,high,active,use-cases/UC-001-ask/index.md");
   page("demand/capabilities/CAP-001-answering/index.md", `kind: capability\nid: CAP-001\ntitle: "CAP-001 Answering"\n${common()}level: L1\nprovided_by_platform: PL-001\nrealised_by_abbs: [ABB-001]\ncomponents:\n  organisation: "The team"\n  people: ["Readers"]\n  processes: ["Ask, check, show"]\n  technology: "The agent"\nmaturity: { current: 2, target: 4 }\n`);
-  row("demand/capabilities.csv", "CAP-001,Answering,L1,,core,ABB-001,3,active,capabilities/CAP-001-answering/index.md");
+  row("demand/capabilities.csv", "CAP-001,Answering,L1,,ABB-001,3,active,capabilities/CAP-001-answering/index.md");
   page("solution/contexts/BC-001-answering/index.md", `kind: bounded-context\nid: BC-001\ntitle: "BC-001 Answering"\n${common()}part_of: PL-001\ncontains: [ABB-001]\nrealises_capabilities: [CAP-001]\nsubdomain_kind: core\nubiquitous_language:\n  - { term: "Question", definition: "What a reader asks" }\n  - { term: "Answer", definition: "What the agent returns" }\n  - { term: "Citation", definition: "The passage an answer rests on" }\n`);
   row("solution/contexts.csv", "BC-001,Answering,core,CAP-001,ABB-001,Team,,active,contexts/BC-001-answering/index.md");
   page("solution/abbs/ABB-001-agent/index.md", `kind: abb\nid: ABB-001\ntitle: "ABB-001 Agent"\n${common()}category: "Application"\npart_of: BC-001\nrealises_capabilities: [CAP-001]\nrealised_by: [SBB-001]\ndomains: [application]\ninterfaces:\n  - { id: "I1", direction: "in", type: "request", description: "Ask" }\nmandatory_subabbs: [iam, observability, governance]\n`);
   row("solution/abbs.csv", "ABB-001,Agent,AGT,active,Application,BC-001,CAP-001,SBB-001,,,abbs/ABB-001-agent/index.md");
-  page("solution/sbbs/SBB-001-agent-on-lambda/index.md", `kind: sbb\nid: SBB-001\ntitle: "SBB-001 Agent on Lambda"\n${common()}realises: [ABB-001]\nrealised_by_services: [api]\nproducts:\n  - { name: "AWS Lambda", vendor: "AWS" }\nproduct_mapping:\n  - { abb_component: "Agent", sbb_product: "Lambda" }\ncloud_provider: aws\ndeployment_model: managed\n`);
+  page("solution/sbbs/SBB-001-agent-on-lambda/index.md", `kind: sbb\nid: SBB-001\ntitle: "SBB-001 Agent on Lambda"\n${common()}realises: [ABB-001]\nrealised_by_services: [api]\ntechnologies:\n  - { name: "AWS Lambda", vendor: "AWS" }\nproduct_mapping:\n  - { abb_component: "Agent", technology: "Lambda" }\ncloud_provider: aws\ndeployment_model: managed\n`);
   row("solution/sbbs.csv", "SBB-001,Agent on Lambda,active,ABB-001,api,AWS Lambda,aws,managed,sbbs/SBB-001-agent-on-lambda/index.md");
-  page("runtime/services/SV-001-api/index.md", `kind: service\nid: api\nnumeric_id: SV-001\ntitle: "SV-001 API"\n${common()}realises: [SBB-001]\npart_of: BC-001\nruntime_type: serverless\n`);
+  page("runtime/services/SV-001-api/index.md", `kind: service\nid: api\nnumeric_id: SV-001\ntitle: "SV-001 API"\n${common()}realises: [SBB-001]\npart_of: BC-001\nruntime_type: serverless\nrun_by: [PRD-001]\n`);
   row("runtime/services.csv", "SV-001,api,API,service,function,BC-001,,SBB-001,,,PRD-001,active,services/SV-001-api/index.md");
   const drawio = "<mxfile><diagram name=\"Structure\"/></mxfile>";
   for (const [id, type, extra] of [["AP-001", "architecture-pattern", "implemented_by: [RA-001]\n"], ["RA-001", "reference-architecture", "implements: [AP-001]\n"]]) {
@@ -162,5 +162,37 @@ test("inverse relations and open considerations warn", () => {
     assert.equal(r.summary.errors, 0, codes(r).join());
     assert.ok(r.findings.some((f) => f.code === "REL-002" && f.file.endsWith("SBB-001-agent-on-lambda/index.md")), codes(r).join());
     assert.ok(codes(r).includes("DEC-002"), codes(r).join());
+  } finally { rmSync(ws, { recursive: true, force: true }); }
+});
+
+test("the continuum's newer relations are checked from both sides", () => {
+  const { ws, root } = workspace();
+  try {
+    const ap = path.join(root, "solution/patterns/AP-001-example/index.md");
+    writeFileSync(ap, readFileSync(ap, "utf8").replace("pattern_type:", "composes: [ABB-001]\npattern_type:"));
+    const service = path.join(root, "runtime/services/SV-001-api/index.md");
+    writeFileSync(service, readFileSync(service, "utf8").replace("run_by: [PRD-001]\n", ""));
+    const r = run(ws);
+    assert.equal(r.summary.errors, 0, codes(r).join());
+    const rel = r.findings.filter((f) => f.code === "REL-002").map((f) => f.file);
+    assert.ok(rel.some((f) => f.endsWith("ABB-001-agent/index.md")), rel.join());
+    assert.ok(rel.some((f) => f.endsWith("SV-001-api/index.md")), rel.join());
+  } finally { rmSync(ws, { recursive: true, force: true }); }
+});
+
+test("technical debt is a consequence of a decision, recorded on both", () => {
+  const { ws, root } = workspace();
+  try {
+    const dir = path.join(root, "decisions/TD-001-one-region");
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(path.join(dir, "index.md"), `---\nkind: technical-debt\nid: TD-001\ntitle: "TD-001 One region"\n${common()}debt_status: open\nquadrant: deliberate-prudent\ninterest: "An outage of the region stops answers"\nconsequence_of: ADR-001\naffects: [SBB-001]\n---\n\n# TD-001 One region\n`);
+    writeFileSync(path.join(root, "decisions/technical-debt.csv"), readFileSync(path.join(root, "decisions/technical-debt.csv"), "utf8") + "TD-001,One region,open,deliberate-prudent,ADR-001,,SBB-001,An outage stops answers,,TD-001-one-region/index.md\n");
+    const r = run(ws);
+    assert.equal(r.summary.errors, 0, codes(r).join());
+    assert.ok(r.findings.some((f) => f.code === "REL-002" && f.file.endsWith("ADR-001-model-a.md")), codes(r).join());
+    const adr = path.join(root, "decisions/ADR-001-model-a.md");
+    writeFileSync(adr, readFileSync(adr, "utf8").replace("change_type: introduce", "change_type: introduce\nconsequences:\n  technical_debt: [TD-001]"));
+    const again = run(ws);
+    assert.ok(!again.findings.some((f) => f.code === "REL-002"), codes(again).join());
   } finally { rmSync(ws, { recursive: true, force: true }); }
 });

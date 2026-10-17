@@ -17,6 +17,7 @@
         "part_of":              { "$ref": "envelope.schema.json#/$defs/bcId" },
         "realises_capabilities":{ "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "minItems": 1, "uniqueItems": true },
         "realised_by":          { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/sbbId" }, "uniqueItems": true },
+        "composed_by":          { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/architecturePatternId" }, "uniqueItems": true, "description": "The architecture patterns that name this ABB among their boxes. The inverse of composes on the pattern." },
 
         "requires": {
           "type": "array",

@@ -14,6 +14,9 @@
 
         "strategic_owner": { "type": "string", "minLength": 1 },
 
+        "landscape": { "$ref": "envelope.schema.json#/$defs/landscapeId", "description": "The platform landscape the platform belongs to." },
+        "layer":     { "$ref": "envelope.schema.json#/$defs/layerId", "description": "The landscape layer that holds the platform, as declared in the landscape's layers. A platform consumes only platforms in lower layers, through their contracts." },
+
         "owns_outcomes":              { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/outcomeId" }, "uniqueItems": true },
         "provides_capabilities":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/capabilityId" }, "uniqueItems": true, "minItems": 1 },
         "contains_bounded_contexts":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/bcId" }, "uniqueItems": true, "minItems": 1 },

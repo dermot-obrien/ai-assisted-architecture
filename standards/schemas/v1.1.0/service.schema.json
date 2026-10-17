@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "service.schema.json",
   "title": "Service Artefact (v1.1.0)",
-  "description": "A runtime unit of execution. Realises an SBB. The 'last mile' before code. Source-code linkage frontmatter is finalised by WI-003 (E4); this schema includes the v1.0.0 baseline plus reserved fields.",
+  "description": "A runtime unit of execution, the deployable: realises SBBs, lives in one bounded context, is run by a product, owns its stores and is deployed to nodes. The 'last mile' before code. Source-code linkage frontmatter is finalised by WI-003 (E4); this schema includes the v1.0.0 baseline plus reserved fields.",
   "type": "object",
 
   "allOf": [
@@ -37,7 +37,10 @@
         "key_classes": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
         "entry_points":{ "type": "array", "items": { "type": "string" }, "uniqueItems": true },
 
-        "deployed_to": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/dnId" }, "uniqueItems": true }
+        "deployed_to": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/dnId" }, "uniqueItems": true },
+
+        "run_by": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/productId" }, "uniqueItems": true, "description": "The products that run the service. The inverse of runs on the product." },
+        "stores": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/storeId" }, "uniqueItems": true, "description": "The stores the service owns: resources of the service, each owned by one bounded context. The inverse of owned_by on the store." }
       },
       "required": ["realises", "part_of", "runtime_type"]
     }

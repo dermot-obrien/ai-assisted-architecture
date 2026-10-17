@@ -8,10 +8,10 @@ last_modified: 2026-09-01
 owner: Order Team
 status: active
 realises: [ABB-005]
-products:
+technologies:
   - { name: "Notification Dispatcher on a message service", vendor: "In house" }
 product_mapping:
-  - { abb_component: "Core", sbb_product: "Notification Dispatcher on a message service" }
+  - { abb_component: "Core", technology: "Notification Dispatcher on a message service" }
 ---
 
 # SBB-003 Notification Dispatcher on a message service

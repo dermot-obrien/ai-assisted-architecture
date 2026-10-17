@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "feature.schema.json",
+  "title": "Feature Artefact (v1.1.0)",
+  "description": "Something a product does that its users value, in the product's own terms and small enough that one story can deliver it. The hinge between a use case and the services that fulfil it: it fulfils use cases and is implemented by services in bounded contexts. Usually a row of the product's feature register; a feature may also have a page of its own.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "feature" },
+        "id":   { "$ref": "envelope.schema.json#/$defs/featureId" },
+
+        "what":           { "type": "string", "minLength": 1, "description": "What the feature does, in the product's terms." },
+        "part_of":        { "$ref": "envelope.schema.json#/$defs/productId", "description": "The product that has the feature. The inverse of features on the product." },
+        "fulfils":        { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/useCaseId" }, "uniqueItems": true, "description": "The use cases the feature fulfils. The inverse of fulfilled_by_features on the use case." },
+        "implemented_by": { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/serviceId" }, "uniqueItems": true, "description": "The services that implement the feature, by slug, in one or more bounded contexts." }
+      },
+      "required": ["part_of"]
+    }
+  ]
+}

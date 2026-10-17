@@ -8,10 +8,10 @@ last_modified: 2026-09-01
 owner: Order Team
 status: accepted
 realises: [ABB-008]
-products:
+technologies:
   - { name: "Invoice Composer service", vendor: "In house" }
 product_mapping:
-  - { abb_component: "Core", sbb_product: "Invoice Composer service" }
+  - { abb_component: "Core", technology: "Invoice Composer service" }
 ---
 
 # SBB-005 Invoice Composer service

@@ -15,33 +15,33 @@ realises:
 short_name: OPA Service
 product_mapping:
   - abb_component: Policy Authoring
-    sbb_product: VS Code with OPA Plugin
+    technology: VS Code with OPA Plugin
     notes: Rego policy development and unit testing.
   - abb_component: Policy Repository
-    sbb_product: GitHub / GitLab
+    technology: GitHub / GitLab
     notes: Version-controlled source of truth for Rego files.
   - abb_component: Policy Distribution
-    sbb_product: OPA Bundle Service
+    technology: OPA Bundle Service
     notes: Distributes signed policy bundles via HTTP.
   - abb_component: Policy Decision Point
-    sbb_product: OPA Engine (pdp-service)
+    technology: OPA Engine (pdp-service)
     notes: Core Rego evaluation unit (Docker/Sidecar).
   - abb_component: Policy Enforcement Adapter
-    sbb_product: OPA SDK / Envoy Plugin
+    technology: OPA SDK / Envoy Plugin
     notes: Intercepts requests and calls the OPA API.
   - abb_component: Compliance Evidence Collector
-    sbb_product: OPA Decision Logs
+    technology: OPA Decision Logs
     notes: Structured JSON logs of every evaluation.
   - abb_component: Change Governance Engine
-    sbb_product: GitHub Actions
+    technology: GitHub Actions
     notes: Enforces review/approval before merging Rego changes.
   - abb_component: Identity (cross-cutting)
-    sbb_product: Entra Workload ID
+    technology: Entra Workload ID
     notes: Secures the OPA-to-Bundle-Service communication.
   - abb_component: Observability (cross-cutting)
-    sbb_product: OTel Collector
+    technology: OTel Collector
     notes: Exports OPA decision logs to Log Analytics.
-products:
+technologies:
   - name: VS Code with OPA Plugin
   - name: GitHub / GitLab
   - name: OPA Bundle Service

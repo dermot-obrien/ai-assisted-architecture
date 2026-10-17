@@ -72,10 +72,10 @@ short_name: "<Acronym or abbreviation for diagrams and cross-references>"
 
 # SBB-specific (required by sbb.schema.json)
 realises: [<ABB-NNN>, ...]             # one or more parent ABBs this SBB realises (≥1)
-products:                              # ≥1 concrete product/service
-  - { name: "<Product name>", vendor: "<Vendor>", licensing: "<Licensing model>" }
-product_mapping:                       # ≥1 ABB-component → SBB-product row
-  - { abb_component: "<ABB component>", sbb_product: "<Product / service>", notes: "<Implementation detail>" }
+technologies:                          # ≥1 technology: a product bought, a service subscribed to or a component built
+  - { name: "<Technology name>", vendor: "<Vendor>", licensing: "<Licensing model>" }
+product_mapping:                       # ≥1 ABB-component → technology row
+  - { abb_component: "<ABB component>", technology: "<Technology>", notes: "<Implementation detail>" }
 
 # SBB-specific (optional)
 cloud_provider: <azure | aws | gcp | onprem | multi | none>

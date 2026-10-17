@@ -37,6 +37,12 @@ jobs:
       - name: Each skill's copy of the standards matches standards/
         run: node scripts/sync-skill-standards.mjs --check
 
+      # docs/schema.svg and the tables of docs/schema.md are drawn from the schemas, and compared
+      # with docs/continuum.drawio. This fails when a schema field has no line, when either file
+      # is stale, or when the two pictures differ in a way the script does not explain.
+      - name: The schema picture matches the schemas and the continuum picture
+        run: node scripts/generate-schema-diagram.mjs --check
+
       # Each skill ships its own copy of the check, so it is complete on its own.
       - name: The skills' post-install checks are one file
         run: |
