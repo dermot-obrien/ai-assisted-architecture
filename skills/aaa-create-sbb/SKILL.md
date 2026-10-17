@@ -5,7 +5,7 @@ license: CC-BY-4.0
 compatibility: Carries its own copy of the AI-Assisted Architecture standards it reads, in references/standards/; a copy the workspace holds overrides it (see references/standards-discovery.md). PNG export needs draw.io desktop on PATH. Artefact locations come from [suite.<skill-name>] of the repository's .agents/skill-bindings.toml, resolved by this skill's bin/check.mjs --json; this skill ships no directory layout of its own.
 metadata:
   author: dermot-obrien
-  version: "0.5.0"
+  version: "0.6.0"
 ---
 
 # Create Solution Building Block (SBB)
@@ -53,10 +53,16 @@ declared means the step that needs it is reported as not done, never quietly ski
 
 ### Simple or composite?
 
-Decide whether this SBB is simple, meaning one product or family with a flat product mapping,
-or composite, meaning an assembly of sub-SBBs whose internal structure is worth modelling.
-Apply the test in the SBB document standard under "When to use composite vs simple SBBs". When
-in doubt, start simple: a composite that turns out to be simple is easy to collapse, and the
+First apply the container test in the building block calibration standard. An SBB is one C4
+container, the same container as its ABB, with its products chosen. No SBB is created for a
+component or for code: those are rows of the product mapping. Parts that would each be
+deployed on their own make a system, and a system is a physical pattern realising the
+capability, not a composite SBB. Say so and stop if that is what the request describes.
+
+Then decide whether this SBB is simple, meaning one product or family with a flat product
+mapping, or composite, meaning one deployable unit with internal seams worth modelling. Apply
+the test in the SBB document standard under "When to use composite vs simple SBBs". When in
+doubt, start simple: a composite that turns out to be simple is easy to collapse, and the
 reverse is not.
 
 A composite additionally requires `composite: true`, `ports`, `parts` and `connectors` in the
@@ -65,9 +71,10 @@ frontmatter, and a Mermaid composite-structure diagram. The full composite contr
 
 ## Phase 2: Load standards
 
-Load the SBB document and diagram standards, the frontmatter standard including sections 6.7
-and 6.7.1 for composite fields, the traceability standard and the visual design standard. For
-a composite, also load the C4 context diagram standard.
+Load the building block calibration standard, the SBB document and diagram standards, the
+frontmatter standard including sections 6.7 and 6.7.1 for composite fields, the traceability
+standard and the visual design standard. For a composite, also load the C4 context diagram
+standard.
 
 ## Phase 3: Create artefacts
 

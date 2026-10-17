@@ -1,14 +1,15 @@
-# C4 System Context diagram (top-level ABBs only)
+# C4 System Context diagram (the capability's, never an ABB's)
 
-Added to `index.md` as section 2.1.1, per the C4 context diagram standard
-(`standard-c4-context-diagram.md`). Resolve that standard before drawing, and treat it as
-authoritative where it and this summary differ.
+Produced for the capability an ABB realises, per the C4 context diagram standard
+(`standard-c4-context-diagram.md`), and linked from the ABB's section 2.1.1. Resolve that
+standard before drawing, and treat it as authoritative where it and this summary differ.
 
 ## When it applies
 
-Only for a top-level ABB: one that represents a whole system a stakeholder would name, such
-as a trading platform or a payments system. A fine-grained ABB only ever seen inside a larger
-system does not get one; its component diagram is sufficient.
+Only when a context view is asked for. The system in it is always a Capability: an ABB is
+one C4 container and never carries a context diagram, and there is no top-level ABB
+(`standard-building-block-calibration.md`). The ABB being created appears as one node inside
+the capability's boundary.
 
 ## Rendering contract
 
@@ -21,14 +22,14 @@ system does not get one; its component diagram is sufficient.
 
 ## AAA mapping to document alongside it
 
-- The boundary is this ABB.
+- The boundary is the capability. This ABB is one node inside it.
 - External systems often correspond to this ABB's `requires` dependencies. Cite them by ABB
   ID where they do.
 - Persons have no AAA artefact. They are stakeholders, not catalogued building blocks.
 
 ## Cross-linking
 
-If a realising composite SBB exists, cross-link the context view to it as the zoom-in
-companion, and reconcile the external systems shown here with that composite's `required`
-ports. A mismatch between the two is a modelling error to resolve, not a difference to
-leave standing.
+The zoom-in companion is the pattern that realises the capability, whose boxes are its
+containers. Cross-link the context view to it, and reconcile the external systems shown here
+with the pattern's external boxes and `requires` dependencies. A mismatch between the two zoom
+levels is a modelling error to resolve, not a difference to leave standing.

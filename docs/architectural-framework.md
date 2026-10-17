@@ -120,6 +120,7 @@ A **Bounded Context** is a linguistic and structural boundary where a specific d
 ### 2.5 ABBs & SBBs (The "How")
 *   **Architecture Building Block (ABB):** A technology-agnostic logical component (e.g., "Policy Decision Point"). **ABBs live within Bounded Contexts.** This ensures that the logical model of a component is governed by the platform's ubiquitous language.
 *   **Solution Building Block (SBB):** A concrete realisation of an ABB using a specific product (e.g., "Open Policy Agent").
+*   **Grain:** An ABB and its SBB are one C4 container, a separately deployable unit. Nothing smaller gets an identifier, and a whole system is a Capability. See the [Building Block Calibration Standard](../standards/building-blocks/standard-building-block-calibration.md).
 *   **Source:** TOGAF 10 Content Framework.
 
 ### 2.6 Services (The "Execution")
