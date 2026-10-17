@@ -469,7 +469,7 @@ ports:                               # interaction points on the SBB boundary
   - name: order-api                  # kebab-case, unique within the SBB
     direction: provided              # provided (ball/lollipop) | required (socket)
     protocol: REST/HTTP
-    contract: openapi/v3             # contract id or media type; may be an AP-NNN api id
+    contract: openapi/v3             # contract id or media type; may be an API-NNN api id
     abb_interface: I1                # the parent ABB Interface this port realises (traceability)
   - name: market-data-feed
     direction: required
@@ -521,7 +521,7 @@ connectors:                          # links wiring ports and parts
 
 A **simple** (non-composite) SBB omits all four fields and keeps the flat `product_mapping`. See [§ When to use composite vs simple SBBs](./building-blocks/solution-building-blocks/standard-sbb-document.md#composite-vs-simple-sbbs) in the SBB document standard.
 
-### 6.8 API (`AP-NNN`)
+### 6.8 API (`API-NNN`)
 
 Reserved in v1.1.0; full per-kind extensions forthcoming. Schema placeholder: [`schemas/v1.1.0/_placeholders/api.schema.json`](./schemas/v1.1.0/_placeholders/api.schema.json).
 
@@ -537,8 +537,8 @@ realises: [SBB-001]                   # required, ≥1
 part_of: BC-001                      # required: parent BC
 runtime_type: container | serverless | jvm | native | managed-service   # required
 
-provides_apis: [AP-001]              # multi
-consumes_apis: [AP-005]
+provides_apis: [API-001]             # multi
+consumes_apis: [API-005]
 
 # Source-code linkage (forthcoming)
 repo: { url: "https://github.com/example/repo", path: "patternode-platform" }
@@ -655,7 +655,7 @@ criteria:
   - "p95 query latency under 300 ms at expected volume"
   - "OC-002-M1"                      # an outcome measure id may stand as a criterion
 resolved_by: DR-007                  # required when consideration_status is resolved
-affects: [CAP-012, ABB-021, PAT-004] # required, >=1: capabilities, ABBs, SBBs or patterns
+affects: [CAP-012, ABB-021, AP-004]  # required, >=1: capabilities, ABBs, SBBs, architecture patterns or reference architectures
 ```
 
 | Field | Type | Required | Description |
@@ -665,13 +665,17 @@ affects: [CAP-012, ABB-021, PAT-004] # required, >=1: capabilities, ABBs, SBBs o
 | `criteria[]` | array of strings | recommended | What decides between the options. |
 | `consideration_status` | enum | * | `open`, `resolved` or `withdrawn`. Kept separate from the envelope `status`, which is this document's own review lifecycle, for the same reason as `transition_status` (§6.15): one property cannot satisfy two enums. |
 | `resolved_by` | `DR-NNN` or `ADR-NNN` | conditional | Required when `consideration_status: resolved`. The ladder counts it only while that decision record is `accepted` or `active`. |
-| `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs or patterns whose definition waits on the question. A pattern is named by its identifier in the repository's pattern series. |
+| `affects[]` | array of IDs | * (>=1) | The capabilities, ABBs, SBBs, architecture patterns or reference architectures whose definition waits on the question. An architecture pattern is named by its identifier (`AP-NNN`) and a reference architecture by its (`RA-NNN`), which is how the ladder finds them. |
 
 A `withdrawn` consideration affects nothing. The decision record that resolves a consideration SHOULD list the consideration's `affects` entries in its own `affects_artefacts`.
 
 **Schema:** [`schemas/v1.1.0/consideration.schema.json`](./schemas/v1.1.0/consideration.schema.json).
 
 ---
+
+### 6.17 Architecture pattern (`AP-NNN`) and reference architecture (`RA-NNN`)
+
+The two kinds of pattern document the continuum names, authored by the `pattern` skill in architecture-pattern. An architecture pattern is technology-agnostic (conceptual or logical, its boxes local roles or ABBs) and takes `AP-NNN`; a reference architecture is technology-specific (physical, its boxes SBBs and technologies), takes `RA-NNN`, and names the architecture patterns it applies in `implements`. The type is declared as `pattern_type` (`architecture-pattern` or `reference-architecture`) and must agree with the series; a repository binds both in `[suite.pattern.types.*]` of its binding file with those series. A schema for the kind is forthcoming; until then the skill's `model validate` checks a document's boxes against its type. Repositories that numbered every document `PAT-NNN`, with `REF-NNN` for reference architectures, move to the two series when they recalibrate.
 
 ## 7. Backward Compatibility with v1.0.0
 
@@ -740,7 +744,7 @@ classDiagram
     class Snapshot { SN-NNN }
     class Transition { TR-NNN }
     class Consideration { CN-NNN }
-    class API { AP-NNN ~placeholder~ }
+    class API { API-NNN ~placeholder~ }
     class View { VW-NNN ~placeholder~ }
     class Event { EV-NNN ~placeholder~ }
     class DeploymentNode { DN-NNN ~placeholder~ }
@@ -791,7 +795,7 @@ flowchart TB
 
     subgraph RUNTIME ["6 — Runtime / Code"]
         SV[Service<br/>kebab / SV-NNN]
-        AP{{API<br/>AP-NNN}}
+        AP{{API<br/>API-NNN}}
         DN[/Deployment Node<br/>DN-NNN/]
     end
 
