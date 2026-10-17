@@ -48,7 +48,7 @@ Every catalog artefact's `index.md` begins with a YAML frontmatter block carryin
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `id` | string | * | Canonical ID. Format: `<TYPE>-NNN` (zero-padded 3 digits) for every kind except `service` (kebab-case slug). MUST match the folder name. Immutable. |
-| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `capability`, `bounded-context`, `abb`, `sbb`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`, `consideration`. |
+| `kind` | enum | * | One of: `outcome`, `use-case`, `platform`, `product`, `capability`, `bounded-context`, `abb`, `sbb`, `pattern`, `api`, `service`, `view`, `decision-record`, `event`, `deployment-node`, `snapshot`, `transition`, `consideration`. |
 | `title` | string | * | Human-readable title. Convention: `"<ID> <Name>"` for visual artefacts. |
 | `short_name` | string | recommended | Acronym used in diagrams (e.g. `"IAM"` for ABB-001). |
 | `description` | string | recommended | One- to two-sentence summary. Used by the agent retrieval index (`llms.txt`). |
@@ -675,7 +675,40 @@ A `withdrawn` consideration affects nothing. The decision record that resolves a
 
 ### 6.17 Architecture pattern (`AP-NNN`) and reference architecture (`RA-NNN`)
 
-The two kinds of pattern document the continuum names, authored by the `pattern` skill in architecture-pattern. An architecture pattern is technology-agnostic (conceptual or logical, its boxes local roles or ABBs) and takes `AP-NNN`; a reference architecture is technology-specific (physical, its boxes SBBs and technologies), takes `RA-NNN`, and names the architecture patterns it applies in `implements`. The type is declared as `pattern_type` (`architecture-pattern` or `reference-architecture`) and must agree with the series; a repository binds both in `[suite.pattern.types.*]` of its binding file with those series. A schema for the kind is forthcoming; until then the skill's `model validate` checks a document's boxes against its type. The earlier series `PAT-NNN` and `REF-NNN` are retired: no document carries them, and the skill mints none.
+The two kinds of pattern document the continuum names, authored by the `pattern` skill in architecture-pattern. An architecture pattern is technology-agnostic (conceptual or logical, its boxes local roles or ABBs) and takes `AP-NNN`; a reference architecture is technology-specific (physical, its boxes SBBs and technologies), takes `RA-NNN`, and names the architecture patterns it applies in `implements`. The type is declared as `pattern_type` (`architecture-pattern` or `reference-architecture`) and must agree with the series; a repository binds both in `[suite.pattern.types.*]` of its binding file with those series. The kind is `pattern` for both, and the schema requires `pattern_type` and `pattern_scope`, an `AP-NNN` identifier on an architecture pattern, and an `RA-NNN` identifier and at least one entry in `implements` on a reference architecture. The skill's `model validate` checks a document's boxes against its type. The earlier series `PAT-NNN` and `REF-NNN` are retired: no document carries them, and the skill mints none.
+
+```yaml
+kind: pattern
+id: RA-001
+title: "RA-001 Knowledge Store on AWS"
+pattern_type: reference-architecture      # required; agrees with the series
+pattern_scope: platform                   # required
+implements: [AP-001]                      # required on a reference architecture, at least one
+realises: [CAP-002, CAP-003]              # optional; read by aaa-rung
+serves: [UC-001, UC-002]                  # optional; the use cases its scenarios walk
+model:
+  diagram: components.drawio              # the diagram the model skill keeps in step
+```
+
+**Schema:** [`schemas/v1.1.0/pattern.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/pattern.schema.json).
+
+### 6.18 Product (`PRD-NNN`)
+
+A product is a consumable offering of one platform: what a consumer asks for, in the consumer's terms, and what a named team runs. It requires capabilities, optionally narrowed to flows, and runs services. Its features (`FE-NNN`) are rows of a register beside it and have no page of their own.
+
+```yaml
+kind: product
+id: PRD-001
+title: "PRD-001 Knowledge Store"
+platform: PL-001                          # required: the platform that offers it
+team: "Patternode"
+product_state: available                  # backlog | available | retired
+requires: [CAP-001, CAP-004]
+requires_flows: ["CAP-004/ask"]
+runs: [pipeline, portal-api]              # services, by slug or SV-NNN
+```
+
+**Schema:** [`schemas/v1.1.0/product.schema.json`](https://github.com/dermot-obrien/ai-assisted-architecture/blob/main/standards/schemas/v1.1.0/product.schema.json).
 
 ## 7. Backward Compatibility with v1.0.0
 
@@ -709,7 +742,7 @@ The `standards/.../*.md` files keep their existing frontmatter (`document_type: 
 
 ## 8. Schema Diagrams
 
-### 8.1 Composition (envelope + 16 kinds)
+### 8.1 Composition (envelope + 18 kinds)
 
 ```mermaid
 classDiagram
@@ -735,10 +768,12 @@ classDiagram
     class Outcome { OC-NNN }
     class UseCase { UC-NNN }
     class Platform { PL-NNN }
+    class Product { PRD-NNN }
     class Capability { CAP-NNN }
     class BoundedContext { BC-NNN }
     class ABB { ABB-NNN }
     class SBB { SBB-NNN }
+    class Pattern { AP-NNN or RA-NNN }
     class Service { kebab or SV-NNN }
     class DecisionRecord { DR-NNN }
     class Snapshot { SN-NNN }
@@ -752,10 +787,12 @@ classDiagram
     Envelope <|-- Outcome
     Envelope <|-- UseCase
     Envelope <|-- Platform
+    Envelope <|-- Product
     Envelope <|-- Capability
     Envelope <|-- BoundedContext
     Envelope <|-- ABB
     Envelope <|-- SBB
+    Envelope <|-- Pattern
     Envelope <|-- Service
     Envelope <|-- DecisionRecord
     Envelope <|-- Snapshot

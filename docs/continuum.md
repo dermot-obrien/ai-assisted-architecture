@@ -64,7 +64,7 @@ A product is a consumable offering of one platform: what a consumer asks for, st
 
 The definition is the author's own, written in Patternode's [product and capability model](https://github.com/patternode/patternode-architecture/blob/main/governance/product-capability-model.md), and it resolves a word that had three meanings. A product is the consumable offering. A vendor's offering that realises a building block is a technology. A named output of an epic is a deliverable. Platform engineering's "platform as a product" is re-expressed as: a platform offers products.
 
-In the bundle a product has no kind yet. The resolution below adds it, with the relationships Patternode already records: Platform offers Product, Product requires Capability (optionally narrowed to flows), Product runs Service. Patternode registers products as `PRD-NNN` in `products/products.csv`.
+In the bundle a product is `PRD-NNN`, kind `product`, with the relationships Patternode already records: `platform` names the platform that offers it, `requires` and `requires_flows` the capabilities it needs, `runs` the services it runs, and `team` who answers for it. Its features are rows of a register beside it, `FE-NNN`, each fulfilling use cases and implemented by services. Patternode registers products as `PRD-NNN` in `products/products.csv`.
 
 ### Bounded context
 
@@ -147,7 +147,7 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Platform | owns | Outcome | Platform `owns_outcomes` |
 | Platform | provides | Capability | Platform `provides_capabilities` |
 | Platform | contains | Bounded context | Platform `contains_bounded_contexts`, context `part_of` |
-| Platform | offers | Product | Product (to be added) |
+| Platform | offers | Product | Product `platform` |
 | Domain | is realised by | Platform | Platform purpose; context `subdomain_kind` |
 | Subdomain | maps to, ideally one to one | Bounded context | Context `subdomain_kind` |
 | Outcome | requires | Capability | Outcome `requires_capabilities` |
@@ -157,9 +157,9 @@ The golden thread the bundle has always drawn, Outcome to Service, extended with
 | Use case | is realised by | Architecture pattern, through its scenarios | The architecture pattern's scenarios; use case participants and interactions |
 | Product | has | Feature | Feature `part_of` (to be added) |
 | Feature | is implemented by | Service, in one or more bounded contexts | Feature `implemented_by` (to be added) |
-| Team | owns | Product, Platform, Bounded context | Platform `owner`, context `owner`; product owner (to be added) |
-| Product | requires | Capability, optionally some flows | Product `requires`, `requires_flows` (to be added) |
-| Product | runs | Service | Product (to be added); service `run_by` (to be added) |
+| Team | owns | Product, Platform, Bounded context | Platform `owner`, context `owner`, product `team` |
+| Product | requires | Capability, optionally some flows | Product `requires`, `requires_flows` |
+| Product | runs | Service | Product `runs`; service `run_by` (to be added) |
 | Capability | is realised by | Bounded context | Context `realises_capabilities` |
 | Capability | is realised by | Architecture building block | ABB `realises_capabilities`, capability `realised_by_abbs` |
 | Capability | is realised by | Architecture pattern, reference architecture | `realises` on either, read by `aaa-rung` |

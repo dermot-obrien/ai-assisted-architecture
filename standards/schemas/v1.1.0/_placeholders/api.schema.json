@@ -10,7 +10,7 @@
     {
       "properties": {
         "kind": { "const": "api" },
-        "id":   { "type": "string", "pattern": "^AP-\\d{3}$" }
+        "id":   { "type": "string", "pattern": "^API-\\d{3}$" }
       }
     }
   ]

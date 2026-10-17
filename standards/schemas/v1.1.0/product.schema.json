@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "product.schema.json",
+  "title": "Product Artefact (v1.1.0)",
+  "description": "A consumable offering of one platform: what a consumer asks for, in the consumer's terms, and what a named team runs. It requires capabilities, optionally narrowed to flows, and runs services. Its features are rows of a register (FE-NNN) with no page of their own.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "envelope.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "product"
+        },
+        "id": {
+          "$ref": "envelope.schema.json#/$defs/productId"
+        },
+        "platform": {
+          "$ref": "envelope.schema.json#/$defs/platformId",
+          "description": "The platform that offers the product."
+        },
+        "team": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The team that answers for the product running."
+        },
+        "product_state": {
+          "type": "string",
+          "enum": [
+            "backlog",
+            "available",
+            "retired"
+          ],
+          "description": "backlog: offered but not yet available. available: in service. retired: withdrawn."
+        },
+        "requires": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/capabilityId"
+          },
+          "uniqueItems": true,
+          "description": "The capabilities the product requires."
+        },
+        "requires_flows": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "description": "Flows of the required capabilities, as CAP-NNN/flow, when the product needs only some."
+        },
+        "runs": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/anyId"
+          },
+          "uniqueItems": true,
+          "description": "The services the product runs, by slug or SV-NNN."
+        },
+        "features": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/featureId"
+          },
+          "uniqueItems": true,
+          "description": "The product's features, where they are listed in the document rather than only in the register."
+        },
+        "consumers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Who consumes the product, in their own words."
+        }
+      },
+      "required": [
+        "platform"
+      ]
+    }
+  ]
+}

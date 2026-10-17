@@ -4,198 +4,521 @@
   "title": "Universal Artefact Envelope (v1.1.0)",
   "description": "Common frontmatter fields carried by every catalog artefact in AI-Assisted Architecture v1.1.0. Per-kind schemas import this via $ref and add their own constraints.",
   "type": "object",
-
   "$defs": {
     "isoDate": {
       "type": "string",
       "format": "date",
       "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
     },
-
     "semver": {
       "type": "string",
       "pattern": "^\\d+\\.\\d+\\.\\d+(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$",
       "description": "Semantic version (major.minor.patch with optional pre-release)."
     },
-
     "status": {
       "type": "string",
-      "enum": ["draft", "proposed", "accepted", "active", "deprecated", "superseded", "retired"]
+      "enum": [
+        "draft",
+        "proposed",
+        "accepted",
+        "active",
+        "deprecated",
+        "superseded",
+        "retired"
+      ]
     },
-
     "lifecycleState": {
       "type": "string",
-      "enum": ["baseline", "in-flight", "target", "retired"],
+      "enum": [
+        "baseline",
+        "in-flight",
+        "target",
+        "retired"
+      ],
       "default": "baseline"
     },
-
     "classification": {
       "type": "string",
-      "enum": ["public", "internal", "confidential", "restricted"],
+      "enum": [
+        "public",
+        "internal",
+        "confidential",
+        "restricted"
+      ],
       "default": "internal"
     },
-
     "governanceZone": {
       "type": "string",
-      "enum": ["foundation", "core", "extension", "application"],
+      "enum": [
+        "foundation",
+        "core",
+        "extension",
+        "application"
+      ],
       "default": "application"
     },
-
     "kindEnum": {
       "type": "string",
       "enum": [
-        "outcome", "use-case", "platform", "capability", "bounded-context",
-        "abb", "sbb", "api", "service", "view", "decision-record",
-        "event", "deployment-node", "snapshot", "transition", "consideration"
+        "outcome",
+        "use-case",
+        "platform",
+        "product",
+        "capability",
+        "bounded-context",
+        "abb",
+        "sbb",
+        "pattern",
+        "api",
+        "service",
+        "view",
+        "decision-record",
+        "event",
+        "deployment-node",
+        "snapshot",
+        "transition",
+        "consideration"
       ]
     },
-
     "anyId": {
-      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR|CN followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
+      "description": "Any valid artefact ID. Per-kind ID patterns: OC|UC|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|DR|ADR|EV|DN|SN|TR|CN followed by '-NNN' (3-digit zero-padded), OR a kebab-case slug for Service kind.",
       "type": "string",
-      "pattern": "^(OC|UC|PL|CAP|BC|ABB|SBB|AP|SV|VW|DR|EV|DN|SN|TR|CN)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
+      "pattern": "^(OC|UC|PL|PRD|FE|CAP|BC|ABB|SBB|AP|RA|API|SV|VW|A?DR|EV|DN|SN|TR|CN)-\\d{3}$|^[a-z][a-z0-9]*(-[a-z0-9]+)*$"
     },
-
-    "platformId":   { "type": "string", "pattern": "^PL-\\d{3}$" },
-    "capabilityId": { "type": "string", "pattern": "^CAP-\\d{3}$" },
-    "outcomeId":    { "type": "string", "pattern": "^OC-\\d{3}$" },
-    "useCaseId":    { "type": "string", "pattern": "^UC-\\d{3}$" },
-    "bcId":         { "type": "string", "pattern": "^BC-\\d{3}$" },
-    "abbId":        { "type": "string", "pattern": "^ABB-\\d{3}$" },
-    "sbbId":        { "type": "string", "pattern": "^SBB-\\d{3}$" },
-    "apiId":        { "type": "string", "pattern": "^API-\\d{3}$", "description": "An API: API-NNN. The series was AP-NNN until the two kinds of pattern document took AP and RA." },
-    "architecturePatternId": { "type": "string", "pattern": "^AP-\\d{3}$", "description": "An architecture pattern: technology-agnostic, conceptual or logical." },
-    "referenceArchitectureId": { "type": "string", "pattern": "^RA-\\d{3}$", "description": "A reference architecture: technology-specific, physical; applies architecture patterns." },
-    "viewId":       { "type": "string", "pattern": "^VW-\\d{3}$" },
-    "drId":         { "type": "string", "pattern": "^A?DR-\\d{3}$", "description": "A decision record: DR-NNN, or ADR-NNN where a repository keeps the ADR series." },
-    "eventId":      { "type": "string", "pattern": "^EV-\\d{3}$" },
-    "dnId":         { "type": "string", "pattern": "^DN-\\d{3}$" },
-    "snapshotId":   { "type": "string", "pattern": "^SN-\\d{3}$" },
-    "transitionId": { "type": "string", "pattern": "^TR-\\d{3}$" },
-    "considerationId": { "type": "string", "pattern": "^CN-\\d{3}$" },
-    "serviceId":    {
+    "platformId": {
+      "type": "string",
+      "pattern": "^PL-\\d{3}$"
+    },
+    "capabilityId": {
+      "type": "string",
+      "pattern": "^CAP-\\d{3}$"
+    },
+    "outcomeId": {
+      "type": "string",
+      "pattern": "^OC-\\d{3}$"
+    },
+    "useCaseId": {
+      "type": "string",
+      "pattern": "^UC-\\d{3}$"
+    },
+    "productId": {
+      "type": "string",
+      "pattern": "^PRD-\\d{3}$",
+      "description": "A product: PRD-NNN, a consumable offering of one platform."
+    },
+    "featureId": {
+      "type": "string",
+      "pattern": "^FE-\\d{3}$",
+      "description": "A feature of a product: FE-NNN. Features are rows of a product's register and have no page of their own."
+    },
+    "bcId": {
+      "type": "string",
+      "pattern": "^BC-\\d{3}$"
+    },
+    "abbId": {
+      "type": "string",
+      "pattern": "^ABB-\\d{3}$"
+    },
+    "sbbId": {
+      "type": "string",
+      "pattern": "^SBB-\\d{3}$"
+    },
+    "apiId": {
+      "type": "string",
+      "pattern": "^API-\\d{3}$",
+      "description": "An API: API-NNN. The series was AP-NNN until the two kinds of pattern document took AP and RA."
+    },
+    "architecturePatternId": {
+      "type": "string",
+      "pattern": "^AP-\\d{3}$",
+      "description": "An architecture pattern: technology-agnostic, conceptual or logical."
+    },
+    "referenceArchitectureId": {
+      "type": "string",
+      "pattern": "^RA-\\d{3}$",
+      "description": "A reference architecture: technology-specific, physical; applies architecture patterns."
+    },
+    "viewId": {
+      "type": "string",
+      "pattern": "^VW-\\d{3}$"
+    },
+    "drId": {
+      "type": "string",
+      "pattern": "^A?DR-\\d{3}$",
+      "description": "A decision record: DR-NNN, or ADR-NNN where a repository keeps the ADR series."
+    },
+    "eventId": {
+      "type": "string",
+      "pattern": "^EV-\\d{3}$"
+    },
+    "dnId": {
+      "type": "string",
+      "pattern": "^DN-\\d{3}$"
+    },
+    "snapshotId": {
+      "type": "string",
+      "pattern": "^SN-\\d{3}$"
+    },
+    "transitionId": {
+      "type": "string",
+      "pattern": "^TR-\\d{3}$"
+    },
+    "considerationId": {
+      "type": "string",
+      "pattern": "^CN-\\d{3}$"
+    },
+    "serviceId": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$",
       "description": "Kebab-case slug for Service kind (preserves v1.0.0 convention)."
     },
-    "numericServiceId": { "type": "string", "pattern": "^SV-\\d{3}$" },
-
+    "numericServiceId": {
+      "type": "string",
+      "pattern": "^SV-\\d{3}$"
+    },
     "reference": {
       "type": "object",
-      "required": ["type"],
+      "required": [
+        "type"
+      ],
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["jira", "linear", "github-pr", "github-issue", "source", "doc", "runbook", "external", "evidence", "cost-model"],
+          "enum": [
+            "jira",
+            "linear",
+            "github-pr",
+            "github-issue",
+            "source",
+            "doc",
+            "runbook",
+            "external",
+            "evidence",
+            "cost-model"
+          ],
           "description": "evidence: an experiment, build or evaluation showing the artefact meets its criteria (definition-ladder R5). cost-model: the model of the running cost (R4). runbook: how it is operated (R6)."
         },
-        "id":   { "type": "string" },
-        "url":  { "type": "string", "format": "uri" },
-        "repo": { "type": "string" },
-        "path": { "type": "string" },
-        "ref":  { "type": "string" }
+        "id": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "repo": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "ref": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
-
     "provenance": {
       "type": "object",
       "description": "Agent-native AI-authorship lineage (optional). See standards/agent-native/provenance.md. Records how an artefact was produced and verified. Backward-compatible: absent on v1.0.0/v1.1.0 artefacts that predate it.",
       "properties": {
-        "origin":        { "type": "string", "enum": ["ai-generated", "ai-edited", "human-authored", "human-edited"] },
-        "authored_by":   { "type": "string", "description": "Model/agent identifier or person." },
-        "authored_at":   { "type": "string", "format": "date-time" },
-        "task_ref":      { "type": "string", "description": "Work item / inquiry / prompt that triggered it." },
-        "prompt_digest": { "type": "string", "description": "Hash of the driving instruction (auditable, not raw text)." },
-        "review_state":  { "type": "string", "enum": ["ai-raw", "ai-verified", "human-reviewed", "human-approved"] },
+        "origin": {
+          "type": "string",
+          "enum": [
+            "ai-generated",
+            "ai-edited",
+            "human-authored",
+            "human-edited"
+          ]
+        },
+        "authored_by": {
+          "type": "string",
+          "description": "Model/agent identifier or person."
+        },
+        "authored_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "task_ref": {
+          "type": "string",
+          "description": "Work item / inquiry / prompt that triggered it."
+        },
+        "prompt_digest": {
+          "type": "string",
+          "description": "Hash of the driving instruction (auditable, not raw text)."
+        },
+        "review_state": {
+          "type": "string",
+          "enum": [
+            "ai-raw",
+            "ai-verified",
+            "human-reviewed",
+            "human-approved"
+          ]
+        },
         "verified_by": {
           "type": "array",
           "description": "Adversarial verifier records (operating-model.md verify stage).",
           "items": {
             "type": "object",
             "properties": {
-              "agent":   { "type": "string" },
-              "verdict": { "type": "string", "enum": ["pass", "fail"] },
-              "checks":  { "type": "array", "items": { "type": "string" } }
+              "agent": {
+                "type": "string"
+              },
+              "verdict": {
+                "type": "string",
+                "enum": [
+                  "pass",
+                  "fail"
+                ]
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
             },
             "additionalProperties": false
           }
         },
-        "supersedes_provenance": { "type": ["object", "null"] }
+        "supersedes_provenance": {
+          "type": [
+            "object",
+            "null"
+          ]
+        }
       },
-      "required": ["origin", "review_state"],
+      "required": [
+        "origin",
+        "review_state"
+      ],
       "additionalProperties": false
     },
-
     "universalRelations": {
       "type": "object",
       "description": "Universal relations subset. Per-kind schemas may make specific fields required and add their own specialised relations.",
       "properties": {
-        "part_of":         { "$ref": "#/$defs/anyId" },
-        "contains":        { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-        "realises":        { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-        "realised_by":     { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-        "depends_on":      { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-        "depended_on_by":  { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-        "applies_to":      { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-        "governed_by":     { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true }
+        "part_of": {
+          "$ref": "#/$defs/anyId"
+        },
+        "contains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        },
+        "realises": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        },
+        "realised_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        },
+        "depended_on_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        },
+        "applies_to": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        },
+        "governed_by": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/anyId"
+          },
+          "uniqueItems": true
+        }
       }
     }
   },
-
   "properties": {
-    "$schema":            { "type": "string" },
-
-    "id":                 { "$ref": "#/$defs/anyId" },
-    "kind":               { "$ref": "#/$defs/kindEnum" },
-    "title":              { "type": "string", "minLength": 1 },
-    "short_name":         { "type": "string" },
-    "description":        { "type": "string" },
-
-    "version":            { "$ref": "#/$defs/semver" },
-    "status":             { "$ref": "#/$defs/status" },
-    "created":            { "$ref": "#/$defs/isoDate" },
-    "last_modified":      { "$ref": "#/$defs/isoDate" },
-    "last_modified_by":   { "type": "string" },
-
-    "lifecycle_state":      { "$ref": "#/$defs/lifecycleState" },
-    "architecture_snapshot":{ "anyOf": [{ "$ref": "#/$defs/snapshotId" }, { "type": "null" }] },
-    "valid_from":           { "$ref": "#/$defs/isoDate" },
-    "valid_until":          { "anyOf": [{ "$ref": "#/$defs/isoDate" }, { "type": "null" }] },
-    "supersedes":           { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-    "superseded_by":        { "type": "array", "items": { "$ref": "#/$defs/anyId" }, "uniqueItems": true },
-
-    "owner":            { "type": "string", "minLength": 1 },
-    "strategic_owner":  { "anyOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
-    "classification":   { "$ref": "#/$defs/classification" },
-    "governance_zone":  { "$ref": "#/$defs/governanceZone" },
-
-    "references":       { "type": "array", "items": { "$ref": "#/$defs/reference" } },
-
-    "provenance":       { "$ref": "#/$defs/provenance" },
-
-    "tags":             { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-    "sidebar_label":    { "type": "string" },
-    "sidebar_position": { "type": "integer" },
-    "unlisted":         { "type": "boolean", "description": "Site presentation: when true, the page is built but kept out of the sidebar, the search index and the sitemap (Docusaurus unlisted). For pages kept for the record rather than for reading." }
+    "$schema": {
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/$defs/anyId"
+    },
+    "kind": {
+      "$ref": "#/$defs/kindEnum"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "version": {
+      "$ref": "#/$defs/semver"
+    },
+    "status": {
+      "$ref": "#/$defs/status"
+    },
+    "created": {
+      "$ref": "#/$defs/isoDate"
+    },
+    "last_modified": {
+      "$ref": "#/$defs/isoDate"
+    },
+    "last_modified_by": {
+      "type": "string"
+    },
+    "lifecycle_state": {
+      "$ref": "#/$defs/lifecycleState"
+    },
+    "architecture_snapshot": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/snapshotId"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "valid_from": {
+      "$ref": "#/$defs/isoDate"
+    },
+    "valid_until": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/isoDate"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/anyId"
+      },
+      "uniqueItems": true
+    },
+    "superseded_by": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/anyId"
+      },
+      "uniqueItems": true
+    },
+    "owner": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strategic_owner": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "classification": {
+      "$ref": "#/$defs/classification"
+    },
+    "governance_zone": {
+      "$ref": "#/$defs/governanceZone"
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "sidebar_label": {
+      "type": "string"
+    },
+    "sidebar_position": {
+      "type": "integer"
+    },
+    "unlisted": {
+      "type": "boolean",
+      "description": "Site presentation: when true, the page is built but kept out of the sidebar, the search index and the sitemap (Docusaurus unlisted). For pages kept for the record rather than for reading."
+    }
   },
-
-  "required": ["id", "kind", "title", "version", "status", "created", "last_modified", "owner"],
-
+  "required": [
+    "id",
+    "kind",
+    "title",
+    "version",
+    "status",
+    "created",
+    "last_modified",
+    "owner"
+  ],
   "allOf": [
     {
       "$comment": "If status is 'superseded', superseded_by must be present and non-empty.",
-      "if":   { "properties": { "status": { "const": "superseded" } } },
+      "if": {
+        "properties": {
+          "status": {
+            "const": "superseded"
+          }
+        }
+      },
       "then": {
-        "required": ["superseded_by"],
-        "properties": { "superseded_by": { "minItems": 1 } }
+        "required": [
+          "superseded_by"
+        ],
+        "properties": {
+          "superseded_by": {
+            "minItems": 1
+          }
+        }
       }
     },
     {
       "$comment": "If valid_until is set, it must be on or after valid_from.",
       "if": {
-        "required": ["valid_from", "valid_until"],
-        "properties": { "valid_until": { "type": "string" } }
+        "required": [
+          "valid_from",
+          "valid_until"
+        ],
+        "properties": {
+          "valid_until": {
+            "type": "string"
+          }
+        }
       },
       "then": {
         "$comment": "Date ordering not expressible in pure JSON Schema; enforced by the validator script."
