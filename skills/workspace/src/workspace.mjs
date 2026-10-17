@@ -230,7 +230,14 @@ export function planClean(repo, { self = SKILL_DIR } = {}) {
       }
       if (tracked(repo, rel)) continue; // the repository's own skill, or a copy it commits
       if (ignored(repo, rel)) {
-        actions.push({ op: "rm", path: rel, why: lock[name] ? "an installed copy; install puts it back from the lock" : "an installed copy of a skill .agents/skills.json no longer declares" });
+        const retiredName = RETIRED.skills.some((r) => glob(r.pattern).test(name));
+        actions.push({
+          op: "rm",
+          path: rel,
+          why: !lock[name] ? "an installed copy of a skill .agents/skills.json no longer declares"
+            : retiredName ? "an installed copy of a retired skill; install puts it back only if the declared release still has it"
+            : "an installed copy; install puts it back from the lock",
+        });
       } else {
         notes.push({ path: rel, why: "an untracked skill folder that is neither declared nor ignored: declare it in .agents/skills.json, commit it, or delete it" });
       }

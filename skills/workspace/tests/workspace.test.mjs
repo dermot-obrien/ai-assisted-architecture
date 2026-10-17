@@ -222,5 +222,5 @@ test("an old aaa- skill is retired unless the lock still installs it", () => {
   write(".agents/skills/aaa-rung/SKILL.md", "x\n");
   const why = Object.fromEntries(planClean(repo, { self: "/nowhere" }).actions.map((a) => [a.path, a.why]));
   assert.match(why[".agents/skills/aaa-create-abb"], /folded into the architecture skill/);
-  assert.match(why[".agents/skills/aaa-rung"], /install puts it back from the lock/);
+  assert.match(why[".agents/skills/aaa-rung"], /a retired skill; install puts it back only if the declared release still has it/);
 });
