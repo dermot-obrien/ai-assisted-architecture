@@ -21,7 +21,7 @@ description = """The folder decks publish to, one folder per deck_id with a PDF 
 [inputs.options.deckSource]
 type = "dir"
 required = false
-description = """The folder whose documents marked deck_publish: true become decks. Default: [suite.aaa-continuum] root."""
+description = """The folder whose documents marked deck_publish: true become decks. Default: [suite.architecture] root."""
 
 [inputs.options.pdf]
 type = "boolean"

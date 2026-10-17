@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pattern.schema.json",
+  "title": "Pattern document (v1.1.0): architecture pattern or reference architecture",
+  "description": "One of the two kinds of pattern document the continuum names, authored by the pattern skill: an architecture pattern (AP-NNN, technology-agnostic, conceptual or logical, its boxes local roles or ABBs) or a reference architecture (RA-NNN, technology-specific, physical, its boxes SBBs and technologies, applying one or more architecture patterns). The type is declared as pattern_type and must agree with the identifier's series.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "envelope.schema.json"
+    },
+    {
+      "properties": {
+        "kind": {
+          "const": "pattern"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^(AP|RA)-\\d{3}$"
+        },
+        "pattern_type": {
+          "type": "string",
+          "enum": [
+            "architecture-pattern",
+            "reference-architecture"
+          ],
+          "description": "architecture-pattern: technology-agnostic, series AP. reference-architecture: technology-specific, series RA, applies architecture patterns."
+        },
+        "pattern_scope": {
+          "type": "string",
+          "enum": [
+            "problem",
+            "domain",
+            "capability-area",
+            "platform",
+            "hosting-profile",
+            "epic"
+          ],
+          "description": "The scope the document answers, from one recurring problem to a whole platform or epic."
+        },
+        "implements": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/architecturePatternId"
+          },
+          "uniqueItems": true,
+          "description": "The architecture patterns this reference architecture applies. Required on a reference architecture."
+        },
+        "implemented_by": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/referenceArchitectureId"
+          },
+          "uniqueItems": true,
+          "description": "The reference architectures that apply this architecture pattern."
+        },
+        "composes": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "envelope.schema.json#/$defs/abbId"
+              },
+              {
+                "$ref": "envelope.schema.json#/$defs/sbbId"
+              }
+            ]
+          },
+          "uniqueItems": true,
+          "description": "The catalogued building blocks among the document's boxes, mirroring its Building Blocks table: ABBs in an architecture pattern, SBBs in a reference architecture. Local roles and technologies are not catalogued and are not listed. The inverse of composed_by on the block."
+        },
+        "realises": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/capabilityId"
+          },
+          "uniqueItems": true,
+          "description": "The capabilities the document is evidence for, read by /architecture rung."
+        },
+        "flows": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true,
+          "description": "The capability flows the document is scoped to; none means all of them."
+        },
+        "serves": {
+          "type": "array",
+          "items": {
+            "$ref": "envelope.schema.json#/$defs/useCaseId"
+          },
+          "uniqueItems": true,
+          "description": "The use cases whose scenarios this document's scenarios walk."
+        },
+        "author": {
+          "type": "string"
+        },
+        "model": {
+          "type": "object",
+          "properties": {
+            "diagram": {
+              "type": "string",
+              "description": "The draw.io diagram the model skill keeps in step with the document's tables, relative to the document."
+            }
+          },
+          "required": [
+            "diagram"
+          ],
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "pattern_type",
+        "pattern_scope"
+      ]
+    },
+    {
+      "$comment": "The series says the type: an architecture pattern is AP-NNN, composes ABBs only, and applies no other pattern.",
+      "if": {
+        "properties": {
+          "pattern_type": {
+            "const": "architecture-pattern"
+          }
+        },
+        "required": [
+          "pattern_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AP-\\d{3}$"
+          },
+          "composes": {
+            "type": "array",
+            "items": {
+              "$ref": "envelope.schema.json#/$defs/abbId"
+            }
+          }
+        },
+        "not": {
+          "required": [
+            "implements"
+          ]
+        }
+      }
+    },
+    {
+      "$comment": "A reference architecture is RA-NNN, applies at least one architecture pattern, composes SBBs only, and is applied by no other document.",
+      "if": {
+        "properties": {
+          "pattern_type": {
+            "const": "reference-architecture"
+          }
+        },
+        "required": [
+          "pattern_type"
+        ]
+      },
+      "then": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^RA-\\d{3}$"
+          },
+          "implements": {
+            "type": "array",
+            "minItems": 1
+          },
+          "composes": {
+            "type": "array",
+            "items": {
+              "$ref": "envelope.schema.json#/$defs/sbbId"
+            }
+          }
+        },
+        "required": [
+          "implements"
+        ],
+        "not": {
+          "required": [
+            "implemented_by"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -33,7 +33,7 @@ In a clone of this repository, one `npm install` at its root fetches all three i
 npm install
 ```
 
-A workspace that has installed the `aaa-create-runtime-agent` skill already has a copy of `validate.cjs`, with the schema beside it, and needs only the three packages in its own `node_modules/`:
+A workspace that has installed the `/architecture runtime-agent` skill already has a copy of `validate.cjs`, with the schema beside it, and needs only the three packages in its own `node_modules/`:
 
 ```bash
 npm install js-yaml ajv ajv-formats
@@ -47,8 +47,8 @@ Examples below use the paths in a clone of this repository. In a workspace, call
 # From the root of a clone of this repository
 node scripts/ontology/validate.cjs <root>
 
-# From a workspace with the aaa-create-runtime-agent skill installed
-node .agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs <root>
+# From a workspace with the /architecture runtime-agent skill installed
+node .agents/skills/architecture/references/scripts/ontology/validate.cjs <root>
 ```
 
 `consolidate.cjs` and `namespace-divergent.cjs` are not carried by any skill; run them from a clone. The `<root>` argument is your own ontology data folder; it does not need to be inside the repository.
@@ -112,7 +112,7 @@ All scripts resolve the schema in this priority:
 
 1. **Explicit `--schema` argument** — highest priority, used as-is.
 2. **`ontology.schema` from `.aaa-config.yaml`** — the script walks up from `cwd` to find `.aaa-config.yaml`. If found and `ontology.schema` is set to a valid path, that schema is used.
-3. **Default.** The base schema beside the script, `../../standards/ontology/ontology-schema.json` relative to it: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `aaa-create-runtime-agent` skill's copy.
+3. **Default.** The base schema beside the script, `../../standards/ontology/ontology-schema.json` relative to it: `standards/ontology/ontology-schema.json` in this repository, and `references/standards/ontology/ontology-schema.json` in the `/architecture runtime-agent` skill's copy.
 
 Example `.aaa-config.yaml`:
 

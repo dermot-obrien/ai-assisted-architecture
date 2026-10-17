@@ -1,0 +1,121 @@
+# SPDX-License-Identifier: Apache-2.0
+#
+# Where this repository keeps the artefacts the architecture skill authors and checks. The skill
+# carries the method, not the layout: no directory below has a default, because a default would
+# be whichever repository the skill was written in, wrong everywhere else while looking like a
+# feature.
+#
+# Answer in [suite.architecture] of the repository's .agents/skill-bindings.toml. Paths resolve
+# against that file's directory, never the working directory. Each option names the flows that
+# read it (flows) and the flows that cannot run without it (required_by); nothing is required of a
+# flow you do not use.
+#
+# Checked by:  node <skills>/architecture/bin/check.mjs [--flow <flow>] [--json]
+
+[inputs]
+short_description = "Where the architecture on the continuum lives, kind by kind"
+# With nothing bound at all the skill can do nothing, so the check fails.
+requires_any = true
+# The tables the ten skills this one replaced were answered in. A key missing from
+# [suite.architecture] is read from them for one release, with a warning.
+legacy_suites = ["aaa-create-platform", "aaa-create-strategy", "aaa-create-capability", "aaa-create-context", "aaa-create-abb", "aaa-create-sbb", "aaa-create-service", "aaa-create-runtime-agent", "aaa-rung", "aaa-continuum"]
+flows = ["platform", "strategy", "capability", "context", "abb", "sbb", "service", "runtime-agent", "rung", "check"]
+
+[inputs.options.root]
+type = "dir"
+flows = ["check"]
+required_by = ["check"]
+description = """The folder the whole architecture lives in, such as ../docs/architecture: its README.md is the map, and the demand, solution, runtime and decisions folders, the pages and the CSV registers sit under it. The check reads every page and register under it; scaffold creates it."""
+
+[inputs.options.schemes]
+type = "file"
+flows = ["check"]
+description = """The schemes register: which identifier series exist, where each kind's pages live (home) and which CSV lists them (register). Default: <root>/registers/identifier-schemes.csv when it exists."""
+
+[inputs.options.namespaces]
+type = "file"
+flows = ["check"]
+description = """The namespaces register: the catalogues this one cites as ns:ID. Default: <root>/registers/identifier-namespaces.csv when it exists."""
+
+[inputs.options.schemas]
+type = "dir"
+flows = ["check"]
+description = """A folder of the continuum's front matter schemas (envelope.schema.json and one per kind), to validate against a version other than the one this skill carries in references/standards/schemas/v1.1.0."""
+
+[inputs.options.platformDir]
+type = "dir"
+flows = ["platform", "capability", "context"]
+required_by = ["platform", "capability", "context"]
+description = """Where platform documents live, one per PL-NNN: created by the platform flow, and read by the capability and context flows for the parent link."""
+
+[inputs.options.outcomeDir]
+type = "dir"
+flows = ["strategy", "platform"]
+required_by = ["strategy"]
+description = """Where business outcome folders are created, one per OC-NNN; read by the platform flow for the outcomes it owns."""
+
+[inputs.options.useCaseDir]
+type = "dir"
+flows = ["strategy"]
+required_by = ["strategy"]
+description = """Where use case folders are created, one per UC-NNN."""
+
+[inputs.options.capabilityDir]
+type = "dir"
+flows = ["capability", "context", "abb", "rung"]
+required_by = ["capability"]
+description = """Where capability folders are created, one per CAP-NNN, with the capability model; read by the context and ABB flows for the parent link, and by the rung."""
+
+[inputs.options.contextDir]
+type = "dir"
+flows = ["context", "abb", "service"]
+required_by = ["context"]
+description = """Where bounded context folders are created, one per BC-NNN; read by the ABB and service flows for the parent link."""
+
+[inputs.options.abbDir]
+type = "dir"
+flows = ["abb", "sbb", "rung"]
+required_by = ["abb"]
+description = """Where ABB folders are created, one per ABB-NNN; read by the SBB flow for the ABB it realises, and by the rung."""
+
+[inputs.options.sbbDir]
+type = "dir"
+flows = ["sbb", "service", "rung"]
+required_by = ["sbb"]
+description = """Where SBB folders are created, one per SBB-NNN; read by the service flow for the SBB it implements, and by the rung."""
+
+[inputs.options.serviceDir]
+type = "dir"
+flows = ["service"]
+required_by = ["service"]
+description = """Where service documents are created, one per deployable unit."""
+
+[inputs.options.decisionDir]
+type = "dir"
+flows = ["rung"]
+description = """Decision records (DR-NNN or ADR-NNN), searched recursively by the rung."""
+
+[inputs.options.considerationDir]
+type = "dir"
+flows = ["rung"]
+description = """Considerations (CN-NNN), searched recursively by the rung."""
+
+[inputs.options.patternDir]
+type = "dir"
+flows = ["rung"]
+description = """Architecture patterns and reference architectures, with realises: [CAP-NNN] in their front matter, searched recursively by the rung."""
+
+[inputs.options.localPattern]
+type = "str"
+flows = ["rung"]
+description = """Regex for a model-local box identifier leading a Building Blocks cell, such as 07 in "07 Gateway". Falls back to [model] local_pattern in the same file, then to [0-9]{1,3}."""
+
+[inputs.options.agentProfileSchema]
+type = "file"
+flows = ["runtime-agent"]
+description = """The agent profile JSON Schema an authored profile is validated against. Unbound means the profile is written but not schema-checked, and the flow says so rather than skipping quietly."""
+
+[inputs.options.ontologyValidator]
+type = "file"
+flows = ["runtime-agent"]
+description = """The repository's ontology validator, run over each record the runtime-agent flow writes. Unbound means the same: authored, not validated."""

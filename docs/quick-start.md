@@ -1,6 +1,6 @@
 # Quick start
 
-From an empty folder to a derived capability rung in about ten minutes. You will install the skills into a scratch workspace, seed a starter capability model, bind the skills to folders, and have `aaa-rung` tell you how far each capability has been defined and what blocks the next step. Then you hand the workspace to your agent.
+From an empty folder to a derived capability rung in about ten minutes. You will install the skills into a scratch workspace, seed a starter capability model, bind the skills to folders, and have `/architecture rung` tell you how far each capability has been defined and what blocks the next step. Then you hand the workspace to your agent.
 
 Every command below works as written in PowerShell and in bash. Where the two shells differ, both forms are given. On macOS and Linux use the bash form, and type `python3` where it says `python`.
 
@@ -21,15 +21,15 @@ You should see three version numbers, with Node at `v18` or above and Python at 
 A workspace is any folder your agent opens. A git repository is detected as the workspace root, so initialise one inside a folder that will also hold the two clones.
 
 ```powershell
-mkdir aaa-quickstart
-cd aaa-quickstart
+mkdir architecture-quickstart
+cd architecture-quickstart
 mkdir workspace
 cd workspace
 git init
 ```
 
 ```bash
-mkdir -p aaa-quickstart/workspace && cd aaa-quickstart/workspace
+mkdir -p architecture-quickstart/workspace && cd architecture-quickstart/workspace
 git init
 ```
 
@@ -53,17 +53,15 @@ node ../ai-assisted-work/bin/skills.mjs install --bundle ../ai-assisted-architec
 It prints one line per skill:
 
 ```text
-installed aaa-create-abb 0.5.0 from bundle ai-assisted-architecture (.claude/skills linked)
-installed aaa-create-capability 0.5.0 from bundle ai-assisted-architecture (.claude/skills linked)
-...
-installed aaa-rung 0.5.1 from bundle ai-assisted-architecture (.claude/skills linked)
+installed architecture 0.7.0 from bundle ai-assisted-architecture (.claude/skills linked)
+installed workspace 0.1.0 from bundle ai-assisted-architecture (.claude/skills linked)
 ```
 
-You now have the nine skills in `.agents/skills/` and a lock file, `.agents/skills.lock.json`, recording where they came from. Each skill is complete on its own: it carries the standards it reads and its own binding resolver. `(.claude/skills linked)` appears only when you created `.claude`.
+You now have the two skills in `.agents/skills/` and a lock file, `.agents/skills.lock.json`, recording where they came from. The architecture skill is complete on its own: it carries the standards it reads and its own binding resolver. `(.claude/skills linked)` appears only when you created `.claude`.
 
 ## 4. Seed a starter model
 
-The foundation catalogue is optional content that no skill needs, but it gives `aaa-rung` something to report on. Copy its `core` profile into the workspace:
+The foundation catalogue is optional content that no skill needs, but it gives `/architecture rung` something to report on. Copy its `core` profile into the workspace:
 
 ```bash
 node ../ai-assisted-architecture/scripts/seed-foundation.mjs --workspace .
@@ -77,50 +75,24 @@ It ends with:
 
 You now have `capabilities/` with seven capabilities and the capability model files, and `building-blocks/` with three ABBs.
 
-## 5. Bind the skills to folders
+## 5. Bind the skill to folders
 
-No skill has a default location for what it writes. You say where each kind of artefact
-lives in `.agents/skill-bindings.toml`, and paths resolve against that file's folder. This
+The skill has no default location for what it writes. You say where each kind of artefact
+lives in one table of `.agents/skill-bindings.toml`, and paths resolve against that file's folder. This
 layout matches what the seed created, plus folders for the kinds the seed does not include.
 
 ```powershell
 mkdir strategy/outcomes, strategy/use-cases, platforms, contexts, runtime/services, decisions, considerations, patterns
 @'
-[suite.aaa-create-strategy]
-outcomeDir = "../strategy/outcomes"
-useCaseDir = "../strategy/use-cases"
-
-[suite.aaa-create-platform]
-platformDir = "../platforms"
-outcomeDir  = "../strategy/outcomes"
-
-[suite.aaa-create-capability]
-capabilityDir = "../capabilities"
-platformDir   = "../platforms"
-
-[suite.aaa-create-context]
-contextDir    = "../contexts"
-platformDir   = "../platforms"
-capabilityDir = "../capabilities"
-
-[suite.aaa-create-abb]
-abbDir        = "../building-blocks/architecture-building-blocks"
-contextDir    = "../contexts"
-capabilityDir = "../capabilities"
-
-[suite.aaa-create-sbb]
-sbbDir = "../building-blocks/solution-building-blocks"
-abbDir = "../building-blocks/architecture-building-blocks"
-
-[suite.aaa-create-service]
-serviceDir = "../runtime/services"
-contextDir = "../contexts"
-sbbDir     = "../building-blocks/solution-building-blocks"
-
-[suite.aaa-rung]
+[suite.architecture]
+outcomeDir       = "../strategy/outcomes"
+useCaseDir       = "../strategy/use-cases"
+platformDir      = "../platforms"
 capabilityDir    = "../capabilities"
+contextDir       = "../contexts"
 abbDir           = "../building-blocks/architecture-building-blocks"
 sbbDir           = "../building-blocks/solution-building-blocks"
+serviceDir       = "../runtime/services"
 decisionDir      = "../decisions"
 considerationDir = "../considerations"
 patternDir       = "../patterns"
@@ -130,41 +102,15 @@ patternDir       = "../patterns"
 ```bash
 mkdir -p strategy/outcomes strategy/use-cases platforms contexts runtime/services decisions considerations patterns
 cat > .agents/skill-bindings.toml <<'EOF'
-[suite.aaa-create-strategy]
-outcomeDir = "../strategy/outcomes"
-useCaseDir = "../strategy/use-cases"
-
-[suite.aaa-create-platform]
-platformDir = "../platforms"
-outcomeDir  = "../strategy/outcomes"
-
-[suite.aaa-create-capability]
-capabilityDir = "../capabilities"
-platformDir   = "../platforms"
-
-[suite.aaa-create-context]
-contextDir    = "../contexts"
-platformDir   = "../platforms"
-capabilityDir = "../capabilities"
-
-[suite.aaa-create-abb]
-abbDir        = "../building-blocks/architecture-building-blocks"
-contextDir    = "../contexts"
-capabilityDir = "../capabilities"
-
-[suite.aaa-create-sbb]
-sbbDir = "../building-blocks/solution-building-blocks"
-abbDir = "../building-blocks/architecture-building-blocks"
-
-[suite.aaa-create-service]
-serviceDir = "../runtime/services"
-contextDir = "../contexts"
-sbbDir     = "../building-blocks/solution-building-blocks"
-
-[suite.aaa-rung]
+[suite.architecture]
+outcomeDir       = "../strategy/outcomes"
+useCaseDir       = "../strategy/use-cases"
+platformDir      = "../platforms"
 capabilityDir    = "../capabilities"
+contextDir       = "../contexts"
 abbDir           = "../building-blocks/architecture-building-blocks"
 sbbDir           = "../building-blocks/solution-building-blocks"
+serviceDir       = "../runtime/services"
 decisionDir      = "../decisions"
 considerationDir = "../considerations"
 patternDir       = "../patterns"
@@ -177,27 +123,27 @@ with one.
 
 ## 6. Check the installation
 
-Every skill ships a post-install check. Run them all the way an installer does:
+Each skill ships a post-install check. Run them the way an installer does:
 
 ```bash
 node ../ai-assisted-architecture/scripts/validate-bundle.mjs --run-checks . ../ai-assisted-architecture
 ```
 
-You should see nine `ok` lines. Each `aaa-create-*` skill also prints `warning: .aaa-config.yaml: not found`, which is harmless: the file is optional and only sets a workspace ontology schema (see [Configuration](configuration.md#aaa-configyaml)). If PyYAML is not installed you also see `warning: PyYAML is not installed`, which is harmless too: `aaa-rung` has its own front matter parser.
+You should see two `ok` lines. Each also prints `warning: .aaa-config.yaml: not found`, which is harmless: the file is optional and only sets a workspace ontology schema (see [Configuration](configuration.md#aaa-configyaml)).
 
 ```text
-  ok   aaa-create-abb: node bin/check.mjs exited 0
+  ok   architecture: node bin/check.mjs exited 0
         warning: .aaa-config.yaml: not found in <workspace>, so no workspace ontology schema is set. ...
-        aaa-create-abb: ok
-  ...
-  ok   aaa-rung: python bin/check.py exited 0
-        aaa-rung: ok
+        architecture: ok
+  ok   workspace: node bin/check.mjs exited 0
+        ...
+        workspace: ok
 ```
 
-Ask one skill what it will use. This is the first thing every `aaa-create-*` skill runs in your agent:
+Ask one flow what it will use. This is the first thing every create flow runs in your agent:
 
 ```bash
-node .agents/skills/aaa-create-abb/bin/check.mjs --json
+node .agents/skills/architecture/bin/check.mjs --flow abb --json
 ```
 
 It prints one JSON object: `status` (`ok`), the `bindingsFile`, each binding (`abbDir`, `contextDir`, `capabilityDir`) as an absolute path, and any `problems` and `warnings`.
@@ -205,7 +151,7 @@ It prints one JSON object: `status` (`ok`), the `bindingsFile`, each binding (`a
 ## 7. Derive the rungs of the starter model
 
 ```bash
-python .agents/skills/aaa-rung/bin/rung.py
+python .agents/skills/architecture/bin/rung.py
 ```
 
 ```text
@@ -228,7 +174,7 @@ explains the rungs.
 ## 8. Add a capability of your own
 
 Here is a tiny capability document. It claims its one flow is already at R2. It carries only
-the fields the ladder reads; a document written by `/aaa-create-capability` carries the full
+the fields the ladder reads; a document written by `/architecture capability` carries the full
 set the capability standard requires.
 
 ```powershell
@@ -276,8 +222,8 @@ EOF
 Derive it, with every blocker, then check the claim. The first command prints:
 
 ```bash
-python .agents/skills/aaa-rung/bin/rung.py CAP-100 -v
-python .agents/skills/aaa-rung/bin/rung.py CAP-100 --check
+python .agents/skills/architecture/bin/rung.py CAP-100 -v
+python .agents/skills/architecture/bin/rung.py CAP-100 --check
 ```
 
 ```text
@@ -331,7 +277,7 @@ sed -i.bak 's/^demand_assumption:.*/&\nrealised_by_abbs: [ABB-100]\nopen_questio
 ```
 
 ```bash
-python .agents/skills/aaa-rung/bin/rung.py CAP-100 --check
+python .agents/skills/architecture/bin/rung.py CAP-100 --check
 ```
 
 ```text
@@ -349,11 +295,11 @@ artefact to write.
 Open the `workspace` folder in your agent (VS Code with GitHub Copilot, Cursor, Claude Code, Codex, Gemini CLI or any other Agent Skills host) and type `/` to see the skills. Then try:
 
 ```text
-/aaa-create-abb Create an ABB for the Notification Dispatcher's delivery channel router,
+/architecture abb Create an ABB for the Notification Dispatcher's delivery channel router,
 under capability CAP-100.
 ```
 
-The skill runs the `check.mjs --json` you ran in step 6, finds that no bounded context exists yet, proposes one rather than inventing it, and asks before creating anything. Once you agree it writes `building-blocks/architecture-building-blocks/ABB-NNN/index.md` and its diagrams, following the standards it loads from its own `references/standards/`. Run `rung.py` again afterwards to see what changed.
+The flow runs the `check.mjs --json --flow abb` you ran in step 6, finds that no bounded context exists yet, proposes one rather than inventing it, and asks before creating anything. Once you agree it writes `building-blocks/architecture-building-blocks/ABB-NNN/index.md` and its diagrams, following the standards it loads from its own `references/standards/`. Run `rung.py` again afterwards to see what changed.
 
 ## Where next
 
@@ -362,4 +308,4 @@ The skill runs the `check.mjs --json` you ran in step 6, finds that no bounded c
 - [Configuration](configuration.md): every binding and config key.
 - [Troubleshooting](troubleshooting.md): the messages you may meet, and what to do.
 
-To throw the scratch workspace away, delete the `aaa-quickstart` folder, which holds the workspace and both clones. Nothing was written outside it.
+To throw the scratch workspace away, delete the `architecture-quickstart` folder, which holds the workspace and both clones. Nothing was written outside it.

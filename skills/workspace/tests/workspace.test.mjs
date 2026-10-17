@@ -177,7 +177,7 @@ test("without the skill installed, the door script says so in one line and exits
 });
 
 test("with the skill but none of the others, regenerate and check skip each step in one line and exit 0", () => {
-  write(".agents/skill-bindings.toml", '[suite.aaa-continuum]\nroot = "../docs"\n[suite.use-case]\noutputDir = "../docs/uc"\n[suite.workspace]\ndecks = "../static/decks"\n');
+  write(".agents/skill-bindings.toml", '[suite.architecture]\nroot = "../docs"\n[suite.use-case]\noutputDir = "../docs/uc"\n[suite.workspace]\ndecks = "../static/decks"\n');
   fs.mkdirSync(path.join(repo, "docs", "uc"), { recursive: true });
   const lines = [];
   const err = console.error;
@@ -192,7 +192,7 @@ test("with the skill but none of the others, regenerate and check skip each step
   assert.deepEqual(lines, [
     "diagram regeneration skipped: the pattern and model skills are not installed",
     "deck publishing skipped: the markdown-deck skill is not installed",
-    "continuum check skipped: the aaa-continuum skill is not installed",
+    "continuum check skipped: the architecture skill is not installed",
     "cross-reference check skipped: the cross-reference skill is not installed",
     "regeneration skipped: REGENERATE=0",
   ]);
@@ -211,4 +211,16 @@ test("init --dry-run prints the plan and changes nothing", () => {
   assert.match(r.stdout, /would write scripts\/architecture\.mjs/);
   assert.equal(status(), before);
   assert.ok(fs.existsSync(path.join(repo, ".agents/skills/old-skill")));
+});
+
+test("an old aaa- skill is retired unless the lock still installs it", () => {
+  write(".gitignore", ".agents/skills/\n");
+  write(".agents/skills.lock.json", JSON.stringify({ lockfile: 1, skills: { "aaa-rung": { version: "0.5.3" } } }));
+  git("add", "-A");
+  git("commit", "-q", "-m", "init");
+  write(".agents/skills/aaa-create-abb/SKILL.md", "x\n");
+  write(".agents/skills/aaa-rung/SKILL.md", "x\n");
+  const why = Object.fromEntries(planClean(repo, { self: "/nowhere" }).actions.map((a) => [a.path, a.why]));
+  assert.match(why[".agents/skills/aaa-create-abb"], /folded into the architecture skill/);
+  assert.match(why[".agents/skills/aaa-rung"], /install puts it back from the lock/);
 });

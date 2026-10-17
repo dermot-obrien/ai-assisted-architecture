@@ -7,10 +7,10 @@
   "homepage": "https://github.com/dermot-obrien/ai-assisted-architecture",
   "skills": [
     {
-      "name": "aaa-create-abb",
-      "path": "skills/aaa-create-abb",
-      "version": "0.6.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-abb@0.6.5",
+      "name": "architecture",
+      "path": "skills/architecture",
+      "version": "0.7.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/architecture@0.7.0",
       "requires": [],
       "check": {
         "command": [
@@ -18,142 +18,7 @@
           "bin/check.mjs"
         ],
         "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-abb] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-capability",
-      "path": "skills/aaa-create-capability",
-      "version": "0.6.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-capability@0.6.5",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-capability] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-context",
-      "path": "skills/aaa-create-context",
-      "version": "0.5.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-context@0.5.5",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-context] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-platform",
-      "path": "skills/aaa-create-platform",
-      "version": "0.5.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-platform@0.5.5",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-platform] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-runtime-agent",
-      "path": "skills/aaa-create-runtime-agent",
-      "version": "0.5.1",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-runtime-agent@0.5.1",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-runtime-agent] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-sbb",
-      "path": "skills/aaa-create-sbb",
-      "version": "0.6.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-sbb@0.6.5",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-sbb] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-service",
-      "path": "skills/aaa-create-service",
-      "version": "0.5.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-service@0.5.5",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-service] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-create-strategy",
-      "path": "skills/aaa-create-strategy",
-      "version": "0.5.5",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-create-strategy@0.5.5",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-create-strategy] declares every required binding in inputs.toml and each declared path exists"
-      }
-    },
-    {
-      "name": "aaa-rung",
-      "path": "skills/aaa-rung",
-      "version": "0.5.3",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-rung@0.5.3",
-      "requires": [],
-      "check": {
-        "command": [
-          "python",
-          "bin/check.py"
-        ],
-        "runtime": "python",
-        "description": "[suite.aaa-rung] resolves: the binding file exists and every directory it binds exists"
-      }
-    },
-    {
-      "name": "aaa-continuum",
-      "path": "skills/aaa-continuum",
-      "version": "0.2.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-continuum@0.2.0",
-      "requires": [],
-      "check": {
-        "command": [
-          "node",
-          "bin/check.mjs"
-        ],
-        "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.aaa-continuum] declares root and each declared path exists"
+        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and [suite.architecture] binds at least one folder, each declared path exists; with --flow <name>, every binding that flow needs is declared. A key missing there is read from the old [suite.aaa-*] tables, with a warning"
       }
     },
     {

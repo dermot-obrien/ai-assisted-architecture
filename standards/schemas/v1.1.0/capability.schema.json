@@ -55,7 +55,7 @@
 
         "flows": {
           "type": "array",
-          "description": "Optional. Named paths through the capability that someone would recognise as a job being done. Each carries its rung on the definition ladder (standards/capabilities/standard-definition-ladder.md). The capability sits on the rung of its lowest flow. A recorded rung is a claim; a derived rung (aaa-rung) wins where available.",
+          "description": "Optional. Named paths through the capability that someone would recognise as a job being done. Each carries its rung on the definition ladder (standards/capabilities/standard-definition-ladder.md). The capability sits on the rung of its lowest flow. A recorded rung is a claim; a derived rung (/architecture rung) wins where available.",
           "items": {
             "type": "object",
             "required": ["id", "name"],

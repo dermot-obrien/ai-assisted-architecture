@@ -11,7 +11,7 @@ It needs Node.js 18 or later and git, and no npm packages, so it runs against a 
 | Binding | Holds | If unbound |
 |---|---|---|
 | `decks` | Where decks publish, such as `../site/static/decks` | No decks are published |
-| `deckSource` | The folder whose `deck_publish: true` documents become decks | The `aaa-continuum` root |
+| `deckSource` | The folder whose `deck_publish: true` documents become decks | `[suite.architecture] root` |
 | `pdf` | Whether each deck gets a PDF | `[suite.markdown-deck] pdf` |
 | `diagrams` | The folders whose diagrams the pattern skill regenerates | The use-case and pattern `outputDir` |
 | `render` | How the pattern skill renders views | `never` |

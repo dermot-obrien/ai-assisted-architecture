@@ -74,7 +74,7 @@
             "$ref": "envelope.schema.json#/$defs/capabilityId"
           },
           "uniqueItems": true,
-          "description": "The capabilities the document is evidence for, read by aaa-rung."
+          "description": "The capabilities the document is evidence for, read by /architecture rung."
         },
         "flows": {
           "type": "array",

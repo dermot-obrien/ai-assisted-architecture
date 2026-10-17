@@ -61,7 +61,7 @@ All optional, in `[suite.workspace]` of `.agents/skill-bindings.toml` (the contr
 ```toml
 [suite.workspace]
 decks = "../site/static/decks"   # where decks publish; unbound, no decks
-# deckSource = "../docs/architecture"   default: [suite.aaa-continuum] root
+# deckSource = "../docs/architecture"   default: [suite.architecture] root
 # diagrams = ["../docs/architecture/demand/use-cases"]   default: the use-case and pattern outputDir
 # pdf = true                            default: [suite.markdown-deck] pdf
 # render = "never"                      how the pattern skill renders views

@@ -48,7 +48,7 @@ Architecture's condition for R5 and R6 is receipt. The evidence exists, it is li
 
 ## 2. What each rung requires
 
-A rung is checked from the artefacts' front matter. The checks below are the ones a derivation tool can make without judgement, and they are the contract `aaa-rung` implements. Each rung also carries a part that needs a reviewer, listed separately, because a tool that pretends to check prose gives false confidence.
+A rung is checked from the artefacts' front matter. The checks below are the ones a derivation tool can make without judgement, and they are the contract `/architecture rung` implements. Each rung also carries a part that needs a reviewer, listed separately, because a tool that pretends to check prose gives false confidence.
 
 | Rung | Checked from the artefacts | Checked by a reviewer |
 |---|---|---|
@@ -121,7 +121,7 @@ The ontology's crawl, walk, run and fly maturity horizons are bands of this ladd
 | Capability front matter | `flows[]`, each with `id`, `name`, `description` and an optional recorded `rung`. `open_questions: none` when there are no considerations to list. `demand_assumption` when no outcome is linked yet |
 | Consideration (`CN-NNN`) | One open question, its options, the criteria that decide it, and the decision record that resolves it |
 | Architecture pattern and reference architecture front matter | `realises: [CAP-NNN]`, optionally `flows: [<flow id>]`, and `references` of type `cost-model` and `evidence` |
-| `aaa-rung` | Derives each capability's rung, and each flow's, from the above, and names the artefact that blocks the next rung |
+| `/architecture rung` | Derives each capability's rung, and each flow's, from the above, and names the artefact that blocks the next rung |
 
 ## 6. How it is used
 
@@ -139,4 +139,4 @@ The ontology's crawl, walk, run and fly maturity horizons are bands of this ladd
 3. [ ] **Per flow.** Where flows are declared, is the capability's rung the lowest of its flows?
 4. [ ] **Not maturity.** Is the rung kept separate from the maturity score and from `lifecycle_state`?
 5. [ ] **Receipt, not authorship.** Are R5 and R6 evidenced by links to implementation evidence, not by architecture documents describing it?
-6. [ ] **Derived first.** Where `aaa-rung` is available, does a recorded rung agree with the derived one?
+6. [ ] **Derived first.** Where `/architecture rung` is available, does a recorded rung agree with the derived one?

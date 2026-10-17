@@ -4,7 +4,7 @@ AI-Assisted Architecture ships an optional modernisation ontology: a JSON Schema
 
 It runs beside the Markdown artefacts, not instead of them. Use it when you want a queryable
 model for governance reporting; ignore it when documents and diagrams are enough. The
-`aaa-create-runtime-agent` skill writes its records in this ontology.
+`/architecture runtime-agent` skill writes its records in this ontology.
 
 ## Where it lives
 
@@ -27,11 +27,11 @@ ontology/
 
 The scripts are CommonJS for Node.js 18 or later and need `ajv`, `ajv-formats` and `js-yaml`.
 
-In a workspace, use the validator `aaa-create-runtime-agent` carries, with the schema beside it, and install its dependencies in the workspace:
+In a workspace, use the validator `/architecture runtime-agent` carries, with the schema beside it, and install its dependencies in the workspace:
 
 ```bash
 npm install js-yaml ajv ajv-formats
-node .agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs ontology-data
+node .agents/skills/architecture/references/scripts/ontology/validate.cjs ontology-data
 ```
 
 It uses `references/standards/ontology/ontology-schema.json` in the skill unless `--schema` or `ontology.schema` in `.aaa-config.yaml` names another. `consolidate.cjs` and `namespace-divergent.cjs` are not carried by any skill; run them from a clone of this repository, after `npm install` there.
@@ -74,7 +74,7 @@ pre-commit hook. For example, in a workspace `package.json`:
 ```json
 {
   "scripts": {
-    "validate:ontology": "node .agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs ontology-data"
+    "validate:ontology": "node .agents/skills/architecture/references/scripts/ontology/validate.cjs ontology-data"
   }
 }
 ```

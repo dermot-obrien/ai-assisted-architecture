@@ -5,153 +5,81 @@ different things.
 
 | File | Written by | Read by |
 |---|---|---|
-| [`.agents/skill-bindings.toml`](#skill-bindings) | You | Every skill, through its own `bin/check.mjs --json` or `rung.py --doctor`, and the post-install checks |
-| [`.aaa-config.yaml`](#aaa-configyaml), optional | You, from the template each `aaa-create-*` skill carries | The post-install checks and the ontology validator |
+| [`.agents/skill-bindings.toml`](#skill-bindings) | You | Every skill, through its own `bin/check.mjs --json` (with `--flow` for an architecture flow) or `rung.py --doctor`, and the post-install checks |
+| [`.aaa-config.yaml`](#aaa-configyaml), optional | You, from the template the architecture skill carries | The post-install checks and the ontology validator |
 | [`foundation-workspace.yaml`](#foundation-workspaceyaml) | `scripts/seed-foundation.mjs` | Nothing yet; a record of what was seeded |
-| [Front matter](#front-matter-read-by-aaa-rung) | The skills, or you | `aaa-rung`, `validate-frontmatter.mjs` |
-| [Environment variables](#environment-variables) | You | The checks and `aaa-rung` |
+| [Front matter](#front-matter-read-by-the-rung) | The skills, or you | `/architecture rung`, `validate-frontmatter.mjs` |
+| [Environment variables](#environment-variables) | You | The checks and `/architecture rung` |
 | [Foundation profiles](#foundation-profiles) | Maintainers of this repository | The seeder |
 
 The installer's own files, `.agents/skills.json` and `.agents/skills.lock.json`, belong to AI-Assisted Work's `skills.mjs`; see [Installation](installation.md#route-2-a-declared-locked-set-of-skills).
 
 ## Skill bindings
 
-`.agents/skill-bindings.toml` tells each skill where the workspace keeps each kind of artefact.
-Each skill reads only its own table, `[suite.<skill-name>]`. The contract behind each table is
-the skill's `inputs.toml`.
+`.agents/skill-bindings.toml` tells each skill where the workspace keeps each kind of artefact. Each skill reads only its own table: the `architecture` skill reads `[suite.architecture]`, one table for all its flows, and `workspace` reads `[suite.workspace]`. The contract behind each table is the skill's `inputs.toml`, which names, for each key, the flows that read it and the flows that cannot run without it.
 
 Rules that apply to every key below:
 
 - Type `dir` is a folder, `file` is a file, `str` is a string.
-- No key has a default. A required key that is missing stops the skill, naming the key. An
-  optional key that is missing means the step that needs it is reported as not done.
-- Relative paths resolve against the folder holding the bindings file, never the working
-  directory. With the file in `.agents/`, paths start with `../`.
-- A path that is set must exist. `aaa-rung` also rejects a key its contract does not declare.
-- The file is found by searching upward from the working directory for
-  `.agents/skill-bindings.toml`, then `skill-bindings.toml`, taking the first. `rung.py
-  --bindings <path>` overrides the search for `aaa-rung`.
-- Write the file as UTF-8 without a byte order mark. PowerShell 5.1 adds one unless you use
-  `-Encoding ascii`.
+- No key has a default. A flow that needs a key that is missing stops, naming the key. A key a flow reads but does not need, when missing, means the step that needs it is reported as not done.
+- Relative paths resolve against the folder holding the bindings file, never the working directory. With the file in `.agents/`, paths start with `../`.
+- A path that is set must exist. The rung also rejects a key the contract does not declare.
+- The file is found by searching upward from the working directory for `.agents/skill-bindings.toml`, then `skill-bindings.toml`, taking the first. `rung.py --bindings <path>` overrides the search for the rung.
+- Write the file as UTF-8 without a byte order mark. PowerShell 5.1 adds one unless you use `-Encoding ascii`.
 
-### aaa-create-strategy
+### architecture
 
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `outcomeDir` | dir | yes | Where `OC-NNN` folders are created |
-| `useCaseDir` | dir | yes | Where `UC-NNN` folders are created. May be the same folder as `outcomeDir` |
-
-```toml
-[suite.aaa-create-strategy]
-outcomeDir = "../strategy/outcomes"
-useCaseDir = "../strategy/use-cases"
-```
-
-### aaa-create-platform
-
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `platformDir` | dir | yes | Where `PL-NNN` folders are created |
-| `outcomeDir` | dir | no | Where the outcomes a platform links up to live, so the link is written as a relative path rather than searched for |
+| Key | Type | Needed by | Also read by | Holds |
+|---|---|---|---|---|
+| `root` | dir | check | | The whole architecture: every page and CSV register under it is checked |
+| `schemes` | file | | check | The schemes register. Default `<root>/registers/identifier-schemes.csv` |
+| `namespaces` | file | | check | The namespaces register. Default `<root>/registers/identifier-namespaces.csv` |
+| `schemas` | dir | | check | Front matter schemas to check against instead of the skill's v1.1.0 copy |
+| `platformDir` | dir | platform, capability, context | | `PL-NNN` documents |
+| `outcomeDir` | dir | strategy | platform | `OC-NNN` folders |
+| `useCaseDir` | dir | strategy | | `UC-NNN` folders. May be the same folder as `outcomeDir` |
+| `capabilityDir` | dir | capability | context, abb, rung | `CAP-NNN` folders, with `capability-model.md` and its two CSVs |
+| `contextDir` | dir | context | abb, service | `BC-NNN` folders |
+| `abbDir` | dir | abb | sbb, rung | `ABB-NNN` folders |
+| `sbbDir` | dir | sbb | service, rung | `SBB-NNN` folders, composites included |
+| `serviceDir` | dir | service | | Service definitions, one file per service |
+| `decisionDir` | dir | | rung | Decision records, `kind: decision-record` |
+| `considerationDir` | dir | | rung | Considerations, `kind: consideration` |
+| `patternDir` | dir | | rung | Patterns, read for `realises`, `flows`, `references` and their Building Blocks tables |
+| `localPattern` | str | | rung | Regex for a model-local box id, such as `07` in `07 Gateway` |
+| `agentProfileSchema` | file | | runtime-agent | The JSON Schema an agent profile is validated against |
+| `ontologyValidator` | file | | runtime-agent | The validator run over each record the runtime-agent flow writes |
 
 ```toml
-[suite.aaa-create-platform]
-platformDir = "../platforms"
-outcomeDir  = "../strategy/outcomes"
+[suite.architecture]
+root             = "../docs/architecture"
+platformDir      = "../docs/architecture"
+outcomeDir       = "../docs/architecture/demand/outcomes"
+useCaseDir       = "../docs/architecture/demand/use-cases"
+capabilityDir    = "../docs/architecture/demand/capabilities"
+contextDir       = "../docs/architecture/solution/contexts"
+abbDir           = "../docs/architecture/solution/abbs"
+sbbDir           = "../docs/architecture/solution/sbbs"
+serviceDir       = "../docs/architecture/runtime/services"
+decisionDir      = "../docs/architecture/decisions"
+considerationDir = "../docs/architecture/decisions"
+patternDir       = "../docs/architecture/solution/patterns"
 ```
 
-### aaa-create-capability
+`node .agents/skills/architecture/bin/check.mjs --flow <flow>` says whether the table answers one flow; without `--flow` it fails only when the table binds nothing at all.
 
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `capabilityDir` | dir | yes | Where `CAP-NNN` folders are created, and where `capability-model.md` and its two CSVs live |
-| `platformDir` | dir | yes | Searched for the platform a capability belongs to, the skill's first question |
+Before the ten `aaa-*` skills became one, each read its own table, `[suite.aaa-create-abb]` and the rest. For one release a key missing from `[suite.architecture]` is still read from those tables, with a warning that names the table to move it from; when two old tables give one key different values, the first is used and the conflict is reported. Move the keys into `[suite.architecture]` and delete the old tables.
+
+The runtime-agent flow's two keys may point at the copies the skill carries (paths resolve against `.agents/`, so `skills/...` is `.agents/skills/...`); bind a workspace's own schema or validator instead if it governs one. The validator needs `js-yaml`, `ajv` and `ajv-formats` in the workspace's `node_modules`; see [Ontology](ontology.md#setup).
 
 ```toml
-[suite.aaa-create-capability]
-capabilityDir = "../capabilities"
-platformDir   = "../platforms"
+agentProfileSchema = "skills/architecture/references/standards/schemas/v1.1.0/agent-profile.schema.json"
+ontologyValidator  = "skills/architecture/references/scripts/ontology/validate.cjs"
 ```
 
-### aaa-create-context
+### What the rung reads
 
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `contextDir` | dir | yes | Where `BC-NNN` folders are created |
-| `platformDir` | dir | yes | Searched for the platform the context realises |
-| `capabilityDir` | dir | no | For mapping the context to the capabilities it realises |
-
-```toml
-[suite.aaa-create-context]
-contextDir    = "../contexts"
-platformDir   = "../platforms"
-capabilityDir = "../capabilities"
-```
-
-### aaa-create-abb
-
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `abbDir` | dir | yes | Where `ABB-NNN` folders are created |
-| `contextDir` | dir | no | The parent bounded context, for the mandatory link back |
-| `capabilityDir` | dir | no | The parent capability, for the mandatory link back |
-
-```toml
-[suite.aaa-create-abb]
-abbDir        = "../building-blocks/architecture-building-blocks"
-contextDir    = "../contexts"
-capabilityDir = "../capabilities"
-```
-
-### aaa-create-sbb
-
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `sbbDir` | dir | yes | Where `SBB-NNN` folders are created, composites included |
-| `abbDir` | dir | no | The ABB an SBB realises, for the link |
-
-```toml
-[suite.aaa-create-sbb]
-sbbDir = "../building-blocks/solution-building-blocks"
-abbDir = "../building-blocks/architecture-building-blocks"
-```
-
-### aaa-create-service
-
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `serviceDir` | dir | yes | Where service definitions are written, one file per service |
-| `contextDir` | dir | no | The parent bounded context, for the mandatory link |
-| `sbbDir` | dir | no | The SBB the service implements, for the mandatory link |
-
-```toml
-[suite.aaa-create-service]
-serviceDir = "../runtime/services"
-contextDir = "../contexts"
-sbbDir     = "../building-blocks/solution-building-blocks"
-```
-
-### aaa-create-runtime-agent
-
-| Key | Type | Required | Used for |
-|---|---|---|---|
-| `agentProfileSchema` | file | no | The JSON Schema an agent profile is validated against. Unbound: the profile is written and reported as not schema-checked |
-| `ontologyValidator` | file | no | The validator run over each record the skill writes. Unbound: records are reported as authored, not validated |
-
-```toml
-[suite.aaa-create-runtime-agent]
-agentProfileSchema = "skills/aaa-create-runtime-agent/references/standards/schemas/v1.1.0/agent-profile.schema.json"
-ontologyValidator  = "skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs"
-```
-
-Both point at copies the skill itself carries (paths resolve against `.agents/`, so `skills/...` is `.agents/skills/...`). Bind a workspace's own schema or validator instead if it governs one. The validator needs `js-yaml`, `ajv` and `ajv-formats` in the workspace's `node_modules`; see [Ontology](ontology.md#setup).
-
-### aaa-rung
-
-Every key is optional. A folder left unset means the workspace does not keep that kind: nothing
-is read for it, and the report names it with the rungs it cannot evidence. With no
-`[suite.aaa-rung]` table at all, every kind is unbound and the report is empty, but the run
-succeeds. Every folder is searched recursively for Markdown files with front matter.
+Every key the rung reads is optional. A folder left unset means the workspace does not keep that kind: nothing is read for it, and the report names it with the rungs it cannot evidence. With no `[suite.architecture]` table at all, every kind is unbound and the report is empty, but the run succeeds. Every folder is searched recursively for Markdown files with front matter.
 
 | Key | Type | Holds | If unbound |
 |---|---|---|---|
@@ -163,35 +91,20 @@ succeeds. Every folder is searched recursively for Markdown files with front mat
 | `patternDir` | dir | Patterns, read for `realises`, `flows`, `references` and their Building Blocks tables | R3 and above cannot be evidenced |
 | `localPattern` | str | Regex for a model-local box id leading a Building Blocks cell, such as `07` in `07 Gateway` | Falls back as below |
 
-`localPattern` precedence: `[suite.aaa-rung] localPattern`, then `[model] local_pattern` in the
+`localPattern` precedence: `[suite.architecture] localPattern`, then `[model] local_pattern` in the
 same file, then `[0-9]{1,3}`. Write a regex in a single-quoted TOML string so backslashes are
 not treated as escapes.
 
-```toml
-[suite.aaa-rung]
-capabilityDir    = "../capabilities"
-abbDir           = "../building-blocks/architecture-building-blocks"
-sbbDir           = "../building-blocks/solution-building-blocks"
-decisionDir      = "../decisions"
-considerationDir = "../considerations"
-patternDir       = "../patterns"
-localPattern     = '[0-9]{2}'
-```
 
-### aaa-continuum
+### What the check reads
 
-`root` is required and is the folder the architecture lives in; the check reads every Markdown page and CSV register under it. The other three are optional. `schemes` and `namespaces` default to `registers/identifier-schemes.csv` and `registers/identifier-namespaces.csv` under the root when those files exist, and `schemas` defaults to the copy of the v1.1.0 front matter schemas the skill carries.
-
-```toml
-[suite.aaa-continuum]
-root = "../docs/architecture"
-```
+`root` is required by the check and is the folder the architecture lives in; the check reads every Markdown page and CSV register under it. `schemes` and `namespaces` default to `registers/identifier-schemes.csv` and `registers/identifier-namespaces.csv` under the root when those files exist, and `schemas` defaults to the copy of the v1.1.0 front matter schemas the skill carries.
 
 The schemes register's columns are `scheme`, `prefix`, `pattern`, `entity`, `home`, `register`, `deliverable_type`, `auto_link` and `notes`. `home` is where each page of the series lives, with `{id}` for the identifier, or a single file for a singleton, or empty for a series that has register rows and no pages; `register` is the CSV that lists the series, relative to the root. `scaffold` writes a register with the continuum's series.
 
 ### workspace
 
-Every key is optional. `decks` is where decks publish, one folder per `deck_id` with a PDF beside each; unbound, regenerate publishes no decks. `deckSource` defaults to the `aaa-continuum` root, `pdf` to `[suite.markdown-deck] pdf`, and `diagrams`, the folders whose use cases and pattern documents the pattern skill regenerates, to the `outputDir` of `[suite.use-case]` and `[suite.pattern]`. `render` is how the pattern skill renders views, `never` by default so a build needs no draw.io desktop.
+Every key is optional. `decks` is where decks publish, one folder per `deck_id` with a PDF beside each; unbound, regenerate publishes no decks. `deckSource` defaults to `[suite.architecture] root`, `pdf` to `[suite.markdown-deck] pdf`, and `diagrams`, the folders whose use cases and pattern documents the pattern skill regenerates, to the `outputDir` of `[suite.use-case]` and `[suite.pattern]`. `render` is how the pattern skill renders views, `never` by default so a build needs no draw.io desktop.
 
 ```toml
 [suite.workspace]
@@ -202,15 +115,15 @@ decks = "../site/static/decks"
 
 The same file may hold tables for other skills, such as `[model]`, `[markdown.*]` and
 `bindingsVersion` for the `model` skill, or `[suite.pattern]` for architecture-pattern. Those
-are documented in their own repositories. AAA reads only `[model] local_pattern`, as a
-fallback for `aaa-rung`.
+are documented in their own repositories. The architecture skill reads only `[model] local_pattern`, as a
+fallback for the rung.
 
 ## .aaa-config.yaml
 
-Optional. Without it, every `aaa-create-*` check prints a warning and carries on, and the ontology validator uses the schema beside it. Create it only to set a workspace ontology schema, by copying the template each `aaa-create-*` skill carries to the workspace root:
+Optional. Without it, the binding check prints a warning and carries on, and the ontology validator uses the schema beside it. Create it only to set a workspace ontology schema, by copying the template the architecture skill carries to the workspace root:
 
 ```bash
-cp .agents/skills/aaa-create-abb/references/standards/workspace/aaa-config.yaml .aaa-config.yaml
+cp .agents/skills/architecture/references/standards/workspace/aaa-config.yaml .aaa-config.yaml
 ```
 
 The template's source is `standards/workspace/aaa-config.yaml` in this repository.
@@ -222,11 +135,11 @@ The template's source is `standards/workspace/aaa-config.yaml` in this repositor
 | `ontology.schema` | path | `governance/metamodel/ontology-schema.json` | The ontology schema, relative to the workspace root |
 | `ontology.specification` | path | `governance/metamodel/ontology-specification.md` | Its companion specification, for people and agents to read |
 
-The template's schema path is a suggestion for workspaces that govern their own copy; the check warns when the path does not exist. To use the copy `aaa-create-runtime-agent` carries:
+The template's schema path is a suggestion for workspaces that govern their own copy; the check warns when the path does not exist. To use the copy `/architecture runtime-agent` carries:
 
 ```yaml
 ontology:
-  schema: .agents/skills/aaa-create-runtime-agent/references/standards/ontology/ontology-schema.json
+  schema: .agents/skills/architecture/references/standards/ontology/ontology-schema.json
 ```
 
 Precedence for the ontology validator's schema: `--schema` on the command line, then `ontology.schema` in the nearest `.aaa-config.yaml` found upward from the working directory, then the `ontology-schema.json` beside the validator: `references/standards/ontology/` in the skill's copy, `standards/ontology/` in this repository. A configured path that does not exist is skipped.
@@ -235,9 +148,9 @@ Precedence for the ontology validator's schema: `--schema` on the command line, 
 
 Copied from `foundation/workspace-manifest.example.yaml` by `scripts/seed-foundation.mjs`, if it does not exist. It records `foundation_source`, `imported_profiles` and a `policy` block (`workspace_is_canonical`, `allow_framework_fallback_readonly`, `require_copy_before_edit`). No tool reads it yet. Treat it as a note of what was seeded and on what terms.
 
-## Front matter read by aaa-rung
+## Front matter read by the rung
 
-`aaa-rung` reads a small set of front matter fields. The full field list for every kind, with
+`/architecture rung` reads a small set of front matter fields. The full field list for every kind, with
 types and required fields, is in `standards/standard-frontmatter.md` and the schemas in
 `standards/schemas/v1.1.0/`.
 
@@ -266,8 +179,8 @@ either no `kind` or the right one.
 
 | Variable | Read by | Effect |
 |---|---|---|
-| `SKILL_DIR` | Each skill's `bin/check.mjs` or `bin/check.py` | The installed skill's folder. Defaults to the folder above `bin/`. Installers set it |
-| `AAA_RUNG_PURE_YAML` | `aaa-rung` | Any non-empty value forces the built-in front matter parser even when PyYAML is installed |
+| `SKILL_DIR` | Each skill's `bin/check.mjs` | The installed skill's folder. Defaults to the folder above `bin/`. Installers set it |
+| `RUNG_PURE_YAML` | The rung | Any non-empty value forces the built-in front matter parser even when PyYAML is installed. The old name, `AAA_RUNG_PURE_YAML`, still works |
 
 ## Foundation profiles
 
@@ -285,4 +198,4 @@ These configure this repository, not a workspace.
 |---|---|
 | `bundle.json` | Each skill's `version`, `purl` and post-install `check`, and the ontology module with the work layer range it extends. Validated by `scripts/validate-bundle.mjs` |
 | `skill-standards.json` | Which standards each skill carries a copy of under `references/standards/`, written by `scripts/sync-skill-standards.mjs` |
-| `skills/<name>/inputs.toml` | A skill's binding contract: `[inputs.options.<key>]` with `type`, `required` and `description` |
+| `skills/<name>/inputs.toml` | A skill's binding contract: `[inputs.options.<key>]` with `type`, `description`, and either `required` or the `flows` that read it and the flows it is `required_by`; `[inputs]` may set `requires_any`, `flows` and `legacy_suites` |

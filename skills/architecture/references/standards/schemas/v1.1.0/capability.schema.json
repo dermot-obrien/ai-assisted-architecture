@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "capability.schema.json",
+  "title": "Capability Artefact (v1.1.0)",
+  "description": "A business capability — what the organisation must be able to do, expressed in business terms, technology-agnostic. Multi-dimensional per TOGAF G189: organisation, people, processes, technology.",
+  "type": "object",
+
+  "allOf": [
+    { "$ref": "envelope.schema.json" },
+    {
+      "properties": {
+        "kind": { "const": "capability" },
+        "id":   { "type": "string", "pattern": "^CAP-\\d{3}$" },
+
+        "level":  { "type": "string", "enum": ["L1", "L2", "L3"] },
+        "parent": { "anyOf": [{ "$ref": "envelope.schema.json#/$defs/capabilityId" }, { "type": "null" }] },
+
+        "components": {
+          "type": "object",
+          "required": ["organisation", "people", "processes", "technology"],
+          "properties": {
+            "organisation": { "type": "string", "minLength": 1 },
+            "people":       { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "processes":    { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+            "technology":   { "type": "string", "minLength": 1 }
+          }
+        },
+
+        "maturity": {
+          "type": "object",
+          "required": ["current", "target"],
+          "properties": {
+            "current":         { "type": "integer", "minimum": 0, "maximum": 5 },
+            "target":          { "type": "integer", "minimum": 0, "maximum": 5 },
+            "assessment_date": { "type": "string", "format": "date" },
+            "assessor":        { "type": "string" }
+          }
+        },
+
+        "provided_by_platform":  { "$ref": "envelope.schema.json#/$defs/platformId" },
+        "required_by_outcomes":  { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/outcomeId" }, "uniqueItems": true },
+        "realised_by_abbs":      { "type": "array", "items": { "$ref": "envelope.schema.json#/$defs/abbId" }, "uniqueItems": true, "description": "The ABBs that realise the capability, at whatever level the capability is defined to: blocks attach at the lowest level defined, so an L1 or L2 capability with no children may carry them." },
+        "gaps":                  { "type": "array", "items": { "type": "string" } },
+
+        "demand_assumption": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional. The demand this capability answers, recorded as an explicit assumption where no outcome is linked yet. Satisfies the demand part of definition-ladder rung R1 in place of required_by_outcomes."
+        },
+
+        "open_questions": {
+          "const": "none",
+          "description": "Optional marker. States that the capability has no open question with more than one credible answer, so no consideration is expected to affect it. Satisfies the consideration part of definition-ladder rung R2. Omit it when considerations exist."
+        },
+
+        "flows": {
+          "type": "array",
+          "description": "Optional. Named paths through the capability that someone would recognise as a job being done. Each carries its rung on the definition ladder (standards/capabilities/standard-definition-ladder.md). The capability sits on the rung of its lowest flow. A recorded rung is a claim; a derived rung (/architecture rung) wins where available.",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id":          { "type": "string", "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*$", "description": "Kebab-case identifier, unique within the capability." },
+              "name":        { "type": "string", "minLength": 1 },
+              "description": { "type": "string" },
+              "rung":        { "type": "string", "pattern": "^R[0-6]$", "description": "Recorded rung on the definition ladder, R0 to R6." }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["level", "components", "maturity"]
+    },
+    {
+      "$comment": "L1 capabilities have no parent; L2/L3 must have one.",
+      "if":   { "properties": { "level": { "enum": ["L2", "L3"] } } },
+      "then": {
+        "required": ["parent"],
+        "properties": { "parent": { "type": "string", "pattern": "^CAP-\\d{3}$" } }
+      },
+      "else": {
+        "$comment": "L1 — parent should be null or omitted."
+      }
+    },
+    {
+      "$comment": "L3 capabilities are provided by exactly one Platform, so provided_by_platform is required for them; L1/L2 capabilities are cross-platform groupings and may omit it. Realisation by ABBs (realised_by_abbs) is intentionally NOT required, even for L3: an L3 capability with no realising ABB is a legitimate architecture GAP surfaced by gap analysis, not a structural-validity error. The foundation catalogue ships such unrealised placeholders deliberately.",
+      "if":   { "properties": { "level": { "const": "L3" } } },
+      "then": {
+        "required": ["provided_by_platform"]
+      }
+    }
+  ]
+}

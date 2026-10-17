@@ -38,33 +38,33 @@ Each level takes its definition from the practice that owns it, and the handover
 
 ## Skills
 
-Eight skills write one kind of artefact each, keeping the thread from outcome to service intact, one reads the model and reports how far each capability has been defined, and one checks a whole repository against the continuum.
+Two skills. `architecture` has a flow per level: eight write one kind of artefact each, keeping the thread from outcome to service intact, one reads the model and reports how far each capability has been defined, and one checks a whole repository against the continuum. `workspace` sets a repository up for them.
 
-| Skill | Writes |
+| Skill and flow | Does |
 |---|---|
-| [`aaa-create-strategy`](docs/skills/aaa-create-strategy.md) | Business outcomes with their measures, and the use cases that support them |
-| [`aaa-create-platform`](docs/skills/aaa-create-platform.md) | Platforms with an executive owner, the capabilities they provide and the contexts they contain |
-| [`aaa-create-capability`](docs/skills/aaa-create-capability.md) | Capabilities, added to the capability model |
-| [`aaa-create-context`](docs/skills/aaa-create-context.md) | Bounded contexts and their ubiquitous language |
-| [`aaa-create-abb`](docs/skills/aaa-create-abb.md) | Architecture building blocks with their diagrams |
-| [`aaa-create-sbb`](docs/skills/aaa-create-sbb.md) | Solution building blocks, simple or composite, mapped to technologies |
-| [`aaa-create-service`](docs/skills/aaa-create-service.md) | Services, the deployable units, each realising an SBB inside one context |
-| [`aaa-create-runtime-agent`](docs/skills/aaa-create-runtime-agent.md) | Autonomous runtime agents with guardrails, capability scope and provenance |
-| [`aaa-rung`](docs/skills/aaa-rung.md) | Read-only. Each capability's rung on the definition ladder, per flow, and what blocks the next |
-| [`aaa-continuum`](docs/skills/aaa-continuum.md) | Read-only. Every page and register of an architecture against the continuum's standards, with each disagreement named; scaffolds the layout for a new repository |
+| [`/architecture strategy`](docs/skills/architecture/strategy.md) | Business outcomes with their measures, and the use cases that support them |
+| [`/architecture platform`](docs/skills/architecture/platform.md) | Platforms with an executive owner, the capabilities they provide and the contexts they contain |
+| [`/architecture capability`](docs/skills/architecture/capability.md) | Capabilities, added to the capability model |
+| [`/architecture context`](docs/skills/architecture/context.md) | Bounded contexts and their ubiquitous language |
+| [`/architecture abb`](docs/skills/architecture/abb.md) | Architecture building blocks with their diagrams |
+| [`/architecture sbb`](docs/skills/architecture/sbb.md) | Solution building blocks, simple or composite, mapped to technologies |
+| [`/architecture service`](docs/skills/architecture/service.md) | Services, the deployable units, each realising an SBB inside one context |
+| [`/architecture runtime-agent`](docs/skills/architecture/runtime-agent.md) | Autonomous runtime agents with guardrails, capability scope and provenance |
+| [`/architecture rung`](docs/skills/architecture/rung.md) | Read-only. Each capability's rung on the definition ladder, per flow, and what blocks the next |
+| [`/architecture check`](docs/skills/architecture/check.md) | Read-only. Every page and register of an architecture against the continuum's standards, with each disagreement named; scaffolds the layout for a new repository |
 | [`workspace`](docs/skills/workspace.md) | Initialises or reinitialises a repository for the skills: clears out what retired tooling left, installs the declared skills, and wires the build so it runs without them |
 
-The `aaa-` prefix was a namespace, not a meaning. The next major version folds the ten into one skill named `architecture` with a flow per level (`/architecture platform`, `/architecture abb`, `/architecture service`, `/architecture rung`, `/architecture check`), as `work` and `research` did in their bundles, and keeps the `aaa-*` names as aliases for a release. Until then the ten install and run as they are.
+The flows were ten skills, `aaa-create-strategy` to `aaa-create-runtime-agent`, `aaa-rung` and `aaa-continuum`. The `aaa-` prefix was a namespace, not a meaning, so they are now one skill, as `work` and `research` became in their bundles. The skill still answers to the old names, and for one release it reads the old `[suite.aaa-*]` binding tables with a warning; [Configuration](docs/configuration.md#architecture) says how to move to the one `[suite.architecture]` table.
 
 Every skill follows the [Agent Skills specification](https://agentskills.io/specification). CI validates them on every pull request with the specification's reference validator, `skills-ref`, and with `scripts/validate-skills.mjs`, which also checks that relative links resolve and warns when a `SKILL.md` body passes the specification's 500-line or 5,000-token guidance.
 
-The `pattern` skill, which authors an architecture pattern as one Markdown document that is also the model and the deck, began here and lives in [architecture-pattern](https://github.com/dermot-obrien/architecture-pattern). `aaa-rung` reads a pattern's front matter.
+The `pattern` skill, which authors an architecture pattern as one Markdown document that is also the model and the deck, began here and lives in [architecture-pattern](https://github.com/dermot-obrien/architecture-pattern). `/architecture rung` reads a pattern's front matter.
 
 ## Install
 
 You need git, Node.js 18 or later and Python 3.11 or later. draw.io desktop is optional, for PNG export of diagrams. No package registry is needed.
 
-Each skill is complete on its own: it carries the standards it reads, the `.aaa-config.yaml` template and its own binding resolver, so you can install all nine or only the ones you use, and no other skill is needed. Install them with `bin/skills.mjs`, the standalone skills installer in [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) (AAW), from the workspace root:
+Each skill is complete on its own: `architecture` carries the standards it reads, the `.aaa-config.yaml` template and its own binding resolver, and needs no other skill. Install them with `bin/skills.mjs`, the standalone skills installer in [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) (AAW), from the workspace root:
 
 ```bash
 git clone https://github.com/dermot-obrien/ai-assisted-work ../ai-assisted-work
@@ -72,7 +72,7 @@ git clone https://github.com/dermot-obrien/architecture-continuum ../architectur
 node ../ai-assisted-work/bin/skills.mjs install --bundle ../architecture-continuum
 ```
 
-Name skills after the command to install only those. For a team workspace, commit an `.agents/skills.json` that declares the bundle and let the installer fetch it and lock the commit:
+Name a skill after the command to install only that one. For a team workspace, commit an `.agents/skills.json` that declares the bundle and let the installer fetch it and lock the commit:
 
 ```json
 { "sources": [ { "bundle": "https://github.com/dermot-obrien/architecture-continuum.git", "ref": "main" } ] }
@@ -93,27 +93,27 @@ A declaration or lock that still names `ai-assisted-architecture` keeps working:
 | Codex | `.agents/skills/` | `~/.agents/skills/` |
 | Gemini CLI | `.agents/skills/` | `~/.agents/skills/` |
 
-Folders change between agent versions, so check your agent's documentation if a skill does not appear. To install without the installer, or for every workspace at user level, copy the `skills/aaa-*` folders into one of those folders; [Installation](docs/installation.md) covers that, updating and removing.
+Folders change between agent versions, so check your agent's documentation if a skill does not appear. To install without the installer, or for every workspace at user level, copy the `skills/architecture` and `skills/workspace` folders into one of those folders; [Installation](docs/installation.md) covers that, updating and removing.
 
 Version 0.3.0 and earlier installed through AAW's framework engine with `aaa install`. That installer and its npm commands were removed in 0.4.0; pin the `v0.3.0` tag if you still need them.
 
 ## Quick start
 
-After installing, seed a starter model from the clone, bind `aaa-rung` to it, and ask where each capability stands:
+After installing, seed a starter model from the clone, bind `/architecture rung` to it, and ask where each capability stands:
 
 ```bash
 node ../architecture-continuum/scripts/seed-foundation.mjs --workspace .
-printf '[suite.aaa-rung]\ncapabilityDir = "../capabilities"\nabbDir = "../building-blocks/architecture-building-blocks"\n' > .agents/skill-bindings.toml
-python .agents/skills/aaa-rung/bin/rung.py
+printf '[suite.architecture]\ncapabilityDir = "../capabilities"\nabbDir = "../building-blocks/architecture-building-blocks"\n' > .agents/skill-bindings.toml
+python .agents/skills/architecture/bin/rung.py
 ```
 
 ```powershell
 node ../architecture-continuum/scripts/seed-foundation.mjs --workspace .
-'[suite.aaa-rung]', 'capabilityDir = "../capabilities"', 'abbDir = "../building-blocks/architecture-building-blocks"' | Set-Content -Encoding ascii .agents/skill-bindings.toml
-python .agents/skills/aaa-rung/bin/rung.py
+'[suite.architecture]', 'capabilityDir = "../capabilities"', 'abbDir = "../building-blocks/architecture-building-blocks"' | Set-Content -Encoding ascii .agents/skill-bindings.toml
+python .agents/skills/architecture/bin/rung.py
 ```
 
-You should see a table of seven capabilities, each with its rung and the artefact blocking the next one. Then bind the other skills and type `/aaa-create-abb` (or any `/aaa-*` skill) in your agent. The [quick start](docs/quick-start.md) does all of this from an empty folder, in PowerShell and bash, in about ten minutes.
+You should see a table of seven capabilities, each with its rung and the artefact blocking the next one. Then bind the other flows and type `/architecture abb` (or any other flow) in your agent. The [quick start](docs/quick-start.md) does all of this from an empty folder, in PowerShell and bash, in about ten minutes.
 
 ## Documentation
 
@@ -140,7 +140,7 @@ You should see a table of seven capabilities, each with its rung and the artefac
 
 ```
 docs/            This documentation, with the continuum (continuum.md, continuum.svg, continuum.drawio), the schema picture (schema.md, schema.svg), its views (continuum-views.md, views/) and the bundles landscape (landscape.md, landscape.svg, landscape.drawio)
-skills/          The nine Agent Skills: SKILL.md, inputs.toml, references/ (with their copy of the standards), bin/
+skills/          The two Agent Skills: SKILL.md, inputs.toml, references/ (the architecture skill's flows and its copy of the standards), bin/
 standards/       The standards the skills follow, with worked examples, the schemas, the ontology and the config template
 foundation/      A generic starter model, optional, seeded into a workspace by scripts/seed-foundation.mjs
 ontology/        The architecture ontology module (bundle.json names it)
@@ -151,7 +151,7 @@ skill-standards.json   Which standards each skill carries a copy of
 
 ## Lineage
 
-This repository was AI-Assisted Architecture from its first commit to version 0.4.0, and was renamed Architecture Continuum in October 2026. The history, the release tags (`aaa-create-abb--v0.5.0` and the rest) and the issues are this repository's; the old repository URL redirects here; and the bundle, its purls and its skill names keep the old identifiers until the next major version, which renames them and records the old ones as what they derived from. The name changed because the old one named the tool rather than the method: in a practice where every artefact is written with an agent, "AI-assisted" says nothing, and the thing this bundle defines is the continuum.
+This repository was AI-Assisted Architecture from its first commit to version 0.4.0, and was renamed Architecture Continuum in October 2026. The history, the release tags (`aaa-create-abb--v0.5.0` and the rest) and the issues are this repository's, and the old repository URL redirects here. The ten `aaa-*` skills became the one `architecture` skill in the release after 0.5.0; the bundle's name and purls keep the old identifiers. The name changed because the old one named the tool rather than the method: in a practice where every artefact is written with an agent, "AI-assisted" says nothing, and the thing this bundle defines is the continuum.
 
 The related bundles keep their names: [AI-Assisted Work](https://github.com/dermot-obrien/ai-assisted-work) for the installer, the bundle format and the `work` skill, and [AI-Assisted Research](https://github.com/dermot-obrien/ai-assisted-research) for research lineage.
 

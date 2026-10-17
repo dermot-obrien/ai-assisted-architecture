@@ -211,7 +211,7 @@ State how far the capability has been defined, as a rung on the [definition ladd
 |------|------|------|------------------------|
 | `take-order` | Take an order | `R2` | CN-004 has no accepted decision record |
 
-A flow is a named path through the capability that someone would recognise as a job being done. The capability as a whole sits on the rung of its lowest flow. Where `aaa-rung` is available, copy the derived rung and blocker rather than asserting them. A capability with no declared flows states one rung for the whole capability.
+A flow is a named path through the capability that someone would recognise as a job being done. The capability as a whole sits on the rung of its lowest flow. Where `/architecture rung` is available, copy the derived rung and blocker rather than asserting them. A capability with no declared flows states one rung for the whole capability.
 
 This section is optional until the capability is being planned as rung movements, and RECOMMENDED from then on.
 
@@ -304,7 +304,7 @@ A capability carries two measures that are easy to confuse. They are different a
 | Measures | How completely the capability has been defined and made ready | How well the capability performs once it operates |
 | Scale | R0 Unrecognised to R6 In service | 0 None to 5 Optimising |
 | Evidence | The artefacts that exist: capability, ABBs, considerations, decision records, SBBs, patterns, and linked implementation evidence | An assessment of the running capability by an assessor |
-| Recorded in | `flows[].rung`, and derivable by `aaa-rung` | `maturity.current` and `maturity.target` |
+| Recorded in | `flows[].rung`, and derivable by `/architecture rung` | `maturity.current` and `maturity.target` |
 | Moves | While the capability is defined and built | Once the capability is in service |
 
 The two meet at R6. Maturity only means something for a capability that is in service, and before that the ladder is the measure that moves. Where something already operates for a capability below R6 (built ahead of its definition), its maturity can be assessed, but that does not raise the rung: the running system is latent evidence until the rungs beneath it exist.

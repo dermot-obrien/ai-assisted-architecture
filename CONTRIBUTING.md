@@ -86,7 +86,7 @@ node scripts/validate-bundle.mjs --schemas standards/ontology .
 node scripts/test-architecture-ontology.mjs
 node scripts/sync-skill-standards.mjs --check
 node scripts/generate-schema-diagram.mjs --check
-python -m unittest discover skills/aaa-rung/tests
+python -m unittest discover -s skills/architecture/tests
 ```
 
 Each skill carries its own copy of the standards it reads in `references/standards/`. After

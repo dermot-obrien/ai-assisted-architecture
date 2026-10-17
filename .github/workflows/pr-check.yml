@@ -86,7 +86,7 @@ jobs:
           if [ "$bad" -ne 0 ]; then
             echo ""
             echo "Commit subjects follow Conventional Commits (CONTRIBUTING.md, \"Releases\"), for example:"
-            echo "  feat(aaa-rung): read the flows a pattern declares"
+            echo "  feat(architecture): read the flows a pattern declares"
             echo "  fix(continuum): the service row names the C4 container, fixes #12"
             exit 1
           fi

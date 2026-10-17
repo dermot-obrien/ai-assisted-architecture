@@ -8,15 +8,15 @@ Installed one by one, or all together from `bundle.json`, with AI-Assisted Work'
 
 | Skill | Invoke | Description |
 |-------|--------|-------------|
-| Create Outcome/UC | `/aaa-create-strategy` | Strategic and operational layer creation. |
-| Create Platform | `/aaa-create-platform` | Defining business platforms and strategic ownership. |
-| Create Capability | `/aaa-create-capability` | End-to-end capability creation and maturity mapping. |
-| Create Context | `/aaa-create-context` | Defining Bounded Contexts and linguistic boundaries. |
-| Create ABB | `/aaa-create-abb` | End-to-end ABB creation: logical structure and diagrams. |
-| Create SBB | `/aaa-create-sbb` | End-to-end SBB creation: product mapping, realisation, composite structure. |
-| Create Service | `/aaa-create-service` | Runtime unit of execution definition. |
-| Derive Rung | `/aaa-rung` | Read-only. Derives each capability's rung on the definition ladder, per flow, and names the artefact blocking the next rung. See `standards/capabilities/standard-definition-ladder.md`. |
-| Create Runtime Agent | `/aaa-create-runtime-agent` | (Builder skill) Author an autonomous **runtime agent** as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance. See `standards/agent-native/agent-types.md`. |
+| Create Outcome/UC | `/architecture strategy` | Strategic and operational layer creation. |
+| Create Platform | `/architecture platform` | Defining business platforms and strategic ownership. |
+| Create Capability | `/architecture capability` | End-to-end capability creation and maturity mapping. |
+| Create Context | `/architecture context` | Defining Bounded Contexts and linguistic boundaries. |
+| Create ABB | `/architecture abb` | End-to-end ABB creation: logical structure and diagrams. |
+| Create SBB | `/architecture sbb` | End-to-end SBB creation: product mapping, realisation, composite structure. |
+| Create Service | `/architecture service` | Runtime unit of execution definition. |
+| Derive Rung | `/architecture rung` | Read-only. Derives each capability's rung on the definition ladder, per flow, and names the artefact blocking the next rung. See `standards/capabilities/standard-definition-ladder.md`. |
+| Create Runtime Agent | `/architecture runtime-agent` | (Builder skill) Author an autonomous **runtime agent** as a catalogued service with run-time guardrails, contracts, capability scope, and output provenance. See `standards/agent-native/agent-types.md`. |
 
 ## Scripts
 
@@ -54,17 +54,17 @@ For **agent-native** workspaces (AI-majority engineering), also load:
 
 ## Scope Routing
 
-- For business outcomes and use cases, apply `standard-strategy.md` via `/aaa-create-strategy`.
-- For business platforms, apply `platform-standard.md` via `/aaa-create-platform`.
-- For capability documents, apply `standard-capability-document.md` via `/aaa-create-capability`.
+- For business outcomes and use cases, apply `standard-strategy.md` via `/architecture strategy`.
+- For business platforms, apply `platform-standard.md` via `/architecture platform`.
+- For capability documents, apply `standard-capability-document.md` via `/architecture capability`.
 - For capability diagrams (maps and traceability matrices), apply `standard-capability-diagram.md`.
-- For how far a capability has been defined, apply `standard-definition-ladder.md`, and derive the rung with `/aaa-rung`.
-- For bounded context definitions, apply `standard-bounded-context.md` via `/aaa-create-context`.
-- For whether something is an ABB, an SBB, a component inside one, or a whole system, apply `standard-building-block-calibration.md` before `/aaa-create-abb`, `/aaa-create-sbb`, or a pattern's building-block table.
-- For ABB narrative/content documents, apply `standard-abb-document.md` via `/aaa-create-abb`.
-- For SBB narrative/content documents, apply `standard-sbb-document.md` via `/aaa-create-sbb`.
-- For runtime services, apply `standard-service.md` via `/aaa-create-service`.
-- For runtime agents, apply `agent-specification.md` via `/aaa-create-runtime-agent`.
+- For how far a capability has been defined, apply `standard-definition-ladder.md`, and derive the rung with `/architecture rung`.
+- For bounded context definitions, apply `standard-bounded-context.md` via `/architecture context`.
+- For whether something is an ABB, an SBB, a component inside one, or a whole system, apply `standard-building-block-calibration.md` before `/architecture abb`, `/architecture sbb`, or a pattern's building-block table.
+- For ABB narrative/content documents, apply `standard-abb-document.md` via `/architecture abb`.
+- For SBB narrative/content documents, apply `standard-sbb-document.md` via `/architecture sbb`.
+- For runtime services, apply `standard-service.md` via `/architecture service`.
+- For runtime agents, apply `agent-specification.md` via `/architecture runtime-agent`.
 - For links between all layers, apply `standard-traceability.md`.
 - For the YAML frontmatter on every catalog artefact, apply `standard-frontmatter.md` *(v1.1.0)*. Schemas at [`standards/schemas/v1.1.0/`](../standards/schemas/v1.1.0/).
 
@@ -80,6 +80,6 @@ For **agent-native** workspaces (AI-majority engineering), also load:
 Before finalising any artefact, confirm:
 
 1. All canonical standards above were loaded for the relevant artefact type.
-2. The specific Agent Skill (e.g. `skills/aaa-create-strategy/SKILL.md`) was followed in order, with no phase skipped.
+2. The specific Agent Skill (e.g. `skills/architecture/SKILL.md`) was followed in order, with no phase skipped.
 3. The **AI Agent Self-Verification Checklist** from the relevant standard was executed.
 4. The "Golden Thread" of traceability back to a Strategic Outcome is intact.

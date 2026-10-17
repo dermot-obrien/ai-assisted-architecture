@@ -5,7 +5,7 @@ tools print them; `<...>` stands for a path, key or value that varies.
 
 - [Installing](#installing)
 - [Bindings and post-install checks](#bindings-and-post-install-checks)
-- [aaa-rung](#aaa-rung)
+- [/architecture rung](#/architecture rung)
 - [Rung blockers](#rung-blockers): what each one asks you to create or fix
 - [In your agent](#in-your-agent)
 - [Validation and ontology scripts](#validation-and-ontology-scripts)
@@ -34,7 +34,7 @@ Those tools read both `.agents/skills/` and `.claude/skills/`. The second entry 
 
 #### `/create-abb` (or any `/create-*`) does nothing
 
-The unprefixed command shims were removed. Use `/aaa-create-abb` and so on, and delete any `create-*` shims an older installer left behind.
+The unprefixed command shims were removed. Use `/architecture abb` and so on, and delete any `create-*` shims an older installer left behind.
 
 #### `= skip existing: <name>`
 
@@ -63,17 +63,29 @@ Harmless: the file is optional and the skill carries on. Copy the template only 
 
 #### `warning: .aaa-config.yaml: ontology.schema <path> does not exist, so nothing can be validated against the ontology. Put the schema there, or correct the path.`
 
-The template's default path is not in your workspace. Set `ontology.schema` to `.agents/skills/aaa-create-runtime-agent/references/standards/ontology/ontology-schema.json`, or copy the schema to the path named. See [Configuration](configuration.md#aaa-configyaml).
+The template's default path is not in your workspace. Set `ontology.schema` to `.agents/skills/architecture/references/standards/ontology/ontology-schema.json`, or copy the schema to the path named. See [Configuration](configuration.md#aaa-configyaml).
 
 #### `.agents/skill-bindings.toml: not found at or above <root>. Create it with [suite.<skill>] declaring <keys>.`
 
 No bindings file. Create one; the [quick start](quick-start.md#5-bind-the-skills-to-folders)
 has a complete example.
 
-#### `<file>: [suite.<skill>] does not declare <key>. Name the folder; it has no default.`
+#### `<file>: [suite.<skill>] does not declare <key>, which the <flow> flow needs. Name the folder; it has no default.`
 
-A required binding is missing. Add it to that skill's table.
-[Configuration](configuration.md#skill-bindings) lists every key.
+A binding the flow needs is missing. Add it to `[suite.architecture]`.
+[Configuration](configuration.md#architecture) lists every key and the flows that need it.
+
+#### `<file>: [suite.architecture] binds nothing, so no flow can run.`
+
+The table is empty or missing, and no old `[suite.aaa-*]` table answers either. Bind the folders the flows you use need; the post-install check passes once one is bound.
+
+#### `warning: <file>: <keys> read from the old table(s) [suite.aaa-<name>]; move them to [suite.architecture], which this release still falls back from`
+
+The repository still answers the ten skills' old tables. It works for this release. Move each key named into `[suite.architecture]` and delete the old table; a key is read from only one table, and when two old tables disagree the first is used and the conflict is a second warning.
+
+#### `architecture has no flow <name>; its flows are platform, strategy, capability, context, abb, sbb, service, runtime-agent, rung, check`
+
+`--flow` names a flow the skill does not have. Use one of those listed. Exit code 2.
 
 #### `<file>: [suite.<skill>] <key> = "<value>" resolves to <path>, which does not exist. Create it, or correct <key>.`
 
@@ -95,42 +107,29 @@ that line.
 
 Upgrade Node.js. Exit code 2.
 
-#### `Python <version> is too old: aaa-rung needs 3.11 or newer.`
+#### `usage: check.mjs [--json] [--flow <name>]   (run from the workspace root; exit 0 ok, 1 problems, 2 usage or environment)`
 
-`aaa-rung` reads TOML with `tomllib`, new in 3.11. Upgrade Python, or run it with a newer
-interpreter such as `py -3.12`. Exit code 2.
+`check.mjs` takes only `--json` and `--flow <name>`. Set `SKILL_DIR` to point it at another installed skill; see [Commands](commands.md#post-install-checks).
 
-#### `warning: PyYAML is not installed; the built-in front matter parser is used instead.`
-
-Harmless. `pip install pyyaml` silences it.
-
-#### `warning: <file>: [suite.aaa-rung] binds no directory, so every capability derives from nothing. Bind capabilityDir at least.`
-
-`[suite.aaa-rung]` is empty or missing. Bind at least `capabilityDir`.
-
-#### `usage: check.mjs [--json]   (run from the workspace root; exit 0 ok, 1 problems, 2 usage or environment)`
-
-`check.mjs` takes only `--json`. Set `SKILL_DIR` to point it at another installed skill; see [Commands](commands.md#post-install-checks).
-
-## aaa-rung
+## The rung flow
 
 #### `! bindings did not resolve:` followed by one line per problem
 
 `rung.py` stopped before reading anything, with exit code 2. The lines below it are:
 
-#### `no .agents/skill-bindings.toml found above the working directory. Add [suite.aaa-rung] to the repository's bindings file, or pass --bindings`
+#### `no .agents/skill-bindings.toml found above the working directory. Add [suite.architecture] to the repository's bindings file, or pass --bindings`
 
 Run from inside the workspace, or pass `--bindings <path>`.
 
-#### `[suite.aaa-rung] <key> = '<value>' resolves to <path>, which is not a directory`
+#### `[suite.architecture] <key> = '<value>' resolves to <path>, which is not a directory`
 
 A bound folder does not exist. Create it, correct it, or delete the key to leave that kind
 unbound.
 
-#### `[suite.aaa-rung] <key> is not a key this skill declares`
+#### `[suite.architecture] <key> is not a key this skill declares`
 
 A typo, or a key from another skill's table. The keys are listed in
-[Configuration](configuration.md#aaa-rung).
+[Configuration](configuration.md#/architecture rung).
 
 #### `local pattern '<regex>' is not a valid regex: <reason>`
 
@@ -139,7 +138,7 @@ backslashes stay as written.
 
 #### `reading bindings needs Python 3.11 or newer (tomllib)`
 
-As above: upgrade Python.
+The rung reads TOML with `tomllib`, new in 3.11. Upgrade Python, or run it with a newer interpreter such as `py -3.12`. Exit code 2.
 
 #### `(capabilityDir is not bound, and none named by a pattern or consideration)`
 
@@ -168,7 +167,7 @@ the missing evidence (the blocker says what) or lower `flows[].rung`.
 #### `Recorded` shows `<rung> stale`
 
 The evidence supports more than the recorded rung. Raise `flows[].rung`, or remove it and let
-`aaa-rung` derive it.
+`/architecture rung` derive it.
 
 #### `note  <CAP>: latent evidence at <rungs>, not counted until the rungs below hold`
 
@@ -176,7 +175,7 @@ Artefacts for a higher rung exist, but a lower rung is not yet met. They will co
 
 #### `note  <CAP>: named by <pattern or consideration> but has no capability document`
 
-Something refers to a capability that does not exist. Create it with `/aaa-create-capability`,
+Something refers to a capability that does not exist. Create it with `/architecture capability`,
 or correct the reference.
 
 #### `warn  pattern <id> names flow <flow>, which <CAP> does not declare`
@@ -190,14 +189,14 @@ means, and who writes the fix.
 
 | Blocker | Fix | Skill |
 |---|---|---|
-| `no capability document for <CAP> under capabilityDir` | Create the capability | `/aaa-create-capability` |
-| `<CAP> has no level (L1, L2 or L3)` | Add `level` | `/aaa-create-capability` |
-| `<CAP> is <level> but names no parent` | Add `parent` for L2 and L3 | `/aaa-create-capability` |
-| `<CAP> states no purpose: add a description, or a Purpose section` | Add `description` or a Purpose section | `/aaa-create-capability` |
-| `<CAP> names no demand: add required_by_outcomes, or record demand_assumption` | Link an outcome, or record the demand as an assumption | `/aaa-create-strategy`, `/aaa-create-capability` |
-| `<CAP> names no ABB in realised_by_abbs` | Name the ABBs that realise it | `/aaa-create-abb` |
-| `<ABB> is named by <CAP> but has no ABB document under abbDir` | Create the ABB, or correct the id | `/aaa-create-abb` |
-| `<ABB> does not declare requires (an empty list is enough)` | Add `requires`, `[]` if it needs nothing | `/aaa-create-abb` |
+| `no capability document for <CAP> under capabilityDir` | Create the capability | `/architecture capability` |
+| `<CAP> has no level (L1, L2 or L3)` | Add `level` | `/architecture capability` |
+| `<CAP> is <level> but names no parent` | Add `parent` for L2 and L3 | `/architecture capability` |
+| `<CAP> states no purpose: add a description, or a Purpose section` | Add `description` or a Purpose section | `/architecture capability` |
+| `<CAP> names no demand: add required_by_outcomes, or record demand_assumption` | Link an outcome, or record the demand as an assumption | `/architecture strategy`, `/architecture capability` |
+| `<CAP> names no ABB in realised_by_abbs` | Name the ABBs that realise it | `/architecture abb` |
+| `<ABB> is named by <CAP> but has no ABB document under abbDir` | Create the ABB, or correct the id | `/architecture abb` |
+| `<ABB> does not declare requires (an empty list is enough)` | Add `requires`, `[]` if it needs nothing | `/architecture abb` |
 | `no consideration affects <CAP> or its ABBs, and it does not declare open_questions: none` | Record each open question as a consideration, or state there are none | You; considerations have no skill yet |
 | `<CN> is <status>: it needs an accepted decision record in resolved_by` | Decide, and resolve the consideration | You |
 | `<CN> is resolved but names no resolved_by decision record` | Add `resolved_by: DR-NNN` | You |
@@ -205,7 +204,7 @@ means, and who writes the fix.
 | `<CN> is resolved by <DR>, whose status is <status>, not accepted or active` | Accept the decision | You |
 | `no pattern realises <CAP> for flow <flow>: add realises: [<CAP>] to a logical pattern` | Author a pattern that realises it | `/pattern` |
 | `pattern <id> is <abstraction>: <boxes> not logical` | Replace the named boxes with ABBs | `/pattern` |
-| `no SBB realises <ABB>` | Create an SBB that realises the ABB | `/aaa-create-sbb` |
+| `no SBB realises <ABB>` | Create an SBB that realises the ABB | `/architecture sbb` |
 | `<ABB> is realised only by <SBB> (<status>): an SBB must be accepted or active` | Accept the SBB | You |
 | `no physical pattern realises <CAP> for flow <flow>: pattern <id> is <abstraction>: ...` | Make a pattern physical, every box an SBB | `/pattern` |
 | `pattern <id> is physical but has no cost-model reference` | Add a `references` entry of type `cost-model` | `/pattern` |
@@ -241,20 +240,20 @@ No workspace `visual-design-standard.md` was found, so the example palette the s
 
 #### The runtime agent is reported as "authored but not validated"
 
-`agentProfileSchema` or `ontologyValidator` is not bound for `aaa-create-runtime-agent`.
-Bind them; see [Configuration](configuration.md#aaa-create-runtime-agent).
+`agentProfileSchema` or `ontologyValidator` is not bound for `/architecture runtime-agent`.
+Bind them; see [Configuration](configuration.md#/architecture runtime-agent).
 
 ## Validation and ontology scripts
 
 #### `Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'js-yaml'` or `Error: Cannot find module 'js-yaml'`
 
-`validate-frontmatter.mjs`, `migrate-frontmatter.mjs` and the ontology scripts need `js-yaml`, `ajv` and `ajv-formats`. In a clone of this repository, run `npm install` once. For the validator `aaa-create-runtime-agent` carries, install them in the workspace: `npm install js-yaml ajv ajv-formats`.
+`validate-frontmatter.mjs`, `migrate-frontmatter.mjs` and the ontology scripts need `js-yaml`, `ajv` and `ajv-formats`. In a clone of this repository, run `npm install` once. For the validator `/architecture runtime-agent` carries, install them in the workspace: `npm install js-yaml ajv ajv-formats`.
 
 #### `validate-frontmatter: ... fail=<n>`, with lines such as `/ must have required property 'components'`
 
 A document does not meet its kind's schema in `standards/schemas/v1.1.0/`. The minimal
 documents in the quick start carry only what the ladder reads, and fail here; the
-`aaa-create-*` skills write the full set.
+The create flows write the full set.
 
 #### `FAIL  <file>  1 error(s)` with `/version  must be equal to constant {"allowedValue":"<version>"}`
 

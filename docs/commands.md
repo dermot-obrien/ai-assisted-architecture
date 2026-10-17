@@ -15,7 +15,7 @@ On macOS and Linux type `python3` where this page says `python`.
 
 ### skills.mjs
 
-The installer is AI-Assisted Work's `bin/skills.mjs`, a single Node script with no dependencies. This repository does not ship one. The commands AAA's skills use:
+The installer is AI-Assisted Work's `bin/skills.mjs`, a single Node script with no dependencies. This repository does not ship one. The commands this bundle's skills use:
 
 ```text
 node <aaw>/bin/skills.mjs install [<name>...] --bundle <aaa> [--workspace <dir>] [--copy] [--dry-run]
@@ -53,7 +53,7 @@ Ends with a `seed complete` line giving the number of capabilities, ABBs and SBB
 ### rung.py
 
 ```text
-python .agents/skills/aaa-rung/bin/rung.py [CAP-NNN ...] [--bindings BINDINGS] [--json] [--verbose] [--check] [--doctor] [--version]
+python .agents/skills/architecture/bin/rung.py [CAP-NNN ...] [--bindings BINDINGS] [--json] [--verbose] [--check] [--doctor] [--version]
 ```
 
 Derives each capability's rung on the definition ladder, per flow, and names what blocks the
@@ -67,7 +67,7 @@ next rung. Read-only.
 | `--verbose`, `-v` | Every blocker, not only the first |
 | `--check` | Exit 1 when a rung recorded in `flows[].rung` is above the derived one |
 | `--doctor` | Resolve the bindings, print them, and stop |
-| `--version` | Print `aaa-rung <version>` |
+| `--version` | Print `/architecture rung <version>` |
 | `--help`, `-h` | Print usage |
 
 In the table, `Recorded` shows a flow's recorded rung, with `claimed` when it is above the
@@ -80,12 +80,12 @@ resolve.
 
 ### continuum.mjs
 
-`aaa-continuum`'s tool, run from the workspace root:
+The check flow's tool, run from the workspace root:
 
 ```bash
-node .agents/skills/aaa-continuum/bin/continuum.mjs doctor
-node .agents/skills/aaa-continuum/bin/continuum.mjs check [--json] [--quiet] [--strict] [--root <dir>] [--bindings <file>] [--schemas <dir>]
-node .agents/skills/aaa-continuum/bin/continuum.mjs scaffold --root <dir> --namespace <code> --name "<Name>" [--url <base>] [--bind]
+node .agents/skills/architecture/bin/continuum.mjs doctor
+node .agents/skills/architecture/bin/continuum.mjs check [--json] [--quiet] [--strict] [--root <dir>] [--bindings <file>] [--schemas <dir>]
+node .agents/skills/architecture/bin/continuum.mjs scaffold --root <dir> --namespace <code> --name "<Name>" [--url <base>] [--bind]
 ```
 
 `doctor` prints the resolved bindings (`root`, `schemes`, `namespaces`, `schemas`), where the three npm packages were found, and any problem, then stops. `check` reads every Markdown page and CSV register under the root and prints one line per finding (`level code file: message`) and a summary; `--quiet` prints errors only, `--strict` makes warnings fail, `--json` prints `{ status, summary, findings }`, and `--root` overrides the bound root for one run. `scaffold` writes the layout for a new root, never overwriting, and prints the bindings it answers; `--bind` appends them to `.agents/skill-bindings.toml`.
@@ -127,28 +127,26 @@ node <aaa>/scripts/validate-bundle.mjs --run-checks . <aaa>
 Or one at a time, from the workspace root:
 
 ```bash
-node .agents/skills/aaa-create-abb/bin/check.mjs
-node .agents/skills/aaa-continuum/bin/check.mjs
-python .agents/skills/aaa-rung/bin/check.py
+node .agents/skills/architecture/bin/check.mjs                # the post-install check
+node .agents/skills/architecture/bin/check.mjs --flow abb     # what one flow needs
+node .agents/skills/workspace/bin/check.mjs
 ```
 
 `SKILL_DIR` names the installed skill's folder and defaults to the folder above `bin/`, so it is needed only when the check runs from somewhere else.
 
-`bin/check.mjs`, the same file in every `aaa-create-*` skill, `aaa-continuum` and `workspace`, checks that `[suite.<skill>]` of `.agents/skill-bindings.toml` declares every required binding in the skill's `inputs.toml` and that each declared path exists. `.aaa-config.yaml` is optional: without it the check warns and carries on, and with it the check warns when its `ontology.schema` does not exist. `bin/check.py` resolves `[suite.aaa-rung]` as `rung.py --doctor` does, and warns when PyYAML is absent or nothing is bound.
+`bin/check.mjs`, the same file in `architecture` and `workspace`, checks that `[suite.<skill>]` of `.agents/skill-bindings.toml` answers the skill's `inputs.toml` and that each declared path exists. Without `--flow` it requires the keys marked `required`, and, where `[inputs]` sets `requires_any`, at least one binding; with `--flow <name>` it requires the keys whose `required_by` names that flow. A key missing from the table is read from the old tables `[inputs] legacy_suites` names, with a warning. `.aaa-config.yaml` is optional: without it the check warns and carries on, and with it the check warns when its `ontology.schema` does not exist.
 
-Exit codes: 0 correct (warnings may print), 1 problems, one per line, 2 usage or environment error (Node older than 18, Python older than 3.11, or an unknown argument).
+Exit codes: 0 correct (warnings may print), 1 problems, one per line, 2 usage or environment error (Node older than 18, an unknown flow, or an unknown argument).
 
 ### check.mjs --json
 
-Step 0 of every `aaa-create-*` skill resolves its bindings with its own check:
+Step 0 of every create flow resolves its bindings with the skill's check:
 
 ```text
-node .agents/skills/<name>/bin/check.mjs --json
+node .agents/skills/architecture/bin/check.mjs --json --flow <flow>
 ```
 
-Run it from the workspace root. It prints one JSON object: `skill`, `status` (`ok` or `error`), `bindingsFile`, `bindings` with each key of the skill's `inputs.toml` as an absolute path (`null` when not declared), and `problems` and `warnings`. It exits non-zero when `status` is `error`, and the skill stops. No other skill is needed. `aaa-rung` resolves its own bindings with `rung.py --doctor`.
-
-## Validation
+Run it from the workspace root. It prints one JSON object: `skill`, `flow`, `status` (`ok` or `error`), `bindingsFile`, `bindings` with each key of the skill's `inputs.toml` as an absolute path (`null` when not declared), and `problems` and `warnings`. It exits non-zero when `status` is `error`, and the flow stops. No other skill is needed. The rung resolves its own bindings with `rung.py --doctor`, and the check flow with `continuum.mjs doctor`.
 
 ### validate-skills.mjs
 
@@ -166,7 +164,7 @@ The specification's reference validator does the same job and CI runs both:
 
 ```bash
 pip install "git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref"
-skills-ref validate skills/aaa-rung
+skills-ref validate skills/architecture rung
 ```
 
 ### validate-bundle.mjs
@@ -204,7 +202,7 @@ node <aaa>/scripts/validate-frontmatter.mjs --root capabilities
 
 ## Ontology tools
 
-A workspace runs the validator that `aaa-create-runtime-agent` carries, `.agents/skills/aaa-create-runtime-agent/references/scripts/ontology/validate.cjs`, which needs `js-yaml`, `ajv` and `ajv-formats` in the workspace's `node_modules`. In this repository all three scripts are under `scripts/ontology/` and need `npm install` once. Full reference: [Ontology](ontology.md) and [standards/ontology/SCRIPTS.md](../standards/ontology/SCRIPTS.md).
+A workspace runs the validator that `/architecture runtime-agent` carries, `.agents/skills/architecture/references/scripts/ontology/validate.cjs`, which needs `js-yaml`, `ajv` and `ajv-formats` in the workspace's `node_modules`. In this repository all three scripts are under `scripts/ontology/` and need `npm install` once. Full reference: [Ontology](ontology.md) and [standards/ontology/SCRIPTS.md](../standards/ontology/SCRIPTS.md).
 
 | Command | Does | Exit codes |
 |---|---|---|
@@ -220,7 +218,7 @@ For working on this repository. Run from its root.
 
 | Command | Does |
 |---|---|
-| `python -m unittest discover skills/aaa-rung/tests` | `aaa-rung` tests. CI also runs them with `AAA_RUNG_PURE_YAML=1` |
+| `python -m unittest discover -s skills/architecture/tests` | The rung's tests. CI also runs them with `RUNG_PURE_YAML=1` |
 | `node scripts/test-architecture-ontology.mjs` | Tests `ontology/architecture.schema.json` against the base ontology's worked example and cases it must refuse |
 | `node scripts/migrate-frontmatter.mjs [--root <dir>] [--date YYYY-MM-DD] [--dry-run]` | Brings front matter up to v1.1.0 from each document's body. Idempotent. Default root `foundation` |
 | `node scripts/gen-capability-csvs.mjs` | Regenerates the foundation's `capability-hierarchy.csv` and `capability-abb-mapping.csv` from `capability-model.md` |

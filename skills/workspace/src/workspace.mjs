@@ -223,7 +223,7 @@ export function planClean(repo, { self = SKILL_DIR } = {}) {
         notes.push({ path: rel, why: "kept: this run is using it, and install refreshes it" });
         continue;
       }
-      const retired = RETIRED.skills.find((r) => glob(r.pattern).test(name));
+      const retired = !lock[name] && RETIRED.skills.find((r) => glob(r.pattern).test(name));
       if (retired) {
         if (!remove(rel, retired.why)) actions.push({ op: "rm", path: rel, why: retired.why });
         continue;
@@ -438,6 +438,8 @@ function npm(cwd, args) {
 const python = () => ["python3", "python", "py"].find((p) => spawnSync(p, ["--version"], { stdio: "ignore", shell: false }).status === 0) ?? null;
 const skillPath = (repo, ...p) => path.join(repo, ".agents", "skills", ...p);
 const skip = (what, why) => console.error(`${what} skipped: ${why}`);
+/** The architecture root: [suite.architecture] root, or the old [suite.aaa-continuum] root. */
+const architectureRoot = (b) => b.suite("architecture").root ?? b.suite("aaa-continuum").root;
 
 /**
  * Regenerate what the pages derive: diagrams, their stamped exports and walkthroughs (the pattern
@@ -472,9 +474,9 @@ export function regenerate(repo, { env = process.env } = {}) {
   }
 
   const deck = skillPath(repo, "markdown-deck", "bin", "markdown-deck.mjs");
-  const source = ws.deckSource ?? b.suite("aaa-continuum").root;
+  const source = ws.deckSource ?? architectureRoot(b);
   if (!ws.decks) skip("deck publishing", "no deck folder is bound ([suite.workspace] decks)");
-  else if (!source) skip("deck publishing", "no deck source is bound ([suite.workspace] deckSource, or [suite.aaa-continuum] root)");
+  else if (!source) skip("deck publishing", "no deck source is bound ([suite.workspace] deckSource, or [suite.architecture] root)");
   else if (!exists(deck)) skip("deck publishing", "the markdown-deck skill is not installed");
   else if (!exists(skillPath(repo, "markdown-deck", "node_modules"))) skip("deck publishing", "markdown-deck's packages are not installed (install installs them)");
   else {
@@ -489,9 +491,10 @@ export function regenerate(repo, { env = process.env } = {}) {
 export function check(repo, { extra = [] } = {}) {
   const b = loadBindings(repo);
   let status = 0;
-  const continuum = skillPath(repo, "aaa-continuum", "bin", "continuum.mjs");
-  if (!exists(continuum)) skip("continuum check", "the aaa-continuum skill is not installed");
-  else if (!b?.suite("aaa-continuum").root) skip("continuum check", "[suite.aaa-continuum] root is not bound");
+  // The architecture skill, or the aaa-continuum skill it replaced where a repository still pins an older release.
+  const continuum = [skillPath(repo, "architecture", "bin", "continuum.mjs"), skillPath(repo, "aaa-continuum", "bin", "continuum.mjs")].find(exists);
+  if (!continuum) skip("continuum check", "the architecture skill is not installed");
+  else if (!b || !architectureRoot(b)) skip("continuum check", "[suite.architecture] root is not bound");
   else status ||= spawnSync(process.execPath, [continuum, "check", "--strict", ...extra], { cwd: repo, stdio: "inherit" }).status ?? 1;
   const xref = skillPath(repo, "cross-reference", "scripts", "check.cjs");
   if (!exists(xref)) skip("cross-reference check", "the cross-reference skill is not installed");
