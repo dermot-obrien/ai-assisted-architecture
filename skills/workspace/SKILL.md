@@ -1,5 +1,5 @@
 ---
-name: aaa-workspace
+name: workspace
 description: "Initialise or reinitialise a repository that uses the architecture skills. Clears out what retired tooling left behind (framework submodules, aaw-* and aar-* skills, the old modules block, stale installed copies and build output), installs the skills .agents/skills.json declares, writes the repository's door script so its check and regeneration skip quietly when the skills are missing, wires package.json and .gitignore, and runs the Docusaurus build. Use when asked to set up, initialise, reinitialise, reset or clean a repository for the architecture skills, to clear out old skill or framework remnants, to make a site build without the skills installed, or to reinstall the skills and rebuild the site."
 license: Apache-2.0
 compatibility: Node.js 18 or newer and git; no npm packages. The build needs the repository's own Docusaurus packages. Regeneration runs the pattern and model skills (Python 3.11 or newer, PyYAML) and markdown-deck (its npm packages, and a Chromium-based browser for PDFs) when they are installed, and skips each one that is not.
@@ -17,7 +17,7 @@ A repository that uses the architecture skills should build the same site with o
 See what is there, and change nothing:
 
 ```bash
-node <skills>/aaa-workspace/bin/workspace.mjs doctor --repo <repository>
+node <skills>/workspace/bin/workspace.mjs doctor --repo <repository>
 ```
 
 `<skills>` is where this skill is installed: `.agents/skills` in a repository that already has it, or a clone of architecture-continuum's `skills/` for a repository that does not yet. It reports what is declared, locked and installed, what install would write, what clean would remove, and what is left for a person to decide. Read it to the user before changing anything.
@@ -25,8 +25,8 @@ node <skills>/aaa-workspace/bin/workspace.mjs doctor --repo <repository>
 ## Initialise or reinitialise
 
 ```bash
-node <skills>/aaa-workspace/bin/workspace.mjs init --repo <repository> --dry-run   # the plan
-node <skills>/aaa-workspace/bin/workspace.mjs init --repo <repository>             # do it
+node <skills>/workspace/bin/workspace.mjs init --repo <repository> --dry-run   # the plan
+node <skills>/workspace/bin/workspace.mjs init --repo <repository>             # do it
 ```
 
 `init` is clean, install and build in that order. Once a repository has been initialised, `npm run reinit` does the same from inside it, and installs the skills first when they are missing.
@@ -56,10 +56,10 @@ Each step of `check` and `regenerate` is skipped in one line when its skill or b
 
 ## Bindings
 
-All optional, in `[suite.aaa-workspace]` of `.agents/skill-bindings.toml` (the contract is [inputs.toml](inputs.toml)):
+All optional, in `[suite.workspace]` of `.agents/skill-bindings.toml` (the contract is [inputs.toml](inputs.toml)):
 
 ```toml
-[suite.aaa-workspace]
+[suite.workspace]
 decks = "../site/static/decks"   # where decks publish; unbound, no decks
 # deckSource = "../docs/architecture"   default: [suite.aaa-continuum] root
 # diagrams = ["../docs/architecture/demand/use-cases"]   default: the use-case and pattern outputDir

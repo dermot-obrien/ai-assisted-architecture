@@ -189,12 +189,12 @@ root = "../docs/architecture"
 
 The schemes register's columns are `scheme`, `prefix`, `pattern`, `entity`, `home`, `register`, `deliverable_type`, `auto_link` and `notes`. `home` is where each page of the series lives, with `{id}` for the identifier, or a single file for a singleton, or empty for a series that has register rows and no pages; `register` is the CSV that lists the series, relative to the root. `scaffold` writes a register with the continuum's series.
 
-### aaa-workspace
+### workspace
 
 Every key is optional. `decks` is where decks publish, one folder per `deck_id` with a PDF beside each; unbound, regenerate publishes no decks. `deckSource` defaults to the `aaa-continuum` root, `pdf` to `[suite.markdown-deck] pdf`, and `diagrams`, the folders whose use cases and pattern documents the pattern skill regenerates, to the `outputDir` of `[suite.use-case]` and `[suite.pattern]`. `render` is how the pattern skill renders views, `never` by default so a build needs no draw.io desktop.
 
 ```toml
-[suite.aaa-workspace]
+[suite.workspace]
 decks = "../site/static/decks"
 ```
 

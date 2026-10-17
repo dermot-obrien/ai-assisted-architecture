@@ -1,5 +1,5 @@
 {
-  "name": "aaa-workspace",
+  "name": "workspace",
   "version": "0.1.0",
   "description": "Initialise or reinitialise a repository that uses the architecture skills: clear out what retired tooling left, install the declared skills, wire the build so it runs without them. An Agent Skill from AI-Assisted Architecture.",
   "author": "Dermot O'Brien",
@@ -7,7 +7,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dermot-obrien/architecture-continuum.git",
-    "directory": "skills/aaa-workspace"
+    "directory": "skills/workspace"
   },
   "license": "Apache-2.0",
   "type": "module",

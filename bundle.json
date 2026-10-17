@@ -157,10 +157,10 @@
       }
     },
     {
-      "name": "aaa-workspace",
-      "path": "skills/aaa-workspace",
+      "name": "workspace",
+      "path": "skills/workspace",
       "version": "0.1.0",
-      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/aaa-workspace@0.1.0",
+      "purl": "pkg:generic/dermot-obrien/ai-assisted-architecture/workspace@0.1.0",
       "requires": [],
       "check": {
         "command": [
@@ -168,7 +168,7 @@
           "bin/check.mjs"
         ],
         "runtime": "node",
-        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and each path [suite.aaa-workspace] declares exists; every binding is optional"
+        "description": "The ontology schema .aaa-config.yaml names, when it is present, exists, and each path [suite.workspace] declares exists; every binding is optional"
       }
     }
   ],

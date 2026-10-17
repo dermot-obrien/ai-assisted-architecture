@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: 2026 Dermot O'Brien
 // SPDX-License-Identifier: Apache-2.0
 /**
- * aaa-workspace: initialise or reinitialise a repository that uses the architecture skills.
+ * workspace: initialise or reinitialise a repository that uses the architecture skills.
  *
  * clean     removes what retired tooling left behind, and the installed copies the installer puts back
  * install   writes the repository's two scripts, wires package.json and .gitignore, installs the skills
@@ -28,7 +28,7 @@ export const RETIRED = JSON.parse(readAsset("references", "retired.json"));
 const SHIM = readAsset("assets", "architecture.mjs");
 const INSTALLER = readAsset("assets", "skills.mjs");
 export const SHIM_PATH = "scripts/architecture.mjs";
-export const SHIM_MARK = "Written by the aaa-workspace skill";
+export const SHIM_MARK = "Written by the workspace skill";
 export const INSTALLER_MARK = "Copied from dermot-obrien/ai-assisted-work bin/skills.mjs";
 const IGNORES = [".agents/skills/", ".agents/.skill-sources/", ".claude/skills/"];
 
@@ -272,7 +272,7 @@ export function planClean(repo, { self = SKILL_DIR } = {}) {
   for (const s of directSkillScripts(pkg)) {
     notes.push({
       path: "package.json",
-      why: `script "${s.name}" calls an installed skill directly, so it fails on a clone without the skills${s.inBuild ? ", and npm run build runs it" : ""}; run it through ${SHIM_PATH}, or bind its folders under [suite.aaa-workspace] and let regenerate do it`,
+      why: `script "${s.name}" calls an installed skill directly, so it fails on a clone without the skills${s.inBuild ? ", and npm run build runs it" : ""}; run it through ${SHIM_PATH}, or bind its folders under [suite.workspace] and let regenerate do it`,
     });
   }
   for (const src of readJson(path.join(repo, ".agents", "skills.json"))?.sources ?? []) {
@@ -448,7 +448,7 @@ export function regenerate(repo, { env = process.env } = {}) {
   if (env.REGENERATE === "0") return skip("regeneration", "REGENERATE=0"), 0;
   const b = loadBindings(repo);
   if (!b) return skip("regeneration", "no .agents/skill-bindings.toml"), 0;
-  const ws = b.suite("aaa-workspace");
+  const ws = b.suite("workspace");
   const run = (what, cmd, args) => {
     const r = spawnSync(cmd, args, { cwd: repo, stdio: "inherit", env });
     if (r.status !== 0) console.error(`${what} failed (exit ${r.status ?? "signal"}); fix the page it names, or build with REGENERATE=0`);
@@ -473,8 +473,8 @@ export function regenerate(repo, { env = process.env } = {}) {
 
   const deck = skillPath(repo, "markdown-deck", "bin", "markdown-deck.mjs");
   const source = ws.deckSource ?? b.suite("aaa-continuum").root;
-  if (!ws.decks) skip("deck publishing", "no deck folder is bound ([suite.aaa-workspace] decks)");
-  else if (!source) skip("deck publishing", "no deck source is bound ([suite.aaa-workspace] deckSource, or [suite.aaa-continuum] root)");
+  if (!ws.decks) skip("deck publishing", "no deck folder is bound ([suite.workspace] decks)");
+  else if (!source) skip("deck publishing", "no deck source is bound ([suite.workspace] deckSource, or [suite.aaa-continuum] root)");
   else if (!exists(deck)) skip("deck publishing", "the markdown-deck skill is not installed");
   else if (!exists(skillPath(repo, "markdown-deck", "node_modules"))) skip("deck publishing", "markdown-deck's packages are not installed (install installs them)");
   else {

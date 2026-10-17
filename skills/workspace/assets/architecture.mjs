@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 // SPDX-FileCopyrightText: 2026 Dermot O'Brien
 // SPDX-License-Identifier: Apache-2.0
-// Written by the aaa-workspace skill (architecture-continuum). Re-run its install to update it; do not edit here.
+// Written by the workspace skill (architecture-continuum). Re-run its install to update it; do not edit here.
 //
 // The repository's door to its architecture skills. The skills are optional tooling: when the
-// aaa-workspace skill is installed this runs its command, and when it is not it says so in one line
+// workspace skill is installed this runs its command, and when it is not it says so in one line
 // and exits 0, so a clone without the skills still checks and builds from what is committed.
 //
 //   node scripts/architecture.mjs check        the continuum and cross-reference checks
@@ -20,7 +20,7 @@ import { fileURLToPath } from "node:url";
 
 const INSTALLER = "__INSTALLER__";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const tool = path.join(root, ".agents", "skills", "aaa-workspace", "bin", "workspace.mjs");
+const tool = path.join(root, ".agents", "skills", "workspace", "bin", "workspace.mjs");
 const [cmd = "doctor", ...rest] = process.argv.slice(2);
 const node = (args) => spawnSync(process.execPath, args, { cwd: root, stdio: "inherit" }).status ?? 1;
 
@@ -36,14 +36,14 @@ if (cmd === "reinit") {
     const from = at >= 0 && rest[at + 1] ? ["--from", path.resolve(rest[at + 1])] : [];
     const status = node([installer, "sync", ...locked, "--copy", ...from]);
     if (status !== 0 || !existsSync(tool)) {
-      console.error("reinit stopped: the skills did not install, or .agents/skills.json does not declare aaa-workspace");
+      console.error("reinit stopped: the skills did not install, or .agents/skills.json does not declare workspace");
       process.exit(status || 1);
     }
   }
   process.exit(node([tool, "init", "--repo", root, ...rest]));
 }
 if (!existsSync(tool)) {
-  console.error(`${cmd} skipped: the aaa-workspace skill is not installed (npm run skills installs the architecture skills)`);
+  console.error(`${cmd} skipped: the workspace skill is not installed (npm run skills installs the architecture skills)`);
   process.exit(0);
 }
 process.exit(node([tool, cmd, "--repo", root, ...rest]));

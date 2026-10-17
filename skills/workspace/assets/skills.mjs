@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // SPDX-FileCopyrightText: 2026 Dermot O'Brien
 // SPDX-License-Identifier: Apache-2.0
-// Copied from dermot-obrien/ai-assisted-work bin/skills.mjs (commit cc72fd5) by the aaa-workspace skill. Re-run its install to update it; do not edit here.
+// Copied from dermot-obrien/ai-assisted-work bin/skills.mjs (commit cc72fd5) by the workspace skill. Re-run its install to update it; do not edit here.
 
 /**
  * skills — install standalone Agent Skills into a workspace, from a bundle or one at a time.

@@ -127,7 +127,7 @@ jobs:
       - name: Check the installed skills resolve
         run: |
           node "$GITHUB_WORKSPACE/aaa/scripts/validate-skills.mjs" /tmp/ws/.agents/skills
-          for s in /tmp/ws/.claude/skills/aaa-*; do
+          for s in /tmp/ws/.claude/skills/aaa-* /tmp/ws/.claude/skills/workspace; do
             test -f "$s/SKILL.md" || { echo "::error::$s does not resolve"; exit 1; }
           done
           node "$GITHUB_WORKSPACE/aaw/bin/skills.mjs" check --workspace /tmp/ws
@@ -177,8 +177,8 @@ jobs:
       - name: The aaa-continuum skill's tests
         run: node --test skills/aaa-continuum/tests/*.test.mjs
 
-      - name: The aaa-workspace skill's tests
-        run: node --test skills/aaa-workspace/tests/*.test.mjs
+      - name: The workspace skill's tests
+        run: node --test skills/workspace/tests/*.test.mjs
 
       - name: The skill's check passes on its own scaffold
         run: |

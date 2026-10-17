@@ -49,8 +49,8 @@ threads_project: t-4wd
 `;
 
 test("readToml reads tables, strings, booleans and lists, and reads past arrays of tables", () => {
-  const t = readToml(`[suite.aaa-workspace]\ndecks = "../site/static/decks" # out\npdf = true\ndiagrams = [\n  "../a",\n  '../b',\n]\n[[markdown.tables]]\nsection = "x"\n[model]\nedge_id_attr = "iface_id"\n`);
-  assert.deepEqual(t["suite.aaa-workspace"], { decks: "../site/static/decks", pdf: true, diagrams: ["../a", "../b"] });
+  const t = readToml(`[suite.workspace]\ndecks = "../site/static/decks" # out\npdf = true\ndiagrams = [\n  "../a",\n  '../b',\n]\n[[markdown.tables]]\nsection = "x"\n[model]\nedge_id_attr = "iface_id"\n`);
+  assert.deepEqual(t["suite.workspace"], { decks: "../site/static/decks", pdf: true, diagrams: ["../a", "../b"] });
   assert.deepEqual(t.model, { edge_id_attr: "iface_id" });
 });
 
@@ -172,12 +172,12 @@ test("without the skill installed, the door script says so in one line and exits
   for (const cmd of ["check", "regenerate", "doctor"]) {
     const r = run(["scripts/architecture.mjs", cmd]);
     assert.equal(r.status, 0, r.stderr);
-    assert.match(r.stderr, new RegExp(`^${cmd} skipped: the aaa-workspace skill is not installed`));
+    assert.match(r.stderr, new RegExp(`^${cmd} skipped: the workspace skill is not installed`));
   }
 });
 
 test("with the skill but none of the others, regenerate and check skip each step in one line and exit 0", () => {
-  write(".agents/skill-bindings.toml", '[suite.aaa-continuum]\nroot = "../docs"\n[suite.use-case]\noutputDir = "../docs/uc"\n[suite.aaa-workspace]\ndecks = "../static/decks"\n');
+  write(".agents/skill-bindings.toml", '[suite.aaa-continuum]\nroot = "../docs"\n[suite.use-case]\noutputDir = "../docs/uc"\n[suite.workspace]\ndecks = "../static/decks"\n');
   fs.mkdirSync(path.join(repo, "docs", "uc"), { recursive: true });
   const lines = [];
   const err = console.error;

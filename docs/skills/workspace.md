@@ -1,4 +1,4 @@
-# aaa-workspace
+# workspace
 
 Initialises a repository for the architecture skills, or reinitialises one that older tooling has left in a muddle: it clears out what retired tooling left behind, installs the skills the repository declares, wires the build so it runs with or without them, and builds the site.
 
@@ -19,12 +19,12 @@ It needs Node.js 18 or later and git, and no npm packages, so it runs against a 
 ## What it does
 
 ```bash
-node <skills>/aaa-workspace/bin/workspace.mjs doctor --repo .          # what is there; changes nothing
-node <skills>/aaa-workspace/bin/workspace.mjs init --repo . --dry-run  # the plan
-node <skills>/aaa-workspace/bin/workspace.mjs init --repo .            # clean, install, build
+node <skills>/workspace/bin/workspace.mjs doctor --repo .          # what is there; changes nothing
+node <skills>/workspace/bin/workspace.mjs init --repo . --dry-run  # the plan
+node <skills>/workspace/bin/workspace.mjs init --repo .            # clean, install, build
 ```
 
-Clean removes what [references/retired.json](../../skills/aaa-workspace/references/retired.json) lists as left over, with the reason for each, plus links to skills that are not there, ignored installed copies of skills and ignored build output. It deletes only what git or the installer gives back: tracked files go through `git rm`, so their removal is staged for review, and an untracked file git does not ignore, or a tracked one with uncommitted changes, is kept and reported. It never edits `.claude/settings.json` or a `package.json` script; a hook that runs a retired installer, or a build script that calls a skill directly, is reported with what to change.
+Clean removes what [references/retired.json](../../skills/workspace/references/retired.json) lists as left over, with the reason for each, plus links to skills that are not there, ignored installed copies of skills and ignored build output. It deletes only what git or the installer gives back: tracked files go through `git rm`, so their removal is staged for review, and an untracked file git does not ignore, or a tracked one with uncommitted changes, is kept and reported. It never edits `.claude/settings.json` or a `package.json` script; a hook that runs a retired installer, or a build script that calls a skill directly, is reported with what to change.
 
 Install writes two files and replaces either only when the skill wrote it, unless you pass `--force`:
 

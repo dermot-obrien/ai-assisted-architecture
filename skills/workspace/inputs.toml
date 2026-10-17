@@ -4,11 +4,11 @@
 # bound, regenerate publishes the diagrams of the folders [suite.use-case] and [suite.pattern]
 # already bind, and skips the decks in one line, so the build still runs.
 #
-# Answer in [suite.aaa-workspace] of the repository's .agents/skill-bindings.toml.
+# Answer in [suite.workspace] of the repository's .agents/skill-bindings.toml.
 # Paths resolve against that file's directory, never the working directory.
 #
-# Checked by:  node <skills>/aaa-workspace/bin/check.mjs   (--json prints the resolved paths)
-#              node <skills>/aaa-workspace/bin/workspace.mjs doctor
+# Checked by:  node <skills>/workspace/bin/check.mjs   (--json prints the resolved paths)
+#              node <skills>/workspace/bin/workspace.mjs doctor
 
 [inputs]
 short_description = "What the repository's build regenerates from its pages"
